@@ -2,7 +2,7 @@ spring:
   application:
     name: platform
   flyway:
-    enabled: false
+    enabled: true
     # flyway 的 clean 命令会删除指定 schema 下的所有 table, 生产务必禁掉。这个默认值是 false 理论上作为默认配置是不科学的。
     clean-disabled: true
     # SQL 脚本的目录,多个路径使用逗号分隔 默认值 classpath:db/migration
@@ -12,7 +12,12 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+  profiles:
+    active: dev
+
 
 
 server:
   port: 8080
+  servlet:
+    context-path: /platform

@@ -6,7 +6,7 @@
     <groupId>top.yangwulang</groupId>
     <artifactId>platform</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>platform</name>
+    <name>platform-starter</name>
     <description>platform</description>
 
     <properties>
@@ -55,6 +55,17 @@
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
             <version>1.2.14</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.8.9</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-spring-boot-starter</artifactId>
+            <version>3.0.3</version>
         </dependency>
 
         <dependency>
@@ -164,6 +175,12 @@
         </plugins>
     </build>
 
+    <repositories>
+        <repository>
+            <id>aliyun</id>
+            <url>https://maven.aliyun.com/repository/public</url>
+        </repository>
+    </repositories>
     <pluginRepositories>
         <pluginRepository>
             <id>aliyun</id>

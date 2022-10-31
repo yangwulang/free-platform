@@ -1,6 +1,7 @@
 package top.yangwulang.platform
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
 import org.springframework.boot.runApplication
 
 @SpringBootApplication

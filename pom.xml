@@ -7,7 +7,7 @@
     <artifactId>free-platform</artifactId>
     <groupId>top.yangwulang</groupId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
 
     <name>platform</name>
 

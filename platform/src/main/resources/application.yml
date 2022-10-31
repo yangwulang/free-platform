@@ -8,6 +8,10 @@ spring:
     # SQL 脚本的目录,多个路径使用逗号分隔 默认值 classpath:db/migration
     # 不同环境使用目录区分，在application-{}.yml中重写
 #    locations: classpath:db/migration
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
 
 
 server:

@@ -5,11 +5,17 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Pageable
+import org.springframework.data.jpa.domain.Specification
 import org.springframework.stereotype.Service
 import top.yangwulang.platform.entity.book.BookCategory
+import top.yangwulang.platform.entity.book.dto.BookCategoryDto
 import top.yangwulang.platform.factory.BookCategoryFactory
 import top.yangwulang.platform.repository.book.BookCategoryRepository
 import top.yangwulang.platform.services.book.BookCategoryService
+import javax.persistence.criteria.CriteriaBuilder
+import javax.persistence.criteria.CriteriaQuery
+import javax.persistence.criteria.Predicate
+import javax.persistence.criteria.Root
 
 @Slf4j
 @Service
@@ -19,8 +25,18 @@ class BookCategoryServiceImpl : BookCategoryService {
 
     private val bookCategoryFactory = BookCategoryFactory()
 
-    override fun findPage() {
-        val findAll: Page<BookCategory> = bookCategoryRepository.findAll(PageRequest.of(1, 20))
+    override fun findPage(
+        bookCategoryDto: BookCategoryDto,
+        pageable: Pageable
+    ): Page<BookCategory> {
+/*        val where = Specification.where<BookCategory> { root, criteriaQuery, cb ->
+            val predicates = arrayListOf<Predicate>()
+            if (bookCategoryDto.categoryName != null) {
+                predicates.add(cb.equal(root.get<Any>("categoryName"), bookCategoryDto.categoryName))
+            }
+            criteriaQuery.where(predicates.toTypedArray()).restriction
+        }*/
+        return bookCategoryRepository.findAll(pageable)
     }
 
     override fun findById(id: String): BookCategory? {

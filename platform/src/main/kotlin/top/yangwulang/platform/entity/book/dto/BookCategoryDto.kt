@@ -1,6 +1,8 @@
 package top.yangwulang.platform.entity.book.dto
 
-class BookCategoryDto {
+import java.io.Serializable
+
+class BookCategoryDto : Serializable {
     var id: String? = null
     var categoryName: String? = null
 }

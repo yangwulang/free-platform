@@ -9,7 +9,7 @@ spring:
     # 不同环境使用目录区分，在application-{}.yml中重写
 #    locations: classpath:db/migration
   jpa:
-    show-sql: true
+    show-sql: false
     hibernate:
       ddl-auto: update
     properties:
@@ -17,7 +17,7 @@ spring:
         format_sql: true
         use_sql_comments: true
   profiles:
-    active: unit
+    active: dev
 
 
 
@@ -30,7 +30,8 @@ server:
 logging:
   level:
     org.hibernate.SQL: debug
-    org.hibernate.loader.Loader: debug
+    org.hibernate.loader.Loader: error
     org.hibernate.engine.QueryParameters: debug
     org.hibernate.engine.query.HQLQueryPlan: debug
     org.hibernate.type.descriptor.sql.BasicBinder: trace
+    org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport: error

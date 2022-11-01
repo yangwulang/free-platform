@@ -1,5 +1,6 @@
 package top.yangwulang.platform.entity.book
 
+import lombok.ToString
 import org.hibernate.annotations.GenericGenerator
 import java.io.Serializable
 import javax.persistence.Column
@@ -10,6 +11,7 @@ import javax.persistence.Table
 
 @Entity
 @Table(name = "book_info")
+@ToString
 open class BookInfo : Serializable {
     @Id
     @GeneratedValue(generator = "snowflake")

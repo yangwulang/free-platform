@@ -29,14 +29,7 @@ class BookCategoryServiceImpl : BookCategoryService {
         bookCategoryDto: BookCategoryDto,
         pageable: Pageable
     ): Page<BookCategory> {
-        val where = Specification.where<BookCategory> { root, criteriaQuery, cb ->
-            val predicates = arrayListOf<Predicate>()
-            if (bookCategoryDto.categoryName != null) {
-                predicates.add(cb.like(root.get("categoryName"), "%" + bookCategoryDto.categoryName + "%"))
-            }
-            criteriaQuery.where(*predicates.toTypedArray()).restriction
-        }
-        return bookCategoryRepository.findAll(where, pageable)
+        return bookCategoryRepository.findAll(createWhere(bookCategoryDto), pageable)
     }
 
     override fun findById(id: String): BookCategory? {
@@ -45,6 +38,20 @@ class BookCategoryServiceImpl : BookCategoryService {
 
     override fun convertFactory(): BookCategoryFactory {
         return bookCategoryFactory
+    }
+
+    override fun findList(dto: BookCategoryDto): List<BookCategory> {
+        return bookCategoryRepository.findAll(createWhere(dto))
+    }
+
+    private fun createWhere(bookCategoryDto: BookCategoryDto) : Specification<BookCategory>{
+        return Specification.where { root, criteriaQuery, cb ->
+            val predicates = arrayListOf<Predicate>()
+            if (bookCategoryDto.categoryName != null) {
+                predicates.add(cb.like(root.get("categoryName"), "%" + bookCategoryDto.categoryName + "%"))
+            }
+            criteriaQuery.where(*predicates.toTypedArray()).restriction
+        }
     }
 
 }

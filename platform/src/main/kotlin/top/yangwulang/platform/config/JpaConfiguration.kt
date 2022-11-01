@@ -21,20 +21,23 @@ import javax.sql.DataSource
 class JpaConfiguration {
 
 
-    @Bean
+    /*@Bean
     @ConditionalOnMissingBean
     fun jpaVendorAdapter(): JpaVendorAdapter? {
         val jpaVendorAdapter = HibernateJpaVendorAdapter()
         // 设置数据库类型（可使用org.springframework.orm.jpa.vendor包下的Database枚举类）
         jpaVendorAdapter.setDatabase(Database.MYSQL)
+        val map = jpaVendorAdapter.getJpaPropertyMap()
+        map.put("hibernate.format_sql", true)
+        map.put("hibernate.use_sql_comments", true)
         // 设置打印sql语句
         jpaVendorAdapter.setShowSql(true)
         // 设置不生成ddl语句
         jpaVendorAdapter.setGenerateDdl(false)
         // 设置hibernate方言
-        jpaVendorAdapter.setDatabasePlatform("org.hibernate.dialect.MySQL5Dialect")
+        jpaVendorAdapter.setDatabasePlatform("org.hibernate.dialect.MySQL8Dialect")
         return jpaVendorAdapter
-    }
+    }*/
 
     @Bean
     fun entityManagerFactory(

@@ -6,6 +6,10 @@ class Page {
     var pageNum: Int = 1
     var pageSize: Int = 20
 
+    fun getPositionNum(): Int {
+        return if (pageNum <= 0) 0 else pageNum - 1
+    }
+
     constructor() : this(1, 20)
 
     constructor(pageNum: Int, pageSize: Int) {
@@ -21,10 +25,16 @@ class Page {
             pageNum = httpServletRequest.getParameter("pageN")
         }
         if (pageNum == null) {
+            pageNum = httpServletRequest.getHeader("pageNum")
+        }
+        if (pageNum == null) {
             pageNum = "1"
         }
         if (pageSize == null) {
             pageSize = httpServletRequest.getParameter("pageS")
+        }
+        if (pageSize == null) {
+            pageSize = httpServletRequest.getHeader("pageSize")
         }
         if (pageSize == null) {
             pageSize = "20"

@@ -29,14 +29,14 @@ class BookCategoryServiceImpl : BookCategoryService {
         bookCategoryDto: BookCategoryDto,
         pageable: Pageable
     ): Page<BookCategory> {
-/*        val where = Specification.where<BookCategory> { root, criteriaQuery, cb ->
+        val where = Specification.where<BookCategory> { root, criteriaQuery, cb ->
             val predicates = arrayListOf<Predicate>()
             if (bookCategoryDto.categoryName != null) {
-                predicates.add(cb.equal(root.get<Any>("categoryName"), bookCategoryDto.categoryName))
+                predicates.add(cb.like(root.get("categoryName"), "%" + bookCategoryDto.categoryName + "%"))
             }
-            criteriaQuery.where(predicates.toTypedArray()).restriction
-        }*/
-        return bookCategoryRepository.findAll(pageable)
+            criteriaQuery.where(*predicates.toTypedArray()).restriction
+        }
+        return bookCategoryRepository.findAll(where, pageable)
     }
 
     override fun findById(id: String): BookCategory? {

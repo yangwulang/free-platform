@@ -43,7 +43,7 @@ class BookCategoryController {
     ): org.springframework.data.domain.Page<BookCategoryVo> {
         val page = Page(httpServletRequest)
         return bookCategoryService
-            .findPage(bookCategoryDto, PageRequest.of(page.pageNum, page.pageSize))
+            .findPage(bookCategoryDto, PageRequest.of(page.getPositionNum(), page.pageSize))
             .map {
                 bookCategoryService.convertFactory().convertVo(it)
             }

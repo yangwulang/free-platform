@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    username: root
+    password: tq26556570
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://localhost:3306/jeesite?serverTimezone=UTC
+  flyway:
+    baseline-on-migrate: true
+    locations: classpath:db/migration/mysql
+    url: jdbc:mysql://localhost:3306/jeesite?serverTimezone=UTC
+    user: root
+    password: tq26556570
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect

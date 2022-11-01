@@ -14,7 +14,7 @@ import javax.sql.DataSource
 class DynamicDataSourceConfiguration {
 
 
-    @Bean(name = ["master"], initMethod = "init")
+    /*@Bean(name = ["master"], initMethod = "init")
     @ConfigurationProperties("spring.datasource.druid.master")
     fun mysql(): DruidDataSource? {
         return DruidDataSourceBuilder.create().build()
@@ -35,5 +35,5 @@ class DynamicDataSourceConfiguration {
         dataSourceHandler.setTargetDataSources(mapOf("master" to master, "slave" to slave))
         dataSourceHandler.setDefaultTargetDataSource(master)
         return dataSourceHandler;
-    }
+    }*/
 }

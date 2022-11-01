@@ -2,7 +2,7 @@ package top.yangwulang.platform.services
 
 import javax.servlet.http.HttpServletRequest
 
-class Page {
+class HttpPage {
     var pageNum: Int = 1
     var pageSize: Int = 20
 

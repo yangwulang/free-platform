@@ -2,7 +2,6 @@ package top.yangwulang.platform.controller.pc
 
 import io.swagger.annotations.Api
 import io.swagger.annotations.ApiImplicitParam
-import io.swagger.annotations.ApiImplicitParams
 import io.swagger.annotations.ApiOperation
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.PageRequest
@@ -11,11 +10,10 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import top.yangwulang.platform.entity.book.dto.BookCategoryDto
 import top.yangwulang.platform.entity.book.vo.BookCategoryVo
-import top.yangwulang.platform.services.Page
+import top.yangwulang.platform.services.HttpPage
 import top.yangwulang.platform.services.book.BookCategoryService
 import javax.servlet.http.HttpServletRequest
 
@@ -41,9 +39,9 @@ class BookCategoryController {
         @RequestBody bookCategoryDto: BookCategoryDto,
         httpServletRequest: HttpServletRequest
     ): org.springframework.data.domain.Page<BookCategoryVo> {
-        val page = Page(httpServletRequest)
+        val httpPage = HttpPage(httpServletRequest)
         return bookCategoryService
-            .findPage(bookCategoryDto, PageRequest.of(page.getPositionNum(), page.pageSize))
+            .findPage(bookCategoryDto, PageRequest.of(httpPage.getPositionNum(), httpPage.pageSize))
             .map {
                 bookCategoryService.convertFactory().convertVo(it)
             }

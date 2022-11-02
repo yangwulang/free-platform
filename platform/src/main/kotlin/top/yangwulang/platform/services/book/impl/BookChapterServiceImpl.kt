@@ -36,11 +36,13 @@ class BookChapterServiceImpl : BookChapterService {
     }
 
     override fun save(dto: BookChapterDto): BookChapter {
-        TODO("Not yet implemented")
+        return bookChapterRepository.save(bookChapterFactory.convertDtoToBo(dto))
     }
 
     override fun delete(id: String) {
-        TODO("Not yet implemented")
+        if (bookChapterRepository.existsById(id)) {
+            bookChapterRepository.deleteById(id)
+        }
     }
 
     private fun createWhere(dto: BookChapterDto): Specification<BookChapter> {

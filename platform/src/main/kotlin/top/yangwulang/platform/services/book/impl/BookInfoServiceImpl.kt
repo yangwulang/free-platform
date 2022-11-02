@@ -42,7 +42,9 @@ class BookInfoServiceImpl : BookInfoService {
     @Transactional
     @Modifying
     override fun delete(id: String) {
-        bookInfoRepository.deleteById(id)
+        if (bookInfoRepository.existsById(id)) {
+            bookInfoRepository.deleteById(id)
+        }
     }
 
     override fun convertFactory(): BookInfoFactory {

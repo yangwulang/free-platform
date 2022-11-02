@@ -9,7 +9,9 @@ import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
 import org.springframework.web.bind.annotation.*
 import top.yangwulang.platform.entity.book.BookChapter
+import top.yangwulang.platform.entity.book.BookInfo
 import top.yangwulang.platform.entity.book.dto.BookChapterDto
+import top.yangwulang.platform.entity.book.dto.BookInfoDto
 import top.yangwulang.platform.entity.book.vo.BookChapterVo
 import top.yangwulang.platform.exception.ServiceException
 import top.yangwulang.platform.services.HttpPage
@@ -45,6 +47,20 @@ class BookChapterController {
         val httpPage = HttpPage(httpServletRequest)
         return bookChapterService
             .findPage(bookChapterDto, PageRequest.of(httpPage.getPositionNum(), httpPage.pageSize))
+    }
+
+    @PutMapping
+    @ApiOperation(value = "新增或者修改小说章节信息（新增不带id，修改携带id）")
+    fun add(
+        @RequestBody bookChapterDto: BookChapterDto
+    ): BookChapter? {
+        return bookChapterService.save(bookChapterDto)
+    }
+
+    @DeleteMapping("/{id}")
+    @ApiOperation(value = "删除小说章节")
+    fun delete(@PathVariable("id") id: String) {
+        return bookChapterService.delete(id)
     }
 
 }

@@ -13,6 +13,12 @@ import javax.persistence.Table
 @Table(name = "book_info")
 @ToString
 open class BookInfo : Serializable {
+
+//    constructor()
+    /*constructor(id: String?) {
+        this.id = id
+    }*/
+
     @Id
     @GeneratedValue(generator = "snowflake")
     @GenericGenerator(name = "snowflake", strategy = "top.yangwulang.platform.utils.SnowflakeGenerator")

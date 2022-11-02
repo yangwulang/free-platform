@@ -5,7 +5,7 @@ import io.swagger.annotations.ApiModelProperty
 import java.io.Serializable
 
 
-@ApiModel("小说信息")
+@ApiModel("小说信息Dto")
 class BookInfoDto : Serializable {
     @ApiModelProperty("小说主键")
     var id: String? = null

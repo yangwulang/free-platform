@@ -51,7 +51,9 @@ class BookCategoryServiceImpl : BookCategoryService {
     @Transactional
     @Modifying
     override fun delete(id: String) {
-        bookCategoryRepository.deleteById(id)
+        if (bookCategoryRepository.existsById(id)) {
+            bookCategoryRepository.deleteById(id)
+        }
     }
 
     private fun createWhere(bookCategoryDto: BookCategoryDto): Specification<BookCategory> {

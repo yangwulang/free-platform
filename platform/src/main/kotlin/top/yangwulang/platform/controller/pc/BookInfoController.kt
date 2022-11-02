@@ -51,7 +51,7 @@ class BookInfoController {
     }
 
     @DeleteMapping("/{id}")
-    @ApiOperation(value = "删除小说类型")
+    @ApiOperation(value = "删除小说信息")
     fun delete(@PathVariable("id") id: String) {
         return bookInfoService.delete(id)
     }

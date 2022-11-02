@@ -4,8 +4,11 @@ import top.yangwulang.platform.entity.book.BookInfo
 import top.yangwulang.platform.entity.book.dto.BookInfoDto
 import top.yangwulang.platform.factory.BookInfoFactory
 import top.yangwulang.platform.services.QueryService
+import top.yangwulang.platform.services.UpdateService
 
-interface BookInfoService : QueryService<BookInfo, String, BookInfoDto> {
+interface BookInfoService :
+    QueryService<BookInfo, String, BookInfoDto>,
+    UpdateService<BookInfo, String, BookInfoDto> {
 
     fun convertFactory(): BookInfoFactory
 }

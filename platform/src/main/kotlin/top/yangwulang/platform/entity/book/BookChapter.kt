@@ -18,7 +18,7 @@ open class BookChapter : Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "book_id")
-    open var book: top.yangwulang.platform.entity.book.BookInfo? = null
+    open var book: BookInfo? = null
 
     @Column(name = "from_path", length = 2000)
     open var fromPath: String? = null

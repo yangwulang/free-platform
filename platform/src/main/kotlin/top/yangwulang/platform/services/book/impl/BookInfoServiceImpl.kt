@@ -31,6 +31,14 @@ class BookInfoServiceImpl : BookInfoService {
         return bookInfoRepository.findById(id).orElse(null)
     }
 
+    override fun save(dto: BookInfoDto): BookInfo {
+        TODO("Not yet implemented")
+    }
+
+    override fun delete(id: String) {
+        TODO("Not yet implemented")
+    }
+
     override fun convertFactory(): BookInfoFactory {
         return bookInfoFactory
     }

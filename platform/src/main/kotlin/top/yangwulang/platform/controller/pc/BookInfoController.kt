@@ -14,7 +14,7 @@ import top.yangwulang.platform.services.book.BookInfoService
 import javax.servlet.http.HttpServletRequest
 
 
-@Api(tags = ["小说模块"])
+@Api(tags = ["小说模块", "小说管理"])
 @RestController
 @RequestMapping("/book/info")
 class BookInfoController {

@@ -51,7 +51,7 @@ class BookCategoryController {
     }
 
     @PutMapping
-    @ApiOperation(value = "新增小说类型")
+    @ApiOperation(value = "新增或者修改小说类型（新增不带id，修改携带id）")
     fun add(
         @RequestBody bookCategoryDto: BookCategoryDto
     ): BookCategoryVo? {

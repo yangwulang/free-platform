@@ -9,14 +9,19 @@ import org.springframework.stereotype.Service
 import top.yangwulang.platform.entity.book.BookChapter
 import top.yangwulang.platform.entity.book.BookInfo
 import top.yangwulang.platform.entity.book.dto.BookChapterDto
+import top.yangwulang.platform.factory.BookChapterFactory
 import top.yangwulang.platform.repository.book.BookChapterRepository
 import top.yangwulang.platform.services.book.BookChapterService
 import javax.persistence.criteria.Predicate
 
 @Service
-class BookChapterServiceImpl: BookChapterService {
+class BookChapterServiceImpl : BookChapterService {
     @Autowired
     private lateinit var bookChapterRepository: BookChapterRepository;
+    private val bookChapterFactory = BookChapterFactory()
+    override fun convertFactory(): BookChapterFactory {
+        return bookChapterFactory
+    }
 
     override fun findList(dto: BookChapterDto): List<BookChapter> {
         return bookChapterRepository.findAll(createWhere(dto))
@@ -38,7 +43,7 @@ class BookChapterServiceImpl: BookChapterService {
         TODO("Not yet implemented")
     }
 
-    private fun createWhere(dto: BookChapterDto) : Specification<BookChapter> {
+    private fun createWhere(dto: BookChapterDto): Specification<BookChapter> {
         return Specification.where { root, criteriaQuery, cb ->
             val predicates = arrayListOf<Predicate>()
             predicates.add(cb.equal(root.get<BookInfo>("book").get<String>("id"), dto.bookId))

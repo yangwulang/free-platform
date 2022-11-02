@@ -5,7 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.data.jpa.domain.Specification
+import org.springframework.data.jpa.repository.Modifying
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import top.yangwulang.platform.entity.book.BookInfo
 import top.yangwulang.platform.entity.book.dto.BookInfoDto
 import top.yangwulang.platform.factory.BookInfoFactory
@@ -31,12 +33,16 @@ class BookInfoServiceImpl : BookInfoService {
         return bookInfoRepository.findById(id).orElse(null)
     }
 
+    @Transactional
+    @Modifying
     override fun save(dto: BookInfoDto): BookInfo {
-        TODO("Not yet implemented")
+        return bookInfoRepository.save(bookInfoFactory.convertDtoToBo(dto))
     }
 
+    @Transactional
+    @Modifying
     override fun delete(id: String) {
-        TODO("Not yet implemented")
+        bookInfoRepository.deleteById(id)
     }
 
     override fun convertFactory(): BookInfoFactory {

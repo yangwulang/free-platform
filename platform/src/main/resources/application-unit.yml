@@ -21,3 +21,6 @@ spring:
     cluster-mode: false
 #    清理全部缓存按钮所清理的缓存列表
 #    clearNames: sysCache,corpCache,userCache,cmsCache,msgPcPoolCache
+
+knife4j:
+  enable: true

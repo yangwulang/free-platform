@@ -16,7 +16,7 @@ open class BookChapter : Serializable {
     @Column(name = "chapter_title", length = 2000)
     open var chapterTitle: String? = null
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "book_id")
     open var book: BookInfo? = null
 

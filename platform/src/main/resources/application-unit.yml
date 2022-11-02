@@ -1,4 +1,6 @@
 spring:
+  session:
+    store-type: none
   datasource:
     username: root
     password: tq26556570
@@ -13,3 +15,9 @@ spring:
     password: tq26556570
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
+
+  cache:
+    #    缓存及会话共享 是否决定开启redis缓存
+    cluster-mode: false
+#    清理全部缓存按钮所清理的缓存列表
+#    clearNames: sysCache,corpCache,userCache,cmsCache,msgPcPoolCache

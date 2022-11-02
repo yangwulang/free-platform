@@ -54,6 +54,10 @@ class GlobalControllerExceptionHandler : ResponseBodyAdvice<Any> {
                 false
             }
         }
+        if (request.uri.path.contains("swagger-resources")) {
+            // knife4j默认为Cloud请求
+            isCloudRequest = true
+        }
         return if (isCloudRequest) {
             // 如果是cloud请求，不包装body
             body

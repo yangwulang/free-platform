@@ -42,6 +42,7 @@ class BookInfoServiceImpl : BookInfoService {
     @Transactional
     @Modifying
     override fun delete(id: String) {
+        // TODO: 此处应该还要将关联的数据一起删除，例如章节和章节内容信息一起删除
         if (bookInfoRepository.existsById(id)) {
             bookInfoRepository.deleteById(id)
         }

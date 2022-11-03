@@ -31,6 +31,24 @@ spring:
     cluster-mode: true
 #    清理全部缓存按钮所清理的缓存列表
 #    clearNames: sysCache,corpCache,userCache,cmsCache,msgPcPoolCache
+  quartz:
+    job-store-type: jdbc
+    properties:
+      org:
+        quartz:
+          scheduler:
+            instanceName: free_platform
+            instanceId: AUTO
+          jobStore:
+            class: org.quartz.impl.jdbcjobstore.JobStoreTX
+            #tablePrefix: qrtz_  #数据库表前缀
+            #clusterCheckinInterval: 5000 #设置此实例“检入”*与群集的其他实例的频率（以毫秒为单位）。影响检测失败实例的速度
+            #isClustered: true #打开群集功能
+            #threadPool: #连接池
+            #class: org.quartz.simpl.SimpleThreadPool
+            #threadCount: 10
+            #threadPriority: 5
+            #threadsInheritContextClassLoaderOfInitializingThread: true
 
 
 knife4j:

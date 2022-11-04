@@ -1,4 +1,4 @@
-package top.yangwulang.platform.services.sys.Impl
+package top.yangwulang.platform.services.sys.impl
 
 import org.quartz.Scheduler
 import org.quartz.SchedulerException

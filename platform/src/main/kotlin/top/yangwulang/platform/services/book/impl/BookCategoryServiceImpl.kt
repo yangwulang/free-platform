@@ -12,34 +12,24 @@ import top.yangwulang.platform.entity.book.BookCategory
 import top.yangwulang.platform.entity.book.dto.BookCategoryDto
 import top.yangwulang.platform.factory.BookCategoryFactory
 import top.yangwulang.platform.repository.book.BookCategoryRepository
+import top.yangwulang.platform.services.BaseServiceImpl
 import top.yangwulang.platform.services.book.BookCategoryService
+import javax.persistence.criteria.CriteriaBuilder
+import javax.persistence.criteria.CriteriaQuery
 import javax.persistence.criteria.Predicate
+import javax.persistence.criteria.Root
 
 @Slf4j
 @Service
-class BookCategoryServiceImpl : BookCategoryService {
+class BookCategoryServiceImpl :
+    BaseServiceImpl<BookCategory, String, BookCategoryDto, BookCategoryRepository>(),
+    BookCategoryService {
     @Autowired
     private lateinit var bookCategoryRepository: BookCategoryRepository
 
     private val bookCategoryFactory = BookCategoryFactory()
-
-    override fun findPage(
-        dto: BookCategoryDto,
-        pageable: Pageable
-    ): Page<BookCategory> {
-        return bookCategoryRepository.findAll(createWhere(dto), pageable)
-    }
-
-    override fun findById(id: String): BookCategory? {
-        return bookCategoryRepository.findById(id).orElse(null)
-    }
-
     override fun convertFactory(): BookCategoryFactory {
         return bookCategoryFactory
-    }
-
-    override fun findList(dto: BookCategoryDto): List<BookCategory> {
-        return bookCategoryRepository.findAll(createWhere(dto))
     }
 
     @Transactional
@@ -48,21 +38,16 @@ class BookCategoryServiceImpl : BookCategoryService {
         return bookCategoryRepository.save<BookCategory>(this.bookCategoryFactory.convertDtoToBo(dto))
     }
 
-    @Transactional
-    @Modifying
-    override fun delete(id: String) {
-        if (bookCategoryRepository.existsById(id)) {
-            bookCategoryRepository.deleteById(id)
-        }
-    }
 
-    private fun createWhere(bookCategoryDto: BookCategoryDto): Specification<BookCategory> {
-        return Specification.where { root, criteriaQuery, cb ->
-            val predicates = arrayListOf<Predicate>()
-            if (bookCategoryDto.categoryName != null) {
-                predicates.add(cb.like(root.get("categoryName"), "%" + bookCategoryDto.categoryName + "%"))
-            }
-            criteriaQuery.where(*predicates.toTypedArray()).restriction
+    override fun where(
+        dto: BookCategoryDto,
+        root: Root<BookCategory>,
+        criteriaQuery: CriteriaQuery<*>,
+        cb: CriteriaBuilder,
+        predicates: MutableList<Predicate>
+    ) {
+        if (dto.categoryName != null) {
+            predicates.add(cb.like(root.get("categoryName"), "%" + dto.categoryName + "%"))
         }
     }
 

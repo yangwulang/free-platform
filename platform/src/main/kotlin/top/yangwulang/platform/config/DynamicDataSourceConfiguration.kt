@@ -17,22 +17,24 @@ class DynamicDataSourceConfiguration {
     fun dynamicDataSource(dynamicDataSourceProperties: DynamicDataSourceProperties): DataSourceHolder {
         val dataSourceHandler = DataSourceHolder()
         val dataSourceMap = HashMap<String, DataSource>()
-        dynamicDataSourceProperties.dataSourceNames.forEach {
-            val properties = dynamicDataSourceProperties.properties
-            if (StringUtils.isNoneBlank(it) && properties != null) {
-                val dataSource = DruidDataSourceBuilder.create().build()
-                dataSource.url = properties["url"]
-                dataSource.username = properties["username"]
-                dataSource.password = properties["password"]
-                dataSource.driverClassName = properties["driverClassName"]
-                dataSource.isAsyncInit = properties["isAsyncInit"].let { isAsyncInit ->
-                    isAsyncInit?.toBoolean() ?: false
+        dynamicDataSourceProperties.dataSourceNames?.let {dataSourceName ->
+            dataSourceName.forEach {
+                val properties = dynamicDataSourceProperties.properties
+                if (StringUtils.isNoneBlank(it) && properties != null) {
+                    val dataSource = DruidDataSourceBuilder.create().build()
+                    dataSource.url = properties["url"]
+                    dataSource.username = properties["username"]
+                    dataSource.password = properties["password"]
+                    dataSource.driverClassName = properties["driverClassName"]
+                    dataSource.isAsyncInit = properties["isAsyncInit"].let { isAsyncInit ->
+                        isAsyncInit?.toBoolean() ?: false
+                    }
+                    dataSource.minIdle = properties["minIdle"].let { minIdle ->
+                        minIdle?.toInt() ?: 3
+                    }
+                    dataSource.init()
+                    dataSourceMap[it] = dataSource
                 }
-                dataSource.minIdle = properties["minIdle"].let { minIdle ->
-                    minIdle?.toInt() ?: 3
-                }
-                dataSource.init()
-                dataSourceMap[it] = dataSource
             }
         }
         dataSourceHandler.setTargetDataSources(dataSourceMap.toMap())

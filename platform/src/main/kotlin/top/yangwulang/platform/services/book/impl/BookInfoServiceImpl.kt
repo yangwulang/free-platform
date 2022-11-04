@@ -12,26 +12,20 @@ import top.yangwulang.platform.entity.book.BookInfo
 import top.yangwulang.platform.entity.book.dto.BookInfoDto
 import top.yangwulang.platform.factory.BookInfoFactory
 import top.yangwulang.platform.repository.book.BookInfoRepository
+import top.yangwulang.platform.services.BaseServiceImpl
 import top.yangwulang.platform.services.book.BookInfoService
+import javax.persistence.criteria.CriteriaBuilder
+import javax.persistence.criteria.CriteriaQuery
 import javax.persistence.criteria.Predicate
+import javax.persistence.criteria.Root
 
 @Service
-class BookInfoServiceImpl : BookInfoService {
+class BookInfoServiceImpl :
+    BaseServiceImpl<BookInfo, String, BookInfoDto, BookInfoRepository>(),
+    BookInfoService {
     @Autowired
     private lateinit var bookInfoRepository: BookInfoRepository;
     private val bookInfoFactory: BookInfoFactory = BookInfoFactory()
-
-    override fun findList(dto: BookInfoDto): List<BookInfo> {
-        return bookInfoRepository.findAll(createWhere(dto))
-    }
-
-    override fun findPage(dto: BookInfoDto, pageable: Pageable): Page<BookInfo> {
-        return bookInfoRepository.findAll(createWhere(dto), pageable)
-    }
-
-    override fun findById(id: String): BookInfo? {
-        return bookInfoRepository.findById(id).orElse(null)
-    }
 
     @Transactional
     @Modifying
@@ -52,25 +46,27 @@ class BookInfoServiceImpl : BookInfoService {
         return bookInfoFactory
     }
 
-    private fun createWhere(dto: BookInfoDto): Specification<BookInfo> {
-        return Specification.where { root, criteriaQuery, cb ->
-            val predicates = arrayListOf<Predicate>()
-            if (StringUtils.isNoneBlank(dto.bookName)) {
-                predicates.add(cb.like(root.get("bookName"), "%" + dto.bookName + "%"))
-            }
-            if (StringUtils.isNoneBlank(dto.author)) {
-                predicates.add(cb.like(root.get("author"), "%" + dto.author + "%"))
-            }
-            if (StringUtils.isNoneBlank(dto.category)) {
-                predicates.add(cb.equal(root.get<String>("category"), dto.category))
-            }
-            if (StringUtils.isNoneBlank(dto.describe)) {
-                predicates.add(cb.like(root.get("describe"), "%" + dto.describe + "%"))
-            }
-            if (StringUtils.isNoneBlank(dto.status)) {
-                predicates.add(cb.equal(root.get<String>("status"), dto.status))
-            }
-            criteriaQuery.where(*predicates.toTypedArray()).restriction
+    override fun where(
+        dto: BookInfoDto,
+        root: Root<BookInfo>,
+        criteriaQuery: CriteriaQuery<*>,
+        cb: CriteriaBuilder,
+        predicates: MutableList<Predicate>
+    ) {
+        if (StringUtils.isNoneBlank(dto.bookName)) {
+            predicates.add(cb.like(root.get("bookName"), "%" + dto.bookName + "%"))
+        }
+        if (StringUtils.isNoneBlank(dto.author)) {
+            predicates.add(cb.like(root.get("author"), "%" + dto.author + "%"))
+        }
+        if (StringUtils.isNoneBlank(dto.category)) {
+            predicates.add(cb.equal(root.get<String>("category"), dto.category))
+        }
+        if (StringUtils.isNoneBlank(dto.describe)) {
+            predicates.add(cb.like(root.get("describe"), "%" + dto.describe + "%"))
+        }
+        if (StringUtils.isNoneBlank(dto.status)) {
+            predicates.add(cb.equal(root.get<String>("status"), dto.status))
         }
     }
 

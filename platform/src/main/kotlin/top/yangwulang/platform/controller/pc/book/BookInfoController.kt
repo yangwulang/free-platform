@@ -1,4 +1,4 @@
-package top.yangwulang.platform.controller.pc
+package top.yangwulang.platform.controller.pc.book
 
 import io.swagger.annotations.Api
 import io.swagger.annotations.ApiImplicitParam

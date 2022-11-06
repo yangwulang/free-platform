@@ -32,6 +32,13 @@ class GlobalControllerExceptionHandler : ResponseBodyAdvice<Any> {
         return result
     }
 
+    @ExceptionHandler(Exception::class)
+    fun onServiceGException(exception: Exception): Result<Unit> {
+        val result = Result<Unit>()
+        result.failed(exception.message)
+        return result
+    }
+
     override fun supports(returnType: MethodParameter, converterType: Class<out HttpMessageConverter<*>>): Boolean {
         return !(returnType.parameterType == Result::class.java || returnType.hasMethodAnnotation(NotWarpResult::class.java))
     }
@@ -54,7 +61,7 @@ class GlobalControllerExceptionHandler : ResponseBodyAdvice<Any> {
                 false
             }
         }
-        if (request.uri.path.contains("swagger-resources")) {
+        if (request.uri.path.contains("swagger-resources") || request.uri.path.contains("v2/api-docs")) {
             // knife4j默认为Cloud请求
             isCloudRequest = true
         }

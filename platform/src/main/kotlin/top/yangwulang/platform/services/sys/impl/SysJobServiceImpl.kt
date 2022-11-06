@@ -19,7 +19,9 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import top.yangwulang.platform.entity.sys.SysJob
 import top.yangwulang.platform.entity.sys.SysJobId
+import top.yangwulang.platform.entity.sys.dto.SysJobDto
 import top.yangwulang.platform.exception.ServiceException
+import top.yangwulang.platform.factory.JobFactory
 import top.yangwulang.platform.repository.sys.SysJobRepository
 import top.yangwulang.platform.services.sys.SysJobService
 import java.util.*
@@ -31,6 +33,7 @@ class SysJobServiceImpl : SmartLifecycle, SysJobService {
     private var isRunning = false
     protected val lifecycleMonitor = Any()
     private val logger = LoggerFactory.getLogger(SysJobServiceImpl::class.java)
+    private val jobFactory = JobFactory()
     private lateinit var schedulerFactoryBean: SchedulerFactoryBean
 
     @Autowired
@@ -55,7 +58,7 @@ class SysJobServiceImpl : SmartLifecycle, SysJobService {
 
     @Transactional
     @Modifying
-    fun startAll(): Boolean {
+    override fun startAll(): Boolean {
         return try {
             this.schedulerFactoryBean.setStartupDelay(0)
             this.schedulerFactoryBean.start()
@@ -77,14 +80,14 @@ class SysJobServiceImpl : SmartLifecycle, SysJobService {
         schedulerFactoryBean.setDataSource(routingDataSource)
         schedulerFactoryBean.afterPropertiesSet()
 
-        val sysJob = SysJob()
-        sysJob.instanceName = properties["org.quartz.scheduler.instanceName"].toString()
-        val findList = this.findList(sysJob)
+        val sysJobDto = SysJobDto()
+        sysJobDto.instanceName = properties["org.quartz.scheduler.instanceName"].toString()
+        val findList = this.findList(sysJobDto)
         findList.forEach {
             if (it.status == "1") {
 //                this.delete()
             } else {
-                this.save(it)
+                this.save(this.jobFactory.convertBoToDto(it))
             }
         }
         this.schedulerFactoryBean.start()
@@ -110,7 +113,7 @@ class SysJobServiceImpl : SmartLifecycle, SysJobService {
         return false
     }
 
-    override fun findList(dto: SysJob): List<SysJob> {
+    override fun findList(dto: SysJobDto): List<SysJob> {
         val jobs = ArrayList<SysJob>()
         if (this.schedulerFactoryBean != null) {
             val scheduler = this.getScheduler()
@@ -131,7 +134,7 @@ class SysJobServiceImpl : SmartLifecycle, SysJobService {
 
     @Transactional
     @Modifying
-    fun runOnce(sysJob: SysJob) {
+    override fun runOnce(sysJob: SysJob) {
         if (schedulerFactoryBean != null) {
             try {
                 val triggerKey = TriggerKey.triggerKey(sysJob.id?.jobName, sysJob.id?.jobGroup)
@@ -143,7 +146,11 @@ class SysJobServiceImpl : SmartLifecycle, SysJobService {
         }
     }
 
-    override fun findPage(dto: SysJob, pageable: Pageable): Page<SysJob> {
+    override fun convertFactory(): JobFactory {
+        return jobFactory
+    }
+
+    override fun findPage(dto: SysJobDto, pageable: Pageable): Page<SysJob> {
         return sysJobRepository.findAll(createWhere(dto), pageable)
     }
 
@@ -151,8 +158,8 @@ class SysJobServiceImpl : SmartLifecycle, SysJobService {
         return sysJobRepository.findById(id).orElse(null)
     }
 
-    override fun save(dto: SysJob): SysJob {
-        return sysJobRepository.save(dto)
+    override fun save(dto: SysJobDto): SysJob {
+        return sysJobRepository.save(this.jobFactory.convertDtoToBo(dto))
     }
 
     override fun delete(id: SysJobId) {
@@ -161,7 +168,7 @@ class SysJobServiceImpl : SmartLifecycle, SysJobService {
         }
     }
 
-    private fun createWhere(sysJob: SysJob): Specification<SysJob> {
+    private fun createWhere(sysJobDto: SysJobDto): Specification<SysJob> {
         return Specification.where { root, criteriaQuery, cb ->
             val predicates = arrayListOf<Predicate>()
 

@@ -14,8 +14,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2
 @EnableSwagger2
 class Knife4jConfiguration {
 
-    @Bean
-    fun docketBean(): Docket {
+    @Bean(value = ["bookApi"])
+    fun bookDocket(): Docket {
         return Docket(DocumentationType.SWAGGER_2)
             .apiInfo(
                 ApiInfoBuilder()
@@ -27,7 +27,25 @@ class Knife4jConfiguration {
             )
             .groupName("小说服务")
             .select()
-            .apis(RequestHandlerSelectors.basePackage("top.yangwulang.platform.controller"))
+            .apis(RequestHandlerSelectors.basePackage("top.yangwulang.platform.controller.book"))
+            .paths(PathSelectors.any())
+            .build()
+    }
+
+    @Bean(value = ["sysApi"])
+    fun sysDocket(): Docket {
+        return Docket(DocumentationType.SWAGGER_2)
+            .apiInfo(
+                ApiInfoBuilder()
+                    .description("# Knife4j RESTful APIs")
+                    .termsOfServiceUrl("https://doc.xiaominfo.com/")
+                    .contact(Contact("xiaoymin@foxmail.com", "", ""))
+                    .version("1.0.0")
+                    .build()
+            )
+            .groupName("系统服务")
+            .select()
+            .apis(RequestHandlerSelectors.basePackage("top.yangwulang.platform.controller.sys"))
             .paths(PathSelectors.any())
             .build()
     }

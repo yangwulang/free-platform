@@ -22,15 +22,13 @@ import javax.persistence.criteria.Root
 class BookChapterServiceImpl :
     BaseServiceImpl<BookChapter, String, BookChapterDto, BookChapterRepository>(),
     BookChapterService {
-    @Autowired
-    private lateinit var bookChapterRepository: BookChapterRepository;
     private val bookChapterFactory = BookChapterFactory()
     override fun convertFactory(): BookChapterFactory {
         return bookChapterFactory
     }
 
     override fun save(dto: BookChapterDto): BookChapter {
-        return bookChapterRepository.save(bookChapterFactory.convertDtoToBo(dto))
+        return repository.save(bookChapterFactory.convertDtoToBo(dto))
     }
 
     override fun where(

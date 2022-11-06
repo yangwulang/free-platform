@@ -24,8 +24,6 @@ import javax.persistence.criteria.Root
 class BookCategoryServiceImpl :
     BaseServiceImpl<BookCategory, String, BookCategoryDto, BookCategoryRepository>(),
     BookCategoryService {
-    @Autowired
-    private lateinit var bookCategoryRepository: BookCategoryRepository
 
     private val bookCategoryFactory = BookCategoryFactory()
     override fun convertFactory(): BookCategoryFactory {
@@ -35,7 +33,7 @@ class BookCategoryServiceImpl :
     @Transactional
     @Modifying
     override fun save(dto: BookCategoryDto): BookCategory {
-        return bookCategoryRepository.save<BookCategory>(this.bookCategoryFactory.convertDtoToBo(dto))
+        return repository.save<BookCategory>(this.bookCategoryFactory.convertDtoToBo(dto))
     }
 
 

@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.mock.web.MockHttpServletRequest
 import org.springframework.test.annotation.Rollback
-import top.yangwulang.platform.controller.pc.book.BookInfoController
+import top.yangwulang.platform.controller.book.BookInfoController
 import top.yangwulang.platform.entity.book.dto.BookInfoDto
 import top.yangwulang.platform.services.book.BookInfoService
 

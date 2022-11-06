@@ -1,18 +1,21 @@
 package top.yangwulang.platform.services
 
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.data.jpa.domain.Specification
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor
+import javax.annotation.Resource
 import javax.persistence.criteria.CriteriaBuilder
 import javax.persistence.criteria.CriteriaQuery
 import javax.persistence.criteria.Predicate
 import javax.persistence.criteria.Root
 
-open abstract class BaseServiceImpl<T, ID, DTO, REPO> : BaseService<T, ID, DTO>
+abstract class BaseServiceImpl<T, ID, DTO, REPO> : BaseService<T, ID, DTO>
         where REPO : JpaRepository<T, ID>, REPO : JpaSpecificationExecutor<T> {
 
+    @Autowired
     lateinit var repository: REPO
 
     override fun findList(dto: DTO): List<T> {

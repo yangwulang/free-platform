@@ -23,13 +23,20 @@ import top.yangwulang.platform.entity.sys.dto.SysJobDto
 import top.yangwulang.platform.exception.ServiceException
 import top.yangwulang.platform.factory.JobFactory
 import top.yangwulang.platform.repository.sys.SysJobRepository
+import top.yangwulang.platform.services.BaseService
+import top.yangwulang.platform.services.BaseServiceImpl
 import top.yangwulang.platform.services.sys.SysJobService
 import java.util.*
+import javax.persistence.criteria.CriteriaBuilder
+import javax.persistence.criteria.CriteriaQuery
 import javax.persistence.criteria.Predicate
+import javax.persistence.criteria.Root
 
 
 @Service
-class SysJobServiceImpl : SmartLifecycle, SysJobService {
+class SysJobServiceImpl :
+    BaseServiceImpl<SysJob, SysJobId, SysJobDto, SysJobRepository>(),
+    SmartLifecycle, SysJobService {
     private var isRunning = false
     protected val lifecycleMonitor = Any()
     private val logger = LoggerFactory.getLogger(SysJobServiceImpl::class.java)
@@ -41,9 +48,6 @@ class SysJobServiceImpl : SmartLifecycle, SysJobService {
 
     @Autowired
     private lateinit var routingDataSource: AbstractRoutingDataSource
-
-    @Autowired
-    private lateinit var sysJobRepository: SysJobRepository
 
     @Transactional
     @Modifying
@@ -150,29 +154,17 @@ class SysJobServiceImpl : SmartLifecycle, SysJobService {
         return jobFactory
     }
 
-    override fun findPage(dto: SysJobDto, pageable: Pageable): Page<SysJob> {
-        return sysJobRepository.findAll(createWhere(dto), pageable)
-    }
-
-    override fun findById(id: SysJobId): SysJob? {
-        return sysJobRepository.findById(id).orElse(null)
-    }
 
     override fun save(dto: SysJobDto): SysJob {
-        return sysJobRepository.save(this.jobFactory.convertDtoToBo(dto))
+        return repository.save(this.jobFactory.convertDtoToBo(dto))
     }
 
-    override fun delete(id: SysJobId) {
-        if (sysJobRepository.existsById(id)) {
-            sysJobRepository.deleteById(id)
-        }
-    }
-
-    private fun createWhere(sysJobDto: SysJobDto): Specification<SysJob> {
-        return Specification.where { root, criteriaQuery, cb ->
-            val predicates = arrayListOf<Predicate>()
-
-            criteriaQuery.where(*predicates.toTypedArray()).restriction
-        }
+    override fun where(
+        dto: SysJobDto,
+        root: Root<SysJob>,
+        criteriaQuery: CriteriaQuery<*>,
+        cb: CriteriaBuilder,
+        predicates: MutableList<Predicate>
+    ) {
     }
 }

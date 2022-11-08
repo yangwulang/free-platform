@@ -87,18 +87,21 @@ class ChapterContentServiceImpl :
             val pages = job.await()
             var index = 1
             pages.forEach {
-                val request = Request.Builder().url(it).get().build()
-                val response: Response = okHttpClient.newCall(request).execute()
-                val dom = Jsoup.parse(response.body!!.string())
-                val contentPlv = dom.body().select(".main>.wrap>.read>.content>p")
-                contentPlv.removeIf { e ->
-                    e.text().contains("本章未完，点击") || e.text().contains("小说免费阅读")
+                val s = async {
+                    val request = Request.Builder().url(it).get().build()
+                    val response: Response = okHttpClient.newCall(request).execute()
+                    val dom = Jsoup.parse(response.body!!.string())
+                    val contentPlv = dom.body().select(".main>.wrap>.read>.content>p")
+                    contentPlv.removeIf { e ->
+                        e.text().contains("本章未完，点击") || e.text().contains("小说免费阅读")
+                    }
+                    contentPlv.forEach { e ->
+                        e.attr("id", "$index")
+                        index++
+                        contents.append(e)
+                    }
                 }
-                contentPlv.forEach { e ->
-                    e.attr("id", "$index")
-                    index++
-                    contents.append(e)
-                }
+                s.await()
             }
             logger.info("章节内容链接 {}", pages)
             return@runBlocking contents.toString()

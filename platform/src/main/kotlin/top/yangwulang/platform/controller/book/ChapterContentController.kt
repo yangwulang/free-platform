@@ -19,14 +19,14 @@ class ChapterContentController {
 
 
     @GetMapping("/{id}")
-    @ApiOperation(value = "获取小说章节内容")
+    @ApiOperation(value = "获取小说章节内容(内容id)")
     @ApiImplicitParam(name = "id", value = "主键", required = true)
     fun get(@PathVariable("id") id: String): ChapterContent? {
         return chapterContentService.findById(id)
     }
 
     @GetMapping("/chapter/{id}")
-    @ApiOperation(value = "获取小说章节内容")
+    @ApiOperation(value = "获取小说章节内容(章节id)")
     @ApiImplicitParam(name = "id", value = "主键", required = true)
     fun getByChapterId(@PathVariable("id") id: String): ChapterContent? {
         return chapterContentService.findByChapterId(id)
@@ -42,14 +42,14 @@ class ChapterContentController {
     }
 
     @DeleteMapping("/{id}")
-    @ApiOperation(value = "删除章节内容")
+    @ApiOperation(value = "删除章节内容(内容id)")
     fun delete(@PathVariable("id") id: String) {
         return chapterContentService.delete(id)
     }
 
 
     @GetMapping("/sync/{chapterId}")
-    @ApiOperation(value = "同步远程章节信息")
+    @ApiOperation(value = "同步远程章节信息(章节id)")
     fun syncRemote(@PathVariable("chapterId") chapterId: String) {
         chapterContentService.syncRemoteByChapterId(chapterId)
     }

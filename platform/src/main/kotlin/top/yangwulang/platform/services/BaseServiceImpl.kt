@@ -14,6 +14,11 @@ import javax.persistence.criteria.CriteriaQuery
 import javax.persistence.criteria.Predicate
 import javax.persistence.criteria.Root
 
+/**
+ * 对 BaseService 接口进行封装方法，形成统一CRUD的结构，避免写重复代码
+ *
+ * @author yangwulang
+ */
 abstract class BaseServiceImpl<T, ID, DTO, REPO> : BaseService<T, ID, DTO>
         where REPO : JpaRepository<T, ID>, REPO : JpaSpecificationExecutor<T> {
 
@@ -24,6 +29,10 @@ abstract class BaseServiceImpl<T, ID, DTO, REPO> : BaseService<T, ID, DTO>
 
     override fun findList(dto: DTO): List<T> {
         return repository.findAll(createWhere(dto))
+    }
+
+    override fun findList(spec: Specification<T>): List<T> {
+        return repository.findAll(spec)
     }
 
     override fun findPage(dto: DTO, pageable: Pageable): Page<T> {
@@ -40,6 +49,9 @@ abstract class BaseServiceImpl<T, ID, DTO, REPO> : BaseService<T, ID, DTO>
         }
     }
 
+    /**
+     * 此处添加条件，当调用findList或者findPage时会默认使用此方法的 predicates 条件进行过滤数据
+     */
     abstract fun where(
         dto: DTO,
         root: Root<T>,
@@ -48,6 +60,9 @@ abstract class BaseServiceImpl<T, ID, DTO, REPO> : BaseService<T, ID, DTO>
         predicates: MutableList<Predicate>
     )
 
+    /**
+     * 创建where条件,用于条件查询
+     */
     fun createWhere(dto: DTO): Specification<T> {
         return Specification.where { root, criteriaQuery, cb ->
             val predicates = arrayListOf<Predicate>()

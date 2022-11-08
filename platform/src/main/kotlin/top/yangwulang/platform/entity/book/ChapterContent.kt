@@ -13,7 +13,7 @@ open class ChapterContent : Serializable {
     @GenericGenerator(name = "snowflake", strategy = "top.yangwulang.platform.utils.SnowflakeGenerator")
     open var id: String? = null
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "chapter_id", nullable = false)
     open var chapter: BookChapter? = null
 

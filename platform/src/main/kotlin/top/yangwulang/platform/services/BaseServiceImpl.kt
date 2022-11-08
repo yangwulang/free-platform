@@ -1,5 +1,7 @@
 package top.yangwulang.platform.services
 
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
@@ -17,6 +19,8 @@ abstract class BaseServiceImpl<T, ID, DTO, REPO> : BaseService<T, ID, DTO>
 
     @Autowired
     lateinit var repository: REPO
+
+    val logger: Logger = LoggerFactory.getLogger(this.javaClass)
 
     override fun findList(dto: DTO): List<T> {
         return repository.findAll(createWhere(dto))

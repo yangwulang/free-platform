@@ -8,12 +8,14 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 import top.yangwulang.platform.interceptor.AjaxResultInterceptor
+import top.yangwulang.platform.interceptor.TimeInterceptor
 import java.text.SimpleDateFormat
 
 
 @Configuration
 class WebConfiguration : WebMvcConfigurer {
     override fun addInterceptors(registry: InterceptorRegistry) {
+        registry.addInterceptor(TimeInterceptor())
         registry.addInterceptor(AjaxResultInterceptor())
     }
 

@@ -10,4 +10,7 @@ interface BookChapterService :
     QueryService<BookChapter, String, BookChapterDto>,
     UpdateService<BookChapter, String, BookChapterDto> {
     fun convertFactory(): BookChapterFactory
+
+    fun existsById(id: String): Boolean
+
 }

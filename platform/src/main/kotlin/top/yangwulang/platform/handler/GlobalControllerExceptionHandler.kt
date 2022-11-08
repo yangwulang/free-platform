@@ -24,6 +24,7 @@ class GlobalControllerExceptionHandler : ResponseBodyAdvice<Any> {
 
     @ExceptionHandler(ServiceException::class)
     fun onServiceException(serviceException: ServiceException): Result<Unit> {
+        logger.error("", serviceException)
         val result = Result<Unit>()
         result.failed(serviceException.message)
         if (StringUtils.isNotBlank(serviceException.code)) {
@@ -34,6 +35,7 @@ class GlobalControllerExceptionHandler : ResponseBodyAdvice<Any> {
 
     @ExceptionHandler(Exception::class)
     fun onServiceGException(exception: Exception): Result<Unit> {
+        logger.error("", exception)
         val result = Result<Unit>()
         result.failed(exception.message)
         return result

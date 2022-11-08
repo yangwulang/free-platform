@@ -39,7 +39,6 @@ class SysJobServiceImpl :
     SmartLifecycle, SysJobService {
     private var isRunning = false
     protected val lifecycleMonitor = Any()
-    private val logger = LoggerFactory.getLogger(SysJobServiceImpl::class.java)
     private val jobFactory = JobFactory()
     private lateinit var schedulerFactoryBean: SchedulerFactoryBean
 

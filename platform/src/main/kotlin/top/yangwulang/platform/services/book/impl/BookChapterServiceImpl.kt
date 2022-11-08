@@ -27,6 +27,10 @@ class BookChapterServiceImpl :
         return bookChapterFactory
     }
 
+    override fun existsById(id: String): Boolean {
+        return repository.existsById(id)
+    }
+
     override fun save(dto: BookChapterDto): BookChapter {
         return repository.save(bookChapterFactory.convertDtoToBo(dto))
     }

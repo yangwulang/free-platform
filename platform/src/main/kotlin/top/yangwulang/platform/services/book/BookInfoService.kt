@@ -10,5 +10,7 @@ interface BookInfoService :
     QueryService<BookInfo, String, BookInfoDto>,
     UpdateService<BookInfo, String, BookInfoDto> {
 
+    fun syncBookContent(id: String)
+
     fun convertFactory(): BookInfoFactory
 }

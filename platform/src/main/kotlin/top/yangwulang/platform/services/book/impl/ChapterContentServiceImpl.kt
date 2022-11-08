@@ -20,6 +20,7 @@ import top.yangwulang.platform.services.BaseServiceImpl
 import top.yangwulang.platform.services.book.BookChapterService
 import top.yangwulang.platform.services.book.ChapterContentService
 import java.lang.StringBuilder
+import java.util.concurrent.CompletableFuture
 import javax.persistence.criteria.CriteriaBuilder
 import javax.persistence.criteria.CriteriaQuery
 import javax.persistence.criteria.Predicate

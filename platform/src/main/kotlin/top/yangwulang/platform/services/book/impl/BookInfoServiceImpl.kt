@@ -8,12 +8,15 @@ import org.springframework.data.jpa.domain.Specification
 import org.springframework.data.jpa.repository.Modifying
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import top.yangwulang.platform.entity.book.BookChapter
 import top.yangwulang.platform.entity.book.BookInfo
 import top.yangwulang.platform.entity.book.dto.BookInfoDto
 import top.yangwulang.platform.factory.BookInfoFactory
 import top.yangwulang.platform.repository.book.BookInfoRepository
 import top.yangwulang.platform.services.BaseServiceImpl
+import top.yangwulang.platform.services.book.BookChapterService
 import top.yangwulang.platform.services.book.BookInfoService
+import top.yangwulang.platform.services.book.ChapterContentService
 import javax.persistence.criteria.CriteriaBuilder
 import javax.persistence.criteria.CriteriaQuery
 import javax.persistence.criteria.Predicate
@@ -23,6 +26,12 @@ import javax.persistence.criteria.Root
 class BookInfoServiceImpl :
     BaseServiceImpl<BookInfo, String, BookInfoDto, BookInfoRepository>(),
     BookInfoService {
+
+    @Autowired
+    private lateinit var chapterContentService: ChapterContentService
+
+    @Autowired
+    private lateinit var bookChapterService: BookChapterService
 
     private val bookInfoFactory: BookInfoFactory = BookInfoFactory()
 
@@ -38,6 +47,17 @@ class BookInfoServiceImpl :
         // TODO: 此处应该还要将关联的数据一起删除，例如章节和章节内容信息一起删除
         if (repository.existsById(id)) {
             repository.deleteById(id)
+        }
+    }
+
+    override fun syncBookContent(id: String) {
+        val where = Specification.where<BookChapter> { root, criteriaQuery, cb ->
+            val predicates = arrayListOf<Predicate>()
+            predicates.add(cb.equal(root.get<BookInfo>("book").get<String>("id"), "1586603095719792640"))
+            criteriaQuery.where(*predicates.toTypedArray()).restriction
+        }
+        bookChapterService.findList(where).forEach {
+            chapterContentService.syncRemoteByChapterId(it.id!!)
         }
     }
 

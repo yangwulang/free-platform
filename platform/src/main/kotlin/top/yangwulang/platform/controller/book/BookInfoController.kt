@@ -57,4 +57,10 @@ class BookInfoController {
     }
 
 
+    @GetMapping("/syncBookContent/{id}")
+    @ApiOperation(value = "同步小说全部章节内容")
+    fun syncBookContentById(@PathVariable("id") id: String) {
+        bookInfoService.syncBookContent(id)
+    }
+
 }

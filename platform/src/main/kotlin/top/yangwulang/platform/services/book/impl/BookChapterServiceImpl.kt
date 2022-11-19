@@ -5,7 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.data.jpa.domain.Specification
+import org.springframework.data.jpa.repository.Modifying
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import top.yangwulang.platform.entity.book.BookChapter
 import top.yangwulang.platform.entity.book.BookInfo
 import top.yangwulang.platform.entity.book.dto.BookChapterDto
@@ -30,7 +32,8 @@ class BookChapterServiceImpl :
     override fun existsById(id: String): Boolean {
         return repository.existsById(id)
     }
-
+    @Transactional
+    @Modifying
     override fun save(dto: BookChapterDto): BookChapter {
         return repository.save(bookChapterFactory.convertDtoToBo(dto))
     }

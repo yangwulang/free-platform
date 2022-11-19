@@ -1,26 +1,37 @@
 package top.yangwulang.platform.services.book.impl
 
-import kotlinx.coroutines.Job
+import cn.hutool.core.map.MapUtil
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 import okhttp3.*
-import okio.IOException
-import org.dom4j.Node
-import org.jsoup.select.NodeFilter
 import org.jsoup.Jsoup
+import org.jsoup.nodes.Element
+import org.jsoup.select.Elements
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.jpa.repository.Modifying
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import top.yangwulang.platform.entity.book.BookChapter
+import top.yangwulang.platform.entity.book.BookSyncLog
 import top.yangwulang.platform.entity.book.ChapterContent
+import top.yangwulang.platform.entity.book.SyncStatus
 import top.yangwulang.platform.exception.ServiceException
 import top.yangwulang.platform.repository.book.ChapterContentRepository
 import top.yangwulang.platform.services.BaseServiceImpl
 import top.yangwulang.platform.services.book.BookChapterService
+import top.yangwulang.platform.services.book.BookSyncLogService
 import top.yangwulang.platform.services.book.ChapterContentService
-import java.lang.StringBuilder
-import java.util.concurrent.CompletableFuture
+import top.yangwulang.platform.socket.BookSocketServer
+import java.time.Instant
+import java.util.Arrays
+import java.util.Date
+import java.util.Objects
+import java.util.concurrent.ConcurrentHashMap
+import java.util.concurrent.CopyOnWriteArrayList
+import java.util.concurrent.CountDownLatch
+import java.util.concurrent.TimeUnit
 import javax.persistence.criteria.CriteriaBuilder
 import javax.persistence.criteria.CriteriaQuery
 import javax.persistence.criteria.Predicate
@@ -36,6 +47,9 @@ class ChapterContentServiceImpl :
 
     @Autowired
     private lateinit var okHttpClient: OkHttpClient
+
+    @Autowired
+    private lateinit var bookSyncLogService: BookSyncLogService
 
     override fun where(
         dto: ChapterContent,
@@ -64,12 +78,12 @@ class ChapterContentServiceImpl :
             chapterContent = ChapterContent()
             chapterContent.chapter = bookChapter
         }
-        val contents = requestRemote(fromPath)
+        val contents = requestRemote(fromPath, bookChapter)
         chapterContent.chapterContent = contents
         this.save(chapterContent)
     }
 
-    protected fun requestRemote(fromPath: String): String {
+    protected fun requestRemote(fromPath: String, bookChapter: BookChapter): String {
         return runBlocking {
             val job = async {
                 val request = Request.Builder().url(fromPath).get().build()
@@ -87,7 +101,7 @@ class ChapterContentServiceImpl :
             val contents = StringBuilder()
             val pages = job.await()
             var index = 1
-            pages.forEach {
+            pages.forEachIndexed { itemIndex, it ->
                 val s = async {
                     val request = Request.Builder().url(it).get().build()
                     val response: Response = okHttpClient.newCall(request).execute()
@@ -103,6 +117,13 @@ class ChapterContentServiceImpl :
                     }
                 }
                 s.await()
+                val processContentMessage = MapUtil.builder<String, Any>()
+                    .put("type", "syncChapterContent")
+                    .put("chapter", bookChapter)
+                    .put("processTotal", pages.size)
+                    .put("processIndex", itemIndex + 1)
+                    .build()
+                BookSocketServer.sendInfo(processContentMessage)
             }
             logger.info("章节内容链接 {}", pages)
             return@runBlocking contents.toString()
@@ -110,6 +131,8 @@ class ChapterContentServiceImpl :
     }
 
 
+    @Transactional
+    @Modifying
     override fun save(dto: ChapterContent): ChapterContent {
         return repository.save(dto)
     }

@@ -38,10 +38,10 @@ class BookChapterController {
     @PostMapping
     @ApiOperation(value = "分页获取小说章节")
     fun page(
-        @RequestBody bookChapterDto: BookChapterDto,
+        @RequestBody bookChapterDto: BookChapter,
         httpServletRequest: HttpServletRequest
     ): Page<BookChapter> {
-        if(StringUtils.isBlank(bookChapterDto.bookId)) {
+        if(bookChapterDto.book != null && StringUtils.isBlank(bookChapterDto.book!!.id)) {
             throw ServiceException("查询章节信息一定要携带 bookId!")
         }
         val httpPage = HttpPage(httpServletRequest)
@@ -52,7 +52,7 @@ class BookChapterController {
     @PutMapping
     @ApiOperation(value = "新增或者修改小说章节信息（新增不带id，修改携带id）")
     fun add(
-        @RequestBody bookChapterDto: BookChapterDto
+        @RequestBody bookChapterDto: BookChapter
     ): BookChapter? {
         return bookChapterService.save(bookChapterDto)
     }

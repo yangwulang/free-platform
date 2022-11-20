@@ -7,8 +7,8 @@ import top.yangwulang.platform.services.QueryService
 import top.yangwulang.platform.services.UpdateService
 
 interface BookChapterService :
-    QueryService<BookChapter, String, BookChapterDto>,
-    UpdateService<BookChapter, String, BookChapterDto> {
+    QueryService<BookChapter, String, BookChapter>,
+    UpdateService<BookChapter, String, BookChapter> {
     fun convertFactory(): BookChapterFactory
 
     fun existsById(id: String): Boolean

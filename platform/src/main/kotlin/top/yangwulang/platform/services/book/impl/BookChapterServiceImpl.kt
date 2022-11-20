@@ -22,7 +22,7 @@ import javax.persistence.criteria.Root
 
 @Service
 class BookChapterServiceImpl :
-    BaseServiceImpl<BookChapter, String, BookChapterDto, BookChapterRepository>(),
+    BaseServiceImpl<BookChapter, String, BookChapter, BookChapterRepository>(),
     BookChapterService {
     private val bookChapterFactory = BookChapterFactory()
     override fun convertFactory(): BookChapterFactory {
@@ -34,18 +34,18 @@ class BookChapterServiceImpl :
     }
     @Transactional
     @Modifying
-    override fun save(dto: BookChapterDto): BookChapter {
-        return repository.save(bookChapterFactory.convertDtoToBo(dto))
+    override fun save(dto: BookChapter): BookChapter {
+        return repository.save(dto)
     }
 
     override fun where(
-        dto: BookChapterDto,
+        dto: BookChapter,
         root: Root<BookChapter>,
         criteriaQuery: CriteriaQuery<*>,
         cb: CriteriaBuilder,
         predicates: MutableList<Predicate>
     ) {
-        predicates.add(cb.equal(root.get<BookInfo>("book").get<String>("id"), dto.bookId))
+        predicates.add(cb.equal(root.get<BookInfo>("book").get<String>("id"), dto.book?.id))
         if (StringUtils.isNoneBlank(dto.chapterTitle)) {
             predicates.add(cb.like(root.get("chapterTitle"), "%" + dto.chapterTitle + "%"))
         }

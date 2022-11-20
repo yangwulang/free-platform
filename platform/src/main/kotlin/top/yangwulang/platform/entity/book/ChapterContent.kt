@@ -1,11 +1,15 @@
 package top.yangwulang.platform.entity.book
 
+import org.hibernate.annotations.DynamicInsert
+import org.hibernate.annotations.DynamicUpdate
 import org.hibernate.annotations.GenericGenerator
 import java.io.Serializable
 import javax.persistence.*
 
 @Entity
 @Table(name = "chapter_content")
+@DynamicUpdate
+@DynamicInsert
 open class ChapterContent : Serializable {
     @Id
     @Column(name = "id", nullable = false, length = 64)

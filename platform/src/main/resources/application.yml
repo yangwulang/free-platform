@@ -31,13 +31,7 @@ server:
 
 
 logging:
-  level:
-    org.hibernate.SQL: debug
-    org.hibernate.loader.Loader: error
-    org.hibernate.engine.QueryParameters: debug
-    org.hibernate.engine.query.HQLQueryPlan: debug
-    org.hibernate.type.descriptor.sql.BasicBinder: trace
-    org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport: error
+  config: classpath:logback-spring.xml
 
 
 

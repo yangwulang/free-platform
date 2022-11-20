@@ -53,7 +53,7 @@ class BookInfoServiceImpl :
     override fun syncBookContent(id: String) {
         val where = Specification.where<BookChapter> { root, criteriaQuery, cb ->
             val predicates = arrayListOf<Predicate>()
-            predicates.add(cb.equal(root.get<BookInfo>("book").get<String>("id"), "1586603095719792640"))
+            predicates.add(cb.equal(root.get<BookInfo>("book").get<String>("id"), id))
             criteriaQuery.where(*predicates.toTypedArray()).restriction
         }
         bookChapterService.findList(where).forEach {

@@ -9,6 +9,7 @@ import okhttp3.*
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Element
 import org.jsoup.select.Elements
+import org.springframework.beans.BeanUtils
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.jpa.repository.Modifying
 import org.springframework.stereotype.Service
@@ -65,6 +66,7 @@ class ChapterContentServiceImpl :
         return repository.findByChapterId(chapterId)
     }
 
+
     @Modifying
     @Transactional
     override fun syncRemoteByChapterId(chapterId: String) {
@@ -108,7 +110,9 @@ class ChapterContentServiceImpl :
                     val dom = Jsoup.parse(response.body!!.string())
                     val contentPlv = dom.body().select(".main>.wrap>.read>.content>p")
                     contentPlv.removeIf { e ->
-                        e.text().contains("本章未完，点击") || e.text().contains("小说免费阅读")
+                        e.text().contains("本章未完，点击")
+                                || e.text().contains("小说免费阅读")
+                                || e.text().contains("广告")
                     }
                     contentPlv.forEach { e ->
                         e.attr("id", "$index")

@@ -8,7 +8,11 @@
         :loading="isLoading"
         :show-header="showHeader"
         :stripe="stripe"
-    ></Table>
+    >
+      <template #action="{ row, index }">
+        <Button type="text" @click="handleViewChapter(row, index)">查看章节</Button>
+      </template>
+    </Table>
     <Page
         :class-name="rightPager ? 'page-right' : 'page-left'"
         :total="total"
@@ -25,12 +29,13 @@
 </template>
 
 <script>
-import {Table, Page} from 'view-ui-plus'
+import {Table, Page, Button} from 'view-ui-plus'
 import {request} from "@/utils/request";
 
 export default {
   name: "BaseTable",
   components: {
+    Button,
     Table,
     Page
   },
@@ -128,6 +133,9 @@ export default {
     },
     handlePageSizeChange(pageSize) {
       this.realPageSize = pageSize
+    },
+    handleViewChapter(row, index) {
+      this.$emit('handleViewChapter', row, index)
     }
   },
   created() {

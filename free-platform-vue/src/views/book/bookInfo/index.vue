@@ -3,7 +3,6 @@
     <Card style="">
       <template #title>
         <Icon type="ios-clipboard-outline"/>
-
       </template>
       <div>
         <Form :label-width="70" inline>
@@ -18,7 +17,8 @@
         <Button type="primary" shape="circle" icon="md-add" @click="handleAdd">新增</Button>
         <Button shape="circle" icon="ios-search" @click="handleSearch">查询</Button>
       </Space>
-      <BaseTable ref="baseTable" :columns="columns" :action="action" :rightPager="true"/>
+      <BaseTable ref="baseTable" :columns="columns" :action="action" :rightPager="true"
+                 @handleViewChapter="handleViewChapter"/>
     </Card>
   </div>
 </template>
@@ -39,20 +39,20 @@ export default {
   data() {
     return {
       columns: columns,
-      data: [{
-        projectName: '测试项目',
-        state: 'SOURCE_INIT'
-      }],
-      action: api.book.bookInfo.list,
-      value: 1
+      action: api.book.bookInfo.list
     }
   },
   methods: {
     handleAdd() {
-      this.$router.push("newProjectManager")
     },
     handleSearch() {
       this.publicSearch()
+    },
+    handleViewChapter(row, index) {
+      this.$router.push({
+        name: "bookChapterManager",
+        params: {bookId: row.id}
+      })
     }
   }
 }

@@ -1,4 +1,4 @@
-import { Message, Notice, Modal } from 'view-design';
+import { Message, Notice, Modal } from 'view-ui-plus';
 const close = {
   // 关闭消息提示
   removeMessage() {

@@ -2,13 +2,13 @@
   <div class="bottom">
     <Card style="">
       <template #title>
-        <Icon type="ios-clipboard-outline" />
+        <Icon type="ios-clipboard-outline"/>
 
       </template>
       <div>
         <Form :label-width="70" inline>
           <FormItem label="测试">
-            <Input />
+            <Input/>
           </FormItem>
         </Form>
       </div>
@@ -16,21 +16,23 @@
     <Card>
       <Space style="margin-bottom: 10px" wrap>
         <Button type="primary" shape="circle" icon="md-add" @click="handleAdd">新增</Button>
-        <Button shape="circle" icon="ios-search">查询</Button>
+        <Button shape="circle" icon="ios-search" @click="handleSearch">查询</Button>
       </Space>
-      <BaseTable :columns="columns" :data="data" :rightPager="true"/>
+      <BaseTable ref="baseTable" :columns="columns" :action="action" :rightPager="true"/>
     </Card>
   </div>
 </template>
 
 <script>
 import BaseTable from "@/components/BaseTable";
+import api from '@/api/index.js'
 import columns from './index.js'
 import viewUiPlusMixin from "@/mixin/view-ui-plus-mixin";
+import tableMixin from '@/mixin/table-mixin'
 
 export default {
   name: "BookInfo",
-  mixins: [viewUiPlusMixin],
+  mixins: [viewUiPlusMixin, tableMixin],
   components: {
     BaseTable
   },
@@ -41,12 +43,16 @@ export default {
         projectName: '测试项目',
         state: 'SOURCE_INIT'
       }],
+      action: api.book.bookInfo.list,
       value: 1
     }
   },
   methods: {
     handleAdd() {
       this.$router.push("newProjectManager")
+    },
+    handleSearch() {
+      this.publicSearch()
     }
   }
 }

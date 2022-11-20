@@ -14,6 +14,7 @@ const app = createApp(App)
 app.config.globalProperties.$http = axios
 
 app.use(router)
+    .use(pinia)
     .use(ViewUI)
     .use(ElementPlus)
     .mount('#app')

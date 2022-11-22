@@ -58,3 +58,25 @@ spring:
 
 knife4j:
   enable: true
+
+jetcache:
+  statIntervalMinutes: 15
+  areaInCacheName: true
+  local:
+    default:
+      type: caffeine #other choose：caffeine
+      keyConvertor: jackson #other choose：fastjson/jackson
+      limit: 1000
+  remote:
+    default:
+      type: redis
+      keyConvertor: jackson #other choose：fastjson/jackson
+      broadcastChannel: projectA
+      valueEncoder: java #other choose：kryo/kryo5
+      valueDecoder: java #other choose：kryo/kryo5
+      poolConfig:
+        minIdle: 5
+        maxIdle: 20
+        maxTotal: 50
+      host: ${spring.redis.host}
+      port: ${spring.redis.port}

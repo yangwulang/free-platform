@@ -48,4 +48,8 @@ class AccountPasswordRealm : AuthorizingRealm() {
         }
         return authorizationInfo
     }
+
+    override fun supports(token: AuthenticationToken?): Boolean {
+        return token is UsernamePasswordToken
+    }
 }

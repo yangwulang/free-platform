@@ -5,6 +5,7 @@ import org.apache.shiro.authc.AuthenticationToken
 import org.apache.shiro.authz.AuthorizationInfo
 import org.apache.shiro.realm.AuthorizingRealm
 import org.apache.shiro.subject.PrincipalCollection
+import top.yangwulang.platform.security.shiro.token.UserPhoneToken
 
 class UserPhoneRealm : AuthorizingRealm() {
     override fun doGetAuthenticationInfo(p0: AuthenticationToken?): AuthenticationInfo {
@@ -13,5 +14,9 @@ class UserPhoneRealm : AuthorizingRealm() {
 
     override fun doGetAuthorizationInfo(p0: PrincipalCollection?): AuthorizationInfo {
         TODO("Not yet implemented")
+    }
+
+    override fun supports(token: AuthenticationToken?): Boolean {
+        return token is UserPhoneToken
     }
 }

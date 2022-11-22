@@ -51,9 +51,10 @@ class ShiroConfiguration {
     @Bean(name = ["securityManager"])
     fun defaultWebSecurityManager(): DefaultWebSecurityManager {
         val defaultWebSecurityManager = DefaultWebSecurityManager()
-        defaultWebSecurityManager.realms = ArrayList()
-        defaultWebSecurityManager.realms.add(accountPasswordRealm())
-        defaultWebSecurityManager.realms.add(userPhoneRealm())
+        defaultWebSecurityManager.realms = listOf(
+            accountPasswordRealm(),
+            userPhoneRealm()
+        )
         defaultWebSecurityManager.sessionManager = sessionManager()
         defaultWebSecurityManager.authenticator = myCustomModuleRealmAuthor()
         return defaultWebSecurityManager

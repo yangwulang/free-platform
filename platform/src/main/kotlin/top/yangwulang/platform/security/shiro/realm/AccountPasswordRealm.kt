@@ -12,7 +12,7 @@ import top.yangwulang.platform.services.sys.SysRoleService
 import top.yangwulang.platform.services.sys.SysUserService
 
 
-class TokenRealm : AuthorizingRealm() {
+class AccountPasswordRealm : AuthorizingRealm() {
 
     @Autowired
     lateinit var sysUserService: SysUserService

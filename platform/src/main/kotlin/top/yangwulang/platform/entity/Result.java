@@ -43,7 +43,7 @@ public class Result<T> {
     }
 
 
-    public Result<T> failed(T result) {
+    public Result<T> failedResult(T result) {
         this.setCode("500");
         this.setMessage("错误");
         this.setResult(result);

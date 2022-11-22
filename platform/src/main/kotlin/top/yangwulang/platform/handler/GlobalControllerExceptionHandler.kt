@@ -16,6 +16,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice
 import top.yangwulang.platform.annotation.NotWarpResult
 import top.yangwulang.platform.entity.Result
 import top.yangwulang.platform.exception.ServiceException
+import kotlin.reflect.KProperty
+import kotlin.reflect.KProperty0
 
 @RestControllerAdvice
 class GlobalControllerExceptionHandler : ResponseBodyAdvice<Any> {
@@ -79,7 +81,7 @@ class GlobalControllerExceptionHandler : ResponseBodyAdvice<Any> {
                     objectMapper.writeValueAsString(result.success(body))
                 } catch (e: JsonProcessingException) {
                     logger.error("转换响应体出错 body：$body", e)
-                    objectMapper.writeValueAsString(result.failed(e.message))
+                    objectMapper.writeValueAsString(result.failedResult(e.message))
                 }
             } else {
                 result.success(body)

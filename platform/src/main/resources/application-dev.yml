@@ -59,6 +59,15 @@ spring:
 knife4j:
   enable: true
 
+
+adminPath: /api
+
+
+shiro:
+  enabled: true
+  loginUrl: ${adminPath}
+
+
 jetcache:
   statIntervalMinutes: 15
   areaInCacheName: true

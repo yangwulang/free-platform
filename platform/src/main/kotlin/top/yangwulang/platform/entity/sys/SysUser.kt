@@ -1,5 +1,6 @@
 package top.yangwulang.platform.entity.sys
 
+import java.io.Serializable
 import java.math.BigDecimal
 import java.time.Instant
 import javax.persistence.Column
@@ -11,7 +12,7 @@ import javax.validation.constraints.Size
 
 @Entity
 @Table(name = "sys_user")
-open class SysUser {
+open class SysUser : Serializable{
     @Id
     @Size(max = 100)
     @Column(name = "user_code", nullable = false, length = 100)

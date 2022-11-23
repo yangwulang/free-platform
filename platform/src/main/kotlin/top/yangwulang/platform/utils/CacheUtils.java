@@ -12,7 +12,7 @@ import java.io.Serializable;
  */
 public class CacheUtils {
     private static CacheManager cacheManager;
-    private static Cache<String, ? extends Serializable> SYSTEM_CACHE;
+    private static Cache<String, Object> SYSTEM_CACHE;
 
 
     public static CacheManager getCacheManager() {
@@ -22,7 +22,7 @@ public class CacheUtils {
         return cacheManager;
     }
 
-    public static Cache<String, ?> sysCache() {
+    public static Cache<String, Object> sysCache() {
         if (SYSTEM_CACHE == null) {
             QuickConfig qc = QuickConfig.newBuilder("sysArea", "userCache")
                     .penetrationProtect(true)

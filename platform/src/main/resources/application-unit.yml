@@ -54,3 +54,32 @@ adminPath: /api
 shiro:
   enabled: true
   loginUrl: ${adminPath}
+
+
+jetcache:
+  statIntervalMinutes: 30
+  areaInCacheName: true
+  local:
+    default:
+      type: caffeine #other choose：caffeine
+      keyConvertor: jackson #other choose：fastjson/jackson
+      limit: 1000
+    sysArea:
+      type: caffeine
+      keyConvertor: jackson #other choose：fastjson/jackson
+      limit: 1000
+#      expireAfterWriteInMillis: 30000 # 写的过期时间
+#      expireAfterAccessInMillis: 30000 #读的过期时间，本地缓存才支持
+#  remote:
+#    default:
+#      type: redis
+#      keyConvertor: jackson #other choose：fastjson/jackson
+#      broadcastChannel: projectA
+#      valueEncoder: java #other choose：kryo/kryo5
+#      valueDecoder: java #other choose：kryo/kryo5
+#      poolConfig:
+#        minIdle: 5
+#        maxIdle: 20
+#        maxTotal: 50
+#      host: ${spring.redis.host}
+#      port: ${spring.redis.port}

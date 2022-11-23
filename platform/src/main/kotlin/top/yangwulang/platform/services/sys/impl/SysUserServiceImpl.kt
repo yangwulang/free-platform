@@ -1,5 +1,6 @@
 package top.yangwulang.platform.services.sys.impl
 
+import org.springframework.data.jpa.domain.Specification
 import org.springframework.stereotype.Service
 import top.yangwulang.platform.entity.sys.SysUser
 import top.yangwulang.platform.repository.sys.SysUserRepository
@@ -26,7 +27,13 @@ class SysUserServiceImpl :
     }
 
     override fun findByUserName(userName: String): SysUser? {
-        TODO("Not yet implemented")
+        return repository.findOne(
+            Specification.where { root, criteriaQuery, cb ->
+                val predicates = arrayListOf<Predicate>()
+                predicates.add(cb.equal(root.get<String>("loginCode"), userName))
+                criteriaQuery.where(*predicates.toTypedArray()).restriction
+            }
+        ).orElse(null);
     }
 
     override fun save(dto: SysUser): SysUser {

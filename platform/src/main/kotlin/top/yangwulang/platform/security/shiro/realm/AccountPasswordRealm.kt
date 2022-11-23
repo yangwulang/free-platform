@@ -8,8 +8,11 @@ import org.apache.shiro.realm.AuthorizingRealm
 import org.apache.shiro.subject.PrincipalCollection
 import org.springframework.beans.factory.annotation.Autowired
 import top.yangwulang.platform.entity.sys.SysUser
+import top.yangwulang.platform.security.shiro.LoginInfo
 import top.yangwulang.platform.services.sys.SysRoleService
 import top.yangwulang.platform.services.sys.SysUserService
+import top.yangwulang.platform.utils.CacheUtils
+import top.yangwulang.platform.utils.UserUtils
 
 
 class AccountPasswordRealm : AuthorizingRealm() {
@@ -33,6 +36,9 @@ class AccountPasswordRealm : AuthorizingRealm() {
         if (!StringUtils.equals(passwordInDb, passwordInToken)) {
             throw IncorrectCredentialsException("doGetAuthenticationInfo() has an IncorrectCredentialsException: $username")
         }
+
+//        val loginInfo = LoginInfo(user, HashMap())
+//        UserUtils.loginUserCache().put("plat_form_user_${token.username}", loginInfo)
         return SimpleAuthenticationInfo(username, passwordInToken, name)
 
     }

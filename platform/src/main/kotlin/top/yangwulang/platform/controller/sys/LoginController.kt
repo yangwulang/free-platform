@@ -1,5 +1,6 @@
 package top.yangwulang.platform.controller.sys
 
+import io.swagger.annotations.Api
 import org.apache.shiro.SecurityUtils
 import org.apache.shiro.authc.AuthenticationException
 import org.apache.shiro.authc.UnknownAccountException
@@ -15,6 +16,7 @@ import top.yangwulang.platform.exception.SystemError
 
 @RestController
 @RequestMapping
+@Api(tags = ["系统模块模块", "系统登录"])
 class LoginController {
 
 

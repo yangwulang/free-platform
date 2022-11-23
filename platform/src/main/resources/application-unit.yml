@@ -47,3 +47,10 @@ spring:
 
 knife4j:
   enable: true
+
+adminPath: /api
+
+
+shiro:
+  enabled: true
+  loginUrl: ${adminPath}

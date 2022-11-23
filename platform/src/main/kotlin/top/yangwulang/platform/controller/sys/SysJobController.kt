@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletRequest
 
 @RestController
 @Api(tags = ["系统模块模块", "作业监控"])
-@RequestMapping("/sys/job")
+@RequestMapping("\${adminPath}/sys/job")
 class SysJobController {
 
     @Autowired

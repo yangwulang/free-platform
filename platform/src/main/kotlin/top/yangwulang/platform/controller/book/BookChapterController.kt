@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest
 
 @Api(tags = ["小说模块", "小说章节管理"])
 @RestController
-@RequestMapping("/book/chapter")
+@RequestMapping("\${adminPath}/book/chapter")
 class BookChapterController {
 
     @Autowired

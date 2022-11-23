@@ -11,7 +11,7 @@ import top.yangwulang.platform.services.book.ChapterContentService
 
 @Api(tags = ["小说模块", "章节内容管理"])
 @RestController
-@RequestMapping("/book/chapterContent")
+@RequestMapping("\${adminPath}/book/chapterContent")
 class ChapterContentController {
 
     @Autowired

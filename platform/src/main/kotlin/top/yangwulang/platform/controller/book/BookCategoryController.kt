@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletRequest
 
 @Api(tags = ["小说模块", "小说类型管理"])
 @RestController
-@RequestMapping("/book/category")
+@RequestMapping("\${adminPath}/book/category")
 class BookCategoryController {
 
     @Autowired

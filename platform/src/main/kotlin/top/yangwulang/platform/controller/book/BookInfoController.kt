@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletRequest
 
 @Api(tags = ["小说模块", "小说管理"])
 @RestController
-@RequestMapping("/book/info")
+@RequestMapping("\${adminPath}/book/info")
 class BookInfoController {
     @Autowired
     lateinit var bookInfoService: BookInfoService

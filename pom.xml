@@ -11,6 +11,7 @@
         <module>free-platform-common</module>
         <module>free-platform-spider</module>
         <module>free-platform-cache</module>
+        <module>free-platform-spider</module>
 <!--        <module>free-platform-cache/free-plat-form-cache-api</module>-->
     </modules>
     <groupId>top.yangwulang</groupId>

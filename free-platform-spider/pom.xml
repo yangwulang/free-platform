@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>free-platform-spirder</artifactId>
+    <artifactId>free-platform-spider</artifactId>
     <packaging>pom</packaging>
     <modules>
         <module>free-platform-spider-starter</module>

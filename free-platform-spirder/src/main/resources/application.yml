@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: plat-form-spider
+  profiles:
+    active: dev
+
+
+magic-api:
+  web: /spider/web
+  editor-config: classpath:./editor-config.js
+  resource:
+    location: /data/magic-api
+
+
+server:
+  port: 8088
+  servlet:
+    context-path: /platform

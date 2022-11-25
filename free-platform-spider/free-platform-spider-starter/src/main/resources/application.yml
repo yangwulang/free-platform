@@ -9,7 +9,10 @@ magic-api:
   web: /spider/web
   editor-config: classpath:./editor-config.js
   resource:
-    location: /data/magic-api
+    location: classpath:data/magic-api # 如果type为file，那么文件存储在 这个路径下
+#    table-name: magic_api_file_v2 # 数据库中的表名
+#    type: file #存储文件类型，(file|database)[file]
+
 
 
 server:

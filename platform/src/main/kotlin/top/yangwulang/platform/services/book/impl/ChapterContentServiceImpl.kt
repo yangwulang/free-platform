@@ -1,23 +1,16 @@
 package top.yangwulang.platform.services.book.impl
 
 import cn.hutool.core.map.MapUtil
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.withContext
 import okhttp3.*
 import org.jsoup.Jsoup
-import org.jsoup.nodes.Element
-import org.jsoup.select.Elements
-import org.springframework.beans.BeanUtils
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.jpa.repository.Modifying
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import top.yangwulang.platform.entity.book.BookChapter
-import top.yangwulang.platform.entity.book.BookSyncLog
 import top.yangwulang.platform.entity.book.ChapterContent
-import top.yangwulang.platform.entity.book.SyncStatus
 import top.yangwulang.platform.exception.ServiceException
 import top.yangwulang.platform.repository.book.ChapterContentRepository
 import top.yangwulang.platform.services.BaseServiceImpl
@@ -25,14 +18,6 @@ import top.yangwulang.platform.services.book.BookChapterService
 import top.yangwulang.platform.services.book.BookSyncLogService
 import top.yangwulang.platform.services.book.ChapterContentService
 import top.yangwulang.platform.socket.BookSocketServer
-import java.time.Instant
-import java.util.Arrays
-import java.util.Date
-import java.util.Objects
-import java.util.concurrent.ConcurrentHashMap
-import java.util.concurrent.CopyOnWriteArrayList
-import java.util.concurrent.CountDownLatch
-import java.util.concurrent.TimeUnit
 import javax.persistence.criteria.CriteriaBuilder
 import javax.persistence.criteria.CriteriaQuery
 import javax.persistence.criteria.Predicate
@@ -90,7 +75,7 @@ class ChapterContentServiceImpl :
             val job = async {
                 val request = Request.Builder().url(fromPath).get().build()
                 val response: Response = okHttpClient.newCall(request).execute()
-                val dom = Jsoup.parse(response.body!!.string())
+                val dom = Jsoup.parse(response.body()!!.string())
                 val totalPage = dom.body().attr("tpg").toInt()
                 val id = dom.body().attr("id")
                 val cid = dom.body().attr("cid")
@@ -107,7 +92,7 @@ class ChapterContentServiceImpl :
                 val s = async {
                     val request = Request.Builder().url(it).get().build()
                     val response: Response = okHttpClient.newCall(request).execute()
-                    val dom = Jsoup.parse(response.body!!.string())
+                    val dom = Jsoup.parse(response.body()!!.string())
                     val contentPlv = dom.body().select(".main>.wrap>.read>.content>p")
                     contentPlv.removeIf { e ->
                         e.text().contains("本章未完，点击")

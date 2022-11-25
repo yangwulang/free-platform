@@ -89,3 +89,10 @@ jetcache:
         maxTotal: 50
       host: ${spring.redis.host}
       port: ${spring.redis.port}
+
+
+magic-api:
+  web: /spider/web
+  editor-config: classpath:./editor-config.js
+  resource:
+    location: /data/magic-api

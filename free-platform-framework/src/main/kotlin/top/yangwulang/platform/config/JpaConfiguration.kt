@@ -77,7 +77,7 @@ class JpaConfiguration {
     inner class UserAuditor : AuditorAware<String> {
         override fun getCurrentAuditor(): Optional<String> {
             // 获取当前登录的用户信息
-            val primaryPrincipal = SecurityUtils.getSubject().principals.primaryPrincipal
+            val primaryPrincipal = SecurityUtils.getSubject().principals?.primaryPrincipal
             return if (primaryPrincipal != null) {
                 Optional.ofNullable(primaryPrincipal as String)
             } else {

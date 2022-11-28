@@ -23,13 +23,13 @@ public class DataEntity<T extends DataEntity<T>> extends BaseEntity<T> {
 
     @Size(max = 64)
     //@NotNull
-    @Column(name = "create_by", nullable = false, length = 64)
+    @Column(name = "create_by", nullable = false, length = 64, updatable = false)
     @ApiModelProperty("创建人")
     @CreatedBy
     private String createBy;
 
     //@NotNull
-    @Column(name = "create_date", nullable = false)
+    @Column(name = "create_date", nullable = false, updatable = false)
     @ApiModelProperty("创建时间")
     @CreatedDate
     private Date createDate;

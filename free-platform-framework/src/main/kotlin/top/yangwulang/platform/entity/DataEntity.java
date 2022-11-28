@@ -1,35 +1,44 @@
 package top.yangwulang.platform.entity;
 
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.Column;
-import javax.validation.constraints.NotNull;
+import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
+@MappedSuperclass
 public class DataEntity<T extends DataEntity<T>> extends BaseEntity<T> {
-    @NotNull
-    @Column(name = "status", nullable = false)
+
+    @Column(name = "status")
+    @ApiModelProperty("状态")
     private String status;
 
     @Size(max = 64)
-    @NotNull
+    //@NotNull
     @Column(name = "create_by", nullable = false, length = 64)
+    @ApiModelProperty("创建人")
     private String createBy;
 
-    @NotNull
+    //@NotNull
     @Column(name = "create_date", nullable = false)
+    @ApiModelProperty("创建时间")
     private Date createDate;
 
     @Size(max = 64)
-    @NotNull
+    //@NotNull
     @Column(name = "update_by", nullable = false, length = 64)
+    @ApiModelProperty("修改人")
     private String updateBy;
 
-    @NotNull
+    //@NotNull
     @Column(name = "update_date", nullable = false)
+    @ApiModelProperty("修改时间")
     private Date updateDate;
 
     @Size(max = 500)
     @Column(name = "remarks", length = 500)
+    @ApiModelProperty("备注")
     private String remarks;
 
     public String getStatus() {

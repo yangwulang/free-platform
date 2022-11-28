@@ -3,13 +3,16 @@ package top.yangwulang.platform.handler
 import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.apache.commons.lang3.StringUtils
+import org.hibernate.PropertyValueException
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.core.MethodParameter
+import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.http.MediaType
 import org.springframework.http.converter.HttpMessageConverter
 import org.springframework.http.server.ServerHttpRequest
 import org.springframework.http.server.ServerHttpResponse
+import org.springframework.web.bind.MethodArgumentNotValidException
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.RestControllerAdvice
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice
@@ -40,6 +43,21 @@ class GlobalControllerExceptionHandler : ResponseBodyAdvice<Any> {
         logger.error("", exception)
         val result = Result<Unit>()
         result.failed(exception.message)
+        return result
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException::class)
+    fun onMethodArgumentNotValidException(exception: MethodArgumentNotValidException) : Result<Unit> {
+        val allErrors = exception.bindingResult.allErrors
+        val errorMessage: String?  = if (allErrors.isEmpty()) {
+            exception.message
+        } else {
+            allErrors[0].defaultMessage
+        }
+        //日志不记录参数校验的异常
+        //logger.error("", exception)
+        val result = Result<Unit>()
+        result.failed(errorMessage)
         return result
     }
 

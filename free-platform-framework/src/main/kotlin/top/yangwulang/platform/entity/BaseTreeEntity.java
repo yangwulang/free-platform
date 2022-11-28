@@ -1,11 +1,13 @@
 package top.yangwulang.platform.entity;
 
 import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+@MappedSuperclass
 public class BaseTreeEntity<T extends BaseTreeEntity<T>> extends BaseEntity<T> implements Serializable {
 
     @Size(max = 64)

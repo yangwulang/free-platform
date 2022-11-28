@@ -1,10 +1,12 @@
 package top.yangwulang.platform.entity;
 
 import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
+@MappedSuperclass
 public class DataTreeEntity<T extends DataTreeEntity<T>> extends BaseTreeEntity<T> {
 
     @NotNull

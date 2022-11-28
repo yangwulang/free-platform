@@ -1,11 +1,12 @@
 package top.yangwulang.platform.entity;
 
-import javax.persistence.Column;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @MappedSuperclass
 public class BaseTreeEntity<T extends BaseTreeEntity<T>> extends BaseEntity<T> implements Serializable {
@@ -14,6 +15,14 @@ public class BaseTreeEntity<T extends BaseTreeEntity<T>> extends BaseEntity<T> i
     @NotNull
     @Column(name = "pid", nullable = false, length = 64)
     private String pid;
+
+    @ManyToOne
+    @JoinColumn(name = "pid")
+    private BaseTreeEntity<T> parent;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "pid")
+    private List<BaseTreeEntity<T>> children = new ArrayList<>();
 
 
     @Size(max = 1000)
@@ -97,5 +106,21 @@ public class BaseTreeEntity<T extends BaseTreeEntity<T>> extends BaseEntity<T> i
 
     public void setTreeNames(String treeNames) {
         this.treeNames = treeNames;
+    }
+
+    public BaseTreeEntity<T> getParent() {
+        return parent;
+    }
+
+    public void setParent(BaseTreeEntity<T> parent) {
+        this.parent = parent;
+    }
+
+    public List<BaseTreeEntity<T>> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<BaseTreeEntity<T>> children) {
+        this.children = children;
     }
 }

@@ -1,21 +1,36 @@
 package top.yangwulang.platform.entity.sys
 
 import top.yangwulang.platform.entity.DataTreeEntity
+import top.yangwulang.platform.event.jpa.TreeSaveEvent
 import java.io.Serializable
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.Table
+import javax.persistence.*
 import javax.validation.constraints.NotNull
 import javax.validation.constraints.Size
 
 @Entity
 @Table(name = "sys_dict_data")
-open class SysDictData : DataTreeEntity<SysDictData>(), Serializable{
+@EntityListeners(value = [TreeSaveEvent::class])
+open class SysDictData : DataTreeEntity<SysDictData>, Serializable {
+    constructor() : super()
+
+    constructor(id: String) : super(id)
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "dict_type_id", nullable = false)
+    open var dictType: SysDictType? = null
 
     @Size(max = 100)
     @NotNull
     @Column(name = "dict_label", nullable = false, length = 100)
     open var dictLabel: String? = null
+        get() {
+            return if (field == null) super.getTreeName() else field
+        }
+        set(value) {
+            super.setTreeName(value)
+            field = value
+        }
 
     @Size(max = 100)
     @NotNull

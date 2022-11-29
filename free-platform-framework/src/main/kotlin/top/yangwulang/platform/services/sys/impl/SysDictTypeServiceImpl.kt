@@ -1,6 +1,8 @@
 package top.yangwulang.platform.services.sys.impl
 
+import org.springframework.data.jpa.repository.Modifying
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import top.yangwulang.platform.entity.sys.SysDictType
 import top.yangwulang.platform.repository.sys.SysDictTypeRepository
 import top.yangwulang.platform.services.BaseServiceImpl
@@ -25,11 +27,9 @@ class SysDictTypeServiceImpl :
     ) {
     }
 
+    @Transactional
+    @Modifying
     override fun save(dto: SysDictType): SysDictType {
-        dto.createBy = "test"
-        dto.updateBy = "test"
-        dto.createDate = Date()
-        dto.updateDate = Date()
         return repository.save(dto)
     }
 

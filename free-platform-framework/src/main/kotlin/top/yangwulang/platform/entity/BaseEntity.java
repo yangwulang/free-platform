@@ -1,5 +1,6 @@
 package top.yangwulang.platform.entity;
 
+import cn.hutool.core.util.ReflectUtil;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.domain.AbstractAggregateRoot;
 
@@ -12,13 +13,19 @@ import java.io.Serializable;
 
 @MappedSuperclass
 public class BaseEntity<T extends BaseEntity<T>> extends AbstractAggregateRoot<BaseEntity<T>>  implements Serializable {
+    public BaseEntity() {
+    }
+
+    public BaseEntity(String id) {
+        this.setId(id);
+    }
 
     @Id
     @Size(max = 64)
     @Column(name = "id", nullable = false, length = 64)
     @GeneratedValue(generator = "snowflake")
     @GenericGenerator(name = "snowflake", strategy = "top.yangwulang.platform.utils.SnowflakeGenerator")
-    private String id;
+    protected String id;
 
     public String getId() {
         return id;

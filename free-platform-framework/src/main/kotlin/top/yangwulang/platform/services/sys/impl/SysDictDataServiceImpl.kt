@@ -1,6 +1,8 @@
 package top.yangwulang.platform.services.sys.impl
 
+import org.springframework.data.jpa.repository.Modifying
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import top.yangwulang.platform.entity.sys.SysDictData
 import top.yangwulang.platform.repository.sys.SysDictDataRepository
 import top.yangwulang.platform.services.BaseServiceImpl
@@ -28,6 +30,8 @@ class SysDictDataServiceImpl :
         return null
     }
 
+    @Transactional
+    @Modifying
     override fun save(dto: SysDictData): SysDictData {
         return repository.save(dto)
     }

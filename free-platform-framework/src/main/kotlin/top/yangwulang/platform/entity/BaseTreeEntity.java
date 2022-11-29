@@ -1,63 +1,69 @@
 package top.yangwulang.platform.entity;
 
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 @MappedSuperclass
 public class BaseTreeEntity<T extends BaseTreeEntity<T>> extends BaseEntity<T> implements Serializable {
 
-    @Size(max = 64)
-    @NotNull
-    @Column(name = "pid", nullable = false, length = 64)
-    private String pid;
+    public BaseTreeEntity() {
+    }
 
-    @ManyToOne
+    public BaseTreeEntity(String id) {
+        super(id);
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pid")
-    private BaseTreeEntity<T> parent;
+    protected T parent;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "pid")
-    private List<BaseTreeEntity<T>> children = new ArrayList<>();
+    protected List<T> children = new ArrayList<>();
 
 
     @Size(max = 1000)
     @NotNull
     @Column(name = "parent_codes", nullable = false, length = 1000)
-    private String parentCodes;
+    protected String parentCodes;
 
     @NotNull
     @Column(name = "tree_sort", nullable = false, precision = 10)
-    private BigDecimal treeSort;
+    protected Integer treeSort;
 
     @Size(max = 1000)
     @NotNull
     @Column(name = "tree_sorts", nullable = false, length = 1000)
-    private String treeSorts;
+    protected String treeSorts;
 
     @NotNull
     @Column(name = "tree_leaf", nullable = false)
-    private String treeLeaf;
+    protected String treeLeaf;
 
     @NotNull
     @Column(name = "tree_level", nullable = false, precision = 4)
-    private BigDecimal treeLevel;
+    protected Integer treeLevel;
 
     @Size(max = 1000)
     @NotNull
     @Column(name = "tree_names", nullable = false, length = 1000)
-    private String treeNames;
+    protected String treeNames;
 
-    public String getPid() {
-        return pid;
+
+    @Transient
+    protected String treeName;
+
+    public String getTreeName() {
+        return treeName;
     }
 
-    public void setPid(String pid) {
-        this.pid = pid;
+    public void setTreeName(String treeName) {
+        this.treeName = treeName;
     }
 
     public String getParentCodes() {
@@ -68,11 +74,11 @@ public class BaseTreeEntity<T extends BaseTreeEntity<T>> extends BaseEntity<T> i
         this.parentCodes = parentCodes;
     }
 
-    public BigDecimal getTreeSort() {
+    public Integer getTreeSort() {
         return treeSort;
     }
 
-    public void setTreeSort(BigDecimal treeSort) {
+    public void setTreeSort(Integer treeSort) {
         this.treeSort = treeSort;
     }
 
@@ -92,11 +98,18 @@ public class BaseTreeEntity<T extends BaseTreeEntity<T>> extends BaseEntity<T> i
         this.treeLeaf = treeLeaf;
     }
 
-    public BigDecimal getTreeLevel() {
-        return treeLevel;
+    public Integer getTreeLevel() {
+        if (this.treeLeaf != null && this.treeLevel == null) {
+            Integer level = null;
+            if (this.parentCodes != null) {
+                level = this.parentCodes.replaceAll("[^,]", "").length() - 1;
+            }
+            this.treeLevel = level;
+        }
+        return this.treeLevel;
     }
 
-    public void setTreeLevel(BigDecimal treeLevel) {
+    public void setTreeLevel(Integer treeLevel) {
         this.treeLevel = treeLevel;
     }
 
@@ -108,19 +121,19 @@ public class BaseTreeEntity<T extends BaseTreeEntity<T>> extends BaseEntity<T> i
         this.treeNames = treeNames;
     }
 
-    public BaseTreeEntity<T> getParent() {
+    public T getParent() {
         return parent;
     }
 
-    public void setParent(BaseTreeEntity<T> parent) {
+    public void setParent(T parent) {
         this.parent = parent;
     }
 
-    public List<BaseTreeEntity<T>> getChildren() {
+    public List<T> getChildren() {
         return children;
     }
 
-    public void setChildren(List<BaseTreeEntity<T>> children) {
+    public void setChildren(List<T> children) {
         this.children = children;
     }
 }

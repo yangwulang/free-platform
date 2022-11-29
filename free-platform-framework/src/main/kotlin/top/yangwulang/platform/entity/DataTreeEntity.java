@@ -18,38 +18,45 @@ import java.util.Date;
 @EntityListeners(AuditingEntityListener.class)
 public class DataTreeEntity<T extends DataTreeEntity<T>> extends BaseTreeEntity<T> {
 
+    public DataTreeEntity() {
+    }
+
+    public DataTreeEntity(String id) {
+        super(id);
+    }
+
     @NotNull
     @Column(name = "status", nullable = false)
     @ApiModelProperty("状态")
-    private String status;
+    protected String status;
 
     @Size(max = 64)
     //@NotNull
     @Column(name = "create_by", nullable = false, length = 64, updatable = false)
     @ApiModelProperty("创建人")
     @CreatedBy
-    private String createBy;
+    protected String createBy;
 
     @Column(name = "create_date", nullable = false, updatable = false)
     @ApiModelProperty("创建时间")
     @CreatedDate
-    private Date createDate;
+    protected Date createDate;
 
     @Size(max = 64)
     //@NotNull
     @Column(name = "update_by", nullable = false, length = 64)
     @ApiModelProperty("修改人")
     @LastModifiedBy
-    private String updateBy;
+    protected String updateBy;
 
     @Column(name = "update_date", nullable = false)
     @ApiModelProperty("修改时间")
     @LastModifiedDate
-    private Date updateDate;
+    protected Date updateDate;
 
     @Size(max = 500)
     @Column(name = "remarks", length = 500)
-    private String remarks;
+    protected String remarks;
 
     public String getStatus() {
         return status;

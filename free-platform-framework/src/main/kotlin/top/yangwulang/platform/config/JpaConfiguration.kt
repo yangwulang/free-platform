@@ -1,6 +1,7 @@
 package top.yangwulang.platform.config
 
 import org.apache.shiro.SecurityUtils
+import org.apache.shiro.UnavailableSecurityManagerException
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -76,12 +77,16 @@ class JpaConfiguration {
 
     inner class UserAuditor : AuditorAware<String> {
         override fun getCurrentAuditor(): Optional<String> {
-            // 获取当前登录的用户信息
-            val primaryPrincipal = SecurityUtils.getSubject().principals?.primaryPrincipal
-            return if (primaryPrincipal != null) {
-                Optional.ofNullable(primaryPrincipal as String)
-            } else {
-                Optional.empty()
+            try {
+                // 获取当前登录的用户信息
+                val primaryPrincipal = SecurityUtils.getSubject().principals?.primaryPrincipal
+                return if (primaryPrincipal != null) {
+                    Optional.ofNullable(primaryPrincipal as String)
+                } else {
+                    Optional.empty()
+                }
+            } catch (e: UnavailableSecurityManagerException) {
+                return Optional.of("测试")
             }
         }
 

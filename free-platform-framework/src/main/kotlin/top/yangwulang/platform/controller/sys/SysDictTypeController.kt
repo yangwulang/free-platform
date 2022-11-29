@@ -53,5 +53,12 @@ class SysDictTypeController {
         return sysDictTypeService.save(sysDictType)
     }
 
+    @DeleteMapping("/{id}")
+    @ApiOperation("删除字典数据")
+    @ApiImplicitParam(name = "id", value = "字典类型id", required = true)
+    fun delete(@PathVariable("id") id: String) {
+        sysDictTypeService.delete(id)
+    }
+
 
 }

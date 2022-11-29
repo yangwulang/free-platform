@@ -13,9 +13,20 @@ import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
+/**
+ * @author yangwulang
+ */
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 public class DataEntity<T extends DataEntity<T>> extends BaseEntity<T> {
+
+    public DataEntity() {
+
+    }
+
+    public DataEntity(String id) {
+        super(id);
+    }
 
     @Column(name = "status")
     @ApiModelProperty("状态")

@@ -1,6 +1,8 @@
 package top.yangwulang.platform.entity;
 
 
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -8,6 +10,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 所有树实体的基类
+ *
+ * @author yangwulang
+ */
 @MappedSuperclass
 public class BaseTreeEntity<T extends BaseTreeEntity<T>> extends BaseEntity<T> implements Serializable {
 
@@ -20,42 +27,45 @@ public class BaseTreeEntity<T extends BaseTreeEntity<T>> extends BaseEntity<T> i
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pid")
+    @ApiModelProperty("父级节点")
     protected T parent;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "pid")
+    @ApiModelProperty("子级节点")
     protected List<T> children = new ArrayList<>();
 
 
     @Size(max = 1000)
-    @NotNull
     @Column(name = "parent_codes", nullable = false, length = 1000)
+    @ApiModelProperty("父级所有节点")
     protected String parentCodes;
 
-    @NotNull
     @Column(name = "tree_sort", nullable = false, precision = 10)
+    @ApiModelProperty("树排序")
     protected Integer treeSort;
 
     @Size(max = 1000)
-    @NotNull
     @Column(name = "tree_sorts", nullable = false, length = 1000)
+    @ApiModelProperty("树排序所有的")
     protected String treeSorts;
 
-    @NotNull
     @Column(name = "tree_leaf", nullable = false)
+    @ApiModelProperty("是否叶子节点")
     protected String treeLeaf;
 
-    @NotNull
     @Column(name = "tree_level", nullable = false, precision = 4)
+    @ApiModelProperty("树层级")
     protected Integer treeLevel;
 
     @Size(max = 1000)
-    @NotNull
     @Column(name = "tree_names", nullable = false, length = 1000)
+    @ApiModelProperty("树名称")
     protected String treeNames;
 
 
     @Transient
+    @ApiModelProperty("树名字")
     protected String treeName;
 
     public String getTreeName() {

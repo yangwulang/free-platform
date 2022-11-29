@@ -14,6 +14,11 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
+/**
+ * 树数据实体
+ *
+ * @author yangwulang
+ */
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 public class DataTreeEntity<T extends DataTreeEntity<T>> extends BaseTreeEntity<T> {
@@ -25,13 +30,11 @@ public class DataTreeEntity<T extends DataTreeEntity<T>> extends BaseTreeEntity<
         super(id);
     }
 
-    @NotNull
     @Column(name = "status", nullable = false)
     @ApiModelProperty("状态")
     protected String status;
 
     @Size(max = 64)
-    //@NotNull
     @Column(name = "create_by", nullable = false, length = 64, updatable = false)
     @ApiModelProperty("创建人")
     @CreatedBy
@@ -43,7 +46,6 @@ public class DataTreeEntity<T extends DataTreeEntity<T>> extends BaseTreeEntity<
     protected Date createDate;
 
     @Size(max = 64)
-    //@NotNull
     @Column(name = "update_by", nullable = false, length = 64)
     @ApiModelProperty("修改人")
     @LastModifiedBy

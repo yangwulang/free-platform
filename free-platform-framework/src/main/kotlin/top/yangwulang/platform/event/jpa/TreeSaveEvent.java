@@ -7,6 +7,15 @@ import top.yangwulang.platform.entity.BaseTreeEntity;
 import javax.persistence.PrePersist;
 import java.util.List;
 
+/**
+ * 树实体保存事件，在保存之前自动配置 treeSorts treeNames treeLevel treeSort parentCodes parentCode数据
+ * <br/>
+ * <span style="color: red">
+ *  注：实体类一定包含一个为String类型的有参构造函数，在实例化时会自动传入一个 "0" 的参数作为所有树的根节点的编码（id）
+ * </span>
+ *
+ * @author yangwulang
+ */
 public class TreeSaveEvent {
 
     @PrePersist

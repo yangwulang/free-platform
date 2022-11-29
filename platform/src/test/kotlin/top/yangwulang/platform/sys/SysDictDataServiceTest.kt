@@ -31,9 +31,19 @@ class SysDictDataServiceTest {
     }
 
     @Test
+    fun testDictType() {
+        val sysDictType = SysDictType()
+        sysDictType.dictType = "test"
+        sysDictType.dictName = "测试"
+        sysDictType.isSys = "1"
+        sysDictType.status = "0"
+        sysDictTypeService.save(sysDictType)
+    }
+
+    @Test
     @Rollback(value = false)
     fun saveData() {
-        val sysDictType = sysDictTypeService.findById("1597160412510969856")
+        val sysDictType = sysDictTypeService.findById("1597580141086216192")
 //        val parent = SysDictData()
 //        parent.id = "0"
 

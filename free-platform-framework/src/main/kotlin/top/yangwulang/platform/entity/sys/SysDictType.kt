@@ -14,7 +14,10 @@ import javax.validation.constraints.Size
 @Entity
 @Table(name = "sys_dict_type")
 @ApiModel("字典类型")
-open class SysDictType : DataEntity<SysDictType>(), Serializable {
+open class SysDictType : DataEntity<SysDictType>, Serializable {
+
+    constructor() : super()
+    constructor(id: String): super(id)
 
     @Size(max = 100)
     @NotEmpty(message = "字典名称不能为空!")

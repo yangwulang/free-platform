@@ -26,10 +26,6 @@ class SysDictDataServiceImpl :
     ) {
     }
 
-    override fun getTree(id: String): Any? {
-        return null
-    }
-
     @Transactional
     @Modifying
     override fun save(dto: SysDictData): SysDictData {

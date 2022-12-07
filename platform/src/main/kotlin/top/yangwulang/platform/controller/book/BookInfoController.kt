@@ -3,6 +3,7 @@ package top.yangwulang.platform.controller.book
 import io.swagger.annotations.Api
 import io.swagger.annotations.ApiImplicitParam
 import io.swagger.annotations.ApiOperation
+import org.apache.shiro.authz.annotation.RequiresPermissions
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
@@ -31,6 +32,7 @@ class BookInfoController {
 
     @PostMapping
     @ApiOperation(value = "分页获取小说")
+    @RequiresPermissions("book:info:view")
     fun page(
         @RequestBody bookInfoDto: BookInfoDto,
         httpServletRequest: HttpServletRequest

@@ -3,6 +3,8 @@ package top.yangwulang.platform.handler
 import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.apache.commons.lang3.StringUtils
+import org.apache.shiro.authz.UnauthenticatedException
+import org.apache.shiro.authz.UnauthorizedException
 import org.hibernate.PropertyValueException
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -58,6 +60,22 @@ class GlobalControllerExceptionHandler : ResponseBodyAdvice<Any> {
         //logger.error("", exception)
         val result = Result<Unit>()
         result.failed(errorMessage)
+        return result
+    }
+
+    @ExceptionHandler(UnauthenticatedException::class)
+    fun onUnauthenticatedException(exception: UnauthenticatedException) : Result<Unit> {
+        val result = Result<Unit>()
+        result.code = "403"
+        result.message = "未登陆，请登陆！"
+        return result
+    }
+
+    @ExceptionHandler(UnauthorizedException::class)
+    fun onUnauthorizedException(exception: UnauthorizedException) : Result<Unit> {
+        val result = Result<Unit>()
+        result.code = "403"
+        result.message = "暂无相关权限"
         return result
     }
 

@@ -52,6 +52,9 @@ public class BaseTreeEntity<T extends BaseTreeEntity<T>> extends BaseEntity<T> i
 
     @Column(name = "tree_leaf", nullable = false)
     @ApiModelProperty("是否叶子节点")
+    /**
+     * 是否叶子节点，这个只能通过前端进行判断了,jpa中暂时没有高效的判断方法
+     */
     protected String treeLeaf;
 
     @Column(name = "tree_level", nullable = false, precision = 4)

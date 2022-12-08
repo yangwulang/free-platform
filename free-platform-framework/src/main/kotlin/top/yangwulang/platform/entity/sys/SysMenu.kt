@@ -18,7 +18,11 @@ import javax.validation.constraints.Size
 @Table(name = "sys_menu")
 @EntityListeners(value = [TreeSaveEvent::class])
 @ApiModel("菜单实体")
-open class SysMenu : DataTreeEntity<SysMenu>(), Serializable {
+open class SysMenu : DataTreeEntity<SysMenu>, Serializable {
+
+    constructor() : super()
+
+    constructor(id: String) : super(id)
 
     @Size(max = 100)
     @NotEmpty(message = "菜单名称不能为空")

@@ -48,7 +48,7 @@ class SysDictDataServiceTest {
 //        parent.id = "0"
 
         val sysDictData = SysDictData()
-        sysDictData.isSys = '1'
+        sysDictData.isSys = "1"
         sysDictData.dictLabel = "测试"
         sysDictData.dictValue = "1234"
 //        sysDictData.parentCodes = "0,"
@@ -65,7 +65,7 @@ class SysDictDataServiceTest {
 
         val sysDictData2 = SysDictData()
         sysDictData2.parent = sysDictData
-        sysDictData2.isSys = '1'
+        sysDictData2.isSys = "1"
         sysDictData2.dictLabel = "测试123"
         sysDictData2.dictValue = "1234123"
 //        sysDictData.parentCodes = "0,"
@@ -81,7 +81,7 @@ class SysDictDataServiceTest {
 
         val sysDictData3 = SysDictData()
         sysDictData3.parent = sysDictData
-        sysDictData3.isSys = '1'
+        sysDictData3.isSys = "1"
         sysDictData3.dictLabel = "测试123qwe"
         sysDictData3.dictValue = "1234123qwe"
 //        sysDictData.parentCodes = "0,"

@@ -5,11 +5,9 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import org.apache.commons.lang3.StringUtils
 import org.apache.shiro.authz.UnauthenticatedException
 import org.apache.shiro.authz.UnauthorizedException
-import org.hibernate.PropertyValueException
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.core.MethodParameter
-import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.http.MediaType
 import org.springframework.http.converter.HttpMessageConverter
 import org.springframework.http.server.ServerHttpRequest
@@ -21,8 +19,6 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice
 import top.yangwulang.platform.annotation.NotWarpResult
 import top.yangwulang.platform.entity.Result
 import top.yangwulang.platform.exception.ServiceException
-import kotlin.reflect.KProperty
-import kotlin.reflect.KProperty0
 
 @RestControllerAdvice
 class GlobalControllerExceptionHandler : ResponseBodyAdvice<Any> {

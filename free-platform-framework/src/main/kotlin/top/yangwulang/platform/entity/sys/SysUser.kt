@@ -170,4 +170,12 @@ open class SysUser : Serializable{
     @NotNull
     @Column(name = "corp_name", nullable = false, length = 100)
     open var corpName: String? = null
+
+    fun isSuperAdmin() : Boolean {
+        return if (this.loginCode == null) {
+            false
+        } else {
+            this.loginCode == "system"
+        }
+    }
 }

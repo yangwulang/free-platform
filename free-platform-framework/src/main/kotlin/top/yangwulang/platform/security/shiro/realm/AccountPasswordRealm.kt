@@ -19,7 +19,16 @@ class AccountPasswordRealm : AuthorizingRealm() {
 
     @Autowired
     lateinit var sysRoleService: SysRoleService
+    override fun isPermitted(principals: PrincipalCollection?, permission: String?): Boolean {
+        // 这里有可能强制转换不了
+        val user: SysUser = principals?.primaryPrincipal as SysUser
+        return user.isSuperAdmin() || super.isPermitted(principals, permission)
+    }
 
+    override fun hasRole(principal: PrincipalCollection?, roleIdentifier: String?): Boolean {
+        val user: SysUser = principal?.primaryPrincipal as SysUser
+        return user.isSuperAdmin() || super.hasRole(principal, roleIdentifier)
+    }
 
     override fun doGetAuthenticationInfo(authenticationToken: AuthenticationToken?): AuthenticationInfo {
         val token = authenticationToken as UsernamePasswordToken

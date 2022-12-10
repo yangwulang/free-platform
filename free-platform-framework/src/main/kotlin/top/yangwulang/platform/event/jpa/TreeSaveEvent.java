@@ -3,6 +3,7 @@ package top.yangwulang.platform.event.jpa;
 import cn.hutool.core.util.ReflectUtil;
 import org.apache.commons.lang3.StringUtils;
 import top.yangwulang.platform.entity.BaseTreeEntity;
+import top.yangwulang.platform.entity.DataTreeEntity;
 
 import javax.persistence.PrePersist;
 import java.util.List;
@@ -58,6 +59,16 @@ public class TreeSaveEvent {
         }
 
         List<T> children = baseTreeEntity.getChildren();
+        if(children.isEmpty()) {
+            // 如果当前节点没有下级节点，那么当前节点为叶子节点
+            baseTreeEntity.setTreeLeaf("1");
+        } else {
+            baseTreeEntity.setTreeLeaf("0");
+        }
+        if (baseTreeEntity instanceof DataTreeEntity) {
+            DataTreeEntity<?> dataTreeEntity = (DataTreeEntity<?>) baseTreeEntity;
+            dataTreeEntity.setStatus(StringUtils.defaultString(dataTreeEntity.getStatus(), "0"));
+        }
         for (int i = 1; i <= children.size(); i++) {
             T child = children.get(i - 1);
             child.setTreeSort((child.getTreeSort() == null ? 30 : child.getTreeSort()) * i);

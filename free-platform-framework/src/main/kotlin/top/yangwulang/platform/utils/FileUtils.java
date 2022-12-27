@@ -2,6 +2,8 @@ package top.yangwulang.platform.utils;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.File;
+
 public class FileUtils {
     public static String path(String path) {
         String p = StringUtils.replace(path, "\\", "/");
@@ -19,5 +21,14 @@ public class FileUtils {
         }
 
         return p;
+    }
+
+    public static String defaultLocalPath() {
+        File file = new File("");
+        return file.getAbsolutePath();
+    }
+
+    public static String defaultUploadLocalPath() {
+        return defaultLocalPath() + "\\upload";
     }
 }

@@ -10,14 +10,14 @@ import top.yangwulang.platform.exception.ServiceException
 abstract class BaseTreeServiceImpl<T, ID, DTO, REPO> : BaseServiceImpl<T, ID, DTO, REPO>()
         where REPO : JpaRepository<T, ID>, REPO : JpaSpecificationExecutor<T> {
 
-    protected val treeSaveEvent =  TreeSaveEvent()
+    protected val treeSaveEvent = TreeSaveEvent()
 
     protected fun preSave(dto: T) {
         if (dto is BaseTreeEntity<*>) {
             if (dto.getParent() != null && !StringUtils.isBlank(dto.getParent().getId())
                 && "0" != dto.getParent().getId()
             ) {
-                val parent = repository.findById(dto.getParent().getId() as ID?).orElseThrow{
+                val parent = repository.findById(dto.getParent().getId() as ID).orElseThrow {
                     ServiceException("")
                 }
                 dto.setParent(parent as Nothing?)

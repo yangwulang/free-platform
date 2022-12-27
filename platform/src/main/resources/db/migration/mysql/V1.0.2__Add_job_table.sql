@@ -16,7 +16,7 @@ create table sys_job
     remarks             varchar(500)                           null comment '备注信息',
     primary key (job_name, job_group)
 )
-    comment '作业调度表' collate = utf8mb4_0900_ai_ci;
+    comment '作业调度表';
 
 create index idx_sys_job_status
     on sys_job (status);
@@ -34,7 +34,7 @@ create table sys_job_log
     exception_info text         null comment '异常信息',
     create_date    datetime     null comment '创建时间'
 )
-    comment '作业调度日志表' collate = utf8mb4_0900_ai_ci;
+    comment '作业调度日志表';
 
 create index idx_sys_job_log_e
     on sys_job_log (job_event);

@@ -34,6 +34,8 @@
         <fastjson.version>2.0.16</fastjson.version>
         <jetcache.version>2.7.1</jetcache.version>
         <jedis.version>4.3.1</jedis.version>
+        <commons-io.version>2.11.0</commons-io.version>
+        <commons-fileupload.version>1.4</commons-fileupload.version>
     </properties>
 
     <repositories>
@@ -51,6 +53,16 @@
                 <version>${spring-boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons-io.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-fileupload</groupId>
+                <artifactId>commons-fileupload</artifactId>
+                <version>${commons-fileupload.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

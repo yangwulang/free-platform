@@ -1,6 +1,5 @@
 package top.yangwulang.platform.book
 
-import com.alibaba.fastjson.JSON
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.slf4j.Logger
@@ -9,14 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.data.jpa.domain.Specification
 import org.springframework.mock.web.MockHttpServletRequest
-import org.springframework.test.annotation.Rollback
-import top.yangwulang.platform.controller.book.BookInfoController
 import top.yangwulang.platform.controller.book.ChapterContentController
-import top.yangwulang.platform.entity.book.BookChapter
-import top.yangwulang.platform.entity.book.BookInfo
-import top.yangwulang.platform.entity.book.dto.BookInfoDto
 import top.yangwulang.platform.services.book.BookChapterService
-import top.yangwulang.platform.services.book.BookInfoService
 import top.yangwulang.platform.services.book.ChapterContentService
 import javax.persistence.criteria.Predicate
 

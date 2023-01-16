@@ -1,7 +1,8 @@
 package top.yangwulang.platform.config
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module
+import org.babyfish.jimmer.jackson.ImmutableModule
+//import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
@@ -14,7 +15,7 @@ import java.text.SimpleDateFormat
 
 
 @Configuration
-class WebConfiguration : WebMvcConfigurer {
+open class WebConfiguration : WebMvcConfigurer {
     override fun addInterceptors(registry: InterceptorRegistry) {
         registry.addInterceptor(TimeInterceptor())
         registry.addInterceptor(AjaxResultInterceptor())
@@ -22,19 +23,20 @@ class WebConfiguration : WebMvcConfigurer {
 
     override fun addCorsMappings(registry: CorsRegistry) {
         registry.addMapping("/**")
+            .allowedOriginPatterns("*")
+            // 是否允许证书（cookies）
             .allowCredentials(true)
-            .allowedOrigins("*")
+            // 设置允许的方法
             .allowedMethods("*")
-            .allowedHeaders("*")
-            .exposedHeaders("*")
     }
 
     @Bean
-    fun mappingJackson2HttpMessageConverter(): MappingJackson2HttpMessageConverter? {
+    open fun mappingJackson2HttpMessageConverter(): MappingJackson2HttpMessageConverter? {
         val converter = MappingJackson2HttpMessageConverter()
         val mapper: ObjectMapper = converter.objectMapper
-        val hibernate5Module = Hibernate5Module()
-        mapper.registerModule(hibernate5Module)
+        mapper.registerModule(ImmutableModule())
+//        val hibernate5Module = Hibernate5Module()
+//        mapper.registerModule(hibernate5Module)
         mapper.dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
         return converter
     }

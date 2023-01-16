@@ -1,4 +1,5 @@
 package top.yangwulang.platform.security.shiro.realm
+/*
 
 import org.apache.commons.lang3.StringUtils
 import org.apache.shiro.authc.*
@@ -64,4 +65,4 @@ class AccountPasswordRealm : AuthorizingRealm() {
     override fun supports(token: AuthenticationToken?): Boolean {
         return token is UsernamePasswordToken
     }
-}
+}*/

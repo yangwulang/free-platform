@@ -12,29 +12,29 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import top.yangwulang.platform.security.shiro.MyCustomModularRealmAuthenticator
 import top.yangwulang.platform.security.shiro.manager.TokenSessionManager
-import top.yangwulang.platform.security.shiro.realm.AccountPasswordRealm
+//import top.yangwulang.platform.security.shiro.realm.AccountPasswordRealm
 import top.yangwulang.platform.security.shiro.realm.UserPhoneRealm
 
 
 @Configuration
-class ShiroConfiguration {
+open class ShiroConfiguration {
     @Bean
-    fun sessionManager(): SessionManager {
+    open fun sessionManager(): SessionManager {
         return TokenSessionManager()
     }
 
-    @Bean
+/*    @Bean
     fun accountPasswordRealm(): AccountPasswordRealm {
         return AccountPasswordRealm()
-    }
+    }*/
 
     @Bean
-    fun userPhoneRealm() : UserPhoneRealm {
+    open fun userPhoneRealm() : UserPhoneRealm {
         return UserPhoneRealm()
     }
 
     @Bean(name = ["shiroFilterFactoryBean"])
-    fun shiroFilterFactoryBean(securityManager: DefaultWebSecurityManager?): ShiroFilterFactoryBean? {
+    open fun shiroFilterFactoryBean(securityManager: DefaultWebSecurityManager?): ShiroFilterFactoryBean? {
         val shiroFilterFactoryBean = ShiroFilterFactoryBean()
         shiroFilterFactoryBean.securityManager = securityManager
 //        shiroFilterFactoryBean.filters = mapOf(Pair("authc", AuthcShiroFilter()))
@@ -49,10 +49,10 @@ class ShiroConfiguration {
     }
 
     @Bean(name = ["securityManager"])
-    fun defaultWebSecurityManager(): DefaultWebSecurityManager {
+    open fun defaultWebSecurityManager(): DefaultWebSecurityManager {
         val defaultWebSecurityManager = DefaultWebSecurityManager()
         defaultWebSecurityManager.realms = listOf(
-            accountPasswordRealm(),
+//            accountPasswordRealm(),
             userPhoneRealm()
         )
         defaultWebSecurityManager.sessionManager = sessionManager()
@@ -61,10 +61,10 @@ class ShiroConfiguration {
     }
 
     @Bean
-    fun myCustomModuleRealmAuthor() : AbstractAuthenticator {
+    open fun myCustomModuleRealmAuthor() : AbstractAuthenticator {
         val myCustomModularRealmAuthenticator = MyCustomModularRealmAuthenticator()
         myCustomModularRealmAuthenticator.setRealms(listOf(
-            accountPasswordRealm(),
+//            accountPasswordRealm(),
             userPhoneRealm()
         ))
         myCustomModularRealmAuthenticator.authenticationStrategy = AtLeastOneSuccessfulStrategy()
@@ -73,19 +73,19 @@ class ShiroConfiguration {
 
 
     @Bean(name = ["lifecycleBeanPostProcessor"])
-    fun lifecycleBeanPostProcessor(): LifecycleBeanPostProcessor? {
+    open fun lifecycleBeanPostProcessor(): LifecycleBeanPostProcessor? {
         return LifecycleBeanPostProcessor()
     }
 
     @Bean
-    fun authorizationAttributeSourceAdvisor(securityManager: DefaultWebSecurityManager?): AuthorizationAttributeSourceAdvisor? {
+    open fun authorizationAttributeSourceAdvisor(securityManager: DefaultWebSecurityManager?): AuthorizationAttributeSourceAdvisor? {
         val authorizationAttributeSourceAdvisor = AuthorizationAttributeSourceAdvisor()
         authorizationAttributeSourceAdvisor.securityManager = securityManager
         return authorizationAttributeSourceAdvisor
     }
 
     @Bean
-    fun advisorAutoProxyCreator(): DefaultAdvisorAutoProxyCreator? {
+    open fun advisorAutoProxyCreator(): DefaultAdvisorAutoProxyCreator? {
         val advisorAutoProxyCreator = DefaultAdvisorAutoProxyCreator()
         advisorAutoProxyCreator.isProxyTargetClass = true
         return advisorAutoProxyCreator

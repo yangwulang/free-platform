@@ -8,14 +8,14 @@ import java.io.IOException
 import java.net.*
 
 @Configuration
-class OkHttpClientConfiguration {
+open class OkHttpClientConfiguration {
     val logger = LoggerFactory.getLogger(OkHttpClientConfiguration::class.java)!!
 
     /**
      * 注入okhttp的client，全局
      */
     @Bean
-    fun okhttpClient(): OkHttpClient {
+    open fun okhttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor {
                 val request = it.request().newBuilder()

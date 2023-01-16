@@ -6,5 +6,5 @@ import top.yangwulang.platform.config.j2cache.cache.J2CacheProperties
 
 @Configuration
 @EnableConfigurationProperties(J2CacheProperties::class)
-class J2CacheConfiguration {
+open class J2CacheConfiguration {
 }

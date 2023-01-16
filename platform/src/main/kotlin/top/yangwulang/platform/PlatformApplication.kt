@@ -1,12 +1,11 @@
 package top.yangwulang.platform
 
+import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
-import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class PlatformApplication
+open class PlatformApplication
 
 fun main(args: Array<String>) {
-    runApplication<PlatformApplication>(*args)
+    SpringApplication.run(PlatformApplication::class.java, *args)
 }

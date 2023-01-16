@@ -5,5 +5,5 @@ import org.springframework.context.annotation.Configuration
 
 @Configuration
 @EnableConfigurationProperties(FileUploadProperties::class)
-class FileUploadConfiguration {
+open class FileUploadConfiguration {
 }

@@ -1,7 +1,7 @@
 package top.yangwulang.platform.security.shiro;
 
 import lombok.Data;
-import top.yangwulang.platform.entity.sys.SysUser;
+//import top.yangwulang.platform.entity.sys.SysUser;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -9,11 +9,11 @@ import java.util.Map;
 
 @Data
 public class LoginInfo implements Serializable {
-    private String id;
+  /*  private String id;
     private String name;
     private Map<String, Object> params;
 
-    public LoginInfo(SysUser sysUser, Map<String, Object> params) {
+   public LoginInfo(SysUser sysUser, Map<String, Object> params) {
         this.id = sysUser.getId();
         this.name = sysUser.getUserName();
         this.params = params;
@@ -34,7 +34,7 @@ public class LoginInfo implements Serializable {
             this.params = new HashMap<>();
         }
         this.params.put(key, value);
-    }
+    }*/
 
     public LoginInfo() {
     }

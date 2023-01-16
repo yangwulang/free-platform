@@ -13,8 +13,8 @@
     <packaging>jar</packaging>
 
     <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -24,9 +24,22 @@
             <artifactId>free-platform-common</artifactId>
             <version>${parent.version}</version>
         </dependency>
+        <!--        <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-data-jpa</artifactId>
+                </dependency>-->
+        <dependency>
+            <groupId>org.babyfish.jimmer</groupId>
+            <artifactId>jimmer-spring-boot-starter</artifactId>
+            <version>0.6.19</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -59,6 +72,10 @@
             <artifactId>flyway-core</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-mysql</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-reflect</artifactId>
         </dependency>
@@ -67,10 +84,10 @@
             <artifactId>kotlin-stdlib-jdk8</artifactId>
         </dependency>
 
-<!--        <dependency>
-            <groupId>org.springframework.session</groupId>
-            <artifactId>spring-session-data-redis</artifactId>
-        </dependency>-->
+        <!--        <dependency>
+                    <groupId>org.springframework.session</groupId>
+                    <artifactId>spring-session-data-redis</artifactId>
+                </dependency>-->
 
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
@@ -90,17 +107,17 @@
             <version>${druid.version}</version>
         </dependency>
 
-        <dependency>
+        <!--<dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-hibernate5</artifactId>
             <version>2.14.0</version>
-        </dependency>
+        </dependency>-->
 
 
         <dependency>
             <groupId>com.github.xiaoymin</groupId>
-            <artifactId>knife4j-spring-boot-starter</artifactId>
-            <version>3.0.3</version>
+            <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
+            <version>4.0.0</version>
         </dependency>
 
         <dependency>
@@ -156,23 +173,28 @@
             </exclusions>
         </dependency>-->
 
-        <dependency>
+<!--        <dependency>
             <groupId>org.ehcache</groupId>
             <artifactId>ehcache</artifactId>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>com.alicp.jetcache</groupId>
             <artifactId>jetcache-starter-redis</artifactId>
             <version>${jetcache.version}</version>
         </dependency>
+<!--        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>5.3.19</version>
+        </dependency>-->
     </dependencies>
 
     <build>
         <sourceDirectory>src/main/kotlin</sourceDirectory>
         <testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>
         <plugins>
-            <plugin>
+            <!--<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
@@ -181,13 +203,32 @@
                     <target>1.8</target>
                     <encoding>UTF-8</encoding>
                     <compilerArgument>-parameters</compilerArgument>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.babyfish.jimmer</groupId>
+                            <artifactId>jimmer-apt</artifactId>
+                            <version>0.6.19</version>
+                        </path>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>1.18.16</version>
+                        </path>
+                    </annotationProcessorPaths>
                 </configuration>
-            </plugin>
+            </plugin>-->
             <plugin>
                 <groupId>org.jetbrains.kotlin</groupId>
                 <artifactId>kotlin-maven-plugin</artifactId>
                 <version>${kotlin.version}</version>
                 <executions>
+                    <execution>
+                        <id>compile</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
                     <execution>
                         <id>kapt</id>
                         <goals>
@@ -200,9 +241,14 @@
                             </sourceDirs>
                             <annotationProcessorPaths>
                                 <path>
+                                    <groupId>org.babyfish.jimmer</groupId>
+                                    <artifactId>jimmer-apt</artifactId>
+                                    <version>0.6.19</version>
+                                </path>
+                                <path>
                                     <groupId>org.projectlombok</groupId>
                                     <artifactId>lombok</artifactId>
-                                    <version>1.18.16</version>
+                                    <version>1.18.24</version>
                                 </path>
                                 <annotationProcessorPath>
                                     <groupId>org.mapstruct</groupId>
@@ -210,30 +256,24 @@
                                     <version>${mapstruct.version}</version>
                                 </annotationProcessorPath>
                             </annotationProcessorPaths>
+                            <compilerPlugins>
+                                <!-- Or "spring" for the Spring support -->
+                                <plugin>all-open</plugin>
+                            </compilerPlugins>
+                            <pluginOptions>
+                                <option>all-open:annotation=javax.*</option>
+                            </pluginOptions>
                         </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.jetbrains.kotlin</groupId>
-                <artifactId>kotlin-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>compile</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>compile</goal>
-                        </goals>
                     </execution>
                 </executions>
                 <configuration>
                     <args>
                         <arg>-Xjsr305=strict</arg>
                     </args>
-                    <compilerPlugins>
-                        <plugin>spring</plugin>
-                        <plugin>jpa</plugin>
-                    </compilerPlugins>
+                    <!--                    <compilerPlugins>
+                                            <plugin>spring</plugin>
+                                            <plugin>jpa</plugin>
+                                        </compilerPlugins>-->
                 </configuration>
                 <dependencies>
                     <dependency>
@@ -251,6 +291,22 @@
         </plugins>
     </build>
 
+    <repositories>
+        <repository>
+            <id>mavenCentral</id>
+            <url>https://repo1.maven.org/maven2/</url>
+        </repository>
+        <repository>
+            <id>aliyun</id>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 
 
 </project>

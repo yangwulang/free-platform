@@ -1,13 +1,13 @@
 package top.yangwulang.platform.interceptor
 
+import jakarta.servlet.http.HttpServletRequest
+import jakarta.servlet.http.HttpServletResponse
 import org.slf4j.LoggerFactory
+import org.springframework.web.servlet.AsyncHandlerInterceptor
 import org.springframework.web.servlet.ModelAndView
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter
-import javax.servlet.http.HttpServletRequest
-import javax.servlet.http.HttpServletResponse
 import kotlin.properties.Delegates
 
-class TimeInterceptor : HandlerInterceptorAdapter() {
+class TimeInterceptor : AsyncHandlerInterceptor {
     private val logger = LoggerFactory.getLogger(TimeInterceptor::class.java)
 
     private var startTime by Delegates.notNull<Long>()

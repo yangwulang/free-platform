@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration
 
 @Configuration
 @EnableMethodCache(basePackages = ["top.yangwulang.platform"])
-//@EnableCreateCacheAnnotation
+open//@EnableCreateCacheAnnotation
 class JetCacheConfiguration {
 
 }

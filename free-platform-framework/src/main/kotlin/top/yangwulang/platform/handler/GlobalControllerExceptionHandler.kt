@@ -97,7 +97,7 @@ class GlobalControllerExceptionHandler : ResponseBodyAdvice<Any> {
                 false
             }
         }
-        if (request.uri.path.contains("swagger-resources") || request.uri.path.contains("v2/api-docs")) {
+        if (request.uri.path.contains("swagger-resources") || request.uri.path.contains("v2/api-docs") || request.uri.path.contains("v3/api-docs")) {
             // knife4j默认为Cloud请求
             isCloudRequest = true
         }

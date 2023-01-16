@@ -12,12 +12,12 @@ import javax.sql.DataSource
 
 @Configuration
 @EnableConfigurationProperties(DynamicDataSourceProperties::class)
-class DynamicDataSourceConfiguration {
+open class DynamicDataSourceConfiguration {
     @Bean
-    fun dynamicDataSource(dynamicDataSourceProperties: DynamicDataSourceProperties): DataSourceHolder {
+    open fun dynamicDataSource(dynamicDataSourceProperties: DynamicDataSourceProperties): DataSourceHolder {
         val dataSourceHandler = DataSourceHolder()
         val dataSourceMap = HashMap<String, DataSource>()
-        dynamicDataSourceProperties.dataSourceNames?.let {dataSourceName ->
+        dynamicDataSourceProperties.dataSourceNames?.let { dataSourceName ->
             dataSourceName.forEach {
                 val properties = dynamicDataSourceProperties.properties
                 if (StringUtils.isNoneBlank(it) && properties != null) {

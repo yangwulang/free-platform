@@ -120,10 +120,10 @@ public interface UserDraft extends User, Draft {
             .add(10, "sign", ImmutablePropCategory.SCALAR, String.class, true)
             .add(11, "wxOpenId", ImmutablePropCategory.SCALAR, String.class, true)
             .add(12, "mobileImei", ImmutablePropCategory.SCALAR, String.class, true)
-            .add(13, "userType", ImmutablePropCategory.SCALAR, String.class, true)
+            .add(13, "userType", ImmutablePropCategory.SCALAR, String.class, false)
             .add(14, "refCode", ImmutablePropCategory.SCALAR, String.class, true)
             .add(15, "refName", ImmutablePropCategory.SCALAR, String.class, true)
-            .add(16, "mgrType", ImmutablePropCategory.SCALAR, String.class, true)
+            .add(16, "mgrType", ImmutablePropCategory.SCALAR, String.class, false)
             .add(17, "pwdSecurityLevel", ImmutablePropCategory.SCALAR, Integer.class, true)
             .add(18, "userWeight", ImmutablePropCategory.SCALAR, Integer.class, true)
             .add(19, "status", ImmutablePropCategory.SCALAR, String.class, false)
@@ -272,8 +272,6 @@ public interface UserDraft extends User, Draft {
 
             String userType;
 
-            boolean userTypeLoaded = false;
-
             String refCode;
 
             boolean refCodeLoaded = false;
@@ -283,8 +281,6 @@ public interface UserDraft extends User, Draft {
             boolean refNameLoaded = false;
 
             String mgrType;
-
-            boolean mgrTypeLoaded = false;
 
             Integer pwdSecurityLevel;
 
@@ -406,7 +402,7 @@ public interface UserDraft extends User, Draft {
 
             @Override
             public String userType() {
-                if (!userTypeLoaded) {
+                if (userType == null) {
                     throw new UnloadedException(User.class, "userType");
                 }
                 return userType;
@@ -430,7 +426,7 @@ public interface UserDraft extends User, Draft {
 
             @Override
             public String mgrType() {
-                if (!mgrTypeLoaded) {
+                if (mgrType == null) {
                     throw new UnloadedException(User.class, "mgrType");
                 }
                 return mgrType;
@@ -524,10 +520,10 @@ public interface UserDraft extends User, Draft {
                     case 10: return signLoaded;
                     case 11: return wxOpenIdLoaded;
                     case 12: return mobileImeiLoaded;
-                    case 13: return userTypeLoaded;
+                    case 13: return userType != null;
                     case 14: return refCodeLoaded;
                     case 15: return refNameLoaded;
-                    case 16: return mgrTypeLoaded;
+                    case 16: return mgrType != null;
                     case 17: return pwdSecurityLevelLoaded;
                     case 18: return userWeightLoaded;
                     case 19: return status != null;
@@ -555,10 +551,10 @@ public interface UserDraft extends User, Draft {
                     case "sign": return signLoaded;
                     case "wxOpenId": return wxOpenIdLoaded;
                     case "mobileImei": return mobileImeiLoaded;
-                    case "userType": return userTypeLoaded;
+                    case "userType": return userType != null;
                     case "refCode": return refCodeLoaded;
                     case "refName": return refNameLoaded;
-                    case "mgrType": return mgrTypeLoaded;
+                    case "mgrType": return mgrType != null;
                     case "pwdSecurityLevel": return pwdSecurityLevelLoaded;
                     case "userWeight": return userWeightLoaded;
                     case "status": return status != null;
@@ -612,7 +608,7 @@ public interface UserDraft extends User, Draft {
                 if (mobileImeiLoaded && mobileImei != null) {
                     hash = 31 * hash + mobileImei.hashCode();
                 }
-                if (userTypeLoaded && userType != null) {
+                if (userType != null) {
                     hash = 31 * hash + userType.hashCode();
                 }
                 if (refCodeLoaded && refCode != null) {
@@ -621,7 +617,7 @@ public interface UserDraft extends User, Draft {
                 if (refNameLoaded && refName != null) {
                     hash = 31 * hash + refName.hashCode();
                 }
-                if (mgrTypeLoaded && mgrType != null) {
+                if (mgrType != null) {
                     hash = 31 * hash + mgrType.hashCode();
                 }
                 if (pwdSecurityLevelLoaded && pwdSecurityLevel != null) {
@@ -689,7 +685,7 @@ public interface UserDraft extends User, Draft {
                 if (mobileImeiLoaded) {
                     hash = 31 * hash + System.identityHashCode(mobileImei);
                 }
-                if (userTypeLoaded) {
+                if (userType != null) {
                     hash = 31 * hash + System.identityHashCode(userType);
                 }
                 if (refCodeLoaded) {
@@ -698,7 +694,7 @@ public interface UserDraft extends User, Draft {
                 if (refNameLoaded) {
                     hash = 31 * hash + System.identityHashCode(refName);
                 }
-                if (mgrTypeLoaded) {
+                if (mgrType != null) {
                     hash = 31 * hash + System.identityHashCode(mgrType);
                 }
                 if (pwdSecurityLevelLoaded) {
@@ -824,7 +820,7 @@ public interface UserDraft extends User, Draft {
                 if (__mobileImeiLoaded && !Objects.equals(mobileImei, other.mobileImei())) {
                     return false;
                 }
-                boolean __userTypeLoaded = userTypeLoaded;
+                boolean __userTypeLoaded = userType != null;
                 if (__userTypeLoaded != other.__isLoaded(13)) {
                     return false;
                 }
@@ -845,7 +841,7 @@ public interface UserDraft extends User, Draft {
                 if (__refNameLoaded && !Objects.equals(refName, other.refName())) {
                     return false;
                 }
-                boolean __mgrTypeLoaded = mgrTypeLoaded;
+                boolean __mgrTypeLoaded = mgrType != null;
                 if (__mgrTypeLoaded != other.__isLoaded(16)) {
                     return false;
                 }
@@ -1000,7 +996,7 @@ public interface UserDraft extends User, Draft {
                 if (__mobileImeiLoaded && mobileImei != other.mobileImei()) {
                     return false;
                 }
-                boolean __userTypeLoaded = userTypeLoaded;
+                boolean __userTypeLoaded = userType != null;
                 if (__userTypeLoaded != other.__isLoaded(13)) {
                     return false;
                 }
@@ -1021,7 +1017,7 @@ public interface UserDraft extends User, Draft {
                 if (__refNameLoaded && refName != other.refName()) {
                     return false;
                 }
-                boolean __mgrTypeLoaded = mgrTypeLoaded;
+                boolean __mgrTypeLoaded = mgrType != null;
                 if (__mgrTypeLoaded != other.__isLoaded(16)) {
                     return false;
                 }
@@ -1309,9 +1305,13 @@ public interface UserDraft extends User, Draft {
 
             @Override
             public UserDraft setUserType(String userType) {
+                if (userType == null) {
+                    throw new IllegalArgumentException(
+                        "'userType' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
+                    );
+                }
                 Impl modified = __modified();
                 modified.userType = userType;
-                modified.userTypeLoaded = true;
                 return this;
             }
 
@@ -1348,9 +1348,13 @@ public interface UserDraft extends User, Draft {
 
             @Override
             public UserDraft setMgrType(String mgrType) {
+                if (mgrType == null) {
+                    throw new IllegalArgumentException(
+                        "'mgrType' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
+                    );
+                }
                 Impl modified = __modified();
                 modified.mgrType = mgrType;
-                modified.mgrTypeLoaded = true;
                 return this;
             }
 
@@ -1557,10 +1561,10 @@ public interface UserDraft extends User, Draft {
                     case 10: __modified().signLoaded = false;break;
                     case 11: __modified().wxOpenIdLoaded = false;break;
                     case 12: __modified().mobileImeiLoaded = false;break;
-                    case 13: __modified().userTypeLoaded = false;break;
+                    case 13: __modified().userType = null;break;
                     case 14: __modified().refCodeLoaded = false;break;
                     case 15: __modified().refNameLoaded = false;break;
-                    case 16: __modified().mgrTypeLoaded = false;break;
+                    case 16: __modified().mgrType = null;break;
                     case 17: __modified().pwdSecurityLevelLoaded = false;break;
                     case 18: __modified().userWeightLoaded = false;break;
                     case 19: __modified().status = null;break;
@@ -1588,10 +1592,10 @@ public interface UserDraft extends User, Draft {
                     case "sign": __modified().signLoaded = false;break;
                     case "wxOpenId": __modified().wxOpenIdLoaded = false;break;
                     case "mobileImei": __modified().mobileImeiLoaded = false;break;
-                    case "userType": __modified().userTypeLoaded = false;break;
+                    case "userType": __modified().userType = null;break;
                     case "refCode": __modified().refCodeLoaded = false;break;
                     case "refName": __modified().refNameLoaded = false;break;
-                    case "mgrType": __modified().mgrTypeLoaded = false;break;
+                    case "mgrType": __modified().mgrType = null;break;
                     case "pwdSecurityLevel": __modified().pwdSecurityLevelLoaded = false;break;
                     case "userWeight": __modified().userWeightLoaded = false;break;
                     case "status": __modified().status = null;break;

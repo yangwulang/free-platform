@@ -26,16 +26,16 @@ spring:
     cluster-mode: false
 #    清理全部缓存按钮所清理的缓存列表
 #    clearNames: sysCache,corpCache,userCache,cmsCache,msgPcPoolCache
-  quartz:
-    job-store-type: jdbc
-    properties:
-      org:
-        quartz:
-          scheduler:
-            instanceName: free_platform
-            instanceId: AUTO
-          jobStore:
-            class: org.quartz.impl.jdbcjobstore.JobStoreTX
+#  quartz:
+#    job-store-type: jdbc
+#    properties:
+#      org:
+#        quartz:
+#          scheduler:
+#            instanceName: free_platform
+#            instanceId: AUTO
+#          jobStore:
+#            class: org.quartz.impl.jdbcjobstore.JobStoreTX
             #tablePrefix: qrtz_  #数据库表前缀
             #clusterCheckinInterval: 5000 #设置此实例“检入”*与群集的其他实例的频率（以毫秒为单位）。影响检测失败实例的速度
             #isClustered: true #打开群集功能
@@ -83,3 +83,15 @@ jetcache:
 #        maxTotal: 50
 #      host: ${spring.redis.host}
 #      port: ${spring.redis.port}
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+  api-docs:
+    path: /v3/api-docs
+  group-configs:
+    - group: 'default'
+      paths-to-match: '/**'
+      packages-to-scan: top.yangwulang.platform.controller

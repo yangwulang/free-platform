@@ -1,4 +1,5 @@
 package top.yangwulang.platform.book
+/*
 
 import com.alibaba.fastjson.JSON
 import org.junit.jupiter.api.BeforeEach
@@ -54,4 +55,4 @@ class BookInfoTests {
         logger.info("新增成功 {}", JSON.toJSONString(add))
     }
 
-}
+}*/

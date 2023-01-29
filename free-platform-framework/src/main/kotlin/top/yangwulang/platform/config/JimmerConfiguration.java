@@ -10,6 +10,8 @@ import top.yangwulang.platform.entity.sys.JimmerModule;
  */
 @Configuration
 public class JimmerConfiguration {
+
+
     @Bean
     public EntityManager entityManager() {
         return JimmerModule.ENTITY_MANAGER;

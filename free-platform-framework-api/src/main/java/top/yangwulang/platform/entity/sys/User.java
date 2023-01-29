@@ -4,7 +4,6 @@ package top.yangwulang.platform.entity.sys;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.babyfish.jimmer.Immutable;
 import org.babyfish.jimmer.sql.*;
-import top.yangwulang.platform.utils.SnowflakeKey;
 
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -19,7 +18,7 @@ import java.util.Date;
 public interface User {
 
     @Id
-    @GeneratedValue(generatorType = SnowflakeKey.class)
+//    @GeneratedValue(generatorType = SnowflakeKey.class)
     @Schema(name = "用户编码")
     @NotNull
     String userCode();
@@ -61,6 +60,7 @@ public interface User {
     String mobileImei();
 
     @Schema(name = "用户类型")
+    @NotNull
     String userType();
 
     @Schema(name = "用户类型引用编号")
@@ -71,6 +71,7 @@ public interface User {
     String refName();
 
     @Schema(name = "管理员类型")
+    @NotNull
     String mgrType();
 
     Integer pwdSecurityLevel();

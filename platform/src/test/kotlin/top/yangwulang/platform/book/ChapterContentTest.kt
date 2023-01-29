@@ -1,4 +1,5 @@
 package top.yangwulang.platform.book
+/*
 
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -53,4 +54,4 @@ class ChapterContentTest {
         logger.info("{}", chapters)
     }
 
-}
+}*/

@@ -1,7 +1,5 @@
 package top.yangwulang.platform.entity;
 
-import lombok.Data;
-
 /**
  * @author yangwulang
  */
@@ -39,6 +37,12 @@ public class Result<T> {
         this.setCode("200");
         this.setMessage("操作成功");
         this.setResult(result);
+        return this;
+    }
+
+    public Result<T> success(String message) {
+        this.setCode("200");
+        this.setMessage(message);
         return this;
     }
 

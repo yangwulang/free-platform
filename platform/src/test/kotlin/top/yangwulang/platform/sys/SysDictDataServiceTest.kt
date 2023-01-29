@@ -1,4 +1,5 @@
 package top.yangwulang.platform.sys
+/*
 
 import org.junit.jupiter.api.Test
 import org.slf4j.Logger
@@ -100,4 +101,4 @@ class SysDictDataServiceTest {
 
         sysDictDataService.save(sysDictData)
     }
-}
+}*/

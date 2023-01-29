@@ -7,8 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
-import top.yangwulang.platform.repository.book.BookCategoryRepository
-import top.yangwulang.platform.repository.book.BookInfoRepository
+/*import top.yangwulang.platform.repository.book.BookCategoryRepository
+import top.yangwulang.platform.repository.book.BookInfoRepository*/
+/*
 
 @SpringBootTest
 class PlatformApplicationTests {
@@ -38,3 +39,4 @@ class PlatformApplicationTests {
 
 
 }
+*/

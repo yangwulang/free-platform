@@ -24,6 +24,11 @@
             <artifactId>free-platform-common</artifactId>
             <version>${parent.version}</version>
         </dependency>
+        <dependency>
+            <groupId>top.yangwulang</groupId>
+            <artifactId>free-platform-framework-api</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
         <!--        <dependency>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -243,7 +248,7 @@
                                 <path>
                                     <groupId>org.babyfish.jimmer</groupId>
                                     <artifactId>jimmer-apt</artifactId>
-                                    <version>0.6.19</version>
+                                    <version>0.6.23</version>
                                 </path>
                                 <path>
                                     <groupId>org.projectlombok</groupId>

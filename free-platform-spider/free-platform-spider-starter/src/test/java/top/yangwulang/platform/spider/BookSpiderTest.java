@@ -9,6 +9,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import top.yangwulang.platform.entity.book.BookInfo;
 import top.yangwulang.platform.entity.book.BookInfoTable;
+import top.yangwulang.platform.entity.sys.DictData;
+import top.yangwulang.platform.entity.sys.DictDataTable;
 import top.yangwulang.platform.utils.SnowflakeKey;
 
 import java.util.List;
@@ -19,13 +21,18 @@ public class BookSpiderTest {
         DruidDataSource druidDataSource = new DruidDataSource();
         druidDataSource.setUrl("jdbc:mysql://localhost:3306/jeesite?serverTimezone=UTC");
         druidDataSource.setUsername("root");
-        druidDataSource.setPassword("tq26556570");
+        druidDataSource.setPassword("yangwulang");
         JSqlClient jSqlClient = JSqlClient.newBuilder()
                 .setConnectionManager(ConnectionManager.simpleConnectionManager(druidDataSource))
                 .setIdGenerator(new SnowflakeKey())
                 .build();
         List<BookInfo> execute = jSqlClient.createQuery(BookInfoTable.$).select(BookInfoTable.$).execute();
         System.out.println(execute);
+
+
+        List<DictData> dictDatas = jSqlClient.createQuery(DictDataTable.$).select(DictDataTable.$).execute();
+        System.out.println(dictDatas);
+
     }
 
 }

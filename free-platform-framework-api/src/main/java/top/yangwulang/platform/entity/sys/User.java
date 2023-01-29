@@ -18,7 +18,6 @@ import java.util.Date;
 public interface User {
 
     @Id
-//    @GeneratedValue(generatorType = SnowflakeKey.class)
     @Schema(name = "用户编码")
     @NotNull
     String userCode();

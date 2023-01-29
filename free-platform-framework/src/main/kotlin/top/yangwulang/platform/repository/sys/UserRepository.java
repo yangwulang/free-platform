@@ -17,6 +17,14 @@ import top.yangwulang.platform.entity.sys.input.UserInput;
 public interface UserRepository extends JRepository<User, String> {
     UserTable TABLE = UserTable.$;
 
+    /**
+     * 查询列表页数据
+     *
+     * @param pageable 分页数据
+     * @param fetcher  f对象
+     * @param user     入参对象
+     * @return 分页数据
+     */
     default Page<User> findAll(Pageable pageable, Fetcher<User> fetcher, UserInput user) {
         return pager(pageable.getPageNumber(), pageable.getPageSize()).execute(
                 sql().createQuery(TABLE)

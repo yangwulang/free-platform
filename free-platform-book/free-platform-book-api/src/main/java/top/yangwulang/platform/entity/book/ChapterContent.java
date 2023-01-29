@@ -1,8 +1,10 @@
 package top.yangwulang.platform.entity.book;
 
+import org.babyfish.jimmer.Immutable;
 import org.babyfish.jimmer.pojo.Static;
 import org.babyfish.jimmer.sql.*;
 
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
 
 /**
@@ -10,11 +12,13 @@ import javax.validation.constraints.Null;
  */
 @Entity
 @Table(name = "chapter_content")
+@Immutable(value = Immutable.Nullity.NULLABLE)
 public interface ChapterContent {
     /**
      * 书籍内容id
      */
     @Id
+    @NotNull
     String id();
 
     /**
@@ -23,11 +27,12 @@ public interface ChapterContent {
     @Key
     @ManyToOne
     @Static(name = "chapter_id", idOnly = true)
+    @NotNull
     BookChapter chapter();
 
     /**
      * 章节内容
      */
-    @Null String chapterContent();
+    String chapterContent();
 }
 

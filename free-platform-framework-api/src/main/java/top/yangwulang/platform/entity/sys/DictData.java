@@ -28,7 +28,7 @@ public interface DictData extends DataTypeBase {
      */
     @Key
     @ManyToOne
-    @Static(name = "pid", idOnly = true)
+    @JoinColumn(name = "pid")
     @OnDissociate(DissociateAction.DELETE)
     DictData parent();
 
@@ -87,6 +87,7 @@ public interface DictData extends DataTypeBase {
     /**
      * 系统内置（1是 0否）
      */
+    @Column(name = "is_sys")
     boolean isSys();
 
     /**

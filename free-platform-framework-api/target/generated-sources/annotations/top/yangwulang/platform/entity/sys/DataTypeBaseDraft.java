@@ -60,7 +60,7 @@ public interface DataTypeBaseDraft extends DataTypeBase, TypeBaseDraft {
             .add(4, "createDate", ImmutablePropCategory.SCALAR, LocalDateTime.class, false)
             .add(5, "updateBy", ImmutablePropCategory.SCALAR, String.class, false)
             .add(6, "updateDate", ImmutablePropCategory.SCALAR, LocalDateTime.class, false)
-            .add(7, "remarks", ImmutablePropCategory.SCALAR, String.class, false)
+            .add(7, "remarks", ImmutablePropCategory.SCALAR, String.class, true)
             .build();
 
         private Producer() {
@@ -133,6 +133,8 @@ public interface DataTypeBaseDraft extends DataTypeBase, TypeBaseDraft {
 
             String remarks;
 
+            boolean remarksLoaded = false;
+
             @Override
             public String id() {
                 if (id == null) {
@@ -183,7 +185,7 @@ public interface DataTypeBaseDraft extends DataTypeBase, TypeBaseDraft {
 
             @Override
             public String remarks() {
-                if (remarks == null) {
+                if (!remarksLoaded) {
                     throw new UnloadedException(DataTypeBase.class, "remarks");
                 }
                 return remarks;
@@ -207,7 +209,7 @@ public interface DataTypeBaseDraft extends DataTypeBase, TypeBaseDraft {
                     case 4: return createDate != null;
                     case 5: return updateBy != null;
                     case 6: return updateDate != null;
-                    case 7: return remarks != null;
+                    case 7: return remarksLoaded;
                     default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
                 }
             }
@@ -221,7 +223,7 @@ public interface DataTypeBaseDraft extends DataTypeBase, TypeBaseDraft {
                     case "createDate": return createDate != null;
                     case "updateBy": return updateBy != null;
                     case "updateDate": return updateDate != null;
-                    case "remarks": return remarks != null;
+                    case "remarks": return remarksLoaded;
                     default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
                 }
             }
@@ -249,7 +251,7 @@ public interface DataTypeBaseDraft extends DataTypeBase, TypeBaseDraft {
                 if (updateDate != null) {
                     hash = 31 * hash + updateDate.hashCode();
                 }
-                if (remarks != null) {
+                if (remarksLoaded && remarks != null) {
                     hash = 31 * hash + remarks.hashCode();
                 }
                 return hash;
@@ -275,7 +277,7 @@ public interface DataTypeBaseDraft extends DataTypeBase, TypeBaseDraft {
                 if (updateDate != null) {
                     hash = 31 * hash + System.identityHashCode(updateDate);
                 }
-                if (remarks != null) {
+                if (remarksLoaded) {
                     hash = 31 * hash + System.identityHashCode(remarks);
                 }
                 return hash;
@@ -335,7 +337,7 @@ public interface DataTypeBaseDraft extends DataTypeBase, TypeBaseDraft {
                 if (__updateDateLoaded && !Objects.equals(updateDate, other.updateDate())) {
                     return false;
                 }
-                boolean __remarksLoaded = remarks != null;
+                boolean __remarksLoaded = remarksLoaded;
                 if (__remarksLoaded != other.__isLoaded(7)) {
                     return false;
                 }
@@ -392,7 +394,7 @@ public interface DataTypeBaseDraft extends DataTypeBase, TypeBaseDraft {
                 if (__updateDateLoaded && updateDate != other.updateDate()) {
                     return false;
                 }
-                boolean __remarksLoaded = remarks != null;
+                boolean __remarksLoaded = remarksLoaded;
                 if (__remarksLoaded != other.__isLoaded(7)) {
                     return false;
                 }
@@ -566,13 +568,9 @@ public interface DataTypeBaseDraft extends DataTypeBase, TypeBaseDraft {
 
             @Override
             public DataTypeBaseDraft setRemarks(String remarks) {
-                if (remarks == null) {
-                    throw new IllegalArgumentException(
-                        "'remarks' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
-                    );
-                }
                 Impl modified = __modified();
                 modified.remarks = remarks;
+                modified.remarksLoaded = true;
                 return this;
             }
 
@@ -615,7 +613,7 @@ public interface DataTypeBaseDraft extends DataTypeBase, TypeBaseDraft {
                     case 4: __modified().createDate = null;break;
                     case 5: __modified().updateBy = null;break;
                     case 6: __modified().updateDate = null;break;
-                    case 7: __modified().remarks = null;break;
+                    case 7: __modified().remarksLoaded = false;break;
                     default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
                 }
             }
@@ -629,7 +627,7 @@ public interface DataTypeBaseDraft extends DataTypeBase, TypeBaseDraft {
                     case "createDate": __modified().createDate = null;break;
                     case "updateBy": __modified().updateBy = null;break;
                     case "updateDate": __modified().updateDate = null;break;
-                    case "remarks": __modified().remarks = null;break;
+                    case "remarks": __modified().remarksLoaded = false;break;
                     default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
                 }
             }

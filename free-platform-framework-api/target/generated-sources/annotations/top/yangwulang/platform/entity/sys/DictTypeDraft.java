@@ -148,6 +148,8 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
 
             String remarks;
 
+            boolean remarksLoaded = false;
+
             String dictName;
 
             boolean dictNameLoaded = false;
@@ -210,7 +212,7 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
 
             @Override
             public String remarks() {
-                if (remarks == null) {
+                if (!remarksLoaded) {
                     throw new UnloadedException(DictType.class, "remarks");
                 }
                 return remarks;
@@ -259,7 +261,7 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
                     case 4: return createDate != null;
                     case 5: return updateBy != null;
                     case 6: return updateDate != null;
-                    case 7: return remarks != null;
+                    case 7: return remarksLoaded;
                     case 8: return dictNameLoaded;
                     case 9: return dictTypeLoaded;
                     case 10: return sysLoaded;
@@ -276,7 +278,7 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
                     case "createDate": return createDate != null;
                     case "updateBy": return updateBy != null;
                     case "updateDate": return updateDate != null;
-                    case "remarks": return remarks != null;
+                    case "remarks": return remarksLoaded;
                     case "dictName": return dictNameLoaded;
                     case "dictType": return dictTypeLoaded;
                     case "sys": return sysLoaded;
@@ -307,7 +309,7 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
                 if (updateDate != null) {
                     hash = 31 * hash + updateDate.hashCode();
                 }
-                if (remarks != null) {
+                if (remarksLoaded && remarks != null) {
                     hash = 31 * hash + remarks.hashCode();
                 }
                 if (dictNameLoaded && dictName != null) {
@@ -342,7 +344,7 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
                 if (updateDate != null) {
                     hash = 31 * hash + System.identityHashCode(updateDate);
                 }
-                if (remarks != null) {
+                if (remarksLoaded) {
                     hash = 31 * hash + System.identityHashCode(remarks);
                 }
                 if (dictNameLoaded) {
@@ -411,7 +413,7 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
                 if (__updateDateLoaded && !Objects.equals(updateDate, other.updateDate())) {
                     return false;
                 }
-                boolean __remarksLoaded = remarks != null;
+                boolean __remarksLoaded = remarksLoaded;
                 if (__remarksLoaded != other.__isLoaded(7)) {
                     return false;
                 }
@@ -489,7 +491,7 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
                 if (__updateDateLoaded && updateDate != other.updateDate()) {
                     return false;
                 }
-                boolean __remarksLoaded = remarks != null;
+                boolean __remarksLoaded = remarksLoaded;
                 if (__remarksLoaded != other.__isLoaded(7)) {
                     return false;
                 }
@@ -684,13 +686,9 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
 
             @Override
             public DictTypeDraft setRemarks(String remarks) {
-                if (remarks == null) {
-                    throw new IllegalArgumentException(
-                        "'remarks' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
-                    );
-                }
                 Impl modified = __modified();
                 modified.remarks = remarks;
+                modified.remarksLoaded = true;
                 return this;
             }
 
@@ -785,7 +783,7 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
                     case 4: __modified().createDate = null;break;
                     case 5: __modified().updateBy = null;break;
                     case 6: __modified().updateDate = null;break;
-                    case 7: __modified().remarks = null;break;
+                    case 7: __modified().remarksLoaded = false;break;
                     case 8: __modified().dictNameLoaded = false;break;
                     case 9: __modified().dictTypeLoaded = false;break;
                     case 10: __modified().sysLoaded = false;break;
@@ -802,7 +800,7 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
                     case "createDate": __modified().createDate = null;break;
                     case "updateBy": __modified().updateBy = null;break;
                     case "updateDate": __modified().updateDate = null;break;
-                    case "remarks": __modified().remarks = null;break;
+                    case "remarks": __modified().remarksLoaded = false;break;
                     case "dictName": __modified().dictNameLoaded = false;break;
                     case "dictType": __modified().dictTypeLoaded = false;break;
                     case "sys": __modified().sysLoaded = false;break;

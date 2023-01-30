@@ -12,9 +12,12 @@ import org.babyfish.jimmer.sql.runtime.DefaultExecutor;
 import org.babyfish.jimmer.sql.runtime.Executor;
 import top.yangwulang.platform.entity.book.*;
 import top.yangwulang.platform.entity.sys.DictData;
+import top.yangwulang.platform.entity.sys.DictDataFetcher;
 import top.yangwulang.platform.entity.sys.DictDataTable;
 import top.yangwulang.platform.utils.SnowflakeKey;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -25,18 +28,35 @@ public class BookSpiderTest {
         DruidDataSource druidDataSource = new DruidDataSource();
         druidDataSource.setUrl("jdbc:mysql://localhost:3306/jeesite?serverTimezone=UTC");
         druidDataSource.setUsername("root");
-        druidDataSource.setPassword("tq26556570");
+        druidDataSource.setPassword("yangwulang");
+        druidDataSource.setDefaultAutoCommit(false);
         JSqlClient jSqlClient = JSqlClient.newBuilder()
                 .setConnectionManager(ConnectionManager.simpleConnectionManager(druidDataSource))
                 .setIdGenerator(SnowflakeKey.INSTANCE)
                 .setExecutor(Executor.log(DefaultExecutor.INSTANCE))
                 .build();
-        List<BookInfo> execute = jSqlClient.createQuery(BookInfoTable.$).select(BookInfoTable.$).execute();
+        List<BookInfo> execute = jSqlClient.createQuery(BookInfoTable.$)
+                .select(BookInfoTable.$)
+                .limit(0, 20)
+                .execute();
         System.out.println(execute);
 
 
-        List<DictData> dictDatas = jSqlClient.createQuery(DictDataTable.$).select(DictDataTable.$).execute();
+        List<DictData> dictDatas = jSqlClient.createQuery(DictDataTable.$)
+                .select(
+                        DictDataTable.$.fetch(
+                                DictDataFetcher.$.allScalarFields()
+                                        .parent(
+                                                DictDataFetcher.$.allTableFields()
+                                        )
+                                        .children(
+                                                DictDataFetcher.$.allTableFields()
+                                        )
+                        )
+                )
+                .execute();
         System.out.println(dictDatas);
+
 
         Observable.create((@NonNull ObservableEmitter<SimpleSaveResult<BookInfo>> emitter) -> {
                     SimpleSaveResult<BookInfo> result = jSqlClient.getEntities().save(

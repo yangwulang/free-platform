@@ -3,6 +3,7 @@ package top.yangwulang.platform.entity.sys;
 import org.babyfish.jimmer.sql.MappedSuperclass;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 import java.time.LocalDateTime;
 
 /**
@@ -56,5 +57,6 @@ public interface DataTypeBase extends TypeBase{
      *
      * @return 备注信息
      */
+    @Null
     String remarks();
 }

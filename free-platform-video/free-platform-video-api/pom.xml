@@ -5,17 +5,18 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>top.yangwulang</groupId>
-        <artifactId>free-platform-book</artifactId>
+        <artifactId>free-platform-video</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>free-platform-book-api</artifactId>
+    <artifactId>free-platform-video-api</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
 
     <build>
         <sourceDirectory>src/main/java</sourceDirectory>

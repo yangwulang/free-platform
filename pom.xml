@@ -13,6 +13,7 @@
         <module>free-platform-cache</module>
         <module>free-platform-framework-api</module>
         <module>free-platform-book</module>
+        <module>free-platform-video</module>
         <!--        <module>free-platform-cache/free-plat-form-cache-api</module>-->
     </modules>
     <groupId>top.yangwulang</groupId>

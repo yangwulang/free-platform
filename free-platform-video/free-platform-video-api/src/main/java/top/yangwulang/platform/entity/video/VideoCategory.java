@@ -1,12 +1,8 @@
 package top.yangwulang.platform.entity.video;
 
-import org.babyfish.jimmer.sql.Entity;
-import org.babyfish.jimmer.sql.Id;
-import org.babyfish.jimmer.sql.GeneratedValue;
+import org.babyfish.jimmer.sql.*;
 
 import javax.validation.constraints.Null;
-
-import org.babyfish.jimmer.sql.GenerationType;
 
 /**
  * Entity for table "video_category"
@@ -16,6 +12,7 @@ public interface VideoCategory {
     @Id
     String id();
 
-    @Null String categoryName();
+    @Key
+    String categoryName();
 }
 

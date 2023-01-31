@@ -28,6 +28,11 @@
             <version>${parent.version}</version>
         </dependency>
         <dependency>
+            <groupId>top.yangwulang</groupId>
+            <artifactId>free-platform-video-starter</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.babyfish.jimmer</groupId>
             <artifactId>jimmer-sql</artifactId>
             <version>0.6.19</version>

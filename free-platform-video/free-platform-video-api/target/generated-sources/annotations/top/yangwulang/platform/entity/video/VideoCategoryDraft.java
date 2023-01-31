@@ -15,7 +15,6 @@ import org.babyfish.jimmer.ImmutableObjects;
 import org.babyfish.jimmer.UnloadedException;
 import org.babyfish.jimmer.jackson.ImmutableModuleRequiredException;
 import org.babyfish.jimmer.lang.OldChain;
-import org.babyfish.jimmer.meta.ImmutablePropCategory;
 import org.babyfish.jimmer.meta.ImmutableType;
 import org.babyfish.jimmer.runtime.DraftContext;
 import org.babyfish.jimmer.runtime.DraftSpi;
@@ -41,7 +40,7 @@ public interface VideoCategoryDraft extends VideoCategory, Draft {
                 (ctx, base) -> new DraftImpl(ctx, (VideoCategory)base)
             )
             .id(1, "id", String.class)
-            .add(2, "categoryName", ImmutablePropCategory.SCALAR, String.class, true)
+            .key(2, "categoryName", String.class)
             .build();
 
         private Producer() {
@@ -94,8 +93,6 @@ public interface VideoCategoryDraft extends VideoCategory, Draft {
 
             String categoryName;
 
-            boolean categoryNameLoaded = false;
-
             @Override
             public String id() {
                 if (id == null) {
@@ -106,7 +103,7 @@ public interface VideoCategoryDraft extends VideoCategory, Draft {
 
             @Override
             public String categoryName() {
-                if (!categoryNameLoaded) {
+                if (categoryName == null) {
                     throw new UnloadedException(VideoCategory.class, "categoryName");
                 }
                 return categoryName;
@@ -125,7 +122,7 @@ public interface VideoCategoryDraft extends VideoCategory, Draft {
             public boolean __isLoaded(int prop) {
                 switch (prop) {
                     case 1: return id != null;
-                    case 2: return categoryNameLoaded;
+                    case 2: return categoryName != null;
                     default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
                 }
             }
@@ -134,7 +131,7 @@ public interface VideoCategoryDraft extends VideoCategory, Draft {
             public boolean __isLoaded(String prop) {
                 switch (prop) {
                     case "id": return id != null;
-                    case "categoryName": return categoryNameLoaded;
+                    case "categoryName": return categoryName != null;
                     default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
                 }
             }
@@ -147,7 +144,7 @@ public interface VideoCategoryDraft extends VideoCategory, Draft {
                     // If entity-id is loaded, return directly
                     return hash;
                 }
-                if (categoryNameLoaded && categoryName != null) {
+                if (categoryName != null) {
                     hash = 31 * hash + categoryName.hashCode();
                 }
                 return hash;
@@ -158,7 +155,7 @@ public interface VideoCategoryDraft extends VideoCategory, Draft {
                 if (id != null) {
                     hash = 31 * hash + System.identityHashCode(id);
                 }
-                if (categoryNameLoaded) {
+                if (categoryName != null) {
                     hash = 31 * hash + System.identityHashCode(categoryName);
                 }
                 return hash;
@@ -183,7 +180,7 @@ public interface VideoCategoryDraft extends VideoCategory, Draft {
                     // If entity-id is loaded, return directly
                     return Objects.equals(id, other.id());
                 }
-                boolean __categoryNameLoaded = categoryNameLoaded;
+                boolean __categoryNameLoaded = categoryName != null;
                 if (__categoryNameLoaded != other.__isLoaded(2)) {
                     return false;
                 }
@@ -205,7 +202,7 @@ public interface VideoCategoryDraft extends VideoCategory, Draft {
                 if (__idLoaded && id != other.id()) {
                     return false;
                 }
-                boolean __categoryNameLoaded = categoryNameLoaded;
+                boolean __categoryNameLoaded = categoryName != null;
                 if (__categoryNameLoaded != other.__isLoaded(2)) {
                     return false;
                 }
@@ -294,9 +291,13 @@ public interface VideoCategoryDraft extends VideoCategory, Draft {
 
             @Override
             public VideoCategoryDraft setCategoryName(String categoryName) {
+                if (categoryName == null) {
+                    throw new IllegalArgumentException(
+                        "'categoryName' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
+                    );
+                }
                 Impl modified = __modified();
                 modified.categoryName = categoryName;
-                modified.categoryNameLoaded = true;
                 return this;
             }
 
@@ -324,7 +325,7 @@ public interface VideoCategoryDraft extends VideoCategory, Draft {
             public void __unload(int prop) {
                 switch (prop) {
                     case 1: __modified().id = null;break;
-                    case 2: __modified().categoryNameLoaded = false;break;
+                    case 2: __modified().categoryName = null;break;
                     default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
                 }
             }
@@ -333,7 +334,7 @@ public interface VideoCategoryDraft extends VideoCategory, Draft {
             public void __unload(String prop) {
                 switch (prop) {
                     case "id": __modified().id = null;break;
-                    case "categoryName": __modified().categoryNameLoaded = false;break;
+                    case "categoryName": __modified().categoryName = null;break;
                     default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
                 }
             }

@@ -5,42 +5,32 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>top.yangwulang</groupId>
-        <artifactId>free-platform</artifactId>
+        <artifactId>free-platform-video</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>free-platform-video</artifactId>
-
-    <packaging>pom</packaging>
-    <modules>
-        <module>free-platform-video-api</module>
-        <module>free-platform-video-starter</module>
-    </modules>
+    <artifactId>free-platform-video-starter</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <jsoup.version>1.15.3</jsoup.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>top.yangwulang</groupId>
-            <artifactId>free-platform-framework</artifactId>
+            <artifactId>free-platform-video-api</artifactId>
             <version>${parent.version}</version>
         </dependency>
+        <dependency>
+            <groupId>io.reactivex.rxjava3</groupId>
+            <artifactId>rxjava</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+        </dependency>
     </dependencies>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.jsoup</groupId>
-                <artifactId>jsoup</artifactId>
-                <version>${jsoup.version}</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
 
 </project>

@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
 /**
  * @author yangwulang
  */
-public class YcgeVideoFactory {
+public class YcgeVideoFactory extends AbstractVideoFactory {
     private final Pattern M3u8Pattern = Pattern.compile("http.*\\.m3u8");
 
 
@@ -42,7 +42,7 @@ public class YcgeVideoFactory {
                 .collect(Collectors.toList());
     }
 
-    public Observable<VideoInfo> parseVideoInfo(String html, String website, OkHttpClient client) {
+    public Observable<VideoInfo> parseVideoInfo(String html, String website) {
         return Observable.create((ObservableEmitter<VideoInfo> emitter) -> {
                     Document parse = Jsoup.parse(html);
                     Elements imageInfo = parse.select(
@@ -64,7 +64,7 @@ public class YcgeVideoFactory {
                 .flatMap((Function<VideoInfo, ObservableSource<VideoInfo>>) videoInfo ->
                         observer -> VideoInfoDraft.$.produce(videoInfo, info -> {
                             Request request = new Request.Builder().url(videoInfo.playUrl()).get().build();
-                            try(Response body = client.newCall(request).execute()) {
+                            try (Response body = super.client.newCall(request).execute()) {
                                 String m3u8 = "";
                                 Document parse = Jsoup.parse(body.body().string());
                                 String script = parse.select("script").get(4).html();

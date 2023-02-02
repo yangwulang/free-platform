@@ -34,6 +34,7 @@ public interface DictType extends DataTypeBase {
      *
      * @return 是否系统字典
      */
+    @Column(name = "is_sys")
     boolean isSys();
 
 }

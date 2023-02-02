@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.tags.Tags;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 import top.yangwulang.platform.entity.PageHttpRequest;
@@ -21,10 +22,10 @@ import top.yangwulang.platform.repository.sys.DictTypeRepository;
         @Tag(name = "系统模块"),
         @Tag(name = "字典管理"),
 })
-@RequiredArgsConstructor
 @RequestMapping("${adminPath}/sys/dict")
 public class DictController {
 
+    @Autowired
     private DictTypeRepository dictTypeRepository;
 
     private final DictTypeFetcher dictTypeFetcher = DictTypeFetcher.$

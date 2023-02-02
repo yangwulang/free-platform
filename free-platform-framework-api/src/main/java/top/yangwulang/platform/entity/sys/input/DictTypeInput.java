@@ -21,6 +21,14 @@ public class DictTypeInput implements Input<DictType> {
     private static final ImmutableConverter<DictType, DictTypeInput> CONVERTER =
             ImmutableConverter.forFields(DictType.class, DictTypeInput.class).build();
 
+    private String id;
+
+    private String dictName;
+
+    private String dictType;
+
+    private boolean sys;
+
     @NotNull
     @Override
     public DictType toEntity() {

@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>free-platform-cache-api</module>
+        <module>free-platform-cache-redis</module>
     </modules>
 
     <properties>

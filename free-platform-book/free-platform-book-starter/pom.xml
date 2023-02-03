@@ -5,17 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>top.yangwulang</groupId>
-        <artifactId>free-platform</artifactId>
+        <artifactId>free-platform-book</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>free-platform-book</artifactId>
-
-    <packaging>pom</packaging>
-    <modules>
-        <module>free-platform-book-api</module>
-        <module>free-platform-book-starter</module>
-    </modules>
+    <artifactId>free-platform-book-starter</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -23,15 +17,20 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <dependencyManagement>
-
-    </dependencyManagement>
-
     <dependencies>
         <dependency>
             <groupId>top.yangwulang</groupId>
-            <artifactId>free-platform-framework</artifactId>
+            <artifactId>free-platform-book-api</artifactId>
             <version>${parent.version}</version>
         </dependency>
+        <dependency>
+            <groupId>io.reactivex.rxjava3</groupId>
+            <artifactId>rxjava</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+        </dependency>
     </dependencies>
+
 </project>

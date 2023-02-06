@@ -2,9 +2,6 @@ package top.yangwulang.platform.entity.book;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.babyfish.jimmer.Immutable;
-import org.babyfish.jimmer.pojo.AutoScalarStrategy;
-import org.babyfish.jimmer.pojo.Static;
-import org.babyfish.jimmer.pojo.StaticType;
 import org.babyfish.jimmer.sql.*;
 
 import javax.validation.constraints.NotNull;
@@ -18,12 +15,6 @@ import java.util.List;
 @Table(name = "book_info")
 @Schema(name = "书籍信息")
 @Immutable(value = Immutable.Nullity.NULLABLE)
-@StaticType(
-        alias = "composite",
-        topLevelName = "CompositeBookInput",
-        autoScalarStrategy = AutoScalarStrategy.DECLARED
-)
-
 public interface BookInfo {
     /**
      * 小说信息主键
@@ -69,7 +60,6 @@ public interface BookInfo {
      String bookFrom();
 
      @OneToMany(mappedBy = "book")
-     @Static(alias = "composite", targetAlias = "forCompositeBookInput")
      @NotNull
      List<BookChapter> chapters();
 }

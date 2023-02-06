@@ -21,19 +21,19 @@
         <dependency>
             <groupId>org.babyfish.jimmer</groupId>
             <artifactId>jimmer-sql</artifactId>
-            <version>0.6.19</version>
+            <version>${jimmer.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.babyfish.jimmer</groupId>
             <artifactId>jimmer-sql-kotlin</artifactId>
-            <version>0.6.19</version>
+            <version>${jimmer.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.babyfish.jimmer</groupId>
             <artifactId>jimmer-client</artifactId>
-            <version>0.6.19</version>
+            <version>${jimmer.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -65,7 +65,7 @@
                         <path>
                             <groupId>org.babyfish.jimmer</groupId>
                             <artifactId>jimmer-apt</artifactId>
-                            <version>0.6.19</version>
+                            <version>${jimmer.version}</version>
                         </path>
                         <path>
                             <groupId>org.projectlombok</groupId>

@@ -35,7 +35,7 @@
         <dependency>
             <groupId>org.babyfish.jimmer</groupId>
             <artifactId>jimmer-sql</artifactId>
-            <version>0.6.19</version>
+            <version>${jimmer.version}</version>
         </dependency>
         <dependency>
             <groupId>io.reactivex.rxjava3</groupId>

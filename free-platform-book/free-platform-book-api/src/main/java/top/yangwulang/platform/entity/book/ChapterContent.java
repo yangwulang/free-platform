@@ -1,7 +1,6 @@
 package top.yangwulang.platform.entity.book;
 
 import org.babyfish.jimmer.Immutable;
-import org.babyfish.jimmer.pojo.Static;
 import org.babyfish.jimmer.sql.*;
 
 import javax.validation.constraints.NotNull;
@@ -26,7 +25,6 @@ public interface ChapterContent {
      */
     @Key
     @ManyToOne
-    @Static(name = "chapter_id", idOnly = true)
     @NotNull
     BookChapter chapter();
 

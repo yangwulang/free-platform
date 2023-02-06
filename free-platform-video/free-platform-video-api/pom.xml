@@ -34,7 +34,7 @@
                         <path>
                             <groupId>org.babyfish.jimmer</groupId>
                             <artifactId>jimmer-apt</artifactId>
-                            <version>0.6.19</version>
+                            <version>${jimmer.version}</version>
                         </path>
                         <path>
                             <groupId>org.projectlombok</groupId>

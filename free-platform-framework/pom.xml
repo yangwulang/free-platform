@@ -175,6 +175,11 @@
             <artifactId>spring-webmvc</artifactId>
             <version>5.3.19</version>
         </dependency>-->
+
+        <dependency>
+            <groupId>io.minio</groupId>
+            <artifactId>minio</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

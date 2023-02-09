@@ -35,8 +35,8 @@ public class BookInfoInput implements Input<BookInfo> {
             BookInfoInput::new
     );
 
-    @NotNull
-    @javax.validation.constraints.NotNull
+    @Nullable
+    @Null
     private final String id;
 
     @NotNull
@@ -73,8 +73,7 @@ public class BookInfoInput implements Input<BookInfo> {
 
     @JsonCreator
     @ConstructorProperties({"id", "bookName", "author", "describe", "status", "bookImgPath", "category", "bookFrom", "authorIds"})
-    public BookInfoInput(
-            @NotNull @javax.validation.constraints.NotNull @JsonProperty(value = "id", required = true) String id,
+    public BookInfoInput(@Nullable @Null @JsonProperty("id") String id,
             @NotNull @javax.validation.constraints.NotNull @JsonProperty(value = "bookName", required = true) String bookName,
             @Nullable @Null @JsonProperty("author") String author,
             @Nullable @Null @JsonProperty("describe") String describe,
@@ -83,7 +82,7 @@ public class BookInfoInput implements Input<BookInfo> {
             @Nullable @Null @JsonProperty("category") String category,
             @Nullable @Null @JsonProperty("bookFrom") String bookFrom,
             @NotNull @javax.validation.constraints.NotNull @JsonProperty(value = "authorIds", required = true) List<String> authorIds) {
-        this.id = Objects.requireNonNull(id, "id");
+        this.id = id;
         this.bookName = Objects.requireNonNull(bookName, "bookName");
         this.author = author;
         this.describe = describe;
@@ -97,7 +96,7 @@ public class BookInfoInput implements Input<BookInfo> {
     BookInfoInput(@NotNull BookInfo base) {
         // This constructor is not public so that the `@Argument` of spring-graphql can work, please use `of`
         ImmutableSpi spi = (ImmutableSpi)base;
-        this.id = base.id();
+        this.id = spi.__isLoaded(1) ? base.id() : null;
         this.bookName = base.bookName();
         this.author = spi.__isLoaded(3) ? base.author() : null;
         this.describe = spi.__isLoaded(4) ? base.describe() : null;
@@ -120,8 +119,8 @@ public class BookInfoInput implements Input<BookInfo> {
         return new Builder(base);
     }
 
-    @NotNull
-    @javax.validation.constraints.NotNull
+    @Nullable
+    @Null
     public String getId() {
         return id;
     }
@@ -182,7 +181,9 @@ public class BookInfoInput implements Input<BookInfo> {
     @Override
     public BookInfo toEntity(@Nullable BookInfo base) {
         return BookInfoDraft.$.produce(base, draft -> {
-            draft.setId(id);
+            if (id != null) {
+                draft.setId(id);
+            }
             draft.setBookName(bookName);
             draft.setAuthor(author);
             draft.setDescribe(describe);
@@ -259,7 +260,7 @@ public class BookInfoInput implements Input<BookInfo> {
         }
 
         @NotNull
-        public Builder setId(@NotNull String id) {
+        public Builder setId(@Nullable String id) {
             this.id = id;
             return this;
         }
@@ -314,9 +315,6 @@ public class BookInfoInput implements Input<BookInfo> {
 
         @NotNull
         public BookInfoInput build() {
-            if (id == null) {
-                throw new IllegalArgumentException("Property \"id\" has not been set");
-            }
             if (bookName == null) {
                 throw new IllegalArgumentException("Property \"bookName\" has not been set");
             }

@@ -20,6 +20,10 @@ spring:
     password: tq26556570
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
+  elasticsearch:
+    uris:
+      - http://192.168.6.246:9200
+    connection-timeout: 10s
 
   cache:
     #    缓存及会话共享 是否决定开启redis缓存

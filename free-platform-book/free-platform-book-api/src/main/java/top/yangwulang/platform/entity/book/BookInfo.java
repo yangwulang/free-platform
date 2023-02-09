@@ -57,6 +57,7 @@ public interface BookInfo {
     /**
      * 小说来源
      */
+    @Key
      String bookFrom();
 
      @OneToMany(mappedBy = "book")

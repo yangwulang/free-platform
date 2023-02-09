@@ -80,7 +80,7 @@ public interface BookInfoDraft extends BookInfo, Draft {
             .add(5, "status", ImmutablePropCategory.SCALAR, String.class, true)
             .add(6, "bookImgPath", ImmutablePropCategory.SCALAR, String.class, true)
             .add(7, "category", ImmutablePropCategory.SCALAR, String.class, true)
-            .add(8, "bookFrom", ImmutablePropCategory.SCALAR, String.class, true)
+            .key(8, "bookFrom", String.class)
             .add(9, "chapters", OneToMany.class, BookChapter.class, false)
             .build();
 

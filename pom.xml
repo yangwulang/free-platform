@@ -42,6 +42,7 @@
         <jimmer.version>0.6.35-0.7-preview</jimmer.version>
         <knife4j.version>4.0.0</knife4j.version>
         <minio.version>7.1.4</minio.version>
+        <elasticsearch.version>7.14.1</elasticsearch.version>
     </properties>
 
     <repositories>

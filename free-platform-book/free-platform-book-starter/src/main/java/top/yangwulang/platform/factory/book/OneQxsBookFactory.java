@@ -35,7 +35,7 @@ public class OneQxsBookFactory extends AbstractBookFactory {
                     String author = element.select("div.book > div.tags > div.author.line_1").text();
                     Elements msgDom = element.select("div.book > div.tags > div.msg");
                     BookInfo bookInfo = BookInfoDraft.$.produce(book -> {
-                        book.setBookImgPath(WEB_SITE + img.attr("src"));
+                        book.setBookImgPath(WEB_SITE + img.attr("data-original"));
                         book.setBookName(img.attr("alt"));
                         book.setBookFrom(WEB_SITE + imageA.attr("href"));
                         book.setAuthor(author);

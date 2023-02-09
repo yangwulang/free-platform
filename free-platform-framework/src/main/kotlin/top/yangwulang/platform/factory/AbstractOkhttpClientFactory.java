@@ -27,4 +27,12 @@ public abstract class AbstractOkhttpClientFactory {
 
     protected void configClient(OkHttpClient.Builder builder) {
     }
+
+    public Request.Builder getBaseRequestBuild() {
+        return baseRequestBuild;
+    }
+
+    public OkHttpClient getClient() {
+        return client;
+    }
 }

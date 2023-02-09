@@ -8,6 +8,7 @@ import org.babyfish.jimmer.sql.runtime.Executor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import top.yangwulang.platform.jimmer.interceptor.DataTypeBaseInterceptor;
 import top.yangwulang.platform.utils.SnowflakeKey;
 
 import javax.sql.DataSource;
@@ -27,6 +28,7 @@ public class SqlClientConfig {
         return JSqlClient
                 .newBuilder()
                 .setEntityManager(entityManager)
+                .addDraftInterceptor(new DataTypeBaseInterceptor())
                 .setIdGenerator(new SnowflakeKey())
                 .setExecutor(Executor.log(executor))
                 .setConnectionManager(new SpringConnectionManager(dataSource))

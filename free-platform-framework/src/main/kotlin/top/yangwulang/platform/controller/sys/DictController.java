@@ -4,7 +4,6 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.tags.Tags;
 import jakarta.servlet.http.HttpServletRequest;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +13,8 @@ import top.yangwulang.platform.entity.sys.DictData;
 import top.yangwulang.platform.entity.sys.DictDataFetcher;
 import top.yangwulang.platform.entity.sys.DictType;
 import top.yangwulang.platform.entity.sys.DictTypeFetcher;
-import top.yangwulang.platform.entity.sys.input.DictTypeInput;
+import top.yangwulang.platform.entity.sys.dto.DictDataInput;
+import top.yangwulang.platform.entity.sys.dto.DictTypeInput;
 import top.yangwulang.platform.repository.sys.DictDataRepository;
 import top.yangwulang.platform.repository.sys.DictTypeRepository;
 
@@ -38,7 +38,7 @@ public class DictController {
     private final DictTypeFetcher dictTypeFetcher = DictTypeFetcher.$
             .allTableFields();
 
-    private final DictDataFetcher dictDataFetcher = DictDataFetcher.$;
+    private final DictDataFetcher dictDataFetcher = DictDataFetcher.$.allTableFields();
 
 
     @GetMapping("/dictType/{id}")
@@ -74,7 +74,7 @@ public class DictController {
 
     @PostMapping("/dictData")
     @Operation(summary = "获取字典数据列表")
-    public Page<DictData> listDictData(HttpServletRequest httpServletRequest) {
+    public Page<DictData> listDictData(HttpServletRequest httpServletRequest, @RequestBody DictDataInput dictDataInput) {
         return dictDataRepository.findAll(PageHttpRequest.of(httpServletRequest).toPage(), dictDataFetcher);
     }
 

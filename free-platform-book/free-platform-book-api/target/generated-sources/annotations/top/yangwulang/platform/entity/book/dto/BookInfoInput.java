@@ -2,6 +2,7 @@ package top.yangwulang.platform.entity.book.dto;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.beans.ConstructorProperties;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Collections;
@@ -71,6 +72,7 @@ public class BookInfoInput implements Input<BookInfo> {
     private final List<String> authorIds;
 
     @JsonCreator
+    @ConstructorProperties({"id", "bookName", "author", "describe", "status", "bookImgPath", "category", "bookFrom", "authorIds"})
     public BookInfoInput(
             @NotNull @javax.validation.constraints.NotNull @JsonProperty(value = "id", required = true) String id,
             @NotNull @javax.validation.constraints.NotNull @JsonProperty(value = "bookName", required = true) String bookName,
@@ -92,7 +94,8 @@ public class BookInfoInput implements Input<BookInfo> {
         this.authorIds = Objects.requireNonNull(authorIds, "authorIds");
     }
 
-    public BookInfoInput(@NotNull BookInfo base) {
+    BookInfoInput(@NotNull BookInfo base) {
+        // This constructor is not public so that the `@Argument` of spring-graphql can work, please use `of`
         ImmutableSpi spi = (ImmutableSpi)base;
         this.id = base.id();
         this.bookName = base.bookName();
@@ -103,6 +106,10 @@ public class BookInfoInput implements Input<BookInfo> {
         this.category = spi.__isLoaded(7) ? base.category() : null;
         this.bookFrom = spi.__isLoaded(8) ? base.bookFrom() : null;
         this.authorIds = base.chapters().stream().map(BookChapter::id).collect(Collectors.toList());
+    }
+
+    public static BookInfoInput of(@NotNull BookInfo base) {
+        return new BookInfoInput(base);
     }
 
     public static Builder newBuilder() {
@@ -216,117 +223,117 @@ public class BookInfoInput implements Input<BookInfo> {
             .append("authorIds").append('=').append(authorIds)
             .append('}')
             .toString();
+    }
+
+    public static class Builder {
+        private String id;
+
+        private String bookName;
+
+        private String author;
+
+        private String describe;
+
+        private String status;
+
+        private String bookImgPath;
+
+        private String category;
+
+        private String bookFrom;
+
+        private List<String> authorIds;
+
+        Builder(BookInfoInput base) {
+            if (base != null) {
+                this.id = base.getId();
+                this.bookName = base.getBookName();
+                this.author = base.getAuthor();
+                this.describe = base.getDescribe();
+                this.status = base.getStatus();
+                this.bookImgPath = base.getBookImgPath();
+                this.category = base.getCategory();
+                this.bookFrom = base.getBookFrom();
+                this.authorIds = base.getAuthorIds();
+            }
         }
 
-        public static class Builder {
-            private String id;
+        @NotNull
+        public Builder setId(@NotNull String id) {
+            this.id = id;
+            return this;
+        }
 
-            private String bookName;
+        @NotNull
+        public Builder setBookName(@NotNull String bookName) {
+            this.bookName = bookName;
+            return this;
+        }
 
-            private String author;
+        @NotNull
+        public Builder setAuthor(@Nullable String author) {
+            this.author = author;
+            return this;
+        }
 
-            private String describe;
+        @NotNull
+        public Builder setDescribe(@Nullable String describe) {
+            this.describe = describe;
+            return this;
+        }
 
-            private String status;
+        @NotNull
+        public Builder setStatus(@Nullable String status) {
+            this.status = status;
+            return this;
+        }
 
-            private String bookImgPath;
+        @NotNull
+        public Builder setBookImgPath(@Nullable String bookImgPath) {
+            this.bookImgPath = bookImgPath;
+            return this;
+        }
 
-            private String category;
+        @NotNull
+        public Builder setCategory(@Nullable String category) {
+            this.category = category;
+            return this;
+        }
 
-            private String bookFrom;
+        @NotNull
+        public Builder setBookFrom(@Nullable String bookFrom) {
+            this.bookFrom = bookFrom;
+            return this;
+        }
 
-            private List<String> authorIds;
+        @NotNull
+        public Builder setChapters(@NotNull List<String> authorIds) {
+            this.authorIds = authorIds;
+            return this;
+        }
 
-            Builder(BookInfoInput base) {
-                if (base != null) {
-                    this.id = base.getId();
-                    this.bookName = base.getBookName();
-                    this.author = base.getAuthor();
-                    this.describe = base.getDescribe();
-                    this.status = base.getStatus();
-                    this.bookImgPath = base.getBookImgPath();
-                    this.category = base.getCategory();
-                    this.bookFrom = base.getBookFrom();
-                    this.authorIds = base.getAuthorIds();
-                }
+        @NotNull
+        public BookInfoInput build() {
+            if (id == null) {
+                throw new IllegalArgumentException("Property \"id\" has not been set");
             }
-
-            @NotNull
-            public Builder setId(@NotNull String id) {
-                this.id = id;
-                return this;
+            if (bookName == null) {
+                throw new IllegalArgumentException("Property \"bookName\" has not been set");
             }
-
-            @NotNull
-            public Builder setBookName(@NotNull String bookName) {
-                this.bookName = bookName;
-                return this;
+            if (authorIds == null) {
+                throw new IllegalArgumentException("Property \"authorIds\" has not been set");
             }
-
-            @NotNull
-            public Builder setAuthor(@Nullable String author) {
-                this.author = author;
-                return this;
-            }
-
-            @NotNull
-            public Builder setDescribe(@Nullable String describe) {
-                this.describe = describe;
-                return this;
-            }
-
-            @NotNull
-            public Builder setStatus(@Nullable String status) {
-                this.status = status;
-                return this;
-            }
-
-            @NotNull
-            public Builder setBookImgPath(@Nullable String bookImgPath) {
-                this.bookImgPath = bookImgPath;
-                return this;
-            }
-
-            @NotNull
-            public Builder setCategory(@Nullable String category) {
-                this.category = category;
-                return this;
-            }
-
-            @NotNull
-            public Builder setBookFrom(@Nullable String bookFrom) {
-                this.bookFrom = bookFrom;
-                return this;
-            }
-
-            @NotNull
-            public Builder setChapters(@NotNull List<String> authorIds) {
-                this.authorIds = authorIds;
-                return this;
-            }
-
-            @NotNull
-            public BookInfoInput build() {
-                if (id == null) {
-                    throw new IllegalArgumentException("Property \"id\" has not been set");
-                }
-                if (bookName == null) {
-                    throw new IllegalArgumentException("Property \"bookName\" has not been set");
-                }
-                if (authorIds == null) {
-                    throw new IllegalArgumentException("Property \"authorIds\" has not been set");
-                }
-                return new BookInfoInput(
-                    id,
-                    bookName,
-                    author,
-                    describe,
-                    status,
-                    bookImgPath,
-                    category,
-                    bookFrom,
-                    authorIds
-                );
-            }
+            return new BookInfoInput(
+                id,
+                bookName,
+                author,
+                describe,
+                status,
+                bookImgPath,
+                category,
+                bookFrom,
+                authorIds
+            );
         }
     }
+}

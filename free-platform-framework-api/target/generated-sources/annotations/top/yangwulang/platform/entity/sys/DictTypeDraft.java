@@ -68,7 +68,7 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
                 (ctx, base) -> new DraftImpl(ctx, (DictType)base)
             )
             .add(8, "dictName", ImmutablePropCategory.SCALAR, String.class, true)
-            .add(9, "dictType", ImmutablePropCategory.SCALAR, String.class, true)
+            .key(9, "dictType", String.class)
             .add(10, "sys", ImmutablePropCategory.SCALAR, boolean.class, true)
             .build();
 

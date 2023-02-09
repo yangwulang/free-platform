@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import top.yangwulang.platform.entity.sys.DictData;
 import top.yangwulang.platform.entity.sys.DictDataTable;
 import top.yangwulang.platform.entity.sys.DictType;
+import top.yangwulang.platform.entity.sys.dto.DictDataInput;
 
 /**
  * @author yangwulang
@@ -16,10 +17,11 @@ import top.yangwulang.platform.entity.sys.DictType;
 public interface DictDataRepository extends JRepository<DictData, String> {
     DictDataTable TABLE = DictDataTable.$;
 
-/*    default Page<DictData> findAll(Pageable pageable, Fetcher<DictData> fetcher) {
+    default Page<DictData> findAll(Pageable pageable, Fetcher<DictData> fetcher, DictDataInput dictDataInput) {
         return pager(pageable).execute(
-                sql().createQuery(TABLE).select(TABLE.fetch(fetcher))
+                sql().createQuery(TABLE)
+                        .select(TABLE.fetch(fetcher))
         );
-    }*/
+    }
 
 }

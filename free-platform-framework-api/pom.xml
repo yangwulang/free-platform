@@ -19,6 +19,12 @@
 
     <dependencies>
         <dependency>
+            <groupId>top.yangwulang</groupId>
+            <artifactId>free-platform-common</artifactId>
+            <version>${parent.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
             <groupId>org.babyfish.jimmer</groupId>
             <artifactId>jimmer-sql</artifactId>
             <version>${jimmer.version}</version>

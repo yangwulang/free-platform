@@ -6,7 +6,7 @@ import org.babyfish.jimmer.sql.MappedSuperclass;
 import javax.validation.constraints.NotNull;
 
 /**
- * Base entity for table "sys_dict_type"
+ * Base entity
  *
  * @author yangwulang
  */

@@ -32,36 +32,37 @@ public interface BookInfo {
     /**
      * 小说作者
      */
-     String author();
+    String author();
 
     /**
      * 描述
      */
-     String describe();
+    @Column(name = "`describe`")
+    String describe();
 
     /**
      * 状态 （连载，完结）
      */
-     String status();
+    String status();
 
     /**
      * 小说图片地址
      */
-     String bookImgPath();
+    String bookImgPath();
 
     /**
      * 小说分类
      */
-     String category();
+    String category();
 
     /**
      * 小说来源
      */
     @Key
-     String bookFrom();
+    String bookFrom();
 
-     @OneToMany(mappedBy = "book")
-     @NotNull
-     List<BookChapter> chapters();
+    @OneToMany(mappedBy = "book")
+    @NotNull
+    List<BookChapter> chapters();
 }
 

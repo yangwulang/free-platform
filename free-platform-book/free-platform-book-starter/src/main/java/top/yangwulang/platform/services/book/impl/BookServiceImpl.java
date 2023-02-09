@@ -4,6 +4,7 @@ import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.ObservableOnSubscribe;
 import io.reactivex.rxjava3.core.ObservableSource;
+import io.reactivex.rxjava3.functions.Consumer;
 import io.reactivex.rxjava3.functions.Function;
 import io.reactivex.rxjava3.internal.schedulers.IoScheduler;
 import okhttp3.Call;
@@ -14,15 +15,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import top.yangwulang.platform.entity.book.BookChapter;
 import top.yangwulang.platform.entity.book.BookInfo;
 import top.yangwulang.platform.exception.ServiceException;
 import top.yangwulang.platform.factory.book.AbstractSuccessCallback;
 import top.yangwulang.platform.factory.book.OneQxsBookFactory;
+import top.yangwulang.platform.repository.book.BookCategoryRepository;
 import top.yangwulang.platform.repository.book.BookChapterRepository;
 import top.yangwulang.platform.repository.book.BookInfoRepository;
 import top.yangwulang.platform.services.book.BookInfoService;
 
 import java.io.IOException;
+import java.util.List;
 
 
 @Service
@@ -41,24 +45,24 @@ public class BookServiceImpl implements BookInfoService {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public static final String INDEX_NAME = "book_info";
+    @Autowired
+    private BookCategoryRepository bookCategoryRepository;
 
     public void parse() {
         Call call = oneQxsBookFactory.getClient().newCall(
                 oneQxsBookFactory.getBaseRequestBuild().url("https://www.1qxs.com/all/0_0_2_0_0_1.html").get().build()
         );
-        Observable.create((ObservableOnSubscribe<String>) emitter -> {
-                    call.enqueue(new AbstractSuccessCallback() {
-                        @Override
-                        public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                            ResponseBody body = response.body();
-                            if (body == null) {
-                                throw new ServiceException("请求内容为null");
-                            }
-                            emitter.onNext(body.string());
-                            emitter.onComplete();
+        Observable.create((ObservableOnSubscribe<String>) emitter -> call.enqueue(new AbstractSuccessCallback() {
+                    @Override
+                    public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                        ResponseBody body = response.body();
+                        if (body == null) {
+                            throw new ServiceException("请求内容为null");
                         }
-                    });
-                })
+                        emitter.onNext(body.string());
+                        emitter.onComplete();
+                    }
+                }))
                 .observeOn(new IoScheduler())
                 .flatMap((Function<String, ObservableSource<BookInfo>>) oneQxsBookFactory::parseBookInfo)
                 .doOnError(throwable -> logger.error("Observable 中发生异常", throwable))
@@ -68,6 +72,11 @@ public class BookServiceImpl implements BookInfoService {
         }
         IndexResponse index = elasticsearchClient.index(r -> r.index(INDEX_NAME).document(bookInfo));
         logger.info("== response: {}, responseStatus: {}", index, index.result());*/
+    }
 
+    public void spiderChapter(BookInfo bookInfo) {
+        oneQxsBookFactory.parseChapters(bookInfo)
+                .doOnError(Throwable::printStackTrace)
+                .subscribe(bookChapters -> bookChapterRepository.saveAll(bookChapters));
     }
 }

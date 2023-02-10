@@ -59,7 +59,7 @@ public interface BookChapterDraft extends BookChapter, Draft {
             .id(1, "id", String.class)
             .add(2, "chapterTitle", ImmutablePropCategory.SCALAR, String.class, true)
             .keyReference(3, "book", BookInfo.class, true)
-            .add(4, "fromPath", ImmutablePropCategory.SCALAR, String.class, true)
+            .key(4, "fromPath", String.class)
             .build();
 
         private Producer() {

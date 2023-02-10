@@ -4,7 +4,6 @@ import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.ObservableOnSubscribe;
 import io.reactivex.rxjava3.core.ObservableSource;
-import io.reactivex.rxjava3.functions.Consumer;
 import io.reactivex.rxjava3.functions.Function;
 import io.reactivex.rxjava3.internal.schedulers.IoScheduler;
 import okhttp3.Call;
@@ -15,7 +14,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import top.yangwulang.platform.entity.book.BookChapter;
 import top.yangwulang.platform.entity.book.BookInfo;
 import top.yangwulang.platform.exception.ServiceException;
 import top.yangwulang.platform.factory.book.AbstractSuccessCallback;
@@ -26,7 +24,6 @@ import top.yangwulang.platform.repository.book.BookInfoRepository;
 import top.yangwulang.platform.services.book.BookInfoService;
 
 import java.io.IOException;
-import java.util.List;
 
 
 @Service

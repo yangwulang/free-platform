@@ -22,7 +22,9 @@ import top.yangwulang.platform.exception.ServiceException;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OneQxsBookFactory extends AbstractBookFactory {
@@ -58,22 +60,22 @@ public class OneQxsBookFactory extends AbstractBookFactory {
                 .subscribeOn(Schedulers.io())
                 .flatMap((Function<BookInfo, ObservableSource<BookInfo>>) bookInfo -> {
                     super.logger.info("开始第二部解析");
-                    Request request = super.baseRequestBuild
-                            .get()
-                            .url(bookInfo.bookFrom())
-                            .build();
-                    try (Response execute = OneQxsBookFactory.super.client.newCall(request).execute()) {
-                        ResponseBody body = execute.body();
-                        assert body != null;
-                        String html1 = body.string();
-                        String description = Jsoup.parse(html1)
-                                .select("body > div.main > div.bookinfo > div.desc.panel > div.description")
-                                .html();
-                        bookInfo = BookInfoDraft.$.produce(bookInfo, draft -> draft.setDescribe(description));
-                    } catch (Exception e) {
-                        return Observable.error(e);
-                    }
-                    return Observable.just(bookInfo);
+                    final BookInfo info = bookInfo;
+                    return Observable.create(emitter -> {
+                        Request request = super.baseRequestBuild.get().url(info.bookFrom()).build();
+                        OneQxsBookFactory.super.client.newCall(request).enqueue(new AbstractSuccessCallback() {
+                            @Override
+                            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                                ResponseBody body = response.body();
+                                assert body != null;
+                                String html1 = body.string();
+                                String description = Jsoup.parse(html1)
+                                        .select("body > div.main > div.bookinfo > div.desc.panel > div.description")
+                                        .html();
+                                emitter.onNext(BookInfoDraft.$.produce(info, draft -> draft.setDescribe(description)));
+                            }
+                        });
+                    });
                 });
     }
 
@@ -109,6 +111,34 @@ public class OneQxsBookFactory extends AbstractBookFactory {
                                     )
                                     .collect(Collectors.toList())
                     );
+                });
+    }
+
+    public void parseChapterContent(BookChapter chapter) {
+        Observable
+                .create((ObservableEmitter<Map<String, Object>> emitter) -> {
+                    Request request = super.baseRequestBuild.get().url(chapter.fromPath()).build();
+                    super.client.newCall(request).enqueue(new AbstractSuccessCallback() {
+                        @Override
+                        public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                            ResponseBody body = response.body();
+                            assert body != null : "请求 url " + call.request().url() + " 获得的内容为 null";
+                            Elements bodyElements = Jsoup.parse(body.string()).select("body");
+                            Map<String, Object> map = new HashMap<>();
+                            map.put("currentPageIndex", Integer.parseInt(bodyElements.attr("pg")));
+                            map.put("totalPage", Integer.parseInt(bodyElements.attr("tpg")));
+                            map.put("body_1", bodyElements.select("div.main > div > div.read > div.content.font_family_1 > p").html());
+                            emitter.onNext(map);
+                            emitter.onComplete();
+                        }
+                    });
+                })
+                .flatMap((Function<Map<String, Object>, ObservableSource<Map<String, Object>>>) map -> {
+                    Integer currentPageIndex = (Integer) map.get("currentPageIndex");
+                    Integer totalPage = (Integer) map.get("totalPage");
+                    return Observable.create((ObservableEmitter<Map<String, Object>> emitter) -> {
+
+                    });
                 });
     }
 

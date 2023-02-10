@@ -38,6 +38,7 @@ public interface BookChapter {
     /**
      * 来源
      */
+    @Key
      String fromPath();
 }
 

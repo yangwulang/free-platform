@@ -2,6 +2,7 @@ package top.yangwulang.platform.entity.book.dto;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.beans.ConstructorProperties;
 import java.lang.Override;
 import java.lang.String;
@@ -37,38 +38,65 @@ public class BookInfoInput implements Input<BookInfo> {
 
     @Nullable
     @Null
+    @Schema(
+            description = "书籍信息主键"
+    )
     private final String id;
 
     @NotNull
     @javax.validation.constraints.NotNull
+    @Schema(
+            description = "书籍名称"
+    )
     private final String bookName;
 
     @Nullable
     @Null
+    @Schema(
+            description = "书籍作者"
+    )
     private final String author;
 
     @Nullable
     @Null
+    @Schema(
+            description = "描述"
+    )
     private final String describe;
 
     @Nullable
     @Null
+    @Schema(
+            description = "书籍状态"
+    )
     private final String status;
 
     @Nullable
     @Null
+    @Schema(
+            description = "书籍地址"
+    )
     private final String bookImgPath;
 
     @Nullable
     @Null
+    @Schema(
+            description = "书籍分类"
+    )
     private final String category;
 
     @Nullable
     @Null
+    @Schema(
+            description = "书籍来源"
+    )
     private final String bookFrom;
 
     @NotNull
     @javax.validation.constraints.NotNull
+    @Schema(
+            description = "章节信息"
+    )
     private final List<String> authorIds;
 
     @JsonCreator

@@ -2,9 +2,13 @@ package top.yangwulang.platform.factory.book;
 
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.ObservableEmitter;
+import io.reactivex.rxjava3.core.ObservableOnSubscribe;
 import io.reactivex.rxjava3.core.ObservableSource;
 import io.reactivex.rxjava3.functions.Function;
+import io.reactivex.rxjava3.internal.schedulers.ComputationScheduler;
+import io.reactivex.rxjava3.internal.schedulers.IoScheduler;
 import io.reactivex.rxjava3.schedulers.Schedulers;
+import kotlin.text.Regex;
 import okhttp3.Call;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -14,21 +18,20 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import top.yangwulang.platform.entity.book.BookChapter;
-import top.yangwulang.platform.entity.book.BookChapterDraft;
-import top.yangwulang.platform.entity.book.BookInfo;
-import top.yangwulang.platform.entity.book.BookInfoDraft;
+import top.yangwulang.platform.entity.book.*;
 import top.yangwulang.platform.exception.ServiceException;
 
 import java.io.IOException;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class OneQxsBookFactory extends AbstractBookFactory {
     public static final String WEB_SITE = "https://www.1qxs.com";
+
+    private final Pattern mathEndHtmlPattern = Pattern.compile("(\\d).html");
 
     public Observable<BookInfo> parseBookInfo(String html) {
         return Observable
@@ -114,8 +117,8 @@ public class OneQxsBookFactory extends AbstractBookFactory {
                 });
     }
 
-    public void parseChapterContent(BookChapter chapter) {
-        Observable
+    public Observable<ChapterContent> parseChapterContent(BookChapter chapter) {
+        return Observable
                 .create((ObservableEmitter<Map<String, Object>> emitter) -> {
                     Request request = super.baseRequestBuild.get().url(chapter.fromPath()).build();
                     super.client.newCall(request).enqueue(new AbstractSuccessCallback() {
@@ -127,19 +130,68 @@ public class OneQxsBookFactory extends AbstractBookFactory {
                             Map<String, Object> map = new HashMap<>();
                             map.put("currentPageIndex", Integer.parseInt(bodyElements.attr("pg")));
                             map.put("totalPage", Integer.parseInt(bodyElements.attr("tpg")));
-                            map.put("body_1", bodyElements.select("div.main > div > div.read > div.content.font_family_1 > p").html());
+                            Elements select = bodyElements.select("div.main > div > div.read > div.content > p");
+                            select.removeIf(e -> e.text().contains("未完") || e.text().contains("一七小说"));
+                            map.put("body_1", select.html());
                             emitter.onNext(map);
                             emitter.onComplete();
                         }
                     });
                 })
-                .flatMap((Function<Map<String, Object>, ObservableSource<Map<String, Object>>>) map -> {
-                    Integer currentPageIndex = (Integer) map.get("currentPageIndex");
-                    Integer totalPage = (Integer) map.get("totalPage");
-                    return Observable.create((ObservableEmitter<Map<String, Object>> emitter) -> {
-
-                    });
-                });
+                .observeOn(new IoScheduler())
+                .flatMap((Function<Map<String, Object>, ObservableSource<Map<String, Object>>>) map ->
+                        Observable.create((ObservableOnSubscribe<Map<String, Object>>) emitter -> {
+                            Integer currentPageIndex = (Integer) map.get("currentPageIndex");
+                            Integer totalPage = (Integer) map.get("totalPage");
+                            Regex regex = new Regex(mathEndHtmlPattern);
+                            for (Integer i = currentPageIndex; i <= totalPage; i++) {
+                                if (i == 1) {
+                                    continue;
+                                }
+                                Thread.sleep(800);
+                                Request request = super.baseRequestBuild.get()
+                                        .url(regex.replace(chapter.fromPath(), "$1/" + i + ".html"))
+                                        .build();
+                                super.client.newCall(request).enqueue(new ParamSuccessCallback<>(new int[]{i, totalPage}) {
+                                    @Override
+                                    public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                                        ResponseBody body = response.body();
+                                        assert body != null : "请求 url " + call.request().url() + " 获得的内容为 null";
+                                        Elements bodyElements = Jsoup.parse(body.string()).select("body");
+                                        Elements select = bodyElements.select("div.main > div > div.read > div.content > p");
+                                        select.removeIf(e -> e.text().contains("未完") || e.text().contains("一七小说"));
+                                        map.put("body_" + getParam()[0], select.html());
+                                        // 如果当前页和总页相等，则表示到达最后页面，然后进行发射
+                                        if (getParam()[0] == getParam()[1]) {
+                                            emitter.onNext(map);
+                                        }
+                                    }
+                                });
+                            }
+                        })
+                )
+                .observeOn(new ComputationScheduler())
+                .flatMap((Function<Map<String, Object>, ObservableSource<ChapterContent>>) map ->
+                        Observable.just(
+                                ChapterContentDraft.$.produce(content -> {
+                                    List<String> bodys = map.keySet()
+                                            .stream()
+                                            .filter(k -> k.startsWith("body_"))
+                                            .sorted((o1, o2) -> {
+                                                int one = Integer.parseInt(o1.split("_")[1]);
+                                                int two = Integer.parseInt(o2.split("_")[1]);
+                                                return one - two;
+                                            }).toList();
+                                    // 根据body_1 body_2的后缀从小到大排序
+                                    StringBuilder builder = new StringBuilder();
+                                    for (String body : bodys) {
+                                        builder.append(map.get(body));
+                                    }
+                                    content.setChapter(c -> c.setId(chapter.id()))
+                                            .setChapterContent(builder.toString());
+                                })
+                        )
+                );
     }
 
 

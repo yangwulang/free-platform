@@ -20,7 +20,7 @@ public class FileUploadController {
             new MinioClientOption(
                     new MinioClient.Builder()
                             .endpoint("http://127.0.0.1:9000")
-                            .credentials("HYOGVdMehzmtn5H5", "BnBpbcXz8VBfAPu8ZmTBFUBnqclxCDif")
+                            .credentials("12345678", "12345678")
                             .build()
             )
     );

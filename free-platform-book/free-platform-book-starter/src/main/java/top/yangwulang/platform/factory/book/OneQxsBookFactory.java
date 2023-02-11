@@ -25,6 +25,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CountDownLatch;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -144,10 +145,12 @@ public class OneQxsBookFactory extends AbstractBookFactory {
                             Integer currentPageIndex = (Integer) map.get("currentPageIndex");
                             Integer totalPage = (Integer) map.get("totalPage");
                             Regex regex = new Regex(mathEndHtmlPattern);
+                            CountDownLatch countDownLatch = new CountDownLatch(totalPage - currentPageIndex);
                             for (Integer i = currentPageIndex; i <= totalPage; i++) {
                                 if (i == 1) {
                                     continue;
                                 }
+                                // 这里睡眠0.8s是防止请求太快导致对方服务器502
                                 Thread.sleep(800);
                                 Request request = super.baseRequestBuild.get()
                                         .url(regex.replace(chapter.fromPath(), "$1/" + i + ".html"))
@@ -161,13 +164,20 @@ public class OneQxsBookFactory extends AbstractBookFactory {
                                         Elements select = bodyElements.select("div.main > div > div.read > div.content > p");
                                         select.removeIf(e -> e.text().contains("未完") || e.text().contains("一七小说"));
                                         map.put("body_" + getParam()[0], select.html());
+                                        countDownLatch.countDown();
                                         // 如果当前页和总页相等，则表示到达最后页面，然后进行发射
-                                        if (getParam()[0] == getParam()[1]) {
+                                        // TODO: 此处极端情况下会有线程BUG，例如有 2、3、4页需要请求 2请求送后睡了0.8s 再发送3的请求再次睡0.8s发送4的请求
+                                        //  但是当网络出现抖动时，2和4已经完成，3还在请求中，4已经是结尾了，通过了这个if，所以当3请求完成后这时把书籍内容存放在
+                                        //  map中已经晚了，4的结尾页已经发射这个信号，并将这个信号已经保存了，这个BUG只在极端情况下发生，要想彻底去除这个BUG，只能损失
+                                        //  性能，每请求完成一次存一次map，并将这个map发射到下一个Observable中，或者用CountdownLatch进行计数，计数的代码写的不太优雅。
+                                        /*if (getParam()[0] == getParam()[1]) {
                                             emitter.onNext(map);
-                                        }
+                                        }*/
                                     }
                                 });
                             }
+                            countDownLatch.await();
+                            emitter.onNext(map);
                         })
                 )
                 .observeOn(new ComputationScheduler())

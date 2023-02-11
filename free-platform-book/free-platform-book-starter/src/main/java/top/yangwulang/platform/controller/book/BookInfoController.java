@@ -3,10 +3,17 @@ package top.yangwulang.platform.controller.book;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.tags.Tags;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
+import top.yangwulang.platform.entity.PageHttpRequest;
 import top.yangwulang.platform.entity.book.BookChapter;
 import top.yangwulang.platform.entity.book.BookInfo;
+import top.yangwulang.platform.entity.book.BookInfoDraft;
+import top.yangwulang.platform.entity.book.BookInfoFetcher;
+import top.yangwulang.platform.entity.book.dto.BookInfoInput;
+import top.yangwulang.platform.repository.book.BookInfoRepository;
 import top.yangwulang.platform.services.book.impl.BookServiceImpl;
 
 /**
@@ -23,6 +30,15 @@ public class BookInfoController {
     @Autowired
     private BookServiceImpl bookService;
 
+    @Autowired
+    public BookInfoRepository bookInfoRepository;
+
+
+
+    @PostMapping("/")
+    public Page<BookInfo> listData(HttpServletRequest httpServletRequest, @RequestBody BookInfoInput bookInfoInput) {
+        return bookInfoRepository.findAll(PageHttpRequest.of(httpServletRequest).toPage(), BookInfoFetcher.$, bookInfoInput);
+    }
 
     @GetMapping("/")
     public Void test() {

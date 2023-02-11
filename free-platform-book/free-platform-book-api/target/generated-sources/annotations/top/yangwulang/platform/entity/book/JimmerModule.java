@@ -4,10 +4,10 @@ import org.babyfish.jimmer.sql.runtime.EntityManager;
 
 public class JimmerModule {
     public static final EntityManager ENTITY_MANAGER = new EntityManager(
-        BookCategory.class,
+        ChapterContent.class,
         BookChapter.class,
-        BookInfo.class,
-        ChapterContent.class
+        BookCategory.class,
+        BookInfo.class
     );
 
     private JimmerModule() {

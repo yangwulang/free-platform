@@ -11,6 +11,9 @@ import top.yangwulang.platform.services.FileUploadService;
 import top.yangwulang.platform.services.impl.MinioClientOption;
 import top.yangwulang.platform.services.impl.MinioFileUploadServiceImpl;
 
+/**
+ * @author yangwulang
+ */
 @RestController
 @RequestMapping("/file/upload")
 @Slf4j

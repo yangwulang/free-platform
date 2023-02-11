@@ -10,7 +10,6 @@
         <module>free-platform-framework</module>
         <module>free-platform-common</module>
         <module>free-platform-spider</module>
-        <module>free-platform-cache</module>
         <module>free-platform-framework-api</module>
         <module>free-platform-book</module>
         <module>free-platform-video</module>

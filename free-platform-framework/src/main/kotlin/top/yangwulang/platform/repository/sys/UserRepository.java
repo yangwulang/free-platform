@@ -7,7 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 import top.yangwulang.platform.entity.sys.User;
 import top.yangwulang.platform.entity.sys.UserTable;
-import top.yangwulang.platform.entity.sys.input.UserInput;
+import top.yangwulang.platform.entity.sys.dto.UserInput;
 
 
 /**

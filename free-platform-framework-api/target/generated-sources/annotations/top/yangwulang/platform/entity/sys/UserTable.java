@@ -3,7 +3,7 @@ package top.yangwulang.platform.entity.sys;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Date;
+import java.time.LocalDateTime;
 import org.babyfish.jimmer.sql.ast.PropExpression;
 import org.babyfish.jimmer.sql.ast.impl.table.TableImplementor;
 import org.babyfish.jimmer.sql.ast.table.spi.AbstractTypedTable;
@@ -30,6 +30,36 @@ public class UserTable extends AbstractTypedTable<User> implements UserProps {
     @Override
     public PropExpression.Str userCode() {
         return get("userCode");
+    }
+
+    @Override
+    public PropExpression.Str status() {
+        return get("status");
+    }
+
+    @Override
+    public PropExpression.Str createBy() {
+        return get("createBy");
+    }
+
+    @Override
+    public PropExpression.Cmp<LocalDateTime> createDate() {
+        return get("createDate");
+    }
+
+    @Override
+    public PropExpression.Str updateBy() {
+        return get("updateBy");
+    }
+
+    @Override
+    public PropExpression.Cmp<LocalDateTime> updateDate() {
+        return get("updateDate");
+    }
+
+    @Override
+    public PropExpression.Str remarks() {
+        return get("remarks");
     }
 
     @Override
@@ -115,36 +145,6 @@ public class UserTable extends AbstractTypedTable<User> implements UserProps {
     @Override
     public PropExpression.Num<Integer> userWeight() {
         return get("userWeight");
-    }
-
-    @Override
-    public PropExpression.Str status() {
-        return get("status");
-    }
-
-    @Override
-    public PropExpression.Str createBy() {
-        return get("createBy");
-    }
-
-    @Override
-    public PropExpression.Cmp<Date> createDate() {
-        return get("createDate");
-    }
-
-    @Override
-    public PropExpression.Str updateBy() {
-        return get("updateBy");
-    }
-
-    @Override
-    public PropExpression.Cmp<Date> updateDate() {
-        return get("updateDate");
-    }
-
-    @Override
-    public PropExpression.Str remarks() {
-        return get("remarks");
     }
 
     @Override

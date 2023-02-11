@@ -13,85 +13,69 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "sys_user")
-@Schema(name = "用户实体")
+@Schema(description = "用户实体")
 @Immutable(value = Immutable.Nullity.NULLABLE)
-public interface User {
+public interface User extends BaseEntity {
 
     @Id
-    @Schema(name = "用户编码")
+    @Schema(description = "用户编码")
     @NotNull
     String userCode();
 
-    @Schema(name = "登录编码")
+    @Schema(description = "登录编码(账号)")
     @Key
     String loginCode();
 
+    @Schema(description = "用户名")
     String userName();
 
-    @Schema(name = "密码")
+    @Schema(description = "密码")
     String password();
 
 
-    @Schema(name = "邮件")
+    @Schema(description = "邮件")
     String email();
 
-    @Schema(name = "手机")
+    @Schema(description = "手机")
     String mobile();
 
 
-    @Schema(name = "电话")
+    @Schema(description = "电话")
     String phone();
 
-    @Schema(name = "性别")
+    @Schema(description = "性别")
     String sex();
 
-    @Schema(name = "头像地址")
+    @Schema(description = "头像地址")
     String avatar();
 
-    @Schema(name = "个性签名")
+    @Schema(description = "个性签名")
     String sign();
 
-    @Schema(name = "微信开发id")
+    @Schema(description = "微信开发id")
     @Column(name = "wx_openid")
     String wxOpenId();
 
-    @Schema(name = "手机imei")
+    @Schema(description = "手机imei")
     String mobileImei();
 
-    @Schema(name = "用户类型")
+    @Schema(description = "用户类型")
     @NotNull
     String userType();
 
-    @Schema(name = "用户类型引用编号")
+    @Schema(description = "用户类型引用编号")
     String refCode();
 
 
-    @Schema(name = "用户类型引用名称")
+    @Schema(description = "用户类型引用名称")
     String refName();
 
-    @Schema(name = "管理员类型")
+    @Schema(description = "管理员类型")
     @NotNull
     String mgrType();
 
     Integer pwdSecurityLevel();
 
     Integer userWeight();
-
-    @NotNull
-    String status();
-
-    @NotNull
-    String createBy();
-
-    @NotNull
-    Date createDate();
-
-    @NotNull
-    String updateBy();
-
-    @NotNull
-    Date updateDate();
-
-    String remarks();
 
 }

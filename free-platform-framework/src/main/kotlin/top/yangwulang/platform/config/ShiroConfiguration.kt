@@ -12,24 +12,26 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import top.yangwulang.platform.security.shiro.MyCustomModularRealmAuthenticator
 import top.yangwulang.platform.security.shiro.manager.TokenSessionManager
+import top.yangwulang.platform.security.shiro.realm.AccountPasswordRealm
 //import top.yangwulang.platform.security.shiro.realm.AccountPasswordRealm
 import top.yangwulang.platform.security.shiro.realm.UserPhoneRealm
 
 
 @Configuration
+// TDDO: shiro正在适配springboot 3 暂时无法使用shiro
 open class ShiroConfiguration {
     @Bean
     open fun sessionManager(): SessionManager {
         return TokenSessionManager()
     }
 
-/*    @Bean
-    fun accountPasswordRealm(): AccountPasswordRealm {
-        return AccountPasswordRealm()
-    }*/
+    /*    @Bean
+        fun accountPasswordRealm(): AccountPasswordRealm {
+            return AccountPasswordRealm()
+        }*/
 
     @Bean
-    open fun userPhoneRealm() : UserPhoneRealm {
+    open fun userPhoneRealm(): UserPhoneRealm {
         return UserPhoneRealm()
     }
 
@@ -53,6 +55,7 @@ open class ShiroConfiguration {
         val defaultWebSecurityManager = DefaultWebSecurityManager()
         defaultWebSecurityManager.realms = listOf(
 //            accountPasswordRealm(),
+            AccountPasswordRealm(),
             userPhoneRealm()
         )
         defaultWebSecurityManager.sessionManager = sessionManager()
@@ -61,12 +64,15 @@ open class ShiroConfiguration {
     }
 
     @Bean
-    open fun myCustomModuleRealmAuthor() : AbstractAuthenticator {
+    open fun myCustomModuleRealmAuthor(): AbstractAuthenticator {
         val myCustomModularRealmAuthenticator = MyCustomModularRealmAuthenticator()
-        myCustomModularRealmAuthenticator.setRealms(listOf(
+        myCustomModularRealmAuthenticator.setRealms(
+            listOf(
 //            accountPasswordRealm(),
-            userPhoneRealm()
-        ))
+                AccountPasswordRealm(),
+                userPhoneRealm()
+            )
+        )
         myCustomModularRealmAuthenticator.authenticationStrategy = AtLeastOneSuccessfulStrategy()
         return myCustomModularRealmAuthenticator
     }

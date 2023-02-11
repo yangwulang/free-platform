@@ -1,0 +1,17 @@
+input UserInput {
+    #allScalars(User)
+
+    -password
+
+}
+input LoginInput {
+    +loginCode
+    +password
+}
+
+UserVo {
+    userCode
+    loginCode
+    userName
+    email
+}

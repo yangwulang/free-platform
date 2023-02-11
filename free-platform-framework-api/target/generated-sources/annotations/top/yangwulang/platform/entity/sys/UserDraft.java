@@ -8,10 +8,9 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.lang.System;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.Objects;
 import org.babyfish.jimmer.CircularReferenceException;
-import org.babyfish.jimmer.Draft;
 import org.babyfish.jimmer.DraftConsumer;
 import org.babyfish.jimmer.ImmutableObjects;
 import org.babyfish.jimmer.UnloadedException;
@@ -24,11 +23,29 @@ import org.babyfish.jimmer.runtime.DraftSpi;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
 import org.babyfish.jimmer.runtime.Internal;
 
-public interface UserDraft extends User, Draft {
+public interface UserDraft extends User, BaseEntityDraft {
     UserDraft.Producer $ = Producer.INSTANCE;
 
     @OldChain
     UserDraft setUserCode(String userCode);
+
+    @OldChain
+    UserDraft setStatus(String status);
+
+    @OldChain
+    UserDraft setCreateBy(String createBy);
+
+    @OldChain
+    UserDraft setCreateDate(LocalDateTime createDate);
+
+    @OldChain
+    UserDraft setUpdateBy(String updateBy);
+
+    @OldChain
+    UserDraft setUpdateDate(LocalDateTime updateDate);
+
+    @OldChain
+    UserDraft setRemarks(String remarks);
 
     @OldChain
     UserDraft setLoginCode(String loginCode);
@@ -81,57 +98,33 @@ public interface UserDraft extends User, Draft {
     @OldChain
     UserDraft setUserWeight(Integer userWeight);
 
-    @OldChain
-    UserDraft setStatus(String status);
-
-    @OldChain
-    UserDraft setCreateBy(String createBy);
-
-    @OldChain
-    UserDraft setCreateDate(Date createDate);
-
-    @OldChain
-    UserDraft setUpdateBy(String updateBy);
-
-    @OldChain
-    UserDraft setUpdateDate(Date updateDate);
-
-    @OldChain
-    UserDraft setRemarks(String remarks);
-
     class Producer {
         static final Producer INSTANCE = new Producer();
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
                 User.class,
-                null,
+                BaseEntityDraft.Producer.TYPE,
                 (ctx, base) -> new DraftImpl(ctx, (User)base)
             )
-            .id(1, "userCode", String.class)
-            .key(2, "loginCode", String.class)
-            .add(3, "userName", ImmutablePropCategory.SCALAR, String.class, true)
-            .add(4, "password", ImmutablePropCategory.SCALAR, String.class, true)
-            .add(5, "email", ImmutablePropCategory.SCALAR, String.class, true)
-            .add(6, "mobile", ImmutablePropCategory.SCALAR, String.class, true)
-            .add(7, "phone", ImmutablePropCategory.SCALAR, String.class, true)
-            .add(8, "sex", ImmutablePropCategory.SCALAR, String.class, true)
-            .add(9, "avatar", ImmutablePropCategory.SCALAR, String.class, true)
-            .add(10, "sign", ImmutablePropCategory.SCALAR, String.class, true)
-            .add(11, "wxOpenId", ImmutablePropCategory.SCALAR, String.class, true)
-            .add(12, "mobileImei", ImmutablePropCategory.SCALAR, String.class, true)
-            .add(13, "userType", ImmutablePropCategory.SCALAR, String.class, false)
-            .add(14, "refCode", ImmutablePropCategory.SCALAR, String.class, true)
-            .add(15, "refName", ImmutablePropCategory.SCALAR, String.class, true)
-            .add(16, "mgrType", ImmutablePropCategory.SCALAR, String.class, false)
-            .add(17, "pwdSecurityLevel", ImmutablePropCategory.SCALAR, Integer.class, true)
-            .add(18, "userWeight", ImmutablePropCategory.SCALAR, Integer.class, true)
-            .add(19, "status", ImmutablePropCategory.SCALAR, String.class, false)
-            .add(20, "createBy", ImmutablePropCategory.SCALAR, String.class, false)
-            .add(21, "createDate", ImmutablePropCategory.SCALAR, Date.class, false)
-            .add(22, "updateBy", ImmutablePropCategory.SCALAR, String.class, false)
-            .add(23, "updateDate", ImmutablePropCategory.SCALAR, Date.class, false)
-            .add(24, "remarks", ImmutablePropCategory.SCALAR, String.class, true)
+            .id(7, "userCode", String.class)
+            .key(8, "loginCode", String.class)
+            .add(9, "userName", ImmutablePropCategory.SCALAR, String.class, true)
+            .add(10, "password", ImmutablePropCategory.SCALAR, String.class, true)
+            .add(11, "email", ImmutablePropCategory.SCALAR, String.class, true)
+            .add(12, "mobile", ImmutablePropCategory.SCALAR, String.class, true)
+            .add(13, "phone", ImmutablePropCategory.SCALAR, String.class, true)
+            .add(14, "sex", ImmutablePropCategory.SCALAR, String.class, true)
+            .add(15, "avatar", ImmutablePropCategory.SCALAR, String.class, true)
+            .add(16, "sign", ImmutablePropCategory.SCALAR, String.class, true)
+            .add(17, "wxOpenId", ImmutablePropCategory.SCALAR, String.class, true)
+            .add(18, "mobileImei", ImmutablePropCategory.SCALAR, String.class, true)
+            .add(19, "userType", ImmutablePropCategory.SCALAR, String.class, false)
+            .add(20, "refCode", ImmutablePropCategory.SCALAR, String.class, true)
+            .add(21, "refName", ImmutablePropCategory.SCALAR, String.class, true)
+            .add(22, "mgrType", ImmutablePropCategory.SCALAR, String.class, false)
+            .add(23, "pwdSecurityLevel", ImmutablePropCategory.SCALAR, Integer.class, true)
+            .add(24, "userWeight", ImmutablePropCategory.SCALAR, Integer.class, true)
             .build();
 
         private Producer() {
@@ -149,30 +142,30 @@ public interface UserDraft extends User, Draft {
             @Override
             public Object __get(int prop) {
                 switch (prop) {
-                    case 1: return userCode();
-                    case 2: return loginCode();
-                    case 3: return userName();
-                    case 4: return password();
-                    case 5: return email();
-                    case 6: return mobile();
-                    case 7: return phone();
-                    case 8: return sex();
-                    case 9: return avatar();
-                    case 10: return sign();
-                    case 11: return wxOpenId();
-                    case 12: return mobileImei();
-                    case 13: return userType();
-                    case 14: return refCode();
-                    case 15: return refName();
-                    case 16: return mgrType();
-                    case 17: return pwdSecurityLevel();
-                    case 18: return userWeight();
-                    case 19: return status();
-                    case 20: return createBy();
-                    case 21: return createDate();
-                    case 22: return updateBy();
-                    case 23: return updateDate();
-                    case 24: return remarks();
+                    case 1: return status();
+                    case 2: return createBy();
+                    case 3: return createDate();
+                    case 4: return updateBy();
+                    case 5: return updateDate();
+                    case 6: return remarks();
+                    case 7: return userCode();
+                    case 8: return loginCode();
+                    case 9: return userName();
+                    case 10: return password();
+                    case 11: return email();
+                    case 12: return mobile();
+                    case 13: return phone();
+                    case 14: return sex();
+                    case 15: return avatar();
+                    case 16: return sign();
+                    case 17: return wxOpenId();
+                    case 18: return mobileImei();
+                    case 19: return userType();
+                    case 20: return refCode();
+                    case 21: return refName();
+                    case 22: return mgrType();
+                    case 23: return pwdSecurityLevel();
+                    case 24: return userWeight();
                     default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
                 }
             }
@@ -180,6 +173,12 @@ public interface UserDraft extends User, Draft {
             @Override
             public Object __get(String prop) {
                 switch (prop) {
+                    case "status": return status();
+                    case "createBy": return createBy();
+                    case "createDate": return createDate();
+                    case "updateBy": return updateBy();
+                    case "updateDate": return updateDate();
+                    case "remarks": return remarks();
                     case "userCode": return userCode();
                     case "loginCode": return loginCode();
                     case "userName": return userName();
@@ -198,12 +197,6 @@ public interface UserDraft extends User, Draft {
                     case "mgrType": return mgrType();
                     case "pwdSecurityLevel": return pwdSecurityLevel();
                     case "userWeight": return userWeight();
-                    case "status": return status();
-                    case "createBy": return createBy();
-                    case "createDate": return createDate();
-                    case "updateBy": return updateBy();
-                    case "updateDate": return updateDate();
-                    case "remarks": return remarks();
                     default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
                 }
             }
@@ -225,6 +218,20 @@ public interface UserDraft extends User, Draft {
 
         private static class Impl extends Implementor implements Cloneable {
             String userCode;
+
+            String status;
+
+            String createBy;
+
+            LocalDateTime createDate;
+
+            String updateBy;
+
+            LocalDateTime updateDate;
+
+            String remarks;
+
+            boolean remarksLoaded = false;
 
             String loginCode;
 
@@ -290,26 +297,60 @@ public interface UserDraft extends User, Draft {
 
             boolean userWeightLoaded = false;
 
-            String status;
-
-            String createBy;
-
-            Date createDate;
-
-            String updateBy;
-
-            Date updateDate;
-
-            String remarks;
-
-            boolean remarksLoaded = false;
-
             @Override
             public String userCode() {
                 if (userCode == null) {
                     throw new UnloadedException(User.class, "userCode");
                 }
                 return userCode;
+            }
+
+            @Override
+            public String status() {
+                if (status == null) {
+                    throw new UnloadedException(User.class, "status");
+                }
+                return status;
+            }
+
+            @Override
+            public String createBy() {
+                if (createBy == null) {
+                    throw new UnloadedException(User.class, "createBy");
+                }
+                return createBy;
+            }
+
+            @Override
+            public LocalDateTime createDate() {
+                if (createDate == null) {
+                    throw new UnloadedException(User.class, "createDate");
+                }
+                return createDate;
+            }
+
+            @Override
+            public String updateBy() {
+                if (updateBy == null) {
+                    throw new UnloadedException(User.class, "updateBy");
+                }
+                return updateBy;
+            }
+
+            @Override
+            public LocalDateTime updateDate() {
+                if (updateDate == null) {
+                    throw new UnloadedException(User.class, "updateDate");
+                }
+                return updateDate;
+            }
+
+            @Override
+            public String remarks() {
+                if (!remarksLoaded) {
+                    throw new UnloadedException(User.class, "remarks");
+                }
+                return remarks;
             }
 
             @Override
@@ -449,54 +490,6 @@ public interface UserDraft extends User, Draft {
             }
 
             @Override
-            public String status() {
-                if (status == null) {
-                    throw new UnloadedException(User.class, "status");
-                }
-                return status;
-            }
-
-            @Override
-            public String createBy() {
-                if (createBy == null) {
-                    throw new UnloadedException(User.class, "createBy");
-                }
-                return createBy;
-            }
-
-            @Override
-            public Date createDate() {
-                if (createDate == null) {
-                    throw new UnloadedException(User.class, "createDate");
-                }
-                return createDate;
-            }
-
-            @Override
-            public String updateBy() {
-                if (updateBy == null) {
-                    throw new UnloadedException(User.class, "updateBy");
-                }
-                return updateBy;
-            }
-
-            @Override
-            public Date updateDate() {
-                if (updateDate == null) {
-                    throw new UnloadedException(User.class, "updateDate");
-                }
-                return updateDate;
-            }
-
-            @Override
-            public String remarks() {
-                if (!remarksLoaded) {
-                    throw new UnloadedException(User.class, "remarks");
-                }
-                return remarks;
-            }
-
-            @Override
             public Impl clone() {
                 try {
                     return (Impl)super.clone();
@@ -508,30 +501,30 @@ public interface UserDraft extends User, Draft {
             @Override
             public boolean __isLoaded(int prop) {
                 switch (prop) {
-                    case 1: return userCode != null;
-                    case 2: return loginCodeLoaded;
-                    case 3: return userNameLoaded;
-                    case 4: return passwordLoaded;
-                    case 5: return emailLoaded;
-                    case 6: return mobileLoaded;
-                    case 7: return phoneLoaded;
-                    case 8: return sexLoaded;
-                    case 9: return avatarLoaded;
-                    case 10: return signLoaded;
-                    case 11: return wxOpenIdLoaded;
-                    case 12: return mobileImeiLoaded;
-                    case 13: return userType != null;
-                    case 14: return refCodeLoaded;
-                    case 15: return refNameLoaded;
-                    case 16: return mgrType != null;
-                    case 17: return pwdSecurityLevelLoaded;
-                    case 18: return userWeightLoaded;
-                    case 19: return status != null;
-                    case 20: return createBy != null;
-                    case 21: return createDate != null;
-                    case 22: return updateBy != null;
-                    case 23: return updateDate != null;
-                    case 24: return remarksLoaded;
+                    case 1: return status != null;
+                    case 2: return createBy != null;
+                    case 3: return createDate != null;
+                    case 4: return updateBy != null;
+                    case 5: return updateDate != null;
+                    case 6: return remarksLoaded;
+                    case 7: return userCode != null;
+                    case 8: return loginCodeLoaded;
+                    case 9: return userNameLoaded;
+                    case 10: return passwordLoaded;
+                    case 11: return emailLoaded;
+                    case 12: return mobileLoaded;
+                    case 13: return phoneLoaded;
+                    case 14: return sexLoaded;
+                    case 15: return avatarLoaded;
+                    case 16: return signLoaded;
+                    case 17: return wxOpenIdLoaded;
+                    case 18: return mobileImeiLoaded;
+                    case 19: return userType != null;
+                    case 20: return refCodeLoaded;
+                    case 21: return refNameLoaded;
+                    case 22: return mgrType != null;
+                    case 23: return pwdSecurityLevelLoaded;
+                    case 24: return userWeightLoaded;
                     default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
                 }
             }
@@ -539,6 +532,12 @@ public interface UserDraft extends User, Draft {
             @Override
             public boolean __isLoaded(String prop) {
                 switch (prop) {
+                    case "status": return status != null;
+                    case "createBy": return createBy != null;
+                    case "createDate": return createDate != null;
+                    case "updateBy": return updateBy != null;
+                    case "updateDate": return updateDate != null;
+                    case "remarks": return remarksLoaded;
                     case "userCode": return userCode != null;
                     case "loginCode": return loginCodeLoaded;
                     case "userName": return userNameLoaded;
@@ -557,12 +556,6 @@ public interface UserDraft extends User, Draft {
                     case "mgrType": return mgrType != null;
                     case "pwdSecurityLevel": return pwdSecurityLevelLoaded;
                     case "userWeight": return userWeightLoaded;
-                    case "status": return status != null;
-                    case "createBy": return createBy != null;
-                    case "createDate": return createDate != null;
-                    case "updateBy": return updateBy != null;
-                    case "updateDate": return updateDate != null;
-                    case "remarks": return remarksLoaded;
                     default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
                 }
             }
@@ -574,6 +567,24 @@ public interface UserDraft extends User, Draft {
                     hash = 31 * hash + userCode.hashCode();
                     // If entity-id is loaded, return directly
                     return hash;
+                }
+                if (status != null) {
+                    hash = 31 * hash + status.hashCode();
+                }
+                if (createBy != null) {
+                    hash = 31 * hash + createBy.hashCode();
+                }
+                if (createDate != null) {
+                    hash = 31 * hash + createDate.hashCode();
+                }
+                if (updateBy != null) {
+                    hash = 31 * hash + updateBy.hashCode();
+                }
+                if (updateDate != null) {
+                    hash = 31 * hash + updateDate.hashCode();
+                }
+                if (remarksLoaded && remarks != null) {
+                    hash = 31 * hash + remarks.hashCode();
                 }
                 if (loginCodeLoaded && loginCode != null) {
                     hash = 31 * hash + loginCode.hashCode();
@@ -626,24 +637,6 @@ public interface UserDraft extends User, Draft {
                 if (userWeightLoaded && userWeight != null) {
                     hash = 31 * hash + userWeight.hashCode();
                 }
-                if (status != null) {
-                    hash = 31 * hash + status.hashCode();
-                }
-                if (createBy != null) {
-                    hash = 31 * hash + createBy.hashCode();
-                }
-                if (createDate != null) {
-                    hash = 31 * hash + createDate.hashCode();
-                }
-                if (updateBy != null) {
-                    hash = 31 * hash + updateBy.hashCode();
-                }
-                if (updateDate != null) {
-                    hash = 31 * hash + updateDate.hashCode();
-                }
-                if (remarksLoaded && remarks != null) {
-                    hash = 31 * hash + remarks.hashCode();
-                }
                 return hash;
             }
 
@@ -651,6 +644,24 @@ public interface UserDraft extends User, Draft {
                 int hash = 1;
                 if (userCode != null) {
                     hash = 31 * hash + System.identityHashCode(userCode);
+                }
+                if (status != null) {
+                    hash = 31 * hash + System.identityHashCode(status);
+                }
+                if (createBy != null) {
+                    hash = 31 * hash + System.identityHashCode(createBy);
+                }
+                if (createDate != null) {
+                    hash = 31 * hash + System.identityHashCode(createDate);
+                }
+                if (updateBy != null) {
+                    hash = 31 * hash + System.identityHashCode(updateBy);
+                }
+                if (updateDate != null) {
+                    hash = 31 * hash + System.identityHashCode(updateDate);
+                }
+                if (remarksLoaded) {
+                    hash = 31 * hash + System.identityHashCode(remarks);
                 }
                 if (loginCodeLoaded) {
                     hash = 31 * hash + System.identityHashCode(loginCode);
@@ -703,24 +714,6 @@ public interface UserDraft extends User, Draft {
                 if (userWeightLoaded) {
                     hash = 31 * hash + System.identityHashCode(userWeight);
                 }
-                if (status != null) {
-                    hash = 31 * hash + System.identityHashCode(status);
-                }
-                if (createBy != null) {
-                    hash = 31 * hash + System.identityHashCode(createBy);
-                }
-                if (createDate != null) {
-                    hash = 31 * hash + System.identityHashCode(createDate);
-                }
-                if (updateBy != null) {
-                    hash = 31 * hash + System.identityHashCode(updateBy);
-                }
-                if (updateDate != null) {
-                    hash = 31 * hash + System.identityHashCode(updateDate);
-                }
-                if (remarksLoaded) {
-                    hash = 31 * hash + System.identityHashCode(remarks);
-                }
                 return hash;
             }
 
@@ -736,172 +729,172 @@ public interface UserDraft extends User, Draft {
                 }
                 Implementor other = (Implementor)obj;
                 boolean __userCodeLoaded = userCode != null;
-                if (__userCodeLoaded != other.__isLoaded(1)) {
+                if (__userCodeLoaded != other.__isLoaded(7)) {
                     return false;
                 }
                 if (__userCodeLoaded) {
                     // If entity-id is loaded, return directly
                     return Objects.equals(userCode, other.userCode());
                 }
-                boolean __loginCodeLoaded = loginCodeLoaded;
-                if (__loginCodeLoaded != other.__isLoaded(2)) {
-                    return false;
-                }
-                if (__loginCodeLoaded && !Objects.equals(loginCode, other.loginCode())) {
-                    return false;
-                }
-                boolean __userNameLoaded = userNameLoaded;
-                if (__userNameLoaded != other.__isLoaded(3)) {
-                    return false;
-                }
-                if (__userNameLoaded && !Objects.equals(userName, other.userName())) {
-                    return false;
-                }
-                boolean __passwordLoaded = passwordLoaded;
-                if (__passwordLoaded != other.__isLoaded(4)) {
-                    return false;
-                }
-                if (__passwordLoaded && !Objects.equals(password, other.password())) {
-                    return false;
-                }
-                boolean __emailLoaded = emailLoaded;
-                if (__emailLoaded != other.__isLoaded(5)) {
-                    return false;
-                }
-                if (__emailLoaded && !Objects.equals(email, other.email())) {
-                    return false;
-                }
-                boolean __mobileLoaded = mobileLoaded;
-                if (__mobileLoaded != other.__isLoaded(6)) {
-                    return false;
-                }
-                if (__mobileLoaded && !Objects.equals(mobile, other.mobile())) {
-                    return false;
-                }
-                boolean __phoneLoaded = phoneLoaded;
-                if (__phoneLoaded != other.__isLoaded(7)) {
-                    return false;
-                }
-                if (__phoneLoaded && !Objects.equals(phone, other.phone())) {
-                    return false;
-                }
-                boolean __sexLoaded = sexLoaded;
-                if (__sexLoaded != other.__isLoaded(8)) {
-                    return false;
-                }
-                if (__sexLoaded && !Objects.equals(sex, other.sex())) {
-                    return false;
-                }
-                boolean __avatarLoaded = avatarLoaded;
-                if (__avatarLoaded != other.__isLoaded(9)) {
-                    return false;
-                }
-                if (__avatarLoaded && !Objects.equals(avatar, other.avatar())) {
-                    return false;
-                }
-                boolean __signLoaded = signLoaded;
-                if (__signLoaded != other.__isLoaded(10)) {
-                    return false;
-                }
-                if (__signLoaded && !Objects.equals(sign, other.sign())) {
-                    return false;
-                }
-                boolean __wxOpenIdLoaded = wxOpenIdLoaded;
-                if (__wxOpenIdLoaded != other.__isLoaded(11)) {
-                    return false;
-                }
-                if (__wxOpenIdLoaded && !Objects.equals(wxOpenId, other.wxOpenId())) {
-                    return false;
-                }
-                boolean __mobileImeiLoaded = mobileImeiLoaded;
-                if (__mobileImeiLoaded != other.__isLoaded(12)) {
-                    return false;
-                }
-                if (__mobileImeiLoaded && !Objects.equals(mobileImei, other.mobileImei())) {
-                    return false;
-                }
-                boolean __userTypeLoaded = userType != null;
-                if (__userTypeLoaded != other.__isLoaded(13)) {
-                    return false;
-                }
-                if (__userTypeLoaded && !Objects.equals(userType, other.userType())) {
-                    return false;
-                }
-                boolean __refCodeLoaded = refCodeLoaded;
-                if (__refCodeLoaded != other.__isLoaded(14)) {
-                    return false;
-                }
-                if (__refCodeLoaded && !Objects.equals(refCode, other.refCode())) {
-                    return false;
-                }
-                boolean __refNameLoaded = refNameLoaded;
-                if (__refNameLoaded != other.__isLoaded(15)) {
-                    return false;
-                }
-                if (__refNameLoaded && !Objects.equals(refName, other.refName())) {
-                    return false;
-                }
-                boolean __mgrTypeLoaded = mgrType != null;
-                if (__mgrTypeLoaded != other.__isLoaded(16)) {
-                    return false;
-                }
-                if (__mgrTypeLoaded && !Objects.equals(mgrType, other.mgrType())) {
-                    return false;
-                }
-                boolean __pwdSecurityLevelLoaded = pwdSecurityLevelLoaded;
-                if (__pwdSecurityLevelLoaded != other.__isLoaded(17)) {
-                    return false;
-                }
-                if (__pwdSecurityLevelLoaded && !Objects.equals(pwdSecurityLevel, other.pwdSecurityLevel())) {
-                    return false;
-                }
-                boolean __userWeightLoaded = userWeightLoaded;
-                if (__userWeightLoaded != other.__isLoaded(18)) {
-                    return false;
-                }
-                if (__userWeightLoaded && !Objects.equals(userWeight, other.userWeight())) {
-                    return false;
-                }
                 boolean __statusLoaded = status != null;
-                if (__statusLoaded != other.__isLoaded(19)) {
+                if (__statusLoaded != other.__isLoaded(1)) {
                     return false;
                 }
                 if (__statusLoaded && !Objects.equals(status, other.status())) {
                     return false;
                 }
                 boolean __createByLoaded = createBy != null;
-                if (__createByLoaded != other.__isLoaded(20)) {
+                if (__createByLoaded != other.__isLoaded(2)) {
                     return false;
                 }
                 if (__createByLoaded && !Objects.equals(createBy, other.createBy())) {
                     return false;
                 }
                 boolean __createDateLoaded = createDate != null;
-                if (__createDateLoaded != other.__isLoaded(21)) {
+                if (__createDateLoaded != other.__isLoaded(3)) {
                     return false;
                 }
                 if (__createDateLoaded && !Objects.equals(createDate, other.createDate())) {
                     return false;
                 }
                 boolean __updateByLoaded = updateBy != null;
-                if (__updateByLoaded != other.__isLoaded(22)) {
+                if (__updateByLoaded != other.__isLoaded(4)) {
                     return false;
                 }
                 if (__updateByLoaded && !Objects.equals(updateBy, other.updateBy())) {
                     return false;
                 }
                 boolean __updateDateLoaded = updateDate != null;
-                if (__updateDateLoaded != other.__isLoaded(23)) {
+                if (__updateDateLoaded != other.__isLoaded(5)) {
                     return false;
                 }
                 if (__updateDateLoaded && !Objects.equals(updateDate, other.updateDate())) {
                     return false;
                 }
                 boolean __remarksLoaded = remarksLoaded;
-                if (__remarksLoaded != other.__isLoaded(24)) {
+                if (__remarksLoaded != other.__isLoaded(6)) {
                     return false;
                 }
                 if (__remarksLoaded && !Objects.equals(remarks, other.remarks())) {
+                    return false;
+                }
+                boolean __loginCodeLoaded = loginCodeLoaded;
+                if (__loginCodeLoaded != other.__isLoaded(8)) {
+                    return false;
+                }
+                if (__loginCodeLoaded && !Objects.equals(loginCode, other.loginCode())) {
+                    return false;
+                }
+                boolean __userNameLoaded = userNameLoaded;
+                if (__userNameLoaded != other.__isLoaded(9)) {
+                    return false;
+                }
+                if (__userNameLoaded && !Objects.equals(userName, other.userName())) {
+                    return false;
+                }
+                boolean __passwordLoaded = passwordLoaded;
+                if (__passwordLoaded != other.__isLoaded(10)) {
+                    return false;
+                }
+                if (__passwordLoaded && !Objects.equals(password, other.password())) {
+                    return false;
+                }
+                boolean __emailLoaded = emailLoaded;
+                if (__emailLoaded != other.__isLoaded(11)) {
+                    return false;
+                }
+                if (__emailLoaded && !Objects.equals(email, other.email())) {
+                    return false;
+                }
+                boolean __mobileLoaded = mobileLoaded;
+                if (__mobileLoaded != other.__isLoaded(12)) {
+                    return false;
+                }
+                if (__mobileLoaded && !Objects.equals(mobile, other.mobile())) {
+                    return false;
+                }
+                boolean __phoneLoaded = phoneLoaded;
+                if (__phoneLoaded != other.__isLoaded(13)) {
+                    return false;
+                }
+                if (__phoneLoaded && !Objects.equals(phone, other.phone())) {
+                    return false;
+                }
+                boolean __sexLoaded = sexLoaded;
+                if (__sexLoaded != other.__isLoaded(14)) {
+                    return false;
+                }
+                if (__sexLoaded && !Objects.equals(sex, other.sex())) {
+                    return false;
+                }
+                boolean __avatarLoaded = avatarLoaded;
+                if (__avatarLoaded != other.__isLoaded(15)) {
+                    return false;
+                }
+                if (__avatarLoaded && !Objects.equals(avatar, other.avatar())) {
+                    return false;
+                }
+                boolean __signLoaded = signLoaded;
+                if (__signLoaded != other.__isLoaded(16)) {
+                    return false;
+                }
+                if (__signLoaded && !Objects.equals(sign, other.sign())) {
+                    return false;
+                }
+                boolean __wxOpenIdLoaded = wxOpenIdLoaded;
+                if (__wxOpenIdLoaded != other.__isLoaded(17)) {
+                    return false;
+                }
+                if (__wxOpenIdLoaded && !Objects.equals(wxOpenId, other.wxOpenId())) {
+                    return false;
+                }
+                boolean __mobileImeiLoaded = mobileImeiLoaded;
+                if (__mobileImeiLoaded != other.__isLoaded(18)) {
+                    return false;
+                }
+                if (__mobileImeiLoaded && !Objects.equals(mobileImei, other.mobileImei())) {
+                    return false;
+                }
+                boolean __userTypeLoaded = userType != null;
+                if (__userTypeLoaded != other.__isLoaded(19)) {
+                    return false;
+                }
+                if (__userTypeLoaded && !Objects.equals(userType, other.userType())) {
+                    return false;
+                }
+                boolean __refCodeLoaded = refCodeLoaded;
+                if (__refCodeLoaded != other.__isLoaded(20)) {
+                    return false;
+                }
+                if (__refCodeLoaded && !Objects.equals(refCode, other.refCode())) {
+                    return false;
+                }
+                boolean __refNameLoaded = refNameLoaded;
+                if (__refNameLoaded != other.__isLoaded(21)) {
+                    return false;
+                }
+                if (__refNameLoaded && !Objects.equals(refName, other.refName())) {
+                    return false;
+                }
+                boolean __mgrTypeLoaded = mgrType != null;
+                if (__mgrTypeLoaded != other.__isLoaded(22)) {
+                    return false;
+                }
+                if (__mgrTypeLoaded && !Objects.equals(mgrType, other.mgrType())) {
+                    return false;
+                }
+                boolean __pwdSecurityLevelLoaded = pwdSecurityLevelLoaded;
+                if (__pwdSecurityLevelLoaded != other.__isLoaded(23)) {
+                    return false;
+                }
+                if (__pwdSecurityLevelLoaded && !Objects.equals(pwdSecurityLevel, other.pwdSecurityLevel())) {
+                    return false;
+                }
+                boolean __userWeightLoaded = userWeightLoaded;
+                if (__userWeightLoaded != other.__isLoaded(24)) {
+                    return false;
+                }
+                if (__userWeightLoaded && !Objects.equals(userWeight, other.userWeight())) {
                     return false;
                 }
                 return true;
@@ -913,171 +906,171 @@ public interface UserDraft extends User, Draft {
                 }
                 Implementor other = (Implementor)obj;
                 boolean __userCodeLoaded = userCode != null;
-                if (__userCodeLoaded != other.__isLoaded(1)) {
+                if (__userCodeLoaded != other.__isLoaded(7)) {
                     return false;
                 }
                 if (__userCodeLoaded && userCode != other.userCode()) {
                     return false;
                 }
-                boolean __loginCodeLoaded = loginCodeLoaded;
-                if (__loginCodeLoaded != other.__isLoaded(2)) {
-                    return false;
-                }
-                if (__loginCodeLoaded && loginCode != other.loginCode()) {
-                    return false;
-                }
-                boolean __userNameLoaded = userNameLoaded;
-                if (__userNameLoaded != other.__isLoaded(3)) {
-                    return false;
-                }
-                if (__userNameLoaded && userName != other.userName()) {
-                    return false;
-                }
-                boolean __passwordLoaded = passwordLoaded;
-                if (__passwordLoaded != other.__isLoaded(4)) {
-                    return false;
-                }
-                if (__passwordLoaded && password != other.password()) {
-                    return false;
-                }
-                boolean __emailLoaded = emailLoaded;
-                if (__emailLoaded != other.__isLoaded(5)) {
-                    return false;
-                }
-                if (__emailLoaded && email != other.email()) {
-                    return false;
-                }
-                boolean __mobileLoaded = mobileLoaded;
-                if (__mobileLoaded != other.__isLoaded(6)) {
-                    return false;
-                }
-                if (__mobileLoaded && mobile != other.mobile()) {
-                    return false;
-                }
-                boolean __phoneLoaded = phoneLoaded;
-                if (__phoneLoaded != other.__isLoaded(7)) {
-                    return false;
-                }
-                if (__phoneLoaded && phone != other.phone()) {
-                    return false;
-                }
-                boolean __sexLoaded = sexLoaded;
-                if (__sexLoaded != other.__isLoaded(8)) {
-                    return false;
-                }
-                if (__sexLoaded && sex != other.sex()) {
-                    return false;
-                }
-                boolean __avatarLoaded = avatarLoaded;
-                if (__avatarLoaded != other.__isLoaded(9)) {
-                    return false;
-                }
-                if (__avatarLoaded && avatar != other.avatar()) {
-                    return false;
-                }
-                boolean __signLoaded = signLoaded;
-                if (__signLoaded != other.__isLoaded(10)) {
-                    return false;
-                }
-                if (__signLoaded && sign != other.sign()) {
-                    return false;
-                }
-                boolean __wxOpenIdLoaded = wxOpenIdLoaded;
-                if (__wxOpenIdLoaded != other.__isLoaded(11)) {
-                    return false;
-                }
-                if (__wxOpenIdLoaded && wxOpenId != other.wxOpenId()) {
-                    return false;
-                }
-                boolean __mobileImeiLoaded = mobileImeiLoaded;
-                if (__mobileImeiLoaded != other.__isLoaded(12)) {
-                    return false;
-                }
-                if (__mobileImeiLoaded && mobileImei != other.mobileImei()) {
-                    return false;
-                }
-                boolean __userTypeLoaded = userType != null;
-                if (__userTypeLoaded != other.__isLoaded(13)) {
-                    return false;
-                }
-                if (__userTypeLoaded && userType != other.userType()) {
-                    return false;
-                }
-                boolean __refCodeLoaded = refCodeLoaded;
-                if (__refCodeLoaded != other.__isLoaded(14)) {
-                    return false;
-                }
-                if (__refCodeLoaded && refCode != other.refCode()) {
-                    return false;
-                }
-                boolean __refNameLoaded = refNameLoaded;
-                if (__refNameLoaded != other.__isLoaded(15)) {
-                    return false;
-                }
-                if (__refNameLoaded && refName != other.refName()) {
-                    return false;
-                }
-                boolean __mgrTypeLoaded = mgrType != null;
-                if (__mgrTypeLoaded != other.__isLoaded(16)) {
-                    return false;
-                }
-                if (__mgrTypeLoaded && mgrType != other.mgrType()) {
-                    return false;
-                }
-                boolean __pwdSecurityLevelLoaded = pwdSecurityLevelLoaded;
-                if (__pwdSecurityLevelLoaded != other.__isLoaded(17)) {
-                    return false;
-                }
-                if (__pwdSecurityLevelLoaded && pwdSecurityLevel != other.pwdSecurityLevel()) {
-                    return false;
-                }
-                boolean __userWeightLoaded = userWeightLoaded;
-                if (__userWeightLoaded != other.__isLoaded(18)) {
-                    return false;
-                }
-                if (__userWeightLoaded && userWeight != other.userWeight()) {
-                    return false;
-                }
                 boolean __statusLoaded = status != null;
-                if (__statusLoaded != other.__isLoaded(19)) {
+                if (__statusLoaded != other.__isLoaded(1)) {
                     return false;
                 }
                 if (__statusLoaded && status != other.status()) {
                     return false;
                 }
                 boolean __createByLoaded = createBy != null;
-                if (__createByLoaded != other.__isLoaded(20)) {
+                if (__createByLoaded != other.__isLoaded(2)) {
                     return false;
                 }
                 if (__createByLoaded && createBy != other.createBy()) {
                     return false;
                 }
                 boolean __createDateLoaded = createDate != null;
-                if (__createDateLoaded != other.__isLoaded(21)) {
+                if (__createDateLoaded != other.__isLoaded(3)) {
                     return false;
                 }
                 if (__createDateLoaded && createDate != other.createDate()) {
                     return false;
                 }
                 boolean __updateByLoaded = updateBy != null;
-                if (__updateByLoaded != other.__isLoaded(22)) {
+                if (__updateByLoaded != other.__isLoaded(4)) {
                     return false;
                 }
                 if (__updateByLoaded && updateBy != other.updateBy()) {
                     return false;
                 }
                 boolean __updateDateLoaded = updateDate != null;
-                if (__updateDateLoaded != other.__isLoaded(23)) {
+                if (__updateDateLoaded != other.__isLoaded(5)) {
                     return false;
                 }
                 if (__updateDateLoaded && updateDate != other.updateDate()) {
                     return false;
                 }
                 boolean __remarksLoaded = remarksLoaded;
-                if (__remarksLoaded != other.__isLoaded(24)) {
+                if (__remarksLoaded != other.__isLoaded(6)) {
                     return false;
                 }
                 if (__remarksLoaded && remarks != other.remarks()) {
+                    return false;
+                }
+                boolean __loginCodeLoaded = loginCodeLoaded;
+                if (__loginCodeLoaded != other.__isLoaded(8)) {
+                    return false;
+                }
+                if (__loginCodeLoaded && loginCode != other.loginCode()) {
+                    return false;
+                }
+                boolean __userNameLoaded = userNameLoaded;
+                if (__userNameLoaded != other.__isLoaded(9)) {
+                    return false;
+                }
+                if (__userNameLoaded && userName != other.userName()) {
+                    return false;
+                }
+                boolean __passwordLoaded = passwordLoaded;
+                if (__passwordLoaded != other.__isLoaded(10)) {
+                    return false;
+                }
+                if (__passwordLoaded && password != other.password()) {
+                    return false;
+                }
+                boolean __emailLoaded = emailLoaded;
+                if (__emailLoaded != other.__isLoaded(11)) {
+                    return false;
+                }
+                if (__emailLoaded && email != other.email()) {
+                    return false;
+                }
+                boolean __mobileLoaded = mobileLoaded;
+                if (__mobileLoaded != other.__isLoaded(12)) {
+                    return false;
+                }
+                if (__mobileLoaded && mobile != other.mobile()) {
+                    return false;
+                }
+                boolean __phoneLoaded = phoneLoaded;
+                if (__phoneLoaded != other.__isLoaded(13)) {
+                    return false;
+                }
+                if (__phoneLoaded && phone != other.phone()) {
+                    return false;
+                }
+                boolean __sexLoaded = sexLoaded;
+                if (__sexLoaded != other.__isLoaded(14)) {
+                    return false;
+                }
+                if (__sexLoaded && sex != other.sex()) {
+                    return false;
+                }
+                boolean __avatarLoaded = avatarLoaded;
+                if (__avatarLoaded != other.__isLoaded(15)) {
+                    return false;
+                }
+                if (__avatarLoaded && avatar != other.avatar()) {
+                    return false;
+                }
+                boolean __signLoaded = signLoaded;
+                if (__signLoaded != other.__isLoaded(16)) {
+                    return false;
+                }
+                if (__signLoaded && sign != other.sign()) {
+                    return false;
+                }
+                boolean __wxOpenIdLoaded = wxOpenIdLoaded;
+                if (__wxOpenIdLoaded != other.__isLoaded(17)) {
+                    return false;
+                }
+                if (__wxOpenIdLoaded && wxOpenId != other.wxOpenId()) {
+                    return false;
+                }
+                boolean __mobileImeiLoaded = mobileImeiLoaded;
+                if (__mobileImeiLoaded != other.__isLoaded(18)) {
+                    return false;
+                }
+                if (__mobileImeiLoaded && mobileImei != other.mobileImei()) {
+                    return false;
+                }
+                boolean __userTypeLoaded = userType != null;
+                if (__userTypeLoaded != other.__isLoaded(19)) {
+                    return false;
+                }
+                if (__userTypeLoaded && userType != other.userType()) {
+                    return false;
+                }
+                boolean __refCodeLoaded = refCodeLoaded;
+                if (__refCodeLoaded != other.__isLoaded(20)) {
+                    return false;
+                }
+                if (__refCodeLoaded && refCode != other.refCode()) {
+                    return false;
+                }
+                boolean __refNameLoaded = refNameLoaded;
+                if (__refNameLoaded != other.__isLoaded(21)) {
+                    return false;
+                }
+                if (__refNameLoaded && refName != other.refName()) {
+                    return false;
+                }
+                boolean __mgrTypeLoaded = mgrType != null;
+                if (__mgrTypeLoaded != other.__isLoaded(22)) {
+                    return false;
+                }
+                if (__mgrTypeLoaded && mgrType != other.mgrType()) {
+                    return false;
+                }
+                boolean __pwdSecurityLevelLoaded = pwdSecurityLevelLoaded;
+                if (__pwdSecurityLevelLoaded != other.__isLoaded(23)) {
+                    return false;
+                }
+                if (__pwdSecurityLevelLoaded && pwdSecurityLevel != other.pwdSecurityLevel()) {
+                    return false;
+                }
+                boolean __userWeightLoaded = userWeightLoaded;
+                if (__userWeightLoaded != other.__isLoaded(24)) {
+                    return false;
+                }
+                if (__userWeightLoaded && userWeight != other.userWeight()) {
                     return false;
                 }
                 return true;
@@ -1152,6 +1145,104 @@ public interface UserDraft extends User, Draft {
                 }
                 Impl modified = __modified();
                 modified.userCode = userCode;
+                return this;
+            }
+
+            @Override
+            public String status() {
+                return (__modified!= null ? __modified : __base).status();
+            }
+
+            @Override
+            public UserDraft setStatus(String status) {
+                if (status == null) {
+                    throw new IllegalArgumentException(
+                        "'status' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
+                    );
+                }
+                Impl modified = __modified();
+                modified.status = status;
+                return this;
+            }
+
+            @Override
+            public String createBy() {
+                return (__modified!= null ? __modified : __base).createBy();
+            }
+
+            @Override
+            public UserDraft setCreateBy(String createBy) {
+                if (createBy == null) {
+                    throw new IllegalArgumentException(
+                        "'createBy' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
+                    );
+                }
+                Impl modified = __modified();
+                modified.createBy = createBy;
+                return this;
+            }
+
+            @Override
+            public LocalDateTime createDate() {
+                return (__modified!= null ? __modified : __base).createDate();
+            }
+
+            @Override
+            public UserDraft setCreateDate(LocalDateTime createDate) {
+                if (createDate == null) {
+                    throw new IllegalArgumentException(
+                        "'createDate' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
+                    );
+                }
+                Impl modified = __modified();
+                modified.createDate = createDate;
+                return this;
+            }
+
+            @Override
+            public String updateBy() {
+                return (__modified!= null ? __modified : __base).updateBy();
+            }
+
+            @Override
+            public UserDraft setUpdateBy(String updateBy) {
+                if (updateBy == null) {
+                    throw new IllegalArgumentException(
+                        "'updateBy' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
+                    );
+                }
+                Impl modified = __modified();
+                modified.updateBy = updateBy;
+                return this;
+            }
+
+            @Override
+            public LocalDateTime updateDate() {
+                return (__modified!= null ? __modified : __base).updateDate();
+            }
+
+            @Override
+            public UserDraft setUpdateDate(LocalDateTime updateDate) {
+                if (updateDate == null) {
+                    throw new IllegalArgumentException(
+                        "'updateDate' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
+                    );
+                }
+                Impl modified = __modified();
+                modified.updateDate = updateDate;
+                return this;
+            }
+
+            @Override
+            public String remarks() {
+                return (__modified!= null ? __modified : __base).remarks();
+            }
+
+            @Override
+            public UserDraft setRemarks(String remarks) {
+                Impl modified = __modified();
+                modified.remarks = remarks;
+                modified.remarksLoaded = true;
                 return this;
             }
 
@@ -1384,132 +1475,34 @@ public interface UserDraft extends User, Draft {
                 return this;
             }
 
-            @Override
-            public String status() {
-                return (__modified!= null ? __modified : __base).status();
-            }
-
-            @Override
-            public UserDraft setStatus(String status) {
-                if (status == null) {
-                    throw new IllegalArgumentException(
-                        "'status' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
-                    );
-                }
-                Impl modified = __modified();
-                modified.status = status;
-                return this;
-            }
-
-            @Override
-            public String createBy() {
-                return (__modified!= null ? __modified : __base).createBy();
-            }
-
-            @Override
-            public UserDraft setCreateBy(String createBy) {
-                if (createBy == null) {
-                    throw new IllegalArgumentException(
-                        "'createBy' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
-                    );
-                }
-                Impl modified = __modified();
-                modified.createBy = createBy;
-                return this;
-            }
-
-            @Override
-            public Date createDate() {
-                return (__modified!= null ? __modified : __base).createDate();
-            }
-
-            @Override
-            public UserDraft setCreateDate(Date createDate) {
-                if (createDate == null) {
-                    throw new IllegalArgumentException(
-                        "'createDate' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
-                    );
-                }
-                Impl modified = __modified();
-                modified.createDate = createDate;
-                return this;
-            }
-
-            @Override
-            public String updateBy() {
-                return (__modified!= null ? __modified : __base).updateBy();
-            }
-
-            @Override
-            public UserDraft setUpdateBy(String updateBy) {
-                if (updateBy == null) {
-                    throw new IllegalArgumentException(
-                        "'updateBy' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
-                    );
-                }
-                Impl modified = __modified();
-                modified.updateBy = updateBy;
-                return this;
-            }
-
-            @Override
-            public Date updateDate() {
-                return (__modified!= null ? __modified : __base).updateDate();
-            }
-
-            @Override
-            public UserDraft setUpdateDate(Date updateDate) {
-                if (updateDate == null) {
-                    throw new IllegalArgumentException(
-                        "'updateDate' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
-                    );
-                }
-                Impl modified = __modified();
-                modified.updateDate = updateDate;
-                return this;
-            }
-
-            @Override
-            public String remarks() {
-                return (__modified!= null ? __modified : __base).remarks();
-            }
-
-            @Override
-            public UserDraft setRemarks(String remarks) {
-                Impl modified = __modified();
-                modified.remarks = remarks;
-                modified.remarksLoaded = true;
-                return this;
-            }
-
             @SuppressWarnings("unchecked")
             @Override
             public void __set(int prop, Object value) {
                 switch (prop) {
-                    case 1: setUserCode((String)value);break;
-                    case 2: setLoginCode((String)value);break;
-                    case 3: setUserName((String)value);break;
-                    case 4: setPassword((String)value);break;
-                    case 5: setEmail((String)value);break;
-                    case 6: setMobile((String)value);break;
-                    case 7: setPhone((String)value);break;
-                    case 8: setSex((String)value);break;
-                    case 9: setAvatar((String)value);break;
-                    case 10: setSign((String)value);break;
-                    case 11: setWxOpenId((String)value);break;
-                    case 12: setMobileImei((String)value);break;
-                    case 13: setUserType((String)value);break;
-                    case 14: setRefCode((String)value);break;
-                    case 15: setRefName((String)value);break;
-                    case 16: setMgrType((String)value);break;
-                    case 17: setPwdSecurityLevel((Integer)value);break;
-                    case 18: setUserWeight((Integer)value);break;
-                    case 19: setStatus((String)value);break;
-                    case 20: setCreateBy((String)value);break;
-                    case 21: setCreateDate((Date)value);break;
-                    case 22: setUpdateBy((String)value);break;
-                    case 23: setUpdateDate((Date)value);break;
-                    case 24: setRemarks((String)value);break;
+                    case 1: setStatus((String)value);break;
+                    case 2: setCreateBy((String)value);break;
+                    case 3: setCreateDate((LocalDateTime)value);break;
+                    case 4: setUpdateBy((String)value);break;
+                    case 5: setUpdateDate((LocalDateTime)value);break;
+                    case 6: setRemarks((String)value);break;
+                    case 7: setUserCode((String)value);break;
+                    case 8: setLoginCode((String)value);break;
+                    case 9: setUserName((String)value);break;
+                    case 10: setPassword((String)value);break;
+                    case 11: setEmail((String)value);break;
+                    case 12: setMobile((String)value);break;
+                    case 13: setPhone((String)value);break;
+                    case 14: setSex((String)value);break;
+                    case 15: setAvatar((String)value);break;
+                    case 16: setSign((String)value);break;
+                    case 17: setWxOpenId((String)value);break;
+                    case 18: setMobileImei((String)value);break;
+                    case 19: setUserType((String)value);break;
+                    case 20: setRefCode((String)value);break;
+                    case 21: setRefName((String)value);break;
+                    case 22: setMgrType((String)value);break;
+                    case 23: setPwdSecurityLevel((Integer)value);break;
+                    case 24: setUserWeight((Integer)value);break;
                     default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
                 }
             }
@@ -1518,6 +1511,12 @@ public interface UserDraft extends User, Draft {
             @Override
             public void __set(String prop, Object value) {
                 switch (prop) {
+                    case "status": setStatus((String)value);break;
+                    case "createBy": setCreateBy((String)value);break;
+                    case "createDate": setCreateDate((LocalDateTime)value);break;
+                    case "updateBy": setUpdateBy((String)value);break;
+                    case "updateDate": setUpdateDate((LocalDateTime)value);break;
+                    case "remarks": setRemarks((String)value);break;
                     case "userCode": setUserCode((String)value);break;
                     case "loginCode": setLoginCode((String)value);break;
                     case "userName": setUserName((String)value);break;
@@ -1536,12 +1535,6 @@ public interface UserDraft extends User, Draft {
                     case "mgrType": setMgrType((String)value);break;
                     case "pwdSecurityLevel": setPwdSecurityLevel((Integer)value);break;
                     case "userWeight": setUserWeight((Integer)value);break;
-                    case "status": setStatus((String)value);break;
-                    case "createBy": setCreateBy((String)value);break;
-                    case "createDate": setCreateDate((Date)value);break;
-                    case "updateBy": setUpdateBy((String)value);break;
-                    case "updateDate": setUpdateDate((Date)value);break;
-                    case "remarks": setRemarks((String)value);break;
                     default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
                 }
             }
@@ -1549,30 +1542,30 @@ public interface UserDraft extends User, Draft {
             @Override
             public void __unload(int prop) {
                 switch (prop) {
-                    case 1: __modified().userCode = null;break;
-                    case 2: __modified().loginCodeLoaded = false;break;
-                    case 3: __modified().userNameLoaded = false;break;
-                    case 4: __modified().passwordLoaded = false;break;
-                    case 5: __modified().emailLoaded = false;break;
-                    case 6: __modified().mobileLoaded = false;break;
-                    case 7: __modified().phoneLoaded = false;break;
-                    case 8: __modified().sexLoaded = false;break;
-                    case 9: __modified().avatarLoaded = false;break;
-                    case 10: __modified().signLoaded = false;break;
-                    case 11: __modified().wxOpenIdLoaded = false;break;
-                    case 12: __modified().mobileImeiLoaded = false;break;
-                    case 13: __modified().userType = null;break;
-                    case 14: __modified().refCodeLoaded = false;break;
-                    case 15: __modified().refNameLoaded = false;break;
-                    case 16: __modified().mgrType = null;break;
-                    case 17: __modified().pwdSecurityLevelLoaded = false;break;
-                    case 18: __modified().userWeightLoaded = false;break;
-                    case 19: __modified().status = null;break;
-                    case 20: __modified().createBy = null;break;
-                    case 21: __modified().createDate = null;break;
-                    case 22: __modified().updateBy = null;break;
-                    case 23: __modified().updateDate = null;break;
-                    case 24: __modified().remarksLoaded = false;break;
+                    case 1: __modified().status = null;break;
+                    case 2: __modified().createBy = null;break;
+                    case 3: __modified().createDate = null;break;
+                    case 4: __modified().updateBy = null;break;
+                    case 5: __modified().updateDate = null;break;
+                    case 6: __modified().remarksLoaded = false;break;
+                    case 7: __modified().userCode = null;break;
+                    case 8: __modified().loginCodeLoaded = false;break;
+                    case 9: __modified().userNameLoaded = false;break;
+                    case 10: __modified().passwordLoaded = false;break;
+                    case 11: __modified().emailLoaded = false;break;
+                    case 12: __modified().mobileLoaded = false;break;
+                    case 13: __modified().phoneLoaded = false;break;
+                    case 14: __modified().sexLoaded = false;break;
+                    case 15: __modified().avatarLoaded = false;break;
+                    case 16: __modified().signLoaded = false;break;
+                    case 17: __modified().wxOpenIdLoaded = false;break;
+                    case 18: __modified().mobileImeiLoaded = false;break;
+                    case 19: __modified().userType = null;break;
+                    case 20: __modified().refCodeLoaded = false;break;
+                    case 21: __modified().refNameLoaded = false;break;
+                    case 22: __modified().mgrType = null;break;
+                    case 23: __modified().pwdSecurityLevelLoaded = false;break;
+                    case 24: __modified().userWeightLoaded = false;break;
                     default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
                 }
             }
@@ -1580,6 +1573,12 @@ public interface UserDraft extends User, Draft {
             @Override
             public void __unload(String prop) {
                 switch (prop) {
+                    case "status": __modified().status = null;break;
+                    case "createBy": __modified().createBy = null;break;
+                    case "createDate": __modified().createDate = null;break;
+                    case "updateBy": __modified().updateBy = null;break;
+                    case "updateDate": __modified().updateDate = null;break;
+                    case "remarks": __modified().remarksLoaded = false;break;
                     case "userCode": __modified().userCode = null;break;
                     case "loginCode": __modified().loginCodeLoaded = false;break;
                     case "userName": __modified().userNameLoaded = false;break;
@@ -1598,12 +1597,6 @@ public interface UserDraft extends User, Draft {
                     case "mgrType": __modified().mgrType = null;break;
                     case "pwdSecurityLevel": __modified().pwdSecurityLevelLoaded = false;break;
                     case "userWeight": __modified().userWeightLoaded = false;break;
-                    case "status": __modified().status = null;break;
-                    case "createBy": __modified().createBy = null;break;
-                    case "createDate": __modified().createDate = null;break;
-                    case "updateBy": __modified().updateBy = null;break;
-                    case "updateDate": __modified().updateDate = null;break;
-                    case "remarks": __modified().remarksLoaded = false;break;
                     default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
                 }
             }

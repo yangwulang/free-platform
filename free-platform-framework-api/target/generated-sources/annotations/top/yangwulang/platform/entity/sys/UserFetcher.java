@@ -32,6 +32,66 @@ public class UserFetcher extends AbstractTypedFetcher<User, UserFetcher> {
     }
 
     @NewChain
+    public UserFetcher status() {
+        return add("status");
+    }
+
+    @NewChain
+    public UserFetcher status(boolean enabled) {
+        return enabled ? add("status") : remove("status");
+    }
+
+    @NewChain
+    public UserFetcher createBy() {
+        return add("createBy");
+    }
+
+    @NewChain
+    public UserFetcher createBy(boolean enabled) {
+        return enabled ? add("createBy") : remove("createBy");
+    }
+
+    @NewChain
+    public UserFetcher createDate() {
+        return add("createDate");
+    }
+
+    @NewChain
+    public UserFetcher createDate(boolean enabled) {
+        return enabled ? add("createDate") : remove("createDate");
+    }
+
+    @NewChain
+    public UserFetcher updateBy() {
+        return add("updateBy");
+    }
+
+    @NewChain
+    public UserFetcher updateBy(boolean enabled) {
+        return enabled ? add("updateBy") : remove("updateBy");
+    }
+
+    @NewChain
+    public UserFetcher updateDate() {
+        return add("updateDate");
+    }
+
+    @NewChain
+    public UserFetcher updateDate(boolean enabled) {
+        return enabled ? add("updateDate") : remove("updateDate");
+    }
+
+    @NewChain
+    public UserFetcher remarks() {
+        return add("remarks");
+    }
+
+    @NewChain
+    public UserFetcher remarks(boolean enabled) {
+        return enabled ? add("remarks") : remove("remarks");
+    }
+
+    @NewChain
     public UserFetcher loginCode() {
         return add("loginCode");
     }
@@ -199,66 +259,6 @@ public class UserFetcher extends AbstractTypedFetcher<User, UserFetcher> {
     @NewChain
     public UserFetcher userWeight(boolean enabled) {
         return enabled ? add("userWeight") : remove("userWeight");
-    }
-
-    @NewChain
-    public UserFetcher status() {
-        return add("status");
-    }
-
-    @NewChain
-    public UserFetcher status(boolean enabled) {
-        return enabled ? add("status") : remove("status");
-    }
-
-    @NewChain
-    public UserFetcher createBy() {
-        return add("createBy");
-    }
-
-    @NewChain
-    public UserFetcher createBy(boolean enabled) {
-        return enabled ? add("createBy") : remove("createBy");
-    }
-
-    @NewChain
-    public UserFetcher createDate() {
-        return add("createDate");
-    }
-
-    @NewChain
-    public UserFetcher createDate(boolean enabled) {
-        return enabled ? add("createDate") : remove("createDate");
-    }
-
-    @NewChain
-    public UserFetcher updateBy() {
-        return add("updateBy");
-    }
-
-    @NewChain
-    public UserFetcher updateBy(boolean enabled) {
-        return enabled ? add("updateBy") : remove("updateBy");
-    }
-
-    @NewChain
-    public UserFetcher updateDate() {
-        return add("updateDate");
-    }
-
-    @NewChain
-    public UserFetcher updateDate(boolean enabled) {
-        return enabled ? add("updateDate") : remove("updateDate");
-    }
-
-    @NewChain
-    public UserFetcher remarks() {
-        return add("remarks");
-    }
-
-    @NewChain
-    public UserFetcher remarks(boolean enabled) {
-        return enabled ? add("remarks") : remove("remarks");
     }
 
     @Override

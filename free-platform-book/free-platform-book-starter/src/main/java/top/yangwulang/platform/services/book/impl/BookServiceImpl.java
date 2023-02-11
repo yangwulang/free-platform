@@ -17,6 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import top.yangwulang.platform.entity.book.BookChapter;
 import top.yangwulang.platform.entity.book.BookInfo;
 import top.yangwulang.platform.exception.ServiceException;
@@ -56,6 +57,7 @@ public class BookServiceImpl implements BookInfoService {
     @Autowired
     private ChapterContentRepository chapterContentRepository;
 
+    @Transactional(rollbackFor = Exception.class)
     public void parse() {
         Call call = oneQxsBookFactory.getClient().newCall(
                 oneQxsBookFactory.getBaseRequestBuild().url("https://www.1qxs.com/all/0_0_2_0_0_1.html").get().build()
@@ -85,12 +87,14 @@ public class BookServiceImpl implements BookInfoService {
                 .subscribe(bookInfo -> bookInfoRepository.save(bookInfo));
     }
 
+    @Transactional(rollbackFor = Exception.class)
     public void spiderChapter(BookInfo bookInfo) {
         oneQxsBookFactory.parseChapters(bookInfo)
                 .doOnError(Throwable::printStackTrace)
                 .subscribe(bookChapters -> bookChapterRepository.saveAll(bookChapters));
     }
 
+    @Transactional(rollbackFor = Exception.class)
     public void spiderContent(BookChapter bookChapter) {
         oneQxsBookFactory.parseChapterContent(bookChapter)
                 .repeat()

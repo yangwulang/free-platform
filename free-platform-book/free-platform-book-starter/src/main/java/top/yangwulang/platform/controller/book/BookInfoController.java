@@ -37,7 +37,7 @@ public class BookInfoController {
 
     @PostMapping("/")
     public Page<BookInfo> listData(HttpServletRequest httpServletRequest, @RequestBody BookInfoInput bookInfoInput) {
-        return bookInfoRepository.findAll(PageHttpRequest.of(httpServletRequest).toPage(), BookInfoFetcher.$, bookInfoInput);
+        return bookInfoRepository.findAll(PageHttpRequest.of(httpServletRequest).toPage(), BookInfoFetcher.$.allScalarFields(), bookInfoInput);
     }
 
     @GetMapping("/")

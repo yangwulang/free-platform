@@ -88,6 +88,17 @@ export default {
 .layout {
   height: 100%;
 
+  .layout-sider {
+    position: fixed;
+    height: 100vh;
+    left: 0;
+    overflow: auto;
+  }
+
+  .boardContent {
+    margin-left: 200px;
+  }
+
   .ivu-layout {
     height: 100%;
 

@@ -7,13 +7,13 @@ let BASE_URL = process.env.VUE_APP_BASE_URL;
 const store = authStore()
 
 
-axios.defaults.baseURL = String(BASE_URL);
+// axios.defaults.baseURL = String(BASE_URL);
 axios.defaults.timeout = 10000
 axios.defaults.headers["Content-Type"] = 'application/json'
 // axios.defaults.headers.post['Accept'] = 'application/x-www-form-urlencoded'
 
 let $axios = axios.create({
-    baseURL: String(BASE_URL),
+    // baseURL: String(BASE_URL),
     timeout: 10000
 })
 

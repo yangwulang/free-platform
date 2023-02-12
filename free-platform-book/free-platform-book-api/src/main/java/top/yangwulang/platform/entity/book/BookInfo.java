@@ -27,7 +27,7 @@ public interface BookInfo {
     /**
      * 小说名称
      */
-    @NotNull
+//    @NotNull
     @Schema(description = "书籍名称")
     String bookName();
 

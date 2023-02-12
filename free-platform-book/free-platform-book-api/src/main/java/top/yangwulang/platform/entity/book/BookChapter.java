@@ -35,7 +35,7 @@ public interface BookChapter {
     @ManyToOne
     @Key
     @OnDissociate(DissociateAction.DELETE)
-    @Schema(description = "书籍信息")
+    @Schema(description = "书籍信息", requiredMode = Schema.RequiredMode.REQUIRED)
     BookInfo book();
 
     /**

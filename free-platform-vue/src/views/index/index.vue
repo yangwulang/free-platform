@@ -1,11 +1,9 @@
 <template>
   <Card style="height: calc(100% - .652rem)">
-    <template #extra>
-      <Space wrap>
-        <Button type="primary" shape="circle" icon="md-add" @click="handleAdd">新增</Button>
-        <Button shape="circle" icon="ios-search">查询</Button>
-      </Space>
-    </template>
+    <Space style="margin-bottom: 10px" wrap>
+      <Button type="primary" shape="circle" icon="md-add" @click="handleAdd">新增</Button>
+      <Button shape="circle" icon="ios-search">查询</Button>
+    </Space>
     <BaseTable :columns="columns" :data="data" :rightPager="true"/>
   </Card>
 </template>

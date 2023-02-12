@@ -1,5 +1,5 @@
 input BookInfoInput {
     #allScalars(BookInfo)
 
-    id(chapters) as authorIds
+    // id(chapters) as authorIds
 }

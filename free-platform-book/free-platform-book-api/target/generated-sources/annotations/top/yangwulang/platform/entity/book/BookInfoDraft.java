@@ -74,7 +74,7 @@ public interface BookInfoDraft extends BookInfo, Draft {
                 (ctx, base) -> new DraftImpl(ctx, (BookInfo)base)
             )
             .id(1, "id", String.class)
-            .add(2, "bookName", ImmutablePropCategory.SCALAR, String.class, false)
+            .add(2, "bookName", ImmutablePropCategory.SCALAR, String.class, true)
             .add(3, "author", ImmutablePropCategory.SCALAR, String.class, true)
             .add(4, "describe", ImmutablePropCategory.SCALAR, String.class, true)
             .add(5, "status", ImmutablePropCategory.SCALAR, String.class, true)
@@ -148,6 +148,8 @@ public interface BookInfoDraft extends BookInfo, Draft {
 
             String bookName;
 
+            boolean bookNameLoaded = false;
+
             String author;
 
             boolean authorLoaded = false;
@@ -184,7 +186,7 @@ public interface BookInfoDraft extends BookInfo, Draft {
 
             @Override
             public String bookName() {
-                if (bookName == null) {
+                if (!bookNameLoaded) {
                     throw new UnloadedException(BookInfo.class, "bookName");
                 }
                 return bookName;
@@ -259,7 +261,7 @@ public interface BookInfoDraft extends BookInfo, Draft {
             public boolean __isLoaded(int prop) {
                 switch (prop) {
                     case 1: return id != null;
-                    case 2: return bookName != null;
+                    case 2: return bookNameLoaded;
                     case 3: return authorLoaded;
                     case 4: return describeLoaded;
                     case 5: return statusLoaded;
@@ -275,7 +277,7 @@ public interface BookInfoDraft extends BookInfo, Draft {
             public boolean __isLoaded(String prop) {
                 switch (prop) {
                     case "id": return id != null;
-                    case "bookName": return bookName != null;
+                    case "bookName": return bookNameLoaded;
                     case "author": return authorLoaded;
                     case "describe": return describeLoaded;
                     case "status": return statusLoaded;
@@ -295,7 +297,7 @@ public interface BookInfoDraft extends BookInfo, Draft {
                     // If entity-id is loaded, return directly
                     return hash;
                 }
-                if (bookName != null) {
+                if (bookNameLoaded && bookName != null) {
                     hash = 31 * hash + bookName.hashCode();
                 }
                 if (authorLoaded && author != null) {
@@ -327,7 +329,7 @@ public interface BookInfoDraft extends BookInfo, Draft {
                 if (id != null) {
                     hash = 31 * hash + System.identityHashCode(id);
                 }
-                if (bookName != null) {
+                if (bookNameLoaded) {
                     hash = 31 * hash + System.identityHashCode(bookName);
                 }
                 if (authorLoaded) {
@@ -373,7 +375,7 @@ public interface BookInfoDraft extends BookInfo, Draft {
                     // If entity-id is loaded, return directly
                     return Objects.equals(id, other.id());
                 }
-                boolean __bookNameLoaded = bookName != null;
+                boolean __bookNameLoaded = bookNameLoaded;
                 if (__bookNameLoaded != other.__isLoaded(2)) {
                     return false;
                 }
@@ -444,7 +446,7 @@ public interface BookInfoDraft extends BookInfo, Draft {
                 if (__idLoaded && id != other.id()) {
                     return false;
                 }
-                boolean __bookNameLoaded = bookName != null;
+                boolean __bookNameLoaded = bookNameLoaded;
                 if (__bookNameLoaded != other.__isLoaded(2)) {
                     return false;
                 }
@@ -582,13 +584,9 @@ public interface BookInfoDraft extends BookInfo, Draft {
 
             @Override
             public BookInfoDraft setBookName(String bookName) {
-                if (bookName == null) {
-                    throw new IllegalArgumentException(
-                        "'bookName' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
-                    );
-                }
                 Impl modified = __modified();
                 modified.bookName = bookName;
+                modified.bookNameLoaded = true;
                 return this;
             }
 
@@ -746,7 +744,7 @@ public interface BookInfoDraft extends BookInfo, Draft {
             public void __unload(int prop) {
                 switch (prop) {
                     case 1: __modified().id = null;break;
-                    case 2: __modified().bookName = null;break;
+                    case 2: __modified().bookNameLoaded = false;break;
                     case 3: __modified().authorLoaded = false;break;
                     case 4: __modified().describeLoaded = false;break;
                     case 5: __modified().statusLoaded = false;break;
@@ -762,7 +760,7 @@ public interface BookInfoDraft extends BookInfo, Draft {
             public void __unload(String prop) {
                 switch (prop) {
                     case "id": __modified().id = null;break;
-                    case "bookName": __modified().bookName = null;break;
+                    case "bookName": __modified().bookNameLoaded = false;break;
                     case "author": __modified().authorLoaded = false;break;
                     case "describe": __modified().describeLoaded = false;break;
                     case "status": __modified().statusLoaded = false;break;

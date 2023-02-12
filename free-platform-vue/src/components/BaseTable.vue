@@ -2,7 +2,8 @@
   <div class="baseTable">
     <Table
         class="table"
-        height="480"
+        :height="height"
+        :max-height="maxHeight"
         :columns="columns"
         :data="realData"
         :loading="isLoading"
@@ -47,6 +48,14 @@ export default {
     stripe: {
       type: Boolean,
       default: () => true
+    },
+    maxHeight: {
+      type: Number,
+      default: () => 600
+    },
+    height: {
+      type: Number,
+      default: () => 480
     },
     border: {
       type: Boolean,
@@ -146,9 +155,10 @@ export default {
 
 <style lang="scss" scoped>
 .baseTable {
-  min-height: 35rem;
-  max-height: 100rem;
+  //min-height: 35rem;
+  //max-height: 100rem;
   width: 100%;
+  overflow: hidden;
 
   .table {
     margin-bottom: 30px;
@@ -156,6 +166,7 @@ export default {
 
   .page-right {
     float: right;
+    margin-bottom: 5rem;
   }
 
   .page-left {

@@ -1,7 +1,7 @@
 export default {
     book: {
         bookInfo: {
-            list: '/platform/book/info'
+            list: '/api/book/info/'
         }
     }
 }

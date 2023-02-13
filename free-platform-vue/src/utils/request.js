@@ -34,6 +34,7 @@ $axios.interceptors.response.use((response) => {
         messageEvent.message.error(message)
         return Promise.reject(result)
     } else {
+        messageEvent.message.success(message)
         return Promise.resolve(result)
     }
 }, error => {

@@ -8,6 +8,10 @@ let column = [{
     key: 'category',
     width: 100
 }, {
+    title: '作者',
+    key: 'author',
+    width: 180
+}, {
     title: '小说封面',
     key: 'bookImgPath',
     render: (h, {row}) => {

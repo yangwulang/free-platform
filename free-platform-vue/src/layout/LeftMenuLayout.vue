@@ -78,7 +78,7 @@ export default {
   methods: {
     handleMenuSelect(name, {active, open}) {
       this.openList = open
-      this.$router.push(active.name)
+      this.$router.push({name: active.name})
     }
   }
 }

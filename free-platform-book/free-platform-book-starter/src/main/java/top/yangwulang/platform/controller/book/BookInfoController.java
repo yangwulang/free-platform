@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import top.yangwulang.platform.entity.PageHttpRequest;
 import top.yangwulang.platform.entity.book.BookChapter;
 import top.yangwulang.platform.entity.book.BookInfo;
-import top.yangwulang.platform.entity.book.BookInfoDraft;
 import top.yangwulang.platform.entity.book.BookInfoFetcher;
 import top.yangwulang.platform.entity.book.dto.BookInfoInput;
 import top.yangwulang.platform.repository.book.BookInfoRepository;
@@ -34,20 +33,25 @@ public class BookInfoController {
     public BookInfoRepository bookInfoRepository;
 
 
-
     @PostMapping("/")
     public Page<BookInfo> listData(HttpServletRequest httpServletRequest, @RequestBody BookInfoInput bookInfoInput) {
         return bookInfoRepository.findAll(PageHttpRequest.of(httpServletRequest).toPage(), BookInfoFetcher.$.allScalarFields(), bookInfoInput);
     }
 
-    @GetMapping("/")
+    @GetMapping("/{id}")
+    @Operation(summary = "获取书籍信息")
+    public BookInfo get(@PathVariable("id") String id) {
+        return bookInfoRepository.findById(id).orElse(null);
+    }
+
+    @GetMapping("/parse")
     public Void test() {
         bookService.parse();
         return null;
     }
 
-    @PostMapping("/g")
-    public Void getsd(@RequestBody BookInfo bookInfo) {
+    @PostMapping("/asyncChapter")
+    public Void asyncChapter(@RequestBody BookInfo bookInfo) {
         bookService.spiderChapter(bookInfo);
         return null;
     }

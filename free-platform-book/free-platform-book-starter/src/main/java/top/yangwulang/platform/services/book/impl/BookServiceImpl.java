@@ -89,7 +89,8 @@ public class BookServiceImpl implements BookInfoService {
 
     @Transactional(rollbackFor = Exception.class)
     public void spiderChapter(BookInfo bookInfo) {
-        oneQxsBookFactory.parseChapters(bookInfo)
+        BookInfo queryBook = bookInfoRepository.findById(bookInfo.id()).orElseThrow(() -> new ServiceException("未找到id为" + bookInfo.id() + "的书籍信息!"));
+        oneQxsBookFactory.parseChapters(queryBook)
                 .doOnError(Throwable::printStackTrace)
                 .subscribe(bookChapters -> bookChapterRepository.saveAll(bookChapters));
     }

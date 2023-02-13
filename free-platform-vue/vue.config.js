@@ -21,7 +21,11 @@ module.exports = defineConfig({
 
 module.exports = {
     lintOnSave: false,
+    // 生产环境是否要生成 sourceMap
+    productionSourceMap: false,
+    // publicPath: process.env.NODE_ENV === 'production' ? '/prod/' : './',
     devServer: {
+        port: 8081,
         proxy: {
             '/api': {
                 pathRewrite: {

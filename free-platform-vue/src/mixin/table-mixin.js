@@ -10,8 +10,8 @@ export default {
         this.ref = getCurrentInstance()
     },
     methods: {
-        publicSearch() {
-            this.ref.ctx.$refs.baseTable.publicGet()
+        publicSearch(form) {
+            this.ref.ctx.$refs.baseTable.publicGet(form)
         }
     }
 }

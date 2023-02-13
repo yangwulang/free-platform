@@ -11,7 +11,15 @@
         :stripe="stripe"
     >
       <template #action="{ row, index }">
-        <Button type="text" @click="handleViewChapter(row, index)">查看章节</Button>
+        <Button
+            v-for="(item, index) in actionButtons"
+            :key="`optionBtn-${index}`"
+            :type="item.type"
+            @click="item.click(row, index)"
+        >
+          {{ item.name }}
+        </Button>
+        <Button type="text" @click="handleEdit(row, index)">编辑</Button>
       </template>
     </Table>
     <Page
@@ -42,6 +50,10 @@ export default {
   },
   props: {
     columns: {
+      type: Array,
+      default: () => []
+    },
+    actionButtons: {
       type: Array,
       default: () => []
     },
@@ -96,6 +108,11 @@ export default {
     disabledPager: {
       type: Boolean,
       default: () => false
+    },
+    model: {
+      type: Object,
+      default: () => {
+      }
     }
   },
   data() {
@@ -110,7 +127,7 @@ export default {
   },
   computed: {},
   methods: {
-    publicGet() {
+    publicGet(form = {}) {
       this.isLoading = true;
       if (this.data) {
         this.realData = this.data
@@ -120,7 +137,7 @@ export default {
           if (this.realAction === '') {
             this.realAction = this.action
           }
-          this.requestListData()
+          this.requestListData(form)
         } else {
           this.realData = []
           this.total = this.realData.length
@@ -128,8 +145,8 @@ export default {
       }
       this.isLoading = false;
     },
-    requestListData() {
-      request(this.realAction, {}, 'post').then(result => {
+    requestListData(form = {}) {
+      request(this.realAction, form, 'post').then(result => {
         this.realData = result.content
         this.total = result.totalElements
         this.realPageSize = result.numberOfElements
@@ -145,10 +162,15 @@ export default {
     },
     handleViewChapter(row, index) {
       this.$emit('handleViewChapter', row, index)
+    },
+    handleEdit(row, index) {
+      this.$emit('handleEdit', row, index)
     }
   },
   created() {
-    this.publicGet()
+    this.$nextTick(() => {
+      this.publicGet(this.model)
+    })
   }
 }
 </script>

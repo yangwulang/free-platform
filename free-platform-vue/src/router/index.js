@@ -27,7 +27,8 @@ const realRoutes = [
     {
         path: '/',
         name: 'home',
-        redirect: `/dbTransfer/left${routes.length > 0 ? '/'+routes[0].path : ''}`
+        // redirect: `/dbTransfer/left${routes.length > 0 ? '/'+routes[0].path : ''}`
+        redirect: `/dbTransfer/left`
     },
     {
         path: "/dbTransfer/left",

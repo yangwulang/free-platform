@@ -6,9 +6,9 @@ import lombok.EqualsAndHashCode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-import javax.websocket.*;
-import javax.websocket.server.PathParam;
-import javax.websocket.server.ServerEndpoint;
+import jakarta.websocket.*;
+import jakarta.websocket.server.PathParam;
+import jakarta.websocket.server.ServerEndpoint;
 import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.CopyOnWriteArraySet;
@@ -21,7 +21,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
 @Component
 @Slf4j
 @EqualsAndHashCode
-@ServerEndpoint("/book/websocket/{id}")
+@ServerEndpoint("/book/websocket/{type}/{id}")
 public class BookSocketServer {
     private static int onlineCount = 0;
     private static final CopyOnWriteArraySet<BookSocketServer> WRITE_ARRAY_SET = new CopyOnWriteArraySet<>();
@@ -30,13 +30,15 @@ public class BookSocketServer {
 
     private String id;
     private final static ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+    private String type;
 
     /**
      * 连接建立成功调用的方法
      */
     @OnOpen
-    public void onOpen(Session session, @PathParam("id") String id) {
+    public void onOpen(Session session,@PathParam("type") String type, @PathParam("id") String id) {
         this.session = session;
+        this.type = type;
         WRITE_ARRAY_SET.add(this);
         this.id = id;
         addOnlineCount();

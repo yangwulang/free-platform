@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import top.yangwulang.platform.entity.PageHttpRequest;
 import top.yangwulang.platform.entity.book.BookChapter;
 import top.yangwulang.platform.entity.book.BookChapterFetcher;
+import top.yangwulang.platform.entity.book.BookInfoFetcher;
 import top.yangwulang.platform.entity.book.dto.BookChapterInput;
 import top.yangwulang.platform.repository.book.BookChapterRepository;
 
@@ -24,17 +25,22 @@ import top.yangwulang.platform.repository.book.BookChapterRepository;
         @Tag(name = "书籍章节管理"),
 })
 @RestController
-@RequestMapping("${adminPath}/book/info")
+@RequestMapping("${adminPath}/book/chapter")
 public class BookChapterController {
     @Autowired
     private BookChapterRepository bookChapterRepository;
 
 
-
     @Operation(summary = "获取书籍章节列表书籍")
     @PostMapping("/")
     public Page<BookChapter> listData(HttpServletRequest httpServletRequest, @RequestBody BookChapterInput chapter) {
-        return bookChapterRepository.findAll(PageHttpRequest.of(httpServletRequest).toPage(), BookChapterFetcher.$.allScalarFields(), chapter);
+        return bookChapterRepository.findAll(
+                PageHttpRequest.of(httpServletRequest).toPage(),
+                BookChapterFetcher.$.allScalarFields().book(
+                        BookInfoFetcher.$.bookName()
+                ),
+                chapter
+        );
     }
 
 }

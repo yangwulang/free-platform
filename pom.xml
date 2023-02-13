@@ -43,6 +43,7 @@
         <minio.version>7.1.4</minio.version>
         <elasticsearch.version>7.14.1</elasticsearch.version>
         <protobuf.version>4.0.0-rc-2</protobuf.version>
+        <retrofit.version>2.9.0</retrofit.version>
     </properties>
 
     <repositories>
@@ -109,6 +110,16 @@
                 <groupId>com.google.protobuf</groupId>
                 <artifactId>protobuf-java</artifactId>
                 <version>${protobuf.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.squareup.retrofit2</groupId>
+                <artifactId>retrofit</artifactId>
+                <version>${retrofit.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.squareup.retrofit2</groupId>
+                <artifactId>adapter-rxjava3</artifactId>
+                <version>${retrofit.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

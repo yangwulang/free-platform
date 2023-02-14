@@ -1,7 +1,7 @@
 <template>
   <div class="layout">
-    <Layout>
-      <Header :style="{position: 'fixed', width: '100%', zIndex: 1}">
+    <Layout class="layout-body">
+      <Header class="layout-header" :style="{position: 'fixed', width: '100%', zIndex: 1}">
         <Menu mode="horizontal" :theme="theme" active-name="1">
           <div class="layout-logo"></div>
           <div class="layout-nav">
@@ -42,7 +42,7 @@ let theme = "light"
 <style lang="scss" scoped>
 .layout {
   border: 1px solid #d7dde4;
-  background: #f5f7f9;
+  background: #000;
   position: relative;
   border-radius: 4px;
   overflow: hidden;

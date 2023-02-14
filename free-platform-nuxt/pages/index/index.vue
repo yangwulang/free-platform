@@ -1,7 +1,8 @@
 <template>
-<div>
-  index
-</div>
+  <div>
+    index
+    <NuxtWelcome/>
+  </div>
 </template>
 
 <script setup lang="ts">

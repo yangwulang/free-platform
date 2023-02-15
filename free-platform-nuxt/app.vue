@@ -1,8 +1,9 @@
 <template>
   <NuxtLayout :name="layout">
-    <template #body>
+    <template v-slot:body="data">
+      <div>{{data.currentRoute}}</div>
       <!--      <Button>测试机哦</Button>-->
-      <NuxtPage/>
+      <NuxtPage :route="data.currentRoute"/>
     </template>
   </NuxtLayout>
 </template>

@@ -38,20 +38,20 @@ const fetch = (url: string, options?: any, headers?: any): Promise<any> => {
     })
 }
 
-export default class Http {
-    GET(url: string, params?: any, headers?: any): Promise<any> {
+export default class Http<T> {
+    GET(url: string, params?: any, headers?: any): Promise<T> {
         return fetch(url, {method: 'get', params: params}, headers)
     }
 
-    POST(url: string, params?: any, headers?: any): Promise<any> {
+    POST(url: string, params?: any, headers?: any): Promise<T> {
         return fetch(url, {method: 'post', params: params}, headers)
     }
 
-    PUT(url: string, params?: any, headers?: any): Promise<any> {
+    PUT(url: string, params?: any, headers?: any): Promise<T> {
         return fetch(url, {method: 'put', params: params}, headers)
     }
 
-    DELETE(url: string, params?: any, headers?: any): Promise<any> {
+    DELETE(url: string, params?: any, headers?: any): Promise<T> {
         return fetch(url, {method: 'delete', params: params}, headers)
     }
 }

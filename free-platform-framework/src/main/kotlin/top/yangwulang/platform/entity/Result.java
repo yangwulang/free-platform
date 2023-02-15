@@ -46,6 +46,13 @@ public class Result<T> {
         return this;
     }
 
+    public Result<T> success(String message, T result) {
+        this.setCode("200");
+        this.setMessage(message);
+        this.setResult(result);
+        return this;
+    }
+
 
     public Result<T> failedResult(T result) {
         this.setCode("500");

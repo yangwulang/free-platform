@@ -1,7 +1,10 @@
 package top.yangwulang.platform.config
 
+import cn.dev33.satoken.interceptor.SaInterceptor
+import cn.dev33.satoken.stp.StpUtil
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.babyfish.jimmer.jackson.ImmutableModule
+import org.springframework.beans.factory.annotation.Value
 //import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -16,9 +19,20 @@ import java.text.SimpleDateFormat
 
 @Configuration
 open class WebConfiguration : WebMvcConfigurer {
+
+    @Value("\${adminPath:/api}")
+    lateinit var adminPath: String
+
     override fun addInterceptors(registry: InterceptorRegistry) {
         registry.addInterceptor(TimeInterceptor())
         registry.addInterceptor(AjaxResultInterceptor())
+        registry
+            .addInterceptor(
+                SaInterceptor {
+                    StpUtil.checkLogin()
+                }
+            )
+            .addPathPatterns("$adminPath/**")
     }
 
     override fun addCorsMappings(registry: CorsRegistry) {

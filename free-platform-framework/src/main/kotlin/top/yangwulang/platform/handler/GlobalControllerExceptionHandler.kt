@@ -3,8 +3,8 @@ package top.yangwulang.platform.handler
 import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.apache.commons.lang3.StringUtils
-import org.apache.shiro.authz.UnauthenticatedException
-import org.apache.shiro.authz.UnauthorizedException
+//import org.apache.shiro.authz.UnauthenticatedException
+//import org.apache.shiro.authz.UnauthorizedException
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.core.MethodParameter
@@ -59,7 +59,7 @@ class GlobalControllerExceptionHandler : ResponseBodyAdvice<Any> {
         return result
     }
 
-    @ExceptionHandler(UnauthenticatedException::class)
+    /*@ExceptionHandler(UnauthenticatedException::class)
     fun onUnauthenticatedException(exception: UnauthenticatedException) : Result<Unit> {
         val result = Result<Unit>()
         result.code = "403"
@@ -73,7 +73,7 @@ class GlobalControllerExceptionHandler : ResponseBodyAdvice<Any> {
         result.code = "403"
         result.message = "暂无相关权限"
         return result
-    }
+    }*/
 
     override fun supports(returnType: MethodParameter, converterType: Class<out HttpMessageConverter<*>>): Boolean {
         return !(returnType.parameterType == Result::class.java || returnType.hasMethodAnnotation(NotWarpResult::class.java))

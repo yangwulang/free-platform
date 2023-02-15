@@ -1,5 +1,7 @@
 package top.yangwulang.platform.controller.book;
 
+import co.elastic.clients.elasticsearch.core.SearchResponse;
+import co.elastic.clients.json.JsonData;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.tags.Tags;
@@ -14,6 +16,9 @@ import top.yangwulang.platform.entity.book.BookInfoFetcher;
 import top.yangwulang.platform.entity.book.dto.BookInfoInput;
 import top.yangwulang.platform.repository.book.BookInfoRepository;
 import top.yangwulang.platform.services.book.impl.BookServiceImpl;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author yangwulang
@@ -42,6 +47,12 @@ public class BookInfoController {
     @Operation(summary = "获取书籍信息")
     public BookInfo get(@PathVariable("id") String id) {
         return bookInfoRepository.findById(id).orElse(null);
+    }
+
+
+    @GetMapping("/searchAll")
+    public List<BookInfoInput> searchAll(String searchInfo) {
+        return bookService.findByEsAll(searchInfo);
     }
 
     @GetMapping("/parse")

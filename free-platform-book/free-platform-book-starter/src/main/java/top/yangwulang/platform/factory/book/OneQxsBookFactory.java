@@ -34,6 +34,13 @@ public class OneQxsBookFactory extends AbstractBookFactory {
 
     private final Pattern mathEndHtmlPattern = Pattern.compile("(\\d).html");
 
+    /**
+     * 解析html中的书籍信息，返回一个{@link Observable<BookInfo>}对象，此对象是rxjava的发布对象，
+     * 可以添加一个监听对象对其进行监听
+     *
+     * @param html 书籍列表页
+     * @return rxjava的发布对象
+     */
     public Observable<BookInfo> parseBookInfo(String html) {
         return Observable
                 .create((ObservableEmitter<Element> emitter) -> {
@@ -83,7 +90,12 @@ public class OneQxsBookFactory extends AbstractBookFactory {
                 });
     }
 
-
+    /**
+     * 从书籍信息中解析出这本书的所有章节信息，并返回所有章节信息，通过书籍信息中的 bookFrom 字段进行请求获取书籍。
+     *
+     * @param bookInfo 书籍信息
+     * @return 所有章节信息
+     */
     public Observable<List<BookChapter>> parseChapters(BookInfo bookInfo) {
         String bookFrom = bookInfo.bookFrom();
         String realChapterUrl = bookFrom.replaceAll("/xs/", "/list/");
@@ -118,6 +130,12 @@ public class OneQxsBookFactory extends AbstractBookFactory {
                 });
     }
 
+    /**
+     * 解析章节信息中的所有小说章节内容，1qxs中将一章拆分成了几段，需要将这几段进行拼合
+     *
+     * @param chapter 章节信息
+     * @return 章节内容
+     */
     public Observable<ChapterContent> parseChapterContent(BookChapter chapter) {
         return Observable
                 .create((ObservableEmitter<Map<String, Object>> emitter) -> {
@@ -148,9 +166,10 @@ public class OneQxsBookFactory extends AbstractBookFactory {
                             CountDownLatch countDownLatch = new CountDownLatch(totalPage - currentPageIndex);
                             for (Integer i = currentPageIndex; i <= totalPage; i++) {
                                 if (i == 1) {
+                                    // 如果是第一页，则不对这一页进行请求，应为在上面那个发射器已经读取过一次第一页的内容
                                     continue;
                                 }
-                                // 这里睡眠0.8s是防止请求太快导致对方服务器502
+                                // 这里睡眠0.8s是防止请求太快导致对方服务器502，此处应该能通过代理的ip地址池进行绕过
                                 Thread.sleep(800);
                                 Request request = super.baseRequestBuild.get()
                                         .url(regex.replace(chapter.fromPath(), "$1/" + i + ".html"))

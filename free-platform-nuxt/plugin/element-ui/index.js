@@ -1,12 +1,10 @@
-import { defineNuxtPlugin } from '#app'
-import viewUi from 'view-ui-plus'
+import {defineNuxtPlugin} from '#app'
+import 'element-plus/dist/index.css'
 
 import Cookies from "js-cookie"
 import {createI18n} from "vue-i18n";
-import zh from "view-ui-plus/dist/locale/zh-CN";
-import en from "view-ui-plus/dist/locale/en-US";
-
-import 'view-ui-plus/dist/styles/viewuiplus.css'
+import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
+import ElementPlus from 'element-plus'
 
 
 const i18n = createI18n({
@@ -15,12 +13,11 @@ const i18n = createI18n({
     locale: Cookies.get('lang') || 'zh-CN',
     warnHtmlMessage: false,
     messages: {
-        'zh-CN': zh,
-        'en-US': en
+        'zh-CN': zhCn,
     }
 })
 
 export default defineNuxtPlugin((nuxtApp) => {
     // Doing something with nuxtApp
-    nuxtApp.vueApp.use(viewUi, {i18n})
+    nuxtApp.vueApp.use(ElementPlus, {i18n, size: 'small', zIndex: 3000})
 })

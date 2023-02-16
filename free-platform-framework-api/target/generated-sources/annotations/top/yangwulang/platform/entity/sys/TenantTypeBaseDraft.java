@@ -240,8 +240,8 @@ public interface TenantTypeBaseDraft extends TenantTypeBase, Draft {
                         "'tenant' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
                     );
                 }
-                Impl modified = __modified();
-                modified.tenant = tenant;
+                Impl __tmpModified = __modified();
+                __tmpModified.tenant = tenant;
                 return this;
             }
 
@@ -292,11 +292,11 @@ public interface TenantTypeBaseDraft extends TenantTypeBase, Draft {
                 __resolving = true;
                 try {
                     Implementor base = __base;
-                    Impl modified = __modified;
-                    if (modified == null || ImmutableSpi.equals(base, modified, true)) {
+                    Impl __tmpModified = __modified;
+                    if (__tmpModified == null || ImmutableSpi.equals(base, __tmpModified, true)) {
                         return base;
                     }
-                    return modified;
+                    return __tmpModified;
                 }
                 finally {
                     __resolving = false;
@@ -304,13 +304,32 @@ public interface TenantTypeBaseDraft extends TenantTypeBase, Draft {
             }
 
             private Impl __modified() {
-                Impl modified = __modified;
-                if (modified == null) {
-                    modified = __base.clone();
-                    __modified = modified;
+                Impl __tmpModified = __modified;
+                if (__tmpModified == null) {
+                    __tmpModified = __base.clone();
+                    __modified = __tmpModified;
                 }
-                return modified;
+                return __tmpModified;
             }
+        }
+    }
+
+    class MapStruct {
+        private String tenant;
+
+        public MapStruct tenant(String tenant) {
+            if (tenant != null) {
+                this.tenant = tenant;
+            }
+            return this;
+        }
+
+        public TenantTypeBase build() {
+            return TenantTypeBaseDraft.$.produce(draft -> {
+                if (tenant != null) {
+                    draft.setTenant(tenant);
+                }
+            });
         }
     }
 }

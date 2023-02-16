@@ -241,8 +241,8 @@ public interface TypeBaseDraft extends TypeBase, Draft {
                         "'id' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
                     );
                 }
-                Impl modified = __modified();
-                modified.id = id;
+                Impl __tmpModified = __modified();
+                __tmpModified.id = id;
                 return this;
             }
 
@@ -293,11 +293,11 @@ public interface TypeBaseDraft extends TypeBase, Draft {
                 __resolving = true;
                 try {
                     Implementor base = __base;
-                    Impl modified = __modified;
-                    if (modified == null || ImmutableSpi.equals(base, modified, true)) {
+                    Impl __tmpModified = __modified;
+                    if (__tmpModified == null || ImmutableSpi.equals(base, __tmpModified, true)) {
                         return base;
                     }
-                    return modified;
+                    return __tmpModified;
                 }
                 finally {
                     __resolving = false;
@@ -305,13 +305,32 @@ public interface TypeBaseDraft extends TypeBase, Draft {
             }
 
             private Impl __modified() {
-                Impl modified = __modified;
-                if (modified == null) {
-                    modified = __base.clone();
-                    __modified = modified;
+                Impl __tmpModified = __modified;
+                if (__tmpModified == null) {
+                    __tmpModified = __base.clone();
+                    __modified = __tmpModified;
                 }
-                return modified;
+                return __tmpModified;
             }
+        }
+    }
+
+    class MapStruct {
+        private String id;
+
+        public MapStruct id(String id) {
+            if (id != null) {
+                this.id = id;
+            }
+            return this;
+        }
+
+        public TypeBase build() {
+            return TypeBaseDraft.$.produce(draft -> {
+                if (id != null) {
+                    draft.setId(id);
+                }
+            });
         }
     }
 }

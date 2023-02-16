@@ -589,8 +589,8 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
                         "'id' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
                     );
                 }
-                Impl modified = __modified();
-                modified.id = id;
+                Impl __tmpModified = __modified();
+                __tmpModified.id = id;
                 return this;
             }
 
@@ -606,8 +606,8 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
                         "'status' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
                     );
                 }
-                Impl modified = __modified();
-                modified.status = status;
+                Impl __tmpModified = __modified();
+                __tmpModified.status = status;
                 return this;
             }
 
@@ -623,8 +623,8 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
                         "'createBy' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
                     );
                 }
-                Impl modified = __modified();
-                modified.createBy = createBy;
+                Impl __tmpModified = __modified();
+                __tmpModified.createBy = createBy;
                 return this;
             }
 
@@ -640,8 +640,8 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
                         "'createDate' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
                     );
                 }
-                Impl modified = __modified();
-                modified.createDate = createDate;
+                Impl __tmpModified = __modified();
+                __tmpModified.createDate = createDate;
                 return this;
             }
 
@@ -657,8 +657,8 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
                         "'updateBy' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
                     );
                 }
-                Impl modified = __modified();
-                modified.updateBy = updateBy;
+                Impl __tmpModified = __modified();
+                __tmpModified.updateBy = updateBy;
                 return this;
             }
 
@@ -674,8 +674,8 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
                         "'updateDate' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
                     );
                 }
-                Impl modified = __modified();
-                modified.updateDate = updateDate;
+                Impl __tmpModified = __modified();
+                __tmpModified.updateDate = updateDate;
                 return this;
             }
 
@@ -686,9 +686,9 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
 
             @Override
             public DictTypeDraft setRemarks(String remarks) {
-                Impl modified = __modified();
-                modified.remarks = remarks;
-                modified.remarksLoaded = true;
+                Impl __tmpModified = __modified();
+                __tmpModified.remarks = remarks;
+                __tmpModified.remarksLoaded = true;
                 return this;
             }
 
@@ -699,9 +699,9 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
 
             @Override
             public DictTypeDraft setDictName(String dictName) {
-                Impl modified = __modified();
-                modified.dictName = dictName;
-                modified.dictNameLoaded = true;
+                Impl __tmpModified = __modified();
+                __tmpModified.dictName = dictName;
+                __tmpModified.dictNameLoaded = true;
                 return this;
             }
 
@@ -712,9 +712,9 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
 
             @Override
             public DictTypeDraft setDictType(String dictType) {
-                Impl modified = __modified();
-                modified.dictType = dictType;
-                modified.dictTypeLoaded = true;
+                Impl __tmpModified = __modified();
+                __tmpModified.dictType = dictType;
+                __tmpModified.dictTypeLoaded = true;
                 return this;
             }
 
@@ -726,9 +726,9 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
 
             @Override
             public DictTypeDraft setSys(boolean sys) {
-                Impl modified = __modified();
-                modified.sys = sys;
-                modified.sysLoaded = true;
+                Impl __tmpModified = __modified();
+                __tmpModified.sys = sys;
+                __tmpModified.sysLoaded = true;
                 return this;
             }
 
@@ -821,11 +821,11 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
                 __resolving = true;
                 try {
                     Implementor base = __base;
-                    Impl modified = __modified;
-                    if (modified == null || ImmutableSpi.equals(base, modified, true)) {
+                    Impl __tmpModified = __modified;
+                    if (__tmpModified == null || ImmutableSpi.equals(base, __tmpModified, true)) {
                         return base;
                     }
-                    return modified;
+                    return __tmpModified;
                 }
                 finally {
                     __resolving = false;
@@ -833,13 +833,144 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
             }
 
             private Impl __modified() {
-                Impl modified = __modified;
-                if (modified == null) {
-                    modified = __base.clone();
-                    __modified = modified;
+                Impl __tmpModified = __modified;
+                if (__tmpModified == null) {
+                    __tmpModified = __base.clone();
+                    __modified = __tmpModified;
                 }
-                return modified;
+                return __tmpModified;
             }
+        }
+    }
+
+    class MapStruct {
+        private String id;
+
+        private String status;
+
+        private String createBy;
+
+        private LocalDateTime createDate;
+
+        private String updateBy;
+
+        private LocalDateTime updateDate;
+
+        private boolean remarksLoaded;
+
+        private String remarks;
+
+        private boolean dictNameLoaded;
+
+        private String dictName;
+
+        private boolean dictTypeLoaded;
+
+        private String dictType;
+
+        private boolean sysLoaded;
+
+        private boolean sys;
+
+        public MapStruct id(String id) {
+            if (id != null) {
+                this.id = id;
+            }
+            return this;
+        }
+
+        public MapStruct status(String status) {
+            if (status != null) {
+                this.status = status;
+            }
+            return this;
+        }
+
+        public MapStruct createBy(String createBy) {
+            if (createBy != null) {
+                this.createBy = createBy;
+            }
+            return this;
+        }
+
+        public MapStruct createDate(LocalDateTime createDate) {
+            if (createDate != null) {
+                this.createDate = createDate;
+            }
+            return this;
+        }
+
+        public MapStruct updateBy(String updateBy) {
+            if (updateBy != null) {
+                this.updateBy = updateBy;
+            }
+            return this;
+        }
+
+        public MapStruct updateDate(LocalDateTime updateDate) {
+            if (updateDate != null) {
+                this.updateDate = updateDate;
+            }
+            return this;
+        }
+
+        public MapStruct remarks(String remarks) {
+            this.remarksLoaded = true;
+            this.remarks = remarks;
+            return this;
+        }
+
+        public MapStruct dictName(String dictName) {
+            this.dictNameLoaded = true;
+            this.dictName = dictName;
+            return this;
+        }
+
+        public MapStruct dictType(String dictType) {
+            this.dictTypeLoaded = true;
+            this.dictType = dictType;
+            return this;
+        }
+
+        public MapStruct sys(boolean sys) {
+            this.sysLoaded = true;
+            this.sys = sys;
+            return this;
+        }
+
+        public DictType build() {
+            return DictTypeDraft.$.produce(draft -> {
+                if (id != null) {
+                    draft.setId(id);
+                }
+                if (status != null) {
+                    draft.setStatus(status);
+                }
+                if (createBy != null) {
+                    draft.setCreateBy(createBy);
+                }
+                if (createDate != null) {
+                    draft.setCreateDate(createDate);
+                }
+                if (updateBy != null) {
+                    draft.setUpdateBy(updateBy);
+                }
+                if (updateDate != null) {
+                    draft.setUpdateDate(updateDate);
+                }
+                if (remarksLoaded) {
+                    draft.setRemarks(remarks);
+                }
+                if (dictNameLoaded) {
+                    draft.setDictName(dictName);
+                }
+                if (dictTypeLoaded) {
+                    draft.setDictType(dictType);
+                }
+                if (sysLoaded) {
+                    draft.setSys(sys);
+                }
+            });
         }
     }
 }

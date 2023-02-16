@@ -1,9 +1,9 @@
 package top.yangwulang.platform.entity.sys;
 
-import org.babyfish.jimmer.Immutable;
 import org.babyfish.jimmer.sql.*;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -14,7 +14,6 @@ import java.util.List;
  */
 @Table(name = "sys_dict_data")
 @Entity
-@Immutable(value = Immutable.Nullity.NULLABLE)
 public interface DictData extends DataTypeBase {
 
     /**
@@ -26,7 +25,7 @@ public interface DictData extends DataTypeBase {
     @ManyToOne
     @JoinColumn(name = "pid")
     @OnDissociate(DissociateAction.DELETE)
-    DictData parent();
+    @Null DictData parent();
 
     @OneToMany(mappedBy = "parent")
     @NotNull
@@ -38,77 +37,77 @@ public interface DictData extends DataTypeBase {
     @Key
     @ManyToOne
     @OnDissociate(DissociateAction.DELETE)
-    DictType dictType();
+    @Null DictType dictType();
 
     /**
      * 所有父级编号
      */
-    String parentCodes();
+    @Null String parentCodes();
 
     /**
      * 本级排序号（升序）
      */
-    BigDecimal treeSort();
+    @Null BigDecimal treeSort();
 
     /**
      * 所有级别排序号
      */
-    String treeSorts();
+    @Null String treeSorts();
 
     /**
      * 是否最末级
      */
-    String treeLeaf();
+    @Null String treeLeaf();
 
     /**
      * 层次级别
      */
-    BigDecimal treeLevel();
+    @Null BigDecimal treeLevel();
 
     /**
      * 全节点名
      */
-    String treeNames();
+    @Null String treeNames();
 
     /**
      * 字典标签
      */
-    String dictLabel();
+    @Null String dictLabel();
 
     /**
      * 字典键值
      */
-    String dictValue();
+    @Null String dictValue();
 
     /**
      * 系统内置（1是 0否）
      */
     @Column(name = "is_sys")
-    boolean isSys();
+    @Null boolean isSys();
 
     /**
      * 字典描述
      */
-    String description();
+    @Null String description();
 
     /**
      * css样式（如：color:red)
      */
-    String cssStyle();
+    @Null String cssStyle();
 
     /**
      * css类名（如：red）
      */
-    String cssClass();
+    @Null String cssClass();
 
     /**
      * 租户代码
      */
-    String corpCode();
+    @Null String corpCode();
 
     /**
      * 租户名称
      */
-    String corpName();
+    @Null String corpName();
 }
 

@@ -31,149 +31,151 @@ import org.babyfish.jimmer.runtime.Internal;
 import org.babyfish.jimmer.runtime.NonSharedList;
 import org.babyfish.jimmer.sql.OneToMany;
 
-public interface DictDataDraft extends DictData, DataTypeBaseDraft {
-    DictDataDraft.Producer $ = Producer.INSTANCE;
+public interface MenuDraft extends Menu, DataTypeBaseDraft {
+    MenuDraft.Producer $ = Producer.INSTANCE;
 
     @OldChain
-    DictDataDraft setId(String id);
+    MenuDraft setId(String id);
 
     @OldChain
-    DictDataDraft setStatus(String status);
+    MenuDraft setStatus(String status);
 
     @OldChain
-    DictDataDraft setCreateBy(String createBy);
+    MenuDraft setCreateBy(String createBy);
 
     @OldChain
-    DictDataDraft setCreateDate(LocalDateTime createDate);
+    MenuDraft setCreateDate(LocalDateTime createDate);
 
     @OldChain
-    DictDataDraft setUpdateBy(String updateBy);
+    MenuDraft setUpdateBy(String updateBy);
 
     @OldChain
-    DictDataDraft setUpdateDate(LocalDateTime updateDate);
+    MenuDraft setUpdateDate(LocalDateTime updateDate);
 
     @OldChain
-    DictDataDraft setRemarks(String remarks);
+    MenuDraft setRemarks(String remarks);
 
-    DictDataDraft parent();
+    MenuDraft parent();
 
-    DictDataDraft parent(boolean autoCreate);
-
-    @OldChain
-    DictDataDraft setParent(DictData parent);
+    MenuDraft parent(boolean autoCreate);
 
     @OldChain
-    DictDataDraft applyParent(DraftConsumer<DictDataDraft> block);
+    MenuDraft setParent(Menu parent);
 
     @OldChain
-    DictDataDraft applyParent(DictData base, DraftConsumer<DictDataDraft> block);
-
-    List<DictDataDraft> children(boolean autoCreate);
+    MenuDraft applyParent(DraftConsumer<MenuDraft> block);
 
     @OldChain
-    DictDataDraft setChildren(List<DictData> children);
+    MenuDraft applyParent(Menu base, DraftConsumer<MenuDraft> block);
+
+    List<MenuDraft> children(boolean autoCreate);
 
     @OldChain
-    DictDataDraft addIntoChildren(DraftConsumer<DictDataDraft> block);
+    MenuDraft setChildren(List<Menu> children);
 
     @OldChain
-    DictDataDraft addIntoChildren(DictData base, DraftConsumer<DictDataDraft> block);
-
-    DictTypeDraft dictType();
-
-    DictTypeDraft dictType(boolean autoCreate);
+    MenuDraft addIntoChildren(DraftConsumer<MenuDraft> block);
 
     @OldChain
-    DictDataDraft setDictType(DictType dictType);
+    MenuDraft addIntoChildren(Menu base, DraftConsumer<MenuDraft> block);
 
     @OldChain
-    DictDataDraft applyDictType(DraftConsumer<DictTypeDraft> block);
+    MenuDraft setParentCodes(String parentCodes);
 
     @OldChain
-    DictDataDraft applyDictType(DictType base, DraftConsumer<DictTypeDraft> block);
+    MenuDraft setTreeSort(BigDecimal treeSort);
 
     @OldChain
-    DictDataDraft setParentCodes(String parentCodes);
+    MenuDraft setTreeSorts(String treeSorts);
 
     @OldChain
-    DictDataDraft setTreeSort(BigDecimal treeSort);
+    MenuDraft setTreeLeaf(String treeLeaf);
 
     @OldChain
-    DictDataDraft setTreeSorts(String treeSorts);
+    MenuDraft setTreeLevel(BigDecimal treeLevel);
 
     @OldChain
-    DictDataDraft setTreeLeaf(String treeLeaf);
+    MenuDraft setTreeNames(String treeNames);
 
     @OldChain
-    DictDataDraft setTreeLevel(BigDecimal treeLevel);
+    MenuDraft setMenuName(String menuName);
 
     @OldChain
-    DictDataDraft setTreeNames(String treeNames);
+    MenuDraft setMenuType(String menuType);
 
     @OldChain
-    DictDataDraft setDictLabel(String dictLabel);
+    MenuDraft setMenuHref(String menuHref);
 
     @OldChain
-    DictDataDraft setDictValue(String dictValue);
+    MenuDraft setMenuComponent(String menuComponent);
 
     @OldChain
-    DictDataDraft setSys(boolean sys);
+    MenuDraft setMenuTarget(String menuTarget);
 
     @OldChain
-    DictDataDraft setDescription(String description);
+    MenuDraft setMenuIcon(String menuIcon);
 
     @OldChain
-    DictDataDraft setCssStyle(String cssStyle);
+    MenuDraft setMenuColor(String menuColor);
 
     @OldChain
-    DictDataDraft setCssClass(String cssClass);
+    MenuDraft setMenuTitle(String menuTitle);
 
     @OldChain
-    DictDataDraft setCorpCode(String corpCode);
+    MenuDraft setPermission(String permission);
 
     @OldChain
-    DictDataDraft setCorpName(String corpName);
+    MenuDraft setWeight(BigDecimal weight);
+
+    @OldChain
+    MenuDraft setShow(boolean show);
+
+    @OldChain
+    MenuDraft setSysCode(String sysCode);
 
     class Producer {
         static final Producer INSTANCE = new Producer();
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                DictData.class,
+                Menu.class,
                 DataTypeBaseDraft.Producer.TYPE,
-                (ctx, base) -> new DraftImpl(ctx, (DictData)base)
+                (ctx, base) -> new DraftImpl(ctx, (Menu)base)
             )
-            .keyReference(8, "parent", DictData.class, true)
-            .add(9, "children", OneToMany.class, DictData.class, false)
-            .keyReference(10, "dictType", DictType.class, true)
-            .add(11, "parentCodes", ImmutablePropCategory.SCALAR, String.class, true)
-            .add(12, "treeSort", ImmutablePropCategory.SCALAR, BigDecimal.class, true)
-            .add(13, "treeSorts", ImmutablePropCategory.SCALAR, String.class, true)
-            .add(14, "treeLeaf", ImmutablePropCategory.SCALAR, String.class, true)
-            .add(15, "treeLevel", ImmutablePropCategory.SCALAR, BigDecimal.class, true)
-            .add(16, "treeNames", ImmutablePropCategory.SCALAR, String.class, true)
-            .add(17, "dictLabel", ImmutablePropCategory.SCALAR, String.class, true)
-            .add(18, "dictValue", ImmutablePropCategory.SCALAR, String.class, true)
-            .add(19, "sys", ImmutablePropCategory.SCALAR, boolean.class, true)
-            .add(20, "description", ImmutablePropCategory.SCALAR, String.class, true)
-            .add(21, "cssStyle", ImmutablePropCategory.SCALAR, String.class, true)
-            .add(22, "cssClass", ImmutablePropCategory.SCALAR, String.class, true)
-            .add(23, "corpCode", ImmutablePropCategory.SCALAR, String.class, true)
-            .add(24, "corpName", ImmutablePropCategory.SCALAR, String.class, true)
+            .keyReference(8, "parent", Menu.class, true)
+            .add(9, "children", OneToMany.class, Menu.class, false)
+            .add(10, "parentCodes", ImmutablePropCategory.SCALAR, String.class, false)
+            .add(11, "treeSort", ImmutablePropCategory.SCALAR, BigDecimal.class, false)
+            .add(12, "treeSorts", ImmutablePropCategory.SCALAR, String.class, false)
+            .add(13, "treeLeaf", ImmutablePropCategory.SCALAR, String.class, false)
+            .add(14, "treeLevel", ImmutablePropCategory.SCALAR, BigDecimal.class, false)
+            .add(15, "treeNames", ImmutablePropCategory.SCALAR, String.class, false)
+            .add(16, "menuName", ImmutablePropCategory.SCALAR, String.class, false)
+            .add(17, "menuType", ImmutablePropCategory.SCALAR, String.class, false)
+            .add(18, "menuHref", ImmutablePropCategory.SCALAR, String.class, true)
+            .add(19, "menuComponent", ImmutablePropCategory.SCALAR, String.class, true)
+            .add(20, "menuTarget", ImmutablePropCategory.SCALAR, String.class, true)
+            .add(21, "menuIcon", ImmutablePropCategory.SCALAR, String.class, true)
+            .add(22, "menuColor", ImmutablePropCategory.SCALAR, String.class, true)
+            .add(23, "menuTitle", ImmutablePropCategory.SCALAR, String.class, true)
+            .add(24, "permission", ImmutablePropCategory.SCALAR, String.class, true)
+            .add(25, "weight", ImmutablePropCategory.SCALAR, BigDecimal.class, false)
+            .add(26, "show", ImmutablePropCategory.SCALAR, boolean.class, false)
+            .add(27, "sysCode", ImmutablePropCategory.SCALAR, String.class, false)
             .build();
 
         private Producer() {
         }
 
-        public DictData produce(DraftConsumer<DictDataDraft> block) {
+        public Menu produce(DraftConsumer<MenuDraft> block) {
             return produce(null, block);
         }
 
-        public DictData produce(DictData base, DraftConsumer<DictDataDraft> block) {
-            return (DictData)Internal.produce(TYPE, base, block);
+        public Menu produce(Menu base, DraftConsumer<MenuDraft> block) {
+            return (Menu)Internal.produce(TYPE, base, block);
         }
 
-        public abstract static class Implementor implements DictData, ImmutableSpi {
+        public abstract static class Implementor implements Menu, ImmutableSpi {
             @Override
             public Object __get(int prop) {
                 switch (prop) {
@@ -186,21 +188,24 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
                     case 7: return remarks();
                     case 8: return parent();
                     case 9: return children();
-                    case 10: return dictType();
-                    case 11: return parentCodes();
-                    case 12: return treeSort();
-                    case 13: return treeSorts();
-                    case 14: return treeLeaf();
-                    case 15: return treeLevel();
-                    case 16: return treeNames();
-                    case 17: return dictLabel();
-                    case 18: return dictValue();
-                    case 19: return (Boolean)isSys();
-                    case 20: return description();
-                    case 21: return cssStyle();
-                    case 22: return cssClass();
-                    case 23: return corpCode();
-                    case 24: return corpName();
+                    case 10: return parentCodes();
+                    case 11: return treeSort();
+                    case 12: return treeSorts();
+                    case 13: return treeLeaf();
+                    case 14: return treeLevel();
+                    case 15: return treeNames();
+                    case 16: return menuName();
+                    case 17: return menuType();
+                    case 18: return menuHref();
+                    case 19: return menuComponent();
+                    case 20: return menuTarget();
+                    case 21: return menuIcon();
+                    case 22: return menuColor();
+                    case 23: return menuTitle();
+                    case 24: return permission();
+                    case 25: return weight();
+                    case 26: return (Boolean)isShow();
+                    case 27: return sysCode();
                     default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
                 }
             }
@@ -217,21 +222,24 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
                     case "remarks": return remarks();
                     case "parent": return parent();
                     case "children": return children();
-                    case "dictType": return dictType();
                     case "parentCodes": return parentCodes();
                     case "treeSort": return treeSort();
                     case "treeSorts": return treeSorts();
                     case "treeLeaf": return treeLeaf();
                     case "treeLevel": return treeLevel();
                     case "treeNames": return treeNames();
-                    case "dictLabel": return dictLabel();
-                    case "dictValue": return dictValue();
-                    case "sys": return (Boolean)isSys();
-                    case "description": return description();
-                    case "cssStyle": return cssStyle();
-                    case "cssClass": return cssClass();
-                    case "corpCode": return corpCode();
-                    case "corpName": return corpName();
+                    case "menuName": return menuName();
+                    case "menuType": return menuType();
+                    case "menuHref": return menuHref();
+                    case "menuComponent": return menuComponent();
+                    case "menuTarget": return menuTarget();
+                    case "menuIcon": return menuIcon();
+                    case "menuColor": return menuColor();
+                    case "menuTitle": return menuTitle();
+                    case "permission": return permission();
+                    case "weight": return weight();
+                    case "show": return (Boolean)isShow();
+                    case "sysCode": return sysCode();
                     default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
                 }
             }
@@ -268,76 +276,68 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
 
             boolean remarksLoaded = false;
 
-            DictData parent;
+            Menu parent;
 
             boolean parentLoaded = false;
 
-            NonSharedList<DictData> children;
-
-            DictType dictType;
-
-            boolean dictTypeLoaded = false;
+            NonSharedList<Menu> children;
 
             String parentCodes;
 
-            boolean parentCodesLoaded = false;
-
             BigDecimal treeSort;
-
-            boolean treeSortLoaded = false;
 
             String treeSorts;
 
-            boolean treeSortsLoaded = false;
-
             String treeLeaf;
-
-            boolean treeLeafLoaded = false;
 
             BigDecimal treeLevel;
 
-            boolean treeLevelLoaded = false;
-
             String treeNames;
 
-            boolean treeNamesLoaded = false;
+            String menuName;
 
-            String dictLabel;
+            String menuType;
 
-            boolean dictLabelLoaded = false;
+            String menuHref;
 
-            String dictValue;
+            boolean menuHrefLoaded = false;
 
-            boolean dictValueLoaded = false;
+            String menuComponent;
 
-            boolean sys;
+            boolean menuComponentLoaded = false;
 
-            boolean sysLoaded = false;
+            String menuTarget;
 
-            String description;
+            boolean menuTargetLoaded = false;
 
-            boolean descriptionLoaded = false;
+            String menuIcon;
 
-            String cssStyle;
+            boolean menuIconLoaded = false;
 
-            boolean cssStyleLoaded = false;
+            String menuColor;
 
-            String cssClass;
+            boolean menuColorLoaded = false;
 
-            boolean cssClassLoaded = false;
+            String menuTitle;
 
-            String corpCode;
+            boolean menuTitleLoaded = false;
 
-            boolean corpCodeLoaded = false;
+            String permission;
 
-            String corpName;
+            boolean permissionLoaded = false;
 
-            boolean corpNameLoaded = false;
+            BigDecimal weight;
+
+            boolean show;
+
+            boolean showLoaded = false;
+
+            String sysCode;
 
             @Override
             public String id() {
                 if (id == null) {
-                    throw new UnloadedException(DictData.class, "id");
+                    throw new UnloadedException(Menu.class, "id");
                 }
                 return id;
             }
@@ -345,7 +345,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             @Override
             public String status() {
                 if (status == null) {
-                    throw new UnloadedException(DictData.class, "status");
+                    throw new UnloadedException(Menu.class, "status");
                 }
                 return status;
             }
@@ -353,7 +353,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             @Override
             public String createBy() {
                 if (createBy == null) {
-                    throw new UnloadedException(DictData.class, "createBy");
+                    throw new UnloadedException(Menu.class, "createBy");
                 }
                 return createBy;
             }
@@ -361,7 +361,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             @Override
             public LocalDateTime createDate() {
                 if (createDate == null) {
-                    throw new UnloadedException(DictData.class, "createDate");
+                    throw new UnloadedException(Menu.class, "createDate");
                 }
                 return createDate;
             }
@@ -369,7 +369,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             @Override
             public String updateBy() {
                 if (updateBy == null) {
-                    throw new UnloadedException(DictData.class, "updateBy");
+                    throw new UnloadedException(Menu.class, "updateBy");
                 }
                 return updateBy;
             }
@@ -377,7 +377,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             @Override
             public LocalDateTime updateDate() {
                 if (updateDate == null) {
-                    throw new UnloadedException(DictData.class, "updateDate");
+                    throw new UnloadedException(Menu.class, "updateDate");
                 }
                 return updateDate;
             }
@@ -385,146 +385,170 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             @Override
             public String remarks() {
                 if (!remarksLoaded) {
-                    throw new UnloadedException(DictData.class, "remarks");
+                    throw new UnloadedException(Menu.class, "remarks");
                 }
                 return remarks;
             }
 
             @Override
-            public DictData parent() {
+            public Menu parent() {
                 if (!parentLoaded) {
-                    throw new UnloadedException(DictData.class, "parent");
+                    throw new UnloadedException(Menu.class, "parent");
                 }
                 return parent;
             }
 
             @Override
-            public List<DictData> children() {
+            public List<Menu> children() {
                 if (children == null) {
-                    throw new UnloadedException(DictData.class, "children");
+                    throw new UnloadedException(Menu.class, "children");
                 }
                 return children;
             }
 
             @Override
-            public DictType dictType() {
-                if (!dictTypeLoaded) {
-                    throw new UnloadedException(DictData.class, "dictType");
-                }
-                return dictType;
-            }
-
-            @Override
             public String parentCodes() {
-                if (!parentCodesLoaded) {
-                    throw new UnloadedException(DictData.class, "parentCodes");
+                if (parentCodes == null) {
+                    throw new UnloadedException(Menu.class, "parentCodes");
                 }
                 return parentCodes;
             }
 
             @Override
             public BigDecimal treeSort() {
-                if (!treeSortLoaded) {
-                    throw new UnloadedException(DictData.class, "treeSort");
+                if (treeSort == null) {
+                    throw new UnloadedException(Menu.class, "treeSort");
                 }
                 return treeSort;
             }
 
             @Override
             public String treeSorts() {
-                if (!treeSortsLoaded) {
-                    throw new UnloadedException(DictData.class, "treeSorts");
+                if (treeSorts == null) {
+                    throw new UnloadedException(Menu.class, "treeSorts");
                 }
                 return treeSorts;
             }
 
             @Override
             public String treeLeaf() {
-                if (!treeLeafLoaded) {
-                    throw new UnloadedException(DictData.class, "treeLeaf");
+                if (treeLeaf == null) {
+                    throw new UnloadedException(Menu.class, "treeLeaf");
                 }
                 return treeLeaf;
             }
 
             @Override
             public BigDecimal treeLevel() {
-                if (!treeLevelLoaded) {
-                    throw new UnloadedException(DictData.class, "treeLevel");
+                if (treeLevel == null) {
+                    throw new UnloadedException(Menu.class, "treeLevel");
                 }
                 return treeLevel;
             }
 
             @Override
             public String treeNames() {
-                if (!treeNamesLoaded) {
-                    throw new UnloadedException(DictData.class, "treeNames");
+                if (treeNames == null) {
+                    throw new UnloadedException(Menu.class, "treeNames");
                 }
                 return treeNames;
             }
 
             @Override
-            public String dictLabel() {
-                if (!dictLabelLoaded) {
-                    throw new UnloadedException(DictData.class, "dictLabel");
+            public String menuName() {
+                if (menuName == null) {
+                    throw new UnloadedException(Menu.class, "menuName");
                 }
-                return dictLabel;
+                return menuName;
             }
 
             @Override
-            public String dictValue() {
-                if (!dictValueLoaded) {
-                    throw new UnloadedException(DictData.class, "dictValue");
+            public String menuType() {
+                if (menuType == null) {
+                    throw new UnloadedException(Menu.class, "menuType");
                 }
-                return dictValue;
+                return menuType;
+            }
+
+            @Override
+            public String menuHref() {
+                if (!menuHrefLoaded) {
+                    throw new UnloadedException(Menu.class, "menuHref");
+                }
+                return menuHref;
+            }
+
+            @Override
+            public String menuComponent() {
+                if (!menuComponentLoaded) {
+                    throw new UnloadedException(Menu.class, "menuComponent");
+                }
+                return menuComponent;
+            }
+
+            @Override
+            public String menuTarget() {
+                if (!menuTargetLoaded) {
+                    throw new UnloadedException(Menu.class, "menuTarget");
+                }
+                return menuTarget;
+            }
+
+            @Override
+            public String menuIcon() {
+                if (!menuIconLoaded) {
+                    throw new UnloadedException(Menu.class, "menuIcon");
+                }
+                return menuIcon;
+            }
+
+            @Override
+            public String menuColor() {
+                if (!menuColorLoaded) {
+                    throw new UnloadedException(Menu.class, "menuColor");
+                }
+                return menuColor;
+            }
+
+            @Override
+            public String menuTitle() {
+                if (!menuTitleLoaded) {
+                    throw new UnloadedException(Menu.class, "menuTitle");
+                }
+                return menuTitle;
+            }
+
+            @Override
+            public String permission() {
+                if (!permissionLoaded) {
+                    throw new UnloadedException(Menu.class, "permission");
+                }
+                return permission;
+            }
+
+            @Override
+            public BigDecimal weight() {
+                if (weight == null) {
+                    throw new UnloadedException(Menu.class, "weight");
+                }
+                return weight;
             }
 
             @Override
             @JsonIgnore
-            public boolean isSys() {
-                if (!sysLoaded) {
-                    throw new UnloadedException(DictData.class, "sys");
+            public boolean isShow() {
+                if (!showLoaded) {
+                    throw new UnloadedException(Menu.class, "show");
                 }
-                return sys;
+                return show;
             }
 
             @Override
-            public String description() {
-                if (!descriptionLoaded) {
-                    throw new UnloadedException(DictData.class, "description");
+            public String sysCode() {
+                if (sysCode == null) {
+                    throw new UnloadedException(Menu.class, "sysCode");
                 }
-                return description;
-            }
-
-            @Override
-            public String cssStyle() {
-                if (!cssStyleLoaded) {
-                    throw new UnloadedException(DictData.class, "cssStyle");
-                }
-                return cssStyle;
-            }
-
-            @Override
-            public String cssClass() {
-                if (!cssClassLoaded) {
-                    throw new UnloadedException(DictData.class, "cssClass");
-                }
-                return cssClass;
-            }
-
-            @Override
-            public String corpCode() {
-                if (!corpCodeLoaded) {
-                    throw new UnloadedException(DictData.class, "corpCode");
-                }
-                return corpCode;
-            }
-
-            @Override
-            public String corpName() {
-                if (!corpNameLoaded) {
-                    throw new UnloadedException(DictData.class, "corpName");
-                }
-                return corpName;
+                return sysCode;
             }
 
             @Override
@@ -548,21 +572,24 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
                     case 7: return remarksLoaded;
                     case 8: return parentLoaded;
                     case 9: return children != null;
-                    case 10: return dictTypeLoaded;
-                    case 11: return parentCodesLoaded;
-                    case 12: return treeSortLoaded;
-                    case 13: return treeSortsLoaded;
-                    case 14: return treeLeafLoaded;
-                    case 15: return treeLevelLoaded;
-                    case 16: return treeNamesLoaded;
-                    case 17: return dictLabelLoaded;
-                    case 18: return dictValueLoaded;
-                    case 19: return sysLoaded;
-                    case 20: return descriptionLoaded;
-                    case 21: return cssStyleLoaded;
-                    case 22: return cssClassLoaded;
-                    case 23: return corpCodeLoaded;
-                    case 24: return corpNameLoaded;
+                    case 10: return parentCodes != null;
+                    case 11: return treeSort != null;
+                    case 12: return treeSorts != null;
+                    case 13: return treeLeaf != null;
+                    case 14: return treeLevel != null;
+                    case 15: return treeNames != null;
+                    case 16: return menuName != null;
+                    case 17: return menuType != null;
+                    case 18: return menuHrefLoaded;
+                    case 19: return menuComponentLoaded;
+                    case 20: return menuTargetLoaded;
+                    case 21: return menuIconLoaded;
+                    case 22: return menuColorLoaded;
+                    case 23: return menuTitleLoaded;
+                    case 24: return permissionLoaded;
+                    case 25: return weight != null;
+                    case 26: return showLoaded;
+                    case 27: return sysCode != null;
                     default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
                 }
             }
@@ -579,21 +606,24 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
                     case "remarks": return remarksLoaded;
                     case "parent": return parentLoaded;
                     case "children": return children != null;
-                    case "dictType": return dictTypeLoaded;
-                    case "parentCodes": return parentCodesLoaded;
-                    case "treeSort": return treeSortLoaded;
-                    case "treeSorts": return treeSortsLoaded;
-                    case "treeLeaf": return treeLeafLoaded;
-                    case "treeLevel": return treeLevelLoaded;
-                    case "treeNames": return treeNamesLoaded;
-                    case "dictLabel": return dictLabelLoaded;
-                    case "dictValue": return dictValueLoaded;
-                    case "sys": return sysLoaded;
-                    case "description": return descriptionLoaded;
-                    case "cssStyle": return cssStyleLoaded;
-                    case "cssClass": return cssClassLoaded;
-                    case "corpCode": return corpCodeLoaded;
-                    case "corpName": return corpNameLoaded;
+                    case "parentCodes": return parentCodes != null;
+                    case "treeSort": return treeSort != null;
+                    case "treeSorts": return treeSorts != null;
+                    case "treeLeaf": return treeLeaf != null;
+                    case "treeLevel": return treeLevel != null;
+                    case "treeNames": return treeNames != null;
+                    case "menuName": return menuName != null;
+                    case "menuType": return menuType != null;
+                    case "menuHref": return menuHrefLoaded;
+                    case "menuComponent": return menuComponentLoaded;
+                    case "menuTarget": return menuTargetLoaded;
+                    case "menuIcon": return menuIconLoaded;
+                    case "menuColor": return menuColorLoaded;
+                    case "menuTitle": return menuTitleLoaded;
+                    case "permission": return permissionLoaded;
+                    case "weight": return weight != null;
+                    case "show": return showLoaded;
+                    case "sysCode": return sysCode != null;
                     default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
                 }
             }
@@ -630,50 +660,59 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
                 if (children != null) {
                     hash = 31 * hash + children.hashCode();
                 }
-                if (dictTypeLoaded && dictType != null) {
-                    hash = 31 * hash + dictType.hashCode();
-                }
-                if (parentCodesLoaded && parentCodes != null) {
+                if (parentCodes != null) {
                     hash = 31 * hash + parentCodes.hashCode();
                 }
-                if (treeSortLoaded && treeSort != null) {
+                if (treeSort != null) {
                     hash = 31 * hash + treeSort.hashCode();
                 }
-                if (treeSortsLoaded && treeSorts != null) {
+                if (treeSorts != null) {
                     hash = 31 * hash + treeSorts.hashCode();
                 }
-                if (treeLeafLoaded && treeLeaf != null) {
+                if (treeLeaf != null) {
                     hash = 31 * hash + treeLeaf.hashCode();
                 }
-                if (treeLevelLoaded && treeLevel != null) {
+                if (treeLevel != null) {
                     hash = 31 * hash + treeLevel.hashCode();
                 }
-                if (treeNamesLoaded && treeNames != null) {
+                if (treeNames != null) {
                     hash = 31 * hash + treeNames.hashCode();
                 }
-                if (dictLabelLoaded && dictLabel != null) {
-                    hash = 31 * hash + dictLabel.hashCode();
+                if (menuName != null) {
+                    hash = 31 * hash + menuName.hashCode();
                 }
-                if (dictValueLoaded && dictValue != null) {
-                    hash = 31 * hash + dictValue.hashCode();
+                if (menuType != null) {
+                    hash = 31 * hash + menuType.hashCode();
                 }
-                if (sysLoaded) {
-                    hash = 31 * hash + Boolean.hashCode(sys);
+                if (menuHrefLoaded && menuHref != null) {
+                    hash = 31 * hash + menuHref.hashCode();
                 }
-                if (descriptionLoaded && description != null) {
-                    hash = 31 * hash + description.hashCode();
+                if (menuComponentLoaded && menuComponent != null) {
+                    hash = 31 * hash + menuComponent.hashCode();
                 }
-                if (cssStyleLoaded && cssStyle != null) {
-                    hash = 31 * hash + cssStyle.hashCode();
+                if (menuTargetLoaded && menuTarget != null) {
+                    hash = 31 * hash + menuTarget.hashCode();
                 }
-                if (cssClassLoaded && cssClass != null) {
-                    hash = 31 * hash + cssClass.hashCode();
+                if (menuIconLoaded && menuIcon != null) {
+                    hash = 31 * hash + menuIcon.hashCode();
                 }
-                if (corpCodeLoaded && corpCode != null) {
-                    hash = 31 * hash + corpCode.hashCode();
+                if (menuColorLoaded && menuColor != null) {
+                    hash = 31 * hash + menuColor.hashCode();
                 }
-                if (corpNameLoaded && corpName != null) {
-                    hash = 31 * hash + corpName.hashCode();
+                if (menuTitleLoaded && menuTitle != null) {
+                    hash = 31 * hash + menuTitle.hashCode();
+                }
+                if (permissionLoaded && permission != null) {
+                    hash = 31 * hash + permission.hashCode();
+                }
+                if (weight != null) {
+                    hash = 31 * hash + weight.hashCode();
+                }
+                if (showLoaded) {
+                    hash = 31 * hash + Boolean.hashCode(show);
+                }
+                if (sysCode != null) {
+                    hash = 31 * hash + sysCode.hashCode();
                 }
                 return hash;
             }
@@ -707,50 +746,59 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
                 if (children != null) {
                     hash = 31 * hash + System.identityHashCode(children);
                 }
-                if (dictTypeLoaded) {
-                    hash = 31 * hash + System.identityHashCode(dictType);
-                }
-                if (parentCodesLoaded) {
+                if (parentCodes != null) {
                     hash = 31 * hash + System.identityHashCode(parentCodes);
                 }
-                if (treeSortLoaded) {
+                if (treeSort != null) {
                     hash = 31 * hash + System.identityHashCode(treeSort);
                 }
-                if (treeSortsLoaded) {
+                if (treeSorts != null) {
                     hash = 31 * hash + System.identityHashCode(treeSorts);
                 }
-                if (treeLeafLoaded) {
+                if (treeLeaf != null) {
                     hash = 31 * hash + System.identityHashCode(treeLeaf);
                 }
-                if (treeLevelLoaded) {
+                if (treeLevel != null) {
                     hash = 31 * hash + System.identityHashCode(treeLevel);
                 }
-                if (treeNamesLoaded) {
+                if (treeNames != null) {
                     hash = 31 * hash + System.identityHashCode(treeNames);
                 }
-                if (dictLabelLoaded) {
-                    hash = 31 * hash + System.identityHashCode(dictLabel);
+                if (menuName != null) {
+                    hash = 31 * hash + System.identityHashCode(menuName);
                 }
-                if (dictValueLoaded) {
-                    hash = 31 * hash + System.identityHashCode(dictValue);
+                if (menuType != null) {
+                    hash = 31 * hash + System.identityHashCode(menuType);
                 }
-                if (sysLoaded) {
-                    hash = 31 * hash + Boolean.hashCode(sys);
+                if (menuHrefLoaded) {
+                    hash = 31 * hash + System.identityHashCode(menuHref);
                 }
-                if (descriptionLoaded) {
-                    hash = 31 * hash + System.identityHashCode(description);
+                if (menuComponentLoaded) {
+                    hash = 31 * hash + System.identityHashCode(menuComponent);
                 }
-                if (cssStyleLoaded) {
-                    hash = 31 * hash + System.identityHashCode(cssStyle);
+                if (menuTargetLoaded) {
+                    hash = 31 * hash + System.identityHashCode(menuTarget);
                 }
-                if (cssClassLoaded) {
-                    hash = 31 * hash + System.identityHashCode(cssClass);
+                if (menuIconLoaded) {
+                    hash = 31 * hash + System.identityHashCode(menuIcon);
                 }
-                if (corpCodeLoaded) {
-                    hash = 31 * hash + System.identityHashCode(corpCode);
+                if (menuColorLoaded) {
+                    hash = 31 * hash + System.identityHashCode(menuColor);
                 }
-                if (corpNameLoaded) {
-                    hash = 31 * hash + System.identityHashCode(corpName);
+                if (menuTitleLoaded) {
+                    hash = 31 * hash + System.identityHashCode(menuTitle);
+                }
+                if (permissionLoaded) {
+                    hash = 31 * hash + System.identityHashCode(permission);
+                }
+                if (weight != null) {
+                    hash = 31 * hash + System.identityHashCode(weight);
+                }
+                if (showLoaded) {
+                    hash = 31 * hash + Boolean.hashCode(show);
+                }
+                if (sysCode != null) {
+                    hash = 31 * hash + System.identityHashCode(sysCode);
                 }
                 return hash;
             }
@@ -830,109 +878,130 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
                 if (__childrenLoaded && !Objects.equals(children, other.children())) {
                     return false;
                 }
-                boolean __dictTypeLoaded = dictTypeLoaded;
-                if (__dictTypeLoaded != other.__isLoaded(10)) {
-                    return false;
-                }
-                if (__dictTypeLoaded && !Objects.equals(dictType, other.dictType())) {
-                    return false;
-                }
-                boolean __parentCodesLoaded = parentCodesLoaded;
-                if (__parentCodesLoaded != other.__isLoaded(11)) {
+                boolean __parentCodesLoaded = parentCodes != null;
+                if (__parentCodesLoaded != other.__isLoaded(10)) {
                     return false;
                 }
                 if (__parentCodesLoaded && !Objects.equals(parentCodes, other.parentCodes())) {
                     return false;
                 }
-                boolean __treeSortLoaded = treeSortLoaded;
-                if (__treeSortLoaded != other.__isLoaded(12)) {
+                boolean __treeSortLoaded = treeSort != null;
+                if (__treeSortLoaded != other.__isLoaded(11)) {
                     return false;
                 }
                 if (__treeSortLoaded && !Objects.equals(treeSort, other.treeSort())) {
                     return false;
                 }
-                boolean __treeSortsLoaded = treeSortsLoaded;
-                if (__treeSortsLoaded != other.__isLoaded(13)) {
+                boolean __treeSortsLoaded = treeSorts != null;
+                if (__treeSortsLoaded != other.__isLoaded(12)) {
                     return false;
                 }
                 if (__treeSortsLoaded && !Objects.equals(treeSorts, other.treeSorts())) {
                     return false;
                 }
-                boolean __treeLeafLoaded = treeLeafLoaded;
-                if (__treeLeafLoaded != other.__isLoaded(14)) {
+                boolean __treeLeafLoaded = treeLeaf != null;
+                if (__treeLeafLoaded != other.__isLoaded(13)) {
                     return false;
                 }
                 if (__treeLeafLoaded && !Objects.equals(treeLeaf, other.treeLeaf())) {
                     return false;
                 }
-                boolean __treeLevelLoaded = treeLevelLoaded;
-                if (__treeLevelLoaded != other.__isLoaded(15)) {
+                boolean __treeLevelLoaded = treeLevel != null;
+                if (__treeLevelLoaded != other.__isLoaded(14)) {
                     return false;
                 }
                 if (__treeLevelLoaded && !Objects.equals(treeLevel, other.treeLevel())) {
                     return false;
                 }
-                boolean __treeNamesLoaded = treeNamesLoaded;
-                if (__treeNamesLoaded != other.__isLoaded(16)) {
+                boolean __treeNamesLoaded = treeNames != null;
+                if (__treeNamesLoaded != other.__isLoaded(15)) {
                     return false;
                 }
                 if (__treeNamesLoaded && !Objects.equals(treeNames, other.treeNames())) {
                     return false;
                 }
-                boolean __dictLabelLoaded = dictLabelLoaded;
-                if (__dictLabelLoaded != other.__isLoaded(17)) {
+                boolean __menuNameLoaded = menuName != null;
+                if (__menuNameLoaded != other.__isLoaded(16)) {
                     return false;
                 }
-                if (__dictLabelLoaded && !Objects.equals(dictLabel, other.dictLabel())) {
+                if (__menuNameLoaded && !Objects.equals(menuName, other.menuName())) {
                     return false;
                 }
-                boolean __dictValueLoaded = dictValueLoaded;
-                if (__dictValueLoaded != other.__isLoaded(18)) {
+                boolean __menuTypeLoaded = menuType != null;
+                if (__menuTypeLoaded != other.__isLoaded(17)) {
                     return false;
                 }
-                if (__dictValueLoaded && !Objects.equals(dictValue, other.dictValue())) {
+                if (__menuTypeLoaded && !Objects.equals(menuType, other.menuType())) {
                     return false;
                 }
-                boolean __sysLoaded = sysLoaded;
-                if (__sysLoaded != other.__isLoaded(19)) {
+                boolean __menuHrefLoaded = menuHrefLoaded;
+                if (__menuHrefLoaded != other.__isLoaded(18)) {
                     return false;
                 }
-                if (__sysLoaded && sys != other.isSys()) {
+                if (__menuHrefLoaded && !Objects.equals(menuHref, other.menuHref())) {
                     return false;
                 }
-                boolean __descriptionLoaded = descriptionLoaded;
-                if (__descriptionLoaded != other.__isLoaded(20)) {
+                boolean __menuComponentLoaded = menuComponentLoaded;
+                if (__menuComponentLoaded != other.__isLoaded(19)) {
                     return false;
                 }
-                if (__descriptionLoaded && !Objects.equals(description, other.description())) {
+                if (__menuComponentLoaded && !Objects.equals(menuComponent, other.menuComponent())) {
                     return false;
                 }
-                boolean __cssStyleLoaded = cssStyleLoaded;
-                if (__cssStyleLoaded != other.__isLoaded(21)) {
+                boolean __menuTargetLoaded = menuTargetLoaded;
+                if (__menuTargetLoaded != other.__isLoaded(20)) {
                     return false;
                 }
-                if (__cssStyleLoaded && !Objects.equals(cssStyle, other.cssStyle())) {
+                if (__menuTargetLoaded && !Objects.equals(menuTarget, other.menuTarget())) {
                     return false;
                 }
-                boolean __cssClassLoaded = cssClassLoaded;
-                if (__cssClassLoaded != other.__isLoaded(22)) {
+                boolean __menuIconLoaded = menuIconLoaded;
+                if (__menuIconLoaded != other.__isLoaded(21)) {
                     return false;
                 }
-                if (__cssClassLoaded && !Objects.equals(cssClass, other.cssClass())) {
+                if (__menuIconLoaded && !Objects.equals(menuIcon, other.menuIcon())) {
                     return false;
                 }
-                boolean __corpCodeLoaded = corpCodeLoaded;
-                if (__corpCodeLoaded != other.__isLoaded(23)) {
+                boolean __menuColorLoaded = menuColorLoaded;
+                if (__menuColorLoaded != other.__isLoaded(22)) {
                     return false;
                 }
-                if (__corpCodeLoaded && !Objects.equals(corpCode, other.corpCode())) {
+                if (__menuColorLoaded && !Objects.equals(menuColor, other.menuColor())) {
                     return false;
                 }
-                boolean __corpNameLoaded = corpNameLoaded;
-                if (__corpNameLoaded != other.__isLoaded(24)) {
+                boolean __menuTitleLoaded = menuTitleLoaded;
+                if (__menuTitleLoaded != other.__isLoaded(23)) {
                     return false;
                 }
-                if (__corpNameLoaded && !Objects.equals(corpName, other.corpName())) {
+                if (__menuTitleLoaded && !Objects.equals(menuTitle, other.menuTitle())) {
+                    return false;
+                }
+                boolean __permissionLoaded = permissionLoaded;
+                if (__permissionLoaded != other.__isLoaded(24)) {
+                    return false;
+                }
+                if (__permissionLoaded && !Objects.equals(permission, other.permission())) {
+                    return false;
+                }
+                boolean __weightLoaded = weight != null;
+                if (__weightLoaded != other.__isLoaded(25)) {
+                    return false;
+                }
+                if (__weightLoaded && !Objects.equals(weight, other.weight())) {
+                    return false;
+                }
+                boolean __showLoaded = showLoaded;
+                if (__showLoaded != other.__isLoaded(26)) {
+                    return false;
+                }
+                if (__showLoaded && show != other.isShow()) {
+                    return false;
+                }
+                boolean __sysCodeLoaded = sysCode != null;
+                if (__sysCodeLoaded != other.__isLoaded(27)) {
+                    return false;
+                }
+                if (__sysCodeLoaded && !Objects.equals(sysCode, other.sysCode())) {
                     return false;
                 }
                 return true;
@@ -1006,109 +1075,130 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
                 if (__childrenLoaded && children != other.children()) {
                     return false;
                 }
-                boolean __dictTypeLoaded = dictTypeLoaded;
-                if (__dictTypeLoaded != other.__isLoaded(10)) {
-                    return false;
-                }
-                if (__dictTypeLoaded && dictType != other.dictType()) {
-                    return false;
-                }
-                boolean __parentCodesLoaded = parentCodesLoaded;
-                if (__parentCodesLoaded != other.__isLoaded(11)) {
+                boolean __parentCodesLoaded = parentCodes != null;
+                if (__parentCodesLoaded != other.__isLoaded(10)) {
                     return false;
                 }
                 if (__parentCodesLoaded && parentCodes != other.parentCodes()) {
                     return false;
                 }
-                boolean __treeSortLoaded = treeSortLoaded;
-                if (__treeSortLoaded != other.__isLoaded(12)) {
+                boolean __treeSortLoaded = treeSort != null;
+                if (__treeSortLoaded != other.__isLoaded(11)) {
                     return false;
                 }
                 if (__treeSortLoaded && treeSort != other.treeSort()) {
                     return false;
                 }
-                boolean __treeSortsLoaded = treeSortsLoaded;
-                if (__treeSortsLoaded != other.__isLoaded(13)) {
+                boolean __treeSortsLoaded = treeSorts != null;
+                if (__treeSortsLoaded != other.__isLoaded(12)) {
                     return false;
                 }
                 if (__treeSortsLoaded && treeSorts != other.treeSorts()) {
                     return false;
                 }
-                boolean __treeLeafLoaded = treeLeafLoaded;
-                if (__treeLeafLoaded != other.__isLoaded(14)) {
+                boolean __treeLeafLoaded = treeLeaf != null;
+                if (__treeLeafLoaded != other.__isLoaded(13)) {
                     return false;
                 }
                 if (__treeLeafLoaded && treeLeaf != other.treeLeaf()) {
                     return false;
                 }
-                boolean __treeLevelLoaded = treeLevelLoaded;
-                if (__treeLevelLoaded != other.__isLoaded(15)) {
+                boolean __treeLevelLoaded = treeLevel != null;
+                if (__treeLevelLoaded != other.__isLoaded(14)) {
                     return false;
                 }
                 if (__treeLevelLoaded && treeLevel != other.treeLevel()) {
                     return false;
                 }
-                boolean __treeNamesLoaded = treeNamesLoaded;
-                if (__treeNamesLoaded != other.__isLoaded(16)) {
+                boolean __treeNamesLoaded = treeNames != null;
+                if (__treeNamesLoaded != other.__isLoaded(15)) {
                     return false;
                 }
                 if (__treeNamesLoaded && treeNames != other.treeNames()) {
                     return false;
                 }
-                boolean __dictLabelLoaded = dictLabelLoaded;
-                if (__dictLabelLoaded != other.__isLoaded(17)) {
+                boolean __menuNameLoaded = menuName != null;
+                if (__menuNameLoaded != other.__isLoaded(16)) {
                     return false;
                 }
-                if (__dictLabelLoaded && dictLabel != other.dictLabel()) {
+                if (__menuNameLoaded && menuName != other.menuName()) {
                     return false;
                 }
-                boolean __dictValueLoaded = dictValueLoaded;
-                if (__dictValueLoaded != other.__isLoaded(18)) {
+                boolean __menuTypeLoaded = menuType != null;
+                if (__menuTypeLoaded != other.__isLoaded(17)) {
                     return false;
                 }
-                if (__dictValueLoaded && dictValue != other.dictValue()) {
+                if (__menuTypeLoaded && menuType != other.menuType()) {
                     return false;
                 }
-                boolean __sysLoaded = sysLoaded;
-                if (__sysLoaded != other.__isLoaded(19)) {
+                boolean __menuHrefLoaded = menuHrefLoaded;
+                if (__menuHrefLoaded != other.__isLoaded(18)) {
                     return false;
                 }
-                if (__sysLoaded && sys != other.isSys()) {
+                if (__menuHrefLoaded && menuHref != other.menuHref()) {
                     return false;
                 }
-                boolean __descriptionLoaded = descriptionLoaded;
-                if (__descriptionLoaded != other.__isLoaded(20)) {
+                boolean __menuComponentLoaded = menuComponentLoaded;
+                if (__menuComponentLoaded != other.__isLoaded(19)) {
                     return false;
                 }
-                if (__descriptionLoaded && description != other.description()) {
+                if (__menuComponentLoaded && menuComponent != other.menuComponent()) {
                     return false;
                 }
-                boolean __cssStyleLoaded = cssStyleLoaded;
-                if (__cssStyleLoaded != other.__isLoaded(21)) {
+                boolean __menuTargetLoaded = menuTargetLoaded;
+                if (__menuTargetLoaded != other.__isLoaded(20)) {
                     return false;
                 }
-                if (__cssStyleLoaded && cssStyle != other.cssStyle()) {
+                if (__menuTargetLoaded && menuTarget != other.menuTarget()) {
                     return false;
                 }
-                boolean __cssClassLoaded = cssClassLoaded;
-                if (__cssClassLoaded != other.__isLoaded(22)) {
+                boolean __menuIconLoaded = menuIconLoaded;
+                if (__menuIconLoaded != other.__isLoaded(21)) {
                     return false;
                 }
-                if (__cssClassLoaded && cssClass != other.cssClass()) {
+                if (__menuIconLoaded && menuIcon != other.menuIcon()) {
                     return false;
                 }
-                boolean __corpCodeLoaded = corpCodeLoaded;
-                if (__corpCodeLoaded != other.__isLoaded(23)) {
+                boolean __menuColorLoaded = menuColorLoaded;
+                if (__menuColorLoaded != other.__isLoaded(22)) {
                     return false;
                 }
-                if (__corpCodeLoaded && corpCode != other.corpCode()) {
+                if (__menuColorLoaded && menuColor != other.menuColor()) {
                     return false;
                 }
-                boolean __corpNameLoaded = corpNameLoaded;
-                if (__corpNameLoaded != other.__isLoaded(24)) {
+                boolean __menuTitleLoaded = menuTitleLoaded;
+                if (__menuTitleLoaded != other.__isLoaded(23)) {
                     return false;
                 }
-                if (__corpNameLoaded && corpName != other.corpName()) {
+                if (__menuTitleLoaded && menuTitle != other.menuTitle()) {
+                    return false;
+                }
+                boolean __permissionLoaded = permissionLoaded;
+                if (__permissionLoaded != other.__isLoaded(24)) {
+                    return false;
+                }
+                if (__permissionLoaded && permission != other.permission()) {
+                    return false;
+                }
+                boolean __weightLoaded = weight != null;
+                if (__weightLoaded != other.__isLoaded(25)) {
+                    return false;
+                }
+                if (__weightLoaded && weight != other.weight()) {
+                    return false;
+                }
+                boolean __showLoaded = showLoaded;
+                if (__showLoaded != other.__isLoaded(26)) {
+                    return false;
+                }
+                if (__showLoaded && show != other.isShow()) {
+                    return false;
+                }
+                boolean __sysCodeLoaded = sysCode != null;
+                if (__sysCodeLoaded != other.__isLoaded(27)) {
+                    return false;
+                }
+                if (__sysCodeLoaded && sysCode != other.sysCode()) {
                     return false;
                 }
                 return true;
@@ -1120,7 +1210,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
         }
 
-        private static class DraftImpl extends Implementor implements DraftSpi, DictDataDraft {
+        private static class DraftImpl extends Implementor implements DraftSpi, MenuDraft {
             private DraftContext __ctx;
 
             private Impl __base;
@@ -1129,7 +1219,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
 
             private boolean __resolving;
 
-            DraftImpl(DraftContext ctx, DictData base) {
+            DraftImpl(DraftContext ctx, Menu base) {
                 __ctx = ctx;
                 if (base != null) {
                     __base = (Impl)base;
@@ -1175,7 +1265,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
-            public DictDataDraft setId(String id) {
+            public MenuDraft setId(String id) {
                 if (id == null) {
                     throw new IllegalArgumentException(
                         "'id' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -1192,7 +1282,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
-            public DictDataDraft setStatus(String status) {
+            public MenuDraft setStatus(String status) {
                 if (status == null) {
                     throw new IllegalArgumentException(
                         "'status' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -1209,7 +1299,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
-            public DictDataDraft setCreateBy(String createBy) {
+            public MenuDraft setCreateBy(String createBy) {
                 if (createBy == null) {
                     throw new IllegalArgumentException(
                         "'createBy' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -1226,7 +1316,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
-            public DictDataDraft setCreateDate(LocalDateTime createDate) {
+            public MenuDraft setCreateDate(LocalDateTime createDate) {
                 if (createDate == null) {
                     throw new IllegalArgumentException(
                         "'createDate' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -1243,7 +1333,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
-            public DictDataDraft setUpdateBy(String updateBy) {
+            public MenuDraft setUpdateBy(String updateBy) {
                 if (updateBy == null) {
                     throw new IllegalArgumentException(
                         "'updateBy' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -1260,7 +1350,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
-            public DictDataDraft setUpdateDate(LocalDateTime updateDate) {
+            public MenuDraft setUpdateDate(LocalDateTime updateDate) {
                 if (updateDate == null) {
                     throw new IllegalArgumentException(
                         "'updateDate' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -1277,7 +1367,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
-            public DictDataDraft setRemarks(String remarks) {
+            public MenuDraft setRemarks(String remarks) {
                 Impl __tmpModified = __modified();
                 __tmpModified.remarks = remarks;
                 __tmpModified.remarksLoaded = true;
@@ -1285,20 +1375,20 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
-            public DictDataDraft parent() {
+            public MenuDraft parent() {
                 return __ctx.toDraftObject((__modified!= null ? __modified : __base).parent());
             }
 
             @Override
-            public DictDataDraft parent(boolean autoCreate) {
+            public MenuDraft parent(boolean autoCreate) {
                 if (autoCreate && (!__isLoaded(8) || parent() == null)) {
-                    setParent(DictDataDraft.$.produce(null, null));
+                    setParent(MenuDraft.$.produce(null, null));
                 }
                 return __ctx.toDraftObject((__modified!= null ? __modified : __base).parent());
             }
 
             @Override
-            public DictDataDraft setParent(DictData parent) {
+            public MenuDraft setParent(Menu parent) {
                 Impl __tmpModified = __modified();
                 __tmpModified.parent = parent;
                 __tmpModified.parentLoaded = true;
@@ -1306,32 +1396,32 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
-            public DictDataDraft applyParent(DraftConsumer<DictDataDraft> block) {
+            public MenuDraft applyParent(DraftConsumer<MenuDraft> block) {
                 applyParent(null, block);
                 return this;
             }
 
             @Override
-            public DictDataDraft applyParent(DictData base, DraftConsumer<DictDataDraft> block) {
-                setParent(DictDataDraft.$.produce(base, block));
+            public MenuDraft applyParent(Menu base, DraftConsumer<MenuDraft> block) {
+                setParent(MenuDraft.$.produce(base, block));
                 return this;
             }
 
             @Override
-            public List<DictData> children() {
-                return __ctx.toDraftList((__modified!= null ? __modified : __base).children(), DictData.class, true);
+            public List<Menu> children() {
+                return __ctx.toDraftList((__modified!= null ? __modified : __base).children(), Menu.class, true);
             }
 
             @Override
-            public List<DictDataDraft> children(boolean autoCreate) {
+            public List<MenuDraft> children(boolean autoCreate) {
                 if (autoCreate && (!__isLoaded(9) || children() == null)) {
                     setChildren(new ArrayList<>());
                 }
-                return __ctx.toDraftList((__modified!= null ? __modified : __base).children(), DictData.class, true);
+                return __ctx.toDraftList((__modified!= null ? __modified : __base).children(), Menu.class, true);
             }
 
             @Override
-            public DictDataDraft setChildren(List<DictData> children) {
+            public MenuDraft setChildren(List<Menu> children) {
                 if (children == null) {
                     throw new IllegalArgumentException(
                         "'children' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -1343,48 +1433,14 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
-            public DictDataDraft addIntoChildren(DraftConsumer<DictDataDraft> block) {
+            public MenuDraft addIntoChildren(DraftConsumer<MenuDraft> block) {
                 addIntoChildren(null, block);
                 return this;
             }
 
             @Override
-            public DictDataDraft addIntoChildren(DictData base,
-                    DraftConsumer<DictDataDraft> block) {
-                children(true).add((DictDataDraft)DictDataDraft.$.produce(base, block));
-                return this;
-            }
-
-            @Override
-            public DictTypeDraft dictType() {
-                return __ctx.toDraftObject((__modified!= null ? __modified : __base).dictType());
-            }
-
-            @Override
-            public DictTypeDraft dictType(boolean autoCreate) {
-                if (autoCreate && (!__isLoaded(10) || dictType() == null)) {
-                    setDictType(DictTypeDraft.$.produce(null, null));
-                }
-                return __ctx.toDraftObject((__modified!= null ? __modified : __base).dictType());
-            }
-
-            @Override
-            public DictDataDraft setDictType(DictType dictType) {
-                Impl __tmpModified = __modified();
-                __tmpModified.dictType = dictType;
-                __tmpModified.dictTypeLoaded = true;
-                return this;
-            }
-
-            @Override
-            public DictDataDraft applyDictType(DraftConsumer<DictTypeDraft> block) {
-                applyDictType(null, block);
-                return this;
-            }
-
-            @Override
-            public DictDataDraft applyDictType(DictType base, DraftConsumer<DictTypeDraft> block) {
-                setDictType(DictTypeDraft.$.produce(base, block));
+            public MenuDraft addIntoChildren(Menu base, DraftConsumer<MenuDraft> block) {
+                children(true).add((MenuDraft)MenuDraft.$.produce(base, block));
                 return this;
             }
 
@@ -1394,10 +1450,14 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
-            public DictDataDraft setParentCodes(String parentCodes) {
+            public MenuDraft setParentCodes(String parentCodes) {
+                if (parentCodes == null) {
+                    throw new IllegalArgumentException(
+                        "'parentCodes' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
+                    );
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.parentCodes = parentCodes;
-                __tmpModified.parentCodesLoaded = true;
                 return this;
             }
 
@@ -1407,10 +1467,14 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
-            public DictDataDraft setTreeSort(BigDecimal treeSort) {
+            public MenuDraft setTreeSort(BigDecimal treeSort) {
+                if (treeSort == null) {
+                    throw new IllegalArgumentException(
+                        "'treeSort' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
+                    );
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.treeSort = treeSort;
-                __tmpModified.treeSortLoaded = true;
                 return this;
             }
 
@@ -1420,10 +1484,14 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
-            public DictDataDraft setTreeSorts(String treeSorts) {
+            public MenuDraft setTreeSorts(String treeSorts) {
+                if (treeSorts == null) {
+                    throw new IllegalArgumentException(
+                        "'treeSorts' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
+                    );
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.treeSorts = treeSorts;
-                __tmpModified.treeSortsLoaded = true;
                 return this;
             }
 
@@ -1433,10 +1501,14 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
-            public DictDataDraft setTreeLeaf(String treeLeaf) {
+            public MenuDraft setTreeLeaf(String treeLeaf) {
+                if (treeLeaf == null) {
+                    throw new IllegalArgumentException(
+                        "'treeLeaf' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
+                    );
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.treeLeaf = treeLeaf;
-                __tmpModified.treeLeafLoaded = true;
                 return this;
             }
 
@@ -1446,10 +1518,14 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
-            public DictDataDraft setTreeLevel(BigDecimal treeLevel) {
+            public MenuDraft setTreeLevel(BigDecimal treeLevel) {
+                if (treeLevel == null) {
+                    throw new IllegalArgumentException(
+                        "'treeLevel' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
+                    );
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.treeLevel = treeLevel;
-                __tmpModified.treeLevelLoaded = true;
                 return this;
             }
 
@@ -1459,115 +1535,187 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
-            public DictDataDraft setTreeNames(String treeNames) {
+            public MenuDraft setTreeNames(String treeNames) {
+                if (treeNames == null) {
+                    throw new IllegalArgumentException(
+                        "'treeNames' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
+                    );
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.treeNames = treeNames;
-                __tmpModified.treeNamesLoaded = true;
                 return this;
             }
 
             @Override
-            public String dictLabel() {
-                return (__modified!= null ? __modified : __base).dictLabel();
+            public String menuName() {
+                return (__modified!= null ? __modified : __base).menuName();
             }
 
             @Override
-            public DictDataDraft setDictLabel(String dictLabel) {
+            public MenuDraft setMenuName(String menuName) {
+                if (menuName == null) {
+                    throw new IllegalArgumentException(
+                        "'menuName' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
+                    );
+                }
                 Impl __tmpModified = __modified();
-                __tmpModified.dictLabel = dictLabel;
-                __tmpModified.dictLabelLoaded = true;
+                __tmpModified.menuName = menuName;
                 return this;
             }
 
             @Override
-            public String dictValue() {
-                return (__modified!= null ? __modified : __base).dictValue();
+            public String menuType() {
+                return (__modified!= null ? __modified : __base).menuType();
             }
 
             @Override
-            public DictDataDraft setDictValue(String dictValue) {
+            public MenuDraft setMenuType(String menuType) {
+                if (menuType == null) {
+                    throw new IllegalArgumentException(
+                        "'menuType' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
+                    );
+                }
                 Impl __tmpModified = __modified();
-                __tmpModified.dictValue = dictValue;
-                __tmpModified.dictValueLoaded = true;
+                __tmpModified.menuType = menuType;
+                return this;
+            }
+
+            @Override
+            public String menuHref() {
+                return (__modified!= null ? __modified : __base).menuHref();
+            }
+
+            @Override
+            public MenuDraft setMenuHref(String menuHref) {
+                Impl __tmpModified = __modified();
+                __tmpModified.menuHref = menuHref;
+                __tmpModified.menuHrefLoaded = true;
+                return this;
+            }
+
+            @Override
+            public String menuComponent() {
+                return (__modified!= null ? __modified : __base).menuComponent();
+            }
+
+            @Override
+            public MenuDraft setMenuComponent(String menuComponent) {
+                Impl __tmpModified = __modified();
+                __tmpModified.menuComponent = menuComponent;
+                __tmpModified.menuComponentLoaded = true;
+                return this;
+            }
+
+            @Override
+            public String menuTarget() {
+                return (__modified!= null ? __modified : __base).menuTarget();
+            }
+
+            @Override
+            public MenuDraft setMenuTarget(String menuTarget) {
+                Impl __tmpModified = __modified();
+                __tmpModified.menuTarget = menuTarget;
+                __tmpModified.menuTargetLoaded = true;
+                return this;
+            }
+
+            @Override
+            public String menuIcon() {
+                return (__modified!= null ? __modified : __base).menuIcon();
+            }
+
+            @Override
+            public MenuDraft setMenuIcon(String menuIcon) {
+                Impl __tmpModified = __modified();
+                __tmpModified.menuIcon = menuIcon;
+                __tmpModified.menuIconLoaded = true;
+                return this;
+            }
+
+            @Override
+            public String menuColor() {
+                return (__modified!= null ? __modified : __base).menuColor();
+            }
+
+            @Override
+            public MenuDraft setMenuColor(String menuColor) {
+                Impl __tmpModified = __modified();
+                __tmpModified.menuColor = menuColor;
+                __tmpModified.menuColorLoaded = true;
+                return this;
+            }
+
+            @Override
+            public String menuTitle() {
+                return (__modified!= null ? __modified : __base).menuTitle();
+            }
+
+            @Override
+            public MenuDraft setMenuTitle(String menuTitle) {
+                Impl __tmpModified = __modified();
+                __tmpModified.menuTitle = menuTitle;
+                __tmpModified.menuTitleLoaded = true;
+                return this;
+            }
+
+            @Override
+            public String permission() {
+                return (__modified!= null ? __modified : __base).permission();
+            }
+
+            @Override
+            public MenuDraft setPermission(String permission) {
+                Impl __tmpModified = __modified();
+                __tmpModified.permission = permission;
+                __tmpModified.permissionLoaded = true;
+                return this;
+            }
+
+            @Override
+            public BigDecimal weight() {
+                return (__modified!= null ? __modified : __base).weight();
+            }
+
+            @Override
+            public MenuDraft setWeight(BigDecimal weight) {
+                if (weight == null) {
+                    throw new IllegalArgumentException(
+                        "'weight' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
+                    );
+                }
+                Impl __tmpModified = __modified();
+                __tmpModified.weight = weight;
                 return this;
             }
 
             @Override
             @JsonIgnore
-            public boolean isSys() {
-                return (__modified!= null ? __modified : __base).isSys();
+            public boolean isShow() {
+                return (__modified!= null ? __modified : __base).isShow();
             }
 
             @Override
-            public DictDataDraft setSys(boolean sys) {
+            public MenuDraft setShow(boolean show) {
                 Impl __tmpModified = __modified();
-                __tmpModified.sys = sys;
-                __tmpModified.sysLoaded = true;
+                __tmpModified.show = show;
+                __tmpModified.showLoaded = true;
                 return this;
             }
 
             @Override
-            public String description() {
-                return (__modified!= null ? __modified : __base).description();
+            public String sysCode() {
+                return (__modified!= null ? __modified : __base).sysCode();
             }
 
             @Override
-            public DictDataDraft setDescription(String description) {
+            public MenuDraft setSysCode(String sysCode) {
+                if (sysCode == null) {
+                    throw new IllegalArgumentException(
+                        "'sysCode' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
+                    );
+                }
                 Impl __tmpModified = __modified();
-                __tmpModified.description = description;
-                __tmpModified.descriptionLoaded = true;
-                return this;
-            }
-
-            @Override
-            public String cssStyle() {
-                return (__modified!= null ? __modified : __base).cssStyle();
-            }
-
-            @Override
-            public DictDataDraft setCssStyle(String cssStyle) {
-                Impl __tmpModified = __modified();
-                __tmpModified.cssStyle = cssStyle;
-                __tmpModified.cssStyleLoaded = true;
-                return this;
-            }
-
-            @Override
-            public String cssClass() {
-                return (__modified!= null ? __modified : __base).cssClass();
-            }
-
-            @Override
-            public DictDataDraft setCssClass(String cssClass) {
-                Impl __tmpModified = __modified();
-                __tmpModified.cssClass = cssClass;
-                __tmpModified.cssClassLoaded = true;
-                return this;
-            }
-
-            @Override
-            public String corpCode() {
-                return (__modified!= null ? __modified : __base).corpCode();
-            }
-
-            @Override
-            public DictDataDraft setCorpCode(String corpCode) {
-                Impl __tmpModified = __modified();
-                __tmpModified.corpCode = corpCode;
-                __tmpModified.corpCodeLoaded = true;
-                return this;
-            }
-
-            @Override
-            public String corpName() {
-                return (__modified!= null ? __modified : __base).corpName();
-            }
-
-            @Override
-            public DictDataDraft setCorpName(String corpName) {
-                Impl __tmpModified = __modified();
-                __tmpModified.corpName = corpName;
-                __tmpModified.corpNameLoaded = true;
+                __tmpModified.sysCode = sysCode;
                 return this;
             }
 
@@ -1582,26 +1730,29 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
                     case 5: setUpdateBy((String)value);break;
                     case 6: setUpdateDate((LocalDateTime)value);break;
                     case 7: setRemarks((String)value);break;
-                    case 8: setParent((DictData)value);break;
-                    case 9: setChildren((List<DictData>)value);break;
-                    case 10: setDictType((DictType)value);break;
-                    case 11: setParentCodes((String)value);break;
-                    case 12: setTreeSort((BigDecimal)value);break;
-                    case 13: setTreeSorts((String)value);break;
-                    case 14: setTreeLeaf((String)value);break;
-                    case 15: setTreeLevel((BigDecimal)value);break;
-                    case 16: setTreeNames((String)value);break;
-                    case 17: setDictLabel((String)value);break;
-                    case 18: setDictValue((String)value);break;
-                    case 19: 
-                            if (value == null) throw new IllegalArgumentException("'sys' cannot be null");
-                            setSys((Boolean)value);
+                    case 8: setParent((Menu)value);break;
+                    case 9: setChildren((List<Menu>)value);break;
+                    case 10: setParentCodes((String)value);break;
+                    case 11: setTreeSort((BigDecimal)value);break;
+                    case 12: setTreeSorts((String)value);break;
+                    case 13: setTreeLeaf((String)value);break;
+                    case 14: setTreeLevel((BigDecimal)value);break;
+                    case 15: setTreeNames((String)value);break;
+                    case 16: setMenuName((String)value);break;
+                    case 17: setMenuType((String)value);break;
+                    case 18: setMenuHref((String)value);break;
+                    case 19: setMenuComponent((String)value);break;
+                    case 20: setMenuTarget((String)value);break;
+                    case 21: setMenuIcon((String)value);break;
+                    case 22: setMenuColor((String)value);break;
+                    case 23: setMenuTitle((String)value);break;
+                    case 24: setPermission((String)value);break;
+                    case 25: setWeight((BigDecimal)value);break;
+                    case 26: 
+                            if (value == null) throw new IllegalArgumentException("'show' cannot be null");
+                            setShow((Boolean)value);
                             break;
-                    case 20: setDescription((String)value);break;
-                    case 21: setCssStyle((String)value);break;
-                    case 22: setCssClass((String)value);break;
-                    case 23: setCorpCode((String)value);break;
-                    case 24: setCorpName((String)value);break;
+                    case 27: setSysCode((String)value);break;
                     default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
                 }
             }
@@ -1617,26 +1768,29 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
                     case "updateBy": setUpdateBy((String)value);break;
                     case "updateDate": setUpdateDate((LocalDateTime)value);break;
                     case "remarks": setRemarks((String)value);break;
-                    case "parent": setParent((DictData)value);break;
-                    case "children": setChildren((List<DictData>)value);break;
-                    case "dictType": setDictType((DictType)value);break;
+                    case "parent": setParent((Menu)value);break;
+                    case "children": setChildren((List<Menu>)value);break;
                     case "parentCodes": setParentCodes((String)value);break;
                     case "treeSort": setTreeSort((BigDecimal)value);break;
                     case "treeSorts": setTreeSorts((String)value);break;
                     case "treeLeaf": setTreeLeaf((String)value);break;
                     case "treeLevel": setTreeLevel((BigDecimal)value);break;
                     case "treeNames": setTreeNames((String)value);break;
-                    case "dictLabel": setDictLabel((String)value);break;
-                    case "dictValue": setDictValue((String)value);break;
-                    case "sys": 
-                            if (value == null) throw new IllegalArgumentException("'sys' cannot be null");
-                            setSys((Boolean)value);
+                    case "menuName": setMenuName((String)value);break;
+                    case "menuType": setMenuType((String)value);break;
+                    case "menuHref": setMenuHref((String)value);break;
+                    case "menuComponent": setMenuComponent((String)value);break;
+                    case "menuTarget": setMenuTarget((String)value);break;
+                    case "menuIcon": setMenuIcon((String)value);break;
+                    case "menuColor": setMenuColor((String)value);break;
+                    case "menuTitle": setMenuTitle((String)value);break;
+                    case "permission": setPermission((String)value);break;
+                    case "weight": setWeight((BigDecimal)value);break;
+                    case "show": 
+                            if (value == null) throw new IllegalArgumentException("'show' cannot be null");
+                            setShow((Boolean)value);
                             break;
-                    case "description": setDescription((String)value);break;
-                    case "cssStyle": setCssStyle((String)value);break;
-                    case "cssClass": setCssClass((String)value);break;
-                    case "corpCode": setCorpCode((String)value);break;
-                    case "corpName": setCorpName((String)value);break;
+                    case "sysCode": setSysCode((String)value);break;
                     default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
                 }
             }
@@ -1653,21 +1807,24 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
                     case 7: __modified().remarksLoaded = false;break;
                     case 8: __modified().parentLoaded = false;break;
                     case 9: __modified().children = null;break;
-                    case 10: __modified().dictTypeLoaded = false;break;
-                    case 11: __modified().parentCodesLoaded = false;break;
-                    case 12: __modified().treeSortLoaded = false;break;
-                    case 13: __modified().treeSortsLoaded = false;break;
-                    case 14: __modified().treeLeafLoaded = false;break;
-                    case 15: __modified().treeLevelLoaded = false;break;
-                    case 16: __modified().treeNamesLoaded = false;break;
-                    case 17: __modified().dictLabelLoaded = false;break;
-                    case 18: __modified().dictValueLoaded = false;break;
-                    case 19: __modified().sysLoaded = false;break;
-                    case 20: __modified().descriptionLoaded = false;break;
-                    case 21: __modified().cssStyleLoaded = false;break;
-                    case 22: __modified().cssClassLoaded = false;break;
-                    case 23: __modified().corpCodeLoaded = false;break;
-                    case 24: __modified().corpNameLoaded = false;break;
+                    case 10: __modified().parentCodes = null;break;
+                    case 11: __modified().treeSort = null;break;
+                    case 12: __modified().treeSorts = null;break;
+                    case 13: __modified().treeLeaf = null;break;
+                    case 14: __modified().treeLevel = null;break;
+                    case 15: __modified().treeNames = null;break;
+                    case 16: __modified().menuName = null;break;
+                    case 17: __modified().menuType = null;break;
+                    case 18: __modified().menuHrefLoaded = false;break;
+                    case 19: __modified().menuComponentLoaded = false;break;
+                    case 20: __modified().menuTargetLoaded = false;break;
+                    case 21: __modified().menuIconLoaded = false;break;
+                    case 22: __modified().menuColorLoaded = false;break;
+                    case 23: __modified().menuTitleLoaded = false;break;
+                    case 24: __modified().permissionLoaded = false;break;
+                    case 25: __modified().weight = null;break;
+                    case 26: __modified().showLoaded = false;break;
+                    case 27: __modified().sysCode = null;break;
                     default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
                 }
             }
@@ -1684,21 +1841,24 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
                     case "remarks": __modified().remarksLoaded = false;break;
                     case "parent": __modified().parentLoaded = false;break;
                     case "children": __modified().children = null;break;
-                    case "dictType": __modified().dictTypeLoaded = false;break;
-                    case "parentCodes": __modified().parentCodesLoaded = false;break;
-                    case "treeSort": __modified().treeSortLoaded = false;break;
-                    case "treeSorts": __modified().treeSortsLoaded = false;break;
-                    case "treeLeaf": __modified().treeLeafLoaded = false;break;
-                    case "treeLevel": __modified().treeLevelLoaded = false;break;
-                    case "treeNames": __modified().treeNamesLoaded = false;break;
-                    case "dictLabel": __modified().dictLabelLoaded = false;break;
-                    case "dictValue": __modified().dictValueLoaded = false;break;
-                    case "sys": __modified().sysLoaded = false;break;
-                    case "description": __modified().descriptionLoaded = false;break;
-                    case "cssStyle": __modified().cssStyleLoaded = false;break;
-                    case "cssClass": __modified().cssClassLoaded = false;break;
-                    case "corpCode": __modified().corpCodeLoaded = false;break;
-                    case "corpName": __modified().corpNameLoaded = false;break;
+                    case "parentCodes": __modified().parentCodes = null;break;
+                    case "treeSort": __modified().treeSort = null;break;
+                    case "treeSorts": __modified().treeSorts = null;break;
+                    case "treeLeaf": __modified().treeLeaf = null;break;
+                    case "treeLevel": __modified().treeLevel = null;break;
+                    case "treeNames": __modified().treeNames = null;break;
+                    case "menuName": __modified().menuName = null;break;
+                    case "menuType": __modified().menuType = null;break;
+                    case "menuHref": __modified().menuHrefLoaded = false;break;
+                    case "menuComponent": __modified().menuComponentLoaded = false;break;
+                    case "menuTarget": __modified().menuTargetLoaded = false;break;
+                    case "menuIcon": __modified().menuIconLoaded = false;break;
+                    case "menuColor": __modified().menuColorLoaded = false;break;
+                    case "menuTitle": __modified().menuTitleLoaded = false;break;
+                    case "permission": __modified().permissionLoaded = false;break;
+                    case "weight": __modified().weight = null;break;
+                    case "show": __modified().showLoaded = false;break;
+                    case "sysCode": __modified().sysCode = null;break;
                     default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
                 }
             }
@@ -1719,24 +1879,17 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
                     Impl __tmpModified = __modified;
                     if (__tmpModified == null) {
                         if (base.__isLoaded(8)) {
-                            DictData oldValue = base.parent();
-                            DictData newValue = __ctx.resolveObject(oldValue);
+                            Menu oldValue = base.parent();
+                            Menu newValue = __ctx.resolveObject(oldValue);
                             if (!ImmutableSpi.equals(oldValue, newValue, true)) {
                                 setParent(newValue);
                             }
                         }
                         if (base.__isLoaded(9)) {
-                            List<DictData> oldValue = base.children();
-                            List<DictData> newValue = __ctx.resolveList(oldValue);
+                            List<Menu> oldValue = base.children();
+                            List<Menu> newValue = __ctx.resolveList(oldValue);
                             if (oldValue != newValue) {
                                 setChildren(newValue);
-                            }
-                        }
-                        if (base.__isLoaded(10)) {
-                            DictType oldValue = base.dictType();
-                            DictType newValue = __ctx.resolveObject(oldValue);
-                            if (!ImmutableSpi.equals(oldValue, newValue, true)) {
-                                setDictType(newValue);
                             }
                         }
                         __tmpModified = __modified;
@@ -1744,7 +1897,6 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
                     else {
                         __tmpModified.parent = __ctx.resolveObject(__tmpModified.parent);
                         __tmpModified.children = NonSharedList.of(__tmpModified.children, __ctx.resolveList(__tmpModified.children));
-                        __tmpModified.dictType = __ctx.resolveObject(__tmpModified.dictType);
                     }
                     if (__tmpModified == null || ImmutableSpi.equals(base, __tmpModified, true)) {
                         return base;
@@ -1786,69 +1938,61 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
 
         private boolean parentLoaded;
 
-        private DictData parent;
+        private Menu parent;
 
-        private List<DictData> children;
-
-        private boolean dictTypeLoaded;
-
-        private DictType dictType;
-
-        private boolean parentCodesLoaded;
+        private List<Menu> children;
 
         private String parentCodes;
 
-        private boolean treeSortLoaded;
-
         private BigDecimal treeSort;
-
-        private boolean treeSortsLoaded;
 
         private String treeSorts;
 
-        private boolean treeLeafLoaded;
-
         private String treeLeaf;
-
-        private boolean treeLevelLoaded;
 
         private BigDecimal treeLevel;
 
-        private boolean treeNamesLoaded;
-
         private String treeNames;
 
-        private boolean dictLabelLoaded;
+        private String menuName;
 
-        private String dictLabel;
+        private String menuType;
 
-        private boolean dictValueLoaded;
+        private boolean menuHrefLoaded;
 
-        private String dictValue;
+        private String menuHref;
 
-        private boolean sysLoaded;
+        private boolean menuComponentLoaded;
 
-        private boolean sys;
+        private String menuComponent;
 
-        private boolean descriptionLoaded;
+        private boolean menuTargetLoaded;
 
-        private String description;
+        private String menuTarget;
 
-        private boolean cssStyleLoaded;
+        private boolean menuIconLoaded;
 
-        private String cssStyle;
+        private String menuIcon;
 
-        private boolean cssClassLoaded;
+        private boolean menuColorLoaded;
 
-        private String cssClass;
+        private String menuColor;
 
-        private boolean corpCodeLoaded;
+        private boolean menuTitleLoaded;
 
-        private String corpCode;
+        private String menuTitle;
 
-        private boolean corpNameLoaded;
+        private boolean permissionLoaded;
 
-        private String corpName;
+        private String permission;
+
+        private BigDecimal weight;
+
+        private boolean showLoaded;
+
+        private boolean show;
+
+        private String sysCode;
 
         public MapStruct id(String id) {
             if (id != null) {
@@ -1898,109 +2042,137 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             return this;
         }
 
-        public MapStruct parent(DictData parent) {
+        public MapStruct parent(Menu parent) {
             this.parentLoaded = true;
             this.parent = parent;
             return this;
         }
 
-        public MapStruct children(List<DictData> children) {
+        public MapStruct children(List<Menu> children) {
             this.children = children != null ? children : Collections.emptyList();
             return this;
         }
 
-        public MapStruct dictType(DictType dictType) {
-            this.dictTypeLoaded = true;
-            this.dictType = dictType;
-            return this;
-        }
-
         public MapStruct parentCodes(String parentCodes) {
-            this.parentCodesLoaded = true;
-            this.parentCodes = parentCodes;
+            if (parentCodes != null) {
+                this.parentCodes = parentCodes;
+            }
             return this;
         }
 
         public MapStruct treeSort(BigDecimal treeSort) {
-            this.treeSortLoaded = true;
-            this.treeSort = treeSort;
+            if (treeSort != null) {
+                this.treeSort = treeSort;
+            }
             return this;
         }
 
         public MapStruct treeSorts(String treeSorts) {
-            this.treeSortsLoaded = true;
-            this.treeSorts = treeSorts;
+            if (treeSorts != null) {
+                this.treeSorts = treeSorts;
+            }
             return this;
         }
 
         public MapStruct treeLeaf(String treeLeaf) {
-            this.treeLeafLoaded = true;
-            this.treeLeaf = treeLeaf;
+            if (treeLeaf != null) {
+                this.treeLeaf = treeLeaf;
+            }
             return this;
         }
 
         public MapStruct treeLevel(BigDecimal treeLevel) {
-            this.treeLevelLoaded = true;
-            this.treeLevel = treeLevel;
+            if (treeLevel != null) {
+                this.treeLevel = treeLevel;
+            }
             return this;
         }
 
         public MapStruct treeNames(String treeNames) {
-            this.treeNamesLoaded = true;
-            this.treeNames = treeNames;
+            if (treeNames != null) {
+                this.treeNames = treeNames;
+            }
             return this;
         }
 
-        public MapStruct dictLabel(String dictLabel) {
-            this.dictLabelLoaded = true;
-            this.dictLabel = dictLabel;
+        public MapStruct menuName(String menuName) {
+            if (menuName != null) {
+                this.menuName = menuName;
+            }
             return this;
         }
 
-        public MapStruct dictValue(String dictValue) {
-            this.dictValueLoaded = true;
-            this.dictValue = dictValue;
+        public MapStruct menuType(String menuType) {
+            if (menuType != null) {
+                this.menuType = menuType;
+            }
             return this;
         }
 
-        public MapStruct sys(boolean sys) {
-            this.sysLoaded = true;
-            this.sys = sys;
+        public MapStruct menuHref(String menuHref) {
+            this.menuHrefLoaded = true;
+            this.menuHref = menuHref;
             return this;
         }
 
-        public MapStruct description(String description) {
-            this.descriptionLoaded = true;
-            this.description = description;
+        public MapStruct menuComponent(String menuComponent) {
+            this.menuComponentLoaded = true;
+            this.menuComponent = menuComponent;
             return this;
         }
 
-        public MapStruct cssStyle(String cssStyle) {
-            this.cssStyleLoaded = true;
-            this.cssStyle = cssStyle;
+        public MapStruct menuTarget(String menuTarget) {
+            this.menuTargetLoaded = true;
+            this.menuTarget = menuTarget;
             return this;
         }
 
-        public MapStruct cssClass(String cssClass) {
-            this.cssClassLoaded = true;
-            this.cssClass = cssClass;
+        public MapStruct menuIcon(String menuIcon) {
+            this.menuIconLoaded = true;
+            this.menuIcon = menuIcon;
             return this;
         }
 
-        public MapStruct corpCode(String corpCode) {
-            this.corpCodeLoaded = true;
-            this.corpCode = corpCode;
+        public MapStruct menuColor(String menuColor) {
+            this.menuColorLoaded = true;
+            this.menuColor = menuColor;
             return this;
         }
 
-        public MapStruct corpName(String corpName) {
-            this.corpNameLoaded = true;
-            this.corpName = corpName;
+        public MapStruct menuTitle(String menuTitle) {
+            this.menuTitleLoaded = true;
+            this.menuTitle = menuTitle;
             return this;
         }
 
-        public DictData build() {
-            return DictDataDraft.$.produce(draft -> {
+        public MapStruct permission(String permission) {
+            this.permissionLoaded = true;
+            this.permission = permission;
+            return this;
+        }
+
+        public MapStruct weight(BigDecimal weight) {
+            if (weight != null) {
+                this.weight = weight;
+            }
+            return this;
+        }
+
+        public MapStruct show(boolean show) {
+            this.showLoaded = true;
+            this.show = show;
+            return this;
+        }
+
+        public MapStruct sysCode(String sysCode) {
+            if (sysCode != null) {
+                this.sysCode = sysCode;
+            }
+            return this;
+        }
+
+        public Menu build() {
+            return MenuDraft.$.produce(draft -> {
                 if (id != null) {
                     draft.setId(id);
                 }
@@ -2028,50 +2200,59 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
                 if (children != null) {
                     draft.setChildren(children);
                 }
-                if (dictTypeLoaded) {
-                    draft.setDictType(dictType);
-                }
-                if (parentCodesLoaded) {
+                if (parentCodes != null) {
                     draft.setParentCodes(parentCodes);
                 }
-                if (treeSortLoaded) {
+                if (treeSort != null) {
                     draft.setTreeSort(treeSort);
                 }
-                if (treeSortsLoaded) {
+                if (treeSorts != null) {
                     draft.setTreeSorts(treeSorts);
                 }
-                if (treeLeafLoaded) {
+                if (treeLeaf != null) {
                     draft.setTreeLeaf(treeLeaf);
                 }
-                if (treeLevelLoaded) {
+                if (treeLevel != null) {
                     draft.setTreeLevel(treeLevel);
                 }
-                if (treeNamesLoaded) {
+                if (treeNames != null) {
                     draft.setTreeNames(treeNames);
                 }
-                if (dictLabelLoaded) {
-                    draft.setDictLabel(dictLabel);
+                if (menuName != null) {
+                    draft.setMenuName(menuName);
                 }
-                if (dictValueLoaded) {
-                    draft.setDictValue(dictValue);
+                if (menuType != null) {
+                    draft.setMenuType(menuType);
                 }
-                if (sysLoaded) {
-                    draft.setSys(sys);
+                if (menuHrefLoaded) {
+                    draft.setMenuHref(menuHref);
                 }
-                if (descriptionLoaded) {
-                    draft.setDescription(description);
+                if (menuComponentLoaded) {
+                    draft.setMenuComponent(menuComponent);
                 }
-                if (cssStyleLoaded) {
-                    draft.setCssStyle(cssStyle);
+                if (menuTargetLoaded) {
+                    draft.setMenuTarget(menuTarget);
                 }
-                if (cssClassLoaded) {
-                    draft.setCssClass(cssClass);
+                if (menuIconLoaded) {
+                    draft.setMenuIcon(menuIcon);
                 }
-                if (corpCodeLoaded) {
-                    draft.setCorpCode(corpCode);
+                if (menuColorLoaded) {
+                    draft.setMenuColor(menuColor);
                 }
-                if (corpNameLoaded) {
-                    draft.setCorpName(corpName);
+                if (menuTitleLoaded) {
+                    draft.setMenuTitle(menuTitle);
+                }
+                if (permissionLoaded) {
+                    draft.setPermission(permission);
+                }
+                if (weight != null) {
+                    draft.setWeight(weight);
+                }
+                if (showLoaded) {
+                    draft.setShow(show);
+                }
+                if (sysCode != null) {
+                    draft.setSysCode(sysCode);
                 }
             });
         }

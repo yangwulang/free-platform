@@ -6,6 +6,7 @@ import org.babyfish.jimmer.Immutable;
 import org.babyfish.jimmer.sql.*;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 import java.util.Date;
 
 /**
@@ -14,68 +15,64 @@ import java.util.Date;
 @Entity
 @Table(name = "sys_user")
 @Schema(description = "用户实体")
-@Immutable(value = Immutable.Nullity.NULLABLE)
 public interface User extends BaseEntity {
 
     @Id
     @Schema(description = "用户编码")
-    @NotNull
     String userCode();
 
     @Schema(description = "登录编码(账号)")
     @Key
-    String loginCode();
+    @Null String loginCode();
 
     @Schema(description = "用户名")
-    String userName();
+    @Null String userName();
 
     @Schema(description = "密码")
-    String password();
+    @Null String password();
 
 
     @Schema(description = "邮件")
-    String email();
+    @Null String email();
 
     @Schema(description = "手机")
-    String mobile();
+    @Null String mobile();
 
 
     @Schema(description = "电话")
-    String phone();
+    @Null String phone();
 
     @Schema(description = "性别")
-    String sex();
+    @Null String sex();
 
     @Schema(description = "头像地址")
-    String avatar();
+    @Null String avatar();
 
     @Schema(description = "个性签名")
-    String sign();
+    @Null String sign();
 
     @Schema(description = "微信开发id")
     @Column(name = "wx_openid")
-    String wxOpenId();
+    @Null String wxOpenId();
 
     @Schema(description = "手机imei")
-    String mobileImei();
+    @Null String mobileImei();
 
     @Schema(description = "用户类型")
-    @NotNull
-    String userType();
+    @Null String userType();
 
     @Schema(description = "用户类型引用编号")
-    String refCode();
+    @Null String refCode();
 
 
     @Schema(description = "用户类型引用名称")
-    String refName();
+    @Null String refName();
 
     @Schema(description = "管理员类型")
-    @NotNull
     String mgrType();
 
-    Integer pwdSecurityLevel();
+    @Null Integer pwdSecurityLevel();
 
-    Integer userWeight();
+    @Null Integer userWeight();
 
 }

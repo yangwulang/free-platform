@@ -1,5 +1,6 @@
 package top.yangwulang.platform.entity.sys;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.babyfish.jimmer.Immutable;
 import org.babyfish.jimmer.sql.*;
 
@@ -18,7 +19,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "sys_menu")
-@Immutable(value = Immutable.Nullity.NULLABLE)
+@Schema(description = "菜单实体")
 public interface Menu extends DataTypeBase {
     /**
      * 父级编号
@@ -26,112 +27,121 @@ public interface Menu extends DataTypeBase {
     @Key
     @ManyToOne
     @JoinColumn(name = "pid")
+    @Schema(description = "父级菜单")
     @OnDissociate(DissociateAction.DELETE)
-    Menu parent();
+    @Null Menu parent();
 
     @OneToMany(mappedBy = "parent")
-    @NotNull
+    @Schema(description = "子级菜单")
     List<Menu> children();
 
     /**
      * 所有父级编号
      */
-    @NotNull
+    @Schema(description = "父级所有code")
     String parentCodes();
 
     /**
      * 本级排序号（升序）
      */
-    @NotNull
+    @Schema(description = "当前级别排序")
     BigDecimal treeSort();
 
     /**
      * 所有级别排序号
      */
-    @NotNull
+    @Schema(description = "所有级别排序")
     String treeSorts();
 
     /**
      * 是否最末级
      */
-    @NotNull
+    @Schema(description = "是否最末级")
     String treeLeaf();
 
     /**
      * 层次级别
      */
-    @NotNull
+    @Schema(description = "层次级别")
     BigDecimal treeLevel();
 
     /**
      * 全节点名
      */
-    @NotNull
+    @Schema(description = "全节点名")
     String treeNames();
 
     /**
      * 菜单名称
      */
-    @NotNull
+    @Schema(description = "菜单名称")
     String menuName();
 
     /**
      * 菜单类型（1菜单 2权限 3开发）
      */
-    @NotNull
+    @Schema(description = "菜单类型（1菜单 2权限 3开发）")
     String menuType();
 
     /**
      * 链接
      */
-    String menuHref();
+    @Schema(description = "链接")
+    @Null String menuHref();
 
     /**
      * 组件地址
      */
-    String menuComponent();
+    @Schema(description = "组件地址")
+    @Null String menuComponent();
 
     /**
      * 目标
      */
-    String menuTarget();
+    @Schema(description = "目标")
+    @Null String menuTarget();
 
     /**
      * 图标
      */
-    String menuIcon();
+    @Schema(description = "图标")
+    @Null String menuIcon();
 
     /**
      * 颜色
      */
-    String menuColor();
+    @Schema(description = "颜色")
+    @Null String menuColor();
 
     /**
      * 菜单标题
      */
-    String menuTitle();
+    @Schema(description = "菜单标题")
+    @Null String menuTitle();
 
     /**
      * 权限标识
      */
-    String permission();
+    @Schema(description = "权限标识")
+    @Null String permission();
 
     /**
      * 菜单权重
      */
-    @NotNull
+    @Schema(description = "菜单权重")
     BigDecimal weight();
 
     /**
-     * 是否显示（1显示 0隐藏）
+     * 是否显示
      */
-    @NotNull
-    String isShow();
+    @Schema(description = "是否显示")
+    @Column(name = "is_show")
+    boolean isShow();
 
     /**
      * 归属系统（default:主导航菜单、mobileApp:APP菜单）
      */
-    @NotNull
+    @Schema(description = "归属系统（default:主导航菜单、mobileApp:APP菜单）")
     String sysCode();
 
 }

@@ -432,8 +432,8 @@ public interface BaseEntityDraft extends BaseEntity, Draft {
                         "'status' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
                     );
                 }
-                Impl modified = __modified();
-                modified.status = status;
+                Impl __tmpModified = __modified();
+                __tmpModified.status = status;
                 return this;
             }
 
@@ -449,8 +449,8 @@ public interface BaseEntityDraft extends BaseEntity, Draft {
                         "'createBy' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
                     );
                 }
-                Impl modified = __modified();
-                modified.createBy = createBy;
+                Impl __tmpModified = __modified();
+                __tmpModified.createBy = createBy;
                 return this;
             }
 
@@ -466,8 +466,8 @@ public interface BaseEntityDraft extends BaseEntity, Draft {
                         "'createDate' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
                     );
                 }
-                Impl modified = __modified();
-                modified.createDate = createDate;
+                Impl __tmpModified = __modified();
+                __tmpModified.createDate = createDate;
                 return this;
             }
 
@@ -483,8 +483,8 @@ public interface BaseEntityDraft extends BaseEntity, Draft {
                         "'updateBy' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
                     );
                 }
-                Impl modified = __modified();
-                modified.updateBy = updateBy;
+                Impl __tmpModified = __modified();
+                __tmpModified.updateBy = updateBy;
                 return this;
             }
 
@@ -500,8 +500,8 @@ public interface BaseEntityDraft extends BaseEntity, Draft {
                         "'updateDate' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
                     );
                 }
-                Impl modified = __modified();
-                modified.updateDate = updateDate;
+                Impl __tmpModified = __modified();
+                __tmpModified.updateDate = updateDate;
                 return this;
             }
 
@@ -512,9 +512,9 @@ public interface BaseEntityDraft extends BaseEntity, Draft {
 
             @Override
             public BaseEntityDraft setRemarks(String remarks) {
-                Impl modified = __modified();
-                modified.remarks = remarks;
-                modified.remarksLoaded = true;
+                Impl __tmpModified = __modified();
+                __tmpModified.remarks = remarks;
+                __tmpModified.remarksLoaded = true;
                 return this;
             }
 
@@ -585,11 +585,11 @@ public interface BaseEntityDraft extends BaseEntity, Draft {
                 __resolving = true;
                 try {
                     Implementor base = __base;
-                    Impl modified = __modified;
-                    if (modified == null || ImmutableSpi.equals(base, modified, true)) {
+                    Impl __tmpModified = __modified;
+                    if (__tmpModified == null || ImmutableSpi.equals(base, __tmpModified, true)) {
                         return base;
                     }
-                    return modified;
+                    return __tmpModified;
                 }
                 finally {
                     __resolving = false;
@@ -597,13 +597,93 @@ public interface BaseEntityDraft extends BaseEntity, Draft {
             }
 
             private Impl __modified() {
-                Impl modified = __modified;
-                if (modified == null) {
-                    modified = __base.clone();
-                    __modified = modified;
+                Impl __tmpModified = __modified;
+                if (__tmpModified == null) {
+                    __tmpModified = __base.clone();
+                    __modified = __tmpModified;
                 }
-                return modified;
+                return __tmpModified;
             }
+        }
+    }
+
+    class MapStruct {
+        private String status;
+
+        private String createBy;
+
+        private LocalDateTime createDate;
+
+        private String updateBy;
+
+        private LocalDateTime updateDate;
+
+        private boolean remarksLoaded;
+
+        private String remarks;
+
+        public MapStruct status(String status) {
+            if (status != null) {
+                this.status = status;
+            }
+            return this;
+        }
+
+        public MapStruct createBy(String createBy) {
+            if (createBy != null) {
+                this.createBy = createBy;
+            }
+            return this;
+        }
+
+        public MapStruct createDate(LocalDateTime createDate) {
+            if (createDate != null) {
+                this.createDate = createDate;
+            }
+            return this;
+        }
+
+        public MapStruct updateBy(String updateBy) {
+            if (updateBy != null) {
+                this.updateBy = updateBy;
+            }
+            return this;
+        }
+
+        public MapStruct updateDate(LocalDateTime updateDate) {
+            if (updateDate != null) {
+                this.updateDate = updateDate;
+            }
+            return this;
+        }
+
+        public MapStruct remarks(String remarks) {
+            this.remarksLoaded = true;
+            this.remarks = remarks;
+            return this;
+        }
+
+        public BaseEntity build() {
+            return BaseEntityDraft.$.produce(draft -> {
+                if (status != null) {
+                    draft.setStatus(status);
+                }
+                if (createBy != null) {
+                    draft.setCreateBy(createBy);
+                }
+                if (createDate != null) {
+                    draft.setCreateDate(createDate);
+                }
+                if (updateBy != null) {
+                    draft.setUpdateBy(updateBy);
+                }
+                if (updateDate != null) {
+                    draft.setUpdateDate(updateDate);
+                }
+                if (remarksLoaded) {
+                    draft.setRemarks(remarks);
+                }
+            });
         }
     }
 }

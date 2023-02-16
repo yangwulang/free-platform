@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import top.yangwulang.platform.entity.sys.User;
 import top.yangwulang.platform.entity.sys.UserFetcher;
 import top.yangwulang.platform.entity.sys.UserTable;
-import top.yangwulang.platform.entity.sys.dto.UserInput;
+import top.yangwulang.platform.entity.sys.input.UserInput;
 
 import javax.validation.constraints.NotNull;
 

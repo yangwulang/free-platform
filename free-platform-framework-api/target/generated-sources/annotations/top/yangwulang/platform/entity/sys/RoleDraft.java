@@ -834,8 +834,8 @@ public interface RoleDraft extends Role, Draft {
                         "'roleCode' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
                     );
                 }
-                Impl modified = __modified();
-                modified.roleCode = roleCode;
+                Impl __tmpModified = __modified();
+                __tmpModified.roleCode = roleCode;
                 return this;
             }
 
@@ -851,8 +851,8 @@ public interface RoleDraft extends Role, Draft {
                         "'roleName' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
                     );
                 }
-                Impl modified = __modified();
-                modified.roleName = roleName;
+                Impl __tmpModified = __modified();
+                __tmpModified.roleName = roleName;
                 return this;
             }
 
@@ -863,9 +863,9 @@ public interface RoleDraft extends Role, Draft {
 
             @Override
             public RoleDraft setRoleType(String roleType) {
-                Impl modified = __modified();
-                modified.roleType = roleType;
-                modified.roleTypeLoaded = true;
+                Impl __tmpModified = __modified();
+                __tmpModified.roleType = roleType;
+                __tmpModified.roleTypeLoaded = true;
                 return this;
             }
 
@@ -876,9 +876,9 @@ public interface RoleDraft extends Role, Draft {
 
             @Override
             public RoleDraft setRoleSort(BigDecimal roleSort) {
-                Impl modified = __modified();
-                modified.roleSort = roleSort;
-                modified.roleSortLoaded = true;
+                Impl __tmpModified = __modified();
+                __tmpModified.roleSort = roleSort;
+                __tmpModified.roleSortLoaded = true;
                 return this;
             }
 
@@ -890,9 +890,9 @@ public interface RoleDraft extends Role, Draft {
 
             @Override
             public RoleDraft setSys(boolean sys) {
-                Impl modified = __modified();
-                modified.sys = sys;
-                modified.sysLoaded = true;
+                Impl __tmpModified = __modified();
+                __tmpModified.sys = sys;
+                __tmpModified.sysLoaded = true;
                 return this;
             }
 
@@ -903,9 +903,9 @@ public interface RoleDraft extends Role, Draft {
 
             @Override
             public RoleDraft setUserType(String userType) {
-                Impl modified = __modified();
-                modified.userType = userType;
-                modified.userTypeLoaded = true;
+                Impl __tmpModified = __modified();
+                __tmpModified.userType = userType;
+                __tmpModified.userTypeLoaded = true;
                 return this;
             }
 
@@ -916,9 +916,9 @@ public interface RoleDraft extends Role, Draft {
 
             @Override
             public RoleDraft setDataScope(String dataScope) {
-                Impl modified = __modified();
-                modified.dataScope = dataScope;
-                modified.dataScopeLoaded = true;
+                Impl __tmpModified = __modified();
+                __tmpModified.dataScope = dataScope;
+                __tmpModified.dataScopeLoaded = true;
                 return this;
             }
 
@@ -929,9 +929,9 @@ public interface RoleDraft extends Role, Draft {
 
             @Override
             public RoleDraft setBizScope(String bizScope) {
-                Impl modified = __modified();
-                modified.bizScope = bizScope;
-                modified.bizScopeLoaded = true;
+                Impl __tmpModified = __modified();
+                __tmpModified.bizScope = bizScope;
+                __tmpModified.bizScopeLoaded = true;
                 return this;
             }
 
@@ -947,8 +947,8 @@ public interface RoleDraft extends Role, Draft {
                         "'status' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
                     );
                 }
-                Impl modified = __modified();
-                modified.status = status;
+                Impl __tmpModified = __modified();
+                __tmpModified.status = status;
                 return this;
             }
 
@@ -964,8 +964,8 @@ public interface RoleDraft extends Role, Draft {
                         "'createBy' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
                     );
                 }
-                Impl modified = __modified();
-                modified.createBy = createBy;
+                Impl __tmpModified = __modified();
+                __tmpModified.createBy = createBy;
                 return this;
             }
 
@@ -981,8 +981,8 @@ public interface RoleDraft extends Role, Draft {
                         "'createDate' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
                     );
                 }
-                Impl modified = __modified();
-                modified.createDate = createDate;
+                Impl __tmpModified = __modified();
+                __tmpModified.createDate = createDate;
                 return this;
             }
 
@@ -998,8 +998,8 @@ public interface RoleDraft extends Role, Draft {
                         "'updateBy' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
                     );
                 }
-                Impl modified = __modified();
-                modified.updateBy = updateBy;
+                Impl __tmpModified = __modified();
+                __tmpModified.updateBy = updateBy;
                 return this;
             }
 
@@ -1015,8 +1015,8 @@ public interface RoleDraft extends Role, Draft {
                         "'updateDate' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
                     );
                 }
-                Impl modified = __modified();
-                modified.updateDate = updateDate;
+                Impl __tmpModified = __modified();
+                __tmpModified.updateDate = updateDate;
                 return this;
             }
 
@@ -1027,9 +1027,9 @@ public interface RoleDraft extends Role, Draft {
 
             @Override
             public RoleDraft setRemarks(String remarks) {
-                Impl modified = __modified();
-                modified.remarks = remarks;
-                modified.remarksLoaded = true;
+                Impl __tmpModified = __modified();
+                __tmpModified.remarks = remarks;
+                __tmpModified.remarksLoaded = true;
                 return this;
             }
 
@@ -1040,9 +1040,9 @@ public interface RoleDraft extends Role, Draft {
 
             @Override
             public RoleDraft setCorpCode(String corpCode) {
-                Impl modified = __modified();
-                modified.corpCode = corpCode;
-                modified.corpCodeLoaded = true;
+                Impl __tmpModified = __modified();
+                __tmpModified.corpCode = corpCode;
+                __tmpModified.corpCodeLoaded = true;
                 return this;
             }
 
@@ -1058,8 +1058,8 @@ public interface RoleDraft extends Role, Draft {
                         "'corpName' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
                     );
                 }
-                Impl modified = __modified();
-                modified.corpName = corpName;
+                Impl __tmpModified = __modified();
+                __tmpModified.corpName = corpName;
                 return this;
             }
 
@@ -1176,11 +1176,11 @@ public interface RoleDraft extends Role, Draft {
                 __resolving = true;
                 try {
                     Implementor base = __base;
-                    Impl modified = __modified;
-                    if (modified == null || ImmutableSpi.equals(base, modified, true)) {
+                    Impl __tmpModified = __modified;
+                    if (__tmpModified == null || ImmutableSpi.equals(base, __tmpModified, true)) {
                         return base;
                     }
-                    return modified;
+                    return __tmpModified;
                 }
                 finally {
                     __resolving = false;
@@ -1188,13 +1188,220 @@ public interface RoleDraft extends Role, Draft {
             }
 
             private Impl __modified() {
-                Impl modified = __modified;
-                if (modified == null) {
-                    modified = __base.clone();
-                    __modified = modified;
+                Impl __tmpModified = __modified;
+                if (__tmpModified == null) {
+                    __tmpModified = __base.clone();
+                    __modified = __tmpModified;
                 }
-                return modified;
+                return __tmpModified;
             }
+        }
+    }
+
+    class MapStruct {
+        private String roleCode;
+
+        private String roleName;
+
+        private boolean roleTypeLoaded;
+
+        private String roleType;
+
+        private boolean roleSortLoaded;
+
+        private BigDecimal roleSort;
+
+        private boolean sysLoaded;
+
+        private boolean sys;
+
+        private boolean userTypeLoaded;
+
+        private String userType;
+
+        private boolean dataScopeLoaded;
+
+        private String dataScope;
+
+        private boolean bizScopeLoaded;
+
+        private String bizScope;
+
+        private String status;
+
+        private String createBy;
+
+        private LocalDateTime createDate;
+
+        private String updateBy;
+
+        private LocalDateTime updateDate;
+
+        private boolean remarksLoaded;
+
+        private String remarks;
+
+        private boolean corpCodeLoaded;
+
+        private String corpCode;
+
+        private String corpName;
+
+        public MapStruct roleCode(String roleCode) {
+            if (roleCode != null) {
+                this.roleCode = roleCode;
+            }
+            return this;
+        }
+
+        public MapStruct roleName(String roleName) {
+            if (roleName != null) {
+                this.roleName = roleName;
+            }
+            return this;
+        }
+
+        public MapStruct roleType(String roleType) {
+            this.roleTypeLoaded = true;
+            this.roleType = roleType;
+            return this;
+        }
+
+        public MapStruct roleSort(BigDecimal roleSort) {
+            this.roleSortLoaded = true;
+            this.roleSort = roleSort;
+            return this;
+        }
+
+        public MapStruct sys(boolean sys) {
+            this.sysLoaded = true;
+            this.sys = sys;
+            return this;
+        }
+
+        public MapStruct userType(String userType) {
+            this.userTypeLoaded = true;
+            this.userType = userType;
+            return this;
+        }
+
+        public MapStruct dataScope(String dataScope) {
+            this.dataScopeLoaded = true;
+            this.dataScope = dataScope;
+            return this;
+        }
+
+        public MapStruct bizScope(String bizScope) {
+            this.bizScopeLoaded = true;
+            this.bizScope = bizScope;
+            return this;
+        }
+
+        public MapStruct status(String status) {
+            if (status != null) {
+                this.status = status;
+            }
+            return this;
+        }
+
+        public MapStruct createBy(String createBy) {
+            if (createBy != null) {
+                this.createBy = createBy;
+            }
+            return this;
+        }
+
+        public MapStruct createDate(LocalDateTime createDate) {
+            if (createDate != null) {
+                this.createDate = createDate;
+            }
+            return this;
+        }
+
+        public MapStruct updateBy(String updateBy) {
+            if (updateBy != null) {
+                this.updateBy = updateBy;
+            }
+            return this;
+        }
+
+        public MapStruct updateDate(LocalDateTime updateDate) {
+            if (updateDate != null) {
+                this.updateDate = updateDate;
+            }
+            return this;
+        }
+
+        public MapStruct remarks(String remarks) {
+            this.remarksLoaded = true;
+            this.remarks = remarks;
+            return this;
+        }
+
+        public MapStruct corpCode(String corpCode) {
+            this.corpCodeLoaded = true;
+            this.corpCode = corpCode;
+            return this;
+        }
+
+        public MapStruct corpName(String corpName) {
+            if (corpName != null) {
+                this.corpName = corpName;
+            }
+            return this;
+        }
+
+        public Role build() {
+            return RoleDraft.$.produce(draft -> {
+                if (roleCode != null) {
+                    draft.setRoleCode(roleCode);
+                }
+                if (roleName != null) {
+                    draft.setRoleName(roleName);
+                }
+                if (roleTypeLoaded) {
+                    draft.setRoleType(roleType);
+                }
+                if (roleSortLoaded) {
+                    draft.setRoleSort(roleSort);
+                }
+                if (sysLoaded) {
+                    draft.setSys(sys);
+                }
+                if (userTypeLoaded) {
+                    draft.setUserType(userType);
+                }
+                if (dataScopeLoaded) {
+                    draft.setDataScope(dataScope);
+                }
+                if (bizScopeLoaded) {
+                    draft.setBizScope(bizScope);
+                }
+                if (status != null) {
+                    draft.setStatus(status);
+                }
+                if (createBy != null) {
+                    draft.setCreateBy(createBy);
+                }
+                if (createDate != null) {
+                    draft.setCreateDate(createDate);
+                }
+                if (updateBy != null) {
+                    draft.setUpdateBy(updateBy);
+                }
+                if (updateDate != null) {
+                    draft.setUpdateDate(updateDate);
+                }
+                if (remarksLoaded) {
+                    draft.setRemarks(remarks);
+                }
+                if (corpCodeLoaded) {
+                    draft.setCorpCode(corpCode);
+                }
+                if (corpName != null) {
+                    draft.setCorpName(corpName);
+                }
+            });
         }
     }
 }

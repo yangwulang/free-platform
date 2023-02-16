@@ -14,7 +14,6 @@ import java.time.LocalDateTime;
  */
 @Entity
 @Table(name = "sys_dict_type")
-@Immutable(value = Immutable.Nullity.NULLABLE)
 @Schema(name = "字典类型", description = "字典类型标签")
 public interface DictType extends DataTypeBase {
 
@@ -23,7 +22,7 @@ public interface DictType extends DataTypeBase {
      * @return 字典名称
      */
     @Schema(description = "字典名称")
-    String dictName();
+    @Null String dictName();
 
     /**
      * 字典类型
@@ -32,7 +31,7 @@ public interface DictType extends DataTypeBase {
      */
     @Schema(description = "字典类型标签")
     @Key
-    String dictType();
+    @Null String dictType();
 
     /**
      * 是否系统字典
@@ -41,7 +40,7 @@ public interface DictType extends DataTypeBase {
      */
     @Schema(description = "是否系统自带")
     @Column(name = "is_sys")
-    boolean isSys();
+    @Null boolean isSys();
 
 }
 

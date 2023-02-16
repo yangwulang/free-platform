@@ -119,7 +119,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             .add(16, "sign", ImmutablePropCategory.SCALAR, String.class, true)
             .add(17, "wxOpenId", ImmutablePropCategory.SCALAR, String.class, true)
             .add(18, "mobileImei", ImmutablePropCategory.SCALAR, String.class, true)
-            .add(19, "userType", ImmutablePropCategory.SCALAR, String.class, false)
+            .add(19, "userType", ImmutablePropCategory.SCALAR, String.class, true)
             .add(20, "refCode", ImmutablePropCategory.SCALAR, String.class, true)
             .add(21, "refName", ImmutablePropCategory.SCALAR, String.class, true)
             .add(22, "mgrType", ImmutablePropCategory.SCALAR, String.class, false)
@@ -278,6 +278,8 @@ public interface UserDraft extends User, BaseEntityDraft {
             boolean mobileImeiLoaded = false;
 
             String userType;
+
+            boolean userTypeLoaded = false;
 
             String refCode;
 
@@ -443,7 +445,7 @@ public interface UserDraft extends User, BaseEntityDraft {
 
             @Override
             public String userType() {
-                if (userType == null) {
+                if (!userTypeLoaded) {
                     throw new UnloadedException(User.class, "userType");
                 }
                 return userType;
@@ -519,7 +521,7 @@ public interface UserDraft extends User, BaseEntityDraft {
                     case 16: return signLoaded;
                     case 17: return wxOpenIdLoaded;
                     case 18: return mobileImeiLoaded;
-                    case 19: return userType != null;
+                    case 19: return userTypeLoaded;
                     case 20: return refCodeLoaded;
                     case 21: return refNameLoaded;
                     case 22: return mgrType != null;
@@ -550,7 +552,7 @@ public interface UserDraft extends User, BaseEntityDraft {
                     case "sign": return signLoaded;
                     case "wxOpenId": return wxOpenIdLoaded;
                     case "mobileImei": return mobileImeiLoaded;
-                    case "userType": return userType != null;
+                    case "userType": return userTypeLoaded;
                     case "refCode": return refCodeLoaded;
                     case "refName": return refNameLoaded;
                     case "mgrType": return mgrType != null;
@@ -619,7 +621,7 @@ public interface UserDraft extends User, BaseEntityDraft {
                 if (mobileImeiLoaded && mobileImei != null) {
                     hash = 31 * hash + mobileImei.hashCode();
                 }
-                if (userType != null) {
+                if (userTypeLoaded && userType != null) {
                     hash = 31 * hash + userType.hashCode();
                 }
                 if (refCodeLoaded && refCode != null) {
@@ -696,7 +698,7 @@ public interface UserDraft extends User, BaseEntityDraft {
                 if (mobileImeiLoaded) {
                     hash = 31 * hash + System.identityHashCode(mobileImei);
                 }
-                if (userType != null) {
+                if (userTypeLoaded) {
                     hash = 31 * hash + System.identityHashCode(userType);
                 }
                 if (refCodeLoaded) {
@@ -855,7 +857,7 @@ public interface UserDraft extends User, BaseEntityDraft {
                 if (__mobileImeiLoaded && !Objects.equals(mobileImei, other.mobileImei())) {
                     return false;
                 }
-                boolean __userTypeLoaded = userType != null;
+                boolean __userTypeLoaded = userTypeLoaded;
                 if (__userTypeLoaded != other.__isLoaded(19)) {
                     return false;
                 }
@@ -1031,7 +1033,7 @@ public interface UserDraft extends User, BaseEntityDraft {
                 if (__mobileImeiLoaded && mobileImei != other.mobileImei()) {
                     return false;
                 }
-                boolean __userTypeLoaded = userType != null;
+                boolean __userTypeLoaded = userTypeLoaded;
                 if (__userTypeLoaded != other.__isLoaded(19)) {
                     return false;
                 }
@@ -1143,8 +1145,8 @@ public interface UserDraft extends User, BaseEntityDraft {
                         "'userCode' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
                     );
                 }
-                Impl modified = __modified();
-                modified.userCode = userCode;
+                Impl __tmpModified = __modified();
+                __tmpModified.userCode = userCode;
                 return this;
             }
 
@@ -1160,8 +1162,8 @@ public interface UserDraft extends User, BaseEntityDraft {
                         "'status' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
                     );
                 }
-                Impl modified = __modified();
-                modified.status = status;
+                Impl __tmpModified = __modified();
+                __tmpModified.status = status;
                 return this;
             }
 
@@ -1177,8 +1179,8 @@ public interface UserDraft extends User, BaseEntityDraft {
                         "'createBy' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
                     );
                 }
-                Impl modified = __modified();
-                modified.createBy = createBy;
+                Impl __tmpModified = __modified();
+                __tmpModified.createBy = createBy;
                 return this;
             }
 
@@ -1194,8 +1196,8 @@ public interface UserDraft extends User, BaseEntityDraft {
                         "'createDate' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
                     );
                 }
-                Impl modified = __modified();
-                modified.createDate = createDate;
+                Impl __tmpModified = __modified();
+                __tmpModified.createDate = createDate;
                 return this;
             }
 
@@ -1211,8 +1213,8 @@ public interface UserDraft extends User, BaseEntityDraft {
                         "'updateBy' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
                     );
                 }
-                Impl modified = __modified();
-                modified.updateBy = updateBy;
+                Impl __tmpModified = __modified();
+                __tmpModified.updateBy = updateBy;
                 return this;
             }
 
@@ -1228,8 +1230,8 @@ public interface UserDraft extends User, BaseEntityDraft {
                         "'updateDate' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
                     );
                 }
-                Impl modified = __modified();
-                modified.updateDate = updateDate;
+                Impl __tmpModified = __modified();
+                __tmpModified.updateDate = updateDate;
                 return this;
             }
 
@@ -1240,9 +1242,9 @@ public interface UserDraft extends User, BaseEntityDraft {
 
             @Override
             public UserDraft setRemarks(String remarks) {
-                Impl modified = __modified();
-                modified.remarks = remarks;
-                modified.remarksLoaded = true;
+                Impl __tmpModified = __modified();
+                __tmpModified.remarks = remarks;
+                __tmpModified.remarksLoaded = true;
                 return this;
             }
 
@@ -1253,9 +1255,9 @@ public interface UserDraft extends User, BaseEntityDraft {
 
             @Override
             public UserDraft setLoginCode(String loginCode) {
-                Impl modified = __modified();
-                modified.loginCode = loginCode;
-                modified.loginCodeLoaded = true;
+                Impl __tmpModified = __modified();
+                __tmpModified.loginCode = loginCode;
+                __tmpModified.loginCodeLoaded = true;
                 return this;
             }
 
@@ -1266,9 +1268,9 @@ public interface UserDraft extends User, BaseEntityDraft {
 
             @Override
             public UserDraft setUserName(String userName) {
-                Impl modified = __modified();
-                modified.userName = userName;
-                modified.userNameLoaded = true;
+                Impl __tmpModified = __modified();
+                __tmpModified.userName = userName;
+                __tmpModified.userNameLoaded = true;
                 return this;
             }
 
@@ -1279,9 +1281,9 @@ public interface UserDraft extends User, BaseEntityDraft {
 
             @Override
             public UserDraft setPassword(String password) {
-                Impl modified = __modified();
-                modified.password = password;
-                modified.passwordLoaded = true;
+                Impl __tmpModified = __modified();
+                __tmpModified.password = password;
+                __tmpModified.passwordLoaded = true;
                 return this;
             }
 
@@ -1292,9 +1294,9 @@ public interface UserDraft extends User, BaseEntityDraft {
 
             @Override
             public UserDraft setEmail(String email) {
-                Impl modified = __modified();
-                modified.email = email;
-                modified.emailLoaded = true;
+                Impl __tmpModified = __modified();
+                __tmpModified.email = email;
+                __tmpModified.emailLoaded = true;
                 return this;
             }
 
@@ -1305,9 +1307,9 @@ public interface UserDraft extends User, BaseEntityDraft {
 
             @Override
             public UserDraft setMobile(String mobile) {
-                Impl modified = __modified();
-                modified.mobile = mobile;
-                modified.mobileLoaded = true;
+                Impl __tmpModified = __modified();
+                __tmpModified.mobile = mobile;
+                __tmpModified.mobileLoaded = true;
                 return this;
             }
 
@@ -1318,9 +1320,9 @@ public interface UserDraft extends User, BaseEntityDraft {
 
             @Override
             public UserDraft setPhone(String phone) {
-                Impl modified = __modified();
-                modified.phone = phone;
-                modified.phoneLoaded = true;
+                Impl __tmpModified = __modified();
+                __tmpModified.phone = phone;
+                __tmpModified.phoneLoaded = true;
                 return this;
             }
 
@@ -1331,9 +1333,9 @@ public interface UserDraft extends User, BaseEntityDraft {
 
             @Override
             public UserDraft setSex(String sex) {
-                Impl modified = __modified();
-                modified.sex = sex;
-                modified.sexLoaded = true;
+                Impl __tmpModified = __modified();
+                __tmpModified.sex = sex;
+                __tmpModified.sexLoaded = true;
                 return this;
             }
 
@@ -1344,9 +1346,9 @@ public interface UserDraft extends User, BaseEntityDraft {
 
             @Override
             public UserDraft setAvatar(String avatar) {
-                Impl modified = __modified();
-                modified.avatar = avatar;
-                modified.avatarLoaded = true;
+                Impl __tmpModified = __modified();
+                __tmpModified.avatar = avatar;
+                __tmpModified.avatarLoaded = true;
                 return this;
             }
 
@@ -1357,9 +1359,9 @@ public interface UserDraft extends User, BaseEntityDraft {
 
             @Override
             public UserDraft setSign(String sign) {
-                Impl modified = __modified();
-                modified.sign = sign;
-                modified.signLoaded = true;
+                Impl __tmpModified = __modified();
+                __tmpModified.sign = sign;
+                __tmpModified.signLoaded = true;
                 return this;
             }
 
@@ -1370,9 +1372,9 @@ public interface UserDraft extends User, BaseEntityDraft {
 
             @Override
             public UserDraft setWxOpenId(String wxOpenId) {
-                Impl modified = __modified();
-                modified.wxOpenId = wxOpenId;
-                modified.wxOpenIdLoaded = true;
+                Impl __tmpModified = __modified();
+                __tmpModified.wxOpenId = wxOpenId;
+                __tmpModified.wxOpenIdLoaded = true;
                 return this;
             }
 
@@ -1383,9 +1385,9 @@ public interface UserDraft extends User, BaseEntityDraft {
 
             @Override
             public UserDraft setMobileImei(String mobileImei) {
-                Impl modified = __modified();
-                modified.mobileImei = mobileImei;
-                modified.mobileImeiLoaded = true;
+                Impl __tmpModified = __modified();
+                __tmpModified.mobileImei = mobileImei;
+                __tmpModified.mobileImeiLoaded = true;
                 return this;
             }
 
@@ -1396,13 +1398,9 @@ public interface UserDraft extends User, BaseEntityDraft {
 
             @Override
             public UserDraft setUserType(String userType) {
-                if (userType == null) {
-                    throw new IllegalArgumentException(
-                        "'userType' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
-                    );
-                }
-                Impl modified = __modified();
-                modified.userType = userType;
+                Impl __tmpModified = __modified();
+                __tmpModified.userType = userType;
+                __tmpModified.userTypeLoaded = true;
                 return this;
             }
 
@@ -1413,9 +1411,9 @@ public interface UserDraft extends User, BaseEntityDraft {
 
             @Override
             public UserDraft setRefCode(String refCode) {
-                Impl modified = __modified();
-                modified.refCode = refCode;
-                modified.refCodeLoaded = true;
+                Impl __tmpModified = __modified();
+                __tmpModified.refCode = refCode;
+                __tmpModified.refCodeLoaded = true;
                 return this;
             }
 
@@ -1426,9 +1424,9 @@ public interface UserDraft extends User, BaseEntityDraft {
 
             @Override
             public UserDraft setRefName(String refName) {
-                Impl modified = __modified();
-                modified.refName = refName;
-                modified.refNameLoaded = true;
+                Impl __tmpModified = __modified();
+                __tmpModified.refName = refName;
+                __tmpModified.refNameLoaded = true;
                 return this;
             }
 
@@ -1444,8 +1442,8 @@ public interface UserDraft extends User, BaseEntityDraft {
                         "'mgrType' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
                     );
                 }
-                Impl modified = __modified();
-                modified.mgrType = mgrType;
+                Impl __tmpModified = __modified();
+                __tmpModified.mgrType = mgrType;
                 return this;
             }
 
@@ -1456,9 +1454,9 @@ public interface UserDraft extends User, BaseEntityDraft {
 
             @Override
             public UserDraft setPwdSecurityLevel(Integer pwdSecurityLevel) {
-                Impl modified = __modified();
-                modified.pwdSecurityLevel = pwdSecurityLevel;
-                modified.pwdSecurityLevelLoaded = true;
+                Impl __tmpModified = __modified();
+                __tmpModified.pwdSecurityLevel = pwdSecurityLevel;
+                __tmpModified.pwdSecurityLevelLoaded = true;
                 return this;
             }
 
@@ -1469,9 +1467,9 @@ public interface UserDraft extends User, BaseEntityDraft {
 
             @Override
             public UserDraft setUserWeight(Integer userWeight) {
-                Impl modified = __modified();
-                modified.userWeight = userWeight;
-                modified.userWeightLoaded = true;
+                Impl __tmpModified = __modified();
+                __tmpModified.userWeight = userWeight;
+                __tmpModified.userWeightLoaded = true;
                 return this;
             }
 
@@ -1560,7 +1558,7 @@ public interface UserDraft extends User, BaseEntityDraft {
                     case 16: __modified().signLoaded = false;break;
                     case 17: __modified().wxOpenIdLoaded = false;break;
                     case 18: __modified().mobileImeiLoaded = false;break;
-                    case 19: __modified().userType = null;break;
+                    case 19: __modified().userTypeLoaded = false;break;
                     case 20: __modified().refCodeLoaded = false;break;
                     case 21: __modified().refNameLoaded = false;break;
                     case 22: __modified().mgrType = null;break;
@@ -1591,7 +1589,7 @@ public interface UserDraft extends User, BaseEntityDraft {
                     case "sign": __modified().signLoaded = false;break;
                     case "wxOpenId": __modified().wxOpenIdLoaded = false;break;
                     case "mobileImei": __modified().mobileImeiLoaded = false;break;
-                    case "userType": __modified().userType = null;break;
+                    case "userType": __modified().userTypeLoaded = false;break;
                     case "refCode": __modified().refCodeLoaded = false;break;
                     case "refName": __modified().refNameLoaded = false;break;
                     case "mgrType": __modified().mgrType = null;break;
@@ -1614,11 +1612,11 @@ public interface UserDraft extends User, BaseEntityDraft {
                 __resolving = true;
                 try {
                     Implementor base = __base;
-                    Impl modified = __modified;
-                    if (modified == null || ImmutableSpi.equals(base, modified, true)) {
+                    Impl __tmpModified = __modified;
+                    if (__tmpModified == null || ImmutableSpi.equals(base, __tmpModified, true)) {
                         return base;
                     }
-                    return modified;
+                    return __tmpModified;
                 }
                 finally {
                     __resolving = false;
@@ -1626,13 +1624,325 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
 
             private Impl __modified() {
-                Impl modified = __modified;
-                if (modified == null) {
-                    modified = __base.clone();
-                    __modified = modified;
+                Impl __tmpModified = __modified;
+                if (__tmpModified == null) {
+                    __tmpModified = __base.clone();
+                    __modified = __tmpModified;
                 }
-                return modified;
+                return __tmpModified;
             }
+        }
+    }
+
+    class MapStruct {
+        private String userCode;
+
+        private String status;
+
+        private String createBy;
+
+        private LocalDateTime createDate;
+
+        private String updateBy;
+
+        private LocalDateTime updateDate;
+
+        private boolean remarksLoaded;
+
+        private String remarks;
+
+        private boolean loginCodeLoaded;
+
+        private String loginCode;
+
+        private boolean userNameLoaded;
+
+        private String userName;
+
+        private boolean passwordLoaded;
+
+        private String password;
+
+        private boolean emailLoaded;
+
+        private String email;
+
+        private boolean mobileLoaded;
+
+        private String mobile;
+
+        private boolean phoneLoaded;
+
+        private String phone;
+
+        private boolean sexLoaded;
+
+        private String sex;
+
+        private boolean avatarLoaded;
+
+        private String avatar;
+
+        private boolean signLoaded;
+
+        private String sign;
+
+        private boolean wxOpenIdLoaded;
+
+        private String wxOpenId;
+
+        private boolean mobileImeiLoaded;
+
+        private String mobileImei;
+
+        private boolean userTypeLoaded;
+
+        private String userType;
+
+        private boolean refCodeLoaded;
+
+        private String refCode;
+
+        private boolean refNameLoaded;
+
+        private String refName;
+
+        private String mgrType;
+
+        private boolean pwdSecurityLevelLoaded;
+
+        private Integer pwdSecurityLevel;
+
+        private boolean userWeightLoaded;
+
+        private Integer userWeight;
+
+        public MapStruct userCode(String userCode) {
+            if (userCode != null) {
+                this.userCode = userCode;
+            }
+            return this;
+        }
+
+        public MapStruct status(String status) {
+            if (status != null) {
+                this.status = status;
+            }
+            return this;
+        }
+
+        public MapStruct createBy(String createBy) {
+            if (createBy != null) {
+                this.createBy = createBy;
+            }
+            return this;
+        }
+
+        public MapStruct createDate(LocalDateTime createDate) {
+            if (createDate != null) {
+                this.createDate = createDate;
+            }
+            return this;
+        }
+
+        public MapStruct updateBy(String updateBy) {
+            if (updateBy != null) {
+                this.updateBy = updateBy;
+            }
+            return this;
+        }
+
+        public MapStruct updateDate(LocalDateTime updateDate) {
+            if (updateDate != null) {
+                this.updateDate = updateDate;
+            }
+            return this;
+        }
+
+        public MapStruct remarks(String remarks) {
+            this.remarksLoaded = true;
+            this.remarks = remarks;
+            return this;
+        }
+
+        public MapStruct loginCode(String loginCode) {
+            this.loginCodeLoaded = true;
+            this.loginCode = loginCode;
+            return this;
+        }
+
+        public MapStruct userName(String userName) {
+            this.userNameLoaded = true;
+            this.userName = userName;
+            return this;
+        }
+
+        public MapStruct password(String password) {
+            this.passwordLoaded = true;
+            this.password = password;
+            return this;
+        }
+
+        public MapStruct email(String email) {
+            this.emailLoaded = true;
+            this.email = email;
+            return this;
+        }
+
+        public MapStruct mobile(String mobile) {
+            this.mobileLoaded = true;
+            this.mobile = mobile;
+            return this;
+        }
+
+        public MapStruct phone(String phone) {
+            this.phoneLoaded = true;
+            this.phone = phone;
+            return this;
+        }
+
+        public MapStruct sex(String sex) {
+            this.sexLoaded = true;
+            this.sex = sex;
+            return this;
+        }
+
+        public MapStruct avatar(String avatar) {
+            this.avatarLoaded = true;
+            this.avatar = avatar;
+            return this;
+        }
+
+        public MapStruct sign(String sign) {
+            this.signLoaded = true;
+            this.sign = sign;
+            return this;
+        }
+
+        public MapStruct wxOpenId(String wxOpenId) {
+            this.wxOpenIdLoaded = true;
+            this.wxOpenId = wxOpenId;
+            return this;
+        }
+
+        public MapStruct mobileImei(String mobileImei) {
+            this.mobileImeiLoaded = true;
+            this.mobileImei = mobileImei;
+            return this;
+        }
+
+        public MapStruct userType(String userType) {
+            this.userTypeLoaded = true;
+            this.userType = userType;
+            return this;
+        }
+
+        public MapStruct refCode(String refCode) {
+            this.refCodeLoaded = true;
+            this.refCode = refCode;
+            return this;
+        }
+
+        public MapStruct refName(String refName) {
+            this.refNameLoaded = true;
+            this.refName = refName;
+            return this;
+        }
+
+        public MapStruct mgrType(String mgrType) {
+            if (mgrType != null) {
+                this.mgrType = mgrType;
+            }
+            return this;
+        }
+
+        public MapStruct pwdSecurityLevel(Integer pwdSecurityLevel) {
+            this.pwdSecurityLevelLoaded = true;
+            this.pwdSecurityLevel = pwdSecurityLevel;
+            return this;
+        }
+
+        public MapStruct userWeight(Integer userWeight) {
+            this.userWeightLoaded = true;
+            this.userWeight = userWeight;
+            return this;
+        }
+
+        public User build() {
+            return UserDraft.$.produce(draft -> {
+                if (userCode != null) {
+                    draft.setUserCode(userCode);
+                }
+                if (status != null) {
+                    draft.setStatus(status);
+                }
+                if (createBy != null) {
+                    draft.setCreateBy(createBy);
+                }
+                if (createDate != null) {
+                    draft.setCreateDate(createDate);
+                }
+                if (updateBy != null) {
+                    draft.setUpdateBy(updateBy);
+                }
+                if (updateDate != null) {
+                    draft.setUpdateDate(updateDate);
+                }
+                if (remarksLoaded) {
+                    draft.setRemarks(remarks);
+                }
+                if (loginCodeLoaded) {
+                    draft.setLoginCode(loginCode);
+                }
+                if (userNameLoaded) {
+                    draft.setUserName(userName);
+                }
+                if (passwordLoaded) {
+                    draft.setPassword(password);
+                }
+                if (emailLoaded) {
+                    draft.setEmail(email);
+                }
+                if (mobileLoaded) {
+                    draft.setMobile(mobile);
+                }
+                if (phoneLoaded) {
+                    draft.setPhone(phone);
+                }
+                if (sexLoaded) {
+                    draft.setSex(sex);
+                }
+                if (avatarLoaded) {
+                    draft.setAvatar(avatar);
+                }
+                if (signLoaded) {
+                    draft.setSign(sign);
+                }
+                if (wxOpenIdLoaded) {
+                    draft.setWxOpenId(wxOpenId);
+                }
+                if (mobileImeiLoaded) {
+                    draft.setMobileImei(mobileImei);
+                }
+                if (userTypeLoaded) {
+                    draft.setUserType(userType);
+                }
+                if (refCodeLoaded) {
+                    draft.setRefCode(refCode);
+                }
+                if (refNameLoaded) {
+                    draft.setRefName(refName);
+                }
+                if (mgrType != null) {
+                    draft.setMgrType(mgrType);
+                }
+                if (pwdSecurityLevelLoaded) {
+                    draft.setPwdSecurityLevel(pwdSecurityLevel);
+                }
+                if (userWeightLoaded) {
+                    draft.setUserWeight(userWeight);
+                }
+            });
         }
     }
 }

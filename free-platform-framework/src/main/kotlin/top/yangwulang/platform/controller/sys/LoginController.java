@@ -11,7 +11,7 @@ import top.yangwulang.platform.entity.DeviceType;
 import top.yangwulang.platform.entity.Result;
 import top.yangwulang.platform.entity.sys.User;
 import top.yangwulang.platform.entity.sys.UserFetcher;
-import top.yangwulang.platform.entity.sys.dto.LoginInput;
+import top.yangwulang.platform.entity.sys.input.LoginInput;
 import top.yangwulang.platform.repository.sys.UserRepository;
 
 import java.util.HashMap;

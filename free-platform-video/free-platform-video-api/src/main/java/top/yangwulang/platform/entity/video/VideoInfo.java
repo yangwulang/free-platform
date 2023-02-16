@@ -13,26 +13,23 @@ import javax.validation.constraints.Null;
  */
 @Entity
 @Table(name = "video_video")
-@Immutable(value = Immutable.Nullity.NULLABLE)
 public interface VideoInfo {
     @Id
-    @NotNull
     String id();
 
     @Key
     @ManyToOne
-    @NotNull
     VideoCategory category();
 
-    String playUrl();
+    @Null String playUrl();
 
-    String imgSrc();
+    @Null String imgSrc();
 
-    String desc();
+    @Null String desc();
 
     /**
      * 视频地址
      */
-    String path();
+    @Null String path();
 }
 

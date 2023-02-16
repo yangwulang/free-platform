@@ -42,7 +42,7 @@ public class MenuController {
     @PutMapping
     @Operation(summary = "修改或新增菜单")
     public Menu save(@RequestBody MenuInput menu) {
-        Menu produce = MenuDraft.$.produce(menu.toEntity(), d -> d.setParent(MenuRepository.ROOT));
+        Menu produce = MenuDraft.$.produce(menu.toEntity(), d -> d.setParent(null));
         return menuRepository.save(produce);
     }
 }

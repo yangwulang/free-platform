@@ -9,10 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 import top.yangwulang.platform.entity.book.BookChapter;
 import top.yangwulang.platform.entity.book.BookChapterTable;
-import top.yangwulang.platform.entity.book.BookInfo;
-import top.yangwulang.platform.entity.book.BookInfoTable;
-import top.yangwulang.platform.entity.book.dto.BookChapterInput;
-import top.yangwulang.platform.entity.book.dto.BookInfoInput;
+import top.yangwulang.platform.entity.book.input.BookChapterInput;
 
 /**
  * @author yangwulang

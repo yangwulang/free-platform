@@ -14,7 +14,7 @@ import top.yangwulang.platform.entity.PageHttpRequest;
 import top.yangwulang.platform.entity.book.BookChapter;
 import top.yangwulang.platform.entity.book.BookChapterFetcher;
 import top.yangwulang.platform.entity.book.BookInfoFetcher;
-import top.yangwulang.platform.entity.book.dto.BookChapterInput;
+import top.yangwulang.platform.entity.book.input.BookChapterInput;
 import top.yangwulang.platform.repository.book.BookChapterRepository;
 
 /**

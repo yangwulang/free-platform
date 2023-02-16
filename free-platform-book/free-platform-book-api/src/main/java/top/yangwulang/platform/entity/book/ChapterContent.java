@@ -11,13 +11,11 @@ import javax.validation.constraints.Null;
  */
 @Entity
 @Table(name = "chapter_content")
-@Immutable(value = Immutable.Nullity.NULLABLE)
 public interface ChapterContent {
     /**
      * 书籍内容id
      */
     @Id
-    @NotNull
     String id();
 
     /**
@@ -25,12 +23,11 @@ public interface ChapterContent {
      */
     @Key
     @ManyToOne
-    @NotNull
     BookChapter chapter();
 
     /**
      * 章节内容
      */
-    String chapterContent();
+    @Null String chapterContent();
 }
 

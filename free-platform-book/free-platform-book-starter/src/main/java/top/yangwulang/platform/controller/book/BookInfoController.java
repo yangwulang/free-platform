@@ -13,7 +13,7 @@ import top.yangwulang.platform.entity.PageHttpRequest;
 import top.yangwulang.platform.entity.book.BookChapter;
 import top.yangwulang.platform.entity.book.BookInfo;
 import top.yangwulang.platform.entity.book.BookInfoFetcher;
-import top.yangwulang.platform.entity.book.dto.BookInfoInput;
+import top.yangwulang.platform.entity.book.input.BookInfoInput;
 import top.yangwulang.platform.repository.book.BookInfoRepository;
 import top.yangwulang.platform.services.book.impl.BookServiceImpl;
 

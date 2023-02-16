@@ -8,6 +8,7 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.lang.System;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import org.babyfish.jimmer.CircularReferenceException;
@@ -572,8 +573,8 @@ public interface BookInfoDraft extends BookInfo, Draft {
                         "'id' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
                     );
                 }
-                Impl modified = __modified();
-                modified.id = id;
+                Impl __tmpModified = __modified();
+                __tmpModified.id = id;
                 return this;
             }
 
@@ -584,9 +585,9 @@ public interface BookInfoDraft extends BookInfo, Draft {
 
             @Override
             public BookInfoDraft setBookName(String bookName) {
-                Impl modified = __modified();
-                modified.bookName = bookName;
-                modified.bookNameLoaded = true;
+                Impl __tmpModified = __modified();
+                __tmpModified.bookName = bookName;
+                __tmpModified.bookNameLoaded = true;
                 return this;
             }
 
@@ -597,9 +598,9 @@ public interface BookInfoDraft extends BookInfo, Draft {
 
             @Override
             public BookInfoDraft setAuthor(String author) {
-                Impl modified = __modified();
-                modified.author = author;
-                modified.authorLoaded = true;
+                Impl __tmpModified = __modified();
+                __tmpModified.author = author;
+                __tmpModified.authorLoaded = true;
                 return this;
             }
 
@@ -610,9 +611,9 @@ public interface BookInfoDraft extends BookInfo, Draft {
 
             @Override
             public BookInfoDraft setDescribe(String describe) {
-                Impl modified = __modified();
-                modified.describe = describe;
-                modified.describeLoaded = true;
+                Impl __tmpModified = __modified();
+                __tmpModified.describe = describe;
+                __tmpModified.describeLoaded = true;
                 return this;
             }
 
@@ -623,9 +624,9 @@ public interface BookInfoDraft extends BookInfo, Draft {
 
             @Override
             public BookInfoDraft setStatus(String status) {
-                Impl modified = __modified();
-                modified.status = status;
-                modified.statusLoaded = true;
+                Impl __tmpModified = __modified();
+                __tmpModified.status = status;
+                __tmpModified.statusLoaded = true;
                 return this;
             }
 
@@ -636,9 +637,9 @@ public interface BookInfoDraft extends BookInfo, Draft {
 
             @Override
             public BookInfoDraft setBookImgPath(String bookImgPath) {
-                Impl modified = __modified();
-                modified.bookImgPath = bookImgPath;
-                modified.bookImgPathLoaded = true;
+                Impl __tmpModified = __modified();
+                __tmpModified.bookImgPath = bookImgPath;
+                __tmpModified.bookImgPathLoaded = true;
                 return this;
             }
 
@@ -649,9 +650,9 @@ public interface BookInfoDraft extends BookInfo, Draft {
 
             @Override
             public BookInfoDraft setCategory(String category) {
-                Impl modified = __modified();
-                modified.category = category;
-                modified.categoryLoaded = true;
+                Impl __tmpModified = __modified();
+                __tmpModified.category = category;
+                __tmpModified.categoryLoaded = true;
                 return this;
             }
 
@@ -662,9 +663,9 @@ public interface BookInfoDraft extends BookInfo, Draft {
 
             @Override
             public BookInfoDraft setBookFrom(String bookFrom) {
-                Impl modified = __modified();
-                modified.bookFrom = bookFrom;
-                modified.bookFromLoaded = true;
+                Impl __tmpModified = __modified();
+                __tmpModified.bookFrom = bookFrom;
+                __tmpModified.bookFromLoaded = true;
                 return this;
             }
 
@@ -688,8 +689,8 @@ public interface BookInfoDraft extends BookInfo, Draft {
                         "'chapters' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
                     );
                 }
-                Impl modified = __modified();
-                modified.chapters = NonSharedList.of(modified.chapters, chapters);
+                Impl __tmpModified = __modified();
+                __tmpModified.chapters = NonSharedList.of(__tmpModified.chapters, chapters);
                 return this;
             }
 
@@ -785,8 +786,8 @@ public interface BookInfoDraft extends BookInfo, Draft {
                 __resolving = true;
                 try {
                     Implementor base = __base;
-                    Impl modified = __modified;
-                    if (modified == null) {
+                    Impl __tmpModified = __modified;
+                    if (__tmpModified == null) {
                         if (base.__isLoaded(9)) {
                             List<BookChapter> oldValue = base.chapters();
                             List<BookChapter> newValue = __ctx.resolveList(oldValue);
@@ -794,15 +795,15 @@ public interface BookInfoDraft extends BookInfo, Draft {
                                 setChapters(newValue);
                             }
                         }
-                        modified = __modified;
+                        __tmpModified = __modified;
                     }
                     else {
-                        modified.chapters = NonSharedList.of(modified.chapters, __ctx.resolveList(modified.chapters));
+                        __tmpModified.chapters = NonSharedList.of(__tmpModified.chapters, __ctx.resolveList(__tmpModified.chapters));
                     }
-                    if (modified == null || ImmutableSpi.equals(base, modified, true)) {
+                    if (__tmpModified == null || ImmutableSpi.equals(base, __tmpModified, true)) {
                         return base;
                     }
-                    return modified;
+                    return __tmpModified;
                 }
                 finally {
                     __resolving = false;
@@ -810,13 +811,133 @@ public interface BookInfoDraft extends BookInfo, Draft {
             }
 
             private Impl __modified() {
-                Impl modified = __modified;
-                if (modified == null) {
-                    modified = __base.clone();
-                    __modified = modified;
+                Impl __tmpModified = __modified;
+                if (__tmpModified == null) {
+                    __tmpModified = __base.clone();
+                    __modified = __tmpModified;
                 }
-                return modified;
+                return __tmpModified;
             }
+        }
+    }
+
+    class MapStruct {
+        private String id;
+
+        private boolean bookNameLoaded;
+
+        private String bookName;
+
+        private boolean authorLoaded;
+
+        private String author;
+
+        private boolean describeLoaded;
+
+        private String describe;
+
+        private boolean statusLoaded;
+
+        private String status;
+
+        private boolean bookImgPathLoaded;
+
+        private String bookImgPath;
+
+        private boolean categoryLoaded;
+
+        private String category;
+
+        private boolean bookFromLoaded;
+
+        private String bookFrom;
+
+        private List<BookChapter> chapters;
+
+        public MapStruct id(String id) {
+            if (id != null) {
+                this.id = id;
+            }
+            return this;
+        }
+
+        public MapStruct bookName(String bookName) {
+            this.bookNameLoaded = true;
+            this.bookName = bookName;
+            return this;
+        }
+
+        public MapStruct author(String author) {
+            this.authorLoaded = true;
+            this.author = author;
+            return this;
+        }
+
+        public MapStruct describe(String describe) {
+            this.describeLoaded = true;
+            this.describe = describe;
+            return this;
+        }
+
+        public MapStruct status(String status) {
+            this.statusLoaded = true;
+            this.status = status;
+            return this;
+        }
+
+        public MapStruct bookImgPath(String bookImgPath) {
+            this.bookImgPathLoaded = true;
+            this.bookImgPath = bookImgPath;
+            return this;
+        }
+
+        public MapStruct category(String category) {
+            this.categoryLoaded = true;
+            this.category = category;
+            return this;
+        }
+
+        public MapStruct bookFrom(String bookFrom) {
+            this.bookFromLoaded = true;
+            this.bookFrom = bookFrom;
+            return this;
+        }
+
+        public MapStruct chapters(List<BookChapter> chapters) {
+            this.chapters = chapters != null ? chapters : Collections.emptyList();
+            return this;
+        }
+
+        public BookInfo build() {
+            return BookInfoDraft.$.produce(draft -> {
+                if (id != null) {
+                    draft.setId(id);
+                }
+                if (bookNameLoaded) {
+                    draft.setBookName(bookName);
+                }
+                if (authorLoaded) {
+                    draft.setAuthor(author);
+                }
+                if (describeLoaded) {
+                    draft.setDescribe(describe);
+                }
+                if (statusLoaded) {
+                    draft.setStatus(status);
+                }
+                if (bookImgPathLoaded) {
+                    draft.setBookImgPath(bookImgPath);
+                }
+                if (categoryLoaded) {
+                    draft.setCategory(category);
+                }
+                if (bookFromLoaded) {
+                    draft.setBookFrom(bookFrom);
+                }
+                if (chapters != null) {
+                    draft.setChapters(chapters);
+                }
+            });
         }
     }
 }

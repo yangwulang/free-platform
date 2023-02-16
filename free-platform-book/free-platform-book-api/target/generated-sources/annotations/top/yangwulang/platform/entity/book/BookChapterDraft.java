@@ -39,10 +39,10 @@ public interface BookChapterDraft extends BookChapter, Draft {
     BookChapterDraft setBook(BookInfo book);
 
     @OldChain
-    BookChapterDraft setBook(DraftConsumer<BookInfoDraft> block);
+    BookChapterDraft applyBook(DraftConsumer<BookInfoDraft> block);
 
     @OldChain
-    BookChapterDraft setBook(BookInfo base, DraftConsumer<BookInfoDraft> block);
+    BookChapterDraft applyBook(BookInfo base, DraftConsumer<BookInfoDraft> block);
 
     @OldChain
     BookChapterDraft setFromPath(String fromPath);
@@ -372,8 +372,8 @@ public interface BookChapterDraft extends BookChapter, Draft {
                         "'id' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
                     );
                 }
-                Impl modified = __modified();
-                modified.id = id;
+                Impl __tmpModified = __modified();
+                __tmpModified.id = id;
                 return this;
             }
 
@@ -384,9 +384,9 @@ public interface BookChapterDraft extends BookChapter, Draft {
 
             @Override
             public BookChapterDraft setChapterTitle(String chapterTitle) {
-                Impl modified = __modified();
-                modified.chapterTitle = chapterTitle;
-                modified.chapterTitleLoaded = true;
+                Impl __tmpModified = __modified();
+                __tmpModified.chapterTitle = chapterTitle;
+                __tmpModified.chapterTitleLoaded = true;
                 return this;
             }
 
@@ -405,20 +405,20 @@ public interface BookChapterDraft extends BookChapter, Draft {
 
             @Override
             public BookChapterDraft setBook(BookInfo book) {
-                Impl modified = __modified();
-                modified.book = book;
-                modified.bookLoaded = true;
+                Impl __tmpModified = __modified();
+                __tmpModified.book = book;
+                __tmpModified.bookLoaded = true;
                 return this;
             }
 
             @Override
-            public BookChapterDraft setBook(DraftConsumer<BookInfoDraft> block) {
-                setBook(null, block);
+            public BookChapterDraft applyBook(DraftConsumer<BookInfoDraft> block) {
+                applyBook(null, block);
                 return this;
             }
 
             @Override
-            public BookChapterDraft setBook(BookInfo base, DraftConsumer<BookInfoDraft> block) {
+            public BookChapterDraft applyBook(BookInfo base, DraftConsumer<BookInfoDraft> block) {
                 setBook(BookInfoDraft.$.produce(base, block));
                 return this;
             }
@@ -430,9 +430,9 @@ public interface BookChapterDraft extends BookChapter, Draft {
 
             @Override
             public BookChapterDraft setFromPath(String fromPath) {
-                Impl modified = __modified();
-                modified.fromPath = fromPath;
-                modified.fromPathLoaded = true;
+                Impl __tmpModified = __modified();
+                __tmpModified.fromPath = fromPath;
+                __tmpModified.fromPathLoaded = true;
                 return this;
             }
 
@@ -495,8 +495,8 @@ public interface BookChapterDraft extends BookChapter, Draft {
                 __resolving = true;
                 try {
                     Implementor base = __base;
-                    Impl modified = __modified;
-                    if (modified == null) {
+                    Impl __tmpModified = __modified;
+                    if (__tmpModified == null) {
                         if (base.__isLoaded(3)) {
                             BookInfo oldValue = base.book();
                             BookInfo newValue = __ctx.resolveObject(oldValue);
@@ -504,15 +504,15 @@ public interface BookChapterDraft extends BookChapter, Draft {
                                 setBook(newValue);
                             }
                         }
-                        modified = __modified;
+                        __tmpModified = __modified;
                     }
                     else {
-                        modified.book = __ctx.resolveObject(modified.book);
+                        __tmpModified.book = __ctx.resolveObject(__tmpModified.book);
                     }
-                    if (modified == null || ImmutableSpi.equals(base, modified, true)) {
+                    if (__tmpModified == null || ImmutableSpi.equals(base, __tmpModified, true)) {
                         return base;
                     }
-                    return modified;
+                    return __tmpModified;
                 }
                 finally {
                     __resolving = false;
@@ -520,13 +520,71 @@ public interface BookChapterDraft extends BookChapter, Draft {
             }
 
             private Impl __modified() {
-                Impl modified = __modified;
-                if (modified == null) {
-                    modified = __base.clone();
-                    __modified = modified;
+                Impl __tmpModified = __modified;
+                if (__tmpModified == null) {
+                    __tmpModified = __base.clone();
+                    __modified = __tmpModified;
                 }
-                return modified;
+                return __tmpModified;
             }
+        }
+    }
+
+    class MapStruct {
+        private String id;
+
+        private boolean chapterTitleLoaded;
+
+        private String chapterTitle;
+
+        private boolean bookLoaded;
+
+        private BookInfo book;
+
+        private boolean fromPathLoaded;
+
+        private String fromPath;
+
+        public MapStruct id(String id) {
+            if (id != null) {
+                this.id = id;
+            }
+            return this;
+        }
+
+        public MapStruct chapterTitle(String chapterTitle) {
+            this.chapterTitleLoaded = true;
+            this.chapterTitle = chapterTitle;
+            return this;
+        }
+
+        public MapStruct book(BookInfo book) {
+            this.bookLoaded = true;
+            this.book = book;
+            return this;
+        }
+
+        public MapStruct fromPath(String fromPath) {
+            this.fromPathLoaded = true;
+            this.fromPath = fromPath;
+            return this;
+        }
+
+        public BookChapter build() {
+            return BookChapterDraft.$.produce(draft -> {
+                if (id != null) {
+                    draft.setId(id);
+                }
+                if (chapterTitleLoaded) {
+                    draft.setChapterTitle(chapterTitle);
+                }
+                if (bookLoaded) {
+                    draft.setBook(book);
+                }
+                if (fromPathLoaded) {
+                    draft.setFromPath(fromPath);
+                }
+            });
         }
     }
 }

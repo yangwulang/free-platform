@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.util.ObjectUtils;
 import top.yangwulang.platform.entity.sys.DictType;
 import top.yangwulang.platform.entity.sys.DictTypeTable;
-import top.yangwulang.platform.entity.sys.dto.DictTypeInput;
+import top.yangwulang.platform.entity.sys.input.DictTypeInput;
 
 /**
  * @author yangwulang

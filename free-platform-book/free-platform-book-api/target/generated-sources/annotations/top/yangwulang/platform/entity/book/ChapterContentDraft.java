@@ -36,10 +36,10 @@ public interface ChapterContentDraft extends ChapterContent, Draft {
     ChapterContentDraft setChapter(BookChapter chapter);
 
     @OldChain
-    ChapterContentDraft setChapter(DraftConsumer<BookChapterDraft> block);
+    ChapterContentDraft applyChapter(DraftConsumer<BookChapterDraft> block);
 
     @OldChain
-    ChapterContentDraft setChapter(BookChapter base, DraftConsumer<BookChapterDraft> block);
+    ChapterContentDraft applyChapter(BookChapter base, DraftConsumer<BookChapterDraft> block);
 
     @OldChain
     ChapterContentDraft setChapterContent(String chapterContent);
@@ -331,8 +331,8 @@ public interface ChapterContentDraft extends ChapterContent, Draft {
                         "'id' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
                     );
                 }
-                Impl modified = __modified();
-                modified.id = id;
+                Impl __tmpModified = __modified();
+                __tmpModified.id = id;
                 return this;
             }
 
@@ -356,19 +356,19 @@ public interface ChapterContentDraft extends ChapterContent, Draft {
                         "'chapter' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
                     );
                 }
-                Impl modified = __modified();
-                modified.chapter = chapter;
+                Impl __tmpModified = __modified();
+                __tmpModified.chapter = chapter;
                 return this;
             }
 
             @Override
-            public ChapterContentDraft setChapter(DraftConsumer<BookChapterDraft> block) {
-                setChapter(null, block);
+            public ChapterContentDraft applyChapter(DraftConsumer<BookChapterDraft> block) {
+                applyChapter(null, block);
                 return this;
             }
 
             @Override
-            public ChapterContentDraft setChapter(BookChapter base,
+            public ChapterContentDraft applyChapter(BookChapter base,
                     DraftConsumer<BookChapterDraft> block) {
                 setChapter(BookChapterDraft.$.produce(base, block));
                 return this;
@@ -381,9 +381,9 @@ public interface ChapterContentDraft extends ChapterContent, Draft {
 
             @Override
             public ChapterContentDraft setChapterContent(String chapterContent) {
-                Impl modified = __modified();
-                modified.chapterContent = chapterContent;
-                modified.chapterContentLoaded = true;
+                Impl __tmpModified = __modified();
+                __tmpModified.chapterContent = chapterContent;
+                __tmpModified.chapterContentLoaded = true;
                 return this;
             }
 
@@ -442,8 +442,8 @@ public interface ChapterContentDraft extends ChapterContent, Draft {
                 __resolving = true;
                 try {
                     Implementor base = __base;
-                    Impl modified = __modified;
-                    if (modified == null) {
+                    Impl __tmpModified = __modified;
+                    if (__tmpModified == null) {
                         if (base.__isLoaded(2)) {
                             BookChapter oldValue = base.chapter();
                             BookChapter newValue = __ctx.resolveObject(oldValue);
@@ -451,15 +451,15 @@ public interface ChapterContentDraft extends ChapterContent, Draft {
                                 setChapter(newValue);
                             }
                         }
-                        modified = __modified;
+                        __tmpModified = __modified;
                     }
                     else {
-                        modified.chapter = __ctx.resolveObject(modified.chapter);
+                        __tmpModified.chapter = __ctx.resolveObject(__tmpModified.chapter);
                     }
-                    if (modified == null || ImmutableSpi.equals(base, modified, true)) {
+                    if (__tmpModified == null || ImmutableSpi.equals(base, __tmpModified, true)) {
                         return base;
                     }
-                    return modified;
+                    return __tmpModified;
                 }
                 finally {
                     __resolving = false;
@@ -467,13 +467,57 @@ public interface ChapterContentDraft extends ChapterContent, Draft {
             }
 
             private Impl __modified() {
-                Impl modified = __modified;
-                if (modified == null) {
-                    modified = __base.clone();
-                    __modified = modified;
+                Impl __tmpModified = __modified;
+                if (__tmpModified == null) {
+                    __tmpModified = __base.clone();
+                    __modified = __tmpModified;
                 }
-                return modified;
+                return __tmpModified;
             }
+        }
+    }
+
+    class MapStruct {
+        private String id;
+
+        private BookChapter chapter;
+
+        private boolean chapterContentLoaded;
+
+        private String chapterContent;
+
+        public MapStruct id(String id) {
+            if (id != null) {
+                this.id = id;
+            }
+            return this;
+        }
+
+        public MapStruct chapter(BookChapter chapter) {
+            if (chapter != null) {
+                this.chapter = chapter;
+            }
+            return this;
+        }
+
+        public MapStruct chapterContent(String chapterContent) {
+            this.chapterContentLoaded = true;
+            this.chapterContent = chapterContent;
+            return this;
+        }
+
+        public ChapterContent build() {
+            return ChapterContentDraft.$.produce(draft -> {
+                if (id != null) {
+                    draft.setId(id);
+                }
+                if (chapter != null) {
+                    draft.setChapter(chapter);
+                }
+                if (chapterContentLoaded) {
+                    draft.setChapterContent(chapterContent);
+                }
+            });
         }
     }
 }

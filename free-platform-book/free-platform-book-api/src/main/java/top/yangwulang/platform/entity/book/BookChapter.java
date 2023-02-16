@@ -13,7 +13,6 @@ import javax.validation.constraints.Null;
 @Entity
 @Table(name = "book_chapter")
 @Schema(description = "书籍章节")
-@Immutable(value = Immutable.Nullity.NULLABLE)
 public interface BookChapter {
     /**
      * 章节id
@@ -27,7 +26,7 @@ public interface BookChapter {
      * 章节标题
      */
     @Schema(description = "章节标题")
-    String chapterTitle();
+    @Null String chapterTitle();
 
     /**
      * 书籍id
@@ -36,13 +35,13 @@ public interface BookChapter {
     @Key
     @OnDissociate(DissociateAction.DELETE)
     @Schema(description = "书籍信息", requiredMode = Schema.RequiredMode.REQUIRED)
-    BookInfo book();
+    @Null BookInfo book();
 
     /**
      * 来源
      */
     @Key
     @Schema(description = "书籍来源")
-    String fromPath();
+    @Null String fromPath();
 }
 

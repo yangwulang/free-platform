@@ -7,8 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 import top.yangwulang.platform.entity.sys.DictData;
 import top.yangwulang.platform.entity.sys.DictDataTable;
-import top.yangwulang.platform.entity.sys.DictType;
-import top.yangwulang.platform.entity.sys.dto.DictDataInput;
+import top.yangwulang.platform.entity.sys.input.DictDataInput;
 
 /**
  * @author yangwulang

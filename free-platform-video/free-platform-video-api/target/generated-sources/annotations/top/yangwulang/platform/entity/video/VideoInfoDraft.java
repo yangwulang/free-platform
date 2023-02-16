@@ -36,10 +36,10 @@ public interface VideoInfoDraft extends VideoInfo, Draft {
     VideoInfoDraft setCategory(VideoCategory category);
 
     @OldChain
-    VideoInfoDraft setCategory(DraftConsumer<VideoCategoryDraft> block);
+    VideoInfoDraft applyCategory(DraftConsumer<VideoCategoryDraft> block);
 
     @OldChain
-    VideoInfoDraft setCategory(VideoCategory base, DraftConsumer<VideoCategoryDraft> block);
+    VideoInfoDraft applyCategory(VideoCategory base, DraftConsumer<VideoCategoryDraft> block);
 
     @OldChain
     VideoInfoDraft setPlayUrl(String playUrl);
@@ -450,8 +450,8 @@ public interface VideoInfoDraft extends VideoInfo, Draft {
                         "'id' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
                     );
                 }
-                Impl modified = __modified();
-                modified.id = id;
+                Impl __tmpModified = __modified();
+                __tmpModified.id = id;
                 return this;
             }
 
@@ -475,19 +475,19 @@ public interface VideoInfoDraft extends VideoInfo, Draft {
                         "'category' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
                     );
                 }
-                Impl modified = __modified();
-                modified.category = category;
+                Impl __tmpModified = __modified();
+                __tmpModified.category = category;
                 return this;
             }
 
             @Override
-            public VideoInfoDraft setCategory(DraftConsumer<VideoCategoryDraft> block) {
-                setCategory(null, block);
+            public VideoInfoDraft applyCategory(DraftConsumer<VideoCategoryDraft> block) {
+                applyCategory(null, block);
                 return this;
             }
 
             @Override
-            public VideoInfoDraft setCategory(VideoCategory base,
+            public VideoInfoDraft applyCategory(VideoCategory base,
                     DraftConsumer<VideoCategoryDraft> block) {
                 setCategory(VideoCategoryDraft.$.produce(base, block));
                 return this;
@@ -500,9 +500,9 @@ public interface VideoInfoDraft extends VideoInfo, Draft {
 
             @Override
             public VideoInfoDraft setPlayUrl(String playUrl) {
-                Impl modified = __modified();
-                modified.playUrl = playUrl;
-                modified.playUrlLoaded = true;
+                Impl __tmpModified = __modified();
+                __tmpModified.playUrl = playUrl;
+                __tmpModified.playUrlLoaded = true;
                 return this;
             }
 
@@ -513,9 +513,9 @@ public interface VideoInfoDraft extends VideoInfo, Draft {
 
             @Override
             public VideoInfoDraft setImgSrc(String imgSrc) {
-                Impl modified = __modified();
-                modified.imgSrc = imgSrc;
-                modified.imgSrcLoaded = true;
+                Impl __tmpModified = __modified();
+                __tmpModified.imgSrc = imgSrc;
+                __tmpModified.imgSrcLoaded = true;
                 return this;
             }
 
@@ -526,9 +526,9 @@ public interface VideoInfoDraft extends VideoInfo, Draft {
 
             @Override
             public VideoInfoDraft setDesc(String desc) {
-                Impl modified = __modified();
-                modified.desc = desc;
-                modified.descLoaded = true;
+                Impl __tmpModified = __modified();
+                __tmpModified.desc = desc;
+                __tmpModified.descLoaded = true;
                 return this;
             }
 
@@ -539,9 +539,9 @@ public interface VideoInfoDraft extends VideoInfo, Draft {
 
             @Override
             public VideoInfoDraft setPath(String path) {
-                Impl modified = __modified();
-                modified.path = path;
-                modified.pathLoaded = true;
+                Impl __tmpModified = __modified();
+                __tmpModified.path = path;
+                __tmpModified.pathLoaded = true;
                 return this;
             }
 
@@ -612,8 +612,8 @@ public interface VideoInfoDraft extends VideoInfo, Draft {
                 __resolving = true;
                 try {
                     Implementor base = __base;
-                    Impl modified = __modified;
-                    if (modified == null) {
+                    Impl __tmpModified = __modified;
+                    if (__tmpModified == null) {
                         if (base.__isLoaded(2)) {
                             VideoCategory oldValue = base.category();
                             VideoCategory newValue = __ctx.resolveObject(oldValue);
@@ -621,15 +621,15 @@ public interface VideoInfoDraft extends VideoInfo, Draft {
                                 setCategory(newValue);
                             }
                         }
-                        modified = __modified;
+                        __tmpModified = __modified;
                     }
                     else {
-                        modified.category = __ctx.resolveObject(modified.category);
+                        __tmpModified.category = __ctx.resolveObject(__tmpModified.category);
                     }
-                    if (modified == null || ImmutableSpi.equals(base, modified, true)) {
+                    if (__tmpModified == null || ImmutableSpi.equals(base, __tmpModified, true)) {
                         return base;
                     }
-                    return modified;
+                    return __tmpModified;
                 }
                 finally {
                     __resolving = false;
@@ -637,13 +637,96 @@ public interface VideoInfoDraft extends VideoInfo, Draft {
             }
 
             private Impl __modified() {
-                Impl modified = __modified;
-                if (modified == null) {
-                    modified = __base.clone();
-                    __modified = modified;
+                Impl __tmpModified = __modified;
+                if (__tmpModified == null) {
+                    __tmpModified = __base.clone();
+                    __modified = __tmpModified;
                 }
-                return modified;
+                return __tmpModified;
             }
+        }
+    }
+
+    class MapStruct {
+        private String id;
+
+        private VideoCategory category;
+
+        private boolean playUrlLoaded;
+
+        private String playUrl;
+
+        private boolean imgSrcLoaded;
+
+        private String imgSrc;
+
+        private boolean descLoaded;
+
+        private String desc;
+
+        private boolean pathLoaded;
+
+        private String path;
+
+        public MapStruct id(String id) {
+            if (id != null) {
+                this.id = id;
+            }
+            return this;
+        }
+
+        public MapStruct category(VideoCategory category) {
+            if (category != null) {
+                this.category = category;
+            }
+            return this;
+        }
+
+        public MapStruct playUrl(String playUrl) {
+            this.playUrlLoaded = true;
+            this.playUrl = playUrl;
+            return this;
+        }
+
+        public MapStruct imgSrc(String imgSrc) {
+            this.imgSrcLoaded = true;
+            this.imgSrc = imgSrc;
+            return this;
+        }
+
+        public MapStruct desc(String desc) {
+            this.descLoaded = true;
+            this.desc = desc;
+            return this;
+        }
+
+        public MapStruct path(String path) {
+            this.pathLoaded = true;
+            this.path = path;
+            return this;
+        }
+
+        public VideoInfo build() {
+            return VideoInfoDraft.$.produce(draft -> {
+                if (id != null) {
+                    draft.setId(id);
+                }
+                if (category != null) {
+                    draft.setCategory(category);
+                }
+                if (playUrlLoaded) {
+                    draft.setPlayUrl(playUrl);
+                }
+                if (imgSrcLoaded) {
+                    draft.setImgSrc(imgSrc);
+                }
+                if (descLoaded) {
+                    draft.setDesc(desc);
+                }
+                if (pathLoaded) {
+                    draft.setPath(path);
+                }
+            });
         }
     }
 }

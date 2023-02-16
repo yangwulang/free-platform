@@ -216,7 +216,7 @@ public class OneQxsBookFactory extends AbstractBookFactory {
                                     for (String body : bodys) {
                                         builder.append(map.get(body));
                                     }
-                                    content.setChapter(c -> c.setId(chapter.id()))
+                                    content.setChapter(BookChapterDraft.$.produce(c -> c.setId(chapter.id())))
                                             .setChapterContent(builder.toString());
                                 })
                         )

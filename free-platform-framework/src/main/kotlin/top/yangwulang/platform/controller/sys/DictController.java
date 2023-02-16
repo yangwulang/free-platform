@@ -13,8 +13,8 @@ import top.yangwulang.platform.entity.sys.DictData;
 import top.yangwulang.platform.entity.sys.DictDataFetcher;
 import top.yangwulang.platform.entity.sys.DictType;
 import top.yangwulang.platform.entity.sys.DictTypeFetcher;
-import top.yangwulang.platform.entity.sys.dto.DictDataInput;
-import top.yangwulang.platform.entity.sys.dto.DictTypeInput;
+import top.yangwulang.platform.entity.sys.input.DictDataInput;
+import top.yangwulang.platform.entity.sys.input.DictTypeInput;
 import top.yangwulang.platform.repository.sys.DictDataRepository;
 import top.yangwulang.platform.repository.sys.DictTypeRepository;
 

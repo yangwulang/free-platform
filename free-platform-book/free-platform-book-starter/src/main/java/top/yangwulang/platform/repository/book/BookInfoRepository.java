@@ -6,12 +6,9 @@ import org.babyfish.jimmer.sql.fetcher.Fetcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
-import org.springframework.util.ObjectUtils;
 import top.yangwulang.platform.entity.book.BookInfo;
 import top.yangwulang.platform.entity.book.BookInfoTable;
-import top.yangwulang.platform.entity.book.dto.BookInfoInput;
-import top.yangwulang.platform.entity.sys.DictType;
-import top.yangwulang.platform.entity.sys.dto.DictTypeInput;
+import top.yangwulang.platform.entity.book.input.BookInfoInput;
 
 @Repository
 public interface BookInfoRepository extends JRepository<BookInfo, String> {
@@ -31,7 +28,7 @@ public interface BookInfoRepository extends JRepository<BookInfo, String> {
                         sql().createQuery(TABLE)
                                 .whereIf(StringUtils.isNotEmpty(bookInfoInput.getBookName()), TABLE.bookName().like(bookInfoInput.getBookName()))
                                 .whereIf(StringUtils.isNotEmpty(bookInfoInput.getAuthor()), TABLE.author().like(bookInfoInput.getAuthor()))
-                                .whereIf(StringUtils.isNotEmpty(bookInfoInput.getDescribe()), TABLE.author().like(bookInfoInput.getAuthor()))
+                                .whereIf(StringUtils.isNotEmpty(bookInfoInput.getDescribe()), TABLE.author().like(bookInfoInput.getDescribe()))
                                 .select(TABLE.fetch(fetcher))
                 );
     }

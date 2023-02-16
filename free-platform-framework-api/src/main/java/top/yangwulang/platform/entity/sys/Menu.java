@@ -69,6 +69,7 @@ public interface Menu extends DataTypeBase {
      * 全节点名
      */
     @Schema(description = "全节点名")
+    @Key
     String treeNames();
 
     /**

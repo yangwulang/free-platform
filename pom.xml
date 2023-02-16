@@ -31,7 +31,7 @@
         <mysql.version>8.0.30</mysql.version>
         <druid.version>1.2.14</druid.version>
         <fastjson.version>2.0.16</fastjson.version>
-        <jetcache.version>2.7.1</jetcache.version>
+        <jetcache.version>2.7.3</jetcache.version>
         <jedis.version>4.3.1</jedis.version>
         <commons-io.version>2.11.0</commons-io.version>
         <commons-fileupload.version>1.4</commons-fileupload.version>
@@ -98,6 +98,11 @@
             <dependency>
                 <groupId>cn.dev33</groupId>
                 <artifactId>sa-token-spring-boot3-starter</artifactId>
+                <version>${sa-token.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.dev33</groupId>
+                <artifactId>sa-token-dao-redis-jackson</artifactId>
                 <version>${sa-token.version}</version>
             </dependency>
             <dependency>

@@ -20,17 +20,7 @@ spring:
     password: yangwulang
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
-#  redis:
-#    host: 127.0.0.1
-#    port: 6379
-#    ssl: false
-#    database: 0
-#    password: yangwulang
-#    timeout: 2000
-#    lettuce:
-#      pool:
-#        max-idle: 3
-#        max-active: 20
+
   cache:
 #    缓存及会话共享 是否决定开启redis缓存
     cluster-mode: true
@@ -54,6 +44,18 @@ spring:
             #threadCount: 10
             #threadPriority: 5
             #threadsInheritContextClassLoaderOfInitializingThread: true
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      ssl: false
+      database: 0
+      timeout: 2000
+      password: yangwulang
+      lettuce:
+        pool:
+          max-idle: 3
+          max-active: 20
 
 
 knife4j:
@@ -65,10 +67,6 @@ knife4j:
 adminPath: /api
 
 
-shiro:
-  enabled: true
-  loginUrl: ${adminPath}
-
 
 jetcache:
   statIntervalMinutes: 15
@@ -76,6 +74,10 @@ jetcache:
   local:
     default:
       type: caffeine #other choose：caffeine
+      keyConvertor: jackson #other choose：fastjson/jackson
+      limit: 1000
+    sysArea:
+      type: caffeine
       keyConvertor: jackson #other choose：fastjson/jackson
       limit: 1000
   remote:
@@ -89,8 +91,8 @@ jetcache:
         minIdle: 5
         maxIdle: 20
         maxTotal: 50
-      host: ${spring.redis.host}
-      port: ${spring.redis.port}
+      host: ${spring.data.redis.host}
+      port: ${spring.data.redis.port}
 
 
 springdoc:

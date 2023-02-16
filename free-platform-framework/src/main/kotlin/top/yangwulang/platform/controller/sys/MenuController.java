@@ -16,6 +16,9 @@ import top.yangwulang.platform.entity.sys.input.MenuInput;
 import top.yangwulang.platform.repository.sys.MenuRepository;
 import top.yangwulang.platform.services.MenuService;
 
+/**
+ * @author yangwulang
+ */
 @RestController
 @Tags(value = {
         @Tag(name = "系统模块"),
@@ -31,7 +34,8 @@ public class MenuController {
     private MenuService menuService;
 
     private final MenuFetcher menuFetcher = MenuFetcher.$
-            .allScalarFields();
+            .allScalarFields()
+            .children();
 
     @PostMapping
     @Operation(summary = "获取菜单列表")
@@ -42,7 +46,14 @@ public class MenuController {
     @PutMapping
     @Operation(summary = "修改或新增菜单")
     public Menu save(@RequestBody MenuInput menu) {
-        Menu produce = MenuDraft.$.produce(menu.toEntity(), d -> d.setParent(null));
-        return menuRepository.save(produce);
+        Menu parent;
+        if (menu.getParentId() != null) {
+            parent = MenuDraft.$.produce(df -> df.setId(menu.getParentId()));
+        } else if (menu.getParent() != null) {
+            parent = MenuDraft.$.produce(df -> df.setId(menu.getParent().getId()));
+        } else {
+            parent = MenuRepository.ROOT;
+        }
+        return menuRepository.save(MenuDraft.$.produce(menu.toEntity(), d -> d.setParent(parent)));
     }
 }

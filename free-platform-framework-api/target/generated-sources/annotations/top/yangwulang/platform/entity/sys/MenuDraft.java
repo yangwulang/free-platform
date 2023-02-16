@@ -149,7 +149,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             .add(12, "treeSorts", ImmutablePropCategory.SCALAR, String.class, false)
             .add(13, "treeLeaf", ImmutablePropCategory.SCALAR, String.class, false)
             .add(14, "treeLevel", ImmutablePropCategory.SCALAR, BigDecimal.class, false)
-            .add(15, "treeNames", ImmutablePropCategory.SCALAR, String.class, false)
+            .key(15, "treeNames", String.class)
             .add(16, "menuName", ImmutablePropCategory.SCALAR, String.class, false)
             .add(17, "menuType", ImmutablePropCategory.SCALAR, String.class, false)
             .add(18, "menuHref", ImmutablePropCategory.SCALAR, String.class, true)

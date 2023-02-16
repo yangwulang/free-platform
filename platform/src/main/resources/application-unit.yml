@@ -55,9 +55,7 @@ knife4j:
 adminPath: /api
 
 
-shiro:
-  enabled: true
-  loginUrl: ${adminPath}
+
 
 
 jetcache:

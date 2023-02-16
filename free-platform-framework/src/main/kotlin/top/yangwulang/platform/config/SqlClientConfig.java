@@ -2,7 +2,6 @@ package top.yangwulang.platform.config;
 
 import org.babyfish.jimmer.spring.repository.SpringConnectionManager;
 import org.babyfish.jimmer.sql.JSqlClient;
-import org.babyfish.jimmer.sql.runtime.ConnectionManager;
 import org.babyfish.jimmer.sql.runtime.EntityManager;
 import org.babyfish.jimmer.sql.runtime.Executor;
 import org.springframework.beans.factory.annotation.Autowired;

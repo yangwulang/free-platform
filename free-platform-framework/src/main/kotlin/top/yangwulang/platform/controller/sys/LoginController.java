@@ -2,6 +2,7 @@ package top.yangwulang.platform.controller.sys;
 
 import cn.dev33.satoken.stp.SaTokenInfo;
 import cn.dev33.satoken.stp.StpUtil;
+import com.alicp.jetcache.Cache;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.tags.Tags;
@@ -13,6 +14,7 @@ import top.yangwulang.platform.entity.sys.User;
 import top.yangwulang.platform.entity.sys.UserFetcher;
 import top.yangwulang.platform.entity.sys.input.LoginInput;
 import top.yangwulang.platform.repository.sys.UserRepository;
+import top.yangwulang.platform.utils.UserUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -35,12 +37,13 @@ public class LoginController {
     @Operation(summary = "登录接口")
     public Result<Map<String, Object>> login(@RequestBody LoginInput loginInput) {
         Map<String, Object> loginInfo = new HashMap<>(2);
-        try {
+        try (Cache<String, Object> cache = UserUtils.loginUserCache()) {
             User user = userRepository.findByLoginAndPassword(loginInput.getLoginCode(), loginInput.getPassword());
             if (user != null) {
                 StpUtil.login(user.userCode(), DeviceType.WEB.name());
                 loginInfo.put("userInfo", user);
                 loginInfo.put("loginInfo", StpUtil.getTokenInfo());
+                cache.put((String) StpUtil.getTokenInfo().getLoginId(), user);
                 return new Result<Map<String, Object>>().success("登录成功", loginInfo);
             }
         } catch (Exception e) {

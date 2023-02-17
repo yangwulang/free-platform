@@ -72,6 +72,9 @@ public interface MenuProps extends DataTypeBaseProps {
     TypedProp.Scalar<Menu, String> SYS_CODE = 
         TypedProp.scalar(ImmutableType.get(Menu.class).getProp(27));
 
+    TypedProp.ReferenceList<Menu, Role> ROLES = 
+        TypedProp.referenceList(ImmutableType.get(Menu.class).getProp(28));
+
     TypedProp.Scalar<Menu, String> ID = 
         TypedProp.scalar(ImmutableType.get(Menu.class).getProp(1));
 

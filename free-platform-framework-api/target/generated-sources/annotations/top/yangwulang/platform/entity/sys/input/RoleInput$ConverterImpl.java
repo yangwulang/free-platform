@@ -6,8 +6,8 @@ import top.yangwulang.platform.entity.sys.RoleDraft;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-02-16T20:52:18+0800",
-    comments = "version: 1.5.3.Final, compiler: javac, environment: Java 17.0.5 (Oracle Corporation)"
+    date = "2023-02-17T14:07:27+0800",
+    comments = "version: 1.5.3.Final, compiler: javac, environment: Java 19 (Oracle Corporation)"
 )
 class RoleInput$ConverterImpl implements RoleInput.Converter {
 
@@ -18,6 +18,15 @@ class RoleInput$ConverterImpl implements RoleInput.Converter {
         }
 
         RoleDraft.MapStruct role = new RoleDraft.MapStruct();
+
+        role.roleCode( input.getRoleCode() );
+        role.roleName( input.getRoleName() );
+        role.roleType( input.getRoleType() );
+        role.roleSort( input.getRoleSort() );
+        role.sys( input.isSys() );
+        role.userType( input.getUserType() );
+        role.dataScope( input.getDataScope() );
+        role.bizScope( input.getBizScope() );
 
         return role.build();
     }

@@ -1,8 +1,6 @@
 package top.yangwulang.platform.entity.sys;
 
-import org.babyfish.jimmer.sql.DissociateAction;
 import org.babyfish.jimmer.sql.MappedSuperclass;
-import org.babyfish.jimmer.sql.OnDissociate;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;

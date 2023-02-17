@@ -34,6 +34,36 @@ public class RoleTable extends AbstractTypedTable<Role> implements RoleProps {
     }
 
     @Override
+    public PropExpression.Str status() {
+        return get("status");
+    }
+
+    @Override
+    public PropExpression.Str createBy() {
+        return get("createBy");
+    }
+
+    @Override
+    public PropExpression.Cmp<LocalDateTime> createDate() {
+        return get("createDate");
+    }
+
+    @Override
+    public PropExpression.Str updateBy() {
+        return get("updateBy");
+    }
+
+    @Override
+    public PropExpression.Cmp<LocalDateTime> updateDate() {
+        return get("updateDate");
+    }
+
+    @Override
+    public PropExpression.Str remarks() {
+        return get("remarks");
+    }
+
+    @Override
     public PropExpression.Str roleName() {
         return get("roleName");
     }
@@ -66,36 +96,6 @@ public class RoleTable extends AbstractTypedTable<Role> implements RoleProps {
     @Override
     public PropExpression.Str bizScope() {
         return get("bizScope");
-    }
-
-    @Override
-    public PropExpression.Str status() {
-        return get("status");
-    }
-
-    @Override
-    public PropExpression.Str createBy() {
-        return get("createBy");
-    }
-
-    @Override
-    public PropExpression.Cmp<LocalDateTime> createDate() {
-        return get("createDate");
-    }
-
-    @Override
-    public PropExpression.Str updateBy() {
-        return get("updateBy");
-    }
-
-    @Override
-    public PropExpression.Cmp<LocalDateTime> updateDate() {
-        return get("updateDate");
-    }
-
-    @Override
-    public PropExpression.Str remarks() {
-        return get("remarks");
     }
 
     @Override

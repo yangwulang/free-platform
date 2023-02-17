@@ -29,6 +29,7 @@ import org.babyfish.jimmer.runtime.DraftSpi;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
 import org.babyfish.jimmer.runtime.Internal;
 import org.babyfish.jimmer.runtime.NonSharedList;
+import org.babyfish.jimmer.sql.ManyToMany;
 import org.babyfish.jimmer.sql.OneToMany;
 
 public interface MenuDraft extends Menu, DataTypeBaseDraft {
@@ -133,6 +134,17 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
     @OldChain
     MenuDraft setSysCode(String sysCode);
 
+    List<RoleDraft> roles(boolean autoCreate);
+
+    @OldChain
+    MenuDraft setRoles(List<Role> roles);
+
+    @OldChain
+    MenuDraft addIntoRoles(DraftConsumer<RoleDraft> block);
+
+    @OldChain
+    MenuDraft addIntoRoles(Role base, DraftConsumer<RoleDraft> block);
+
     class Producer {
         static final Producer INSTANCE = new Producer();
 
@@ -162,6 +174,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             .add(25, "weight", ImmutablePropCategory.SCALAR, BigDecimal.class, false)
             .add(26, "show", ImmutablePropCategory.SCALAR, boolean.class, false)
             .add(27, "sysCode", ImmutablePropCategory.SCALAR, String.class, false)
+            .add(28, "roles", ManyToMany.class, Role.class, false)
             .build();
 
         private Producer() {
@@ -206,6 +219,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                     case 25: return weight();
                     case 26: return (Boolean)isShow();
                     case 27: return sysCode();
+                    case 28: return roles();
                     default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
                 }
             }
@@ -240,6 +254,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                     case "weight": return weight();
                     case "show": return (Boolean)isShow();
                     case "sysCode": return sysCode();
+                    case "roles": return roles();
                     default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
                 }
             }
@@ -333,6 +348,8 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             boolean showLoaded = false;
 
             String sysCode;
+
+            NonSharedList<Role> roles;
 
             @Override
             public String id() {
@@ -552,6 +569,14 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Override
+            public List<Role> roles() {
+                if (roles == null) {
+                    throw new UnloadedException(Menu.class, "roles");
+                }
+                return roles;
+            }
+
+            @Override
             public Impl clone() {
                 try {
                     return (Impl)super.clone();
@@ -590,6 +615,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                     case 25: return weight != null;
                     case 26: return showLoaded;
                     case 27: return sysCode != null;
+                    case 28: return roles != null;
                     default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
                 }
             }
@@ -624,6 +650,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                     case "weight": return weight != null;
                     case "show": return showLoaded;
                     case "sysCode": return sysCode != null;
+                    case "roles": return roles != null;
                     default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
                 }
             }
@@ -714,6 +741,9 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                 if (sysCode != null) {
                     hash = 31 * hash + sysCode.hashCode();
                 }
+                if (roles != null) {
+                    hash = 31 * hash + roles.hashCode();
+                }
                 return hash;
             }
 
@@ -799,6 +829,9 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                 }
                 if (sysCode != null) {
                     hash = 31 * hash + System.identityHashCode(sysCode);
+                }
+                if (roles != null) {
+                    hash = 31 * hash + System.identityHashCode(roles);
                 }
                 return hash;
             }
@@ -1004,6 +1037,13 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                 if (__sysCodeLoaded && !Objects.equals(sysCode, other.sysCode())) {
                     return false;
                 }
+                boolean __rolesLoaded = roles != null;
+                if (__rolesLoaded != other.__isLoaded(28)) {
+                    return false;
+                }
+                if (__rolesLoaded && !Objects.equals(roles, other.roles())) {
+                    return false;
+                }
                 return true;
             }
 
@@ -1199,6 +1239,13 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                     return false;
                 }
                 if (__sysCodeLoaded && sysCode != other.sysCode()) {
+                    return false;
+                }
+                boolean __rolesLoaded = roles != null;
+                if (__rolesLoaded != other.__isLoaded(28)) {
+                    return false;
+                }
+                if (__rolesLoaded && roles != other.roles()) {
                     return false;
                 }
                 return true;
@@ -1719,6 +1766,43 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                 return this;
             }
 
+            @Override
+            public List<Role> roles() {
+                return __ctx.toDraftList((__modified!= null ? __modified : __base).roles(), Role.class, true);
+            }
+
+            @Override
+            public List<RoleDraft> roles(boolean autoCreate) {
+                if (autoCreate && (!__isLoaded(28) || roles() == null)) {
+                    setRoles(new ArrayList<>());
+                }
+                return __ctx.toDraftList((__modified!= null ? __modified : __base).roles(), Role.class, true);
+            }
+
+            @Override
+            public MenuDraft setRoles(List<Role> roles) {
+                if (roles == null) {
+                    throw new IllegalArgumentException(
+                        "'roles' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
+                    );
+                }
+                Impl __tmpModified = __modified();
+                __tmpModified.roles = NonSharedList.of(__tmpModified.roles, roles);
+                return this;
+            }
+
+            @Override
+            public MenuDraft addIntoRoles(DraftConsumer<RoleDraft> block) {
+                addIntoRoles(null, block);
+                return this;
+            }
+
+            @Override
+            public MenuDraft addIntoRoles(Role base, DraftConsumer<RoleDraft> block) {
+                roles(true).add((RoleDraft)RoleDraft.$.produce(base, block));
+                return this;
+            }
+
             @SuppressWarnings("unchecked")
             @Override
             public void __set(int prop, Object value) {
@@ -1753,6 +1837,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                             setShow((Boolean)value);
                             break;
                     case 27: setSysCode((String)value);break;
+                    case 28: setRoles((List<Role>)value);break;
                     default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
                 }
             }
@@ -1791,6 +1876,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                             setShow((Boolean)value);
                             break;
                     case "sysCode": setSysCode((String)value);break;
+                    case "roles": setRoles((List<Role>)value);break;
                     default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
                 }
             }
@@ -1825,6 +1911,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                     case 25: __modified().weight = null;break;
                     case 26: __modified().showLoaded = false;break;
                     case 27: __modified().sysCode = null;break;
+                    case 28: __modified().roles = null;break;
                     default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
                 }
             }
@@ -1859,6 +1946,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                     case "weight": __modified().weight = null;break;
                     case "show": __modified().showLoaded = false;break;
                     case "sysCode": __modified().sysCode = null;break;
+                    case "roles": __modified().roles = null;break;
                     default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
                 }
             }
@@ -1892,11 +1980,19 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                                 setChildren(newValue);
                             }
                         }
+                        if (base.__isLoaded(28)) {
+                            List<Role> oldValue = base.roles();
+                            List<Role> newValue = __ctx.resolveList(oldValue);
+                            if (oldValue != newValue) {
+                                setRoles(newValue);
+                            }
+                        }
                         __tmpModified = __modified;
                     }
                     else {
                         __tmpModified.parent = __ctx.resolveObject(__tmpModified.parent);
                         __tmpModified.children = NonSharedList.of(__tmpModified.children, __ctx.resolveList(__tmpModified.children));
+                        __tmpModified.roles = NonSharedList.of(__tmpModified.roles, __ctx.resolveList(__tmpModified.roles));
                     }
                     if (__tmpModified == null || ImmutableSpi.equals(base, __tmpModified, true)) {
                         return base;
@@ -1993,6 +2089,8 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
         private boolean show;
 
         private String sysCode;
+
+        private List<Role> roles;
 
         public MapStruct id(String id) {
             if (id != null) {
@@ -2171,6 +2269,11 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             return this;
         }
 
+        public MapStruct roles(List<Role> roles) {
+            this.roles = roles != null ? roles : Collections.emptyList();
+            return this;
+        }
+
         public Menu build() {
             return MenuDraft.$.produce(draft -> {
                 if (id != null) {
@@ -2253,6 +2356,9 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                 }
                 if (sysCode != null) {
                     draft.setSysCode(sysCode);
+                }
+                if (roles != null) {
+                    draft.setRoles(roles);
                 }
             });
         }

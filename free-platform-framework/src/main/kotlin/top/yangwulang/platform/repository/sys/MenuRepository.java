@@ -16,12 +16,6 @@ import java.util.List;
 public interface MenuRepository extends JRepository<Menu, String> {
     MenuTable TABLE = MenuTable.$;
 
-    Menu ROOT = MenuDraft.$.produce(m -> {
-        m.setId("0");
-        m.setTreeSort(BigDecimal.valueOf(0));
-        m.setTreeNames("");
-        m.setTreeSorts("0");
-    });
 
     default List<Menu> findChildren(Menu parent) {
         return sql().createQuery(TABLE)

@@ -47,6 +47,22 @@ public class MenuTableEx extends MenuTable implements TableEx<Menu> {
         return new MenuTableEx(joinOperation("children", joinType));
     }
 
+    public RoleTableEx roles() {
+        __beforeJoin();
+        if (raw != null) {
+            return new RoleTableEx(raw.joinImplementor("roles"));
+        }
+        return new RoleTableEx(joinOperation("roles"));
+    }
+
+    public RoleTableEx roles(JoinType joinType) {
+        __beforeJoin();
+        if (raw != null) {
+            return new RoleTableEx(raw.joinImplementor("roles", joinType));
+        }
+        return new RoleTableEx(joinOperation("roles", joinType));
+    }
+
     @Override
     public MenuTableEx asTableEx() {
         return this;

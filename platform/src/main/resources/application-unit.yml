@@ -48,6 +48,17 @@ spring:
             #threadCount: 10
             #threadPriority: 5
             #threadsInheritContextClassLoaderOfInitializingThread: true
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      ssl: false
+      database: 0
+      timeout: 2000
+      lettuce:
+        pool:
+          max-idle: 3
+          max-active: 20
 
 knife4j:
   enable: true
@@ -72,19 +83,31 @@ jetcache:
       limit: 1000
 #      expireAfterWriteInMillis: 30000 # 写的过期时间
 #      expireAfterAccessInMillis: 30000 #读的过期时间，本地缓存才支持
-#  remote:
-#    default:
-#      type: redis
-#      keyConvertor: jackson #other choose：fastjson/jackson
-#      broadcastChannel: projectA
-#      valueEncoder: java #other choose：kryo/kryo5
-#      valueDecoder: java #other choose：kryo/kryo5
-#      poolConfig:
-#        minIdle: 5
-#        maxIdle: 20
-#        maxTotal: 50
-#      host: ${spring.redis.host}
-#      port: ${spring.redis.port}
+  remote:
+    default:
+      type: redis
+      keyConvertor: jackson #other choose：fastjson/jackson
+      broadcastChannel: projectA
+      valueEncoder: java #other choose：kryo/kryo5
+      valueDecoder: java #other choose：kryo/kryo5
+      poolConfig:
+        minIdle: 5
+        maxIdle: 20
+        maxTotal: 50
+      host: ${spring.data.redis.host}
+      port: ${spring.data.redis.port}
+    sysArea:
+      type: redis
+      keyConvertor: fastjson #other choose：fastjson/jackson
+      broadcastChannel: projectA
+      valueEncoder: java #other choose：kryo/kryo5
+      valueDecoder: java #other choose：kryo/kryo5
+      poolConfig:
+        minIdle: 5
+        maxIdle: 20
+        maxTotal: 50
+      host: ${spring.data.redis.host}
+      port: ${spring.data.redis.port}
 
 springdoc:
   swagger-ui:

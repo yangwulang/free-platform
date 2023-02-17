@@ -5,13 +5,14 @@ import org.babyfish.jimmer.sql.MappedSuperclass;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
  * @author yangwulang
  */
 @MappedSuperclass
-public interface BaseEntity {
+public interface BaseEntity extends Serializable {
     /**
      * 状态（0正常 1删除 2停用）
      *

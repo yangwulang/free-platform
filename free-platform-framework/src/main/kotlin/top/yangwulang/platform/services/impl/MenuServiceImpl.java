@@ -1,6 +1,5 @@
 package top.yangwulang.platform.services.impl;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,9 +9,9 @@ import top.yangwulang.platform.entity.sys.input.MenuInput;
 import top.yangwulang.platform.repository.sys.MenuRepository;
 import top.yangwulang.platform.services.MenuService;
 
-import java.math.BigDecimal;
-import java.util.List;
-
+/**
+ * @author yangwulang
+ */
 @Service
 public class MenuServiceImpl implements MenuService {
 
@@ -23,28 +22,14 @@ public class MenuServiceImpl implements MenuService {
     @Override
     @Transactional
     public Menu save(MenuInput menu) {
-        /*menu = MenuDraft.$.produce(menu, d -> {
-            if (d.parent() == null) {
-                d.setParent(MenuRepository.ROOT);
-            }
-            List<Menu> children = menuRepository.findChildren(d.parent());
-            Menu LastMenu = null;
-            if (!children.isEmpty()) {
-                LastMenu = children.get(0);
-            }
-            if (d.treeSort() == null && LastMenu == null) {
-                // 如果前端没有给treeSort并且没有最后一个菜单，默认treeSort为 30
-                d.setTreeSort(BigDecimal.valueOf(30));
-            } else if (d.treeSort() == null && LastMenu != null) {
-                // 如果前端没有给，但是数据库中有最后一个菜单，则将最后一个菜单的treeSort + 30 给当前
-                d.setTreeSort(LastMenu.treeSort().add(BigDecimal.valueOf(30)));
-            }
-            String parentTreeNames = d.parent().treeNames();
-            String preTreeNames = StringUtils.isEmpty(parentTreeNames) ? "" : parentTreeNames + "/";
-            // 如果说前端给了，那么就使用前端的值
-            d.setTreeSorts(d.parent().treeSorts() + "," + d.treeSort());
-            d.setTreeNames(preTreeNames + d.menuName());
-        });*/
-        return menuRepository.save(menu);
+        Menu parent;
+        if (menu.getParentId() != null) {
+            parent = MenuDraft.$.produce(df -> df.setId(menu.getParentId()));
+        } else if (menu.getParent() != null) {
+            parent = MenuDraft.$.produce(df -> df.setId(menu.getParent().getId()));
+        } else {
+            parent = MenuDraft.$.produce(df -> df.setId("0"));
+        }
+        return menuRepository.save(MenuDraft.$.produce(menu.toEntity(), d -> d.setParent(parent)));
     }
 }

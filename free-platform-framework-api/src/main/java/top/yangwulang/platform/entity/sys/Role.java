@@ -5,13 +5,14 @@ import org.babyfish.jimmer.sql.*;
 import javax.validation.constraints.Null;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * 角色表
  */
 @Table(name = "sys_role")
 @Entity
-public interface Role {
+public interface Role extends BaseEntity{
     /**
      * 角色编码
      */
@@ -21,6 +22,7 @@ public interface Role {
     /**
      * 角色名称
      */
+    @Key
     String roleName();
 
     /**
@@ -55,45 +57,16 @@ public interface Role {
     @Null String bizScope();
 
     /**
-     * 状态（0正常 1删除 2停用）
-     */
-    @Key
-    String status();
-
-    /**
-     * 创建者
-     */
-    String createBy();
-
-    /**
-     * 创建时间
-     */
-    LocalDateTime createDate();
-
-    /**
-     * 更新者
-     */
-    String updateBy();
-
-    /**
-     * 更新时间
-     */
-    LocalDateTime updateDate();
-
-    /**
-     * 备注信息
-     */
-    @Null String remarks();
-
-    /**
      * 租户代码
      */
-    @Key
     @Null String corpCode();
 
     /**
      * 租户名称
      */
-    String corpName();
+    @Null String corpName();
+
+    @ManyToMany(mappedBy = "roles")
+    List<Menu> menus();
 }
 

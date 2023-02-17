@@ -6,8 +6,8 @@ import top.yangwulang.platform.entity.book.BookInfoDraft;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-02-16T21:59:56+0800",
-    comments = "version: 1.5.3.Final, compiler: javac, environment: Java 17.0.5 (Oracle Corporation)"
+    date = "2023-02-17T10:25:37+0800",
+    comments = "version: 1.5.3.Final, compiler: javac, environment: Java 19 (Oracle Corporation)"
 )
 class BookInfoInput$ConverterImpl implements BookInfoInput.Converter {
 

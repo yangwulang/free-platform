@@ -31,6 +31,22 @@ public class RoleTableEx extends RoleTable implements TableEx<Role> {
         super(base, joinDisabledReason);
     }
 
+    public MenuTableEx menus() {
+        __beforeJoin();
+        if (raw != null) {
+            return new MenuTableEx(raw.joinImplementor("menus"));
+        }
+        return new MenuTableEx(joinOperation("menus"));
+    }
+
+    public MenuTableEx menus(JoinType joinType) {
+        __beforeJoin();
+        if (raw != null) {
+            return new MenuTableEx(raw.joinImplementor("menus", joinType));
+        }
+        return new MenuTableEx(joinOperation("menus", joinType));
+    }
+
     @Override
     public RoleTableEx asTableEx() {
         return this;

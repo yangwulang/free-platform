@@ -19,7 +19,7 @@ public class UserUtils {
     public static Cache<String, Object> loginUserCache() {
         if (Login_User_Cache == null) {
             QuickConfig qc = QuickConfig.newBuilder("sysArea", "loginCache")
-                    .cacheType(CacheType.LOCAL)
+                    .cacheType(CacheType.BOTH)
                     .refreshPolicy(RefreshPolicy.newPolicy(10, TimeUnit.SECONDS))
                     .localExpire(Duration.ofSeconds(30))
                     .penetrationProtect(true)

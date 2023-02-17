@@ -7,6 +7,7 @@ import org.babyfish.jimmer.meta.ImmutableProp;
 import org.babyfish.jimmer.sql.ast.table.Table;
 import org.babyfish.jimmer.sql.fetcher.Fetcher;
 import org.babyfish.jimmer.sql.fetcher.FieldConfig;
+import org.babyfish.jimmer.sql.fetcher.ListFieldConfig;
 import org.babyfish.jimmer.sql.fetcher.RecursiveFieldConfig;
 import org.babyfish.jimmer.sql.fetcher.RecursiveListFieldConfig;
 import org.babyfish.jimmer.sql.fetcher.impl.FetcherImpl;
@@ -314,6 +315,27 @@ public class MenuFetcher extends AbstractTypedFetcher<Menu, MenuFetcher> {
     @NewChain
     public MenuFetcher sysCode(boolean enabled) {
         return enabled ? add("sysCode") : remove("sysCode");
+    }
+
+    @NewChain
+    public MenuFetcher roles() {
+        return add("roles");
+    }
+
+    @NewChain
+    public MenuFetcher roles(boolean enabled) {
+        return enabled ? add("roles") : remove("roles");
+    }
+
+    @NewChain
+    public MenuFetcher roles(Fetcher<Role> childFetcher) {
+        return add("roles", childFetcher);
+    }
+
+    @NewChain
+    public MenuFetcher roles(Fetcher<Role> childFetcher,
+            Consumer<ListFieldConfig<Role, RoleTable>> fieldConfig) {
+        return add("roles", childFetcher, fieldConfig);
     }
 
     @Override

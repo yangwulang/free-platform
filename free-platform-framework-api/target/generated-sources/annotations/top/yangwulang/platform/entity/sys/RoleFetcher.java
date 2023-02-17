@@ -1,11 +1,13 @@
 package top.yangwulang.platform.entity.sys;
 
 import java.lang.Override;
+import java.util.function.Consumer;
 import org.babyfish.jimmer.lang.NewChain;
 import org.babyfish.jimmer.meta.ImmutableProp;
 import org.babyfish.jimmer.sql.ast.table.Table;
 import org.babyfish.jimmer.sql.fetcher.Fetcher;
 import org.babyfish.jimmer.sql.fetcher.FieldConfig;
+import org.babyfish.jimmer.sql.fetcher.ListFieldConfig;
 import org.babyfish.jimmer.sql.fetcher.impl.FetcherImpl;
 import org.babyfish.jimmer.sql.fetcher.spi.AbstractTypedFetcher;
 
@@ -29,6 +31,66 @@ public class RoleFetcher extends AbstractTypedFetcher<Role, RoleFetcher> {
         return base instanceof RoleFetcher ? 
         	(RoleFetcher)base : 
         	new RoleFetcher((FetcherImpl<Role>)base);
+    }
+
+    @NewChain
+    public RoleFetcher status() {
+        return add("status");
+    }
+
+    @NewChain
+    public RoleFetcher status(boolean enabled) {
+        return enabled ? add("status") : remove("status");
+    }
+
+    @NewChain
+    public RoleFetcher createBy() {
+        return add("createBy");
+    }
+
+    @NewChain
+    public RoleFetcher createBy(boolean enabled) {
+        return enabled ? add("createBy") : remove("createBy");
+    }
+
+    @NewChain
+    public RoleFetcher createDate() {
+        return add("createDate");
+    }
+
+    @NewChain
+    public RoleFetcher createDate(boolean enabled) {
+        return enabled ? add("createDate") : remove("createDate");
+    }
+
+    @NewChain
+    public RoleFetcher updateBy() {
+        return add("updateBy");
+    }
+
+    @NewChain
+    public RoleFetcher updateBy(boolean enabled) {
+        return enabled ? add("updateBy") : remove("updateBy");
+    }
+
+    @NewChain
+    public RoleFetcher updateDate() {
+        return add("updateDate");
+    }
+
+    @NewChain
+    public RoleFetcher updateDate(boolean enabled) {
+        return enabled ? add("updateDate") : remove("updateDate");
+    }
+
+    @NewChain
+    public RoleFetcher remarks() {
+        return add("remarks");
+    }
+
+    @NewChain
+    public RoleFetcher remarks(boolean enabled) {
+        return enabled ? add("remarks") : remove("remarks");
     }
 
     @NewChain
@@ -102,66 +164,6 @@ public class RoleFetcher extends AbstractTypedFetcher<Role, RoleFetcher> {
     }
 
     @NewChain
-    public RoleFetcher status() {
-        return add("status");
-    }
-
-    @NewChain
-    public RoleFetcher status(boolean enabled) {
-        return enabled ? add("status") : remove("status");
-    }
-
-    @NewChain
-    public RoleFetcher createBy() {
-        return add("createBy");
-    }
-
-    @NewChain
-    public RoleFetcher createBy(boolean enabled) {
-        return enabled ? add("createBy") : remove("createBy");
-    }
-
-    @NewChain
-    public RoleFetcher createDate() {
-        return add("createDate");
-    }
-
-    @NewChain
-    public RoleFetcher createDate(boolean enabled) {
-        return enabled ? add("createDate") : remove("createDate");
-    }
-
-    @NewChain
-    public RoleFetcher updateBy() {
-        return add("updateBy");
-    }
-
-    @NewChain
-    public RoleFetcher updateBy(boolean enabled) {
-        return enabled ? add("updateBy") : remove("updateBy");
-    }
-
-    @NewChain
-    public RoleFetcher updateDate() {
-        return add("updateDate");
-    }
-
-    @NewChain
-    public RoleFetcher updateDate(boolean enabled) {
-        return enabled ? add("updateDate") : remove("updateDate");
-    }
-
-    @NewChain
-    public RoleFetcher remarks() {
-        return add("remarks");
-    }
-
-    @NewChain
-    public RoleFetcher remarks(boolean enabled) {
-        return enabled ? add("remarks") : remove("remarks");
-    }
-
-    @NewChain
     public RoleFetcher corpCode() {
         return add("corpCode");
     }
@@ -179,6 +181,27 @@ public class RoleFetcher extends AbstractTypedFetcher<Role, RoleFetcher> {
     @NewChain
     public RoleFetcher corpName(boolean enabled) {
         return enabled ? add("corpName") : remove("corpName");
+    }
+
+    @NewChain
+    public RoleFetcher menus() {
+        return add("menus");
+    }
+
+    @NewChain
+    public RoleFetcher menus(boolean enabled) {
+        return enabled ? add("menus") : remove("menus");
+    }
+
+    @NewChain
+    public RoleFetcher menus(Fetcher<Menu> childFetcher) {
+        return add("menus", childFetcher);
+    }
+
+    @NewChain
+    public RoleFetcher menus(Fetcher<Menu> childFetcher,
+            Consumer<ListFieldConfig<Menu, MenuTable>> fieldConfig) {
+        return add("menus", childFetcher, fieldConfig);
     }
 
     @Override

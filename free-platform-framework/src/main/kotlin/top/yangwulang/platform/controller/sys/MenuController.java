@@ -10,7 +10,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 import top.yangwulang.platform.entity.PageHttpRequest;
 import top.yangwulang.platform.entity.sys.Menu;
-import top.yangwulang.platform.entity.sys.MenuDraft;
 import top.yangwulang.platform.entity.sys.MenuFetcher;
 import top.yangwulang.platform.entity.sys.input.MenuInput;
 import top.yangwulang.platform.repository.sys.MenuRepository;
@@ -46,14 +45,6 @@ public class MenuController {
     @PutMapping
     @Operation(summary = "修改或新增菜单")
     public Menu save(@RequestBody MenuInput menu) {
-        Menu parent;
-        if (menu.getParentId() != null) {
-            parent = MenuDraft.$.produce(df -> df.setId(menu.getParentId()));
-        } else if (menu.getParent() != null) {
-            parent = MenuDraft.$.produce(df -> df.setId(menu.getParent().getId()));
-        } else {
-            parent = MenuRepository.ROOT;
-        }
-        return menuRepository.save(MenuDraft.$.produce(menu.toEntity(), d -> d.setParent(parent)));
+        return menuService.save(menu);
     }
 }

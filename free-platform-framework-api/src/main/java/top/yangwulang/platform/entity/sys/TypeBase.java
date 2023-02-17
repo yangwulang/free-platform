@@ -4,6 +4,7 @@ import org.babyfish.jimmer.sql.Id;
 import org.babyfish.jimmer.sql.MappedSuperclass;
 
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 /**
  * Base entity
@@ -11,7 +12,7 @@ import javax.validation.constraints.NotNull;
  * @author yangwulang
  */
 @MappedSuperclass
-public interface TypeBase {
+public interface TypeBase extends Serializable {
     /**
      * 字典类型编码
      * @return 主键值

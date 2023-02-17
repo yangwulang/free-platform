@@ -30,13 +30,13 @@
         <dependency>
             <groupId>top.yangwulang</groupId>
             <artifactId>free-platform-framework</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.parent.version}</version>
         </dependency>
 
         <dependency>
             <groupId>top.yangwulang</groupId>
             <artifactId>free-platform-book-starter</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.parent.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>top.yangwulang</groupId>
@@ -161,7 +161,7 @@
                                 <path>
                                     <groupId>org.projectlombok</groupId>
                                     <artifactId>lombok</artifactId>
-                                    <version>1.18.24</version>
+                                    <version>${lombok.version}</version>
                                 </path>
                                 <annotationProcessorPath>
                                     <groupId>org.mapstruct</groupId>

@@ -22,12 +22,12 @@
         <dependency>
             <groupId>top.yangwulang</groupId>
             <artifactId>free-platform-common</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>top.yangwulang</groupId>
             <artifactId>free-platform-framework-api</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>org.babyfish.jimmer</groupId>
@@ -271,11 +271,6 @@
                             </sourceDirs>
                             <annotationProcessorPaths>
                                 <path>
-                                    <groupId>org.babyfish.jimmer</groupId>
-                                    <artifactId>jimmer-apt</artifactId>
-                                    <version>${jimmer.version}</version>
-                                </path>
-                                <path>
                                     <groupId>org.projectlombok</groupId>
                                     <artifactId>lombok</artifactId>
                                     <version>1.18.24</version>
@@ -285,6 +280,11 @@
                                     <artifactId>mapstruct-processor</artifactId>
                                     <version>${mapstruct.version}</version>
                                 </annotationProcessorPath>
+                                <path>
+                                    <groupId>org.babyfish.jimmer</groupId>
+                                    <artifactId>jimmer-apt</artifactId>
+                                    <version>${jimmer.version}</version>
+                                </path>
                             </annotationProcessorPaths>
                             <compilerPlugins>
                                 <!-- Or "spring" for the Spring support -->

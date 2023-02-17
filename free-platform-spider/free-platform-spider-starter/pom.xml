@@ -25,12 +25,12 @@
         <dependency>
             <groupId>top.yangwulang</groupId>
             <artifactId>free-platform-book-api</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>top.yangwulang</groupId>
             <artifactId>free-platform-video-starter</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>org.babyfish.jimmer</groupId>
@@ -48,7 +48,7 @@
         <dependency>
             <groupId>top.yangwulang</groupId>
             <artifactId>free-platform-common</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>us.codecraft</groupId>

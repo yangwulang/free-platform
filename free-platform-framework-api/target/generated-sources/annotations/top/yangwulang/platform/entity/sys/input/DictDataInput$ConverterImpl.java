@@ -6,8 +6,8 @@ import top.yangwulang.platform.entity.sys.DictDataDraft;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-02-16T20:52:19+0800",
-    comments = "version: 1.5.3.Final, compiler: javac, environment: Java 17.0.5 (Oracle Corporation)"
+    date = "2023-02-17T14:07:27+0800",
+    comments = "version: 1.5.3.Final, compiler: javac, environment: Java 19 (Oracle Corporation)"
 )
 class DictDataInput$ConverterImpl implements DictDataInput.Converter {
 
@@ -18,6 +18,22 @@ class DictDataInput$ConverterImpl implements DictDataInput.Converter {
         }
 
         DictDataDraft.MapStruct dictData = new DictDataDraft.MapStruct();
+
+        dictData.id( input.getId() );
+        dictData.parent( dictDataInputToDictData( input.getParent() ) );
+
+        return dictData.build();
+    }
+
+    protected DictData dictDataInputToDictData(DictDataInput dictDataInput) {
+        if ( dictDataInput == null ) {
+            return null;
+        }
+
+        DictDataDraft.MapStruct dictData = new DictDataDraft.MapStruct();
+
+        dictData.id( dictDataInput.getId() );
+        dictData.parent( toDictData( dictDataInput.getParent() ) );
 
         return dictData.build();
     }

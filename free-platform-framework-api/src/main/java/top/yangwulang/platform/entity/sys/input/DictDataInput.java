@@ -1,5 +1,6 @@
 package top.yangwulang.platform.entity.sys.input;
 
+import lombok.Data;
 import org.babyfish.jimmer.Input;
 import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;
@@ -7,9 +8,16 @@ import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 import top.yangwulang.platform.entity.sys.DictData;
 
+@Data
 public class DictDataInput implements Input<DictData> {
 
     private static final DictDataInput.Converter CONVERTER = Mappers.getMapper(DictDataInput.Converter.class);
+
+    private String parentId;
+
+    private String id;
+
+    private DictDataInput parent;
 
     @Override
     public DictData toEntity() {

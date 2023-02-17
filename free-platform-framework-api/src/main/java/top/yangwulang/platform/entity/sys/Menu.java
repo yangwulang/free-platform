@@ -145,6 +145,15 @@ public interface Menu extends DataTypeBase {
     @Schema(description = "归属系统（default:主导航菜单、mobileApp:APP菜单）")
     String sysCode();
 
+
+    @ManyToMany
+    @JoinTable(
+            name = "SYS_ROLE_MENU",
+            joinColumnName = "MENU_ID",
+            inverseJoinColumnName = "ROLE_ID"
+    )
+    List<Role> roles();
+
 }
 
 

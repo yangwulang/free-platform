@@ -31,7 +31,7 @@
         <dependency>
             <groupId>top.yangwulang</groupId>
             <artifactId>free-platform-framework</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.parent.version}</version>
         </dependency>
     </dependencies>
 </project>

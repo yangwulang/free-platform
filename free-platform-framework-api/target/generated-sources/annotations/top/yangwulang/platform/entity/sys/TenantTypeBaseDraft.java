@@ -250,7 +250,7 @@ public interface TenantTypeBaseDraft extends TenantTypeBase, Draft {
             public void __set(int prop, Object value) {
                 switch (prop) {
                     case 1: setTenant((String)value);break;
-                    default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
+                    default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
                 }
             }
 
@@ -259,7 +259,31 @@ public interface TenantTypeBaseDraft extends TenantTypeBase, Draft {
             public void __set(String prop, Object value) {
                 switch (prop) {
                     case "tenant": setTenant((String)value);break;
-                    default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
+                    default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
+                }
+            }
+
+            @Override
+            public void __use(int prop) {
+                switch (prop) {
+                    default: throw new IllegalArgumentException(
+                                "Illegal property id: \"" + 
+                                prop + 
+                                "\",it does not exists or is not non-abstract formula property" + 
+                                "(Only non-abstract formula property can be used)"
+                            );
+                }
+            }
+
+            @Override
+            public void __use(String prop) {
+                switch (prop) {
+                    default: throw new IllegalArgumentException(
+                                "Illegal property name: \"" + 
+                                prop + 
+                                "\",it does not exists or is not non-abstract formula property" + 
+                                "(Only non-abstract formula property can be used)"
+                            );
                 }
             }
 
@@ -267,7 +291,7 @@ public interface TenantTypeBaseDraft extends TenantTypeBase, Draft {
             public void __unload(int prop) {
                 switch (prop) {
                     case 1: __modified().tenant = null;break;
-                    default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
+                    default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
                 }
             }
 
@@ -275,7 +299,7 @@ public interface TenantTypeBaseDraft extends TenantTypeBase, Draft {
             public void __unload(String prop) {
                 switch (prop) {
                     case "tenant": __modified().tenant = null;break;
-                    default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
+                    default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
                 }
             }
 

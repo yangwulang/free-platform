@@ -749,7 +749,7 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
                             if (value == null) throw new IllegalArgumentException("'sys' cannot be null");
                             setSys((Boolean)value);
                             break;
-                    default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
+                    default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
                 }
             }
 
@@ -770,7 +770,31 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
                             if (value == null) throw new IllegalArgumentException("'sys' cannot be null");
                             setSys((Boolean)value);
                             break;
-                    default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
+                    default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
+                }
+            }
+
+            @Override
+            public void __use(int prop) {
+                switch (prop) {
+                    default: throw new IllegalArgumentException(
+                                "Illegal property id: \"" + 
+                                prop + 
+                                "\",it does not exists or is not non-abstract formula property" + 
+                                "(Only non-abstract formula property can be used)"
+                            );
+                }
+            }
+
+            @Override
+            public void __use(String prop) {
+                switch (prop) {
+                    default: throw new IllegalArgumentException(
+                                "Illegal property name: \"" + 
+                                prop + 
+                                "\",it does not exists or is not non-abstract formula property" + 
+                                "(Only non-abstract formula property can be used)"
+                            );
                 }
             }
 
@@ -787,7 +811,7 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
                     case 8: __modified().dictNameLoaded = false;break;
                     case 9: __modified().dictTypeLoaded = false;break;
                     case 10: __modified().sysLoaded = false;break;
-                    default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
+                    default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
                 }
             }
 
@@ -804,7 +828,7 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
                     case "dictName": __modified().dictNameLoaded = false;break;
                     case "dictType": __modified().dictTypeLoaded = false;break;
                     case "sys": __modified().sysLoaded = false;break;
-                    default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
+                    default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
                 }
             }
 

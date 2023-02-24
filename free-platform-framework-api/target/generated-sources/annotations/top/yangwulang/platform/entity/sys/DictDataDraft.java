@@ -1602,7 +1602,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
                     case 22: setCssClass((String)value);break;
                     case 23: setCorpCode((String)value);break;
                     case 24: setCorpName((String)value);break;
-                    default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
+                    default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
                 }
             }
 
@@ -1637,7 +1637,31 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
                     case "cssClass": setCssClass((String)value);break;
                     case "corpCode": setCorpCode((String)value);break;
                     case "corpName": setCorpName((String)value);break;
-                    default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
+                    default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
+                }
+            }
+
+            @Override
+            public void __use(int prop) {
+                switch (prop) {
+                    default: throw new IllegalArgumentException(
+                                "Illegal property id: \"" + 
+                                prop + 
+                                "\",it does not exists or is not non-abstract formula property" + 
+                                "(Only non-abstract formula property can be used)"
+                            );
+                }
+            }
+
+            @Override
+            public void __use(String prop) {
+                switch (prop) {
+                    default: throw new IllegalArgumentException(
+                                "Illegal property name: \"" + 
+                                prop + 
+                                "\",it does not exists or is not non-abstract formula property" + 
+                                "(Only non-abstract formula property can be used)"
+                            );
                 }
             }
 
@@ -1668,7 +1692,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
                     case 22: __modified().cssClassLoaded = false;break;
                     case 23: __modified().corpCodeLoaded = false;break;
                     case 24: __modified().corpNameLoaded = false;break;
-                    default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
+                    default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
                 }
             }
 
@@ -1699,7 +1723,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
                     case "cssClass": __modified().cssClassLoaded = false;break;
                     case "corpCode": __modified().corpCodeLoaded = false;break;
                     case "corpName": __modified().corpNameLoaded = false;break;
-                    default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
+                    default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
                 }
             }
 

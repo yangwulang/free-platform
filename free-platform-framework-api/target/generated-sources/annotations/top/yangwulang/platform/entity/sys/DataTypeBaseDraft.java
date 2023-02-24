@@ -585,7 +585,7 @@ public interface DataTypeBaseDraft extends DataTypeBase, TypeBaseDraft {
                     case 5: setUpdateBy((String)value);break;
                     case 6: setUpdateDate((LocalDateTime)value);break;
                     case 7: setRemarks((String)value);break;
-                    default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
+                    default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
                 }
             }
 
@@ -600,7 +600,31 @@ public interface DataTypeBaseDraft extends DataTypeBase, TypeBaseDraft {
                     case "updateBy": setUpdateBy((String)value);break;
                     case "updateDate": setUpdateDate((LocalDateTime)value);break;
                     case "remarks": setRemarks((String)value);break;
-                    default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
+                    default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
+                }
+            }
+
+            @Override
+            public void __use(int prop) {
+                switch (prop) {
+                    default: throw new IllegalArgumentException(
+                                "Illegal property id: \"" + 
+                                prop + 
+                                "\",it does not exists or is not non-abstract formula property" + 
+                                "(Only non-abstract formula property can be used)"
+                            );
+                }
+            }
+
+            @Override
+            public void __use(String prop) {
+                switch (prop) {
+                    default: throw new IllegalArgumentException(
+                                "Illegal property name: \"" + 
+                                prop + 
+                                "\",it does not exists or is not non-abstract formula property" + 
+                                "(Only non-abstract formula property can be used)"
+                            );
                 }
             }
 
@@ -614,7 +638,7 @@ public interface DataTypeBaseDraft extends DataTypeBase, TypeBaseDraft {
                     case 5: __modified().updateBy = null;break;
                     case 6: __modified().updateDate = null;break;
                     case 7: __modified().remarksLoaded = false;break;
-                    default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
+                    default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
                 }
             }
 
@@ -628,7 +652,7 @@ public interface DataTypeBaseDraft extends DataTypeBase, TypeBaseDraft {
                     case "updateBy": __modified().updateBy = null;break;
                     case "updateDate": __modified().updateDate = null;break;
                     case "remarks": __modified().remarksLoaded = false;break;
-                    default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
+                    default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
                 }
             }
 

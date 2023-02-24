@@ -1501,7 +1501,7 @@ public interface UserDraft extends User, BaseEntityDraft {
                     case 22: setMgrType((String)value);break;
                     case 23: setPwdSecurityLevel((Integer)value);break;
                     case 24: setUserWeight((Integer)value);break;
-                    default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
+                    default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
                 }
             }
 
@@ -1533,7 +1533,31 @@ public interface UserDraft extends User, BaseEntityDraft {
                     case "mgrType": setMgrType((String)value);break;
                     case "pwdSecurityLevel": setPwdSecurityLevel((Integer)value);break;
                     case "userWeight": setUserWeight((Integer)value);break;
-                    default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
+                    default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
+                }
+            }
+
+            @Override
+            public void __use(int prop) {
+                switch (prop) {
+                    default: throw new IllegalArgumentException(
+                                "Illegal property id: \"" + 
+                                prop + 
+                                "\",it does not exists or is not non-abstract formula property" + 
+                                "(Only non-abstract formula property can be used)"
+                            );
+                }
+            }
+
+            @Override
+            public void __use(String prop) {
+                switch (prop) {
+                    default: throw new IllegalArgumentException(
+                                "Illegal property name: \"" + 
+                                prop + 
+                                "\",it does not exists or is not non-abstract formula property" + 
+                                "(Only non-abstract formula property can be used)"
+                            );
                 }
             }
 
@@ -1564,7 +1588,7 @@ public interface UserDraft extends User, BaseEntityDraft {
                     case 22: __modified().mgrType = null;break;
                     case 23: __modified().pwdSecurityLevelLoaded = false;break;
                     case 24: __modified().userWeightLoaded = false;break;
-                    default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
+                    default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
                 }
             }
 
@@ -1595,7 +1619,7 @@ public interface UserDraft extends User, BaseEntityDraft {
                     case "mgrType": __modified().mgrType = null;break;
                     case "pwdSecurityLevel": __modified().pwdSecurityLevelLoaded = false;break;
                     case "userWeight": __modified().userWeightLoaded = false;break;
-                    default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
+                    default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
                 }
             }
 

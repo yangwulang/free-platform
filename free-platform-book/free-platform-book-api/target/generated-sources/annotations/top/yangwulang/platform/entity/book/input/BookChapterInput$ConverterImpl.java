@@ -6,7 +6,7 @@ import top.yangwulang.platform.entity.book.BookChapterDraft;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-02-17T10:25:37+0800",
+    date = "2023-02-24T16:44:58+0800",
     comments = "version: 1.5.3.Final, compiler: javac, environment: Java 19 (Oracle Corporation)"
 )
 class BookChapterInput$ConverterImpl implements BookChapterInput.Converter {
@@ -18,6 +18,8 @@ class BookChapterInput$ConverterImpl implements BookChapterInput.Converter {
         }
 
         BookChapterDraft.MapStruct bookChapter = new BookChapterDraft.MapStruct();
+
+        bookChapter.chapterTitle( input.getChapterTitle() );
 
         return bookChapter.build();
     }

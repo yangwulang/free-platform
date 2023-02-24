@@ -1166,7 +1166,7 @@ public interface RoleDraft extends Role, BaseEntityDraft {
                     case 15: setCorpCode((String)value);break;
                     case 16: setCorpName((String)value);break;
                     case 17: setMenus((List<Menu>)value);break;
-                    default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
+                    default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
                 }
             }
 
@@ -1194,7 +1194,31 @@ public interface RoleDraft extends Role, BaseEntityDraft {
                     case "corpCode": setCorpCode((String)value);break;
                     case "corpName": setCorpName((String)value);break;
                     case "menus": setMenus((List<Menu>)value);break;
-                    default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
+                    default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
+                }
+            }
+
+            @Override
+            public void __use(int prop) {
+                switch (prop) {
+                    default: throw new IllegalArgumentException(
+                                "Illegal property id: \"" + 
+                                prop + 
+                                "\",it does not exists or is not non-abstract formula property" + 
+                                "(Only non-abstract formula property can be used)"
+                            );
+                }
+            }
+
+            @Override
+            public void __use(String prop) {
+                switch (prop) {
+                    default: throw new IllegalArgumentException(
+                                "Illegal property name: \"" + 
+                                prop + 
+                                "\",it does not exists or is not non-abstract formula property" + 
+                                "(Only non-abstract formula property can be used)"
+                            );
                 }
             }
 
@@ -1218,7 +1242,7 @@ public interface RoleDraft extends Role, BaseEntityDraft {
                     case 15: __modified().corpCodeLoaded = false;break;
                     case 16: __modified().corpNameLoaded = false;break;
                     case 17: __modified().menus = null;break;
-                    default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
+                    default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
                 }
             }
 
@@ -1242,7 +1266,7 @@ public interface RoleDraft extends Role, BaseEntityDraft {
                     case "corpCode": __modified().corpCodeLoaded = false;break;
                     case "corpName": __modified().corpNameLoaded = false;break;
                     case "menus": __modified().menus = null;break;
-                    default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
+                    default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
                 }
             }
 

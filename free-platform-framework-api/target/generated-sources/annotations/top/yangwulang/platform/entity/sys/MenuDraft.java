@@ -1838,7 +1838,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                             break;
                     case 27: setSysCode((String)value);break;
                     case 28: setRoles((List<Role>)value);break;
-                    default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
+                    default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
                 }
             }
 
@@ -1877,7 +1877,31 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                             break;
                     case "sysCode": setSysCode((String)value);break;
                     case "roles": setRoles((List<Role>)value);break;
-                    default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
+                    default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
+                }
+            }
+
+            @Override
+            public void __use(int prop) {
+                switch (prop) {
+                    default: throw new IllegalArgumentException(
+                                "Illegal property id: \"" + 
+                                prop + 
+                                "\",it does not exists or is not non-abstract formula property" + 
+                                "(Only non-abstract formula property can be used)"
+                            );
+                }
+            }
+
+            @Override
+            public void __use(String prop) {
+                switch (prop) {
+                    default: throw new IllegalArgumentException(
+                                "Illegal property name: \"" + 
+                                prop + 
+                                "\",it does not exists or is not non-abstract formula property" + 
+                                "(Only non-abstract formula property can be used)"
+                            );
                 }
             }
 
@@ -1912,7 +1936,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                     case 26: __modified().showLoaded = false;break;
                     case 27: __modified().sysCode = null;break;
                     case 28: __modified().roles = null;break;
-                    default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
+                    default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
                 }
             }
 
@@ -1947,7 +1971,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                     case "show": __modified().showLoaded = false;break;
                     case "sysCode": __modified().sysCode = null;break;
                     case "roles": __modified().roles = null;break;
-                    default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
+                    default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
                 }
             }
 

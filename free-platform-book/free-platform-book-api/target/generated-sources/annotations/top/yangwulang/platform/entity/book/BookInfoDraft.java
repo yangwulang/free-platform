@@ -720,7 +720,7 @@ public interface BookInfoDraft extends BookInfo, Draft {
                     case 7: setCategory((String)value);break;
                     case 8: setBookFrom((String)value);break;
                     case 9: setChapters((List<BookChapter>)value);break;
-                    default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
+                    default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
                 }
             }
 
@@ -737,7 +737,31 @@ public interface BookInfoDraft extends BookInfo, Draft {
                     case "category": setCategory((String)value);break;
                     case "bookFrom": setBookFrom((String)value);break;
                     case "chapters": setChapters((List<BookChapter>)value);break;
-                    default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
+                    default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
+                }
+            }
+
+            @Override
+            public void __use(int prop) {
+                switch (prop) {
+                    default: throw new IllegalArgumentException(
+                                "Illegal property id: \"" + 
+                                prop + 
+                                "\",it does not exists or is not non-abstract formula property" + 
+                                "(Only non-abstract formula property can be used)"
+                            );
+                }
+            }
+
+            @Override
+            public void __use(String prop) {
+                switch (prop) {
+                    default: throw new IllegalArgumentException(
+                                "Illegal property name: \"" + 
+                                prop + 
+                                "\",it does not exists or is not non-abstract formula property" + 
+                                "(Only non-abstract formula property can be used)"
+                            );
                 }
             }
 
@@ -753,7 +777,7 @@ public interface BookInfoDraft extends BookInfo, Draft {
                     case 7: __modified().categoryLoaded = false;break;
                     case 8: __modified().bookFromLoaded = false;break;
                     case 9: __modified().chapters = null;break;
-                    default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
+                    default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
                 }
             }
 
@@ -769,7 +793,7 @@ public interface BookInfoDraft extends BookInfo, Draft {
                     case "category": __modified().categoryLoaded = false;break;
                     case "bookFrom": __modified().bookFromLoaded = false;break;
                     case "chapters": __modified().chapters = null;break;
-                    default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
+                    default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
                 }
             }
 

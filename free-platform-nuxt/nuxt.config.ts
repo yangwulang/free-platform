@@ -1,3 +1,6 @@
+import {defineNuxtConfig} from "nuxt/config";
+
+
 export default defineNuxtConfig({
     modules: [
         '@nuxtjs/i18n',
@@ -8,7 +11,7 @@ export default defineNuxtConfig({
     plugins: [{
         src: 'plugin/iview/index',
         ssr: true
-    },{
+    }, {
         src: 'plugin/element-ui/index'
     }],
     css: [

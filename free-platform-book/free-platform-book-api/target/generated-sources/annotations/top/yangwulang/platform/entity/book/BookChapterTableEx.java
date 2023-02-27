@@ -31,6 +31,22 @@ public class BookChapterTableEx extends BookChapterTable implements TableEx<Book
         super(base, joinDisabledReason);
     }
 
+    public BookInfoTableEx book() {
+        __beforeJoin();
+        if (raw != null) {
+            return new BookInfoTableEx(raw.joinImplementor("book"));
+        }
+        return new BookInfoTableEx(joinOperation("book"));
+    }
+
+    public BookInfoTableEx book(JoinType joinType) {
+        __beforeJoin();
+        if (raw != null) {
+            return new BookInfoTableEx(raw.joinImplementor("book", joinType));
+        }
+        return new BookInfoTableEx(joinOperation("book", joinType));
+    }
+
     @Override
     public BookChapterTableEx asTableEx() {
         return this;

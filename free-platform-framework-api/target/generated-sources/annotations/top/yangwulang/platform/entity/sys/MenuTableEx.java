@@ -31,22 +31,6 @@ public class MenuTableEx extends MenuTable implements TableEx<Menu> {
         super(base, joinDisabledReason);
     }
 
-    public MenuTableEx parent() {
-        __beforeJoin();
-        if (raw != null) {
-            return new MenuTableEx(raw.joinImplementor("parent"));
-        }
-        return new MenuTableEx(joinOperation("parent"));
-    }
-
-    public MenuTableEx parent(JoinType joinType) {
-        __beforeJoin();
-        if (raw != null) {
-            return new MenuTableEx(raw.joinImplementor("parent", joinType));
-        }
-        return new MenuTableEx(joinOperation("parent", joinType));
-    }
-
     public MenuTableEx children() {
         __beforeJoin();
         if (raw != null) {

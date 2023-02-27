@@ -1,5 +1,7 @@
 package top.yangwulang.platform.services.impl;
 
+import org.babyfish.jimmer.sql.event.EntityEvent;
+import org.babyfish.jimmer.sql.event.EntityListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,6 +31,15 @@ public class MenuServiceImpl implements MenuService {
             parent = MenuDraft.$.produce(df -> df.setId(menu.getParent().getId()));
         } else {
             parent = MenuDraft.$.produce(df -> df.setId("0"));
+        }
+        Menu save = menuRepository.save(MenuDraft.$.produce(menu.toEntity(), d -> d.setParent(parent)));
+        if (!"0".equals(parent.id())) {
+            // 如果不是根节点
+            menu.setParentCodes(parent.parentCodes() + "," + save.id());
+            menu.setTreeSorts(parent.treeSorts() + "," + save.treeSort());
+        } else {
+            menu.setParentCodes("0,");
+            menu.setTreeSorts("0,");
         }
         return menuRepository.save(MenuDraft.$.produce(menu.toEntity(), d -> d.setParent(parent)));
     }

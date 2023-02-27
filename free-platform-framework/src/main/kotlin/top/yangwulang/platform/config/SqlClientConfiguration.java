@@ -17,7 +17,7 @@ import javax.sql.DataSource;
  * @author yangwulang
  */
 @Configuration
-public class SqlClientConfig {
+public class SqlClientConfiguration {
 
     @Bean
     public JSqlClient sqlClient(

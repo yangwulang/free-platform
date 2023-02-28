@@ -3,7 +3,7 @@ import 'element-plus/dist/index.css'
 
 import Cookies from "js-cookie"
 import {createI18n} from "vue-i18n";
-import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
+import zhCn from 'element-plus/dist/locale/zh-cn'
 import ElementPlus from 'element-plus'
 
 

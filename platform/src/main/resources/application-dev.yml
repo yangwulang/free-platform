@@ -93,7 +93,24 @@ jetcache:
         maxTotal: 50
       host: ${spring.data.redis.host}
       port: ${spring.data.redis.port}
+    sysArea:
+      type: redis.lettuce
+      keyConvertor: fastjson #other choose：fastjson/jackson
+      broadcastChannel: projectA
+      valueEncoder: java #other choose：kryo/kryo5
+      valueDecoder: java #other choose：kryo/kryo5
+      uri: redis://yangwulang@${spring.data.redis.host}:${spring.data.redis.port}/0?timeout=5s
+      poolConfig:
+        minIdle: 5
+        maxIdle: 20
+        maxTotal: 50
 
+sa-token:
+  token-name: satoken
+  timeout: -1
+  is-concurrent: true
+  is-share: false
+  is-log: true
 
 springdoc:
   swagger-ui:

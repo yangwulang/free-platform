@@ -24,23 +24,24 @@ public class MenuServiceImpl implements MenuService {
     @Override
     @Transactional
     public Menu save(MenuInput menu) {
-        Menu parent;
+        /*Menu parent;
         if (menu.getParentId() != null) {
             parent = MenuDraft.$.produce(df -> df.setId(menu.getParentId()));
         } else if (menu.getParent() != null) {
             parent = MenuDraft.$.produce(df -> df.setId(menu.getParent().getId()));
         } else {
-            parent = MenuDraft.$.produce(df -> df.setId("0"));
+            parent = null;
         }
-        Menu save = menuRepository.save(MenuDraft.$.produce(menu.toEntity(), d -> d.setParent(parent)));
-        if (!"0".equals(parent.id())) {
+        Menu save = menuRepository.save(MenuDraft.$.produce(menu.toEntity(), d -> d.setParent(null)));
+        if (parent == null) {
+            // 如果不是根节点
+            menu.setParentCodes("0," + save.id());
+            menu.setTreeSorts("0," + save.treeSort());
+        } else {
             // 如果不是根节点
             menu.setParentCodes(parent.parentCodes() + "," + save.id());
             menu.setTreeSorts(parent.treeSorts() + "," + save.treeSort());
-        } else {
-            menu.setParentCodes("0,");
-            menu.setTreeSorts("0,");
-        }
-        return menuRepository.save(MenuDraft.$.produce(menu.toEntity(), d -> d.setParent(parent)));
+        }*/
+        return menuRepository.save(menu.toEntity());
     }
 }

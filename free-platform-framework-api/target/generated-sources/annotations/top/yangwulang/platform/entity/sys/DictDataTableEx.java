@@ -31,6 +31,22 @@ public class DictDataTableEx extends DictDataTable implements TableEx<DictData> 
         super(base, joinDisabledReason);
     }
 
+    public DictDataTableEx parent() {
+        __beforeJoin();
+        if (raw != null) {
+            return new DictDataTableEx(raw.joinImplementor("parent"));
+        }
+        return new DictDataTableEx(joinOperation("parent"));
+    }
+
+    public DictDataTableEx parent(JoinType joinType) {
+        __beforeJoin();
+        if (raw != null) {
+            return new DictDataTableEx(raw.joinImplementor("parent", joinType));
+        }
+        return new DictDataTableEx(joinOperation("parent", joinType));
+    }
+
     public DictDataTableEx children() {
         __beforeJoin();
         if (raw != null) {
@@ -45,6 +61,22 @@ public class DictDataTableEx extends DictDataTable implements TableEx<DictData> 
             return new DictDataTableEx(raw.joinImplementor("children", joinType));
         }
         return new DictDataTableEx(joinOperation("children", joinType));
+    }
+
+    public DictTypeTableEx dictType() {
+        __beforeJoin();
+        if (raw != null) {
+            return new DictTypeTableEx(raw.joinImplementor("dictType"));
+        }
+        return new DictTypeTableEx(joinOperation("dictType"));
+    }
+
+    public DictTypeTableEx dictType(JoinType joinType) {
+        __beforeJoin();
+        if (raw != null) {
+            return new DictTypeTableEx(raw.joinImplementor("dictType", joinType));
+        }
+        return new DictTypeTableEx(joinOperation("dictType", joinType));
     }
 
     @Override

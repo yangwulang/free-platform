@@ -8,6 +8,9 @@ import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 import top.yangwulang.platform.entity.sys.DictType;
 
+/**
+ * @author yangwulang
+ */
 @Data
 public class DictTypeInput implements Input<DictType> {
 

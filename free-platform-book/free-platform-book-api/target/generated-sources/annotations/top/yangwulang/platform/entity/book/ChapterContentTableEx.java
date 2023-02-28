@@ -32,6 +32,22 @@ public class ChapterContentTableEx extends ChapterContentTable implements TableE
         super(base, joinDisabledReason);
     }
 
+    public BookChapterTableEx chapter() {
+        __beforeJoin();
+        if (raw != null) {
+            return new BookChapterTableEx(raw.joinImplementor("chapter"));
+        }
+        return new BookChapterTableEx(joinOperation("chapter"));
+    }
+
+    public BookChapterTableEx chapter(JoinType joinType) {
+        __beforeJoin();
+        if (raw != null) {
+            return new BookChapterTableEx(raw.joinImplementor("chapter", joinType));
+        }
+        return new BookChapterTableEx(joinOperation("chapter", joinType));
+    }
+
     @Override
     public ChapterContentTableEx asTableEx() {
         return this;

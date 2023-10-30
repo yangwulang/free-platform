@@ -9,21 +9,10 @@ import top.yangwulang.platform.repository.sys.DictDataRepository;
 import top.yangwulang.platform.services.DictDataService;
 
 @Service
-public class DictDataServiceImpl implements DictDataService {
+public class DictDataServiceImpl extends BaseServiceImpl<DictData, String, DictDataRepository> implements DictDataService {
 
-    @Autowired
-    private DictDataRepository dictDataRepository;
-
-    @Override
-    public DictData save(DictDataInput dictDataInput) {
-        DictData parent;
-        if (dictDataInput.getParentId() != null) {
-            parent = DictDataDraft.$.produce(df -> df.setId(dictDataInput.getParentId()));
-        } else if (dictDataInput.getParent() != null) {
-            parent = DictDataDraft.$.produce(df -> df.setId(dictDataInput.getParent().getId()));
-        } else {
-            parent = DictDataRepository.ROOT;
-        }
-        return dictDataRepository.save(DictDataDraft.$.produce(dictDataInput.toEntity(), d -> d.setParent(parent)));
+    protected DictDataServiceImpl(@Autowired DictDataRepository repository) {
+        super(repository);
     }
+
 }

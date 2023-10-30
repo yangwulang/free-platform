@@ -1,47 +1,87 @@
 package top.yangwulang.platform.services.impl;
 
-import org.babyfish.jimmer.sql.event.EntityEvent;
-import org.babyfish.jimmer.sql.event.EntityListener;
+import cn.hutool.core.lang.tree.Tree;
+import cn.hutool.core.lang.tree.TreeNode;
+import cn.hutool.core.lang.tree.TreeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import top.yangwulang.platform.entity.sys.Menu;
-import top.yangwulang.platform.entity.sys.MenuDraft;
+import top.yangwulang.platform.entity.sys.MenuProps;
 import top.yangwulang.platform.entity.sys.input.MenuInput;
 import top.yangwulang.platform.repository.sys.MenuRepository;
 import top.yangwulang.platform.services.MenuService;
+
+import java.util.*;
+import java.util.stream.Stream;
 
 /**
  * @author yangwulang
  */
 @Service
-public class MenuServiceImpl implements MenuService {
+public class MenuServiceImpl extends BaseServiceImpl<Menu, String, MenuRepository> implements MenuService {
 
-    @Autowired
-    private MenuRepository menuRepository;
+    public MenuServiceImpl(@Autowired MenuRepository repository) {
+        super(repository);
+    }
 
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = {Exception.class})
     public Menu save(MenuInput menu) {
-        /*Menu parent;
-        if (menu.getParentId() != null) {
-            parent = MenuDraft.$.produce(df -> df.setId(menu.getParentId()));
-        } else if (menu.getParent() != null) {
-            parent = MenuDraft.$.produce(df -> df.setId(menu.getParent().getId()));
-        } else {
-            parent = null;
-        }
-        Menu save = menuRepository.save(MenuDraft.$.produce(menu.toEntity(), d -> d.setParent(null)));
-        if (parent == null) {
-            // 如果不是根节点
-            menu.setParentCodes("0," + save.id());
-            menu.setTreeSorts("0," + save.treeSort());
-        } else {
-            // 如果不是根节点
-            menu.setParentCodes(parent.parentCodes() + "," + save.id());
-            menu.setTreeSorts(parent.treeSorts() + "," + save.treeSort());
-        }*/
-        return menuRepository.save(menu.toEntity());
+        return super.repository.save(menu.toEntity());
     }
+
+    public List<Menu> findByUserId(String userId) {
+        return repository().findByUserIdTree(userId);
+    }
+
+    @Override
+    public List<Menu> findByRoleId(String roleId) {
+        return repository().findByRoleId(roleId);
+    }
+
+    @Override
+    public List<Tree<String>> convertMenusToTree(List<Menu> menus) {
+        List<TreeNode<String>> list = menus.stream().map(m -> {
+            TreeNode<String> menuTreeNode = new TreeNode<>(m.id(), m.parentId(), m.menuName(), m.weight());
+            menuTreeNode.setExtra(new HashMap<>() {{
+                put("menuType", m.menuType());
+                put("menuHref", m.menuHref());
+                put("menuComponent", m.menuComponent());
+                put("menuTarget", m.menuTarget());
+                put("menuIcon", m.menuIcon());
+                put("menuColor", m.menuColor());
+                put("menuTitle", m.menuTitle());
+                put("permission", m.permission());
+                put("isShow", m.isShow());
+                put("sysCode", m.sysCode());
+            }});
+            return menuTreeNode;
+        }).toList();
+        return TreeUtil.build(list, null);
+    }
+
+    @Override
+    public List<Tree<String>> findByRoleIdTree(String roleId) {
+        return this.convertMenusToTree(this.findByRoleId(roleId));
+    }
+
+    @Override
+    public List<Tree<String>> findByUserIdTree(String userId) {
+        return this.convertMenusToTree(this.findByUserId(userId));
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void bandRoleMenu(String roleId, List<String> menuIds) {
+        this.repository().sql().getAssociations(MenuProps.ROLES)
+                .batchSaveCommand(
+                        Collections.singletonList(roleId),
+                        Arrays.asList(menuIds.toArray())
+                )
+                .checkExistence(true)
+                .execute();
+    }
+
 }

@@ -187,9 +187,7 @@ public class MinioClientOption {
     public boolean putObject(String bucketName, String objectName, InputStream stream, String contentType) {
         if (bucketExists(bucketName)) {
             PutObjectOptions putObjectOptions = new PutObjectOptions(stream.available(), -1);
-            /**
-             * 开启公共类功能设置setContentType
-             */
+            // 开启公共类功能设置setContentType
             if (!ObjectUtils.isEmpty(contentType)) {
                 putObjectOptions.setContentType(contentType);
             }
@@ -381,7 +379,10 @@ public class MinioClientOption {
         try {
             InputStream file = minIOClient.getObject(bucketName, filePath);
             if (!ObjectUtils.isEmpty(originalName)) {
-                response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(originalName, "UTF-8"));
+                response.setHeader(
+                        "Content-Disposition", "attachment;filename=" +
+                        URLEncoder.encode(originalName, StandardCharsets.UTF_8)
+                );
             } else {
                 String filename = new String(filePath.getBytes("ISO8859-1"), StandardCharsets.UTF_8);
                 response.setHeader("Content-Disposition", "attachment;filename=" + filename);

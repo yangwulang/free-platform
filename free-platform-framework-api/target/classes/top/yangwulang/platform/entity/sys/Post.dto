@@ -1,0 +1,13 @@
+PostListView {
+    #allScalars
+}
+
+inputOnly PostListInput {
+    postCode
+    postName
+    postType
+}
+
+PostGetView {
+    #allScalars
+}

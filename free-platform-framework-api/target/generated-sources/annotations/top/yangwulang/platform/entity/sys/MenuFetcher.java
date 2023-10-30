@@ -2,6 +2,7 @@ package top.yangwulang.platform.entity.sys;
 
 import java.lang.Override;
 import java.util.function.Consumer;
+import org.babyfish.jimmer.GeneratedBy;
 import org.babyfish.jimmer.lang.NewChain;
 import org.babyfish.jimmer.meta.ImmutableProp;
 import org.babyfish.jimmer.sql.ast.table.Table;
@@ -13,6 +14,9 @@ import org.babyfish.jimmer.sql.fetcher.RecursiveListFieldConfig;
 import org.babyfish.jimmer.sql.fetcher.impl.FetcherImpl;
 import org.babyfish.jimmer.sql.fetcher.spi.AbstractTypedFetcher;
 
+@GeneratedBy(
+        type = Menu.class
+)
 public class MenuFetcher extends AbstractTypedFetcher<Menu, MenuFetcher> {
     public static final MenuFetcher $ = new MenuFetcher(null);
 
@@ -117,6 +121,16 @@ public class MenuFetcher extends AbstractTypedFetcher<Menu, MenuFetcher> {
     }
 
     @NewChain
+    public MenuFetcher parentId() {
+        return add("parentId");
+    }
+
+    @NewChain
+    public MenuFetcher parentId(boolean enabled) {
+        return enabled ? add("parentId") : remove("parentId");
+    }
+
+    @NewChain
     public MenuFetcher children() {
         return add("children");
     }
@@ -135,66 +149,6 @@ public class MenuFetcher extends AbstractTypedFetcher<Menu, MenuFetcher> {
     public MenuFetcher children(Fetcher<Menu> childFetcher,
             Consumer<RecursiveListFieldConfig<Menu, MenuTable>> fieldConfig) {
         return add("children", childFetcher, fieldConfig);
-    }
-
-    @NewChain
-    public MenuFetcher parentCodes() {
-        return add("parentCodes");
-    }
-
-    @NewChain
-    public MenuFetcher parentCodes(boolean enabled) {
-        return enabled ? add("parentCodes") : remove("parentCodes");
-    }
-
-    @NewChain
-    public MenuFetcher treeSort() {
-        return add("treeSort");
-    }
-
-    @NewChain
-    public MenuFetcher treeSort(boolean enabled) {
-        return enabled ? add("treeSort") : remove("treeSort");
-    }
-
-    @NewChain
-    public MenuFetcher treeSorts() {
-        return add("treeSorts");
-    }
-
-    @NewChain
-    public MenuFetcher treeSorts(boolean enabled) {
-        return enabled ? add("treeSorts") : remove("treeSorts");
-    }
-
-    @NewChain
-    public MenuFetcher treeLeaf() {
-        return add("treeLeaf");
-    }
-
-    @NewChain
-    public MenuFetcher treeLeaf(boolean enabled) {
-        return enabled ? add("treeLeaf") : remove("treeLeaf");
-    }
-
-    @NewChain
-    public MenuFetcher treeLevel() {
-        return add("treeLevel");
-    }
-
-    @NewChain
-    public MenuFetcher treeLevel(boolean enabled) {
-        return enabled ? add("treeLevel") : remove("treeLevel");
-    }
-
-    @NewChain
-    public MenuFetcher treeNames() {
-        return add("treeNames");
-    }
-
-    @NewChain
-    public MenuFetcher treeNames(boolean enabled) {
-        return enabled ? add("treeNames") : remove("treeNames");
     }
 
     @NewChain
@@ -298,13 +252,13 @@ public class MenuFetcher extends AbstractTypedFetcher<Menu, MenuFetcher> {
     }
 
     @NewChain
-    public MenuFetcher show() {
-        return add("show");
+    public MenuFetcher isShow() {
+        return add("isShow");
     }
 
     @NewChain
-    public MenuFetcher show(boolean enabled) {
-        return enabled ? add("show") : remove("show");
+    public MenuFetcher isShow(boolean enabled) {
+        return enabled ? add("isShow") : remove("isShow");
     }
 
     @NewChain
@@ -339,12 +293,12 @@ public class MenuFetcher extends AbstractTypedFetcher<Menu, MenuFetcher> {
     }
 
     @Override
-    protected MenuFetcher createChildFetcher(ImmutableProp prop, boolean negative) {
+    protected MenuFetcher createFetcher(ImmutableProp prop, boolean negative) {
         return new MenuFetcher(this, prop, negative);
     }
 
     @Override
-    protected MenuFetcher createChildFetcher(ImmutableProp prop,
+    protected MenuFetcher createFetcher(ImmutableProp prop,
             FieldConfig<?, ? extends Table<?>> fieldConfig) {
         return new MenuFetcher(this, prop, fieldConfig);
     }

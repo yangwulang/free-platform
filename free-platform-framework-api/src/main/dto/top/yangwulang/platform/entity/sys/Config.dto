@@ -1,0 +1,29 @@
+import io.swagger.v3.oas.annotations.media.Schema
+
+ConfigListView {
+    #allScalars
+}
+
+inputOnly ConfigListInput {
+    configKey?
+    configName?
+    configValue
+    remarks
+}
+
+ConfigGetView {
+    #allScalars
+}
+
+inputOnly ConfigSaveInput {
+    @Schema(description = "配置id")
+    id?
+    configName
+    configKey
+    configValue
+    remarks
+}
+
+ConfigSaveView {
+    #allScalars
+}

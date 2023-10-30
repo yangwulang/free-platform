@@ -1,15 +1,22 @@
 package top.yangwulang.platform.entity.sys;
 
 import java.lang.Boolean;
+import java.lang.Deprecated;
+import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.util.Date;
+import org.babyfish.jimmer.GeneratedBy;
 import org.babyfish.jimmer.sql.JoinType;
 import org.babyfish.jimmer.sql.ast.PropExpression;
 import org.babyfish.jimmer.sql.ast.impl.table.TableImplementor;
+import org.babyfish.jimmer.sql.ast.table.TableEx;
 import org.babyfish.jimmer.sql.ast.table.spi.AbstractTypedTable;
 
+@GeneratedBy(
+        type = Menu.class
+)
 public class MenuTable extends AbstractTypedTable<Menu> implements MenuProps {
     public static final MenuTable $ = new MenuTable();
 
@@ -35,7 +42,7 @@ public class MenuTable extends AbstractTypedTable<Menu> implements MenuProps {
     }
 
     @Override
-    public PropExpression.Str status() {
+    public PropExpression.Num<Integer> status() {
         return get("status");
     }
 
@@ -45,7 +52,7 @@ public class MenuTable extends AbstractTypedTable<Menu> implements MenuProps {
     }
 
     @Override
-    public PropExpression.Cmp<LocalDateTime> createDate() {
+    public PropExpression.Cmp<Date> createDate() {
         return get("createDate");
     }
 
@@ -55,7 +62,7 @@ public class MenuTable extends AbstractTypedTable<Menu> implements MenuProps {
     }
 
     @Override
-    public PropExpression.Cmp<LocalDateTime> updateDate() {
+    public PropExpression.Cmp<Date> updateDate() {
         return get("updateDate");
     }
 
@@ -83,33 +90,8 @@ public class MenuTable extends AbstractTypedTable<Menu> implements MenuProps {
     }
 
     @Override
-    public PropExpression.Str parentCodes() {
-        return get("parentCodes");
-    }
-
-    @Override
-    public PropExpression.Num<BigDecimal> treeSort() {
-        return get("treeSort");
-    }
-
-    @Override
-    public PropExpression.Str treeSorts() {
-        return get("treeSorts");
-    }
-
-    @Override
-    public PropExpression.Str treeLeaf() {
-        return get("treeLeaf");
-    }
-
-    @Override
-    public PropExpression.Num<BigDecimal> treeLevel() {
-        return get("treeLevel");
-    }
-
-    @Override
-    public PropExpression.Str treeNames() {
-        return get("treeNames");
+    public PropExpression.Str parentId() {
+        return get("parentId");
     }
 
     @Override
@@ -163,8 +145,8 @@ public class MenuTable extends AbstractTypedTable<Menu> implements MenuProps {
     }
 
     @Override
-    public PropExpression<Boolean> show() {
-        return get("show");
+    public PropExpression.Cmp<Boolean> isShow() {
+        return get("isShow");
     }
 
     @Override
@@ -180,5 +162,30 @@ public class MenuTable extends AbstractTypedTable<Menu> implements MenuProps {
     @Override
     public MenuTable __disableJoin(String reason) {
         return new MenuTable(this, reason);
+    }
+
+    public static class Remote extends AbstractTypedTable<Menu> {
+        public Remote(AbstractTypedTable.DelayedOperation delayedOperation) {
+            super(Menu.class, delayedOperation);
+        }
+
+        public Remote(TableImplementor<Menu> table) {
+            super(table);
+        }
+
+        public PropExpression.Str id() {
+            return get("id");
+        }
+
+        @Override
+        @Deprecated
+        public TableEx<Menu> asTableEx() {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public Remote __disableJoin(String reason) {
+            return this;
+        }
     }
 }

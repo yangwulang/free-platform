@@ -1,14 +1,12 @@
 package top.yangwulang.platform.entity.sys;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import org.babyfish.jimmer.Immutable;
 import org.babyfish.jimmer.sql.*;
+import top.yangwulang.platform.entity.DataTypeBase;
 
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -22,6 +20,15 @@ import java.util.List;
 @Schema(description = "菜单实体")
 public interface Menu extends DataTypeBase {
     /**
+     * 菜单类型-权限
+     */
+    String MENU_TYPE_PERMISSION = "2";
+    /**
+     * 菜单类型-菜单
+     */
+    String MENU_TYPE_MENU = "1";
+
+    /**
      * 父级编号
      */
     @Key
@@ -31,46 +38,12 @@ public interface Menu extends DataTypeBase {
     @OnDissociate(DissociateAction.DELETE)
     @Null Menu parent();
 
+    @IdView
+    @Null String parentId();
+
     @OneToMany(mappedBy = "parent")
     @Schema(description = "子级菜单")
     List<Menu> children();
-
-    /**
-     * 所有父级编号
-     */
-    @Schema(description = "父级所有code")
-    String parentCodes();
-
-    /**
-     * 本级排序号（升序）
-     */
-    @Schema(description = "当前级别排序")
-    BigDecimal treeSort();
-
-    /**
-     * 所有级别排序号
-     */
-    @Schema(description = "所有级别排序")
-    String treeSorts();
-
-    /**
-     * 是否最末级
-     */
-    @Schema(description = "是否最末级")
-    String treeLeaf();
-
-    /**
-     * 层次级别
-     */
-    @Schema(description = "层次级别")
-    BigDecimal treeLevel();
-
-    /**
-     * 全节点名
-     */
-    @Schema(description = "全节点名")
-    @Key
-    String treeNames();
 
     /**
      * 菜单名称
@@ -130,20 +103,20 @@ public interface Menu extends DataTypeBase {
      * 菜单权重
      */
     @Schema(description = "菜单权重")
-    BigDecimal weight();
+    @Null BigDecimal weight();
 
     /**
      * 是否显示
      */
     @Schema(description = "是否显示")
     @Column(name = "is_show")
-    boolean isShow();
+    @Null Boolean isShow();
 
     /**
      * 归属系统（default:主导航菜单、mobileApp:APP菜单）
      */
     @Schema(description = "归属系统（default:主导航菜单、mobileApp:APP菜单）")
-    String sysCode();
+    @Null String sysCode();
 
 
     @ManyToMany

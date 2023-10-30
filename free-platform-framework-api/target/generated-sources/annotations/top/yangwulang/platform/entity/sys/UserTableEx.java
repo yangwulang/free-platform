@@ -4,6 +4,7 @@ import java.lang.Class;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import org.babyfish.jimmer.GeneratedBy;
 import org.babyfish.jimmer.sql.JoinType;
 import org.babyfish.jimmer.sql.ast.impl.table.TableImplementor;
 import org.babyfish.jimmer.sql.ast.impl.table.TableProxies;
@@ -12,6 +13,9 @@ import org.babyfish.jimmer.sql.ast.table.TableEx;
 import org.babyfish.jimmer.sql.ast.table.WeakJoin;
 import org.babyfish.jimmer.sql.ast.table.spi.AbstractTypedTable;
 
+@GeneratedBy(
+        type = User.class
+)
 public class UserTableEx extends UserTable implements TableEx<User> {
     public static final UserTableEx $ = new UserTableEx(UserTable.$, null);
 
@@ -29,6 +33,22 @@ public class UserTableEx extends UserTable implements TableEx<User> {
 
     protected UserTableEx(UserTable base, String joinDisabledReason) {
         super(base, joinDisabledReason);
+    }
+
+    public RoleTableEx roles() {
+        __beforeJoin();
+        if (raw != null) {
+            return new RoleTableEx(raw.joinImplementor("roles"));
+        }
+        return new RoleTableEx(joinOperation("roles"));
+    }
+
+    public RoleTableEx roles(JoinType joinType) {
+        __beforeJoin();
+        if (raw != null) {
+            return new RoleTableEx(raw.joinImplementor("roles", joinType));
+        }
+        return new RoleTableEx(joinOperation("roles", joinType));
     }
 
     @Override

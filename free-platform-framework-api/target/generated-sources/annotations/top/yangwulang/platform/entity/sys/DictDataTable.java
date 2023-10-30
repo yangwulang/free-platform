@@ -1,15 +1,21 @@
 package top.yangwulang.platform.entity.sys;
 
 import java.lang.Boolean;
+import java.lang.Deprecated;
+import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.util.Date;
+import org.babyfish.jimmer.GeneratedBy;
 import org.babyfish.jimmer.sql.JoinType;
 import org.babyfish.jimmer.sql.ast.PropExpression;
 import org.babyfish.jimmer.sql.ast.impl.table.TableImplementor;
+import org.babyfish.jimmer.sql.ast.table.TableEx;
 import org.babyfish.jimmer.sql.ast.table.spi.AbstractTypedTable;
 
+@GeneratedBy(
+        type = DictData.class
+)
 public class DictDataTable extends AbstractTypedTable<DictData> implements DictDataProps {
     public static final DictDataTable $ = new DictDataTable();
 
@@ -35,7 +41,7 @@ public class DictDataTable extends AbstractTypedTable<DictData> implements DictD
     }
 
     @Override
-    public PropExpression.Str status() {
+    public PropExpression.Num<Integer> status() {
         return get("status");
     }
 
@@ -45,7 +51,7 @@ public class DictDataTable extends AbstractTypedTable<DictData> implements DictD
     }
 
     @Override
-    public PropExpression.Cmp<LocalDateTime> createDate() {
+    public PropExpression.Cmp<Date> createDate() {
         return get("createDate");
     }
 
@@ -55,7 +61,7 @@ public class DictDataTable extends AbstractTypedTable<DictData> implements DictD
     }
 
     @Override
-    public PropExpression.Cmp<LocalDateTime> updateDate() {
+    public PropExpression.Cmp<Date> updateDate() {
         return get("updateDate");
     }
 
@@ -101,33 +107,13 @@ public class DictDataTable extends AbstractTypedTable<DictData> implements DictD
     }
 
     @Override
-    public PropExpression.Str parentCodes() {
-        return get("parentCodes");
+    public PropExpression.Str parentId() {
+        return get("parentId");
     }
 
     @Override
-    public PropExpression.Num<BigDecimal> treeSort() {
-        return get("treeSort");
-    }
-
-    @Override
-    public PropExpression.Str treeSorts() {
-        return get("treeSorts");
-    }
-
-    @Override
-    public PropExpression.Str treeLeaf() {
-        return get("treeLeaf");
-    }
-
-    @Override
-    public PropExpression.Num<BigDecimal> treeLevel() {
-        return get("treeLevel");
-    }
-
-    @Override
-    public PropExpression.Str treeNames() {
-        return get("treeNames");
+    public PropExpression.Str dictTypeId() {
+        return get("dictTypeId");
     }
 
     @Override
@@ -141,8 +127,8 @@ public class DictDataTable extends AbstractTypedTable<DictData> implements DictD
     }
 
     @Override
-    public PropExpression<Boolean> sys() {
-        return get("sys");
+    public PropExpression.Cmp<Boolean> isSys() {
+        return get("isSys");
     }
 
     @Override
@@ -178,5 +164,30 @@ public class DictDataTable extends AbstractTypedTable<DictData> implements DictD
     @Override
     public DictDataTable __disableJoin(String reason) {
         return new DictDataTable(this, reason);
+    }
+
+    public static class Remote extends AbstractTypedTable<DictData> {
+        public Remote(AbstractTypedTable.DelayedOperation delayedOperation) {
+            super(DictData.class, delayedOperation);
+        }
+
+        public Remote(TableImplementor<DictData> table) {
+            super(table);
+        }
+
+        public PropExpression.Str id() {
+            return get("id");
+        }
+
+        @Override
+        @Deprecated
+        public TableEx<DictData> asTableEx() {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public Remote __disableJoin(String reason) {
+            return this;
+        }
     }
 }

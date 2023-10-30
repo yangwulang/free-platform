@@ -1,5 +1,0 @@
-input BookChapterInput {
-    +chapterTitle
-    +fromPath
-    id(book)
-}

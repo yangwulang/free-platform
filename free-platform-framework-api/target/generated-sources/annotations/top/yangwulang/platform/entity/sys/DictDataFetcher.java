@@ -2,6 +2,7 @@ package top.yangwulang.platform.entity.sys;
 
 import java.lang.Override;
 import java.util.function.Consumer;
+import org.babyfish.jimmer.GeneratedBy;
 import org.babyfish.jimmer.lang.NewChain;
 import org.babyfish.jimmer.meta.ImmutableProp;
 import org.babyfish.jimmer.sql.ast.table.Table;
@@ -12,6 +13,9 @@ import org.babyfish.jimmer.sql.fetcher.RecursiveListFieldConfig;
 import org.babyfish.jimmer.sql.fetcher.impl.FetcherImpl;
 import org.babyfish.jimmer.sql.fetcher.spi.AbstractTypedFetcher;
 
+@GeneratedBy(
+        type = DictData.class
+)
 public class DictDataFetcher extends AbstractTypedFetcher<DictData, DictDataFetcher> {
     public static final DictDataFetcher $ = new DictDataFetcher(null);
 
@@ -158,63 +162,23 @@ public class DictDataFetcher extends AbstractTypedFetcher<DictData, DictDataFetc
     }
 
     @NewChain
-    public DictDataFetcher parentCodes() {
-        return add("parentCodes");
+    public DictDataFetcher parentId() {
+        return add("parentId");
     }
 
     @NewChain
-    public DictDataFetcher parentCodes(boolean enabled) {
-        return enabled ? add("parentCodes") : remove("parentCodes");
+    public DictDataFetcher parentId(boolean enabled) {
+        return enabled ? add("parentId") : remove("parentId");
     }
 
     @NewChain
-    public DictDataFetcher treeSort() {
-        return add("treeSort");
+    public DictDataFetcher dictTypeId() {
+        return add("dictTypeId");
     }
 
     @NewChain
-    public DictDataFetcher treeSort(boolean enabled) {
-        return enabled ? add("treeSort") : remove("treeSort");
-    }
-
-    @NewChain
-    public DictDataFetcher treeSorts() {
-        return add("treeSorts");
-    }
-
-    @NewChain
-    public DictDataFetcher treeSorts(boolean enabled) {
-        return enabled ? add("treeSorts") : remove("treeSorts");
-    }
-
-    @NewChain
-    public DictDataFetcher treeLeaf() {
-        return add("treeLeaf");
-    }
-
-    @NewChain
-    public DictDataFetcher treeLeaf(boolean enabled) {
-        return enabled ? add("treeLeaf") : remove("treeLeaf");
-    }
-
-    @NewChain
-    public DictDataFetcher treeLevel() {
-        return add("treeLevel");
-    }
-
-    @NewChain
-    public DictDataFetcher treeLevel(boolean enabled) {
-        return enabled ? add("treeLevel") : remove("treeLevel");
-    }
-
-    @NewChain
-    public DictDataFetcher treeNames() {
-        return add("treeNames");
-    }
-
-    @NewChain
-    public DictDataFetcher treeNames(boolean enabled) {
-        return enabled ? add("treeNames") : remove("treeNames");
+    public DictDataFetcher dictTypeId(boolean enabled) {
+        return enabled ? add("dictTypeId") : remove("dictTypeId");
     }
 
     @NewChain
@@ -238,13 +202,13 @@ public class DictDataFetcher extends AbstractTypedFetcher<DictData, DictDataFetc
     }
 
     @NewChain
-    public DictDataFetcher sys() {
-        return add("sys");
+    public DictDataFetcher isSys() {
+        return add("isSys");
     }
 
     @NewChain
-    public DictDataFetcher sys(boolean enabled) {
-        return enabled ? add("sys") : remove("sys");
+    public DictDataFetcher isSys(boolean enabled) {
+        return enabled ? add("isSys") : remove("isSys");
     }
 
     @NewChain
@@ -298,12 +262,12 @@ public class DictDataFetcher extends AbstractTypedFetcher<DictData, DictDataFetc
     }
 
     @Override
-    protected DictDataFetcher createChildFetcher(ImmutableProp prop, boolean negative) {
+    protected DictDataFetcher createFetcher(ImmutableProp prop, boolean negative) {
         return new DictDataFetcher(this, prop, negative);
     }
 
     @Override
-    protected DictDataFetcher createChildFetcher(ImmutableProp prop,
+    protected DictDataFetcher createFetcher(ImmutableProp prop,
             FieldConfig<?, ? extends Table<?>> fieldConfig) {
         return new DictDataFetcher(this, prop, fieldConfig);
     }

@@ -1,0 +1,108 @@
+{
+  "groups": [
+    {
+      "name": "file",
+      "type": "top.yangwulang.platform.config.fileupload.FileUploadProperties",
+      "sourceType": "top.yangwulang.platform.config.fileupload.FileUploadProperties"
+    },
+    {
+      "name": "spring.cache",
+      "type": "top.yangwulang.platform.config.j2cache.cache.J2CacheProperties",
+      "sourceType": "top.yangwulang.platform.config.j2cache.cache.J2CacheProperties"
+    },
+    {
+      "name": "spring.datasource",
+      "type": "top.yangwulang.platform.properties.DynamicDataSourceProperties",
+      "sourceType": "top.yangwulang.platform.properties.DynamicDataSourceProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "file.access-key",
+      "type": "java.lang.String",
+      "description": "访问钥匙,model为local不需要",
+      "sourceType": "top.yangwulang.platform.config.fileupload.FileUploadProperties"
+    },
+    {
+      "name": "file.bucket-name",
+      "type": "java.lang.String",
+      "description": "桶名称，如果mode为local,那么地址中就会自动进行隔离",
+      "sourceType": "top.yangwulang.platform.config.fileupload.FileUploadProperties"
+    },
+    {
+      "name": "file.enable",
+      "type": "java.lang.Boolean",
+      "description": "是否开启文件上传",
+      "sourceType": "top.yangwulang.platform.config.fileupload.FileUploadProperties"
+    },
+    {
+      "name": "file.mode",
+      "type": "top.yangwulang.platform.config.fileupload.FileUploadMode",
+      "description": "文件上传模型",
+      "sourceType": "top.yangwulang.platform.config.fileupload.FileUploadProperties"
+    },
+    {
+      "name": "file.secret-key",
+      "type": "java.lang.String",
+      "description": "密钥,model为local不需要",
+      "sourceType": "top.yangwulang.platform.config.fileupload.FileUploadProperties"
+    },
+    {
+      "name": "file.url",
+      "type": "java.lang.String",
+      "description": "oss地址，如果mode为local,那么此处一定为绝对路径",
+      "sourceType": "top.yangwulang.platform.config.fileupload.FileUploadProperties"
+    },
+    {
+      "name": "spring.cache.clear-names",
+      "type": "java.lang.String",
+      "sourceType": "top.yangwulang.platform.config.j2cache.cache.J2CacheProperties"
+    },
+    {
+      "name": "spring.cache.cluster-mode",
+      "type": "java.lang.Boolean",
+      "sourceType": "top.yangwulang.platform.config.j2cache.cache.J2CacheProperties"
+    },
+    {
+      "name": "spring.datasource.data-source-names",
+      "type": "java.util.List<java.lang.String>",
+      "sourceType": "top.yangwulang.platform.properties.DynamicDataSourceProperties"
+    },
+    {
+      "name": "spring.datasource.db-type",
+      "type": "java.lang.String",
+      "sourceType": "top.yangwulang.platform.properties.DynamicDataSourceProperties"
+    },
+    {
+      "name": "spring.datasource.distributed",
+      "type": "java.lang.Boolean",
+      "sourceType": "top.yangwulang.platform.properties.DynamicDataSourceProperties"
+    },
+    {
+      "name": "spring.datasource.driver-class-name",
+      "type": "java.lang.String",
+      "sourceType": "top.yangwulang.platform.properties.DynamicDataSourceProperties"
+    },
+    {
+      "name": "spring.datasource.password",
+      "type": "java.lang.String",
+      "sourceType": "top.yangwulang.platform.properties.DynamicDataSourceProperties"
+    },
+    {
+      "name": "spring.datasource.properties",
+      "type": "java.util.Map<java.lang.String,java.lang.String>",
+      "sourceType": "top.yangwulang.platform.properties.DynamicDataSourceProperties"
+    },
+    {
+      "name": "spring.datasource.url",
+      "type": "java.lang.String",
+      "sourceType": "top.yangwulang.platform.properties.DynamicDataSourceProperties"
+    },
+    {
+      "name": "spring.datasource.username",
+      "type": "java.lang.String",
+      "sourceType": "top.yangwulang.platform.properties.DynamicDataSourceProperties"
+    }
+  ],
+  "hints": []
+}

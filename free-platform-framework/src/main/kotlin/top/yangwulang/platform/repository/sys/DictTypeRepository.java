@@ -16,23 +16,4 @@ import top.yangwulang.platform.entity.sys.input.DictTypeInput;
  */
 @Repository
 public interface DictTypeRepository extends JRepository<DictType, String> {
-    DictTypeTable TABLE = DictTypeTable.$;
-
-    /**
-     * 查询列表页数据
-     *
-     * @param pageable      分页数据
-     * @param fetcher       f对象
-     * @param dictTypeInput 入参对象
-     * @return 分页数据
-     */
-    default Page<DictType> findAll(Pageable pageable, Fetcher<DictType> fetcher, DictTypeInput dictTypeInput) {
-        return pager(pageable)
-                .execute(
-                        sql().createQuery(TABLE)
-                                .whereIf(!ObjectUtils.isEmpty(dictTypeInput.getDictType()), TABLE.dictType().like(dictTypeInput.getDictType()))
-                                .whereIf(!ObjectUtils.isEmpty(dictTypeInput.getDictName()), TABLE.dictName().like(dictTypeInput.getDictName()))
-                                .select(TABLE.fetch(fetcher))
-                );
-    }
 }

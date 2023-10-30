@@ -1,10 +1,11 @@
 package top.yangwulang.platform.entity.sys;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.babyfish.jimmer.sql.*;
+import top.yangwulang.platform.entity.DataTypeBase;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
-import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -25,10 +26,12 @@ public interface DictData extends DataTypeBase {
     @ManyToOne
     @JoinColumn(name = "pid")
     @OnDissociate(DissociateAction.DELETE)
+    @Schema(description = "父级")
     @Null DictData parent();
 
     @OneToMany(mappedBy = "parent")
     @NotNull
+    @Schema(description = "子集")
     List<DictData> children();
 
     /**
@@ -37,77 +40,66 @@ public interface DictData extends DataTypeBase {
     @Key
     @ManyToOne
     @OnDissociate(DissociateAction.DELETE)
+    @Schema(description = "字典类型")
     @Null DictType dictType();
 
-    /**
-     * 所有父级编号
-     */
-    @Null String parentCodes();
+    @IdView
+    @Schema(description = "父级id")
+    @Null String parentId();
 
-    /**
-     * 本级排序号（升序）
-     */
-    @Null BigDecimal treeSort();
-
-    /**
-     * 所有级别排序号
-     */
-    @Null String treeSorts();
-
-    /**
-     * 是否最末级
-     */
-    @Null String treeLeaf();
-
-    /**
-     * 层次级别
-     */
-    @Null BigDecimal treeLevel();
-
-    /**
-     * 全节点名
-     */
-    @Null String treeNames();
+    @IdView
+    @Schema(description = "字典类型id")
+    @Null String dictTypeId();
 
     /**
      * 字典标签
      */
+    @Key
+    @Schema(description = "字典标签")
     @Null String dictLabel();
 
     /**
      * 字典键值
      */
+    @Key
+    @Schema(description = "字典键值")
     @Null String dictValue();
 
     /**
      * 系统内置（1是 0否）
      */
     @Column(name = "is_sys")
-    @Null boolean isSys();
+    @Schema(description = "系统内置（1是 0否）")
+    Boolean isSys();
 
     /**
      * 字典描述
      */
+    @Schema(description = "字典描述")
     @Null String description();
 
     /**
      * css样式（如：color:red)
      */
+    @Schema(description = "css样式（如：color:red)")
     @Null String cssStyle();
 
     /**
      * css类名（如：red）
      */
+    @Schema(description = "css类名（如：red）")
     @Null String cssClass();
 
     /**
      * 租户代码
      */
+    @Schema(description = "租户代码")
     @Null String corpCode();
 
     /**
      * 租户名称
      */
+    @Schema(description = "租户名称")
     @Null String corpName();
 }
 

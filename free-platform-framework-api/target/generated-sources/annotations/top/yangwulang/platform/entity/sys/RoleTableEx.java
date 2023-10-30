@@ -4,6 +4,7 @@ import java.lang.Class;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import org.babyfish.jimmer.GeneratedBy;
 import org.babyfish.jimmer.sql.JoinType;
 import org.babyfish.jimmer.sql.ast.impl.table.TableImplementor;
 import org.babyfish.jimmer.sql.ast.impl.table.TableProxies;
@@ -12,6 +13,9 @@ import org.babyfish.jimmer.sql.ast.table.TableEx;
 import org.babyfish.jimmer.sql.ast.table.WeakJoin;
 import org.babyfish.jimmer.sql.ast.table.spi.AbstractTypedTable;
 
+@GeneratedBy(
+        type = Role.class
+)
 public class RoleTableEx extends RoleTable implements TableEx<Role> {
     public static final RoleTableEx $ = new RoleTableEx(RoleTable.$, null);
 
@@ -45,6 +49,22 @@ public class RoleTableEx extends RoleTable implements TableEx<Role> {
             return new MenuTableEx(raw.joinImplementor("menus", joinType));
         }
         return new MenuTableEx(joinOperation("menus", joinType));
+    }
+
+    public UserTableEx users() {
+        __beforeJoin();
+        if (raw != null) {
+            return new UserTableEx(raw.joinImplementor("users"));
+        }
+        return new UserTableEx(joinOperation("users"));
+    }
+
+    public UserTableEx users(JoinType joinType) {
+        __beforeJoin();
+        if (raw != null) {
+            return new UserTableEx(raw.joinImplementor("users", joinType));
+        }
+        return new UserTableEx(joinOperation("users", joinType));
     }
 
     @Override

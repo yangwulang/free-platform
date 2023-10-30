@@ -4,6 +4,7 @@ import java.lang.Class;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import org.babyfish.jimmer.GeneratedBy;
 import org.babyfish.jimmer.sql.JoinType;
 import org.babyfish.jimmer.sql.ast.impl.table.TableImplementor;
 import org.babyfish.jimmer.sql.ast.impl.table.TableProxies;
@@ -12,6 +13,9 @@ import org.babyfish.jimmer.sql.ast.table.TableEx;
 import org.babyfish.jimmer.sql.ast.table.WeakJoin;
 import org.babyfish.jimmer.sql.ast.table.spi.AbstractTypedTable;
 
+@GeneratedBy(
+        type = Menu.class
+)
 public class MenuTableEx extends MenuTable implements TableEx<Menu> {
     public static final MenuTableEx $ = new MenuTableEx(MenuTable.$, null);
 

@@ -1,5 +1,6 @@
 package top.yangwulang.platform.utils;
 
+import cn.hutool.core.io.FileUtil;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
@@ -30,5 +31,14 @@ public class FileUtils {
 
     public static String defaultUploadLocalPath() {
         return defaultLocalPath() + "\\upload";
+    }
+
+    /**
+     * 级联创建文件或者文件夹
+     * @param fileOrDir 文件或者文件夹
+     * @return 创建的文件
+     */
+    public static File touch(String fileOrDir) {
+        return FileUtil.touch(fileOrDir);
     }
 }

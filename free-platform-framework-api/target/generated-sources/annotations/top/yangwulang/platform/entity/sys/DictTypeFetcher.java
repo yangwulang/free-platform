@@ -1,6 +1,7 @@
 package top.yangwulang.platform.entity.sys;
 
 import java.lang.Override;
+import org.babyfish.jimmer.GeneratedBy;
 import org.babyfish.jimmer.lang.NewChain;
 import org.babyfish.jimmer.meta.ImmutableProp;
 import org.babyfish.jimmer.sql.ast.table.Table;
@@ -9,6 +10,9 @@ import org.babyfish.jimmer.sql.fetcher.FieldConfig;
 import org.babyfish.jimmer.sql.fetcher.impl.FetcherImpl;
 import org.babyfish.jimmer.sql.fetcher.spi.AbstractTypedFetcher;
 
+@GeneratedBy(
+        type = DictType.class
+)
 public class DictTypeFetcher extends AbstractTypedFetcher<DictType, DictTypeFetcher> {
     public static final DictTypeFetcher $ = new DictTypeFetcher(null);
 
@@ -112,22 +116,22 @@ public class DictTypeFetcher extends AbstractTypedFetcher<DictType, DictTypeFetc
     }
 
     @NewChain
-    public DictTypeFetcher sys() {
-        return add("sys");
+    public DictTypeFetcher isSys() {
+        return add("isSys");
     }
 
     @NewChain
-    public DictTypeFetcher sys(boolean enabled) {
-        return enabled ? add("sys") : remove("sys");
+    public DictTypeFetcher isSys(boolean enabled) {
+        return enabled ? add("isSys") : remove("isSys");
     }
 
     @Override
-    protected DictTypeFetcher createChildFetcher(ImmutableProp prop, boolean negative) {
+    protected DictTypeFetcher createFetcher(ImmutableProp prop, boolean negative) {
         return new DictTypeFetcher(this, prop, negative);
     }
 
     @Override
-    protected DictTypeFetcher createChildFetcher(ImmutableProp prop,
+    protected DictTypeFetcher createFetcher(ImmutableProp prop,
             FieldConfig<?, ? extends Table<?>> fieldConfig) {
         return new DictTypeFetcher(this, prop, fieldConfig);
     }

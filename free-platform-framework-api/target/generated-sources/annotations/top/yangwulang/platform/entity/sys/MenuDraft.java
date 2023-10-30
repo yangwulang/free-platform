@@ -1,37 +1,48 @@
 package top.yangwulang.platform.entity.sys;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.io.Serializable;
 import java.lang.Boolean;
 import java.lang.CloneNotSupportedException;
 import java.lang.Cloneable;
 import java.lang.IllegalArgumentException;
+import java.lang.Integer;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.lang.System;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import org.babyfish.jimmer.CircularReferenceException;
 import org.babyfish.jimmer.DraftConsumer;
+import org.babyfish.jimmer.GeneratedBy;
 import org.babyfish.jimmer.ImmutableObjects;
 import org.babyfish.jimmer.UnloadedException;
 import org.babyfish.jimmer.jackson.ImmutableModuleRequiredException;
 import org.babyfish.jimmer.lang.OldChain;
 import org.babyfish.jimmer.meta.ImmutablePropCategory;
 import org.babyfish.jimmer.meta.ImmutableType;
+import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.DraftContext;
 import org.babyfish.jimmer.runtime.DraftSpi;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
 import org.babyfish.jimmer.runtime.Internal;
 import org.babyfish.jimmer.runtime.NonSharedList;
+import org.babyfish.jimmer.runtime.Visibility;
 import org.babyfish.jimmer.sql.ManyToMany;
+import org.babyfish.jimmer.sql.ManyToOne;
 import org.babyfish.jimmer.sql.OneToMany;
+import org.jetbrains.annotations.Nullable;
+import top.yangwulang.platform.entity.DataTypeBaseDraft;
 
+@GeneratedBy(
+        type = Menu.class
+)
 public interface MenuDraft extends Menu, DataTypeBaseDraft {
     MenuDraft.Producer $ = Producer.INSTANCE;
 
@@ -39,23 +50,24 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
     MenuDraft setId(String id);
 
     @OldChain
-    MenuDraft setStatus(String status);
+    MenuDraft setStatus(int status);
 
     @OldChain
     MenuDraft setCreateBy(String createBy);
 
     @OldChain
-    MenuDraft setCreateDate(LocalDateTime createDate);
+    MenuDraft setCreateDate(Date createDate);
 
     @OldChain
     MenuDraft setUpdateBy(String updateBy);
 
     @OldChain
-    MenuDraft setUpdateDate(LocalDateTime updateDate);
+    MenuDraft setUpdateDate(Date updateDate);
 
     @OldChain
     MenuDraft setRemarks(String remarks);
 
+    @Nullable
     MenuDraft parent();
 
     MenuDraft parent(boolean autoCreate);
@@ -69,6 +81,9 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
     @OldChain
     MenuDraft applyParent(Menu base, DraftConsumer<MenuDraft> block);
 
+    @OldChain
+    MenuDraft setParentId(String parentId);
+
     List<MenuDraft> children(boolean autoCreate);
 
     @OldChain
@@ -79,24 +94,6 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
 
     @OldChain
     MenuDraft addIntoChildren(Menu base, DraftConsumer<MenuDraft> block);
-
-    @OldChain
-    MenuDraft setParentCodes(String parentCodes);
-
-    @OldChain
-    MenuDraft setTreeSort(BigDecimal treeSort);
-
-    @OldChain
-    MenuDraft setTreeSorts(String treeSorts);
-
-    @OldChain
-    MenuDraft setTreeLeaf(String treeLeaf);
-
-    @OldChain
-    MenuDraft setTreeLevel(BigDecimal treeLevel);
-
-    @OldChain
-    MenuDraft setTreeNames(String treeNames);
 
     @OldChain
     MenuDraft setMenuName(String menuName);
@@ -129,7 +126,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
     MenuDraft setWeight(BigDecimal weight);
 
     @OldChain
-    MenuDraft setShow(boolean show);
+    MenuDraft setIsShow(Boolean isShow);
 
     @OldChain
     MenuDraft setSysCode(String sysCode);
@@ -148,33 +145,82 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
     class Producer {
         static final Producer INSTANCE = new Producer();
 
+        public static final int SLOT_ID = 0;
+
+        public static final int SLOT_STATUS = 1;
+
+        public static final int SLOT_CREATE_BY = 2;
+
+        public static final int SLOT_CREATE_DATE = 3;
+
+        public static final int SLOT_UPDATE_BY = 4;
+
+        public static final int SLOT_UPDATE_DATE = 5;
+
+        public static final int SLOT_REMARKS = 6;
+
+        public static final int SLOT_PARENT = 7;
+
+        public static final int SLOT_PARENT_ID = 8;
+
+        public static final int SLOT_CHILDREN = 9;
+
+        public static final int SLOT_MENU_NAME = 10;
+
+        public static final int SLOT_MENU_TYPE = 11;
+
+        public static final int SLOT_MENU_HREF = 12;
+
+        public static final int SLOT_MENU_COMPONENT = 13;
+
+        public static final int SLOT_MENU_TARGET = 14;
+
+        public static final int SLOT_MENU_ICON = 15;
+
+        public static final int SLOT_MENU_COLOR = 16;
+
+        public static final int SLOT_MENU_TITLE = 17;
+
+        public static final int SLOT_PERMISSION = 18;
+
+        public static final int SLOT_WEIGHT = 19;
+
+        public static final int SLOT_IS_SHOW = 20;
+
+        public static final int SLOT_SYS_CODE = 21;
+
+        public static final int SLOT_ROLES = 22;
+
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
+                "0.8.23",
                 Menu.class,
-                DataTypeBaseDraft.Producer.TYPE,
+                Collections.singleton(DataTypeBaseDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (Menu)base)
             )
-            .keyReference(8, "parent", Menu.class, true)
-            .add(9, "children", OneToMany.class, Menu.class, false)
-            .add(10, "parentCodes", ImmutablePropCategory.SCALAR, String.class, false)
-            .add(11, "treeSort", ImmutablePropCategory.SCALAR, BigDecimal.class, false)
-            .add(12, "treeSorts", ImmutablePropCategory.SCALAR, String.class, false)
-            .add(13, "treeLeaf", ImmutablePropCategory.SCALAR, String.class, false)
-            .add(14, "treeLevel", ImmutablePropCategory.SCALAR, BigDecimal.class, false)
-            .key(15, "treeNames", String.class)
-            .add(16, "menuName", ImmutablePropCategory.SCALAR, String.class, false)
-            .add(17, "menuType", ImmutablePropCategory.SCALAR, String.class, false)
-            .add(18, "menuHref", ImmutablePropCategory.SCALAR, String.class, true)
-            .add(19, "menuComponent", ImmutablePropCategory.SCALAR, String.class, true)
-            .add(20, "menuTarget", ImmutablePropCategory.SCALAR, String.class, true)
-            .add(21, "menuIcon", ImmutablePropCategory.SCALAR, String.class, true)
-            .add(22, "menuColor", ImmutablePropCategory.SCALAR, String.class, true)
-            .add(23, "menuTitle", ImmutablePropCategory.SCALAR, String.class, true)
-            .add(24, "permission", ImmutablePropCategory.SCALAR, String.class, true)
-            .add(25, "weight", ImmutablePropCategory.SCALAR, BigDecimal.class, false)
-            .add(26, "show", ImmutablePropCategory.SCALAR, boolean.class, false)
-            .add(27, "sysCode", ImmutablePropCategory.SCALAR, String.class, false)
-            .add(28, "roles", ManyToMany.class, Role.class, false)
+            .redefine("id", SLOT_ID)
+            .redefine("status", SLOT_STATUS)
+            .redefine("createBy", SLOT_CREATE_BY)
+            .redefine("createDate", SLOT_CREATE_DATE)
+            .redefine("updateBy", SLOT_UPDATE_BY)
+            .redefine("updateDate", SLOT_UPDATE_DATE)
+            .redefine("remarks", SLOT_REMARKS)
+            .keyReference(SLOT_PARENT, "parent", ManyToOne.class, Menu.class, true)
+            .add(SLOT_PARENT_ID, "parentId", ImmutablePropCategory.SCALAR, String.class, true)
+            .add(SLOT_CHILDREN, "children", OneToMany.class, Menu.class, false)
+            .add(SLOT_MENU_NAME, "menuName", ImmutablePropCategory.SCALAR, String.class, false)
+            .add(SLOT_MENU_TYPE, "menuType", ImmutablePropCategory.SCALAR, String.class, false)
+            .add(SLOT_MENU_HREF, "menuHref", ImmutablePropCategory.SCALAR, String.class, true)
+            .add(SLOT_MENU_COMPONENT, "menuComponent", ImmutablePropCategory.SCALAR, String.class, true)
+            .add(SLOT_MENU_TARGET, "menuTarget", ImmutablePropCategory.SCALAR, String.class, true)
+            .add(SLOT_MENU_ICON, "menuIcon", ImmutablePropCategory.SCALAR, String.class, true)
+            .add(SLOT_MENU_COLOR, "menuColor", ImmutablePropCategory.SCALAR, String.class, true)
+            .add(SLOT_MENU_TITLE, "menuTitle", ImmutablePropCategory.SCALAR, String.class, true)
+            .add(SLOT_PERMISSION, "permission", ImmutablePropCategory.SCALAR, String.class, true)
+            .add(SLOT_WEIGHT, "weight", ImmutablePropCategory.SCALAR, BigDecimal.class, true)
+            .add(SLOT_IS_SHOW, "isShow", ImmutablePropCategory.SCALAR, Boolean.class, true)
+            .add(SLOT_SYS_CODE, "sysCode", ImmutablePropCategory.SCALAR, String.class, true)
+            .add(SLOT_ROLES, "roles", ManyToMany.class, Role.class, false)
             .build();
 
         private Producer() {
@@ -188,392 +234,512 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             return (Menu)Internal.produce(TYPE, base, block);
         }
 
-        public abstract static class Implementor implements Menu, ImmutableSpi {
+        public abstract interface Implementor extends Menu, ImmutableSpi {
             @Override
-            public Object __get(int prop) {
-                switch (prop) {
-                    case 1: return id();
-                    case 2: return status();
-                    case 3: return createBy();
-                    case 4: return createDate();
-                    case 5: return updateBy();
-                    case 6: return updateDate();
-                    case 7: return remarks();
-                    case 8: return parent();
-                    case 9: return children();
-                    case 10: return parentCodes();
-                    case 11: return treeSort();
-                    case 12: return treeSorts();
-                    case 13: return treeLeaf();
-                    case 14: return treeLevel();
-                    case 15: return treeNames();
-                    case 16: return menuName();
-                    case 17: return menuType();
-                    case 18: return menuHref();
-                    case 19: return menuComponent();
-                    case 20: return menuTarget();
-                    case 21: return menuIcon();
-                    case 22: return menuColor();
-                    case 23: return menuTitle();
-                    case 24: return permission();
-                    case 25: return weight();
-                    case 26: return (Boolean)isShow();
-                    case 27: return sysCode();
-                    case 28: return roles();
-                    default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
+            default Object __get(PropId prop) {
+                int __propIndex = prop.asIndex();
+                switch (__propIndex) {
+                    case -1:
+                    		return __get(prop.asName());
+                    case SLOT_ID:
+                    		return id();
+                    case SLOT_STATUS:
+                    		return (Integer)status();
+                    case SLOT_CREATE_BY:
+                    		return createBy();
+                    case SLOT_CREATE_DATE:
+                    		return createDate();
+                    case SLOT_UPDATE_BY:
+                    		return updateBy();
+                    case SLOT_UPDATE_DATE:
+                    		return updateDate();
+                    case SLOT_REMARKS:
+                    		return remarks();
+                    case SLOT_PARENT:
+                    		return parent();
+                    case SLOT_PARENT_ID:
+                    		return parentId();
+                    case SLOT_CHILDREN:
+                    		return children();
+                    case SLOT_MENU_NAME:
+                    		return menuName();
+                    case SLOT_MENU_TYPE:
+                    		return menuType();
+                    case SLOT_MENU_HREF:
+                    		return menuHref();
+                    case SLOT_MENU_COMPONENT:
+                    		return menuComponent();
+                    case SLOT_MENU_TARGET:
+                    		return menuTarget();
+                    case SLOT_MENU_ICON:
+                    		return menuIcon();
+                    case SLOT_MENU_COLOR:
+                    		return menuColor();
+                    case SLOT_MENU_TITLE:
+                    		return menuTitle();
+                    case SLOT_PERMISSION:
+                    		return permission();
+                    case SLOT_WEIGHT:
+                    		return weight();
+                    case SLOT_IS_SHOW:
+                    		return isShow();
+                    case SLOT_SYS_CODE:
+                    		return sysCode();
+                    case SLOT_ROLES:
+                    		return roles();
+                    default: throw new IllegalArgumentException("Illegal property name for \"top.yangwulang.platform.entity.sys.Menu\": \"" + prop + "\"");
                 }
             }
 
             @Override
-            public Object __get(String prop) {
+            default Object __get(String prop) {
                 switch (prop) {
-                    case "id": return id();
-                    case "status": return status();
-                    case "createBy": return createBy();
-                    case "createDate": return createDate();
-                    case "updateBy": return updateBy();
-                    case "updateDate": return updateDate();
-                    case "remarks": return remarks();
-                    case "parent": return parent();
-                    case "children": return children();
-                    case "parentCodes": return parentCodes();
-                    case "treeSort": return treeSort();
-                    case "treeSorts": return treeSorts();
-                    case "treeLeaf": return treeLeaf();
-                    case "treeLevel": return treeLevel();
-                    case "treeNames": return treeNames();
-                    case "menuName": return menuName();
-                    case "menuType": return menuType();
-                    case "menuHref": return menuHref();
-                    case "menuComponent": return menuComponent();
-                    case "menuTarget": return menuTarget();
-                    case "menuIcon": return menuIcon();
-                    case "menuColor": return menuColor();
-                    case "menuTitle": return menuTitle();
-                    case "permission": return permission();
-                    case "weight": return weight();
-                    case "show": return (Boolean)isShow();
-                    case "sysCode": return sysCode();
-                    case "roles": return roles();
-                    default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
+                    case "id":
+                    		return id();
+                    case "status":
+                    		return (Integer)status();
+                    case "createBy":
+                    		return createBy();
+                    case "createDate":
+                    		return createDate();
+                    case "updateBy":
+                    		return updateBy();
+                    case "updateDate":
+                    		return updateDate();
+                    case "remarks":
+                    		return remarks();
+                    case "parent":
+                    		return parent();
+                    case "parentId":
+                    		return parentId();
+                    case "children":
+                    		return children();
+                    case "menuName":
+                    		return menuName();
+                    case "menuType":
+                    		return menuType();
+                    case "menuHref":
+                    		return menuHref();
+                    case "menuComponent":
+                    		return menuComponent();
+                    case "menuTarget":
+                    		return menuTarget();
+                    case "menuIcon":
+                    		return menuIcon();
+                    case "menuColor":
+                    		return menuColor();
+                    case "menuTitle":
+                    		return menuTitle();
+                    case "permission":
+                    		return permission();
+                    case "weight":
+                    		return weight();
+                    case "isShow":
+                    		return isShow();
+                    case "sysCode":
+                    		return sysCode();
+                    case "roles":
+                    		return roles();
+                    default: throw new IllegalArgumentException("Illegal property name for \"top.yangwulang.platform.entity.sys.Menu\": \"" + prop + "\"");
                 }
             }
 
+            @JsonIgnore
+            default String getId() {
+                return id();
+            }
+
+            @JsonIgnore
+            default int getStatus() {
+                return status();
+            }
+
+            @JsonIgnore
+            default String getCreateBy() {
+                return createBy();
+            }
+
+            @JsonIgnore
+            default Date getCreateDate() {
+                return createDate();
+            }
+
+            @JsonIgnore
+            default String getUpdateBy() {
+                return updateBy();
+            }
+
+            @JsonIgnore
+            default Date getUpdateDate() {
+                return updateDate();
+            }
+
+            @JsonIgnore
+            default String getRemarks() {
+                return remarks();
+            }
+
+            @JsonIgnore
+            default Menu getParent() {
+                return parent();
+            }
+
+            @JsonIgnore
+            default String getParentId() {
+                return parentId();
+            }
+
+            @JsonIgnore
+            default List<Menu> getChildren() {
+                return children();
+            }
+
+            @JsonIgnore
+            default String getMenuName() {
+                return menuName();
+            }
+
+            @JsonIgnore
+            default String getMenuType() {
+                return menuType();
+            }
+
+            @JsonIgnore
+            default String getMenuHref() {
+                return menuHref();
+            }
+
+            @JsonIgnore
+            default String getMenuComponent() {
+                return menuComponent();
+            }
+
+            @JsonIgnore
+            default String getMenuTarget() {
+                return menuTarget();
+            }
+
+            @JsonIgnore
+            default String getMenuIcon() {
+                return menuIcon();
+            }
+
+            @JsonIgnore
+            default String getMenuColor() {
+                return menuColor();
+            }
+
+            @JsonIgnore
+            default String getMenuTitle() {
+                return menuTitle();
+            }
+
+            @JsonIgnore
+            default String getPermission() {
+                return permission();
+            }
+
+            @JsonIgnore
+            default BigDecimal getWeight() {
+                return weight();
+            }
+
+            @JsonIgnore
+            default Boolean getIsShow() {
+                return isShow();
+            }
+
+            @JsonIgnore
+            default String getSysCode() {
+                return sysCode();
+            }
+
+            @JsonIgnore
+            default List<Role> getRoles() {
+                return roles();
+            }
+
             @Override
-            public ImmutableType __type() {
+            default ImmutableType __type() {
                 return TYPE;
             }
 
-            @Override
-            public String toString() {
-                return ImmutableObjects.toString(this);
-            }
-
-            public int getDummyPropForJacksonError__() {
+            default int getDummyPropForJacksonError__() {
                 throw new ImmutableModuleRequiredException();
             }
         }
 
-        private static class Impl extends Implementor implements Cloneable {
-            String id;
+        private static class Impl implements Implementor, Cloneable, Serializable {
+            private Visibility __visibility;
 
-            String status;
+            String __idValue;
 
-            String createBy;
+            int __statusValue;
 
-            LocalDateTime createDate;
+            boolean __statusLoaded = false;
 
-            String updateBy;
+            String __createByValue;
 
-            LocalDateTime updateDate;
+            Date __createDateValue;
 
-            String remarks;
+            String __updateByValue;
 
-            boolean remarksLoaded = false;
+            Date __updateDateValue;
 
-            Menu parent;
+            String __remarksValue;
 
-            boolean parentLoaded = false;
+            boolean __remarksLoaded = false;
 
-            NonSharedList<Menu> children;
+            Menu __parentValue;
 
-            String parentCodes;
+            boolean __parentLoaded = false;
 
-            BigDecimal treeSort;
+            NonSharedList<Menu> __childrenValue;
 
-            String treeSorts;
+            String __menuNameValue;
 
-            String treeLeaf;
+            String __menuTypeValue;
 
-            BigDecimal treeLevel;
+            String __menuHrefValue;
 
-            String treeNames;
+            boolean __menuHrefLoaded = false;
 
-            String menuName;
+            String __menuComponentValue;
 
-            String menuType;
+            boolean __menuComponentLoaded = false;
 
-            String menuHref;
+            String __menuTargetValue;
 
-            boolean menuHrefLoaded = false;
+            boolean __menuTargetLoaded = false;
 
-            String menuComponent;
+            String __menuIconValue;
 
-            boolean menuComponentLoaded = false;
+            boolean __menuIconLoaded = false;
 
-            String menuTarget;
+            String __menuColorValue;
 
-            boolean menuTargetLoaded = false;
+            boolean __menuColorLoaded = false;
 
-            String menuIcon;
+            String __menuTitleValue;
 
-            boolean menuIconLoaded = false;
+            boolean __menuTitleLoaded = false;
 
-            String menuColor;
+            String __permissionValue;
 
-            boolean menuColorLoaded = false;
+            boolean __permissionLoaded = false;
 
-            String menuTitle;
+            BigDecimal __weightValue;
 
-            boolean menuTitleLoaded = false;
+            boolean __weightLoaded = false;
 
-            String permission;
+            Boolean __isShowValue;
 
-            boolean permissionLoaded = false;
+            boolean __isShowLoaded = false;
 
-            BigDecimal weight;
+            String __sysCodeValue;
 
-            boolean show;
+            boolean __sysCodeLoaded = false;
 
-            boolean showLoaded = false;
+            NonSharedList<Role> __rolesValue;
 
-            String sysCode;
-
-            NonSharedList<Role> roles;
-
-            @Override
-            public String id() {
-                if (id == null) {
-                    throw new UnloadedException(Menu.class, "id");
-                }
-                return id;
+            Impl() {
+                __visibility = Visibility.of(23);
+                __visibility.show(SLOT_PARENT_ID, false);
             }
 
             @Override
-            public String status() {
-                if (status == null) {
+            public String id() {
+                if (__idValue == null) {
+                    throw new UnloadedException(Menu.class, "id");
+                }
+                return __idValue;
+            }
+
+            @Override
+            public int status() {
+                if (!__statusLoaded) {
                     throw new UnloadedException(Menu.class, "status");
                 }
-                return status;
+                return __statusValue;
             }
 
             @Override
             public String createBy() {
-                if (createBy == null) {
+                if (__createByValue == null) {
                     throw new UnloadedException(Menu.class, "createBy");
                 }
-                return createBy;
+                return __createByValue;
             }
 
             @Override
-            public LocalDateTime createDate() {
-                if (createDate == null) {
+            public Date createDate() {
+                if (__createDateValue == null) {
                     throw new UnloadedException(Menu.class, "createDate");
                 }
-                return createDate;
+                return __createDateValue;
             }
 
             @Override
             public String updateBy() {
-                if (updateBy == null) {
+                if (__updateByValue == null) {
                     throw new UnloadedException(Menu.class, "updateBy");
                 }
-                return updateBy;
+                return __updateByValue;
             }
 
             @Override
-            public LocalDateTime updateDate() {
-                if (updateDate == null) {
+            public Date updateDate() {
+                if (__updateDateValue == null) {
                     throw new UnloadedException(Menu.class, "updateDate");
                 }
-                return updateDate;
+                return __updateDateValue;
             }
 
             @Override
+            @Nullable
             public String remarks() {
-                if (!remarksLoaded) {
+                if (!__remarksLoaded) {
                     throw new UnloadedException(Menu.class, "remarks");
                 }
-                return remarks;
+                return __remarksValue;
             }
 
             @Override
+            @Nullable
             public Menu parent() {
-                if (!parentLoaded) {
+                if (!__parentLoaded) {
                     throw new UnloadedException(Menu.class, "parent");
                 }
-                return parent;
+                return __parentValue;
+            }
+
+            @Override
+            @Nullable
+            public String parentId() {
+                Menu __target = parent();
+                return __target != null ? __target.id() : null;
             }
 
             @Override
             public List<Menu> children() {
-                if (children == null) {
+                if (__childrenValue == null) {
                     throw new UnloadedException(Menu.class, "children");
                 }
-                return children;
-            }
-
-            @Override
-            public String parentCodes() {
-                if (parentCodes == null) {
-                    throw new UnloadedException(Menu.class, "parentCodes");
-                }
-                return parentCodes;
-            }
-
-            @Override
-            public BigDecimal treeSort() {
-                if (treeSort == null) {
-                    throw new UnloadedException(Menu.class, "treeSort");
-                }
-                return treeSort;
-            }
-
-            @Override
-            public String treeSorts() {
-                if (treeSorts == null) {
-                    throw new UnloadedException(Menu.class, "treeSorts");
-                }
-                return treeSorts;
-            }
-
-            @Override
-            public String treeLeaf() {
-                if (treeLeaf == null) {
-                    throw new UnloadedException(Menu.class, "treeLeaf");
-                }
-                return treeLeaf;
-            }
-
-            @Override
-            public BigDecimal treeLevel() {
-                if (treeLevel == null) {
-                    throw new UnloadedException(Menu.class, "treeLevel");
-                }
-                return treeLevel;
-            }
-
-            @Override
-            public String treeNames() {
-                if (treeNames == null) {
-                    throw new UnloadedException(Menu.class, "treeNames");
-                }
-                return treeNames;
+                return __childrenValue;
             }
 
             @Override
             public String menuName() {
-                if (menuName == null) {
+                if (__menuNameValue == null) {
                     throw new UnloadedException(Menu.class, "menuName");
                 }
-                return menuName;
+                return __menuNameValue;
             }
 
             @Override
             public String menuType() {
-                if (menuType == null) {
+                if (__menuTypeValue == null) {
                     throw new UnloadedException(Menu.class, "menuType");
                 }
-                return menuType;
+                return __menuTypeValue;
             }
 
             @Override
+            @Nullable
             public String menuHref() {
-                if (!menuHrefLoaded) {
+                if (!__menuHrefLoaded) {
                     throw new UnloadedException(Menu.class, "menuHref");
                 }
-                return menuHref;
+                return __menuHrefValue;
             }
 
             @Override
+            @Nullable
             public String menuComponent() {
-                if (!menuComponentLoaded) {
+                if (!__menuComponentLoaded) {
                     throw new UnloadedException(Menu.class, "menuComponent");
                 }
-                return menuComponent;
+                return __menuComponentValue;
             }
 
             @Override
+            @Nullable
             public String menuTarget() {
-                if (!menuTargetLoaded) {
+                if (!__menuTargetLoaded) {
                     throw new UnloadedException(Menu.class, "menuTarget");
                 }
-                return menuTarget;
+                return __menuTargetValue;
             }
 
             @Override
+            @Nullable
             public String menuIcon() {
-                if (!menuIconLoaded) {
+                if (!__menuIconLoaded) {
                     throw new UnloadedException(Menu.class, "menuIcon");
                 }
-                return menuIcon;
+                return __menuIconValue;
             }
 
             @Override
+            @Nullable
             public String menuColor() {
-                if (!menuColorLoaded) {
+                if (!__menuColorLoaded) {
                     throw new UnloadedException(Menu.class, "menuColor");
                 }
-                return menuColor;
+                return __menuColorValue;
             }
 
             @Override
+            @Nullable
             public String menuTitle() {
-                if (!menuTitleLoaded) {
+                if (!__menuTitleLoaded) {
                     throw new UnloadedException(Menu.class, "menuTitle");
                 }
-                return menuTitle;
+                return __menuTitleValue;
             }
 
             @Override
+            @Nullable
             public String permission() {
-                if (!permissionLoaded) {
+                if (!__permissionLoaded) {
                     throw new UnloadedException(Menu.class, "permission");
                 }
-                return permission;
+                return __permissionValue;
             }
 
             @Override
+            @Nullable
             public BigDecimal weight() {
-                if (weight == null) {
+                if (!__weightLoaded) {
                     throw new UnloadedException(Menu.class, "weight");
                 }
-                return weight;
+                return __weightValue;
             }
 
             @Override
-            @JsonIgnore
-            public boolean isShow() {
-                if (!showLoaded) {
-                    throw new UnloadedException(Menu.class, "show");
+            @Nullable
+            public Boolean isShow() {
+                if (!__isShowLoaded) {
+                    throw new UnloadedException(Menu.class, "isShow");
                 }
-                return show;
+                return __isShowValue;
             }
 
             @Override
+            @Nullable
             public String sysCode() {
-                if (sysCode == null) {
+                if (!__sysCodeLoaded) {
                     throw new UnloadedException(Menu.class, "sysCode");
                 }
-                return sysCode;
+                return __sysCodeValue;
             }
 
             @Override
             public List<Role> roles() {
-                if (roles == null) {
+                if (__rolesValue == null) {
                     throw new UnloadedException(Menu.class, "roles");
                 }
-                return roles;
+                return __rolesValue;
             }
 
             @Override
@@ -586,252 +752,372 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Override
-            public boolean __isLoaded(int prop) {
-                switch (prop) {
-                    case 1: return id != null;
-                    case 2: return status != null;
-                    case 3: return createBy != null;
-                    case 4: return createDate != null;
-                    case 5: return updateBy != null;
-                    case 6: return updateDate != null;
-                    case 7: return remarksLoaded;
-                    case 8: return parentLoaded;
-                    case 9: return children != null;
-                    case 10: return parentCodes != null;
-                    case 11: return treeSort != null;
-                    case 12: return treeSorts != null;
-                    case 13: return treeLeaf != null;
-                    case 14: return treeLevel != null;
-                    case 15: return treeNames != null;
-                    case 16: return menuName != null;
-                    case 17: return menuType != null;
-                    case 18: return menuHrefLoaded;
-                    case 19: return menuComponentLoaded;
-                    case 20: return menuTargetLoaded;
-                    case 21: return menuIconLoaded;
-                    case 22: return menuColorLoaded;
-                    case 23: return menuTitleLoaded;
-                    case 24: return permissionLoaded;
-                    case 25: return weight != null;
-                    case 26: return showLoaded;
-                    case 27: return sysCode != null;
-                    case 28: return roles != null;
-                    default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
+            public boolean __isLoaded(PropId prop) {
+                int __propIndex = prop.asIndex();
+                switch (__propIndex) {
+                    case -1:
+                    		return __isLoaded(prop.asName());
+                    case SLOT_ID:
+                    		return __idValue != null;
+                    case SLOT_STATUS:
+                    		return __statusLoaded;
+                    case SLOT_CREATE_BY:
+                    		return __createByValue != null;
+                    case SLOT_CREATE_DATE:
+                    		return __createDateValue != null;
+                    case SLOT_UPDATE_BY:
+                    		return __updateByValue != null;
+                    case SLOT_UPDATE_DATE:
+                    		return __updateDateValue != null;
+                    case SLOT_REMARKS:
+                    		return __remarksLoaded;
+                    case SLOT_PARENT:
+                    		return __parentLoaded;
+                    case SLOT_PARENT_ID:
+                    		return __isLoaded(PropId.byIndex(SLOT_PARENT)) && (parent() == null || 
+                            	((ImmutableSpi)parent()).__isLoaded(PropId.byIndex(Producer.SLOT_ID)));
+                    case SLOT_CHILDREN:
+                    		return __childrenValue != null;
+                    case SLOT_MENU_NAME:
+                    		return __menuNameValue != null;
+                    case SLOT_MENU_TYPE:
+                    		return __menuTypeValue != null;
+                    case SLOT_MENU_HREF:
+                    		return __menuHrefLoaded;
+                    case SLOT_MENU_COMPONENT:
+                    		return __menuComponentLoaded;
+                    case SLOT_MENU_TARGET:
+                    		return __menuTargetLoaded;
+                    case SLOT_MENU_ICON:
+                    		return __menuIconLoaded;
+                    case SLOT_MENU_COLOR:
+                    		return __menuColorLoaded;
+                    case SLOT_MENU_TITLE:
+                    		return __menuTitleLoaded;
+                    case SLOT_PERMISSION:
+                    		return __permissionLoaded;
+                    case SLOT_WEIGHT:
+                    		return __weightLoaded;
+                    case SLOT_IS_SHOW:
+                    		return __isShowLoaded;
+                    case SLOT_SYS_CODE:
+                    		return __sysCodeLoaded;
+                    case SLOT_ROLES:
+                    		return __rolesValue != null;
+                    default: throw new IllegalArgumentException("Illegal property name for \"top.yangwulang.platform.entity.sys.Menu\": \"" + prop + "\"");
                 }
             }
 
             @Override
             public boolean __isLoaded(String prop) {
                 switch (prop) {
-                    case "id": return id != null;
-                    case "status": return status != null;
-                    case "createBy": return createBy != null;
-                    case "createDate": return createDate != null;
-                    case "updateBy": return updateBy != null;
-                    case "updateDate": return updateDate != null;
-                    case "remarks": return remarksLoaded;
-                    case "parent": return parentLoaded;
-                    case "children": return children != null;
-                    case "parentCodes": return parentCodes != null;
-                    case "treeSort": return treeSort != null;
-                    case "treeSorts": return treeSorts != null;
-                    case "treeLeaf": return treeLeaf != null;
-                    case "treeLevel": return treeLevel != null;
-                    case "treeNames": return treeNames != null;
-                    case "menuName": return menuName != null;
-                    case "menuType": return menuType != null;
-                    case "menuHref": return menuHrefLoaded;
-                    case "menuComponent": return menuComponentLoaded;
-                    case "menuTarget": return menuTargetLoaded;
-                    case "menuIcon": return menuIconLoaded;
-                    case "menuColor": return menuColorLoaded;
-                    case "menuTitle": return menuTitleLoaded;
-                    case "permission": return permissionLoaded;
-                    case "weight": return weight != null;
-                    case "show": return showLoaded;
-                    case "sysCode": return sysCode != null;
-                    case "roles": return roles != null;
-                    default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
+                    case "id":
+                    		return __idValue != null;
+                    case "status":
+                    		return __statusLoaded;
+                    case "createBy":
+                    		return __createByValue != null;
+                    case "createDate":
+                    		return __createDateValue != null;
+                    case "updateBy":
+                    		return __updateByValue != null;
+                    case "updateDate":
+                    		return __updateDateValue != null;
+                    case "remarks":
+                    		return __remarksLoaded;
+                    case "parent":
+                    		return __parentLoaded;
+                    case "parentId":
+                    		return __isLoaded(PropId.byIndex(SLOT_PARENT)) && (parent() == null || 
+                            	((ImmutableSpi)parent()).__isLoaded(PropId.byIndex(Producer.SLOT_ID)));
+                    case "children":
+                    		return __childrenValue != null;
+                    case "menuName":
+                    		return __menuNameValue != null;
+                    case "menuType":
+                    		return __menuTypeValue != null;
+                    case "menuHref":
+                    		return __menuHrefLoaded;
+                    case "menuComponent":
+                    		return __menuComponentLoaded;
+                    case "menuTarget":
+                    		return __menuTargetLoaded;
+                    case "menuIcon":
+                    		return __menuIconLoaded;
+                    case "menuColor":
+                    		return __menuColorLoaded;
+                    case "menuTitle":
+                    		return __menuTitleLoaded;
+                    case "permission":
+                    		return __permissionLoaded;
+                    case "weight":
+                    		return __weightLoaded;
+                    case "isShow":
+                    		return __isShowLoaded;
+                    case "sysCode":
+                    		return __sysCodeLoaded;
+                    case "roles":
+                    		return __rolesValue != null;
+                    default: throw new IllegalArgumentException("Illegal property name for \"top.yangwulang.platform.entity.sys.Menu\": \"" + prop + "\"");
+                }
+            }
+
+            @Override
+            public boolean __isVisible(PropId prop) {
+                if (__visibility == null) {
+                    return true;
+                }
+                int __propIndex = prop.asIndex();
+                switch (__propIndex) {
+                    case -1:
+                    		return __isVisible(prop.asName());
+                    case SLOT_ID:
+                    		return __visibility.visible(SLOT_ID);
+                    case SLOT_STATUS:
+                    		return __visibility.visible(SLOT_STATUS);
+                    case SLOT_CREATE_BY:
+                    		return __visibility.visible(SLOT_CREATE_BY);
+                    case SLOT_CREATE_DATE:
+                    		return __visibility.visible(SLOT_CREATE_DATE);
+                    case SLOT_UPDATE_BY:
+                    		return __visibility.visible(SLOT_UPDATE_BY);
+                    case SLOT_UPDATE_DATE:
+                    		return __visibility.visible(SLOT_UPDATE_DATE);
+                    case SLOT_REMARKS:
+                    		return __visibility.visible(SLOT_REMARKS);
+                    case SLOT_PARENT:
+                    		return __visibility.visible(SLOT_PARENT);
+                    case SLOT_PARENT_ID:
+                    		return __visibility.visible(SLOT_PARENT_ID);
+                    case SLOT_CHILDREN:
+                    		return __visibility.visible(SLOT_CHILDREN);
+                    case SLOT_MENU_NAME:
+                    		return __visibility.visible(SLOT_MENU_NAME);
+                    case SLOT_MENU_TYPE:
+                    		return __visibility.visible(SLOT_MENU_TYPE);
+                    case SLOT_MENU_HREF:
+                    		return __visibility.visible(SLOT_MENU_HREF);
+                    case SLOT_MENU_COMPONENT:
+                    		return __visibility.visible(SLOT_MENU_COMPONENT);
+                    case SLOT_MENU_TARGET:
+                    		return __visibility.visible(SLOT_MENU_TARGET);
+                    case SLOT_MENU_ICON:
+                    		return __visibility.visible(SLOT_MENU_ICON);
+                    case SLOT_MENU_COLOR:
+                    		return __visibility.visible(SLOT_MENU_COLOR);
+                    case SLOT_MENU_TITLE:
+                    		return __visibility.visible(SLOT_MENU_TITLE);
+                    case SLOT_PERMISSION:
+                    		return __visibility.visible(SLOT_PERMISSION);
+                    case SLOT_WEIGHT:
+                    		return __visibility.visible(SLOT_WEIGHT);
+                    case SLOT_IS_SHOW:
+                    		return __visibility.visible(SLOT_IS_SHOW);
+                    case SLOT_SYS_CODE:
+                    		return __visibility.visible(SLOT_SYS_CODE);
+                    case SLOT_ROLES:
+                    		return __visibility.visible(SLOT_ROLES);
+                    default: return true;
+                }
+            }
+
+            @Override
+            public boolean __isVisible(String prop) {
+                if (__visibility == null) {
+                    return true;
+                }
+                switch (prop) {
+                    case "id":
+                    		return __visibility.visible(SLOT_ID);
+                    case "status":
+                    		return __visibility.visible(SLOT_STATUS);
+                    case "createBy":
+                    		return __visibility.visible(SLOT_CREATE_BY);
+                    case "createDate":
+                    		return __visibility.visible(SLOT_CREATE_DATE);
+                    case "updateBy":
+                    		return __visibility.visible(SLOT_UPDATE_BY);
+                    case "updateDate":
+                    		return __visibility.visible(SLOT_UPDATE_DATE);
+                    case "remarks":
+                    		return __visibility.visible(SLOT_REMARKS);
+                    case "parent":
+                    		return __visibility.visible(SLOT_PARENT);
+                    case "parentId":
+                    		return __visibility.visible(SLOT_PARENT_ID);
+                    case "children":
+                    		return __visibility.visible(SLOT_CHILDREN);
+                    case "menuName":
+                    		return __visibility.visible(SLOT_MENU_NAME);
+                    case "menuType":
+                    		return __visibility.visible(SLOT_MENU_TYPE);
+                    case "menuHref":
+                    		return __visibility.visible(SLOT_MENU_HREF);
+                    case "menuComponent":
+                    		return __visibility.visible(SLOT_MENU_COMPONENT);
+                    case "menuTarget":
+                    		return __visibility.visible(SLOT_MENU_TARGET);
+                    case "menuIcon":
+                    		return __visibility.visible(SLOT_MENU_ICON);
+                    case "menuColor":
+                    		return __visibility.visible(SLOT_MENU_COLOR);
+                    case "menuTitle":
+                    		return __visibility.visible(SLOT_MENU_TITLE);
+                    case "permission":
+                    		return __visibility.visible(SLOT_PERMISSION);
+                    case "weight":
+                    		return __visibility.visible(SLOT_WEIGHT);
+                    case "isShow":
+                    		return __visibility.visible(SLOT_IS_SHOW);
+                    case "sysCode":
+                    		return __visibility.visible(SLOT_SYS_CODE);
+                    case "roles":
+                    		return __visibility.visible(SLOT_ROLES);
+                    default: return true;
                 }
             }
 
             @Override
             public int hashCode() {
-                int hash = 1;
-                if (id != null) {
-                    hash = 31 * hash + id.hashCode();
+                int hash = __visibility != null ? __visibility.hashCode() : 0;
+                if (__idValue != null) {
+                    hash = 31 * hash + __idValue.hashCode();
                     // If entity-id is loaded, return directly
                     return hash;
                 }
-                if (status != null) {
-                    hash = 31 * hash + status.hashCode();
+                if (__statusLoaded) {
+                    hash = 31 * hash + Integer.hashCode(__statusValue);
                 }
-                if (createBy != null) {
-                    hash = 31 * hash + createBy.hashCode();
+                if (__createByValue != null) {
+                    hash = 31 * hash + __createByValue.hashCode();
                 }
-                if (createDate != null) {
-                    hash = 31 * hash + createDate.hashCode();
+                if (__createDateValue != null) {
+                    hash = 31 * hash + __createDateValue.hashCode();
                 }
-                if (updateBy != null) {
-                    hash = 31 * hash + updateBy.hashCode();
+                if (__updateByValue != null) {
+                    hash = 31 * hash + __updateByValue.hashCode();
                 }
-                if (updateDate != null) {
-                    hash = 31 * hash + updateDate.hashCode();
+                if (__updateDateValue != null) {
+                    hash = 31 * hash + __updateDateValue.hashCode();
                 }
-                if (remarksLoaded && remarks != null) {
-                    hash = 31 * hash + remarks.hashCode();
+                if (__remarksLoaded && __remarksValue != null) {
+                    hash = 31 * hash + __remarksValue.hashCode();
                 }
-                if (parentLoaded && parent != null) {
-                    hash = 31 * hash + parent.hashCode();
+                if (__parentLoaded && __parentValue != null) {
+                    hash = 31 * hash + __parentValue.hashCode();
                 }
-                if (children != null) {
-                    hash = 31 * hash + children.hashCode();
+                if (__childrenValue != null) {
+                    hash = 31 * hash + __childrenValue.hashCode();
                 }
-                if (parentCodes != null) {
-                    hash = 31 * hash + parentCodes.hashCode();
+                if (__menuNameValue != null) {
+                    hash = 31 * hash + __menuNameValue.hashCode();
                 }
-                if (treeSort != null) {
-                    hash = 31 * hash + treeSort.hashCode();
+                if (__menuTypeValue != null) {
+                    hash = 31 * hash + __menuTypeValue.hashCode();
                 }
-                if (treeSorts != null) {
-                    hash = 31 * hash + treeSorts.hashCode();
+                if (__menuHrefLoaded && __menuHrefValue != null) {
+                    hash = 31 * hash + __menuHrefValue.hashCode();
                 }
-                if (treeLeaf != null) {
-                    hash = 31 * hash + treeLeaf.hashCode();
+                if (__menuComponentLoaded && __menuComponentValue != null) {
+                    hash = 31 * hash + __menuComponentValue.hashCode();
                 }
-                if (treeLevel != null) {
-                    hash = 31 * hash + treeLevel.hashCode();
+                if (__menuTargetLoaded && __menuTargetValue != null) {
+                    hash = 31 * hash + __menuTargetValue.hashCode();
                 }
-                if (treeNames != null) {
-                    hash = 31 * hash + treeNames.hashCode();
+                if (__menuIconLoaded && __menuIconValue != null) {
+                    hash = 31 * hash + __menuIconValue.hashCode();
                 }
-                if (menuName != null) {
-                    hash = 31 * hash + menuName.hashCode();
+                if (__menuColorLoaded && __menuColorValue != null) {
+                    hash = 31 * hash + __menuColorValue.hashCode();
                 }
-                if (menuType != null) {
-                    hash = 31 * hash + menuType.hashCode();
+                if (__menuTitleLoaded && __menuTitleValue != null) {
+                    hash = 31 * hash + __menuTitleValue.hashCode();
                 }
-                if (menuHrefLoaded && menuHref != null) {
-                    hash = 31 * hash + menuHref.hashCode();
+                if (__permissionLoaded && __permissionValue != null) {
+                    hash = 31 * hash + __permissionValue.hashCode();
                 }
-                if (menuComponentLoaded && menuComponent != null) {
-                    hash = 31 * hash + menuComponent.hashCode();
+                if (__weightLoaded && __weightValue != null) {
+                    hash = 31 * hash + __weightValue.hashCode();
                 }
-                if (menuTargetLoaded && menuTarget != null) {
-                    hash = 31 * hash + menuTarget.hashCode();
+                if (__isShowLoaded && __isShowValue != null) {
+                    hash = 31 * hash + __isShowValue.hashCode();
                 }
-                if (menuIconLoaded && menuIcon != null) {
-                    hash = 31 * hash + menuIcon.hashCode();
+                if (__sysCodeLoaded && __sysCodeValue != null) {
+                    hash = 31 * hash + __sysCodeValue.hashCode();
                 }
-                if (menuColorLoaded && menuColor != null) {
-                    hash = 31 * hash + menuColor.hashCode();
-                }
-                if (menuTitleLoaded && menuTitle != null) {
-                    hash = 31 * hash + menuTitle.hashCode();
-                }
-                if (permissionLoaded && permission != null) {
-                    hash = 31 * hash + permission.hashCode();
-                }
-                if (weight != null) {
-                    hash = 31 * hash + weight.hashCode();
-                }
-                if (showLoaded) {
-                    hash = 31 * hash + Boolean.hashCode(show);
-                }
-                if (sysCode != null) {
-                    hash = 31 * hash + sysCode.hashCode();
-                }
-                if (roles != null) {
-                    hash = 31 * hash + roles.hashCode();
+                if (__rolesValue != null) {
+                    hash = 31 * hash + __rolesValue.hashCode();
                 }
                 return hash;
             }
 
             private int __shallowHashCode() {
-                int hash = 1;
-                if (id != null) {
-                    hash = 31 * hash + System.identityHashCode(id);
+                int hash = __visibility != null ? __visibility.hashCode() : 0;
+                if (__idValue != null) {
+                    hash = 31 * hash + System.identityHashCode(__idValue);
                 }
-                if (status != null) {
-                    hash = 31 * hash + System.identityHashCode(status);
+                if (__statusLoaded) {
+                    hash = 31 * hash + Integer.hashCode(__statusValue);
                 }
-                if (createBy != null) {
-                    hash = 31 * hash + System.identityHashCode(createBy);
+                if (__createByValue != null) {
+                    hash = 31 * hash + System.identityHashCode(__createByValue);
                 }
-                if (createDate != null) {
-                    hash = 31 * hash + System.identityHashCode(createDate);
+                if (__createDateValue != null) {
+                    hash = 31 * hash + System.identityHashCode(__createDateValue);
                 }
-                if (updateBy != null) {
-                    hash = 31 * hash + System.identityHashCode(updateBy);
+                if (__updateByValue != null) {
+                    hash = 31 * hash + System.identityHashCode(__updateByValue);
                 }
-                if (updateDate != null) {
-                    hash = 31 * hash + System.identityHashCode(updateDate);
+                if (__updateDateValue != null) {
+                    hash = 31 * hash + System.identityHashCode(__updateDateValue);
                 }
-                if (remarksLoaded) {
-                    hash = 31 * hash + System.identityHashCode(remarks);
+                if (__remarksLoaded) {
+                    hash = 31 * hash + System.identityHashCode(__remarksValue);
                 }
-                if (parentLoaded) {
-                    hash = 31 * hash + System.identityHashCode(parent);
+                if (__parentLoaded) {
+                    hash = 31 * hash + System.identityHashCode(__parentValue);
                 }
-                if (children != null) {
-                    hash = 31 * hash + System.identityHashCode(children);
+                if (__childrenValue != null) {
+                    hash = 31 * hash + System.identityHashCode(__childrenValue);
                 }
-                if (parentCodes != null) {
-                    hash = 31 * hash + System.identityHashCode(parentCodes);
+                if (__menuNameValue != null) {
+                    hash = 31 * hash + System.identityHashCode(__menuNameValue);
                 }
-                if (treeSort != null) {
-                    hash = 31 * hash + System.identityHashCode(treeSort);
+                if (__menuTypeValue != null) {
+                    hash = 31 * hash + System.identityHashCode(__menuTypeValue);
                 }
-                if (treeSorts != null) {
-                    hash = 31 * hash + System.identityHashCode(treeSorts);
+                if (__menuHrefLoaded) {
+                    hash = 31 * hash + System.identityHashCode(__menuHrefValue);
                 }
-                if (treeLeaf != null) {
-                    hash = 31 * hash + System.identityHashCode(treeLeaf);
+                if (__menuComponentLoaded) {
+                    hash = 31 * hash + System.identityHashCode(__menuComponentValue);
                 }
-                if (treeLevel != null) {
-                    hash = 31 * hash + System.identityHashCode(treeLevel);
+                if (__menuTargetLoaded) {
+                    hash = 31 * hash + System.identityHashCode(__menuTargetValue);
                 }
-                if (treeNames != null) {
-                    hash = 31 * hash + System.identityHashCode(treeNames);
+                if (__menuIconLoaded) {
+                    hash = 31 * hash + System.identityHashCode(__menuIconValue);
                 }
-                if (menuName != null) {
-                    hash = 31 * hash + System.identityHashCode(menuName);
+                if (__menuColorLoaded) {
+                    hash = 31 * hash + System.identityHashCode(__menuColorValue);
                 }
-                if (menuType != null) {
-                    hash = 31 * hash + System.identityHashCode(menuType);
+                if (__menuTitleLoaded) {
+                    hash = 31 * hash + System.identityHashCode(__menuTitleValue);
                 }
-                if (menuHrefLoaded) {
-                    hash = 31 * hash + System.identityHashCode(menuHref);
+                if (__permissionLoaded) {
+                    hash = 31 * hash + System.identityHashCode(__permissionValue);
                 }
-                if (menuComponentLoaded) {
-                    hash = 31 * hash + System.identityHashCode(menuComponent);
+                if (__weightLoaded) {
+                    hash = 31 * hash + System.identityHashCode(__weightValue);
                 }
-                if (menuTargetLoaded) {
-                    hash = 31 * hash + System.identityHashCode(menuTarget);
+                if (__isShowLoaded) {
+                    hash = 31 * hash + System.identityHashCode(__isShowValue);
                 }
-                if (menuIconLoaded) {
-                    hash = 31 * hash + System.identityHashCode(menuIcon);
+                if (__sysCodeLoaded) {
+                    hash = 31 * hash + System.identityHashCode(__sysCodeValue);
                 }
-                if (menuColorLoaded) {
-                    hash = 31 * hash + System.identityHashCode(menuColor);
-                }
-                if (menuTitleLoaded) {
-                    hash = 31 * hash + System.identityHashCode(menuTitle);
-                }
-                if (permissionLoaded) {
-                    hash = 31 * hash + System.identityHashCode(permission);
-                }
-                if (weight != null) {
-                    hash = 31 * hash + System.identityHashCode(weight);
-                }
-                if (showLoaded) {
-                    hash = 31 * hash + Boolean.hashCode(show);
-                }
-                if (sysCode != null) {
-                    hash = 31 * hash + System.identityHashCode(sysCode);
-                }
-                if (roles != null) {
-                    hash = 31 * hash + System.identityHashCode(roles);
+                if (__rolesValue != null) {
+                    hash = 31 * hash + System.identityHashCode(__rolesValue);
                 }
                 return hash;
             }
@@ -846,202 +1132,229 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                 if (obj == null || !(obj instanceof Implementor)) {
                     return false;
                 }
-                Implementor other = (Implementor)obj;
-                boolean __idLoaded = id != null;
-                if (__idLoaded != other.__isLoaded(1)) {
+                Implementor __other = (Implementor)obj;
+                if (__isVisible(PropId.byIndex(SLOT_ID)) != __other.__isVisible(PropId.byIndex(SLOT_ID))) {
+                    return false;
+                }
+                boolean __idLoaded = __idValue != null;
+                if (__idLoaded != __other.__isLoaded(PropId.byIndex(SLOT_ID))) {
                     return false;
                 }
                 if (__idLoaded) {
                     // If entity-id is loaded, return directly
-                    return Objects.equals(id, other.id());
+                    return Objects.equals(__idValue, __other.id());
                 }
-                boolean __statusLoaded = status != null;
-                if (__statusLoaded != other.__isLoaded(2)) {
+                if (__isVisible(PropId.byIndex(SLOT_STATUS)) != __other.__isVisible(PropId.byIndex(SLOT_STATUS))) {
                     return false;
                 }
-                if (__statusLoaded && !Objects.equals(status, other.status())) {
+                boolean __statusLoaded = this.__statusLoaded;
+                if (__statusLoaded != __other.__isLoaded(PropId.byIndex(SLOT_STATUS))) {
                     return false;
                 }
-                boolean __createByLoaded = createBy != null;
-                if (__createByLoaded != other.__isLoaded(3)) {
+                if (__statusLoaded && __statusValue != __other.status()) {
                     return false;
                 }
-                if (__createByLoaded && !Objects.equals(createBy, other.createBy())) {
+                if (__isVisible(PropId.byIndex(SLOT_CREATE_BY)) != __other.__isVisible(PropId.byIndex(SLOT_CREATE_BY))) {
                     return false;
                 }
-                boolean __createDateLoaded = createDate != null;
-                if (__createDateLoaded != other.__isLoaded(4)) {
+                boolean __createByLoaded = __createByValue != null;
+                if (__createByLoaded != __other.__isLoaded(PropId.byIndex(SLOT_CREATE_BY))) {
                     return false;
                 }
-                if (__createDateLoaded && !Objects.equals(createDate, other.createDate())) {
+                if (__createByLoaded && !Objects.equals(__createByValue, __other.createBy())) {
                     return false;
                 }
-                boolean __updateByLoaded = updateBy != null;
-                if (__updateByLoaded != other.__isLoaded(5)) {
+                if (__isVisible(PropId.byIndex(SLOT_CREATE_DATE)) != __other.__isVisible(PropId.byIndex(SLOT_CREATE_DATE))) {
                     return false;
                 }
-                if (__updateByLoaded && !Objects.equals(updateBy, other.updateBy())) {
+                boolean __createDateLoaded = __createDateValue != null;
+                if (__createDateLoaded != __other.__isLoaded(PropId.byIndex(SLOT_CREATE_DATE))) {
                     return false;
                 }
-                boolean __updateDateLoaded = updateDate != null;
-                if (__updateDateLoaded != other.__isLoaded(6)) {
+                if (__createDateLoaded && !Objects.equals(__createDateValue, __other.createDate())) {
                     return false;
                 }
-                if (__updateDateLoaded && !Objects.equals(updateDate, other.updateDate())) {
+                if (__isVisible(PropId.byIndex(SLOT_UPDATE_BY)) != __other.__isVisible(PropId.byIndex(SLOT_UPDATE_BY))) {
                     return false;
                 }
-                boolean __remarksLoaded = remarksLoaded;
-                if (__remarksLoaded != other.__isLoaded(7)) {
+                boolean __updateByLoaded = __updateByValue != null;
+                if (__updateByLoaded != __other.__isLoaded(PropId.byIndex(SLOT_UPDATE_BY))) {
                     return false;
                 }
-                if (__remarksLoaded && !Objects.equals(remarks, other.remarks())) {
+                if (__updateByLoaded && !Objects.equals(__updateByValue, __other.updateBy())) {
                     return false;
                 }
-                boolean __parentLoaded = parentLoaded;
-                if (__parentLoaded != other.__isLoaded(8)) {
+                if (__isVisible(PropId.byIndex(SLOT_UPDATE_DATE)) != __other.__isVisible(PropId.byIndex(SLOT_UPDATE_DATE))) {
                     return false;
                 }
-                if (__parentLoaded && !Objects.equals(parent, other.parent())) {
+                boolean __updateDateLoaded = __updateDateValue != null;
+                if (__updateDateLoaded != __other.__isLoaded(PropId.byIndex(SLOT_UPDATE_DATE))) {
                     return false;
                 }
-                boolean __childrenLoaded = children != null;
-                if (__childrenLoaded != other.__isLoaded(9)) {
+                if (__updateDateLoaded && !Objects.equals(__updateDateValue, __other.updateDate())) {
                     return false;
                 }
-                if (__childrenLoaded && !Objects.equals(children, other.children())) {
+                if (__isVisible(PropId.byIndex(SLOT_REMARKS)) != __other.__isVisible(PropId.byIndex(SLOT_REMARKS))) {
                     return false;
                 }
-                boolean __parentCodesLoaded = parentCodes != null;
-                if (__parentCodesLoaded != other.__isLoaded(10)) {
+                boolean __remarksLoaded = this.__remarksLoaded;
+                if (__remarksLoaded != __other.__isLoaded(PropId.byIndex(SLOT_REMARKS))) {
                     return false;
                 }
-                if (__parentCodesLoaded && !Objects.equals(parentCodes, other.parentCodes())) {
+                if (__remarksLoaded && !Objects.equals(__remarksValue, __other.remarks())) {
                     return false;
                 }
-                boolean __treeSortLoaded = treeSort != null;
-                if (__treeSortLoaded != other.__isLoaded(11)) {
+                if (__isVisible(PropId.byIndex(SLOT_PARENT)) != __other.__isVisible(PropId.byIndex(SLOT_PARENT))) {
                     return false;
                 }
-                if (__treeSortLoaded && !Objects.equals(treeSort, other.treeSort())) {
+                boolean __parentLoaded = this.__parentLoaded;
+                if (__parentLoaded != __other.__isLoaded(PropId.byIndex(SLOT_PARENT))) {
                     return false;
                 }
-                boolean __treeSortsLoaded = treeSorts != null;
-                if (__treeSortsLoaded != other.__isLoaded(12)) {
+                if (__parentLoaded && !Objects.equals(__parentValue, __other.parent())) {
                     return false;
                 }
-                if (__treeSortsLoaded && !Objects.equals(treeSorts, other.treeSorts())) {
+                if (__isVisible(PropId.byIndex(SLOT_PARENT_ID)) != __other.__isVisible(PropId.byIndex(SLOT_PARENT_ID))) {
                     return false;
                 }
-                boolean __treeLeafLoaded = treeLeaf != null;
-                if (__treeLeafLoaded != other.__isLoaded(13)) {
+                if (__isVisible(PropId.byIndex(SLOT_CHILDREN)) != __other.__isVisible(PropId.byIndex(SLOT_CHILDREN))) {
                     return false;
                 }
-                if (__treeLeafLoaded && !Objects.equals(treeLeaf, other.treeLeaf())) {
+                boolean __childrenLoaded = __childrenValue != null;
+                if (__childrenLoaded != __other.__isLoaded(PropId.byIndex(SLOT_CHILDREN))) {
                     return false;
                 }
-                boolean __treeLevelLoaded = treeLevel != null;
-                if (__treeLevelLoaded != other.__isLoaded(14)) {
+                if (__childrenLoaded && !Objects.equals(__childrenValue, __other.children())) {
                     return false;
                 }
-                if (__treeLevelLoaded && !Objects.equals(treeLevel, other.treeLevel())) {
+                if (__isVisible(PropId.byIndex(SLOT_MENU_NAME)) != __other.__isVisible(PropId.byIndex(SLOT_MENU_NAME))) {
                     return false;
                 }
-                boolean __treeNamesLoaded = treeNames != null;
-                if (__treeNamesLoaded != other.__isLoaded(15)) {
+                boolean __menuNameLoaded = __menuNameValue != null;
+                if (__menuNameLoaded != __other.__isLoaded(PropId.byIndex(SLOT_MENU_NAME))) {
                     return false;
                 }
-                if (__treeNamesLoaded && !Objects.equals(treeNames, other.treeNames())) {
+                if (__menuNameLoaded && !Objects.equals(__menuNameValue, __other.menuName())) {
                     return false;
                 }
-                boolean __menuNameLoaded = menuName != null;
-                if (__menuNameLoaded != other.__isLoaded(16)) {
+                if (__isVisible(PropId.byIndex(SLOT_MENU_TYPE)) != __other.__isVisible(PropId.byIndex(SLOT_MENU_TYPE))) {
                     return false;
                 }
-                if (__menuNameLoaded && !Objects.equals(menuName, other.menuName())) {
+                boolean __menuTypeLoaded = __menuTypeValue != null;
+                if (__menuTypeLoaded != __other.__isLoaded(PropId.byIndex(SLOT_MENU_TYPE))) {
                     return false;
                 }
-                boolean __menuTypeLoaded = menuType != null;
-                if (__menuTypeLoaded != other.__isLoaded(17)) {
+                if (__menuTypeLoaded && !Objects.equals(__menuTypeValue, __other.menuType())) {
                     return false;
                 }
-                if (__menuTypeLoaded && !Objects.equals(menuType, other.menuType())) {
+                if (__isVisible(PropId.byIndex(SLOT_MENU_HREF)) != __other.__isVisible(PropId.byIndex(SLOT_MENU_HREF))) {
                     return false;
                 }
-                boolean __menuHrefLoaded = menuHrefLoaded;
-                if (__menuHrefLoaded != other.__isLoaded(18)) {
+                boolean __menuHrefLoaded = this.__menuHrefLoaded;
+                if (__menuHrefLoaded != __other.__isLoaded(PropId.byIndex(SLOT_MENU_HREF))) {
                     return false;
                 }
-                if (__menuHrefLoaded && !Objects.equals(menuHref, other.menuHref())) {
+                if (__menuHrefLoaded && !Objects.equals(__menuHrefValue, __other.menuHref())) {
                     return false;
                 }
-                boolean __menuComponentLoaded = menuComponentLoaded;
-                if (__menuComponentLoaded != other.__isLoaded(19)) {
+                if (__isVisible(PropId.byIndex(SLOT_MENU_COMPONENT)) != __other.__isVisible(PropId.byIndex(SLOT_MENU_COMPONENT))) {
                     return false;
                 }
-                if (__menuComponentLoaded && !Objects.equals(menuComponent, other.menuComponent())) {
+                boolean __menuComponentLoaded = this.__menuComponentLoaded;
+                if (__menuComponentLoaded != __other.__isLoaded(PropId.byIndex(SLOT_MENU_COMPONENT))) {
                     return false;
                 }
-                boolean __menuTargetLoaded = menuTargetLoaded;
-                if (__menuTargetLoaded != other.__isLoaded(20)) {
+                if (__menuComponentLoaded && !Objects.equals(__menuComponentValue, __other.menuComponent())) {
                     return false;
                 }
-                if (__menuTargetLoaded && !Objects.equals(menuTarget, other.menuTarget())) {
+                if (__isVisible(PropId.byIndex(SLOT_MENU_TARGET)) != __other.__isVisible(PropId.byIndex(SLOT_MENU_TARGET))) {
                     return false;
                 }
-                boolean __menuIconLoaded = menuIconLoaded;
-                if (__menuIconLoaded != other.__isLoaded(21)) {
+                boolean __menuTargetLoaded = this.__menuTargetLoaded;
+                if (__menuTargetLoaded != __other.__isLoaded(PropId.byIndex(SLOT_MENU_TARGET))) {
                     return false;
                 }
-                if (__menuIconLoaded && !Objects.equals(menuIcon, other.menuIcon())) {
+                if (__menuTargetLoaded && !Objects.equals(__menuTargetValue, __other.menuTarget())) {
                     return false;
                 }
-                boolean __menuColorLoaded = menuColorLoaded;
-                if (__menuColorLoaded != other.__isLoaded(22)) {
+                if (__isVisible(PropId.byIndex(SLOT_MENU_ICON)) != __other.__isVisible(PropId.byIndex(SLOT_MENU_ICON))) {
                     return false;
                 }
-                if (__menuColorLoaded && !Objects.equals(menuColor, other.menuColor())) {
+                boolean __menuIconLoaded = this.__menuIconLoaded;
+                if (__menuIconLoaded != __other.__isLoaded(PropId.byIndex(SLOT_MENU_ICON))) {
                     return false;
                 }
-                boolean __menuTitleLoaded = menuTitleLoaded;
-                if (__menuTitleLoaded != other.__isLoaded(23)) {
+                if (__menuIconLoaded && !Objects.equals(__menuIconValue, __other.menuIcon())) {
                     return false;
                 }
-                if (__menuTitleLoaded && !Objects.equals(menuTitle, other.menuTitle())) {
+                if (__isVisible(PropId.byIndex(SLOT_MENU_COLOR)) != __other.__isVisible(PropId.byIndex(SLOT_MENU_COLOR))) {
                     return false;
                 }
-                boolean __permissionLoaded = permissionLoaded;
-                if (__permissionLoaded != other.__isLoaded(24)) {
+                boolean __menuColorLoaded = this.__menuColorLoaded;
+                if (__menuColorLoaded != __other.__isLoaded(PropId.byIndex(SLOT_MENU_COLOR))) {
                     return false;
                 }
-                if (__permissionLoaded && !Objects.equals(permission, other.permission())) {
+                if (__menuColorLoaded && !Objects.equals(__menuColorValue, __other.menuColor())) {
                     return false;
                 }
-                boolean __weightLoaded = weight != null;
-                if (__weightLoaded != other.__isLoaded(25)) {
+                if (__isVisible(PropId.byIndex(SLOT_MENU_TITLE)) != __other.__isVisible(PropId.byIndex(SLOT_MENU_TITLE))) {
                     return false;
                 }
-                if (__weightLoaded && !Objects.equals(weight, other.weight())) {
+                boolean __menuTitleLoaded = this.__menuTitleLoaded;
+                if (__menuTitleLoaded != __other.__isLoaded(PropId.byIndex(SLOT_MENU_TITLE))) {
                     return false;
                 }
-                boolean __showLoaded = showLoaded;
-                if (__showLoaded != other.__isLoaded(26)) {
+                if (__menuTitleLoaded && !Objects.equals(__menuTitleValue, __other.menuTitle())) {
                     return false;
                 }
-                if (__showLoaded && show != other.isShow()) {
+                if (__isVisible(PropId.byIndex(SLOT_PERMISSION)) != __other.__isVisible(PropId.byIndex(SLOT_PERMISSION))) {
                     return false;
                 }
-                boolean __sysCodeLoaded = sysCode != null;
-                if (__sysCodeLoaded != other.__isLoaded(27)) {
+                boolean __permissionLoaded = this.__permissionLoaded;
+                if (__permissionLoaded != __other.__isLoaded(PropId.byIndex(SLOT_PERMISSION))) {
                     return false;
                 }
-                if (__sysCodeLoaded && !Objects.equals(sysCode, other.sysCode())) {
+                if (__permissionLoaded && !Objects.equals(__permissionValue, __other.permission())) {
                     return false;
                 }
-                boolean __rolesLoaded = roles != null;
-                if (__rolesLoaded != other.__isLoaded(28)) {
+                if (__isVisible(PropId.byIndex(SLOT_WEIGHT)) != __other.__isVisible(PropId.byIndex(SLOT_WEIGHT))) {
                     return false;
                 }
-                if (__rolesLoaded && !Objects.equals(roles, other.roles())) {
+                boolean __weightLoaded = this.__weightLoaded;
+                if (__weightLoaded != __other.__isLoaded(PropId.byIndex(SLOT_WEIGHT))) {
+                    return false;
+                }
+                if (__weightLoaded && !Objects.equals(__weightValue, __other.weight())) {
+                    return false;
+                }
+                if (__isVisible(PropId.byIndex(SLOT_IS_SHOW)) != __other.__isVisible(PropId.byIndex(SLOT_IS_SHOW))) {
+                    return false;
+                }
+                boolean __isShowLoaded = this.__isShowLoaded;
+                if (__isShowLoaded != __other.__isLoaded(PropId.byIndex(SLOT_IS_SHOW))) {
+                    return false;
+                }
+                if (__isShowLoaded && !Objects.equals(__isShowValue, __other.isShow())) {
+                    return false;
+                }
+                if (__isVisible(PropId.byIndex(SLOT_SYS_CODE)) != __other.__isVisible(PropId.byIndex(SLOT_SYS_CODE))) {
+                    return false;
+                }
+                boolean __sysCodeLoaded = this.__sysCodeLoaded;
+                if (__sysCodeLoaded != __other.__isLoaded(PropId.byIndex(SLOT_SYS_CODE))) {
+                    return false;
+                }
+                if (__sysCodeLoaded && !Objects.equals(__sysCodeValue, __other.sysCode())) {
+                    return false;
+                }
+                if (__isVisible(PropId.byIndex(SLOT_ROLES)) != __other.__isVisible(PropId.byIndex(SLOT_ROLES))) {
+                    return false;
+                }
+                boolean __rolesLoaded = __rolesValue != null;
+                if (__rolesLoaded != __other.__isLoaded(PropId.byIndex(SLOT_ROLES))) {
+                    return false;
+                }
+                if (__rolesLoaded && !Objects.equals(__rolesValue, __other.roles())) {
                     return false;
                 }
                 return true;
@@ -1051,201 +1364,228 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                 if (obj == null || !(obj instanceof Implementor)) {
                     return false;
                 }
-                Implementor other = (Implementor)obj;
-                boolean __idLoaded = id != null;
-                if (__idLoaded != other.__isLoaded(1)) {
+                Implementor __other = (Implementor)obj;
+                if (__isVisible(PropId.byIndex(SLOT_ID)) != __other.__isVisible(PropId.byIndex(SLOT_ID))) {
                     return false;
                 }
-                if (__idLoaded && id != other.id()) {
+                boolean __idLoaded = __idValue != null;
+                if (__idLoaded != __other.__isLoaded(PropId.byIndex(SLOT_ID))) {
                     return false;
                 }
-                boolean __statusLoaded = status != null;
-                if (__statusLoaded != other.__isLoaded(2)) {
+                if (__idLoaded && __idValue != __other.id()) {
                     return false;
                 }
-                if (__statusLoaded && status != other.status()) {
+                if (__isVisible(PropId.byIndex(SLOT_STATUS)) != __other.__isVisible(PropId.byIndex(SLOT_STATUS))) {
                     return false;
                 }
-                boolean __createByLoaded = createBy != null;
-                if (__createByLoaded != other.__isLoaded(3)) {
+                boolean __statusLoaded = this.__statusLoaded;
+                if (__statusLoaded != __other.__isLoaded(PropId.byIndex(SLOT_STATUS))) {
                     return false;
                 }
-                if (__createByLoaded && createBy != other.createBy()) {
+                if (__statusLoaded && __statusValue != __other.status()) {
                     return false;
                 }
-                boolean __createDateLoaded = createDate != null;
-                if (__createDateLoaded != other.__isLoaded(4)) {
+                if (__isVisible(PropId.byIndex(SLOT_CREATE_BY)) != __other.__isVisible(PropId.byIndex(SLOT_CREATE_BY))) {
                     return false;
                 }
-                if (__createDateLoaded && createDate != other.createDate()) {
+                boolean __createByLoaded = __createByValue != null;
+                if (__createByLoaded != __other.__isLoaded(PropId.byIndex(SLOT_CREATE_BY))) {
                     return false;
                 }
-                boolean __updateByLoaded = updateBy != null;
-                if (__updateByLoaded != other.__isLoaded(5)) {
+                if (__createByLoaded && __createByValue != __other.createBy()) {
                     return false;
                 }
-                if (__updateByLoaded && updateBy != other.updateBy()) {
+                if (__isVisible(PropId.byIndex(SLOT_CREATE_DATE)) != __other.__isVisible(PropId.byIndex(SLOT_CREATE_DATE))) {
                     return false;
                 }
-                boolean __updateDateLoaded = updateDate != null;
-                if (__updateDateLoaded != other.__isLoaded(6)) {
+                boolean __createDateLoaded = __createDateValue != null;
+                if (__createDateLoaded != __other.__isLoaded(PropId.byIndex(SLOT_CREATE_DATE))) {
                     return false;
                 }
-                if (__updateDateLoaded && updateDate != other.updateDate()) {
+                if (__createDateLoaded && __createDateValue != __other.createDate()) {
                     return false;
                 }
-                boolean __remarksLoaded = remarksLoaded;
-                if (__remarksLoaded != other.__isLoaded(7)) {
+                if (__isVisible(PropId.byIndex(SLOT_UPDATE_BY)) != __other.__isVisible(PropId.byIndex(SLOT_UPDATE_BY))) {
                     return false;
                 }
-                if (__remarksLoaded && remarks != other.remarks()) {
+                boolean __updateByLoaded = __updateByValue != null;
+                if (__updateByLoaded != __other.__isLoaded(PropId.byIndex(SLOT_UPDATE_BY))) {
                     return false;
                 }
-                boolean __parentLoaded = parentLoaded;
-                if (__parentLoaded != other.__isLoaded(8)) {
+                if (__updateByLoaded && __updateByValue != __other.updateBy()) {
                     return false;
                 }
-                if (__parentLoaded && parent != other.parent()) {
+                if (__isVisible(PropId.byIndex(SLOT_UPDATE_DATE)) != __other.__isVisible(PropId.byIndex(SLOT_UPDATE_DATE))) {
                     return false;
                 }
-                boolean __childrenLoaded = children != null;
-                if (__childrenLoaded != other.__isLoaded(9)) {
+                boolean __updateDateLoaded = __updateDateValue != null;
+                if (__updateDateLoaded != __other.__isLoaded(PropId.byIndex(SLOT_UPDATE_DATE))) {
                     return false;
                 }
-                if (__childrenLoaded && children != other.children()) {
+                if (__updateDateLoaded && __updateDateValue != __other.updateDate()) {
                     return false;
                 }
-                boolean __parentCodesLoaded = parentCodes != null;
-                if (__parentCodesLoaded != other.__isLoaded(10)) {
+                if (__isVisible(PropId.byIndex(SLOT_REMARKS)) != __other.__isVisible(PropId.byIndex(SLOT_REMARKS))) {
                     return false;
                 }
-                if (__parentCodesLoaded && parentCodes != other.parentCodes()) {
+                boolean __remarksLoaded = this.__remarksLoaded;
+                if (__remarksLoaded != __other.__isLoaded(PropId.byIndex(SLOT_REMARKS))) {
                     return false;
                 }
-                boolean __treeSortLoaded = treeSort != null;
-                if (__treeSortLoaded != other.__isLoaded(11)) {
+                if (__remarksLoaded && __remarksValue != __other.remarks()) {
                     return false;
                 }
-                if (__treeSortLoaded && treeSort != other.treeSort()) {
+                if (__isVisible(PropId.byIndex(SLOT_PARENT)) != __other.__isVisible(PropId.byIndex(SLOT_PARENT))) {
                     return false;
                 }
-                boolean __treeSortsLoaded = treeSorts != null;
-                if (__treeSortsLoaded != other.__isLoaded(12)) {
+                boolean __parentLoaded = this.__parentLoaded;
+                if (__parentLoaded != __other.__isLoaded(PropId.byIndex(SLOT_PARENT))) {
                     return false;
                 }
-                if (__treeSortsLoaded && treeSorts != other.treeSorts()) {
+                if (__parentLoaded && __parentValue != __other.parent()) {
                     return false;
                 }
-                boolean __treeLeafLoaded = treeLeaf != null;
-                if (__treeLeafLoaded != other.__isLoaded(13)) {
+                if (__isVisible(PropId.byIndex(SLOT_PARENT_ID)) != __other.__isVisible(PropId.byIndex(SLOT_PARENT_ID))) {
                     return false;
                 }
-                if (__treeLeafLoaded && treeLeaf != other.treeLeaf()) {
+                if (__isVisible(PropId.byIndex(SLOT_CHILDREN)) != __other.__isVisible(PropId.byIndex(SLOT_CHILDREN))) {
                     return false;
                 }
-                boolean __treeLevelLoaded = treeLevel != null;
-                if (__treeLevelLoaded != other.__isLoaded(14)) {
+                boolean __childrenLoaded = __childrenValue != null;
+                if (__childrenLoaded != __other.__isLoaded(PropId.byIndex(SLOT_CHILDREN))) {
                     return false;
                 }
-                if (__treeLevelLoaded && treeLevel != other.treeLevel()) {
+                if (__childrenLoaded && __childrenValue != __other.children()) {
                     return false;
                 }
-                boolean __treeNamesLoaded = treeNames != null;
-                if (__treeNamesLoaded != other.__isLoaded(15)) {
+                if (__isVisible(PropId.byIndex(SLOT_MENU_NAME)) != __other.__isVisible(PropId.byIndex(SLOT_MENU_NAME))) {
                     return false;
                 }
-                if (__treeNamesLoaded && treeNames != other.treeNames()) {
+                boolean __menuNameLoaded = __menuNameValue != null;
+                if (__menuNameLoaded != __other.__isLoaded(PropId.byIndex(SLOT_MENU_NAME))) {
                     return false;
                 }
-                boolean __menuNameLoaded = menuName != null;
-                if (__menuNameLoaded != other.__isLoaded(16)) {
+                if (__menuNameLoaded && __menuNameValue != __other.menuName()) {
                     return false;
                 }
-                if (__menuNameLoaded && menuName != other.menuName()) {
+                if (__isVisible(PropId.byIndex(SLOT_MENU_TYPE)) != __other.__isVisible(PropId.byIndex(SLOT_MENU_TYPE))) {
                     return false;
                 }
-                boolean __menuTypeLoaded = menuType != null;
-                if (__menuTypeLoaded != other.__isLoaded(17)) {
+                boolean __menuTypeLoaded = __menuTypeValue != null;
+                if (__menuTypeLoaded != __other.__isLoaded(PropId.byIndex(SLOT_MENU_TYPE))) {
                     return false;
                 }
-                if (__menuTypeLoaded && menuType != other.menuType()) {
+                if (__menuTypeLoaded && __menuTypeValue != __other.menuType()) {
                     return false;
                 }
-                boolean __menuHrefLoaded = menuHrefLoaded;
-                if (__menuHrefLoaded != other.__isLoaded(18)) {
+                if (__isVisible(PropId.byIndex(SLOT_MENU_HREF)) != __other.__isVisible(PropId.byIndex(SLOT_MENU_HREF))) {
                     return false;
                 }
-                if (__menuHrefLoaded && menuHref != other.menuHref()) {
+                boolean __menuHrefLoaded = this.__menuHrefLoaded;
+                if (__menuHrefLoaded != __other.__isLoaded(PropId.byIndex(SLOT_MENU_HREF))) {
                     return false;
                 }
-                boolean __menuComponentLoaded = menuComponentLoaded;
-                if (__menuComponentLoaded != other.__isLoaded(19)) {
+                if (__menuHrefLoaded && __menuHrefValue != __other.menuHref()) {
                     return false;
                 }
-                if (__menuComponentLoaded && menuComponent != other.menuComponent()) {
+                if (__isVisible(PropId.byIndex(SLOT_MENU_COMPONENT)) != __other.__isVisible(PropId.byIndex(SLOT_MENU_COMPONENT))) {
                     return false;
                 }
-                boolean __menuTargetLoaded = menuTargetLoaded;
-                if (__menuTargetLoaded != other.__isLoaded(20)) {
+                boolean __menuComponentLoaded = this.__menuComponentLoaded;
+                if (__menuComponentLoaded != __other.__isLoaded(PropId.byIndex(SLOT_MENU_COMPONENT))) {
                     return false;
                 }
-                if (__menuTargetLoaded && menuTarget != other.menuTarget()) {
+                if (__menuComponentLoaded && __menuComponentValue != __other.menuComponent()) {
                     return false;
                 }
-                boolean __menuIconLoaded = menuIconLoaded;
-                if (__menuIconLoaded != other.__isLoaded(21)) {
+                if (__isVisible(PropId.byIndex(SLOT_MENU_TARGET)) != __other.__isVisible(PropId.byIndex(SLOT_MENU_TARGET))) {
                     return false;
                 }
-                if (__menuIconLoaded && menuIcon != other.menuIcon()) {
+                boolean __menuTargetLoaded = this.__menuTargetLoaded;
+                if (__menuTargetLoaded != __other.__isLoaded(PropId.byIndex(SLOT_MENU_TARGET))) {
                     return false;
                 }
-                boolean __menuColorLoaded = menuColorLoaded;
-                if (__menuColorLoaded != other.__isLoaded(22)) {
+                if (__menuTargetLoaded && __menuTargetValue != __other.menuTarget()) {
                     return false;
                 }
-                if (__menuColorLoaded && menuColor != other.menuColor()) {
+                if (__isVisible(PropId.byIndex(SLOT_MENU_ICON)) != __other.__isVisible(PropId.byIndex(SLOT_MENU_ICON))) {
                     return false;
                 }
-                boolean __menuTitleLoaded = menuTitleLoaded;
-                if (__menuTitleLoaded != other.__isLoaded(23)) {
+                boolean __menuIconLoaded = this.__menuIconLoaded;
+                if (__menuIconLoaded != __other.__isLoaded(PropId.byIndex(SLOT_MENU_ICON))) {
                     return false;
                 }
-                if (__menuTitleLoaded && menuTitle != other.menuTitle()) {
+                if (__menuIconLoaded && __menuIconValue != __other.menuIcon()) {
                     return false;
                 }
-                boolean __permissionLoaded = permissionLoaded;
-                if (__permissionLoaded != other.__isLoaded(24)) {
+                if (__isVisible(PropId.byIndex(SLOT_MENU_COLOR)) != __other.__isVisible(PropId.byIndex(SLOT_MENU_COLOR))) {
                     return false;
                 }
-                if (__permissionLoaded && permission != other.permission()) {
+                boolean __menuColorLoaded = this.__menuColorLoaded;
+                if (__menuColorLoaded != __other.__isLoaded(PropId.byIndex(SLOT_MENU_COLOR))) {
                     return false;
                 }
-                boolean __weightLoaded = weight != null;
-                if (__weightLoaded != other.__isLoaded(25)) {
+                if (__menuColorLoaded && __menuColorValue != __other.menuColor()) {
                     return false;
                 }
-                if (__weightLoaded && weight != other.weight()) {
+                if (__isVisible(PropId.byIndex(SLOT_MENU_TITLE)) != __other.__isVisible(PropId.byIndex(SLOT_MENU_TITLE))) {
                     return false;
                 }
-                boolean __showLoaded = showLoaded;
-                if (__showLoaded != other.__isLoaded(26)) {
+                boolean __menuTitleLoaded = this.__menuTitleLoaded;
+                if (__menuTitleLoaded != __other.__isLoaded(PropId.byIndex(SLOT_MENU_TITLE))) {
                     return false;
                 }
-                if (__showLoaded && show != other.isShow()) {
+                if (__menuTitleLoaded && __menuTitleValue != __other.menuTitle()) {
                     return false;
                 }
-                boolean __sysCodeLoaded = sysCode != null;
-                if (__sysCodeLoaded != other.__isLoaded(27)) {
+                if (__isVisible(PropId.byIndex(SLOT_PERMISSION)) != __other.__isVisible(PropId.byIndex(SLOT_PERMISSION))) {
                     return false;
                 }
-                if (__sysCodeLoaded && sysCode != other.sysCode()) {
+                boolean __permissionLoaded = this.__permissionLoaded;
+                if (__permissionLoaded != __other.__isLoaded(PropId.byIndex(SLOT_PERMISSION))) {
                     return false;
                 }
-                boolean __rolesLoaded = roles != null;
-                if (__rolesLoaded != other.__isLoaded(28)) {
+                if (__permissionLoaded && __permissionValue != __other.permission()) {
                     return false;
                 }
-                if (__rolesLoaded && roles != other.roles()) {
+                if (__isVisible(PropId.byIndex(SLOT_WEIGHT)) != __other.__isVisible(PropId.byIndex(SLOT_WEIGHT))) {
+                    return false;
+                }
+                boolean __weightLoaded = this.__weightLoaded;
+                if (__weightLoaded != __other.__isLoaded(PropId.byIndex(SLOT_WEIGHT))) {
+                    return false;
+                }
+                if (__weightLoaded && __weightValue != __other.weight()) {
+                    return false;
+                }
+                if (__isVisible(PropId.byIndex(SLOT_IS_SHOW)) != __other.__isVisible(PropId.byIndex(SLOT_IS_SHOW))) {
+                    return false;
+                }
+                boolean __isShowLoaded = this.__isShowLoaded;
+                if (__isShowLoaded != __other.__isLoaded(PropId.byIndex(SLOT_IS_SHOW))) {
+                    return false;
+                }
+                if (__isShowLoaded && __isShowValue != __other.isShow()) {
+                    return false;
+                }
+                if (__isVisible(PropId.byIndex(SLOT_SYS_CODE)) != __other.__isVisible(PropId.byIndex(SLOT_SYS_CODE))) {
+                    return false;
+                }
+                boolean __sysCodeLoaded = this.__sysCodeLoaded;
+                if (__sysCodeLoaded != __other.__isLoaded(PropId.byIndex(SLOT_SYS_CODE))) {
+                    return false;
+                }
+                if (__sysCodeLoaded && __sysCodeValue != __other.sysCode()) {
+                    return false;
+                }
+                if (__isVisible(PropId.byIndex(SLOT_ROLES)) != __other.__isVisible(PropId.byIndex(SLOT_ROLES))) {
+                    return false;
+                }
+                boolean __rolesLoaded = __rolesValue != null;
+                if (__rolesLoaded != __other.__isLoaded(PropId.byIndex(SLOT_ROLES))) {
+                    return false;
+                }
+                if (__rolesLoaded && __rolesValue != __other.roles()) {
                     return false;
                 }
                 return true;
@@ -1255,9 +1595,14 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             public boolean __equals(Object obj, boolean shallow) {
                 return shallow ? __shallowEquals(obj) : equals(obj);
             }
+
+            @Override
+            public String toString() {
+                return ImmutableObjects.toString(this);
+            }
         }
 
-        private static class DraftImpl extends Implementor implements DraftSpi, MenuDraft {
+        private static class DraftImpl implements Implementor, DraftSpi, MenuDraft {
             private DraftContext __ctx;
 
             private Impl __base;
@@ -1272,18 +1617,28 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                     __base = (Impl)base;
                 }
                 else {
-                    __base = new Impl();
+                    __modified = new Impl();
                 }
             }
 
             @Override
-            public boolean __isLoaded(int prop) {
+            public boolean __isLoaded(PropId prop) {
                 return (__modified!= null ? __modified : __base).__isLoaded(prop);
             }
 
             @Override
             public boolean __isLoaded(String prop) {
                 return (__modified!= null ? __modified : __base).__isLoaded(prop);
+            }
+
+            @Override
+            public boolean __isVisible(PropId prop) {
+                return (__modified!= null ? __modified : __base).__isVisible(prop);
+            }
+
+            @Override
+            public boolean __isVisible(String prop) {
+                return (__modified!= null ? __modified : __base).__isVisible(prop);
             }
 
             @Override
@@ -1307,6 +1662,11 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Override
+            public String toString() {
+                return ImmutableObjects.toString((__modified!= null ? __modified : __base));
+            }
+
+            @Override
             public String id() {
                 return (__modified!= null ? __modified : __base).id();
             }
@@ -1319,24 +1679,20 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                     );
                 }
                 Impl __tmpModified = __modified();
-                __tmpModified.id = id;
+                __tmpModified.__idValue = id;
                 return this;
             }
 
             @Override
-            public String status() {
+            public int status() {
                 return (__modified!= null ? __modified : __base).status();
             }
 
             @Override
-            public MenuDraft setStatus(String status) {
-                if (status == null) {
-                    throw new IllegalArgumentException(
-                        "'status' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
-                    );
-                }
+            public MenuDraft setStatus(int status) {
                 Impl __tmpModified = __modified();
-                __tmpModified.status = status;
+                __tmpModified.__statusValue = status;
+                __tmpModified.__statusLoaded = true;
                 return this;
             }
 
@@ -1353,24 +1709,24 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                     );
                 }
                 Impl __tmpModified = __modified();
-                __tmpModified.createBy = createBy;
+                __tmpModified.__createByValue = createBy;
                 return this;
             }
 
             @Override
-            public LocalDateTime createDate() {
+            public Date createDate() {
                 return (__modified!= null ? __modified : __base).createDate();
             }
 
             @Override
-            public MenuDraft setCreateDate(LocalDateTime createDate) {
+            public MenuDraft setCreateDate(Date createDate) {
                 if (createDate == null) {
                     throw new IllegalArgumentException(
                         "'createDate' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
                     );
                 }
                 Impl __tmpModified = __modified();
-                __tmpModified.createDate = createDate;
+                __tmpModified.__createDateValue = createDate;
                 return this;
             }
 
@@ -1387,28 +1743,29 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                     );
                 }
                 Impl __tmpModified = __modified();
-                __tmpModified.updateBy = updateBy;
+                __tmpModified.__updateByValue = updateBy;
                 return this;
             }
 
             @Override
-            public LocalDateTime updateDate() {
+            public Date updateDate() {
                 return (__modified!= null ? __modified : __base).updateDate();
             }
 
             @Override
-            public MenuDraft setUpdateDate(LocalDateTime updateDate) {
+            public MenuDraft setUpdateDate(Date updateDate) {
                 if (updateDate == null) {
                     throw new IllegalArgumentException(
                         "'updateDate' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
                     );
                 }
                 Impl __tmpModified = __modified();
-                __tmpModified.updateDate = updateDate;
+                __tmpModified.__updateDateValue = updateDate;
                 return this;
             }
 
             @Override
+            @Nullable
             public String remarks() {
                 return (__modified!= null ? __modified : __base).remarks();
             }
@@ -1416,19 +1773,20 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             @Override
             public MenuDraft setRemarks(String remarks) {
                 Impl __tmpModified = __modified();
-                __tmpModified.remarks = remarks;
-                __tmpModified.remarksLoaded = true;
+                __tmpModified.__remarksValue = remarks;
+                __tmpModified.__remarksLoaded = true;
                 return this;
             }
 
             @Override
+            @Nullable
             public MenuDraft parent() {
                 return __ctx.toDraftObject((__modified!= null ? __modified : __base).parent());
             }
 
             @Override
             public MenuDraft parent(boolean autoCreate) {
-                if (autoCreate && (!__isLoaded(8) || parent() == null)) {
+                if (autoCreate && (!__isLoaded(PropId.byIndex(SLOT_PARENT)) || parent() == null)) {
                     setParent(MenuDraft.$.produce(null, null));
                 }
                 return __ctx.toDraftObject((__modified!= null ? __modified : __base).parent());
@@ -1437,8 +1795,8 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             @Override
             public MenuDraft setParent(Menu parent) {
                 Impl __tmpModified = __modified();
-                __tmpModified.parent = parent;
-                __tmpModified.parentLoaded = true;
+                __tmpModified.__parentValue = parent;
+                __tmpModified.__parentLoaded = true;
                 return this;
             }
 
@@ -1455,13 +1813,30 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Override
+            @Nullable
+            public String parentId() {
+                Menu __target = parent();
+                return __target != null ? __target.id() : null;
+            }
+
+            @Override
+            public MenuDraft setParentId(String parentId) {
+                if (parentId != null) {
+                    setParent(ImmutableObjects.makeIdOnly(Menu.class, parentId));
+                } else {
+                    setParent(null);
+                }
+                return this;
+            }
+
+            @Override
             public List<Menu> children() {
                 return __ctx.toDraftList((__modified!= null ? __modified : __base).children(), Menu.class, true);
             }
 
             @Override
             public List<MenuDraft> children(boolean autoCreate) {
-                if (autoCreate && (!__isLoaded(9) || children() == null)) {
+                if (autoCreate && (!__isLoaded(PropId.byIndex(SLOT_CHILDREN)))) {
                     setChildren(new ArrayList<>());
                 }
                 return __ctx.toDraftList((__modified!= null ? __modified : __base).children(), Menu.class, true);
@@ -1475,7 +1850,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                     );
                 }
                 Impl __tmpModified = __modified();
-                __tmpModified.children = NonSharedList.of(__tmpModified.children, children);
+                __tmpModified.__childrenValue = NonSharedList.of(__tmpModified.__childrenValue, children);
                 return this;
             }
 
@@ -1492,108 +1867,6 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Override
-            public String parentCodes() {
-                return (__modified!= null ? __modified : __base).parentCodes();
-            }
-
-            @Override
-            public MenuDraft setParentCodes(String parentCodes) {
-                if (parentCodes == null) {
-                    throw new IllegalArgumentException(
-                        "'parentCodes' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
-                    );
-                }
-                Impl __tmpModified = __modified();
-                __tmpModified.parentCodes = parentCodes;
-                return this;
-            }
-
-            @Override
-            public BigDecimal treeSort() {
-                return (__modified!= null ? __modified : __base).treeSort();
-            }
-
-            @Override
-            public MenuDraft setTreeSort(BigDecimal treeSort) {
-                if (treeSort == null) {
-                    throw new IllegalArgumentException(
-                        "'treeSort' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
-                    );
-                }
-                Impl __tmpModified = __modified();
-                __tmpModified.treeSort = treeSort;
-                return this;
-            }
-
-            @Override
-            public String treeSorts() {
-                return (__modified!= null ? __modified : __base).treeSorts();
-            }
-
-            @Override
-            public MenuDraft setTreeSorts(String treeSorts) {
-                if (treeSorts == null) {
-                    throw new IllegalArgumentException(
-                        "'treeSorts' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
-                    );
-                }
-                Impl __tmpModified = __modified();
-                __tmpModified.treeSorts = treeSorts;
-                return this;
-            }
-
-            @Override
-            public String treeLeaf() {
-                return (__modified!= null ? __modified : __base).treeLeaf();
-            }
-
-            @Override
-            public MenuDraft setTreeLeaf(String treeLeaf) {
-                if (treeLeaf == null) {
-                    throw new IllegalArgumentException(
-                        "'treeLeaf' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
-                    );
-                }
-                Impl __tmpModified = __modified();
-                __tmpModified.treeLeaf = treeLeaf;
-                return this;
-            }
-
-            @Override
-            public BigDecimal treeLevel() {
-                return (__modified!= null ? __modified : __base).treeLevel();
-            }
-
-            @Override
-            public MenuDraft setTreeLevel(BigDecimal treeLevel) {
-                if (treeLevel == null) {
-                    throw new IllegalArgumentException(
-                        "'treeLevel' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
-                    );
-                }
-                Impl __tmpModified = __modified();
-                __tmpModified.treeLevel = treeLevel;
-                return this;
-            }
-
-            @Override
-            public String treeNames() {
-                return (__modified!= null ? __modified : __base).treeNames();
-            }
-
-            @Override
-            public MenuDraft setTreeNames(String treeNames) {
-                if (treeNames == null) {
-                    throw new IllegalArgumentException(
-                        "'treeNames' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
-                    );
-                }
-                Impl __tmpModified = __modified();
-                __tmpModified.treeNames = treeNames;
-                return this;
-            }
-
-            @Override
             public String menuName() {
                 return (__modified!= null ? __modified : __base).menuName();
             }
@@ -1606,7 +1879,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                     );
                 }
                 Impl __tmpModified = __modified();
-                __tmpModified.menuName = menuName;
+                __tmpModified.__menuNameValue = menuName;
                 return this;
             }
 
@@ -1623,11 +1896,12 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                     );
                 }
                 Impl __tmpModified = __modified();
-                __tmpModified.menuType = menuType;
+                __tmpModified.__menuTypeValue = menuType;
                 return this;
             }
 
             @Override
+            @Nullable
             public String menuHref() {
                 return (__modified!= null ? __modified : __base).menuHref();
             }
@@ -1635,12 +1909,13 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             @Override
             public MenuDraft setMenuHref(String menuHref) {
                 Impl __tmpModified = __modified();
-                __tmpModified.menuHref = menuHref;
-                __tmpModified.menuHrefLoaded = true;
+                __tmpModified.__menuHrefValue = menuHref;
+                __tmpModified.__menuHrefLoaded = true;
                 return this;
             }
 
             @Override
+            @Nullable
             public String menuComponent() {
                 return (__modified!= null ? __modified : __base).menuComponent();
             }
@@ -1648,12 +1923,13 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             @Override
             public MenuDraft setMenuComponent(String menuComponent) {
                 Impl __tmpModified = __modified();
-                __tmpModified.menuComponent = menuComponent;
-                __tmpModified.menuComponentLoaded = true;
+                __tmpModified.__menuComponentValue = menuComponent;
+                __tmpModified.__menuComponentLoaded = true;
                 return this;
             }
 
             @Override
+            @Nullable
             public String menuTarget() {
                 return (__modified!= null ? __modified : __base).menuTarget();
             }
@@ -1661,12 +1937,13 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             @Override
             public MenuDraft setMenuTarget(String menuTarget) {
                 Impl __tmpModified = __modified();
-                __tmpModified.menuTarget = menuTarget;
-                __tmpModified.menuTargetLoaded = true;
+                __tmpModified.__menuTargetValue = menuTarget;
+                __tmpModified.__menuTargetLoaded = true;
                 return this;
             }
 
             @Override
+            @Nullable
             public String menuIcon() {
                 return (__modified!= null ? __modified : __base).menuIcon();
             }
@@ -1674,12 +1951,13 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             @Override
             public MenuDraft setMenuIcon(String menuIcon) {
                 Impl __tmpModified = __modified();
-                __tmpModified.menuIcon = menuIcon;
-                __tmpModified.menuIconLoaded = true;
+                __tmpModified.__menuIconValue = menuIcon;
+                __tmpModified.__menuIconLoaded = true;
                 return this;
             }
 
             @Override
+            @Nullable
             public String menuColor() {
                 return (__modified!= null ? __modified : __base).menuColor();
             }
@@ -1687,12 +1965,13 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             @Override
             public MenuDraft setMenuColor(String menuColor) {
                 Impl __tmpModified = __modified();
-                __tmpModified.menuColor = menuColor;
-                __tmpModified.menuColorLoaded = true;
+                __tmpModified.__menuColorValue = menuColor;
+                __tmpModified.__menuColorLoaded = true;
                 return this;
             }
 
             @Override
+            @Nullable
             public String menuTitle() {
                 return (__modified!= null ? __modified : __base).menuTitle();
             }
@@ -1700,12 +1979,13 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             @Override
             public MenuDraft setMenuTitle(String menuTitle) {
                 Impl __tmpModified = __modified();
-                __tmpModified.menuTitle = menuTitle;
-                __tmpModified.menuTitleLoaded = true;
+                __tmpModified.__menuTitleValue = menuTitle;
+                __tmpModified.__menuTitleLoaded = true;
                 return this;
             }
 
             @Override
+            @Nullable
             public String permission() {
                 return (__modified!= null ? __modified : __base).permission();
             }
@@ -1713,56 +1993,50 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             @Override
             public MenuDraft setPermission(String permission) {
                 Impl __tmpModified = __modified();
-                __tmpModified.permission = permission;
-                __tmpModified.permissionLoaded = true;
+                __tmpModified.__permissionValue = permission;
+                __tmpModified.__permissionLoaded = true;
                 return this;
             }
 
             @Override
+            @Nullable
             public BigDecimal weight() {
                 return (__modified!= null ? __modified : __base).weight();
             }
 
             @Override
             public MenuDraft setWeight(BigDecimal weight) {
-                if (weight == null) {
-                    throw new IllegalArgumentException(
-                        "'weight' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
-                    );
-                }
                 Impl __tmpModified = __modified();
-                __tmpModified.weight = weight;
+                __tmpModified.__weightValue = weight;
+                __tmpModified.__weightLoaded = true;
                 return this;
             }
 
             @Override
-            @JsonIgnore
-            public boolean isShow() {
+            @Nullable
+            public Boolean isShow() {
                 return (__modified!= null ? __modified : __base).isShow();
             }
 
             @Override
-            public MenuDraft setShow(boolean show) {
+            public MenuDraft setIsShow(Boolean isShow) {
                 Impl __tmpModified = __modified();
-                __tmpModified.show = show;
-                __tmpModified.showLoaded = true;
+                __tmpModified.__isShowValue = isShow;
+                __tmpModified.__isShowLoaded = true;
                 return this;
             }
 
             @Override
+            @Nullable
             public String sysCode() {
                 return (__modified!= null ? __modified : __base).sysCode();
             }
 
             @Override
             public MenuDraft setSysCode(String sysCode) {
-                if (sysCode == null) {
-                    throw new IllegalArgumentException(
-                        "'sysCode' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
-                    );
-                }
                 Impl __tmpModified = __modified();
-                __tmpModified.sysCode = sysCode;
+                __tmpModified.__sysCodeValue = sysCode;
+                __tmpModified.__sysCodeLoaded = true;
                 return this;
             }
 
@@ -1773,7 +2047,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
 
             @Override
             public List<RoleDraft> roles(boolean autoCreate) {
-                if (autoCreate && (!__isLoaded(28) || roles() == null)) {
+                if (autoCreate && (!__isLoaded(PropId.byIndex(SLOT_ROLES)))) {
                     setRoles(new ArrayList<>());
                 }
                 return __ctx.toDraftList((__modified!= null ? __modified : __base).roles(), Role.class, true);
@@ -1787,7 +2061,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                     );
                 }
                 Impl __tmpModified = __modified();
-                __tmpModified.roles = NonSharedList.of(__tmpModified.roles, roles);
+                __tmpModified.__rolesValue = NonSharedList.of(__tmpModified.__rolesValue, roles);
                 return this;
             }
 
@@ -1805,40 +2079,61 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
 
             @SuppressWarnings("unchecked")
             @Override
-            public void __set(int prop, Object value) {
-                switch (prop) {
-                    case 1: setId((String)value);break;
-                    case 2: setStatus((String)value);break;
-                    case 3: setCreateBy((String)value);break;
-                    case 4: setCreateDate((LocalDateTime)value);break;
-                    case 5: setUpdateBy((String)value);break;
-                    case 6: setUpdateDate((LocalDateTime)value);break;
-                    case 7: setRemarks((String)value);break;
-                    case 8: setParent((Menu)value);break;
-                    case 9: setChildren((List<Menu>)value);break;
-                    case 10: setParentCodes((String)value);break;
-                    case 11: setTreeSort((BigDecimal)value);break;
-                    case 12: setTreeSorts((String)value);break;
-                    case 13: setTreeLeaf((String)value);break;
-                    case 14: setTreeLevel((BigDecimal)value);break;
-                    case 15: setTreeNames((String)value);break;
-                    case 16: setMenuName((String)value);break;
-                    case 17: setMenuType((String)value);break;
-                    case 18: setMenuHref((String)value);break;
-                    case 19: setMenuComponent((String)value);break;
-                    case 20: setMenuTarget((String)value);break;
-                    case 21: setMenuIcon((String)value);break;
-                    case 22: setMenuColor((String)value);break;
-                    case 23: setMenuTitle((String)value);break;
-                    case 24: setPermission((String)value);break;
-                    case 25: setWeight((BigDecimal)value);break;
-                    case 26: 
-                            if (value == null) throw new IllegalArgumentException("'show' cannot be null");
-                            setShow((Boolean)value);
+            public void __set(PropId prop, Object value) {
+                int __propIndex = prop.asIndex();
+                switch (__propIndex) {
+                    case -1:
+                    		__set(prop.asName(), value);
+                    return;
+                    case SLOT_ID:
+                    		setId((String)value);break;
+                    case SLOT_STATUS:
+                    		if (value == null) throw new IllegalArgumentException("'status' cannot be null");
+                            setStatus((Integer)value);
                             break;
-                    case 27: setSysCode((String)value);break;
-                    case 28: setRoles((List<Role>)value);break;
-                    default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
+                    case SLOT_CREATE_BY:
+                    		setCreateBy((String)value);break;
+                    case SLOT_CREATE_DATE:
+                    		setCreateDate((Date)value);break;
+                    case SLOT_UPDATE_BY:
+                    		setUpdateBy((String)value);break;
+                    case SLOT_UPDATE_DATE:
+                    		setUpdateDate((Date)value);break;
+                    case SLOT_REMARKS:
+                    		setRemarks((String)value);break;
+                    case SLOT_PARENT:
+                    		setParent((Menu)value);break;
+                    case SLOT_PARENT_ID:
+                    		setParentId((String)value);break;
+                    case SLOT_CHILDREN:
+                    		setChildren((List<Menu>)value);break;
+                    case SLOT_MENU_NAME:
+                    		setMenuName((String)value);break;
+                    case SLOT_MENU_TYPE:
+                    		setMenuType((String)value);break;
+                    case SLOT_MENU_HREF:
+                    		setMenuHref((String)value);break;
+                    case SLOT_MENU_COMPONENT:
+                    		setMenuComponent((String)value);break;
+                    case SLOT_MENU_TARGET:
+                    		setMenuTarget((String)value);break;
+                    case SLOT_MENU_ICON:
+                    		setMenuIcon((String)value);break;
+                    case SLOT_MENU_COLOR:
+                    		setMenuColor((String)value);break;
+                    case SLOT_MENU_TITLE:
+                    		setMenuTitle((String)value);break;
+                    case SLOT_PERMISSION:
+                    		setPermission((String)value);break;
+                    case SLOT_WEIGHT:
+                    		setWeight((BigDecimal)value);break;
+                    case SLOT_IS_SHOW:
+                    		setIsShow((Boolean)value);break;
+                    case SLOT_SYS_CODE:
+                    		setSysCode((String)value);break;
+                    case SLOT_ROLES:
+                    		setRoles((List<Role>)value);break;
+                    default: throw new IllegalArgumentException("Illegal property id for \"top.yangwulang.platform.entity.sys.Menu\": \"" + prop + "\"");
                 }
             }
 
@@ -1846,132 +2141,297 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             @Override
             public void __set(String prop, Object value) {
                 switch (prop) {
-                    case "id": setId((String)value);break;
-                    case "status": setStatus((String)value);break;
-                    case "createBy": setCreateBy((String)value);break;
-                    case "createDate": setCreateDate((LocalDateTime)value);break;
-                    case "updateBy": setUpdateBy((String)value);break;
-                    case "updateDate": setUpdateDate((LocalDateTime)value);break;
-                    case "remarks": setRemarks((String)value);break;
-                    case "parent": setParent((Menu)value);break;
-                    case "children": setChildren((List<Menu>)value);break;
-                    case "parentCodes": setParentCodes((String)value);break;
-                    case "treeSort": setTreeSort((BigDecimal)value);break;
-                    case "treeSorts": setTreeSorts((String)value);break;
-                    case "treeLeaf": setTreeLeaf((String)value);break;
-                    case "treeLevel": setTreeLevel((BigDecimal)value);break;
-                    case "treeNames": setTreeNames((String)value);break;
-                    case "menuName": setMenuName((String)value);break;
-                    case "menuType": setMenuType((String)value);break;
-                    case "menuHref": setMenuHref((String)value);break;
-                    case "menuComponent": setMenuComponent((String)value);break;
-                    case "menuTarget": setMenuTarget((String)value);break;
-                    case "menuIcon": setMenuIcon((String)value);break;
-                    case "menuColor": setMenuColor((String)value);break;
-                    case "menuTitle": setMenuTitle((String)value);break;
-                    case "permission": setPermission((String)value);break;
-                    case "weight": setWeight((BigDecimal)value);break;
-                    case "show": 
-                            if (value == null) throw new IllegalArgumentException("'show' cannot be null");
-                            setShow((Boolean)value);
+                    case "id":
+                    		setId((String)value);break;
+                    case "status":
+                    		if (value == null) throw new IllegalArgumentException("'status' cannot be null");
+                            setStatus((Integer)value);
                             break;
-                    case "sysCode": setSysCode((String)value);break;
-                    case "roles": setRoles((List<Role>)value);break;
-                    default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
+                    case "createBy":
+                    		setCreateBy((String)value);break;
+                    case "createDate":
+                    		setCreateDate((Date)value);break;
+                    case "updateBy":
+                    		setUpdateBy((String)value);break;
+                    case "updateDate":
+                    		setUpdateDate((Date)value);break;
+                    case "remarks":
+                    		setRemarks((String)value);break;
+                    case "parent":
+                    		setParent((Menu)value);break;
+                    case "parentId":
+                    		setParentId((String)value);break;
+                    case "children":
+                    		setChildren((List<Menu>)value);break;
+                    case "menuName":
+                    		setMenuName((String)value);break;
+                    case "menuType":
+                    		setMenuType((String)value);break;
+                    case "menuHref":
+                    		setMenuHref((String)value);break;
+                    case "menuComponent":
+                    		setMenuComponent((String)value);break;
+                    case "menuTarget":
+                    		setMenuTarget((String)value);break;
+                    case "menuIcon":
+                    		setMenuIcon((String)value);break;
+                    case "menuColor":
+                    		setMenuColor((String)value);break;
+                    case "menuTitle":
+                    		setMenuTitle((String)value);break;
+                    case "permission":
+                    		setPermission((String)value);break;
+                    case "weight":
+                    		setWeight((BigDecimal)value);break;
+                    case "isShow":
+                    		setIsShow((Boolean)value);break;
+                    case "sysCode":
+                    		setSysCode((String)value);break;
+                    case "roles":
+                    		setRoles((List<Role>)value);break;
+                    default: throw new IllegalArgumentException("Illegal property name for \"top.yangwulang.platform.entity.sys.Menu\": \"" + prop + "\"");
                 }
             }
 
             @Override
-            public void __use(int prop) {
-                switch (prop) {
+            public void __show(PropId prop, boolean visible) {
+                Visibility __visibility = (__modified!= null ? __modified : __base).__visibility;
+                if (__visibility == null) {
+                    if (visible) {
+                        return;
+                    }
+                    __modified().__visibility = __visibility = Visibility.of(23);
+                }
+                int __propIndex = prop.asIndex();
+                switch (__propIndex) {
+                    case -1:
+                    		__show(prop.asName(), visible);
+                    return;
+                    case SLOT_ID:
+                    		__visibility.show(SLOT_ID, visible);break;
+                    case SLOT_STATUS:
+                    		__visibility.show(SLOT_STATUS, visible);break;
+                    case SLOT_CREATE_BY:
+                    		__visibility.show(SLOT_CREATE_BY, visible);break;
+                    case SLOT_CREATE_DATE:
+                    		__visibility.show(SLOT_CREATE_DATE, visible);break;
+                    case SLOT_UPDATE_BY:
+                    		__visibility.show(SLOT_UPDATE_BY, visible);break;
+                    case SLOT_UPDATE_DATE:
+                    		__visibility.show(SLOT_UPDATE_DATE, visible);break;
+                    case SLOT_REMARKS:
+                    		__visibility.show(SLOT_REMARKS, visible);break;
+                    case SLOT_PARENT:
+                    		__visibility.show(SLOT_PARENT, visible);break;
+                    case SLOT_PARENT_ID:
+                    		__visibility.show(SLOT_PARENT_ID, visible);break;
+                    case SLOT_CHILDREN:
+                    		__visibility.show(SLOT_CHILDREN, visible);break;
+                    case SLOT_MENU_NAME:
+                    		__visibility.show(SLOT_MENU_NAME, visible);break;
+                    case SLOT_MENU_TYPE:
+                    		__visibility.show(SLOT_MENU_TYPE, visible);break;
+                    case SLOT_MENU_HREF:
+                    		__visibility.show(SLOT_MENU_HREF, visible);break;
+                    case SLOT_MENU_COMPONENT:
+                    		__visibility.show(SLOT_MENU_COMPONENT, visible);break;
+                    case SLOT_MENU_TARGET:
+                    		__visibility.show(SLOT_MENU_TARGET, visible);break;
+                    case SLOT_MENU_ICON:
+                    		__visibility.show(SLOT_MENU_ICON, visible);break;
+                    case SLOT_MENU_COLOR:
+                    		__visibility.show(SLOT_MENU_COLOR, visible);break;
+                    case SLOT_MENU_TITLE:
+                    		__visibility.show(SLOT_MENU_TITLE, visible);break;
+                    case SLOT_PERMISSION:
+                    		__visibility.show(SLOT_PERMISSION, visible);break;
+                    case SLOT_WEIGHT:
+                    		__visibility.show(SLOT_WEIGHT, visible);break;
+                    case SLOT_IS_SHOW:
+                    		__visibility.show(SLOT_IS_SHOW, visible);break;
+                    case SLOT_SYS_CODE:
+                    		__visibility.show(SLOT_SYS_CODE, visible);break;
+                    case SLOT_ROLES:
+                    		__visibility.show(SLOT_ROLES, visible);break;
                     default: throw new IllegalArgumentException(
-                                "Illegal property id: \"" + 
+                                "Illegal property id for \"top.yangwulang.platform.entity.sys.Menu\": \"" + 
                                 prop + 
-                                "\",it does not exists or is not non-abstract formula property" + 
-                                "(Only non-abstract formula property can be used)"
+                                "\",it does not exists"
                             );
                 }
             }
 
             @Override
-            public void __use(String prop) {
+            public void __show(String prop, boolean visible) {
+                Visibility __visibility = (__modified!= null ? __modified : __base).__visibility;
+                if (__visibility == null) {
+                    if (visible) {
+                        return;
+                    }
+                    __modified().__visibility = __visibility = Visibility.of(23);
+                }
                 switch (prop) {
+                    case "id":
+                    		__visibility.show(SLOT_ID, visible);break;
+                    case "status":
+                    		__visibility.show(SLOT_STATUS, visible);break;
+                    case "createBy":
+                    		__visibility.show(SLOT_CREATE_BY, visible);break;
+                    case "createDate":
+                    		__visibility.show(SLOT_CREATE_DATE, visible);break;
+                    case "updateBy":
+                    		__visibility.show(SLOT_UPDATE_BY, visible);break;
+                    case "updateDate":
+                    		__visibility.show(SLOT_UPDATE_DATE, visible);break;
+                    case "remarks":
+                    		__visibility.show(SLOT_REMARKS, visible);break;
+                    case "parent":
+                    		__visibility.show(SLOT_PARENT, visible);break;
+                    case "parentId":
+                    		__visibility.show(SLOT_PARENT_ID, visible);break;
+                    case "children":
+                    		__visibility.show(SLOT_CHILDREN, visible);break;
+                    case "menuName":
+                    		__visibility.show(SLOT_MENU_NAME, visible);break;
+                    case "menuType":
+                    		__visibility.show(SLOT_MENU_TYPE, visible);break;
+                    case "menuHref":
+                    		__visibility.show(SLOT_MENU_HREF, visible);break;
+                    case "menuComponent":
+                    		__visibility.show(SLOT_MENU_COMPONENT, visible);break;
+                    case "menuTarget":
+                    		__visibility.show(SLOT_MENU_TARGET, visible);break;
+                    case "menuIcon":
+                    		__visibility.show(SLOT_MENU_ICON, visible);break;
+                    case "menuColor":
+                    		__visibility.show(SLOT_MENU_COLOR, visible);break;
+                    case "menuTitle":
+                    		__visibility.show(SLOT_MENU_TITLE, visible);break;
+                    case "permission":
+                    		__visibility.show(SLOT_PERMISSION, visible);break;
+                    case "weight":
+                    		__visibility.show(SLOT_WEIGHT, visible);break;
+                    case "isShow":
+                    		__visibility.show(SLOT_IS_SHOW, visible);break;
+                    case "sysCode":
+                    		__visibility.show(SLOT_SYS_CODE, visible);break;
+                    case "roles":
+                    		__visibility.show(SLOT_ROLES, visible);break;
                     default: throw new IllegalArgumentException(
-                                "Illegal property name: \"" + 
+                                "Illegal property name for \"top.yangwulang.platform.entity.sys.Menu\": \"" + 
                                 prop + 
-                                "\",it does not exists or is not non-abstract formula property" + 
-                                "(Only non-abstract formula property can be used)"
+                                "\",it does not exists"
                             );
                 }
             }
 
             @Override
-            public void __unload(int prop) {
-                switch (prop) {
-                    case 1: __modified().id = null;break;
-                    case 2: __modified().status = null;break;
-                    case 3: __modified().createBy = null;break;
-                    case 4: __modified().createDate = null;break;
-                    case 5: __modified().updateBy = null;break;
-                    case 6: __modified().updateDate = null;break;
-                    case 7: __modified().remarksLoaded = false;break;
-                    case 8: __modified().parentLoaded = false;break;
-                    case 9: __modified().children = null;break;
-                    case 10: __modified().parentCodes = null;break;
-                    case 11: __modified().treeSort = null;break;
-                    case 12: __modified().treeSorts = null;break;
-                    case 13: __modified().treeLeaf = null;break;
-                    case 14: __modified().treeLevel = null;break;
-                    case 15: __modified().treeNames = null;break;
-                    case 16: __modified().menuName = null;break;
-                    case 17: __modified().menuType = null;break;
-                    case 18: __modified().menuHrefLoaded = false;break;
-                    case 19: __modified().menuComponentLoaded = false;break;
-                    case 20: __modified().menuTargetLoaded = false;break;
-                    case 21: __modified().menuIconLoaded = false;break;
-                    case 22: __modified().menuColorLoaded = false;break;
-                    case 23: __modified().menuTitleLoaded = false;break;
-                    case 24: __modified().permissionLoaded = false;break;
-                    case 25: __modified().weight = null;break;
-                    case 26: __modified().showLoaded = false;break;
-                    case 27: __modified().sysCode = null;break;
-                    case 28: __modified().roles = null;break;
-                    default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
+            public void __unload(PropId prop) {
+                int __propIndex = prop.asIndex();
+                switch (__propIndex) {
+                    case -1:
+                    		__unload(prop.asName());
+                    return;
+                    case SLOT_ID:
+                    		__modified().__idValue = null;break;
+                    case SLOT_STATUS:
+                    		__modified().__statusLoaded = false;break;
+                    case SLOT_CREATE_BY:
+                    		__modified().__createByValue = null;break;
+                    case SLOT_CREATE_DATE:
+                    		__modified().__createDateValue = null;break;
+                    case SLOT_UPDATE_BY:
+                    		__modified().__updateByValue = null;break;
+                    case SLOT_UPDATE_DATE:
+                    		__modified().__updateDateValue = null;break;
+                    case SLOT_REMARKS:
+                    		__modified().__remarksLoaded = false;break;
+                    case SLOT_PARENT:
+                    		__modified().__parentLoaded = false;break;
+                    case SLOT_PARENT_ID:
+                    		__unload(PropId.byIndex(SLOT_PARENT));break;
+                    case SLOT_CHILDREN:
+                    		__modified().__childrenValue = null;break;
+                    case SLOT_MENU_NAME:
+                    		__modified().__menuNameValue = null;break;
+                    case SLOT_MENU_TYPE:
+                    		__modified().__menuTypeValue = null;break;
+                    case SLOT_MENU_HREF:
+                    		__modified().__menuHrefLoaded = false;break;
+                    case SLOT_MENU_COMPONENT:
+                    		__modified().__menuComponentLoaded = false;break;
+                    case SLOT_MENU_TARGET:
+                    		__modified().__menuTargetLoaded = false;break;
+                    case SLOT_MENU_ICON:
+                    		__modified().__menuIconLoaded = false;break;
+                    case SLOT_MENU_COLOR:
+                    		__modified().__menuColorLoaded = false;break;
+                    case SLOT_MENU_TITLE:
+                    		__modified().__menuTitleLoaded = false;break;
+                    case SLOT_PERMISSION:
+                    		__modified().__permissionLoaded = false;break;
+                    case SLOT_WEIGHT:
+                    		__modified().__weightLoaded = false;break;
+                    case SLOT_IS_SHOW:
+                    		__modified().__isShowLoaded = false;break;
+                    case SLOT_SYS_CODE:
+                    		__modified().__sysCodeLoaded = false;break;
+                    case SLOT_ROLES:
+                    		__modified().__rolesValue = null;break;
+                    default: throw new IllegalArgumentException("Illegal property id for \"top.yangwulang.platform.entity.sys.Menu\": \"" + prop + "\", it does not exist or its loaded state is not controllable");
                 }
             }
 
             @Override
             public void __unload(String prop) {
                 switch (prop) {
-                    case "id": __modified().id = null;break;
-                    case "status": __modified().status = null;break;
-                    case "createBy": __modified().createBy = null;break;
-                    case "createDate": __modified().createDate = null;break;
-                    case "updateBy": __modified().updateBy = null;break;
-                    case "updateDate": __modified().updateDate = null;break;
-                    case "remarks": __modified().remarksLoaded = false;break;
-                    case "parent": __modified().parentLoaded = false;break;
-                    case "children": __modified().children = null;break;
-                    case "parentCodes": __modified().parentCodes = null;break;
-                    case "treeSort": __modified().treeSort = null;break;
-                    case "treeSorts": __modified().treeSorts = null;break;
-                    case "treeLeaf": __modified().treeLeaf = null;break;
-                    case "treeLevel": __modified().treeLevel = null;break;
-                    case "treeNames": __modified().treeNames = null;break;
-                    case "menuName": __modified().menuName = null;break;
-                    case "menuType": __modified().menuType = null;break;
-                    case "menuHref": __modified().menuHrefLoaded = false;break;
-                    case "menuComponent": __modified().menuComponentLoaded = false;break;
-                    case "menuTarget": __modified().menuTargetLoaded = false;break;
-                    case "menuIcon": __modified().menuIconLoaded = false;break;
-                    case "menuColor": __modified().menuColorLoaded = false;break;
-                    case "menuTitle": __modified().menuTitleLoaded = false;break;
-                    case "permission": __modified().permissionLoaded = false;break;
-                    case "weight": __modified().weight = null;break;
-                    case "show": __modified().showLoaded = false;break;
-                    case "sysCode": __modified().sysCode = null;break;
-                    case "roles": __modified().roles = null;break;
-                    default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
+                    case "id":
+                    		__modified().__idValue = null;break;
+                    case "status":
+                    		__modified().__statusLoaded = false;break;
+                    case "createBy":
+                    		__modified().__createByValue = null;break;
+                    case "createDate":
+                    		__modified().__createDateValue = null;break;
+                    case "updateBy":
+                    		__modified().__updateByValue = null;break;
+                    case "updateDate":
+                    		__modified().__updateDateValue = null;break;
+                    case "remarks":
+                    		__modified().__remarksLoaded = false;break;
+                    case "parent":
+                    		__modified().__parentLoaded = false;break;
+                    case "parentId":
+                    		__unload(PropId.byIndex(SLOT_PARENT));break;
+                    case "children":
+                    		__modified().__childrenValue = null;break;
+                    case "menuName":
+                    		__modified().__menuNameValue = null;break;
+                    case "menuType":
+                    		__modified().__menuTypeValue = null;break;
+                    case "menuHref":
+                    		__modified().__menuHrefLoaded = false;break;
+                    case "menuComponent":
+                    		__modified().__menuComponentLoaded = false;break;
+                    case "menuTarget":
+                    		__modified().__menuTargetLoaded = false;break;
+                    case "menuIcon":
+                    		__modified().__menuIconLoaded = false;break;
+                    case "menuColor":
+                    		__modified().__menuColorLoaded = false;break;
+                    case "menuTitle":
+                    		__modified().__menuTitleLoaded = false;break;
+                    case "permission":
+                    		__modified().__permissionLoaded = false;break;
+                    case "weight":
+                    		__modified().__weightLoaded = false;break;
+                    case "isShow":
+                    		__modified().__isShowLoaded = false;break;
+                    case "sysCode":
+                    		__modified().__sysCodeLoaded = false;break;
+                    case "roles":
+                    		__modified().__rolesValue = null;break;
+                    default: throw new IllegalArgumentException("Illegal property name for \"top.yangwulang.platform.entity.sys.Menu\": \"" + prop + "\", it does not exist or its loaded state is not controllable");
                 }
             }
 
@@ -1990,21 +2450,21 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                     Implementor base = __base;
                     Impl __tmpModified = __modified;
                     if (__tmpModified == null) {
-                        if (base.__isLoaded(8)) {
+                        if (base.__isLoaded(PropId.byIndex(SLOT_PARENT))) {
                             Menu oldValue = base.parent();
                             Menu newValue = __ctx.resolveObject(oldValue);
-                            if (!ImmutableSpi.equals(oldValue, newValue, true)) {
+                            if (oldValue != newValue) {
                                 setParent(newValue);
                             }
                         }
-                        if (base.__isLoaded(9)) {
+                        if (base.__isLoaded(PropId.byIndex(SLOT_CHILDREN))) {
                             List<Menu> oldValue = base.children();
                             List<Menu> newValue = __ctx.resolveList(oldValue);
                             if (oldValue != newValue) {
                                 setChildren(newValue);
                             }
                         }
-                        if (base.__isLoaded(28)) {
+                        if (base.__isLoaded(PropId.byIndex(SLOT_ROLES))) {
                             List<Role> oldValue = base.roles();
                             List<Role> newValue = __ctx.resolveList(oldValue);
                             if (oldValue != newValue) {
@@ -2014,11 +2474,11 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                         __tmpModified = __modified;
                     }
                     else {
-                        __tmpModified.parent = __ctx.resolveObject(__tmpModified.parent);
-                        __tmpModified.children = NonSharedList.of(__tmpModified.children, __ctx.resolveList(__tmpModified.children));
-                        __tmpModified.roles = NonSharedList.of(__tmpModified.roles, __ctx.resolveList(__tmpModified.roles));
+                        __tmpModified.__parentValue = __ctx.resolveObject(__tmpModified.__parentValue);
+                        __tmpModified.__childrenValue = NonSharedList.of(__tmpModified.__childrenValue, __ctx.resolveList(__tmpModified.__childrenValue));
+                        __tmpModified.__rolesValue = NonSharedList.of(__tmpModified.__rolesValue, __ctx.resolveList(__tmpModified.__rolesValue));
                     }
-                    if (__tmpModified == null || ImmutableSpi.equals(base, __tmpModified, true)) {
+                    if (__base != null && __tmpModified == null) {
                         return base;
                     }
                     return __tmpModified;
@@ -2042,131 +2502,121 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
     class MapStruct {
         private String id;
 
-        private String status;
+        private Integer status;
 
         private String createBy;
 
-        private LocalDateTime createDate;
+        private Date createDate;
 
         private String updateBy;
 
-        private LocalDateTime updateDate;
+        private Date updateDate;
 
-        private boolean remarksLoaded;
+        private boolean __remarksLoaded;
 
         private String remarks;
 
-        private boolean parentLoaded;
+        private boolean __parentLoaded;
 
         private Menu parent;
 
         private List<Menu> children;
 
-        private String parentCodes;
-
-        private BigDecimal treeSort;
-
-        private String treeSorts;
-
-        private String treeLeaf;
-
-        private BigDecimal treeLevel;
-
-        private String treeNames;
-
         private String menuName;
 
         private String menuType;
 
-        private boolean menuHrefLoaded;
+        private boolean __menuHrefLoaded;
 
         private String menuHref;
 
-        private boolean menuComponentLoaded;
+        private boolean __menuComponentLoaded;
 
         private String menuComponent;
 
-        private boolean menuTargetLoaded;
+        private boolean __menuTargetLoaded;
 
         private String menuTarget;
 
-        private boolean menuIconLoaded;
+        private boolean __menuIconLoaded;
 
         private String menuIcon;
 
-        private boolean menuColorLoaded;
+        private boolean __menuColorLoaded;
 
         private String menuColor;
 
-        private boolean menuTitleLoaded;
+        private boolean __menuTitleLoaded;
 
         private String menuTitle;
 
-        private boolean permissionLoaded;
+        private boolean __permissionLoaded;
 
         private String permission;
 
+        private boolean __weightLoaded;
+
         private BigDecimal weight;
 
-        private boolean showLoaded;
+        private boolean __isShowLoaded;
 
-        private boolean show;
+        private Boolean isShow;
+
+        private boolean __sysCodeLoaded;
 
         private String sysCode;
 
         private List<Role> roles;
 
         public MapStruct id(String id) {
-            if (id != null) {
-                this.id = id;
-            }
+            this.id = id;
             return this;
         }
 
-        public MapStruct status(String status) {
-            if (status != null) {
-                this.status = status;
-            }
+        public MapStruct status(Integer status) {
+            this.status = status;
             return this;
         }
 
         public MapStruct createBy(String createBy) {
-            if (createBy != null) {
-                this.createBy = createBy;
-            }
+            this.createBy = createBy;
             return this;
         }
 
-        public MapStruct createDate(LocalDateTime createDate) {
-            if (createDate != null) {
-                this.createDate = createDate;
-            }
+        public MapStruct createDate(Date createDate) {
+            this.createDate = createDate;
             return this;
         }
 
         public MapStruct updateBy(String updateBy) {
-            if (updateBy != null) {
-                this.updateBy = updateBy;
-            }
+            this.updateBy = updateBy;
             return this;
         }
 
-        public MapStruct updateDate(LocalDateTime updateDate) {
-            if (updateDate != null) {
-                this.updateDate = updateDate;
-            }
+        public MapStruct updateDate(Date updateDate) {
+            this.updateDate = updateDate;
             return this;
         }
 
         public MapStruct remarks(String remarks) {
-            this.remarksLoaded = true;
+            this.__remarksLoaded = true;
             this.remarks = remarks;
             return this;
         }
 
         public MapStruct parent(Menu parent) {
-            this.parentLoaded = true;
+            this.__parentLoaded = true;
             this.parent = parent;
+            return this;
+        }
+
+        public MapStruct parentId(String parentId) {
+            this.__parentLoaded = true;
+            if (parentId == null) {
+                this.parent = null;
+            } else {
+                this.parent = ImmutableObjects.makeIdOnly(Menu.class, parentId);
+            }
             return this;
         }
 
@@ -2175,121 +2625,73 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             return this;
         }
 
-        public MapStruct parentCodes(String parentCodes) {
-            if (parentCodes != null) {
-                this.parentCodes = parentCodes;
-            }
-            return this;
-        }
-
-        public MapStruct treeSort(BigDecimal treeSort) {
-            if (treeSort != null) {
-                this.treeSort = treeSort;
-            }
-            return this;
-        }
-
-        public MapStruct treeSorts(String treeSorts) {
-            if (treeSorts != null) {
-                this.treeSorts = treeSorts;
-            }
-            return this;
-        }
-
-        public MapStruct treeLeaf(String treeLeaf) {
-            if (treeLeaf != null) {
-                this.treeLeaf = treeLeaf;
-            }
-            return this;
-        }
-
-        public MapStruct treeLevel(BigDecimal treeLevel) {
-            if (treeLevel != null) {
-                this.treeLevel = treeLevel;
-            }
-            return this;
-        }
-
-        public MapStruct treeNames(String treeNames) {
-            if (treeNames != null) {
-                this.treeNames = treeNames;
-            }
-            return this;
-        }
-
         public MapStruct menuName(String menuName) {
-            if (menuName != null) {
-                this.menuName = menuName;
-            }
+            this.menuName = menuName;
             return this;
         }
 
         public MapStruct menuType(String menuType) {
-            if (menuType != null) {
-                this.menuType = menuType;
-            }
+            this.menuType = menuType;
             return this;
         }
 
         public MapStruct menuHref(String menuHref) {
-            this.menuHrefLoaded = true;
+            this.__menuHrefLoaded = true;
             this.menuHref = menuHref;
             return this;
         }
 
         public MapStruct menuComponent(String menuComponent) {
-            this.menuComponentLoaded = true;
+            this.__menuComponentLoaded = true;
             this.menuComponent = menuComponent;
             return this;
         }
 
         public MapStruct menuTarget(String menuTarget) {
-            this.menuTargetLoaded = true;
+            this.__menuTargetLoaded = true;
             this.menuTarget = menuTarget;
             return this;
         }
 
         public MapStruct menuIcon(String menuIcon) {
-            this.menuIconLoaded = true;
+            this.__menuIconLoaded = true;
             this.menuIcon = menuIcon;
             return this;
         }
 
         public MapStruct menuColor(String menuColor) {
-            this.menuColorLoaded = true;
+            this.__menuColorLoaded = true;
             this.menuColor = menuColor;
             return this;
         }
 
         public MapStruct menuTitle(String menuTitle) {
-            this.menuTitleLoaded = true;
+            this.__menuTitleLoaded = true;
             this.menuTitle = menuTitle;
             return this;
         }
 
         public MapStruct permission(String permission) {
-            this.permissionLoaded = true;
+            this.__permissionLoaded = true;
             this.permission = permission;
             return this;
         }
 
         public MapStruct weight(BigDecimal weight) {
-            if (weight != null) {
-                this.weight = weight;
-            }
+            this.__weightLoaded = true;
+            this.weight = weight;
             return this;
         }
 
-        public MapStruct show(boolean show) {
-            this.showLoaded = true;
-            this.show = show;
+        public MapStruct isShow(Boolean isShow) {
+            this.__isShowLoaded = true;
+            this.isShow = isShow;
             return this;
         }
 
         public MapStruct sysCode(String sysCode) {
-            if (sysCode != null) {
-                this.sysCode = sysCode;
-            }
+            this.__sysCodeLoaded = true;
+            this.sysCode = sysCode;
             return this;
         }
 
@@ -2318,32 +2720,14 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                 if (updateDate != null) {
                     draft.setUpdateDate(updateDate);
                 }
-                if (remarksLoaded) {
+                if (__remarksLoaded) {
                     draft.setRemarks(remarks);
                 }
-                if (parentLoaded) {
+                if (__parentLoaded) {
                     draft.setParent(parent);
                 }
                 if (children != null) {
                     draft.setChildren(children);
-                }
-                if (parentCodes != null) {
-                    draft.setParentCodes(parentCodes);
-                }
-                if (treeSort != null) {
-                    draft.setTreeSort(treeSort);
-                }
-                if (treeSorts != null) {
-                    draft.setTreeSorts(treeSorts);
-                }
-                if (treeLeaf != null) {
-                    draft.setTreeLeaf(treeLeaf);
-                }
-                if (treeLevel != null) {
-                    draft.setTreeLevel(treeLevel);
-                }
-                if (treeNames != null) {
-                    draft.setTreeNames(treeNames);
                 }
                 if (menuName != null) {
                     draft.setMenuName(menuName);
@@ -2351,34 +2735,34 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                 if (menuType != null) {
                     draft.setMenuType(menuType);
                 }
-                if (menuHrefLoaded) {
+                if (__menuHrefLoaded) {
                     draft.setMenuHref(menuHref);
                 }
-                if (menuComponentLoaded) {
+                if (__menuComponentLoaded) {
                     draft.setMenuComponent(menuComponent);
                 }
-                if (menuTargetLoaded) {
+                if (__menuTargetLoaded) {
                     draft.setMenuTarget(menuTarget);
                 }
-                if (menuIconLoaded) {
+                if (__menuIconLoaded) {
                     draft.setMenuIcon(menuIcon);
                 }
-                if (menuColorLoaded) {
+                if (__menuColorLoaded) {
                     draft.setMenuColor(menuColor);
                 }
-                if (menuTitleLoaded) {
+                if (__menuTitleLoaded) {
                     draft.setMenuTitle(menuTitle);
                 }
-                if (permissionLoaded) {
+                if (__permissionLoaded) {
                     draft.setPermission(permission);
                 }
-                if (weight != null) {
+                if (__weightLoaded) {
                     draft.setWeight(weight);
                 }
-                if (showLoaded) {
-                    draft.setShow(show);
+                if (__isShowLoaded) {
+                    draft.setIsShow(isShow);
                 }
-                if (sysCode != null) {
+                if (__sysCodeLoaded) {
                     draft.setSysCode(sysCode);
                 }
                 if (roles != null) {

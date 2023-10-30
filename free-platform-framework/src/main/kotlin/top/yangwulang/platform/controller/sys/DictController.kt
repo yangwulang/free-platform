@@ -1,0 +1,116 @@
+package top.yangwulang.platform.controller.sys
+
+import cn.dev33.satoken.annotation.SaCheckPermission
+import io.swagger.v3.oas.annotations.Operation
+import io.swagger.v3.oas.annotations.tags.Tag
+import io.swagger.v3.oas.annotations.tags.Tags
+import jakarta.servlet.http.HttpServletRequest
+import org.apache.commons.lang3.StringUtils
+import org.babyfish.jimmer.sql.ast.Predicate
+import org.babyfish.jimmer.sql.fetcher.RecursiveListFieldConfig
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.data.domain.Page
+import org.springframework.util.ObjectUtils
+import org.springframework.web.bind.annotation.*
+import top.yangwulang.platform.entity.PageHttpRequest
+import top.yangwulang.platform.entity.Result
+import top.yangwulang.platform.entity.sys.*
+import top.yangwulang.platform.entity.sys.dto.DictDataGetView
+import top.yangwulang.platform.entity.sys.dto.DictDataListView
+import top.yangwulang.platform.entity.sys.dto.DictDataSaveInput
+import top.yangwulang.platform.entity.sys.dto.DictTypeGetView
+import top.yangwulang.platform.entity.sys.dto.DictTypeListView
+import top.yangwulang.platform.entity.sys.input.DictDataInput
+import top.yangwulang.platform.entity.sys.input.DictTypeInput
+import top.yangwulang.platform.services.DictDataService
+import top.yangwulang.platform.services.DictTypeService
+
+/**
+ * @author yangwulang
+ */
+@RestController
+@Tags(value = [Tag(name = "系统模块"), Tag(name = "字典管理")])
+@RequestMapping("\${adminPath}/sys/dict")
+class DictController {
+    @Autowired
+    lateinit var dictTypeService: DictTypeService
+
+    @Autowired
+    lateinit var dictDataService: DictDataService
+
+    @SaCheckPermission(value = ["sys:dictType:view"])
+    @GetMapping("/dictType/{id}")
+    @Operation(summary = "获取字典类型数据")
+    fun getType(@PathVariable("id") id: String): DictTypeGetView? {
+        return dictTypeService.repository().sql().findById(DictTypeGetView::class.java, id)
+    }
+
+    @SaCheckPermission(value = ["sys:dictType:view"])
+    @PostMapping("/dictType")
+    @Operation(summary = "获取字典类型列表")
+    fun listData(
+        httpServletRequest: HttpServletRequest?,
+        @RequestBody dictTypeInput: DictTypeInput
+    ): Page<DictTypeListView> {
+        val repository = dictTypeService.repository()
+        val table = DictTypeTable.`$`
+        return dictTypeService
+            .pager(PageHttpRequest.of(httpServletRequest).toPage())
+            .execute(
+                repository.sql().createQuery(table)
+                    .whereIf(StringUtils.isNotEmpty(dictTypeInput.dictType),table.dictType().like(dictTypeInput.dictType))
+                    .whereIf(StringUtils.isNotEmpty(dictTypeInput.dictName),table.dictName().like(dictTypeInput.dictName))
+                    .select(table.fetch(DictTypeListView::class.java))
+            )
+    }
+
+    @PutMapping("/dictType")
+    @Operation(summary = "新增或修改字典类型")
+    fun saveType(dictTypeInput: DictTypeInput): DictType {
+        return dictTypeService.save(dictTypeInput)
+    }
+
+    @DeleteMapping("/dictType/{id}")
+    @Operation(summary = "删除字典类型")
+    fun deleteType(@PathVariable("id") id: String): Result<Void> {
+        dictTypeService.deleteById(id)
+        return Result<Void>().success("删除成功")
+    }
+
+    @GetMapping("/dictData/{id}")
+    @Operation(summary = "获取字典数据")
+    fun getData(@PathVariable("id") id: String): DictDataGetView? {
+        return dictDataService.repository().sql().findById(DictDataGetView::class.java, id)
+    }
+
+    @PostMapping("/dictData")
+    @Operation(summary = "获取字典数据列表")
+    fun listDictData(
+        httpServletRequest: HttpServletRequest?,
+        @RequestBody dictDataInput: DictDataInput
+    ): List<DictDataListView> {
+        val table = DictDataTable.`$`
+        return dictDataService.repository().sql().createQuery(table)
+            .where(
+                Predicate.and(
+                    table.parent().isNull(),
+                    table.dictType().id().eq(dictDataInput.dictTypeId)
+                )
+            )
+            .select(table.fetch(DictDataListView::class.java)).execute()
+    }
+
+    @PutMapping("/dictData")
+    @Operation(summary = "新增或修改字典数据")
+    fun saveData(dictData: DictDataSaveInput): Result<Void> {
+        dictDataService.save(dictData)
+        return Result<Void>().success("操作成功")
+    }
+
+    @DeleteMapping("/dictData/{id}")
+    @Operation(summary = "删除字典数据")
+    fun deleteData(@PathVariable("id") id: String): Result<Void> {
+        dictDataService.deleteById(id)
+        return Result<Void>().success("删除成功")
+    }
+}

@@ -2,10 +2,12 @@ package top.yangwulang.platform.services;
 
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.multipart.MultipartFile;
+import top.yangwulang.platform.entity.sys.FileUpload;
+import top.yangwulang.platform.repository.sys.FileUploadRepository;
 
 import java.io.InputStream;
 
-public interface FileUploadService {
+public interface FileUploadService extends BaseService<FileUpload, String, FileUploadRepository> {
     String DEFAULT_BUCKET_NAME = "default";
 
     boolean bucketExists(String bucketName);
@@ -24,10 +26,10 @@ public interface FileUploadService {
         this.putObject(DEFAULT_BUCKET_NAME, objectName, stream, contentType);
     }
 
-    void putObject(String bucketName, MultipartFile multipartFile, String filename);
+    FileUpload putObject(String bucketName, MultipartFile multipartFile, String filename, String bizType) throws Throwable;
 
-    default void putObject(MultipartFile multipartFile, String filename) {
-        this.putObject(DEFAULT_BUCKET_NAME, multipartFile, filename);
+    default FileUpload putObject(MultipartFile multipartFile, String filename, String bizType) throws Throwable {
+        return this.putObject(DEFAULT_BUCKET_NAME, multipartFile, filename, bizType);
     }
 
     boolean removeObject(String bucketName, String filePath);

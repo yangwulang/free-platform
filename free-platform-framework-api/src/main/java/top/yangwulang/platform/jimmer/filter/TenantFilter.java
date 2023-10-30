@@ -2,7 +2,7 @@ package top.yangwulang.platform.jimmer.filter;
 
 import org.babyfish.jimmer.sql.filter.Filter;
 import org.babyfish.jimmer.sql.filter.FilterArgs;
-import top.yangwulang.platform.entity.sys.TenantTypeBaseProps;
+import top.yangwulang.platform.entity.TenantTypeBaseProps;
 import top.yangwulang.platform.jimmer.JimmerException;
 
 public class TenantFilter implements Filter<TenantTypeBaseProps> {

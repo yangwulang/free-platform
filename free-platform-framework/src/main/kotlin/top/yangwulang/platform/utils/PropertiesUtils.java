@@ -23,7 +23,7 @@ public class PropertiesUtils {
             "classpath:config/bootstrap.yml",
             "file:application.yml",
             "file:config/application.yml",
-            "file:bootstrap.yml", "" +
+            "file:bootstrap.yml",
             "file:config/bootstrap.yml"
     };
     private static Logger logger = initLogger();

@@ -1,14 +1,20 @@
 package top.yangwulang.platform.entity.sys;
 
 import java.lang.Override;
+import java.util.function.Consumer;
+import org.babyfish.jimmer.GeneratedBy;
 import org.babyfish.jimmer.lang.NewChain;
 import org.babyfish.jimmer.meta.ImmutableProp;
 import org.babyfish.jimmer.sql.ast.table.Table;
 import org.babyfish.jimmer.sql.fetcher.Fetcher;
 import org.babyfish.jimmer.sql.fetcher.FieldConfig;
+import org.babyfish.jimmer.sql.fetcher.ListFieldConfig;
 import org.babyfish.jimmer.sql.fetcher.impl.FetcherImpl;
 import org.babyfish.jimmer.sql.fetcher.spi.AbstractTypedFetcher;
 
+@GeneratedBy(
+        type = User.class
+)
 public class UserFetcher extends AbstractTypedFetcher<User, UserFetcher> {
     public static final UserFetcher $ = new UserFetcher(null);
 
@@ -261,13 +267,34 @@ public class UserFetcher extends AbstractTypedFetcher<User, UserFetcher> {
         return enabled ? add("userWeight") : remove("userWeight");
     }
 
+    @NewChain
+    public UserFetcher roles() {
+        return add("roles");
+    }
+
+    @NewChain
+    public UserFetcher roles(boolean enabled) {
+        return enabled ? add("roles") : remove("roles");
+    }
+
+    @NewChain
+    public UserFetcher roles(Fetcher<Role> childFetcher) {
+        return add("roles", childFetcher);
+    }
+
+    @NewChain
+    public UserFetcher roles(Fetcher<Role> childFetcher,
+            Consumer<ListFieldConfig<Role, RoleTable>> fieldConfig) {
+        return add("roles", childFetcher, fieldConfig);
+    }
+
     @Override
-    protected UserFetcher createChildFetcher(ImmutableProp prop, boolean negative) {
+    protected UserFetcher createFetcher(ImmutableProp prop, boolean negative) {
         return new UserFetcher(this, prop, negative);
     }
 
     @Override
-    protected UserFetcher createChildFetcher(ImmutableProp prop,
+    protected UserFetcher createFetcher(ImmutableProp prop,
             FieldConfig<?, ? extends Table<?>> fieldConfig) {
         return new UserFetcher(this, prop, fieldConfig);
     }

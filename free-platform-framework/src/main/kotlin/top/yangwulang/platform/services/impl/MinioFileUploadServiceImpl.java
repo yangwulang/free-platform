@@ -1,13 +1,15 @@
 package top.yangwulang.platform.services.impl;
 
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
-import top.yangwulang.platform.services.FileUploadService;
+import top.yangwulang.platform.entity.sys.FileUpload;
+import top.yangwulang.platform.repository.sys.FileUploadRepository;
+import top.yangwulang.platform.services.OssFileUploadService;
 
 import java.io.InputStream;
 
-public class MinioFileUploadServiceImpl implements FileUploadService {
+public class MinioFileUploadServiceImpl
+        implements OssFileUploadService {
 
     protected final MinioClientOption option;
 

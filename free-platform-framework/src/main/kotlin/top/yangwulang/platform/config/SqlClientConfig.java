@@ -1,28 +1,34 @@
 package top.yangwulang.platform.config;
 
-import org.babyfish.jimmer.spring.repository.SpringConnectionManager;
-import org.babyfish.jimmer.spring.repository.SpringTransientResolverProvider;
 import org.babyfish.jimmer.sql.JSqlClient;
-import org.babyfish.jimmer.sql.runtime.EntityManager;
+import org.babyfish.jimmer.sql.event.TriggerType;
+import org.babyfish.jimmer.sql.runtime.Customizer;
 import org.babyfish.jimmer.sql.runtime.Executor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import top.yangwulang.platform.jimmer.interceptor.BaseEntityInterceptor;
-import top.yangwulang.platform.jimmer.interceptor.DataTypeBaseInterceptor;
+import org.babyfish.jimmer.sql.runtime.Initializer;
+import org.springframework.stereotype.Component;
+import top.yangwulang.platform.entity.sys.DictData;
+import top.yangwulang.platform.event.DictEventListener;
 import top.yangwulang.platform.utils.SnowflakeKey;
-
-import javax.sql.DataSource;
 
 /**
  * @author yangwulang
  */
-@Configuration
-public class SqlClientConfig {
+@Component
+public class SqlClientConfig implements Customizer, Initializer {
+    @Override
+    public void customize(JSqlClient.Builder builder) {
+        builder.setIdGenerator(new SnowflakeKey())
+                .setTriggerType(TriggerType.TRANSACTION_ONLY)
+                .setExecutor(Executor.log());
+    }
+
+    @Override
+    public void initialize(JSqlClient sqlClient) {
+        sqlClient.getTriggers().addEntityListener(DictData.class, new DictEventListener());
+    }
 
 
-    @Bean
+    /*@Bean
     public JSqlClient sqlClient(
             DataSource dataSource,
             EntityManager entityManager,
@@ -40,5 +46,9 @@ public class SqlClientConfig {
                 .setTransientResolverProvider(new SpringTransientResolverProvider(context))
                 .build();
     }
-
+*/
+/*    @Bean
+    public UserIdGenerator idGenerator() {
+        return new SnowflakeKey();
+    }*/
 }

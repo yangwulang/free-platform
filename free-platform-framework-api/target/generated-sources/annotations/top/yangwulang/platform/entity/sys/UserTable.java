@@ -1,13 +1,19 @@
 package top.yangwulang.platform.entity.sys;
 
+import java.lang.Deprecated;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
-import java.time.LocalDateTime;
+import java.util.Date;
+import org.babyfish.jimmer.GeneratedBy;
 import org.babyfish.jimmer.sql.ast.PropExpression;
 import org.babyfish.jimmer.sql.ast.impl.table.TableImplementor;
+import org.babyfish.jimmer.sql.ast.table.TableEx;
 import org.babyfish.jimmer.sql.ast.table.spi.AbstractTypedTable;
 
+@GeneratedBy(
+        type = User.class
+)
 public class UserTable extends AbstractTypedTable<User> implements UserProps {
     public static final UserTable $ = new UserTable();
 
@@ -33,7 +39,7 @@ public class UserTable extends AbstractTypedTable<User> implements UserProps {
     }
 
     @Override
-    public PropExpression.Str status() {
+    public PropExpression.Num<Integer> status() {
         return get("status");
     }
 
@@ -43,7 +49,7 @@ public class UserTable extends AbstractTypedTable<User> implements UserProps {
     }
 
     @Override
-    public PropExpression.Cmp<LocalDateTime> createDate() {
+    public PropExpression.Cmp<Date> createDate() {
         return get("createDate");
     }
 
@@ -53,7 +59,7 @@ public class UserTable extends AbstractTypedTable<User> implements UserProps {
     }
 
     @Override
-    public PropExpression.Cmp<LocalDateTime> updateDate() {
+    public PropExpression.Cmp<Date> updateDate() {
         return get("updateDate");
     }
 
@@ -155,5 +161,30 @@ public class UserTable extends AbstractTypedTable<User> implements UserProps {
     @Override
     public UserTable __disableJoin(String reason) {
         return new UserTable(this, reason);
+    }
+
+    public static class Remote extends AbstractTypedTable<User> {
+        public Remote(AbstractTypedTable.DelayedOperation delayedOperation) {
+            super(User.class, delayedOperation);
+        }
+
+        public Remote(TableImplementor<User> table) {
+            super(table);
+        }
+
+        public PropExpression.Str userCode() {
+            return get("userCode");
+        }
+
+        @Override
+        @Deprecated
+        public TableEx<User> asTableEx() {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public Remote __disableJoin(String reason) {
+            return this;
+        }
     }
 }

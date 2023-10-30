@@ -1,0 +1,15 @@
+top.yangwulang.platform.entity.message.MessageRecord
+top.yangwulang.platform.entity.message.MessageRecordUser
+top.yangwulang.platform.entity.sys.Area
+top.yangwulang.platform.entity.sys.Company
+top.yangwulang.platform.entity.sys.Config
+top.yangwulang.platform.entity.sys.DictData
+top.yangwulang.platform.entity.sys.DictType
+top.yangwulang.platform.entity.sys.Employee
+top.yangwulang.platform.entity.sys.FileEntity
+top.yangwulang.platform.entity.sys.FileUpload
+top.yangwulang.platform.entity.sys.Menu
+top.yangwulang.platform.entity.sys.OptionAnalysis
+top.yangwulang.platform.entity.sys.Post
+top.yangwulang.platform.entity.sys.Role
+top.yangwulang.platform.entity.sys.User

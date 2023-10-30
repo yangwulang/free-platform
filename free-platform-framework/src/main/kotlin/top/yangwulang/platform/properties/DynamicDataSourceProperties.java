@@ -1,6 +1,5 @@
 package top.yangwulang.platform.properties;
 
-import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import java.util.List;
@@ -17,22 +16,8 @@ public class DynamicDataSourceProperties {
     private String password;
     private List<String> dataSourceNames;
     private Map<String, String> properties;
-
-    public List<String> getDataSourceNames() {
-        return dataSourceNames;
-    }
-
-    public void setDataSourceNames(List<String> dataSourceNames) {
-        this.dataSourceNames = dataSourceNames;
-    }
-
-    public Map<String, String> getProperties() {
-        return properties;
-    }
-
-    public void setProperties(Map<String, String> properties) {
-        this.properties = properties;
-    }
+    private Boolean distributed = false;
+    private String dbType;
 
     public String getDriverClassName() {
         return driverClassName;
@@ -66,15 +51,35 @@ public class DynamicDataSourceProperties {
         this.password = password;
     }
 
-    @Override
-    public String toString() {
-        return "DynamicDataSourceProperties{" +
-                "driverClassName='" + driverClassName + '\'' +
-                ", url='" + url + '\'' +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", dataSourceNames=" + dataSourceNames +
-                ", properties=" + properties +
-                '}';
+    public List<String> getDataSourceNames() {
+        return dataSourceNames;
+    }
+
+    public void setDataSourceNames(List<String> dataSourceNames) {
+        this.dataSourceNames = dataSourceNames;
+    }
+
+    public Map<String, String> getProperties() {
+        return properties;
+    }
+
+    public void setProperties(Map<String, String> properties) {
+        this.properties = properties;
+    }
+
+    public Boolean getDistributed() {
+        return distributed;
+    }
+
+    public void setDistributed(Boolean distributed) {
+        this.distributed = distributed;
+    }
+
+    public String getDbType() {
+        return dbType;
+    }
+
+    public void setDbType(String dbType) {
+        this.dbType = dbType;
     }
 }

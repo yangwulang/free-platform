@@ -15,20 +15,6 @@ import java.math.BigDecimal;
  */
 @Repository
 public interface DictDataRepository extends JRepository<DictData, String> {
-    DictDataTable TABLE = DictDataTable.$;
 
-    DictData ROOT = DictDataDraft.$.produce(m -> {
-        m.setId("0");
-        m.setTreeSort(BigDecimal.valueOf(0));
-        m.setTreeNames("");
-        m.setTreeSorts("0");
-    });
-
-    default Page<DictData> findAll(Pageable pageable, Fetcher<DictData> fetcher, DictDataInput dictDataInput) {
-        return pager(pageable).execute(
-                sql().createQuery(TABLE)
-                        .select(TABLE.fetch(fetcher))
-        );
-    }
 
 }

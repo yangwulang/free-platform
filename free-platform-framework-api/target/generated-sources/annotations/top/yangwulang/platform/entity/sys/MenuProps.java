@@ -1,116 +1,97 @@
 package top.yangwulang.platform.entity.sys;
 
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.util.Date;
+import org.babyfish.jimmer.GeneratedBy;
 import org.babyfish.jimmer.meta.ImmutableType;
 import org.babyfish.jimmer.meta.TypedProp;
 import org.babyfish.jimmer.sql.JoinType;
 import org.babyfish.jimmer.sql.ast.PropExpression;
 import org.babyfish.jimmer.sql.ast.table.PropsFor;
+import top.yangwulang.platform.entity.DataTypeBaseProps;
 
+@GeneratedBy(
+        type = Menu.class
+)
 @PropsFor(Menu.class)
 public interface MenuProps extends DataTypeBaseProps {
-    TypedProp.Reference<Menu, Menu> PARENT = 
-        TypedProp.reference(ImmutableType.get(Menu.class).getProp(8));
-
-    TypedProp.ReferenceList<Menu, Menu> CHILDREN = 
-        TypedProp.referenceList(ImmutableType.get(Menu.class).getProp(9));
-
-    TypedProp.Scalar<Menu, String> PARENT_CODES = 
-        TypedProp.scalar(ImmutableType.get(Menu.class).getProp(10));
-
-    TypedProp.Scalar<Menu, BigDecimal> TREE_SORT = 
-        TypedProp.scalar(ImmutableType.get(Menu.class).getProp(11));
-
-    TypedProp.Scalar<Menu, String> TREE_SORTS = 
-        TypedProp.scalar(ImmutableType.get(Menu.class).getProp(12));
-
-    TypedProp.Scalar<Menu, String> TREE_LEAF = 
-        TypedProp.scalar(ImmutableType.get(Menu.class).getProp(13));
-
-    TypedProp.Scalar<Menu, BigDecimal> TREE_LEVEL = 
-        TypedProp.scalar(ImmutableType.get(Menu.class).getProp(14));
-
-    TypedProp.Scalar<Menu, String> TREE_NAMES = 
-        TypedProp.scalar(ImmutableType.get(Menu.class).getProp(15));
-
-    TypedProp.Scalar<Menu, String> MENU_NAME = 
-        TypedProp.scalar(ImmutableType.get(Menu.class).getProp(16));
-
-    TypedProp.Scalar<Menu, String> MENU_TYPE = 
-        TypedProp.scalar(ImmutableType.get(Menu.class).getProp(17));
-
-    TypedProp.Scalar<Menu, String> MENU_HREF = 
-        TypedProp.scalar(ImmutableType.get(Menu.class).getProp(18));
-
-    TypedProp.Scalar<Menu, String> MENU_COMPONENT = 
-        TypedProp.scalar(ImmutableType.get(Menu.class).getProp(19));
-
-    TypedProp.Scalar<Menu, String> MENU_TARGET = 
-        TypedProp.scalar(ImmutableType.get(Menu.class).getProp(20));
-
-    TypedProp.Scalar<Menu, String> MENU_ICON = 
-        TypedProp.scalar(ImmutableType.get(Menu.class).getProp(21));
-
-    TypedProp.Scalar<Menu, String> MENU_COLOR = 
-        TypedProp.scalar(ImmutableType.get(Menu.class).getProp(22));
-
-    TypedProp.Scalar<Menu, String> MENU_TITLE = 
-        TypedProp.scalar(ImmutableType.get(Menu.class).getProp(23));
-
-    TypedProp.Scalar<Menu, String> PERMISSION = 
-        TypedProp.scalar(ImmutableType.get(Menu.class).getProp(24));
-
-    TypedProp.Scalar<Menu, BigDecimal> WEIGHT = 
-        TypedProp.scalar(ImmutableType.get(Menu.class).getProp(25));
-
-    TypedProp.Scalar<Menu, Boolean> SHOW = 
-        TypedProp.scalar(ImmutableType.get(Menu.class).getProp(26));
-
-    TypedProp.Scalar<Menu, String> SYS_CODE = 
-        TypedProp.scalar(ImmutableType.get(Menu.class).getProp(27));
-
-    TypedProp.ReferenceList<Menu, Role> ROLES = 
-        TypedProp.referenceList(ImmutableType.get(Menu.class).getProp(28));
-
     TypedProp.Scalar<Menu, String> ID = 
-        TypedProp.scalar(ImmutableType.get(Menu.class).getProp(1));
+        TypedProp.scalar(ImmutableType.get(Menu.class).getProp("id"));
 
-    TypedProp.Scalar<Menu, String> STATUS = 
-        TypedProp.scalar(ImmutableType.get(Menu.class).getProp(2));
+    TypedProp.Scalar<Menu, Integer> STATUS = 
+        TypedProp.scalar(ImmutableType.get(Menu.class).getProp("status"));
 
     TypedProp.Scalar<Menu, String> CREATE_BY = 
-        TypedProp.scalar(ImmutableType.get(Menu.class).getProp(3));
+        TypedProp.scalar(ImmutableType.get(Menu.class).getProp("createBy"));
 
-    TypedProp.Scalar<Menu, LocalDateTime> CREATE_DATE = 
-        TypedProp.scalar(ImmutableType.get(Menu.class).getProp(4));
+    TypedProp.Scalar<Menu, Date> CREATE_DATE = 
+        TypedProp.scalar(ImmutableType.get(Menu.class).getProp("createDate"));
 
     TypedProp.Scalar<Menu, String> UPDATE_BY = 
-        TypedProp.scalar(ImmutableType.get(Menu.class).getProp(5));
+        TypedProp.scalar(ImmutableType.get(Menu.class).getProp("updateBy"));
 
-    TypedProp.Scalar<Menu, LocalDateTime> UPDATE_DATE = 
-        TypedProp.scalar(ImmutableType.get(Menu.class).getProp(6));
+    TypedProp.Scalar<Menu, Date> UPDATE_DATE = 
+        TypedProp.scalar(ImmutableType.get(Menu.class).getProp("updateDate"));
 
     TypedProp.Scalar<Menu, String> REMARKS = 
-        TypedProp.scalar(ImmutableType.get(Menu.class).getProp(7));
+        TypedProp.scalar(ImmutableType.get(Menu.class).getProp("remarks"));
+
+    TypedProp.Reference<Menu, Menu> PARENT = 
+        TypedProp.reference(ImmutableType.get(Menu.class).getProp("parent"));
+
+    TypedProp.Scalar<Menu, String> PARENT_ID = 
+        TypedProp.scalar(ImmutableType.get(Menu.class).getProp("parentId"));
+
+    TypedProp.ReferenceList<Menu, Menu> CHILDREN = 
+        TypedProp.referenceList(ImmutableType.get(Menu.class).getProp("children"));
+
+    TypedProp.Scalar<Menu, String> MENU_NAME = 
+        TypedProp.scalar(ImmutableType.get(Menu.class).getProp("menuName"));
+
+    TypedProp.Scalar<Menu, String> MENU_TYPE = 
+        TypedProp.scalar(ImmutableType.get(Menu.class).getProp("menuType"));
+
+    TypedProp.Scalar<Menu, String> MENU_HREF = 
+        TypedProp.scalar(ImmutableType.get(Menu.class).getProp("menuHref"));
+
+    TypedProp.Scalar<Menu, String> MENU_COMPONENT = 
+        TypedProp.scalar(ImmutableType.get(Menu.class).getProp("menuComponent"));
+
+    TypedProp.Scalar<Menu, String> MENU_TARGET = 
+        TypedProp.scalar(ImmutableType.get(Menu.class).getProp("menuTarget"));
+
+    TypedProp.Scalar<Menu, String> MENU_ICON = 
+        TypedProp.scalar(ImmutableType.get(Menu.class).getProp("menuIcon"));
+
+    TypedProp.Scalar<Menu, String> MENU_COLOR = 
+        TypedProp.scalar(ImmutableType.get(Menu.class).getProp("menuColor"));
+
+    TypedProp.Scalar<Menu, String> MENU_TITLE = 
+        TypedProp.scalar(ImmutableType.get(Menu.class).getProp("menuTitle"));
+
+    TypedProp.Scalar<Menu, String> PERMISSION = 
+        TypedProp.scalar(ImmutableType.get(Menu.class).getProp("permission"));
+
+    TypedProp.Scalar<Menu, BigDecimal> WEIGHT = 
+        TypedProp.scalar(ImmutableType.get(Menu.class).getProp("weight"));
+
+    TypedProp.Scalar<Menu, Boolean> IS_SHOW = 
+        TypedProp.scalar(ImmutableType.get(Menu.class).getProp("isShow"));
+
+    TypedProp.Scalar<Menu, String> SYS_CODE = 
+        TypedProp.scalar(ImmutableType.get(Menu.class).getProp("sysCode"));
+
+    TypedProp.ReferenceList<Menu, Role> ROLES = 
+        TypedProp.referenceList(ImmutableType.get(Menu.class).getProp("roles"));
 
     MenuTable parent();
 
     MenuTable parent(JoinType joinType);
 
-    PropExpression.Str parentCodes();
-
-    PropExpression.Num<BigDecimal> treeSort();
-
-    PropExpression.Str treeSorts();
-
-    PropExpression.Str treeLeaf();
-
-    PropExpression.Num<BigDecimal> treeLevel();
-
-    PropExpression.Str treeNames();
+    PropExpression.Str parentId();
 
     PropExpression.Str menuName();
 
@@ -132,7 +113,7 @@ public interface MenuProps extends DataTypeBaseProps {
 
     PropExpression.Num<BigDecimal> weight();
 
-    PropExpression<Boolean> show();
+    PropExpression.Cmp<Boolean> isShow();
 
     PropExpression.Str sysCode();
 }

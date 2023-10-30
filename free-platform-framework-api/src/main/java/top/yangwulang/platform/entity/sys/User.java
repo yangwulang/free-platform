@@ -2,12 +2,11 @@ package top.yangwulang.platform.entity.sys;
 
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import org.babyfish.jimmer.Immutable;
 import org.babyfish.jimmer.sql.*;
+import top.yangwulang.platform.entity.BaseEntity;
 
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
-import java.util.Date;
+import java.util.List;
 
 /**
  * @author yangwulang
@@ -16,6 +15,21 @@ import java.util.Date;
 @Table(name = "sys_user")
 @Schema(description = "用户实体")
 public interface User extends BaseEntity {
+    /**
+     * 未激活
+     */
+    String STATUS_UN_ACTIVE = "10";
+
+    String STATUS_ACTIVE = "0";
+
+    /**
+     * 超级管理员用户类型
+     */
+    String USER_TYPE_SUPER_ADMIN = "9";
+    /**
+     * 普通用户类型
+     */
+    String USER_TYPE_SIMPLE_USER = "1";
 
     @Id
     @Schema(description = "用户编码")
@@ -71,8 +85,16 @@ public interface User extends BaseEntity {
     @Schema(description = "管理员类型")
     String mgrType();
 
-    @Null Integer pwdSecurityLevel();
+    Integer pwdSecurityLevel();
 
-    @Null Integer userWeight();
+    Integer userWeight();
+
+    @ManyToMany
+    @JoinTable(
+            name = "SYS_USER_ROLE",
+            joinColumnName = "USER_CODE",
+            inverseJoinColumnName = "ROLE_CODE"
+    )
+    List<Role> roles();
 
 }

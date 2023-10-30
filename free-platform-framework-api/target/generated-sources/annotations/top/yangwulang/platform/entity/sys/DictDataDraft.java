@@ -1,36 +1,46 @@
 package top.yangwulang.platform.entity.sys;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.io.Serializable;
 import java.lang.Boolean;
 import java.lang.CloneNotSupportedException;
 import java.lang.Cloneable;
 import java.lang.IllegalArgumentException;
+import java.lang.Integer;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.lang.System;
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import org.babyfish.jimmer.CircularReferenceException;
 import org.babyfish.jimmer.DraftConsumer;
+import org.babyfish.jimmer.GeneratedBy;
 import org.babyfish.jimmer.ImmutableObjects;
 import org.babyfish.jimmer.UnloadedException;
 import org.babyfish.jimmer.jackson.ImmutableModuleRequiredException;
 import org.babyfish.jimmer.lang.OldChain;
 import org.babyfish.jimmer.meta.ImmutablePropCategory;
 import org.babyfish.jimmer.meta.ImmutableType;
+import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.DraftContext;
 import org.babyfish.jimmer.runtime.DraftSpi;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
 import org.babyfish.jimmer.runtime.Internal;
 import org.babyfish.jimmer.runtime.NonSharedList;
+import org.babyfish.jimmer.runtime.Visibility;
+import org.babyfish.jimmer.sql.ManyToOne;
 import org.babyfish.jimmer.sql.OneToMany;
+import org.jetbrains.annotations.Nullable;
+import top.yangwulang.platform.entity.DataTypeBaseDraft;
 
+@GeneratedBy(
+        type = DictData.class
+)
 public interface DictDataDraft extends DictData, DataTypeBaseDraft {
     DictDataDraft.Producer $ = Producer.INSTANCE;
 
@@ -38,23 +48,24 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
     DictDataDraft setId(String id);
 
     @OldChain
-    DictDataDraft setStatus(String status);
+    DictDataDraft setStatus(int status);
 
     @OldChain
     DictDataDraft setCreateBy(String createBy);
 
     @OldChain
-    DictDataDraft setCreateDate(LocalDateTime createDate);
+    DictDataDraft setCreateDate(Date createDate);
 
     @OldChain
     DictDataDraft setUpdateBy(String updateBy);
 
     @OldChain
-    DictDataDraft setUpdateDate(LocalDateTime updateDate);
+    DictDataDraft setUpdateDate(Date updateDate);
 
     @OldChain
     DictDataDraft setRemarks(String remarks);
 
+    @Nullable
     DictDataDraft parent();
 
     DictDataDraft parent(boolean autoCreate);
@@ -79,6 +90,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
     @OldChain
     DictDataDraft addIntoChildren(DictData base, DraftConsumer<DictDataDraft> block);
 
+    @Nullable
     DictTypeDraft dictType();
 
     DictTypeDraft dictType(boolean autoCreate);
@@ -93,22 +105,10 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
     DictDataDraft applyDictType(DictType base, DraftConsumer<DictTypeDraft> block);
 
     @OldChain
-    DictDataDraft setParentCodes(String parentCodes);
+    DictDataDraft setParentId(String parentId);
 
     @OldChain
-    DictDataDraft setTreeSort(BigDecimal treeSort);
-
-    @OldChain
-    DictDataDraft setTreeSorts(String treeSorts);
-
-    @OldChain
-    DictDataDraft setTreeLeaf(String treeLeaf);
-
-    @OldChain
-    DictDataDraft setTreeLevel(BigDecimal treeLevel);
-
-    @OldChain
-    DictDataDraft setTreeNames(String treeNames);
+    DictDataDraft setDictTypeId(String dictTypeId);
 
     @OldChain
     DictDataDraft setDictLabel(String dictLabel);
@@ -117,7 +117,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
     DictDataDraft setDictValue(String dictValue);
 
     @OldChain
-    DictDataDraft setSys(boolean sys);
+    DictDataDraft setIsSys(Boolean isSys);
 
     @OldChain
     DictDataDraft setDescription(String description);
@@ -137,29 +137,73 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
     class Producer {
         static final Producer INSTANCE = new Producer();
 
+        public static final int SLOT_ID = 0;
+
+        public static final int SLOT_STATUS = 1;
+
+        public static final int SLOT_CREATE_BY = 2;
+
+        public static final int SLOT_CREATE_DATE = 3;
+
+        public static final int SLOT_UPDATE_BY = 4;
+
+        public static final int SLOT_UPDATE_DATE = 5;
+
+        public static final int SLOT_REMARKS = 6;
+
+        public static final int SLOT_PARENT = 7;
+
+        public static final int SLOT_CHILDREN = 8;
+
+        public static final int SLOT_DICT_TYPE = 9;
+
+        public static final int SLOT_PARENT_ID = 10;
+
+        public static final int SLOT_DICT_TYPE_ID = 11;
+
+        public static final int SLOT_DICT_LABEL = 12;
+
+        public static final int SLOT_DICT_VALUE = 13;
+
+        public static final int SLOT_IS_SYS = 14;
+
+        public static final int SLOT_DESCRIPTION = 15;
+
+        public static final int SLOT_CSS_STYLE = 16;
+
+        public static final int SLOT_CSS_CLASS = 17;
+
+        public static final int SLOT_CORP_CODE = 18;
+
+        public static final int SLOT_CORP_NAME = 19;
+
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
+                "0.8.23",
                 DictData.class,
-                DataTypeBaseDraft.Producer.TYPE,
+                Collections.singleton(DataTypeBaseDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (DictData)base)
             )
-            .keyReference(8, "parent", DictData.class, true)
-            .add(9, "children", OneToMany.class, DictData.class, false)
-            .keyReference(10, "dictType", DictType.class, true)
-            .add(11, "parentCodes", ImmutablePropCategory.SCALAR, String.class, true)
-            .add(12, "treeSort", ImmutablePropCategory.SCALAR, BigDecimal.class, true)
-            .add(13, "treeSorts", ImmutablePropCategory.SCALAR, String.class, true)
-            .add(14, "treeLeaf", ImmutablePropCategory.SCALAR, String.class, true)
-            .add(15, "treeLevel", ImmutablePropCategory.SCALAR, BigDecimal.class, true)
-            .add(16, "treeNames", ImmutablePropCategory.SCALAR, String.class, true)
-            .add(17, "dictLabel", ImmutablePropCategory.SCALAR, String.class, true)
-            .add(18, "dictValue", ImmutablePropCategory.SCALAR, String.class, true)
-            .add(19, "sys", ImmutablePropCategory.SCALAR, boolean.class, true)
-            .add(20, "description", ImmutablePropCategory.SCALAR, String.class, true)
-            .add(21, "cssStyle", ImmutablePropCategory.SCALAR, String.class, true)
-            .add(22, "cssClass", ImmutablePropCategory.SCALAR, String.class, true)
-            .add(23, "corpCode", ImmutablePropCategory.SCALAR, String.class, true)
-            .add(24, "corpName", ImmutablePropCategory.SCALAR, String.class, true)
+            .redefine("id", SLOT_ID)
+            .redefine("status", SLOT_STATUS)
+            .redefine("createBy", SLOT_CREATE_BY)
+            .redefine("createDate", SLOT_CREATE_DATE)
+            .redefine("updateBy", SLOT_UPDATE_BY)
+            .redefine("updateDate", SLOT_UPDATE_DATE)
+            .redefine("remarks", SLOT_REMARKS)
+            .keyReference(SLOT_PARENT, "parent", ManyToOne.class, DictData.class, true)
+            .add(SLOT_CHILDREN, "children", OneToMany.class, DictData.class, false)
+            .keyReference(SLOT_DICT_TYPE, "dictType", ManyToOne.class, DictType.class, true)
+            .add(SLOT_PARENT_ID, "parentId", ImmutablePropCategory.SCALAR, String.class, true)
+            .add(SLOT_DICT_TYPE_ID, "dictTypeId", ImmutablePropCategory.SCALAR, String.class, true)
+            .key(SLOT_DICT_LABEL, "dictLabel", String.class, true)
+            .key(SLOT_DICT_VALUE, "dictValue", String.class, true)
+            .add(SLOT_IS_SYS, "isSys", ImmutablePropCategory.SCALAR, Boolean.class, true)
+            .add(SLOT_DESCRIPTION, "description", ImmutablePropCategory.SCALAR, String.class, true)
+            .add(SLOT_CSS_STYLE, "cssStyle", ImmutablePropCategory.SCALAR, String.class, true)
+            .add(SLOT_CSS_CLASS, "cssClass", ImmutablePropCategory.SCALAR, String.class, true)
+            .add(SLOT_CORP_CODE, "corpCode", ImmutablePropCategory.SCALAR, String.class, true)
+            .add(SLOT_CORP_NAME, "corpName", ImmutablePropCategory.SCALAR, String.class, true)
             .build();
 
         private Producer() {
@@ -173,358 +217,450 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             return (DictData)Internal.produce(TYPE, base, block);
         }
 
-        public abstract static class Implementor implements DictData, ImmutableSpi {
+        public abstract interface Implementor extends DictData, ImmutableSpi {
             @Override
-            public Object __get(int prop) {
-                switch (prop) {
-                    case 1: return id();
-                    case 2: return status();
-                    case 3: return createBy();
-                    case 4: return createDate();
-                    case 5: return updateBy();
-                    case 6: return updateDate();
-                    case 7: return remarks();
-                    case 8: return parent();
-                    case 9: return children();
-                    case 10: return dictType();
-                    case 11: return parentCodes();
-                    case 12: return treeSort();
-                    case 13: return treeSorts();
-                    case 14: return treeLeaf();
-                    case 15: return treeLevel();
-                    case 16: return treeNames();
-                    case 17: return dictLabel();
-                    case 18: return dictValue();
-                    case 19: return (Boolean)isSys();
-                    case 20: return description();
-                    case 21: return cssStyle();
-                    case 22: return cssClass();
-                    case 23: return corpCode();
-                    case 24: return corpName();
-                    default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
+            default Object __get(PropId prop) {
+                int __propIndex = prop.asIndex();
+                switch (__propIndex) {
+                    case -1:
+                    		return __get(prop.asName());
+                    case SLOT_ID:
+                    		return id();
+                    case SLOT_STATUS:
+                    		return (Integer)status();
+                    case SLOT_CREATE_BY:
+                    		return createBy();
+                    case SLOT_CREATE_DATE:
+                    		return createDate();
+                    case SLOT_UPDATE_BY:
+                    		return updateBy();
+                    case SLOT_UPDATE_DATE:
+                    		return updateDate();
+                    case SLOT_REMARKS:
+                    		return remarks();
+                    case SLOT_PARENT:
+                    		return parent();
+                    case SLOT_CHILDREN:
+                    		return children();
+                    case SLOT_DICT_TYPE:
+                    		return dictType();
+                    case SLOT_PARENT_ID:
+                    		return parentId();
+                    case SLOT_DICT_TYPE_ID:
+                    		return dictTypeId();
+                    case SLOT_DICT_LABEL:
+                    		return dictLabel();
+                    case SLOT_DICT_VALUE:
+                    		return dictValue();
+                    case SLOT_IS_SYS:
+                    		return isSys();
+                    case SLOT_DESCRIPTION:
+                    		return description();
+                    case SLOT_CSS_STYLE:
+                    		return cssStyle();
+                    case SLOT_CSS_CLASS:
+                    		return cssClass();
+                    case SLOT_CORP_CODE:
+                    		return corpCode();
+                    case SLOT_CORP_NAME:
+                    		return corpName();
+                    default: throw new IllegalArgumentException("Illegal property name for \"top.yangwulang.platform.entity.sys.DictData\": \"" + prop + "\"");
                 }
             }
 
             @Override
-            public Object __get(String prop) {
+            default Object __get(String prop) {
                 switch (prop) {
-                    case "id": return id();
-                    case "status": return status();
-                    case "createBy": return createBy();
-                    case "createDate": return createDate();
-                    case "updateBy": return updateBy();
-                    case "updateDate": return updateDate();
-                    case "remarks": return remarks();
-                    case "parent": return parent();
-                    case "children": return children();
-                    case "dictType": return dictType();
-                    case "parentCodes": return parentCodes();
-                    case "treeSort": return treeSort();
-                    case "treeSorts": return treeSorts();
-                    case "treeLeaf": return treeLeaf();
-                    case "treeLevel": return treeLevel();
-                    case "treeNames": return treeNames();
-                    case "dictLabel": return dictLabel();
-                    case "dictValue": return dictValue();
-                    case "sys": return (Boolean)isSys();
-                    case "description": return description();
-                    case "cssStyle": return cssStyle();
-                    case "cssClass": return cssClass();
-                    case "corpCode": return corpCode();
-                    case "corpName": return corpName();
-                    default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
+                    case "id":
+                    		return id();
+                    case "status":
+                    		return (Integer)status();
+                    case "createBy":
+                    		return createBy();
+                    case "createDate":
+                    		return createDate();
+                    case "updateBy":
+                    		return updateBy();
+                    case "updateDate":
+                    		return updateDate();
+                    case "remarks":
+                    		return remarks();
+                    case "parent":
+                    		return parent();
+                    case "children":
+                    		return children();
+                    case "dictType":
+                    		return dictType();
+                    case "parentId":
+                    		return parentId();
+                    case "dictTypeId":
+                    		return dictTypeId();
+                    case "dictLabel":
+                    		return dictLabel();
+                    case "dictValue":
+                    		return dictValue();
+                    case "isSys":
+                    		return isSys();
+                    case "description":
+                    		return description();
+                    case "cssStyle":
+                    		return cssStyle();
+                    case "cssClass":
+                    		return cssClass();
+                    case "corpCode":
+                    		return corpCode();
+                    case "corpName":
+                    		return corpName();
+                    default: throw new IllegalArgumentException("Illegal property name for \"top.yangwulang.platform.entity.sys.DictData\": \"" + prop + "\"");
                 }
             }
 
+            @JsonIgnore
+            default String getId() {
+                return id();
+            }
+
+            @JsonIgnore
+            default int getStatus() {
+                return status();
+            }
+
+            @JsonIgnore
+            default String getCreateBy() {
+                return createBy();
+            }
+
+            @JsonIgnore
+            default Date getCreateDate() {
+                return createDate();
+            }
+
+            @JsonIgnore
+            default String getUpdateBy() {
+                return updateBy();
+            }
+
+            @JsonIgnore
+            default Date getUpdateDate() {
+                return updateDate();
+            }
+
+            @JsonIgnore
+            default String getRemarks() {
+                return remarks();
+            }
+
+            @JsonIgnore
+            default DictData getParent() {
+                return parent();
+            }
+
+            @JsonIgnore
+            default List<DictData> getChildren() {
+                return children();
+            }
+
+            @JsonIgnore
+            default DictType getDictType() {
+                return dictType();
+            }
+
+            @JsonIgnore
+            default String getParentId() {
+                return parentId();
+            }
+
+            @JsonIgnore
+            default String getDictTypeId() {
+                return dictTypeId();
+            }
+
+            @JsonIgnore
+            default String getDictLabel() {
+                return dictLabel();
+            }
+
+            @JsonIgnore
+            default String getDictValue() {
+                return dictValue();
+            }
+
+            @JsonIgnore
+            default Boolean getIsSys() {
+                return isSys();
+            }
+
+            @JsonIgnore
+            default String getDescription() {
+                return description();
+            }
+
+            @JsonIgnore
+            default String getCssStyle() {
+                return cssStyle();
+            }
+
+            @JsonIgnore
+            default String getCssClass() {
+                return cssClass();
+            }
+
+            @JsonIgnore
+            default String getCorpCode() {
+                return corpCode();
+            }
+
+            @JsonIgnore
+            default String getCorpName() {
+                return corpName();
+            }
+
             @Override
-            public ImmutableType __type() {
+            default ImmutableType __type() {
                 return TYPE;
             }
 
-            @Override
-            public String toString() {
-                return ImmutableObjects.toString(this);
-            }
-
-            public int getDummyPropForJacksonError__() {
+            default int getDummyPropForJacksonError__() {
                 throw new ImmutableModuleRequiredException();
             }
         }
 
-        private static class Impl extends Implementor implements Cloneable {
-            String id;
+        private static class Impl implements Implementor, Cloneable, Serializable {
+            private Visibility __visibility;
 
-            String status;
+            String __idValue;
 
-            String createBy;
+            int __statusValue;
 
-            LocalDateTime createDate;
+            boolean __statusLoaded = false;
 
-            String updateBy;
+            String __createByValue;
 
-            LocalDateTime updateDate;
+            Date __createDateValue;
 
-            String remarks;
+            String __updateByValue;
 
-            boolean remarksLoaded = false;
+            Date __updateDateValue;
 
-            DictData parent;
+            String __remarksValue;
 
-            boolean parentLoaded = false;
+            boolean __remarksLoaded = false;
 
-            NonSharedList<DictData> children;
+            DictData __parentValue;
 
-            DictType dictType;
+            boolean __parentLoaded = false;
 
-            boolean dictTypeLoaded = false;
+            NonSharedList<DictData> __childrenValue;
 
-            String parentCodes;
+            DictType __dictTypeValue;
 
-            boolean parentCodesLoaded = false;
+            boolean __dictTypeLoaded = false;
 
-            BigDecimal treeSort;
+            String __dictLabelValue;
 
-            boolean treeSortLoaded = false;
+            boolean __dictLabelLoaded = false;
 
-            String treeSorts;
+            String __dictValueValue;
 
-            boolean treeSortsLoaded = false;
+            boolean __dictValueLoaded = false;
 
-            String treeLeaf;
+            Boolean __isSysValue;
 
-            boolean treeLeafLoaded = false;
+            boolean __isSysLoaded = false;
 
-            BigDecimal treeLevel;
+            String __descriptionValue;
 
-            boolean treeLevelLoaded = false;
+            boolean __descriptionLoaded = false;
 
-            String treeNames;
+            String __cssStyleValue;
 
-            boolean treeNamesLoaded = false;
+            boolean __cssStyleLoaded = false;
 
-            String dictLabel;
+            String __cssClassValue;
 
-            boolean dictLabelLoaded = false;
+            boolean __cssClassLoaded = false;
 
-            String dictValue;
+            String __corpCodeValue;
 
-            boolean dictValueLoaded = false;
+            boolean __corpCodeLoaded = false;
 
-            boolean sys;
+            String __corpNameValue;
 
-            boolean sysLoaded = false;
+            boolean __corpNameLoaded = false;
 
-            String description;
-
-            boolean descriptionLoaded = false;
-
-            String cssStyle;
-
-            boolean cssStyleLoaded = false;
-
-            String cssClass;
-
-            boolean cssClassLoaded = false;
-
-            String corpCode;
-
-            boolean corpCodeLoaded = false;
-
-            String corpName;
-
-            boolean corpNameLoaded = false;
-
-            @Override
-            public String id() {
-                if (id == null) {
-                    throw new UnloadedException(DictData.class, "id");
-                }
-                return id;
+            Impl() {
+                __visibility = Visibility.of(20);
+                __visibility.show(SLOT_PARENT_ID, false);
+                __visibility.show(SLOT_DICT_TYPE_ID, false);
             }
 
             @Override
-            public String status() {
-                if (status == null) {
+            public String id() {
+                if (__idValue == null) {
+                    throw new UnloadedException(DictData.class, "id");
+                }
+                return __idValue;
+            }
+
+            @Override
+            public int status() {
+                if (!__statusLoaded) {
                     throw new UnloadedException(DictData.class, "status");
                 }
-                return status;
+                return __statusValue;
             }
 
             @Override
             public String createBy() {
-                if (createBy == null) {
+                if (__createByValue == null) {
                     throw new UnloadedException(DictData.class, "createBy");
                 }
-                return createBy;
+                return __createByValue;
             }
 
             @Override
-            public LocalDateTime createDate() {
-                if (createDate == null) {
+            public Date createDate() {
+                if (__createDateValue == null) {
                     throw new UnloadedException(DictData.class, "createDate");
                 }
-                return createDate;
+                return __createDateValue;
             }
 
             @Override
             public String updateBy() {
-                if (updateBy == null) {
+                if (__updateByValue == null) {
                     throw new UnloadedException(DictData.class, "updateBy");
                 }
-                return updateBy;
+                return __updateByValue;
             }
 
             @Override
-            public LocalDateTime updateDate() {
-                if (updateDate == null) {
+            public Date updateDate() {
+                if (__updateDateValue == null) {
                     throw new UnloadedException(DictData.class, "updateDate");
                 }
-                return updateDate;
+                return __updateDateValue;
             }
 
             @Override
+            @Nullable
             public String remarks() {
-                if (!remarksLoaded) {
+                if (!__remarksLoaded) {
                     throw new UnloadedException(DictData.class, "remarks");
                 }
-                return remarks;
+                return __remarksValue;
             }
 
             @Override
+            @Nullable
             public DictData parent() {
-                if (!parentLoaded) {
+                if (!__parentLoaded) {
                     throw new UnloadedException(DictData.class, "parent");
                 }
-                return parent;
+                return __parentValue;
             }
 
             @Override
             public List<DictData> children() {
-                if (children == null) {
+                if (__childrenValue == null) {
                     throw new UnloadedException(DictData.class, "children");
                 }
-                return children;
+                return __childrenValue;
             }
 
             @Override
+            @Nullable
             public DictType dictType() {
-                if (!dictTypeLoaded) {
+                if (!__dictTypeLoaded) {
                     throw new UnloadedException(DictData.class, "dictType");
                 }
-                return dictType;
+                return __dictTypeValue;
             }
 
             @Override
-            public String parentCodes() {
-                if (!parentCodesLoaded) {
-                    throw new UnloadedException(DictData.class, "parentCodes");
-                }
-                return parentCodes;
+            @Nullable
+            public String parentId() {
+                DictData __target = parent();
+                return __target != null ? __target.id() : null;
             }
 
             @Override
-            public BigDecimal treeSort() {
-                if (!treeSortLoaded) {
-                    throw new UnloadedException(DictData.class, "treeSort");
-                }
-                return treeSort;
+            @Nullable
+            public String dictTypeId() {
+                DictType __target = dictType();
+                return __target != null ? __target.id() : null;
             }
 
             @Override
-            public String treeSorts() {
-                if (!treeSortsLoaded) {
-                    throw new UnloadedException(DictData.class, "treeSorts");
-                }
-                return treeSorts;
-            }
-
-            @Override
-            public String treeLeaf() {
-                if (!treeLeafLoaded) {
-                    throw new UnloadedException(DictData.class, "treeLeaf");
-                }
-                return treeLeaf;
-            }
-
-            @Override
-            public BigDecimal treeLevel() {
-                if (!treeLevelLoaded) {
-                    throw new UnloadedException(DictData.class, "treeLevel");
-                }
-                return treeLevel;
-            }
-
-            @Override
-            public String treeNames() {
-                if (!treeNamesLoaded) {
-                    throw new UnloadedException(DictData.class, "treeNames");
-                }
-                return treeNames;
-            }
-
-            @Override
+            @Nullable
             public String dictLabel() {
-                if (!dictLabelLoaded) {
+                if (!__dictLabelLoaded) {
                     throw new UnloadedException(DictData.class, "dictLabel");
                 }
-                return dictLabel;
+                return __dictLabelValue;
             }
 
             @Override
+            @Nullable
             public String dictValue() {
-                if (!dictValueLoaded) {
+                if (!__dictValueLoaded) {
                     throw new UnloadedException(DictData.class, "dictValue");
                 }
-                return dictValue;
+                return __dictValueValue;
             }
 
             @Override
-            @JsonIgnore
-            public boolean isSys() {
-                if (!sysLoaded) {
-                    throw new UnloadedException(DictData.class, "sys");
+            @Nullable
+            public Boolean isSys() {
+                if (!__isSysLoaded) {
+                    throw new UnloadedException(DictData.class, "isSys");
                 }
-                return sys;
+                return __isSysValue;
             }
 
             @Override
+            @Nullable
             public String description() {
-                if (!descriptionLoaded) {
+                if (!__descriptionLoaded) {
                     throw new UnloadedException(DictData.class, "description");
                 }
-                return description;
+                return __descriptionValue;
             }
 
             @Override
+            @Nullable
             public String cssStyle() {
-                if (!cssStyleLoaded) {
+                if (!__cssStyleLoaded) {
                     throw new UnloadedException(DictData.class, "cssStyle");
                 }
-                return cssStyle;
+                return __cssStyleValue;
             }
 
             @Override
+            @Nullable
             public String cssClass() {
-                if (!cssClassLoaded) {
+                if (!__cssClassLoaded) {
                     throw new UnloadedException(DictData.class, "cssClass");
                 }
-                return cssClass;
+                return __cssClassValue;
             }
 
             @Override
+            @Nullable
             public String corpCode() {
-                if (!corpCodeLoaded) {
+                if (!__corpCodeLoaded) {
                     throw new UnloadedException(DictData.class, "corpCode");
                 }
-                return corpCode;
+                return __corpCodeValue;
             }
 
             @Override
+            @Nullable
             public String corpName() {
-                if (!corpNameLoaded) {
+                if (!__corpNameLoaded) {
                     throw new UnloadedException(DictData.class, "corpName");
                 }
-                return corpName;
+                return __corpNameValue;
             }
 
             @Override
@@ -537,220 +673,326 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
-            public boolean __isLoaded(int prop) {
-                switch (prop) {
-                    case 1: return id != null;
-                    case 2: return status != null;
-                    case 3: return createBy != null;
-                    case 4: return createDate != null;
-                    case 5: return updateBy != null;
-                    case 6: return updateDate != null;
-                    case 7: return remarksLoaded;
-                    case 8: return parentLoaded;
-                    case 9: return children != null;
-                    case 10: return dictTypeLoaded;
-                    case 11: return parentCodesLoaded;
-                    case 12: return treeSortLoaded;
-                    case 13: return treeSortsLoaded;
-                    case 14: return treeLeafLoaded;
-                    case 15: return treeLevelLoaded;
-                    case 16: return treeNamesLoaded;
-                    case 17: return dictLabelLoaded;
-                    case 18: return dictValueLoaded;
-                    case 19: return sysLoaded;
-                    case 20: return descriptionLoaded;
-                    case 21: return cssStyleLoaded;
-                    case 22: return cssClassLoaded;
-                    case 23: return corpCodeLoaded;
-                    case 24: return corpNameLoaded;
-                    default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
+            public boolean __isLoaded(PropId prop) {
+                int __propIndex = prop.asIndex();
+                switch (__propIndex) {
+                    case -1:
+                    		return __isLoaded(prop.asName());
+                    case SLOT_ID:
+                    		return __idValue != null;
+                    case SLOT_STATUS:
+                    		return __statusLoaded;
+                    case SLOT_CREATE_BY:
+                    		return __createByValue != null;
+                    case SLOT_CREATE_DATE:
+                    		return __createDateValue != null;
+                    case SLOT_UPDATE_BY:
+                    		return __updateByValue != null;
+                    case SLOT_UPDATE_DATE:
+                    		return __updateDateValue != null;
+                    case SLOT_REMARKS:
+                    		return __remarksLoaded;
+                    case SLOT_PARENT:
+                    		return __parentLoaded;
+                    case SLOT_CHILDREN:
+                    		return __childrenValue != null;
+                    case SLOT_DICT_TYPE:
+                    		return __dictTypeLoaded;
+                    case SLOT_PARENT_ID:
+                    		return __isLoaded(PropId.byIndex(SLOT_PARENT)) && (parent() == null || 
+                            	((ImmutableSpi)parent()).__isLoaded(PropId.byIndex(Producer.SLOT_ID)));
+                    case SLOT_DICT_TYPE_ID:
+                    		return __isLoaded(PropId.byIndex(SLOT_DICT_TYPE)) && (dictType() == null || 
+                            	((ImmutableSpi)dictType()).__isLoaded(PropId.byIndex(DictTypeDraft.Producer.SLOT_ID)));
+                    case SLOT_DICT_LABEL:
+                    		return __dictLabelLoaded;
+                    case SLOT_DICT_VALUE:
+                    		return __dictValueLoaded;
+                    case SLOT_IS_SYS:
+                    		return __isSysLoaded;
+                    case SLOT_DESCRIPTION:
+                    		return __descriptionLoaded;
+                    case SLOT_CSS_STYLE:
+                    		return __cssStyleLoaded;
+                    case SLOT_CSS_CLASS:
+                    		return __cssClassLoaded;
+                    case SLOT_CORP_CODE:
+                    		return __corpCodeLoaded;
+                    case SLOT_CORP_NAME:
+                    		return __corpNameLoaded;
+                    default: throw new IllegalArgumentException("Illegal property name for \"top.yangwulang.platform.entity.sys.DictData\": \"" + prop + "\"");
                 }
             }
 
             @Override
             public boolean __isLoaded(String prop) {
                 switch (prop) {
-                    case "id": return id != null;
-                    case "status": return status != null;
-                    case "createBy": return createBy != null;
-                    case "createDate": return createDate != null;
-                    case "updateBy": return updateBy != null;
-                    case "updateDate": return updateDate != null;
-                    case "remarks": return remarksLoaded;
-                    case "parent": return parentLoaded;
-                    case "children": return children != null;
-                    case "dictType": return dictTypeLoaded;
-                    case "parentCodes": return parentCodesLoaded;
-                    case "treeSort": return treeSortLoaded;
-                    case "treeSorts": return treeSortsLoaded;
-                    case "treeLeaf": return treeLeafLoaded;
-                    case "treeLevel": return treeLevelLoaded;
-                    case "treeNames": return treeNamesLoaded;
-                    case "dictLabel": return dictLabelLoaded;
-                    case "dictValue": return dictValueLoaded;
-                    case "sys": return sysLoaded;
-                    case "description": return descriptionLoaded;
-                    case "cssStyle": return cssStyleLoaded;
-                    case "cssClass": return cssClassLoaded;
-                    case "corpCode": return corpCodeLoaded;
-                    case "corpName": return corpNameLoaded;
-                    default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
+                    case "id":
+                    		return __idValue != null;
+                    case "status":
+                    		return __statusLoaded;
+                    case "createBy":
+                    		return __createByValue != null;
+                    case "createDate":
+                    		return __createDateValue != null;
+                    case "updateBy":
+                    		return __updateByValue != null;
+                    case "updateDate":
+                    		return __updateDateValue != null;
+                    case "remarks":
+                    		return __remarksLoaded;
+                    case "parent":
+                    		return __parentLoaded;
+                    case "children":
+                    		return __childrenValue != null;
+                    case "dictType":
+                    		return __dictTypeLoaded;
+                    case "parentId":
+                    		return __isLoaded(PropId.byIndex(SLOT_PARENT)) && (parent() == null || 
+                            	((ImmutableSpi)parent()).__isLoaded(PropId.byIndex(Producer.SLOT_ID)));
+                    case "dictTypeId":
+                    		return __isLoaded(PropId.byIndex(SLOT_DICT_TYPE)) && (dictType() == null || 
+                            	((ImmutableSpi)dictType()).__isLoaded(PropId.byIndex(DictTypeDraft.Producer.SLOT_ID)));
+                    case "dictLabel":
+                    		return __dictLabelLoaded;
+                    case "dictValue":
+                    		return __dictValueLoaded;
+                    case "isSys":
+                    		return __isSysLoaded;
+                    case "description":
+                    		return __descriptionLoaded;
+                    case "cssStyle":
+                    		return __cssStyleLoaded;
+                    case "cssClass":
+                    		return __cssClassLoaded;
+                    case "corpCode":
+                    		return __corpCodeLoaded;
+                    case "corpName":
+                    		return __corpNameLoaded;
+                    default: throw new IllegalArgumentException("Illegal property name for \"top.yangwulang.platform.entity.sys.DictData\": \"" + prop + "\"");
+                }
+            }
+
+            @Override
+            public boolean __isVisible(PropId prop) {
+                if (__visibility == null) {
+                    return true;
+                }
+                int __propIndex = prop.asIndex();
+                switch (__propIndex) {
+                    case -1:
+                    		return __isVisible(prop.asName());
+                    case SLOT_ID:
+                    		return __visibility.visible(SLOT_ID);
+                    case SLOT_STATUS:
+                    		return __visibility.visible(SLOT_STATUS);
+                    case SLOT_CREATE_BY:
+                    		return __visibility.visible(SLOT_CREATE_BY);
+                    case SLOT_CREATE_DATE:
+                    		return __visibility.visible(SLOT_CREATE_DATE);
+                    case SLOT_UPDATE_BY:
+                    		return __visibility.visible(SLOT_UPDATE_BY);
+                    case SLOT_UPDATE_DATE:
+                    		return __visibility.visible(SLOT_UPDATE_DATE);
+                    case SLOT_REMARKS:
+                    		return __visibility.visible(SLOT_REMARKS);
+                    case SLOT_PARENT:
+                    		return __visibility.visible(SLOT_PARENT);
+                    case SLOT_CHILDREN:
+                    		return __visibility.visible(SLOT_CHILDREN);
+                    case SLOT_DICT_TYPE:
+                    		return __visibility.visible(SLOT_DICT_TYPE);
+                    case SLOT_PARENT_ID:
+                    		return __visibility.visible(SLOT_PARENT_ID);
+                    case SLOT_DICT_TYPE_ID:
+                    		return __visibility.visible(SLOT_DICT_TYPE_ID);
+                    case SLOT_DICT_LABEL:
+                    		return __visibility.visible(SLOT_DICT_LABEL);
+                    case SLOT_DICT_VALUE:
+                    		return __visibility.visible(SLOT_DICT_VALUE);
+                    case SLOT_IS_SYS:
+                    		return __visibility.visible(SLOT_IS_SYS);
+                    case SLOT_DESCRIPTION:
+                    		return __visibility.visible(SLOT_DESCRIPTION);
+                    case SLOT_CSS_STYLE:
+                    		return __visibility.visible(SLOT_CSS_STYLE);
+                    case SLOT_CSS_CLASS:
+                    		return __visibility.visible(SLOT_CSS_CLASS);
+                    case SLOT_CORP_CODE:
+                    		return __visibility.visible(SLOT_CORP_CODE);
+                    case SLOT_CORP_NAME:
+                    		return __visibility.visible(SLOT_CORP_NAME);
+                    default: return true;
+                }
+            }
+
+            @Override
+            public boolean __isVisible(String prop) {
+                if (__visibility == null) {
+                    return true;
+                }
+                switch (prop) {
+                    case "id":
+                    		return __visibility.visible(SLOT_ID);
+                    case "status":
+                    		return __visibility.visible(SLOT_STATUS);
+                    case "createBy":
+                    		return __visibility.visible(SLOT_CREATE_BY);
+                    case "createDate":
+                    		return __visibility.visible(SLOT_CREATE_DATE);
+                    case "updateBy":
+                    		return __visibility.visible(SLOT_UPDATE_BY);
+                    case "updateDate":
+                    		return __visibility.visible(SLOT_UPDATE_DATE);
+                    case "remarks":
+                    		return __visibility.visible(SLOT_REMARKS);
+                    case "parent":
+                    		return __visibility.visible(SLOT_PARENT);
+                    case "children":
+                    		return __visibility.visible(SLOT_CHILDREN);
+                    case "dictType":
+                    		return __visibility.visible(SLOT_DICT_TYPE);
+                    case "parentId":
+                    		return __visibility.visible(SLOT_PARENT_ID);
+                    case "dictTypeId":
+                    		return __visibility.visible(SLOT_DICT_TYPE_ID);
+                    case "dictLabel":
+                    		return __visibility.visible(SLOT_DICT_LABEL);
+                    case "dictValue":
+                    		return __visibility.visible(SLOT_DICT_VALUE);
+                    case "isSys":
+                    		return __visibility.visible(SLOT_IS_SYS);
+                    case "description":
+                    		return __visibility.visible(SLOT_DESCRIPTION);
+                    case "cssStyle":
+                    		return __visibility.visible(SLOT_CSS_STYLE);
+                    case "cssClass":
+                    		return __visibility.visible(SLOT_CSS_CLASS);
+                    case "corpCode":
+                    		return __visibility.visible(SLOT_CORP_CODE);
+                    case "corpName":
+                    		return __visibility.visible(SLOT_CORP_NAME);
+                    default: return true;
                 }
             }
 
             @Override
             public int hashCode() {
-                int hash = 1;
-                if (id != null) {
-                    hash = 31 * hash + id.hashCode();
+                int hash = __visibility != null ? __visibility.hashCode() : 0;
+                if (__idValue != null) {
+                    hash = 31 * hash + __idValue.hashCode();
                     // If entity-id is loaded, return directly
                     return hash;
                 }
-                if (status != null) {
-                    hash = 31 * hash + status.hashCode();
+                if (__statusLoaded) {
+                    hash = 31 * hash + Integer.hashCode(__statusValue);
                 }
-                if (createBy != null) {
-                    hash = 31 * hash + createBy.hashCode();
+                if (__createByValue != null) {
+                    hash = 31 * hash + __createByValue.hashCode();
                 }
-                if (createDate != null) {
-                    hash = 31 * hash + createDate.hashCode();
+                if (__createDateValue != null) {
+                    hash = 31 * hash + __createDateValue.hashCode();
                 }
-                if (updateBy != null) {
-                    hash = 31 * hash + updateBy.hashCode();
+                if (__updateByValue != null) {
+                    hash = 31 * hash + __updateByValue.hashCode();
                 }
-                if (updateDate != null) {
-                    hash = 31 * hash + updateDate.hashCode();
+                if (__updateDateValue != null) {
+                    hash = 31 * hash + __updateDateValue.hashCode();
                 }
-                if (remarksLoaded && remarks != null) {
-                    hash = 31 * hash + remarks.hashCode();
+                if (__remarksLoaded && __remarksValue != null) {
+                    hash = 31 * hash + __remarksValue.hashCode();
                 }
-                if (parentLoaded && parent != null) {
-                    hash = 31 * hash + parent.hashCode();
+                if (__parentLoaded && __parentValue != null) {
+                    hash = 31 * hash + __parentValue.hashCode();
                 }
-                if (children != null) {
-                    hash = 31 * hash + children.hashCode();
+                if (__childrenValue != null) {
+                    hash = 31 * hash + __childrenValue.hashCode();
                 }
-                if (dictTypeLoaded && dictType != null) {
-                    hash = 31 * hash + dictType.hashCode();
+                if (__dictTypeLoaded && __dictTypeValue != null) {
+                    hash = 31 * hash + __dictTypeValue.hashCode();
                 }
-                if (parentCodesLoaded && parentCodes != null) {
-                    hash = 31 * hash + parentCodes.hashCode();
+                if (__dictLabelLoaded && __dictLabelValue != null) {
+                    hash = 31 * hash + __dictLabelValue.hashCode();
                 }
-                if (treeSortLoaded && treeSort != null) {
-                    hash = 31 * hash + treeSort.hashCode();
+                if (__dictValueLoaded && __dictValueValue != null) {
+                    hash = 31 * hash + __dictValueValue.hashCode();
                 }
-                if (treeSortsLoaded && treeSorts != null) {
-                    hash = 31 * hash + treeSorts.hashCode();
+                if (__isSysLoaded && __isSysValue != null) {
+                    hash = 31 * hash + __isSysValue.hashCode();
                 }
-                if (treeLeafLoaded && treeLeaf != null) {
-                    hash = 31 * hash + treeLeaf.hashCode();
+                if (__descriptionLoaded && __descriptionValue != null) {
+                    hash = 31 * hash + __descriptionValue.hashCode();
                 }
-                if (treeLevelLoaded && treeLevel != null) {
-                    hash = 31 * hash + treeLevel.hashCode();
+                if (__cssStyleLoaded && __cssStyleValue != null) {
+                    hash = 31 * hash + __cssStyleValue.hashCode();
                 }
-                if (treeNamesLoaded && treeNames != null) {
-                    hash = 31 * hash + treeNames.hashCode();
+                if (__cssClassLoaded && __cssClassValue != null) {
+                    hash = 31 * hash + __cssClassValue.hashCode();
                 }
-                if (dictLabelLoaded && dictLabel != null) {
-                    hash = 31 * hash + dictLabel.hashCode();
+                if (__corpCodeLoaded && __corpCodeValue != null) {
+                    hash = 31 * hash + __corpCodeValue.hashCode();
                 }
-                if (dictValueLoaded && dictValue != null) {
-                    hash = 31 * hash + dictValue.hashCode();
-                }
-                if (sysLoaded) {
-                    hash = 31 * hash + Boolean.hashCode(sys);
-                }
-                if (descriptionLoaded && description != null) {
-                    hash = 31 * hash + description.hashCode();
-                }
-                if (cssStyleLoaded && cssStyle != null) {
-                    hash = 31 * hash + cssStyle.hashCode();
-                }
-                if (cssClassLoaded && cssClass != null) {
-                    hash = 31 * hash + cssClass.hashCode();
-                }
-                if (corpCodeLoaded && corpCode != null) {
-                    hash = 31 * hash + corpCode.hashCode();
-                }
-                if (corpNameLoaded && corpName != null) {
-                    hash = 31 * hash + corpName.hashCode();
+                if (__corpNameLoaded && __corpNameValue != null) {
+                    hash = 31 * hash + __corpNameValue.hashCode();
                 }
                 return hash;
             }
 
             private int __shallowHashCode() {
-                int hash = 1;
-                if (id != null) {
-                    hash = 31 * hash + System.identityHashCode(id);
+                int hash = __visibility != null ? __visibility.hashCode() : 0;
+                if (__idValue != null) {
+                    hash = 31 * hash + System.identityHashCode(__idValue);
                 }
-                if (status != null) {
-                    hash = 31 * hash + System.identityHashCode(status);
+                if (__statusLoaded) {
+                    hash = 31 * hash + Integer.hashCode(__statusValue);
                 }
-                if (createBy != null) {
-                    hash = 31 * hash + System.identityHashCode(createBy);
+                if (__createByValue != null) {
+                    hash = 31 * hash + System.identityHashCode(__createByValue);
                 }
-                if (createDate != null) {
-                    hash = 31 * hash + System.identityHashCode(createDate);
+                if (__createDateValue != null) {
+                    hash = 31 * hash + System.identityHashCode(__createDateValue);
                 }
-                if (updateBy != null) {
-                    hash = 31 * hash + System.identityHashCode(updateBy);
+                if (__updateByValue != null) {
+                    hash = 31 * hash + System.identityHashCode(__updateByValue);
                 }
-                if (updateDate != null) {
-                    hash = 31 * hash + System.identityHashCode(updateDate);
+                if (__updateDateValue != null) {
+                    hash = 31 * hash + System.identityHashCode(__updateDateValue);
                 }
-                if (remarksLoaded) {
-                    hash = 31 * hash + System.identityHashCode(remarks);
+                if (__remarksLoaded) {
+                    hash = 31 * hash + System.identityHashCode(__remarksValue);
                 }
-                if (parentLoaded) {
-                    hash = 31 * hash + System.identityHashCode(parent);
+                if (__parentLoaded) {
+                    hash = 31 * hash + System.identityHashCode(__parentValue);
                 }
-                if (children != null) {
-                    hash = 31 * hash + System.identityHashCode(children);
+                if (__childrenValue != null) {
+                    hash = 31 * hash + System.identityHashCode(__childrenValue);
                 }
-                if (dictTypeLoaded) {
-                    hash = 31 * hash + System.identityHashCode(dictType);
+                if (__dictTypeLoaded) {
+                    hash = 31 * hash + System.identityHashCode(__dictTypeValue);
                 }
-                if (parentCodesLoaded) {
-                    hash = 31 * hash + System.identityHashCode(parentCodes);
+                if (__dictLabelLoaded) {
+                    hash = 31 * hash + System.identityHashCode(__dictLabelValue);
                 }
-                if (treeSortLoaded) {
-                    hash = 31 * hash + System.identityHashCode(treeSort);
+                if (__dictValueLoaded) {
+                    hash = 31 * hash + System.identityHashCode(__dictValueValue);
                 }
-                if (treeSortsLoaded) {
-                    hash = 31 * hash + System.identityHashCode(treeSorts);
+                if (__isSysLoaded) {
+                    hash = 31 * hash + System.identityHashCode(__isSysValue);
                 }
-                if (treeLeafLoaded) {
-                    hash = 31 * hash + System.identityHashCode(treeLeaf);
+                if (__descriptionLoaded) {
+                    hash = 31 * hash + System.identityHashCode(__descriptionValue);
                 }
-                if (treeLevelLoaded) {
-                    hash = 31 * hash + System.identityHashCode(treeLevel);
+                if (__cssStyleLoaded) {
+                    hash = 31 * hash + System.identityHashCode(__cssStyleValue);
                 }
-                if (treeNamesLoaded) {
-                    hash = 31 * hash + System.identityHashCode(treeNames);
+                if (__cssClassLoaded) {
+                    hash = 31 * hash + System.identityHashCode(__cssClassValue);
                 }
-                if (dictLabelLoaded) {
-                    hash = 31 * hash + System.identityHashCode(dictLabel);
+                if (__corpCodeLoaded) {
+                    hash = 31 * hash + System.identityHashCode(__corpCodeValue);
                 }
-                if (dictValueLoaded) {
-                    hash = 31 * hash + System.identityHashCode(dictValue);
-                }
-                if (sysLoaded) {
-                    hash = 31 * hash + Boolean.hashCode(sys);
-                }
-                if (descriptionLoaded) {
-                    hash = 31 * hash + System.identityHashCode(description);
-                }
-                if (cssStyleLoaded) {
-                    hash = 31 * hash + System.identityHashCode(cssStyle);
-                }
-                if (cssClassLoaded) {
-                    hash = 31 * hash + System.identityHashCode(cssClass);
-                }
-                if (corpCodeLoaded) {
-                    hash = 31 * hash + System.identityHashCode(corpCode);
-                }
-                if (corpNameLoaded) {
-                    hash = 31 * hash + System.identityHashCode(corpName);
+                if (__corpNameLoaded) {
+                    hash = 31 * hash + System.identityHashCode(__corpNameValue);
                 }
                 return hash;
             }
@@ -765,174 +1007,192 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
                 if (obj == null || !(obj instanceof Implementor)) {
                     return false;
                 }
-                Implementor other = (Implementor)obj;
-                boolean __idLoaded = id != null;
-                if (__idLoaded != other.__isLoaded(1)) {
+                Implementor __other = (Implementor)obj;
+                if (__isVisible(PropId.byIndex(SLOT_ID)) != __other.__isVisible(PropId.byIndex(SLOT_ID))) {
+                    return false;
+                }
+                boolean __idLoaded = __idValue != null;
+                if (__idLoaded != __other.__isLoaded(PropId.byIndex(SLOT_ID))) {
                     return false;
                 }
                 if (__idLoaded) {
                     // If entity-id is loaded, return directly
-                    return Objects.equals(id, other.id());
+                    return Objects.equals(__idValue, __other.id());
                 }
-                boolean __statusLoaded = status != null;
-                if (__statusLoaded != other.__isLoaded(2)) {
+                if (__isVisible(PropId.byIndex(SLOT_STATUS)) != __other.__isVisible(PropId.byIndex(SLOT_STATUS))) {
                     return false;
                 }
-                if (__statusLoaded && !Objects.equals(status, other.status())) {
+                boolean __statusLoaded = this.__statusLoaded;
+                if (__statusLoaded != __other.__isLoaded(PropId.byIndex(SLOT_STATUS))) {
                     return false;
                 }
-                boolean __createByLoaded = createBy != null;
-                if (__createByLoaded != other.__isLoaded(3)) {
+                if (__statusLoaded && __statusValue != __other.status()) {
                     return false;
                 }
-                if (__createByLoaded && !Objects.equals(createBy, other.createBy())) {
+                if (__isVisible(PropId.byIndex(SLOT_CREATE_BY)) != __other.__isVisible(PropId.byIndex(SLOT_CREATE_BY))) {
                     return false;
                 }
-                boolean __createDateLoaded = createDate != null;
-                if (__createDateLoaded != other.__isLoaded(4)) {
+                boolean __createByLoaded = __createByValue != null;
+                if (__createByLoaded != __other.__isLoaded(PropId.byIndex(SLOT_CREATE_BY))) {
                     return false;
                 }
-                if (__createDateLoaded && !Objects.equals(createDate, other.createDate())) {
+                if (__createByLoaded && !Objects.equals(__createByValue, __other.createBy())) {
                     return false;
                 }
-                boolean __updateByLoaded = updateBy != null;
-                if (__updateByLoaded != other.__isLoaded(5)) {
+                if (__isVisible(PropId.byIndex(SLOT_CREATE_DATE)) != __other.__isVisible(PropId.byIndex(SLOT_CREATE_DATE))) {
                     return false;
                 }
-                if (__updateByLoaded && !Objects.equals(updateBy, other.updateBy())) {
+                boolean __createDateLoaded = __createDateValue != null;
+                if (__createDateLoaded != __other.__isLoaded(PropId.byIndex(SLOT_CREATE_DATE))) {
                     return false;
                 }
-                boolean __updateDateLoaded = updateDate != null;
-                if (__updateDateLoaded != other.__isLoaded(6)) {
+                if (__createDateLoaded && !Objects.equals(__createDateValue, __other.createDate())) {
                     return false;
                 }
-                if (__updateDateLoaded && !Objects.equals(updateDate, other.updateDate())) {
+                if (__isVisible(PropId.byIndex(SLOT_UPDATE_BY)) != __other.__isVisible(PropId.byIndex(SLOT_UPDATE_BY))) {
                     return false;
                 }
-                boolean __remarksLoaded = remarksLoaded;
-                if (__remarksLoaded != other.__isLoaded(7)) {
+                boolean __updateByLoaded = __updateByValue != null;
+                if (__updateByLoaded != __other.__isLoaded(PropId.byIndex(SLOT_UPDATE_BY))) {
                     return false;
                 }
-                if (__remarksLoaded && !Objects.equals(remarks, other.remarks())) {
+                if (__updateByLoaded && !Objects.equals(__updateByValue, __other.updateBy())) {
                     return false;
                 }
-                boolean __parentLoaded = parentLoaded;
-                if (__parentLoaded != other.__isLoaded(8)) {
+                if (__isVisible(PropId.byIndex(SLOT_UPDATE_DATE)) != __other.__isVisible(PropId.byIndex(SLOT_UPDATE_DATE))) {
                     return false;
                 }
-                if (__parentLoaded && !Objects.equals(parent, other.parent())) {
+                boolean __updateDateLoaded = __updateDateValue != null;
+                if (__updateDateLoaded != __other.__isLoaded(PropId.byIndex(SLOT_UPDATE_DATE))) {
                     return false;
                 }
-                boolean __childrenLoaded = children != null;
-                if (__childrenLoaded != other.__isLoaded(9)) {
+                if (__updateDateLoaded && !Objects.equals(__updateDateValue, __other.updateDate())) {
                     return false;
                 }
-                if (__childrenLoaded && !Objects.equals(children, other.children())) {
+                if (__isVisible(PropId.byIndex(SLOT_REMARKS)) != __other.__isVisible(PropId.byIndex(SLOT_REMARKS))) {
                     return false;
                 }
-                boolean __dictTypeLoaded = dictTypeLoaded;
-                if (__dictTypeLoaded != other.__isLoaded(10)) {
+                boolean __remarksLoaded = this.__remarksLoaded;
+                if (__remarksLoaded != __other.__isLoaded(PropId.byIndex(SLOT_REMARKS))) {
                     return false;
                 }
-                if (__dictTypeLoaded && !Objects.equals(dictType, other.dictType())) {
+                if (__remarksLoaded && !Objects.equals(__remarksValue, __other.remarks())) {
                     return false;
                 }
-                boolean __parentCodesLoaded = parentCodesLoaded;
-                if (__parentCodesLoaded != other.__isLoaded(11)) {
+                if (__isVisible(PropId.byIndex(SLOT_PARENT)) != __other.__isVisible(PropId.byIndex(SLOT_PARENT))) {
                     return false;
                 }
-                if (__parentCodesLoaded && !Objects.equals(parentCodes, other.parentCodes())) {
+                boolean __parentLoaded = this.__parentLoaded;
+                if (__parentLoaded != __other.__isLoaded(PropId.byIndex(SLOT_PARENT))) {
                     return false;
                 }
-                boolean __treeSortLoaded = treeSortLoaded;
-                if (__treeSortLoaded != other.__isLoaded(12)) {
+                if (__parentLoaded && !Objects.equals(__parentValue, __other.parent())) {
                     return false;
                 }
-                if (__treeSortLoaded && !Objects.equals(treeSort, other.treeSort())) {
+                if (__isVisible(PropId.byIndex(SLOT_CHILDREN)) != __other.__isVisible(PropId.byIndex(SLOT_CHILDREN))) {
                     return false;
                 }
-                boolean __treeSortsLoaded = treeSortsLoaded;
-                if (__treeSortsLoaded != other.__isLoaded(13)) {
+                boolean __childrenLoaded = __childrenValue != null;
+                if (__childrenLoaded != __other.__isLoaded(PropId.byIndex(SLOT_CHILDREN))) {
                     return false;
                 }
-                if (__treeSortsLoaded && !Objects.equals(treeSorts, other.treeSorts())) {
+                if (__childrenLoaded && !Objects.equals(__childrenValue, __other.children())) {
                     return false;
                 }
-                boolean __treeLeafLoaded = treeLeafLoaded;
-                if (__treeLeafLoaded != other.__isLoaded(14)) {
+                if (__isVisible(PropId.byIndex(SLOT_DICT_TYPE)) != __other.__isVisible(PropId.byIndex(SLOT_DICT_TYPE))) {
                     return false;
                 }
-                if (__treeLeafLoaded && !Objects.equals(treeLeaf, other.treeLeaf())) {
+                boolean __dictTypeLoaded = this.__dictTypeLoaded;
+                if (__dictTypeLoaded != __other.__isLoaded(PropId.byIndex(SLOT_DICT_TYPE))) {
                     return false;
                 }
-                boolean __treeLevelLoaded = treeLevelLoaded;
-                if (__treeLevelLoaded != other.__isLoaded(15)) {
+                if (__dictTypeLoaded && !Objects.equals(__dictTypeValue, __other.dictType())) {
                     return false;
                 }
-                if (__treeLevelLoaded && !Objects.equals(treeLevel, other.treeLevel())) {
+                if (__isVisible(PropId.byIndex(SLOT_PARENT_ID)) != __other.__isVisible(PropId.byIndex(SLOT_PARENT_ID))) {
                     return false;
                 }
-                boolean __treeNamesLoaded = treeNamesLoaded;
-                if (__treeNamesLoaded != other.__isLoaded(16)) {
+                if (__isVisible(PropId.byIndex(SLOT_DICT_TYPE_ID)) != __other.__isVisible(PropId.byIndex(SLOT_DICT_TYPE_ID))) {
                     return false;
                 }
-                if (__treeNamesLoaded && !Objects.equals(treeNames, other.treeNames())) {
+                if (__isVisible(PropId.byIndex(SLOT_DICT_LABEL)) != __other.__isVisible(PropId.byIndex(SLOT_DICT_LABEL))) {
                     return false;
                 }
-                boolean __dictLabelLoaded = dictLabelLoaded;
-                if (__dictLabelLoaded != other.__isLoaded(17)) {
+                boolean __dictLabelLoaded = this.__dictLabelLoaded;
+                if (__dictLabelLoaded != __other.__isLoaded(PropId.byIndex(SLOT_DICT_LABEL))) {
                     return false;
                 }
-                if (__dictLabelLoaded && !Objects.equals(dictLabel, other.dictLabel())) {
+                if (__dictLabelLoaded && !Objects.equals(__dictLabelValue, __other.dictLabel())) {
                     return false;
                 }
-                boolean __dictValueLoaded = dictValueLoaded;
-                if (__dictValueLoaded != other.__isLoaded(18)) {
+                if (__isVisible(PropId.byIndex(SLOT_DICT_VALUE)) != __other.__isVisible(PropId.byIndex(SLOT_DICT_VALUE))) {
                     return false;
                 }
-                if (__dictValueLoaded && !Objects.equals(dictValue, other.dictValue())) {
+                boolean __dictValueLoaded = this.__dictValueLoaded;
+                if (__dictValueLoaded != __other.__isLoaded(PropId.byIndex(SLOT_DICT_VALUE))) {
                     return false;
                 }
-                boolean __sysLoaded = sysLoaded;
-                if (__sysLoaded != other.__isLoaded(19)) {
+                if (__dictValueLoaded && !Objects.equals(__dictValueValue, __other.dictValue())) {
                     return false;
                 }
-                if (__sysLoaded && sys != other.isSys()) {
+                if (__isVisible(PropId.byIndex(SLOT_IS_SYS)) != __other.__isVisible(PropId.byIndex(SLOT_IS_SYS))) {
                     return false;
                 }
-                boolean __descriptionLoaded = descriptionLoaded;
-                if (__descriptionLoaded != other.__isLoaded(20)) {
+                boolean __isSysLoaded = this.__isSysLoaded;
+                if (__isSysLoaded != __other.__isLoaded(PropId.byIndex(SLOT_IS_SYS))) {
                     return false;
                 }
-                if (__descriptionLoaded && !Objects.equals(description, other.description())) {
+                if (__isSysLoaded && !Objects.equals(__isSysValue, __other.isSys())) {
                     return false;
                 }
-                boolean __cssStyleLoaded = cssStyleLoaded;
-                if (__cssStyleLoaded != other.__isLoaded(21)) {
+                if (__isVisible(PropId.byIndex(SLOT_DESCRIPTION)) != __other.__isVisible(PropId.byIndex(SLOT_DESCRIPTION))) {
                     return false;
                 }
-                if (__cssStyleLoaded && !Objects.equals(cssStyle, other.cssStyle())) {
+                boolean __descriptionLoaded = this.__descriptionLoaded;
+                if (__descriptionLoaded != __other.__isLoaded(PropId.byIndex(SLOT_DESCRIPTION))) {
                     return false;
                 }
-                boolean __cssClassLoaded = cssClassLoaded;
-                if (__cssClassLoaded != other.__isLoaded(22)) {
+                if (__descriptionLoaded && !Objects.equals(__descriptionValue, __other.description())) {
                     return false;
                 }
-                if (__cssClassLoaded && !Objects.equals(cssClass, other.cssClass())) {
+                if (__isVisible(PropId.byIndex(SLOT_CSS_STYLE)) != __other.__isVisible(PropId.byIndex(SLOT_CSS_STYLE))) {
                     return false;
                 }
-                boolean __corpCodeLoaded = corpCodeLoaded;
-                if (__corpCodeLoaded != other.__isLoaded(23)) {
+                boolean __cssStyleLoaded = this.__cssStyleLoaded;
+                if (__cssStyleLoaded != __other.__isLoaded(PropId.byIndex(SLOT_CSS_STYLE))) {
                     return false;
                 }
-                if (__corpCodeLoaded && !Objects.equals(corpCode, other.corpCode())) {
+                if (__cssStyleLoaded && !Objects.equals(__cssStyleValue, __other.cssStyle())) {
                     return false;
                 }
-                boolean __corpNameLoaded = corpNameLoaded;
-                if (__corpNameLoaded != other.__isLoaded(24)) {
+                if (__isVisible(PropId.byIndex(SLOT_CSS_CLASS)) != __other.__isVisible(PropId.byIndex(SLOT_CSS_CLASS))) {
                     return false;
                 }
-                if (__corpNameLoaded && !Objects.equals(corpName, other.corpName())) {
+                boolean __cssClassLoaded = this.__cssClassLoaded;
+                if (__cssClassLoaded != __other.__isLoaded(PropId.byIndex(SLOT_CSS_CLASS))) {
+                    return false;
+                }
+                if (__cssClassLoaded && !Objects.equals(__cssClassValue, __other.cssClass())) {
+                    return false;
+                }
+                if (__isVisible(PropId.byIndex(SLOT_CORP_CODE)) != __other.__isVisible(PropId.byIndex(SLOT_CORP_CODE))) {
+                    return false;
+                }
+                boolean __corpCodeLoaded = this.__corpCodeLoaded;
+                if (__corpCodeLoaded != __other.__isLoaded(PropId.byIndex(SLOT_CORP_CODE))) {
+                    return false;
+                }
+                if (__corpCodeLoaded && !Objects.equals(__corpCodeValue, __other.corpCode())) {
+                    return false;
+                }
+                if (__isVisible(PropId.byIndex(SLOT_CORP_NAME)) != __other.__isVisible(PropId.byIndex(SLOT_CORP_NAME))) {
+                    return false;
+                }
+                boolean __corpNameLoaded = this.__corpNameLoaded;
+                if (__corpNameLoaded != __other.__isLoaded(PropId.byIndex(SLOT_CORP_NAME))) {
+                    return false;
+                }
+                if (__corpNameLoaded && !Objects.equals(__corpNameValue, __other.corpName())) {
                     return false;
                 }
                 return true;
@@ -942,173 +1202,191 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
                 if (obj == null || !(obj instanceof Implementor)) {
                     return false;
                 }
-                Implementor other = (Implementor)obj;
-                boolean __idLoaded = id != null;
-                if (__idLoaded != other.__isLoaded(1)) {
+                Implementor __other = (Implementor)obj;
+                if (__isVisible(PropId.byIndex(SLOT_ID)) != __other.__isVisible(PropId.byIndex(SLOT_ID))) {
                     return false;
                 }
-                if (__idLoaded && id != other.id()) {
+                boolean __idLoaded = __idValue != null;
+                if (__idLoaded != __other.__isLoaded(PropId.byIndex(SLOT_ID))) {
                     return false;
                 }
-                boolean __statusLoaded = status != null;
-                if (__statusLoaded != other.__isLoaded(2)) {
+                if (__idLoaded && __idValue != __other.id()) {
                     return false;
                 }
-                if (__statusLoaded && status != other.status()) {
+                if (__isVisible(PropId.byIndex(SLOT_STATUS)) != __other.__isVisible(PropId.byIndex(SLOT_STATUS))) {
                     return false;
                 }
-                boolean __createByLoaded = createBy != null;
-                if (__createByLoaded != other.__isLoaded(3)) {
+                boolean __statusLoaded = this.__statusLoaded;
+                if (__statusLoaded != __other.__isLoaded(PropId.byIndex(SLOT_STATUS))) {
                     return false;
                 }
-                if (__createByLoaded && createBy != other.createBy()) {
+                if (__statusLoaded && __statusValue != __other.status()) {
                     return false;
                 }
-                boolean __createDateLoaded = createDate != null;
-                if (__createDateLoaded != other.__isLoaded(4)) {
+                if (__isVisible(PropId.byIndex(SLOT_CREATE_BY)) != __other.__isVisible(PropId.byIndex(SLOT_CREATE_BY))) {
                     return false;
                 }
-                if (__createDateLoaded && createDate != other.createDate()) {
+                boolean __createByLoaded = __createByValue != null;
+                if (__createByLoaded != __other.__isLoaded(PropId.byIndex(SLOT_CREATE_BY))) {
                     return false;
                 }
-                boolean __updateByLoaded = updateBy != null;
-                if (__updateByLoaded != other.__isLoaded(5)) {
+                if (__createByLoaded && __createByValue != __other.createBy()) {
                     return false;
                 }
-                if (__updateByLoaded && updateBy != other.updateBy()) {
+                if (__isVisible(PropId.byIndex(SLOT_CREATE_DATE)) != __other.__isVisible(PropId.byIndex(SLOT_CREATE_DATE))) {
                     return false;
                 }
-                boolean __updateDateLoaded = updateDate != null;
-                if (__updateDateLoaded != other.__isLoaded(6)) {
+                boolean __createDateLoaded = __createDateValue != null;
+                if (__createDateLoaded != __other.__isLoaded(PropId.byIndex(SLOT_CREATE_DATE))) {
                     return false;
                 }
-                if (__updateDateLoaded && updateDate != other.updateDate()) {
+                if (__createDateLoaded && __createDateValue != __other.createDate()) {
                     return false;
                 }
-                boolean __remarksLoaded = remarksLoaded;
-                if (__remarksLoaded != other.__isLoaded(7)) {
+                if (__isVisible(PropId.byIndex(SLOT_UPDATE_BY)) != __other.__isVisible(PropId.byIndex(SLOT_UPDATE_BY))) {
                     return false;
                 }
-                if (__remarksLoaded && remarks != other.remarks()) {
+                boolean __updateByLoaded = __updateByValue != null;
+                if (__updateByLoaded != __other.__isLoaded(PropId.byIndex(SLOT_UPDATE_BY))) {
                     return false;
                 }
-                boolean __parentLoaded = parentLoaded;
-                if (__parentLoaded != other.__isLoaded(8)) {
+                if (__updateByLoaded && __updateByValue != __other.updateBy()) {
                     return false;
                 }
-                if (__parentLoaded && parent != other.parent()) {
+                if (__isVisible(PropId.byIndex(SLOT_UPDATE_DATE)) != __other.__isVisible(PropId.byIndex(SLOT_UPDATE_DATE))) {
                     return false;
                 }
-                boolean __childrenLoaded = children != null;
-                if (__childrenLoaded != other.__isLoaded(9)) {
+                boolean __updateDateLoaded = __updateDateValue != null;
+                if (__updateDateLoaded != __other.__isLoaded(PropId.byIndex(SLOT_UPDATE_DATE))) {
                     return false;
                 }
-                if (__childrenLoaded && children != other.children()) {
+                if (__updateDateLoaded && __updateDateValue != __other.updateDate()) {
                     return false;
                 }
-                boolean __dictTypeLoaded = dictTypeLoaded;
-                if (__dictTypeLoaded != other.__isLoaded(10)) {
+                if (__isVisible(PropId.byIndex(SLOT_REMARKS)) != __other.__isVisible(PropId.byIndex(SLOT_REMARKS))) {
                     return false;
                 }
-                if (__dictTypeLoaded && dictType != other.dictType()) {
+                boolean __remarksLoaded = this.__remarksLoaded;
+                if (__remarksLoaded != __other.__isLoaded(PropId.byIndex(SLOT_REMARKS))) {
                     return false;
                 }
-                boolean __parentCodesLoaded = parentCodesLoaded;
-                if (__parentCodesLoaded != other.__isLoaded(11)) {
+                if (__remarksLoaded && __remarksValue != __other.remarks()) {
                     return false;
                 }
-                if (__parentCodesLoaded && parentCodes != other.parentCodes()) {
+                if (__isVisible(PropId.byIndex(SLOT_PARENT)) != __other.__isVisible(PropId.byIndex(SLOT_PARENT))) {
                     return false;
                 }
-                boolean __treeSortLoaded = treeSortLoaded;
-                if (__treeSortLoaded != other.__isLoaded(12)) {
+                boolean __parentLoaded = this.__parentLoaded;
+                if (__parentLoaded != __other.__isLoaded(PropId.byIndex(SLOT_PARENT))) {
                     return false;
                 }
-                if (__treeSortLoaded && treeSort != other.treeSort()) {
+                if (__parentLoaded && __parentValue != __other.parent()) {
                     return false;
                 }
-                boolean __treeSortsLoaded = treeSortsLoaded;
-                if (__treeSortsLoaded != other.__isLoaded(13)) {
+                if (__isVisible(PropId.byIndex(SLOT_CHILDREN)) != __other.__isVisible(PropId.byIndex(SLOT_CHILDREN))) {
                     return false;
                 }
-                if (__treeSortsLoaded && treeSorts != other.treeSorts()) {
+                boolean __childrenLoaded = __childrenValue != null;
+                if (__childrenLoaded != __other.__isLoaded(PropId.byIndex(SLOT_CHILDREN))) {
                     return false;
                 }
-                boolean __treeLeafLoaded = treeLeafLoaded;
-                if (__treeLeafLoaded != other.__isLoaded(14)) {
+                if (__childrenLoaded && __childrenValue != __other.children()) {
                     return false;
                 }
-                if (__treeLeafLoaded && treeLeaf != other.treeLeaf()) {
+                if (__isVisible(PropId.byIndex(SLOT_DICT_TYPE)) != __other.__isVisible(PropId.byIndex(SLOT_DICT_TYPE))) {
                     return false;
                 }
-                boolean __treeLevelLoaded = treeLevelLoaded;
-                if (__treeLevelLoaded != other.__isLoaded(15)) {
+                boolean __dictTypeLoaded = this.__dictTypeLoaded;
+                if (__dictTypeLoaded != __other.__isLoaded(PropId.byIndex(SLOT_DICT_TYPE))) {
                     return false;
                 }
-                if (__treeLevelLoaded && treeLevel != other.treeLevel()) {
+                if (__dictTypeLoaded && __dictTypeValue != __other.dictType()) {
                     return false;
                 }
-                boolean __treeNamesLoaded = treeNamesLoaded;
-                if (__treeNamesLoaded != other.__isLoaded(16)) {
+                if (__isVisible(PropId.byIndex(SLOT_PARENT_ID)) != __other.__isVisible(PropId.byIndex(SLOT_PARENT_ID))) {
                     return false;
                 }
-                if (__treeNamesLoaded && treeNames != other.treeNames()) {
+                if (__isVisible(PropId.byIndex(SLOT_DICT_TYPE_ID)) != __other.__isVisible(PropId.byIndex(SLOT_DICT_TYPE_ID))) {
                     return false;
                 }
-                boolean __dictLabelLoaded = dictLabelLoaded;
-                if (__dictLabelLoaded != other.__isLoaded(17)) {
+                if (__isVisible(PropId.byIndex(SLOT_DICT_LABEL)) != __other.__isVisible(PropId.byIndex(SLOT_DICT_LABEL))) {
                     return false;
                 }
-                if (__dictLabelLoaded && dictLabel != other.dictLabel()) {
+                boolean __dictLabelLoaded = this.__dictLabelLoaded;
+                if (__dictLabelLoaded != __other.__isLoaded(PropId.byIndex(SLOT_DICT_LABEL))) {
                     return false;
                 }
-                boolean __dictValueLoaded = dictValueLoaded;
-                if (__dictValueLoaded != other.__isLoaded(18)) {
+                if (__dictLabelLoaded && __dictLabelValue != __other.dictLabel()) {
                     return false;
                 }
-                if (__dictValueLoaded && dictValue != other.dictValue()) {
+                if (__isVisible(PropId.byIndex(SLOT_DICT_VALUE)) != __other.__isVisible(PropId.byIndex(SLOT_DICT_VALUE))) {
                     return false;
                 }
-                boolean __sysLoaded = sysLoaded;
-                if (__sysLoaded != other.__isLoaded(19)) {
+                boolean __dictValueLoaded = this.__dictValueLoaded;
+                if (__dictValueLoaded != __other.__isLoaded(PropId.byIndex(SLOT_DICT_VALUE))) {
                     return false;
                 }
-                if (__sysLoaded && sys != other.isSys()) {
+                if (__dictValueLoaded && __dictValueValue != __other.dictValue()) {
                     return false;
                 }
-                boolean __descriptionLoaded = descriptionLoaded;
-                if (__descriptionLoaded != other.__isLoaded(20)) {
+                if (__isVisible(PropId.byIndex(SLOT_IS_SYS)) != __other.__isVisible(PropId.byIndex(SLOT_IS_SYS))) {
                     return false;
                 }
-                if (__descriptionLoaded && description != other.description()) {
+                boolean __isSysLoaded = this.__isSysLoaded;
+                if (__isSysLoaded != __other.__isLoaded(PropId.byIndex(SLOT_IS_SYS))) {
                     return false;
                 }
-                boolean __cssStyleLoaded = cssStyleLoaded;
-                if (__cssStyleLoaded != other.__isLoaded(21)) {
+                if (__isSysLoaded && __isSysValue != __other.isSys()) {
                     return false;
                 }
-                if (__cssStyleLoaded && cssStyle != other.cssStyle()) {
+                if (__isVisible(PropId.byIndex(SLOT_DESCRIPTION)) != __other.__isVisible(PropId.byIndex(SLOT_DESCRIPTION))) {
                     return false;
                 }
-                boolean __cssClassLoaded = cssClassLoaded;
-                if (__cssClassLoaded != other.__isLoaded(22)) {
+                boolean __descriptionLoaded = this.__descriptionLoaded;
+                if (__descriptionLoaded != __other.__isLoaded(PropId.byIndex(SLOT_DESCRIPTION))) {
                     return false;
                 }
-                if (__cssClassLoaded && cssClass != other.cssClass()) {
+                if (__descriptionLoaded && __descriptionValue != __other.description()) {
                     return false;
                 }
-                boolean __corpCodeLoaded = corpCodeLoaded;
-                if (__corpCodeLoaded != other.__isLoaded(23)) {
+                if (__isVisible(PropId.byIndex(SLOT_CSS_STYLE)) != __other.__isVisible(PropId.byIndex(SLOT_CSS_STYLE))) {
                     return false;
                 }
-                if (__corpCodeLoaded && corpCode != other.corpCode()) {
+                boolean __cssStyleLoaded = this.__cssStyleLoaded;
+                if (__cssStyleLoaded != __other.__isLoaded(PropId.byIndex(SLOT_CSS_STYLE))) {
                     return false;
                 }
-                boolean __corpNameLoaded = corpNameLoaded;
-                if (__corpNameLoaded != other.__isLoaded(24)) {
+                if (__cssStyleLoaded && __cssStyleValue != __other.cssStyle()) {
                     return false;
                 }
-                if (__corpNameLoaded && corpName != other.corpName()) {
+                if (__isVisible(PropId.byIndex(SLOT_CSS_CLASS)) != __other.__isVisible(PropId.byIndex(SLOT_CSS_CLASS))) {
+                    return false;
+                }
+                boolean __cssClassLoaded = this.__cssClassLoaded;
+                if (__cssClassLoaded != __other.__isLoaded(PropId.byIndex(SLOT_CSS_CLASS))) {
+                    return false;
+                }
+                if (__cssClassLoaded && __cssClassValue != __other.cssClass()) {
+                    return false;
+                }
+                if (__isVisible(PropId.byIndex(SLOT_CORP_CODE)) != __other.__isVisible(PropId.byIndex(SLOT_CORP_CODE))) {
+                    return false;
+                }
+                boolean __corpCodeLoaded = this.__corpCodeLoaded;
+                if (__corpCodeLoaded != __other.__isLoaded(PropId.byIndex(SLOT_CORP_CODE))) {
+                    return false;
+                }
+                if (__corpCodeLoaded && __corpCodeValue != __other.corpCode()) {
+                    return false;
+                }
+                if (__isVisible(PropId.byIndex(SLOT_CORP_NAME)) != __other.__isVisible(PropId.byIndex(SLOT_CORP_NAME))) {
+                    return false;
+                }
+                boolean __corpNameLoaded = this.__corpNameLoaded;
+                if (__corpNameLoaded != __other.__isLoaded(PropId.byIndex(SLOT_CORP_NAME))) {
+                    return false;
+                }
+                if (__corpNameLoaded && __corpNameValue != __other.corpName()) {
                     return false;
                 }
                 return true;
@@ -1118,9 +1396,14 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             public boolean __equals(Object obj, boolean shallow) {
                 return shallow ? __shallowEquals(obj) : equals(obj);
             }
+
+            @Override
+            public String toString() {
+                return ImmutableObjects.toString(this);
+            }
         }
 
-        private static class DraftImpl extends Implementor implements DraftSpi, DictDataDraft {
+        private static class DraftImpl implements Implementor, DraftSpi, DictDataDraft {
             private DraftContext __ctx;
 
             private Impl __base;
@@ -1135,18 +1418,28 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
                     __base = (Impl)base;
                 }
                 else {
-                    __base = new Impl();
+                    __modified = new Impl();
                 }
             }
 
             @Override
-            public boolean __isLoaded(int prop) {
+            public boolean __isLoaded(PropId prop) {
                 return (__modified!= null ? __modified : __base).__isLoaded(prop);
             }
 
             @Override
             public boolean __isLoaded(String prop) {
                 return (__modified!= null ? __modified : __base).__isLoaded(prop);
+            }
+
+            @Override
+            public boolean __isVisible(PropId prop) {
+                return (__modified!= null ? __modified : __base).__isVisible(prop);
+            }
+
+            @Override
+            public boolean __isVisible(String prop) {
+                return (__modified!= null ? __modified : __base).__isVisible(prop);
             }
 
             @Override
@@ -1170,6 +1463,11 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
+            public String toString() {
+                return ImmutableObjects.toString((__modified!= null ? __modified : __base));
+            }
+
+            @Override
             public String id() {
                 return (__modified!= null ? __modified : __base).id();
             }
@@ -1182,24 +1480,20 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
                     );
                 }
                 Impl __tmpModified = __modified();
-                __tmpModified.id = id;
+                __tmpModified.__idValue = id;
                 return this;
             }
 
             @Override
-            public String status() {
+            public int status() {
                 return (__modified!= null ? __modified : __base).status();
             }
 
             @Override
-            public DictDataDraft setStatus(String status) {
-                if (status == null) {
-                    throw new IllegalArgumentException(
-                        "'status' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
-                    );
-                }
+            public DictDataDraft setStatus(int status) {
                 Impl __tmpModified = __modified();
-                __tmpModified.status = status;
+                __tmpModified.__statusValue = status;
+                __tmpModified.__statusLoaded = true;
                 return this;
             }
 
@@ -1216,24 +1510,24 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
                     );
                 }
                 Impl __tmpModified = __modified();
-                __tmpModified.createBy = createBy;
+                __tmpModified.__createByValue = createBy;
                 return this;
             }
 
             @Override
-            public LocalDateTime createDate() {
+            public Date createDate() {
                 return (__modified!= null ? __modified : __base).createDate();
             }
 
             @Override
-            public DictDataDraft setCreateDate(LocalDateTime createDate) {
+            public DictDataDraft setCreateDate(Date createDate) {
                 if (createDate == null) {
                     throw new IllegalArgumentException(
                         "'createDate' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
                     );
                 }
                 Impl __tmpModified = __modified();
-                __tmpModified.createDate = createDate;
+                __tmpModified.__createDateValue = createDate;
                 return this;
             }
 
@@ -1250,28 +1544,29 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
                     );
                 }
                 Impl __tmpModified = __modified();
-                __tmpModified.updateBy = updateBy;
+                __tmpModified.__updateByValue = updateBy;
                 return this;
             }
 
             @Override
-            public LocalDateTime updateDate() {
+            public Date updateDate() {
                 return (__modified!= null ? __modified : __base).updateDate();
             }
 
             @Override
-            public DictDataDraft setUpdateDate(LocalDateTime updateDate) {
+            public DictDataDraft setUpdateDate(Date updateDate) {
                 if (updateDate == null) {
                     throw new IllegalArgumentException(
                         "'updateDate' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
                     );
                 }
                 Impl __tmpModified = __modified();
-                __tmpModified.updateDate = updateDate;
+                __tmpModified.__updateDateValue = updateDate;
                 return this;
             }
 
             @Override
+            @Nullable
             public String remarks() {
                 return (__modified!= null ? __modified : __base).remarks();
             }
@@ -1279,19 +1574,20 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             @Override
             public DictDataDraft setRemarks(String remarks) {
                 Impl __tmpModified = __modified();
-                __tmpModified.remarks = remarks;
-                __tmpModified.remarksLoaded = true;
+                __tmpModified.__remarksValue = remarks;
+                __tmpModified.__remarksLoaded = true;
                 return this;
             }
 
             @Override
+            @Nullable
             public DictDataDraft parent() {
                 return __ctx.toDraftObject((__modified!= null ? __modified : __base).parent());
             }
 
             @Override
             public DictDataDraft parent(boolean autoCreate) {
-                if (autoCreate && (!__isLoaded(8) || parent() == null)) {
+                if (autoCreate && (!__isLoaded(PropId.byIndex(SLOT_PARENT)) || parent() == null)) {
                     setParent(DictDataDraft.$.produce(null, null));
                 }
                 return __ctx.toDraftObject((__modified!= null ? __modified : __base).parent());
@@ -1300,8 +1596,8 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             @Override
             public DictDataDraft setParent(DictData parent) {
                 Impl __tmpModified = __modified();
-                __tmpModified.parent = parent;
-                __tmpModified.parentLoaded = true;
+                __tmpModified.__parentValue = parent;
+                __tmpModified.__parentLoaded = true;
                 return this;
             }
 
@@ -1324,7 +1620,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
 
             @Override
             public List<DictDataDraft> children(boolean autoCreate) {
-                if (autoCreate && (!__isLoaded(9) || children() == null)) {
+                if (autoCreate && (!__isLoaded(PropId.byIndex(SLOT_CHILDREN)))) {
                     setChildren(new ArrayList<>());
                 }
                 return __ctx.toDraftList((__modified!= null ? __modified : __base).children(), DictData.class, true);
@@ -1338,7 +1634,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
                     );
                 }
                 Impl __tmpModified = __modified();
-                __tmpModified.children = NonSharedList.of(__tmpModified.children, children);
+                __tmpModified.__childrenValue = NonSharedList.of(__tmpModified.__childrenValue, children);
                 return this;
             }
 
@@ -1356,13 +1652,14 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
+            @Nullable
             public DictTypeDraft dictType() {
                 return __ctx.toDraftObject((__modified!= null ? __modified : __base).dictType());
             }
 
             @Override
             public DictTypeDraft dictType(boolean autoCreate) {
-                if (autoCreate && (!__isLoaded(10) || dictType() == null)) {
+                if (autoCreate && (!__isLoaded(PropId.byIndex(SLOT_DICT_TYPE)) || dictType() == null)) {
                     setDictType(DictTypeDraft.$.produce(null, null));
                 }
                 return __ctx.toDraftObject((__modified!= null ? __modified : __base).dictType());
@@ -1371,8 +1668,8 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             @Override
             public DictDataDraft setDictType(DictType dictType) {
                 Impl __tmpModified = __modified();
-                __tmpModified.dictType = dictType;
-                __tmpModified.dictTypeLoaded = true;
+                __tmpModified.__dictTypeValue = dictType;
+                __tmpModified.__dictTypeLoaded = true;
                 return this;
             }
 
@@ -1389,84 +1686,41 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
-            public String parentCodes() {
-                return (__modified!= null ? __modified : __base).parentCodes();
+            @Nullable
+            public String parentId() {
+                DictData __target = parent();
+                return __target != null ? __target.id() : null;
             }
 
             @Override
-            public DictDataDraft setParentCodes(String parentCodes) {
-                Impl __tmpModified = __modified();
-                __tmpModified.parentCodes = parentCodes;
-                __tmpModified.parentCodesLoaded = true;
+            public DictDataDraft setParentId(String parentId) {
+                if (parentId != null) {
+                    setParent(ImmutableObjects.makeIdOnly(DictData.class, parentId));
+                } else {
+                    setParent(null);
+                }
                 return this;
             }
 
             @Override
-            public BigDecimal treeSort() {
-                return (__modified!= null ? __modified : __base).treeSort();
+            @Nullable
+            public String dictTypeId() {
+                DictType __target = dictType();
+                return __target != null ? __target.id() : null;
             }
 
             @Override
-            public DictDataDraft setTreeSort(BigDecimal treeSort) {
-                Impl __tmpModified = __modified();
-                __tmpModified.treeSort = treeSort;
-                __tmpModified.treeSortLoaded = true;
+            public DictDataDraft setDictTypeId(String dictTypeId) {
+                if (dictTypeId != null) {
+                    setDictType(ImmutableObjects.makeIdOnly(DictType.class, dictTypeId));
+                } else {
+                    setDictType(null);
+                }
                 return this;
             }
 
             @Override
-            public String treeSorts() {
-                return (__modified!= null ? __modified : __base).treeSorts();
-            }
-
-            @Override
-            public DictDataDraft setTreeSorts(String treeSorts) {
-                Impl __tmpModified = __modified();
-                __tmpModified.treeSorts = treeSorts;
-                __tmpModified.treeSortsLoaded = true;
-                return this;
-            }
-
-            @Override
-            public String treeLeaf() {
-                return (__modified!= null ? __modified : __base).treeLeaf();
-            }
-
-            @Override
-            public DictDataDraft setTreeLeaf(String treeLeaf) {
-                Impl __tmpModified = __modified();
-                __tmpModified.treeLeaf = treeLeaf;
-                __tmpModified.treeLeafLoaded = true;
-                return this;
-            }
-
-            @Override
-            public BigDecimal treeLevel() {
-                return (__modified!= null ? __modified : __base).treeLevel();
-            }
-
-            @Override
-            public DictDataDraft setTreeLevel(BigDecimal treeLevel) {
-                Impl __tmpModified = __modified();
-                __tmpModified.treeLevel = treeLevel;
-                __tmpModified.treeLevelLoaded = true;
-                return this;
-            }
-
-            @Override
-            public String treeNames() {
-                return (__modified!= null ? __modified : __base).treeNames();
-            }
-
-            @Override
-            public DictDataDraft setTreeNames(String treeNames) {
-                Impl __tmpModified = __modified();
-                __tmpModified.treeNames = treeNames;
-                __tmpModified.treeNamesLoaded = true;
-                return this;
-            }
-
-            @Override
+            @Nullable
             public String dictLabel() {
                 return (__modified!= null ? __modified : __base).dictLabel();
             }
@@ -1474,12 +1728,13 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             @Override
             public DictDataDraft setDictLabel(String dictLabel) {
                 Impl __tmpModified = __modified();
-                __tmpModified.dictLabel = dictLabel;
-                __tmpModified.dictLabelLoaded = true;
+                __tmpModified.__dictLabelValue = dictLabel;
+                __tmpModified.__dictLabelLoaded = true;
                 return this;
             }
 
             @Override
+            @Nullable
             public String dictValue() {
                 return (__modified!= null ? __modified : __base).dictValue();
             }
@@ -1487,26 +1742,27 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             @Override
             public DictDataDraft setDictValue(String dictValue) {
                 Impl __tmpModified = __modified();
-                __tmpModified.dictValue = dictValue;
-                __tmpModified.dictValueLoaded = true;
+                __tmpModified.__dictValueValue = dictValue;
+                __tmpModified.__dictValueLoaded = true;
                 return this;
             }
 
             @Override
-            @JsonIgnore
-            public boolean isSys() {
+            @Nullable
+            public Boolean isSys() {
                 return (__modified!= null ? __modified : __base).isSys();
             }
 
             @Override
-            public DictDataDraft setSys(boolean sys) {
+            public DictDataDraft setIsSys(Boolean isSys) {
                 Impl __tmpModified = __modified();
-                __tmpModified.sys = sys;
-                __tmpModified.sysLoaded = true;
+                __tmpModified.__isSysValue = isSys;
+                __tmpModified.__isSysLoaded = true;
                 return this;
             }
 
             @Override
+            @Nullable
             public String description() {
                 return (__modified!= null ? __modified : __base).description();
             }
@@ -1514,12 +1770,13 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             @Override
             public DictDataDraft setDescription(String description) {
                 Impl __tmpModified = __modified();
-                __tmpModified.description = description;
-                __tmpModified.descriptionLoaded = true;
+                __tmpModified.__descriptionValue = description;
+                __tmpModified.__descriptionLoaded = true;
                 return this;
             }
 
             @Override
+            @Nullable
             public String cssStyle() {
                 return (__modified!= null ? __modified : __base).cssStyle();
             }
@@ -1527,12 +1784,13 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             @Override
             public DictDataDraft setCssStyle(String cssStyle) {
                 Impl __tmpModified = __modified();
-                __tmpModified.cssStyle = cssStyle;
-                __tmpModified.cssStyleLoaded = true;
+                __tmpModified.__cssStyleValue = cssStyle;
+                __tmpModified.__cssStyleLoaded = true;
                 return this;
             }
 
             @Override
+            @Nullable
             public String cssClass() {
                 return (__modified!= null ? __modified : __base).cssClass();
             }
@@ -1540,12 +1798,13 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             @Override
             public DictDataDraft setCssClass(String cssClass) {
                 Impl __tmpModified = __modified();
-                __tmpModified.cssClass = cssClass;
-                __tmpModified.cssClassLoaded = true;
+                __tmpModified.__cssClassValue = cssClass;
+                __tmpModified.__cssClassLoaded = true;
                 return this;
             }
 
             @Override
+            @Nullable
             public String corpCode() {
                 return (__modified!= null ? __modified : __base).corpCode();
             }
@@ -1553,12 +1812,13 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             @Override
             public DictDataDraft setCorpCode(String corpCode) {
                 Impl __tmpModified = __modified();
-                __tmpModified.corpCode = corpCode;
-                __tmpModified.corpCodeLoaded = true;
+                __tmpModified.__corpCodeValue = corpCode;
+                __tmpModified.__corpCodeLoaded = true;
                 return this;
             }
 
             @Override
+            @Nullable
             public String corpName() {
                 return (__modified!= null ? __modified : __base).corpName();
             }
@@ -1566,43 +1826,62 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             @Override
             public DictDataDraft setCorpName(String corpName) {
                 Impl __tmpModified = __modified();
-                __tmpModified.corpName = corpName;
-                __tmpModified.corpNameLoaded = true;
+                __tmpModified.__corpNameValue = corpName;
+                __tmpModified.__corpNameLoaded = true;
                 return this;
             }
 
             @SuppressWarnings("unchecked")
             @Override
-            public void __set(int prop, Object value) {
-                switch (prop) {
-                    case 1: setId((String)value);break;
-                    case 2: setStatus((String)value);break;
-                    case 3: setCreateBy((String)value);break;
-                    case 4: setCreateDate((LocalDateTime)value);break;
-                    case 5: setUpdateBy((String)value);break;
-                    case 6: setUpdateDate((LocalDateTime)value);break;
-                    case 7: setRemarks((String)value);break;
-                    case 8: setParent((DictData)value);break;
-                    case 9: setChildren((List<DictData>)value);break;
-                    case 10: setDictType((DictType)value);break;
-                    case 11: setParentCodes((String)value);break;
-                    case 12: setTreeSort((BigDecimal)value);break;
-                    case 13: setTreeSorts((String)value);break;
-                    case 14: setTreeLeaf((String)value);break;
-                    case 15: setTreeLevel((BigDecimal)value);break;
-                    case 16: setTreeNames((String)value);break;
-                    case 17: setDictLabel((String)value);break;
-                    case 18: setDictValue((String)value);break;
-                    case 19: 
-                            if (value == null) throw new IllegalArgumentException("'sys' cannot be null");
-                            setSys((Boolean)value);
+            public void __set(PropId prop, Object value) {
+                int __propIndex = prop.asIndex();
+                switch (__propIndex) {
+                    case -1:
+                    		__set(prop.asName(), value);
+                    return;
+                    case SLOT_ID:
+                    		setId((String)value);break;
+                    case SLOT_STATUS:
+                    		if (value == null) throw new IllegalArgumentException("'status' cannot be null");
+                            setStatus((Integer)value);
                             break;
-                    case 20: setDescription((String)value);break;
-                    case 21: setCssStyle((String)value);break;
-                    case 22: setCssClass((String)value);break;
-                    case 23: setCorpCode((String)value);break;
-                    case 24: setCorpName((String)value);break;
-                    default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
+                    case SLOT_CREATE_BY:
+                    		setCreateBy((String)value);break;
+                    case SLOT_CREATE_DATE:
+                    		setCreateDate((Date)value);break;
+                    case SLOT_UPDATE_BY:
+                    		setUpdateBy((String)value);break;
+                    case SLOT_UPDATE_DATE:
+                    		setUpdateDate((Date)value);break;
+                    case SLOT_REMARKS:
+                    		setRemarks((String)value);break;
+                    case SLOT_PARENT:
+                    		setParent((DictData)value);break;
+                    case SLOT_CHILDREN:
+                    		setChildren((List<DictData>)value);break;
+                    case SLOT_DICT_TYPE:
+                    		setDictType((DictType)value);break;
+                    case SLOT_PARENT_ID:
+                    		setParentId((String)value);break;
+                    case SLOT_DICT_TYPE_ID:
+                    		setDictTypeId((String)value);break;
+                    case SLOT_DICT_LABEL:
+                    		setDictLabel((String)value);break;
+                    case SLOT_DICT_VALUE:
+                    		setDictValue((String)value);break;
+                    case SLOT_IS_SYS:
+                    		setIsSys((Boolean)value);break;
+                    case SLOT_DESCRIPTION:
+                    		setDescription((String)value);break;
+                    case SLOT_CSS_STYLE:
+                    		setCssStyle((String)value);break;
+                    case SLOT_CSS_CLASS:
+                    		setCssClass((String)value);break;
+                    case SLOT_CORP_CODE:
+                    		setCorpCode((String)value);break;
+                    case SLOT_CORP_NAME:
+                    		setCorpName((String)value);break;
+                    default: throw new IllegalArgumentException("Illegal property id for \"top.yangwulang.platform.entity.sys.DictData\": \"" + prop + "\"");
                 }
             }
 
@@ -1610,120 +1889,267 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             @Override
             public void __set(String prop, Object value) {
                 switch (prop) {
-                    case "id": setId((String)value);break;
-                    case "status": setStatus((String)value);break;
-                    case "createBy": setCreateBy((String)value);break;
-                    case "createDate": setCreateDate((LocalDateTime)value);break;
-                    case "updateBy": setUpdateBy((String)value);break;
-                    case "updateDate": setUpdateDate((LocalDateTime)value);break;
-                    case "remarks": setRemarks((String)value);break;
-                    case "parent": setParent((DictData)value);break;
-                    case "children": setChildren((List<DictData>)value);break;
-                    case "dictType": setDictType((DictType)value);break;
-                    case "parentCodes": setParentCodes((String)value);break;
-                    case "treeSort": setTreeSort((BigDecimal)value);break;
-                    case "treeSorts": setTreeSorts((String)value);break;
-                    case "treeLeaf": setTreeLeaf((String)value);break;
-                    case "treeLevel": setTreeLevel((BigDecimal)value);break;
-                    case "treeNames": setTreeNames((String)value);break;
-                    case "dictLabel": setDictLabel((String)value);break;
-                    case "dictValue": setDictValue((String)value);break;
-                    case "sys": 
-                            if (value == null) throw new IllegalArgumentException("'sys' cannot be null");
-                            setSys((Boolean)value);
+                    case "id":
+                    		setId((String)value);break;
+                    case "status":
+                    		if (value == null) throw new IllegalArgumentException("'status' cannot be null");
+                            setStatus((Integer)value);
                             break;
-                    case "description": setDescription((String)value);break;
-                    case "cssStyle": setCssStyle((String)value);break;
-                    case "cssClass": setCssClass((String)value);break;
-                    case "corpCode": setCorpCode((String)value);break;
-                    case "corpName": setCorpName((String)value);break;
-                    default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
+                    case "createBy":
+                    		setCreateBy((String)value);break;
+                    case "createDate":
+                    		setCreateDate((Date)value);break;
+                    case "updateBy":
+                    		setUpdateBy((String)value);break;
+                    case "updateDate":
+                    		setUpdateDate((Date)value);break;
+                    case "remarks":
+                    		setRemarks((String)value);break;
+                    case "parent":
+                    		setParent((DictData)value);break;
+                    case "children":
+                    		setChildren((List<DictData>)value);break;
+                    case "dictType":
+                    		setDictType((DictType)value);break;
+                    case "parentId":
+                    		setParentId((String)value);break;
+                    case "dictTypeId":
+                    		setDictTypeId((String)value);break;
+                    case "dictLabel":
+                    		setDictLabel((String)value);break;
+                    case "dictValue":
+                    		setDictValue((String)value);break;
+                    case "isSys":
+                    		setIsSys((Boolean)value);break;
+                    case "description":
+                    		setDescription((String)value);break;
+                    case "cssStyle":
+                    		setCssStyle((String)value);break;
+                    case "cssClass":
+                    		setCssClass((String)value);break;
+                    case "corpCode":
+                    		setCorpCode((String)value);break;
+                    case "corpName":
+                    		setCorpName((String)value);break;
+                    default: throw new IllegalArgumentException("Illegal property name for \"top.yangwulang.platform.entity.sys.DictData\": \"" + prop + "\"");
                 }
             }
 
             @Override
-            public void __use(int prop) {
-                switch (prop) {
+            public void __show(PropId prop, boolean visible) {
+                Visibility __visibility = (__modified!= null ? __modified : __base).__visibility;
+                if (__visibility == null) {
+                    if (visible) {
+                        return;
+                    }
+                    __modified().__visibility = __visibility = Visibility.of(20);
+                }
+                int __propIndex = prop.asIndex();
+                switch (__propIndex) {
+                    case -1:
+                    		__show(prop.asName(), visible);
+                    return;
+                    case SLOT_ID:
+                    		__visibility.show(SLOT_ID, visible);break;
+                    case SLOT_STATUS:
+                    		__visibility.show(SLOT_STATUS, visible);break;
+                    case SLOT_CREATE_BY:
+                    		__visibility.show(SLOT_CREATE_BY, visible);break;
+                    case SLOT_CREATE_DATE:
+                    		__visibility.show(SLOT_CREATE_DATE, visible);break;
+                    case SLOT_UPDATE_BY:
+                    		__visibility.show(SLOT_UPDATE_BY, visible);break;
+                    case SLOT_UPDATE_DATE:
+                    		__visibility.show(SLOT_UPDATE_DATE, visible);break;
+                    case SLOT_REMARKS:
+                    		__visibility.show(SLOT_REMARKS, visible);break;
+                    case SLOT_PARENT:
+                    		__visibility.show(SLOT_PARENT, visible);break;
+                    case SLOT_CHILDREN:
+                    		__visibility.show(SLOT_CHILDREN, visible);break;
+                    case SLOT_DICT_TYPE:
+                    		__visibility.show(SLOT_DICT_TYPE, visible);break;
+                    case SLOT_PARENT_ID:
+                    		__visibility.show(SLOT_PARENT_ID, visible);break;
+                    case SLOT_DICT_TYPE_ID:
+                    		__visibility.show(SLOT_DICT_TYPE_ID, visible);break;
+                    case SLOT_DICT_LABEL:
+                    		__visibility.show(SLOT_DICT_LABEL, visible);break;
+                    case SLOT_DICT_VALUE:
+                    		__visibility.show(SLOT_DICT_VALUE, visible);break;
+                    case SLOT_IS_SYS:
+                    		__visibility.show(SLOT_IS_SYS, visible);break;
+                    case SLOT_DESCRIPTION:
+                    		__visibility.show(SLOT_DESCRIPTION, visible);break;
+                    case SLOT_CSS_STYLE:
+                    		__visibility.show(SLOT_CSS_STYLE, visible);break;
+                    case SLOT_CSS_CLASS:
+                    		__visibility.show(SLOT_CSS_CLASS, visible);break;
+                    case SLOT_CORP_CODE:
+                    		__visibility.show(SLOT_CORP_CODE, visible);break;
+                    case SLOT_CORP_NAME:
+                    		__visibility.show(SLOT_CORP_NAME, visible);break;
                     default: throw new IllegalArgumentException(
-                                "Illegal property id: \"" + 
+                                "Illegal property id for \"top.yangwulang.platform.entity.sys.DictData\": \"" + 
                                 prop + 
-                                "\",it does not exists or is not non-abstract formula property" + 
-                                "(Only non-abstract formula property can be used)"
+                                "\",it does not exists"
                             );
                 }
             }
 
             @Override
-            public void __use(String prop) {
+            public void __show(String prop, boolean visible) {
+                Visibility __visibility = (__modified!= null ? __modified : __base).__visibility;
+                if (__visibility == null) {
+                    if (visible) {
+                        return;
+                    }
+                    __modified().__visibility = __visibility = Visibility.of(20);
+                }
                 switch (prop) {
+                    case "id":
+                    		__visibility.show(SLOT_ID, visible);break;
+                    case "status":
+                    		__visibility.show(SLOT_STATUS, visible);break;
+                    case "createBy":
+                    		__visibility.show(SLOT_CREATE_BY, visible);break;
+                    case "createDate":
+                    		__visibility.show(SLOT_CREATE_DATE, visible);break;
+                    case "updateBy":
+                    		__visibility.show(SLOT_UPDATE_BY, visible);break;
+                    case "updateDate":
+                    		__visibility.show(SLOT_UPDATE_DATE, visible);break;
+                    case "remarks":
+                    		__visibility.show(SLOT_REMARKS, visible);break;
+                    case "parent":
+                    		__visibility.show(SLOT_PARENT, visible);break;
+                    case "children":
+                    		__visibility.show(SLOT_CHILDREN, visible);break;
+                    case "dictType":
+                    		__visibility.show(SLOT_DICT_TYPE, visible);break;
+                    case "parentId":
+                    		__visibility.show(SLOT_PARENT_ID, visible);break;
+                    case "dictTypeId":
+                    		__visibility.show(SLOT_DICT_TYPE_ID, visible);break;
+                    case "dictLabel":
+                    		__visibility.show(SLOT_DICT_LABEL, visible);break;
+                    case "dictValue":
+                    		__visibility.show(SLOT_DICT_VALUE, visible);break;
+                    case "isSys":
+                    		__visibility.show(SLOT_IS_SYS, visible);break;
+                    case "description":
+                    		__visibility.show(SLOT_DESCRIPTION, visible);break;
+                    case "cssStyle":
+                    		__visibility.show(SLOT_CSS_STYLE, visible);break;
+                    case "cssClass":
+                    		__visibility.show(SLOT_CSS_CLASS, visible);break;
+                    case "corpCode":
+                    		__visibility.show(SLOT_CORP_CODE, visible);break;
+                    case "corpName":
+                    		__visibility.show(SLOT_CORP_NAME, visible);break;
                     default: throw new IllegalArgumentException(
-                                "Illegal property name: \"" + 
+                                "Illegal property name for \"top.yangwulang.platform.entity.sys.DictData\": \"" + 
                                 prop + 
-                                "\",it does not exists or is not non-abstract formula property" + 
-                                "(Only non-abstract formula property can be used)"
+                                "\",it does not exists"
                             );
                 }
             }
 
             @Override
-            public void __unload(int prop) {
-                switch (prop) {
-                    case 1: __modified().id = null;break;
-                    case 2: __modified().status = null;break;
-                    case 3: __modified().createBy = null;break;
-                    case 4: __modified().createDate = null;break;
-                    case 5: __modified().updateBy = null;break;
-                    case 6: __modified().updateDate = null;break;
-                    case 7: __modified().remarksLoaded = false;break;
-                    case 8: __modified().parentLoaded = false;break;
-                    case 9: __modified().children = null;break;
-                    case 10: __modified().dictTypeLoaded = false;break;
-                    case 11: __modified().parentCodesLoaded = false;break;
-                    case 12: __modified().treeSortLoaded = false;break;
-                    case 13: __modified().treeSortsLoaded = false;break;
-                    case 14: __modified().treeLeafLoaded = false;break;
-                    case 15: __modified().treeLevelLoaded = false;break;
-                    case 16: __modified().treeNamesLoaded = false;break;
-                    case 17: __modified().dictLabelLoaded = false;break;
-                    case 18: __modified().dictValueLoaded = false;break;
-                    case 19: __modified().sysLoaded = false;break;
-                    case 20: __modified().descriptionLoaded = false;break;
-                    case 21: __modified().cssStyleLoaded = false;break;
-                    case 22: __modified().cssClassLoaded = false;break;
-                    case 23: __modified().corpCodeLoaded = false;break;
-                    case 24: __modified().corpNameLoaded = false;break;
-                    default: throw new IllegalArgumentException("Illegal property id: \"" + prop + "\"");
+            public void __unload(PropId prop) {
+                int __propIndex = prop.asIndex();
+                switch (__propIndex) {
+                    case -1:
+                    		__unload(prop.asName());
+                    return;
+                    case SLOT_ID:
+                    		__modified().__idValue = null;break;
+                    case SLOT_STATUS:
+                    		__modified().__statusLoaded = false;break;
+                    case SLOT_CREATE_BY:
+                    		__modified().__createByValue = null;break;
+                    case SLOT_CREATE_DATE:
+                    		__modified().__createDateValue = null;break;
+                    case SLOT_UPDATE_BY:
+                    		__modified().__updateByValue = null;break;
+                    case SLOT_UPDATE_DATE:
+                    		__modified().__updateDateValue = null;break;
+                    case SLOT_REMARKS:
+                    		__modified().__remarksLoaded = false;break;
+                    case SLOT_PARENT:
+                    		__modified().__parentLoaded = false;break;
+                    case SLOT_CHILDREN:
+                    		__modified().__childrenValue = null;break;
+                    case SLOT_DICT_TYPE:
+                    		__modified().__dictTypeLoaded = false;break;
+                    case SLOT_PARENT_ID:
+                    		__unload(PropId.byIndex(SLOT_PARENT));break;
+                    case SLOT_DICT_TYPE_ID:
+                    		__unload(PropId.byIndex(SLOT_DICT_TYPE));break;
+                    case SLOT_DICT_LABEL:
+                    		__modified().__dictLabelLoaded = false;break;
+                    case SLOT_DICT_VALUE:
+                    		__modified().__dictValueLoaded = false;break;
+                    case SLOT_IS_SYS:
+                    		__modified().__isSysLoaded = false;break;
+                    case SLOT_DESCRIPTION:
+                    		__modified().__descriptionLoaded = false;break;
+                    case SLOT_CSS_STYLE:
+                    		__modified().__cssStyleLoaded = false;break;
+                    case SLOT_CSS_CLASS:
+                    		__modified().__cssClassLoaded = false;break;
+                    case SLOT_CORP_CODE:
+                    		__modified().__corpCodeLoaded = false;break;
+                    case SLOT_CORP_NAME:
+                    		__modified().__corpNameLoaded = false;break;
+                    default: throw new IllegalArgumentException("Illegal property id for \"top.yangwulang.platform.entity.sys.DictData\": \"" + prop + "\", it does not exist or its loaded state is not controllable");
                 }
             }
 
             @Override
             public void __unload(String prop) {
                 switch (prop) {
-                    case "id": __modified().id = null;break;
-                    case "status": __modified().status = null;break;
-                    case "createBy": __modified().createBy = null;break;
-                    case "createDate": __modified().createDate = null;break;
-                    case "updateBy": __modified().updateBy = null;break;
-                    case "updateDate": __modified().updateDate = null;break;
-                    case "remarks": __modified().remarksLoaded = false;break;
-                    case "parent": __modified().parentLoaded = false;break;
-                    case "children": __modified().children = null;break;
-                    case "dictType": __modified().dictTypeLoaded = false;break;
-                    case "parentCodes": __modified().parentCodesLoaded = false;break;
-                    case "treeSort": __modified().treeSortLoaded = false;break;
-                    case "treeSorts": __modified().treeSortsLoaded = false;break;
-                    case "treeLeaf": __modified().treeLeafLoaded = false;break;
-                    case "treeLevel": __modified().treeLevelLoaded = false;break;
-                    case "treeNames": __modified().treeNamesLoaded = false;break;
-                    case "dictLabel": __modified().dictLabelLoaded = false;break;
-                    case "dictValue": __modified().dictValueLoaded = false;break;
-                    case "sys": __modified().sysLoaded = false;break;
-                    case "description": __modified().descriptionLoaded = false;break;
-                    case "cssStyle": __modified().cssStyleLoaded = false;break;
-                    case "cssClass": __modified().cssClassLoaded = false;break;
-                    case "corpCode": __modified().corpCodeLoaded = false;break;
-                    case "corpName": __modified().corpNameLoaded = false;break;
-                    default: throw new IllegalArgumentException("Illegal property name: \"" + prop + "\"");
+                    case "id":
+                    		__modified().__idValue = null;break;
+                    case "status":
+                    		__modified().__statusLoaded = false;break;
+                    case "createBy":
+                    		__modified().__createByValue = null;break;
+                    case "createDate":
+                    		__modified().__createDateValue = null;break;
+                    case "updateBy":
+                    		__modified().__updateByValue = null;break;
+                    case "updateDate":
+                    		__modified().__updateDateValue = null;break;
+                    case "remarks":
+                    		__modified().__remarksLoaded = false;break;
+                    case "parent":
+                    		__modified().__parentLoaded = false;break;
+                    case "children":
+                    		__modified().__childrenValue = null;break;
+                    case "dictType":
+                    		__modified().__dictTypeLoaded = false;break;
+                    case "parentId":
+                    		__unload(PropId.byIndex(SLOT_PARENT));break;
+                    case "dictTypeId":
+                    		__unload(PropId.byIndex(SLOT_DICT_TYPE));break;
+                    case "dictLabel":
+                    		__modified().__dictLabelLoaded = false;break;
+                    case "dictValue":
+                    		__modified().__dictValueLoaded = false;break;
+                    case "isSys":
+                    		__modified().__isSysLoaded = false;break;
+                    case "description":
+                    		__modified().__descriptionLoaded = false;break;
+                    case "cssStyle":
+                    		__modified().__cssStyleLoaded = false;break;
+                    case "cssClass":
+                    		__modified().__cssClassLoaded = false;break;
+                    case "corpCode":
+                    		__modified().__corpCodeLoaded = false;break;
+                    case "corpName":
+                    		__modified().__corpNameLoaded = false;break;
+                    default: throw new IllegalArgumentException("Illegal property name for \"top.yangwulang.platform.entity.sys.DictData\": \"" + prop + "\", it does not exist or its loaded state is not controllable");
                 }
             }
 
@@ -1742,35 +2168,35 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
                     Implementor base = __base;
                     Impl __tmpModified = __modified;
                     if (__tmpModified == null) {
-                        if (base.__isLoaded(8)) {
+                        if (base.__isLoaded(PropId.byIndex(SLOT_PARENT))) {
                             DictData oldValue = base.parent();
                             DictData newValue = __ctx.resolveObject(oldValue);
-                            if (!ImmutableSpi.equals(oldValue, newValue, true)) {
+                            if (oldValue != newValue) {
                                 setParent(newValue);
                             }
                         }
-                        if (base.__isLoaded(9)) {
+                        if (base.__isLoaded(PropId.byIndex(SLOT_CHILDREN))) {
                             List<DictData> oldValue = base.children();
                             List<DictData> newValue = __ctx.resolveList(oldValue);
                             if (oldValue != newValue) {
                                 setChildren(newValue);
                             }
                         }
-                        if (base.__isLoaded(10)) {
+                        if (base.__isLoaded(PropId.byIndex(SLOT_DICT_TYPE))) {
                             DictType oldValue = base.dictType();
                             DictType newValue = __ctx.resolveObject(oldValue);
-                            if (!ImmutableSpi.equals(oldValue, newValue, true)) {
+                            if (oldValue != newValue) {
                                 setDictType(newValue);
                             }
                         }
                         __tmpModified = __modified;
                     }
                     else {
-                        __tmpModified.parent = __ctx.resolveObject(__tmpModified.parent);
-                        __tmpModified.children = NonSharedList.of(__tmpModified.children, __ctx.resolveList(__tmpModified.children));
-                        __tmpModified.dictType = __ctx.resolveObject(__tmpModified.dictType);
+                        __tmpModified.__parentValue = __ctx.resolveObject(__tmpModified.__parentValue);
+                        __tmpModified.__childrenValue = NonSharedList.of(__tmpModified.__childrenValue, __ctx.resolveList(__tmpModified.__childrenValue));
+                        __tmpModified.__dictTypeValue = __ctx.resolveObject(__tmpModified.__dictTypeValue);
                     }
-                    if (__tmpModified == null || ImmutableSpi.equals(base, __tmpModified, true)) {
+                    if (__base != null && __tmpModified == null) {
                         return base;
                     }
                     return __tmpModified;
@@ -1794,136 +2220,100 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
     class MapStruct {
         private String id;
 
-        private String status;
+        private Integer status;
 
         private String createBy;
 
-        private LocalDateTime createDate;
+        private Date createDate;
 
         private String updateBy;
 
-        private LocalDateTime updateDate;
+        private Date updateDate;
 
-        private boolean remarksLoaded;
+        private boolean __remarksLoaded;
 
         private String remarks;
 
-        private boolean parentLoaded;
+        private boolean __parentLoaded;
 
         private DictData parent;
 
         private List<DictData> children;
 
-        private boolean dictTypeLoaded;
+        private boolean __dictTypeLoaded;
 
         private DictType dictType;
 
-        private boolean parentCodesLoaded;
-
-        private String parentCodes;
-
-        private boolean treeSortLoaded;
-
-        private BigDecimal treeSort;
-
-        private boolean treeSortsLoaded;
-
-        private String treeSorts;
-
-        private boolean treeLeafLoaded;
-
-        private String treeLeaf;
-
-        private boolean treeLevelLoaded;
-
-        private BigDecimal treeLevel;
-
-        private boolean treeNamesLoaded;
-
-        private String treeNames;
-
-        private boolean dictLabelLoaded;
+        private boolean __dictLabelLoaded;
 
         private String dictLabel;
 
-        private boolean dictValueLoaded;
+        private boolean __dictValueLoaded;
 
         private String dictValue;
 
-        private boolean sysLoaded;
+        private boolean __isSysLoaded;
 
-        private boolean sys;
+        private Boolean isSys;
 
-        private boolean descriptionLoaded;
+        private boolean __descriptionLoaded;
 
         private String description;
 
-        private boolean cssStyleLoaded;
+        private boolean __cssStyleLoaded;
 
         private String cssStyle;
 
-        private boolean cssClassLoaded;
+        private boolean __cssClassLoaded;
 
         private String cssClass;
 
-        private boolean corpCodeLoaded;
+        private boolean __corpCodeLoaded;
 
         private String corpCode;
 
-        private boolean corpNameLoaded;
+        private boolean __corpNameLoaded;
 
         private String corpName;
 
         public MapStruct id(String id) {
-            if (id != null) {
-                this.id = id;
-            }
+            this.id = id;
             return this;
         }
 
-        public MapStruct status(String status) {
-            if (status != null) {
-                this.status = status;
-            }
+        public MapStruct status(Integer status) {
+            this.status = status;
             return this;
         }
 
         public MapStruct createBy(String createBy) {
-            if (createBy != null) {
-                this.createBy = createBy;
-            }
+            this.createBy = createBy;
             return this;
         }
 
-        public MapStruct createDate(LocalDateTime createDate) {
-            if (createDate != null) {
-                this.createDate = createDate;
-            }
+        public MapStruct createDate(Date createDate) {
+            this.createDate = createDate;
             return this;
         }
 
         public MapStruct updateBy(String updateBy) {
-            if (updateBy != null) {
-                this.updateBy = updateBy;
-            }
+            this.updateBy = updateBy;
             return this;
         }
 
-        public MapStruct updateDate(LocalDateTime updateDate) {
-            if (updateDate != null) {
-                this.updateDate = updateDate;
-            }
+        public MapStruct updateDate(Date updateDate) {
+            this.updateDate = updateDate;
             return this;
         }
 
         public MapStruct remarks(String remarks) {
-            this.remarksLoaded = true;
+            this.__remarksLoaded = true;
             this.remarks = remarks;
             return this;
         }
 
         public MapStruct parent(DictData parent) {
-            this.parentLoaded = true;
+            this.__parentLoaded = true;
             this.parent = parent;
             return this;
         }
@@ -1934,91 +2324,75 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
         }
 
         public MapStruct dictType(DictType dictType) {
-            this.dictTypeLoaded = true;
+            this.__dictTypeLoaded = true;
             this.dictType = dictType;
             return this;
         }
 
-        public MapStruct parentCodes(String parentCodes) {
-            this.parentCodesLoaded = true;
-            this.parentCodes = parentCodes;
+        public MapStruct parentId(String parentId) {
+            this.__parentLoaded = true;
+            if (parentId == null) {
+                this.parent = null;
+            } else {
+                this.parent = ImmutableObjects.makeIdOnly(DictData.class, parentId);
+            }
             return this;
         }
 
-        public MapStruct treeSort(BigDecimal treeSort) {
-            this.treeSortLoaded = true;
-            this.treeSort = treeSort;
-            return this;
-        }
-
-        public MapStruct treeSorts(String treeSorts) {
-            this.treeSortsLoaded = true;
-            this.treeSorts = treeSorts;
-            return this;
-        }
-
-        public MapStruct treeLeaf(String treeLeaf) {
-            this.treeLeafLoaded = true;
-            this.treeLeaf = treeLeaf;
-            return this;
-        }
-
-        public MapStruct treeLevel(BigDecimal treeLevel) {
-            this.treeLevelLoaded = true;
-            this.treeLevel = treeLevel;
-            return this;
-        }
-
-        public MapStruct treeNames(String treeNames) {
-            this.treeNamesLoaded = true;
-            this.treeNames = treeNames;
+        public MapStruct dictTypeId(String dictTypeId) {
+            this.__dictTypeLoaded = true;
+            if (dictTypeId == null) {
+                this.dictType = null;
+            } else {
+                this.dictType = ImmutableObjects.makeIdOnly(DictType.class, dictTypeId);
+            }
             return this;
         }
 
         public MapStruct dictLabel(String dictLabel) {
-            this.dictLabelLoaded = true;
+            this.__dictLabelLoaded = true;
             this.dictLabel = dictLabel;
             return this;
         }
 
         public MapStruct dictValue(String dictValue) {
-            this.dictValueLoaded = true;
+            this.__dictValueLoaded = true;
             this.dictValue = dictValue;
             return this;
         }
 
-        public MapStruct sys(boolean sys) {
-            this.sysLoaded = true;
-            this.sys = sys;
+        public MapStruct isSys(Boolean isSys) {
+            this.__isSysLoaded = true;
+            this.isSys = isSys;
             return this;
         }
 
         public MapStruct description(String description) {
-            this.descriptionLoaded = true;
+            this.__descriptionLoaded = true;
             this.description = description;
             return this;
         }
 
         public MapStruct cssStyle(String cssStyle) {
-            this.cssStyleLoaded = true;
+            this.__cssStyleLoaded = true;
             this.cssStyle = cssStyle;
             return this;
         }
 
         public MapStruct cssClass(String cssClass) {
-            this.cssClassLoaded = true;
+            this.__cssClassLoaded = true;
             this.cssClass = cssClass;
             return this;
         }
 
         public MapStruct corpCode(String corpCode) {
-            this.corpCodeLoaded = true;
+            this.__corpCodeLoaded = true;
             this.corpCode = corpCode;
             return this;
         }
 
         public MapStruct corpName(String corpName) {
-            this.corpNameLoaded = true;
+            this.__corpNameLoaded = true;
             this.corpName = corpName;
             return this;
         }
@@ -2043,58 +2417,40 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
                 if (updateDate != null) {
                     draft.setUpdateDate(updateDate);
                 }
-                if (remarksLoaded) {
+                if (__remarksLoaded) {
                     draft.setRemarks(remarks);
                 }
-                if (parentLoaded) {
+                if (__parentLoaded) {
                     draft.setParent(parent);
                 }
                 if (children != null) {
                     draft.setChildren(children);
                 }
-                if (dictTypeLoaded) {
+                if (__dictTypeLoaded) {
                     draft.setDictType(dictType);
                 }
-                if (parentCodesLoaded) {
-                    draft.setParentCodes(parentCodes);
-                }
-                if (treeSortLoaded) {
-                    draft.setTreeSort(treeSort);
-                }
-                if (treeSortsLoaded) {
-                    draft.setTreeSorts(treeSorts);
-                }
-                if (treeLeafLoaded) {
-                    draft.setTreeLeaf(treeLeaf);
-                }
-                if (treeLevelLoaded) {
-                    draft.setTreeLevel(treeLevel);
-                }
-                if (treeNamesLoaded) {
-                    draft.setTreeNames(treeNames);
-                }
-                if (dictLabelLoaded) {
+                if (__dictLabelLoaded) {
                     draft.setDictLabel(dictLabel);
                 }
-                if (dictValueLoaded) {
+                if (__dictValueLoaded) {
                     draft.setDictValue(dictValue);
                 }
-                if (sysLoaded) {
-                    draft.setSys(sys);
+                if (__isSysLoaded) {
+                    draft.setIsSys(isSys);
                 }
-                if (descriptionLoaded) {
+                if (__descriptionLoaded) {
                     draft.setDescription(description);
                 }
-                if (cssStyleLoaded) {
+                if (__cssStyleLoaded) {
                     draft.setCssStyle(cssStyle);
                 }
-                if (cssClassLoaded) {
+                if (__cssClassLoaded) {
                     draft.setCssClass(cssClass);
                 }
-                if (corpCodeLoaded) {
+                if (__corpCodeLoaded) {
                     draft.setCorpCode(corpCode);
                 }
-                if (corpNameLoaded) {
+                if (__corpNameLoaded) {
                     draft.setCorpName(corpName);
                 }
             });

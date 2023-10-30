@@ -1,12 +1,10 @@
 package top.yangwulang.platform.entity.sys;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import org.babyfish.jimmer.Immutable;
 import org.babyfish.jimmer.sql.*;
+import top.yangwulang.platform.entity.DataTypeBase;
 
 import javax.validation.constraints.Null;
-
-import java.time.LocalDateTime;
 
 /**
  * 字典类型表
@@ -31,7 +29,7 @@ public interface DictType extends DataTypeBase {
      */
     @Schema(description = "字典类型标签")
     @Key
-    @Null String dictType();
+    String dictType();
 
     /**
      * 是否系统字典
@@ -40,7 +38,7 @@ public interface DictType extends DataTypeBase {
      */
     @Schema(description = "是否系统自带")
     @Column(name = "is_sys")
-    @Null boolean isSys();
+    Boolean isSys();
 
 }
 

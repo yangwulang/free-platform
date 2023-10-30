@@ -19,6 +19,20 @@ public class DictDataInput implements Input<DictData> {
 
     private DictDataInput parent;
 
+    private String dictTypeId;
+
+    private String dictLabel;
+
+    private String dictValue;
+
+    private Boolean isSys;
+
+    private String description;
+
+    private String cssStyle;
+
+    private String cssClass;
+
     @Override
     public DictData toEntity() {
         return CONVERTER.toDictData(this);

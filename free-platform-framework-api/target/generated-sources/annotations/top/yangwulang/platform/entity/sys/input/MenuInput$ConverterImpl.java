@@ -8,8 +8,8 @@ import top.yangwulang.platform.entity.sys.MenuDraft;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-02-28T12:53:58+0800",
-    comments = "version: 1.5.3.Final, compiler: javac, environment: Java 19 (Oracle Corporation)"
+    date = "2023-10-30T22:26:12+0800",
+    comments = "version: 1.5.3.Final, compiler: javac, environment: Java 17.0.5 (Oracle Corporation)"
 )
 class MenuInput$ConverterImpl implements MenuInput.Converter {
 
@@ -23,13 +23,8 @@ class MenuInput$ConverterImpl implements MenuInput.Converter {
 
         menu.id( input.getId() );
         menu.parent( menuInputToMenu( input.getParent() ) );
+        menu.parentId( input.getParentId() );
         menu.children( menuInputListToMenuList( input.getChildren() ) );
-        menu.parentCodes( input.getParentCodes() );
-        menu.treeSort( input.getTreeSort() );
-        menu.treeSorts( input.getTreeSorts() );
-        menu.treeLeaf( input.getTreeLeaf() );
-        menu.treeLevel( input.getTreeLevel() );
-        menu.treeNames( input.getTreeNames() );
         menu.menuName( input.getMenuName() );
         menu.menuType( input.getMenuType() );
         menu.menuHref( input.getMenuHref() );
@@ -40,7 +35,6 @@ class MenuInput$ConverterImpl implements MenuInput.Converter {
         menu.menuTitle( input.getMenuTitle() );
         menu.permission( input.getPermission() );
         menu.weight( input.getWeight() );
-        menu.show( input.isShow() );
         menu.sysCode( input.getSysCode() );
 
         return menu.build();
@@ -68,13 +62,8 @@ class MenuInput$ConverterImpl implements MenuInput.Converter {
 
         menu.id( menuInput.getId() );
         menu.parent( toMenu( menuInput.getParent() ) );
+        menu.parentId( menuInput.getParentId() );
         menu.children( menuInputListToMenuList( menuInput.getChildren() ) );
-        menu.parentCodes( menuInput.getParentCodes() );
-        menu.treeSort( menuInput.getTreeSort() );
-        menu.treeSorts( menuInput.getTreeSorts() );
-        menu.treeLeaf( menuInput.getTreeLeaf() );
-        menu.treeLevel( menuInput.getTreeLevel() );
-        menu.treeNames( menuInput.getTreeNames() );
         menu.menuName( menuInput.getMenuName() );
         menu.menuType( menuInput.getMenuType() );
         menu.menuHref( menuInput.getMenuHref() );
@@ -85,7 +74,6 @@ class MenuInput$ConverterImpl implements MenuInput.Converter {
         menu.menuTitle( menuInput.getMenuTitle() );
         menu.permission( menuInput.getPermission() );
         menu.weight( menuInput.getWeight() );
-        menu.show( menuInput.isShow() );
         menu.sysCode( menuInput.getSysCode() );
 
         return menu.build();

@@ -20,7 +20,7 @@ import java.util.Iterator;
 public class CustomerOpenApi {
 
 
-    @Bean
+//    @Bean
     public Converter converter() {
         return new Converter();
     }

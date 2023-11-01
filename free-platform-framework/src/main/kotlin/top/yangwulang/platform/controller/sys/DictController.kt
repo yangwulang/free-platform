@@ -7,20 +7,15 @@ import io.swagger.v3.oas.annotations.tags.Tags
 import jakarta.servlet.http.HttpServletRequest
 import org.apache.commons.lang3.StringUtils
 import org.babyfish.jimmer.sql.ast.Predicate
-import org.babyfish.jimmer.sql.fetcher.RecursiveListFieldConfig
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
-import org.springframework.util.ObjectUtils
 import org.springframework.web.bind.annotation.*
 import top.yangwulang.platform.entity.PageHttpRequest
 import top.yangwulang.platform.entity.Result
-import top.yangwulang.platform.entity.sys.*
-import top.yangwulang.platform.entity.sys.dto.DictDataGetView
-import top.yangwulang.platform.entity.sys.dto.DictDataListView
-import top.yangwulang.platform.entity.sys.dto.DictDataSaveInput
-import top.yangwulang.platform.entity.sys.dto.DictTypeGetView
-import top.yangwulang.platform.entity.sys.dto.DictTypeListView
-import top.yangwulang.platform.entity.sys.input.DictDataInput
+import top.yangwulang.platform.entity.sys.DictDataTable
+import top.yangwulang.platform.entity.sys.DictType
+import top.yangwulang.platform.entity.sys.DictTypeTable
+import top.yangwulang.platform.entity.sys.dto.*
 import top.yangwulang.platform.entity.sys.input.DictTypeInput
 import top.yangwulang.platform.services.DictDataService
 import top.yangwulang.platform.services.DictTypeService
@@ -87,7 +82,7 @@ class DictController {
     @Operation(summary = "获取字典数据列表")
     fun listDictData(
         httpServletRequest: HttpServletRequest?,
-        @RequestBody dictDataInput: DictDataInput
+        @RequestBody dictDataInput: DictDataListInput
     ): List<DictDataListView> {
         val table = DictDataTable.`$`
         return dictDataService.repository().sql().createQuery(table)

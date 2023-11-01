@@ -1,3 +1,10 @@
+inputOnly DictDataListInput {
+    dictTypeId
+    dictLabel
+    dictValue
+    description
+}
+
 DictDataListView {
     #allScalars
     -corpCode

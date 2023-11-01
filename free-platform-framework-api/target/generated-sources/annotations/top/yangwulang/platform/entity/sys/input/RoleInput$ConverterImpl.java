@@ -6,7 +6,7 @@ import top.yangwulang.platform.entity.sys.RoleDraft;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-10-30T22:26:12+0800",
+    date = "2023-11-01T22:33:44+0800",
     comments = "version: 1.5.3.Final, compiler: javac, environment: Java 17.0.5 (Oracle Corporation)"
 )
 class RoleInput$ConverterImpl implements RoleInput.Converter {

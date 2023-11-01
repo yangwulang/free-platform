@@ -1,3 +1,17 @@
-CompanyListInput {
+inputOnly CompanyListInput {
+
+}
+
+
+CompanyListView {
+  #allScalars
+}
+
+CompanyGetView {
+  #allScalars
+}
+
+
+inputOnly CompanySaveInput {
 
 }

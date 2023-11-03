@@ -6,7 +6,7 @@ import top.yangwulang.platform.entity.sys.DictTypeDraft;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-11-01T22:33:44+0800",
+    date = "2023-11-03T20:44:43+0800",
     comments = "version: 1.5.3.Final, compiler: javac, environment: Java 17.0.5 (Oracle Corporation)"
 )
 class DictTypeInput$ConverterImpl implements DictTypeInput.Converter {

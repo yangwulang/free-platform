@@ -27,3 +27,7 @@ inputOnly EmployeeListInput {
         status
     }
 }
+
+EmployeeGetView {
+    #allScalars
+}

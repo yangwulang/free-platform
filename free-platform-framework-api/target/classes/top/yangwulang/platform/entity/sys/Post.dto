@@ -3,11 +3,16 @@ PostListView {
 }
 
 unsafe input PostListInput {
-    postCode
-    postName
+    postCode?
+    postName?
     postType
 }
 
 PostGetView {
     #allScalars
+}
+
+unsafe input PostSaveInput {
+    #allScalars
+    id?
 }

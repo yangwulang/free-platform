@@ -21,36 +21,31 @@ import top.yangwulang.platform.entity.sys.PostFetcher;
 @GeneratedBy(
         file = "src/main/dto/top/yangwulang/platform/entity/sys/Post.dto"
 )
-public class PostListInput implements ViewableInput<Post> {
-    public static final ViewMetadata<Post, PostListInput> METADATA = 
-        new ViewMetadata<Post, PostListInput>(
+public class PostSaveInput implements ViewableInput<Post> {
+    public static final ViewMetadata<Post, PostSaveInput> METADATA = 
+        new ViewMetadata<Post, PostSaveInput>(
             PostFetcher.$
                 .postCode()
                 .postName()
                 .postType(),
-            PostListInput::new
+            PostSaveInput::new
     );
 
-    private static final DtoPropAccessor POST_CODE_ACCESSOR = new DtoPropAccessor(
+    private static final DtoPropAccessor ID_ACCESSOR = new DtoPropAccessor(
         false,
-        new int[] { PostDraft.Producer.SLOT_POST_CODE }
-    );
-
-    private static final DtoPropAccessor POST_NAME_ACCESSOR = new DtoPropAccessor(
-        false,
-        new int[] { PostDraft.Producer.SLOT_POST_NAME }
+        new int[] { PostDraft.Producer.SLOT_ID }
     );
 
     @Schema(
             description = "岗位编码"
     )
-    @Nullable
+    @NotNull
     private String postCode;
 
     @Schema(
             description = "岗位名称"
     )
-    @Nullable
+    @NotNull
     private String postName;
 
     @Schema(
@@ -59,34 +54,38 @@ public class PostListInput implements ViewableInput<Post> {
     @Null
     private String postType;
 
-    public PostListInput() {
+    @javax.validation.constraints.NotNull
+    private String id;
+
+    public PostSaveInput() {
     }
 
-    public PostListInput(@NotNull Post base) {
-        this.postCode = POST_CODE_ACCESSOR.get(base);
-        this.postName = POST_NAME_ACCESSOR.get(base);
+    public PostSaveInput(@NotNull Post base) {
+        this.postCode = base.postCode();
+        this.postName = base.postName();
         this.postType = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(PostDraft.Producer.SLOT_POST_TYPE)) ? base.postType() : null;
+        this.id = ID_ACCESSOR.get(base);
     }
 
-    public static PostListInput of(@NotNull Post base) {
-        return new PostListInput(base);
+    public static PostSaveInput of(@NotNull Post base) {
+        return new PostSaveInput(base);
     }
 
-    @Nullable
+    @NotNull
     public String getPostCode() {
         return postCode;
     }
 
-    public void setPostCode(@Nullable String postCode) {
+    public void setPostCode(@NotNull String postCode) {
         this.postCode = postCode;
     }
 
-    @Nullable
+    @NotNull
     public String getPostName() {
         return postName;
     }
 
-    public void setPostName(@Nullable String postName) {
+    public void setPostName(@NotNull String postName) {
         this.postName = postName;
     }
 
@@ -99,12 +98,22 @@ public class PostListInput implements ViewableInput<Post> {
         this.postType = postType;
     }
 
+    @Nullable
+    public String getId() {
+        return id;
+    }
+
+    public void setId(@Nullable String id) {
+        this.id = id;
+    }
+
     @Override
     public Post toEntity() {
         return PostDraft.$.produce(__draft -> {
-            POST_CODE_ACCESSOR.set(__draft, postCode);
-            POST_NAME_ACCESSOR.set(__draft, postName);
+            __draft.setPostCode(postCode);
+            __draft.setPostName(postName);
             __draft.setPostType(postType);
+            ID_ACCESSOR.set(__draft, id);
         });
     }
 
@@ -112,6 +121,7 @@ public class PostListInput implements ViewableInput<Post> {
         int hash = Objects.hashCode(postCode);
         hash = hash * 31 + Objects.hashCode(postName);
         hash = hash * 31 + Objects.hashCode(postType);
+        hash = hash * 31 + Objects.hashCode(id);
         return hash;
     }
 
@@ -119,7 +129,7 @@ public class PostListInput implements ViewableInput<Post> {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
-        PostListInput other = (PostListInput) o;
+        PostSaveInput other = (PostSaveInput) o;
         if (!Objects.equals(postCode, other.postCode)) {
             return false;
         }
@@ -129,15 +139,19 @@ public class PostListInput implements ViewableInput<Post> {
         if (!Objects.equals(postType, other.postType)) {
             return false;
         }
+        if (!Objects.equals(id, other.id)) {
+            return false;
+        }
         return true;
     }
 
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("PostListInput").append('(');
+        builder.append("PostSaveInput").append('(');
         builder.append("postCode=").append(postCode);
         builder.append(", postName=").append(postName);
         builder.append(", postType=").append(postType);
+        builder.append(", id=").append(id);
         builder.append(')');
         return builder.toString();
     }

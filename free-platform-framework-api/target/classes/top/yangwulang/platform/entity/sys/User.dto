@@ -33,7 +33,7 @@ UserRoleMenuView {
             #allScalars
             children {
                 #allScalars
-            }
+            } // TODO: 这里一定是递归的，但是在jimmer 0.8.35中存在bug无法递归使用 待修复后这里加* github上的issue #310
         }
     }
 }

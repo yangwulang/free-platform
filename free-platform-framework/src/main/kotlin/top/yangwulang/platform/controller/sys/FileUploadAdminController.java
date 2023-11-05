@@ -36,7 +36,7 @@ public class FileUploadAdminController {
             .allScalarFields();
 
     @SaCheckPermission(value = "sys:fileUpload:view")
-    @PostMapping("/dictType")
+    @PostMapping("/list")
     @Operation(summary = "获取上传的文件列表")
     public Page<FileUpload> listData(HttpServletRequest httpServletRequest) {
         return fileUploadService.repository().findAll(

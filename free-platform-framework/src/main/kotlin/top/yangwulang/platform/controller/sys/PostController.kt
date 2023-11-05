@@ -9,10 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
 import org.springframework.web.bind.annotation.*
 import top.yangwulang.platform.entity.PageHttpRequest
+import top.yangwulang.platform.entity.sys.Post
 import top.yangwulang.platform.entity.sys.PostTable
 import top.yangwulang.platform.entity.sys.dto.PostGetView
 import top.yangwulang.platform.entity.sys.dto.PostListInput
 import top.yangwulang.platform.entity.sys.dto.PostListView
+import top.yangwulang.platform.entity.sys.dto.PostSaveInput
 import top.yangwulang.platform.services.PostService
 
 
@@ -31,7 +33,7 @@ class PostController {
 
     @PostMapping
     @Operation(summary = "获取岗位列表")
-    fun listData(request: HttpServletRequest?,@RequestBody input: PostListInput): Page<PostListView> {
+    fun listData(request: HttpServletRequest?, @RequestBody input: PostListInput): Page<PostListView> {
         val repository = postService.repository()
         val table = PostTable.`$`
         return repository.pager(PageHttpRequest.of(request).toPage())
@@ -43,5 +45,11 @@ class PostController {
                     .whereIf(StringUtils.isNotEmpty(input.postType), table.postType().eq(input.postType))
                     .select(table.fetch(PostListView::class.java))
             )
+    }
+
+    @PutMapping
+    @Operation(summary = "新增或修改岗位")
+    fun save(@RequestBody input: PostSaveInput): Post {
+        return postService.save(input)
     }
 }

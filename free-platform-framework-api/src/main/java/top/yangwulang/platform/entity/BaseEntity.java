@@ -43,7 +43,7 @@ public interface BaseEntity extends Serializable {
      */
     @NotNull
     @Schema(description = "状态")
-    @LogicalDeleted(value = STATUS_DELETE, restoredValue = STATUS_NORMAL)
+    @LogicalDeleted(value = STATUS_DELETE)
     int status();
 
     /**

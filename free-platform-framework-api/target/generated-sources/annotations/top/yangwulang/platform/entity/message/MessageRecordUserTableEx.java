@@ -40,33 +40,33 @@ public class MessageRecordUserTableEx extends MessageRecordUserTable implements 
     public MessageRecordTableEx record() {
         __beforeJoin();
         if (raw != null) {
-            return new MessageRecordTableEx(raw.joinImplementor("record"));
+            return new MessageRecordTableEx(raw.joinImplementor(MessageRecordUserProps.RECORD.unwrap()));
         }
-        return new MessageRecordTableEx(joinOperation("record"));
+        return new MessageRecordTableEx(joinOperation(MessageRecordUserProps.RECORD.unwrap()));
     }
 
     public MessageRecordTableEx record(JoinType joinType) {
         __beforeJoin();
         if (raw != null) {
-            return new MessageRecordTableEx(raw.joinImplementor("record", joinType));
+            return new MessageRecordTableEx(raw.joinImplementor(MessageRecordUserProps.RECORD.unwrap(), joinType));
         }
-        return new MessageRecordTableEx(joinOperation("record", joinType));
+        return new MessageRecordTableEx(joinOperation(MessageRecordUserProps.RECORD.unwrap(), joinType));
     }
 
     public UserTableEx user() {
         __beforeJoin();
         if (raw != null) {
-            return new UserTableEx(raw.joinImplementor("user"));
+            return new UserTableEx(raw.joinImplementor(MessageRecordUserProps.USER.unwrap()));
         }
-        return new UserTableEx(joinOperation("user"));
+        return new UserTableEx(joinOperation(MessageRecordUserProps.USER.unwrap()));
     }
 
     public UserTableEx user(JoinType joinType) {
         __beforeJoin();
         if (raw != null) {
-            return new UserTableEx(raw.joinImplementor("user", joinType));
+            return new UserTableEx(raw.joinImplementor(MessageRecordUserProps.USER.unwrap(), joinType));
         }
-        return new UserTableEx(joinOperation("user", joinType));
+        return new UserTableEx(joinOperation(MessageRecordUserProps.USER.unwrap(), joinType));
     }
 
     @Override

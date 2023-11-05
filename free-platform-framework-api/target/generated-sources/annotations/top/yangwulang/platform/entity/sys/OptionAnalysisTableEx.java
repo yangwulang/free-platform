@@ -39,17 +39,17 @@ public class OptionAnalysisTableEx extends OptionAnalysisTable implements TableE
     public UserTableEx optionUser() {
         __beforeJoin();
         if (raw != null) {
-            return new UserTableEx(raw.joinImplementor("optionUser"));
+            return new UserTableEx(raw.joinImplementor(OptionAnalysisProps.OPTION_USER.unwrap()));
         }
-        return new UserTableEx(joinOperation("optionUser"));
+        return new UserTableEx(joinOperation(OptionAnalysisProps.OPTION_USER.unwrap()));
     }
 
     public UserTableEx optionUser(JoinType joinType) {
         __beforeJoin();
         if (raw != null) {
-            return new UserTableEx(raw.joinImplementor("optionUser", joinType));
+            return new UserTableEx(raw.joinImplementor(OptionAnalysisProps.OPTION_USER.unwrap(), joinType));
         }
-        return new UserTableEx(joinOperation("optionUser", joinType));
+        return new UserTableEx(joinOperation(OptionAnalysisProps.OPTION_USER.unwrap(), joinType));
     }
 
     @Override

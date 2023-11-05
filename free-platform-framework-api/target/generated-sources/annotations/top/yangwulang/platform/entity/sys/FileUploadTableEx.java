@@ -38,17 +38,17 @@ public class FileUploadTableEx extends FileUploadTable implements TableEx<FileUp
     public FileEntityTableEx fileEntity() {
         __beforeJoin();
         if (raw != null) {
-            return new FileEntityTableEx(raw.joinImplementor("fileEntity"));
+            return new FileEntityTableEx(raw.joinImplementor(FileUploadProps.FILE_ENTITY.unwrap()));
         }
-        return new FileEntityTableEx(joinOperation("fileEntity"));
+        return new FileEntityTableEx(joinOperation(FileUploadProps.FILE_ENTITY.unwrap()));
     }
 
     public FileEntityTableEx fileEntity(JoinType joinType) {
         __beforeJoin();
         if (raw != null) {
-            return new FileEntityTableEx(raw.joinImplementor("fileEntity", joinType));
+            return new FileEntityTableEx(raw.joinImplementor(FileUploadProps.FILE_ENTITY.unwrap(), joinType));
         }
-        return new FileEntityTableEx(joinOperation("fileEntity", joinType));
+        return new FileEntityTableEx(joinOperation(FileUploadProps.FILE_ENTITY.unwrap(), joinType));
     }
 
     @Override

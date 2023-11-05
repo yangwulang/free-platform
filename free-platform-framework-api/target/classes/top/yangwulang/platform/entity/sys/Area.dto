@@ -5,7 +5,7 @@ AreaListView {
     }*
 }
 
-inputOnly AreaListInput {
+unsafe input AreaListInput {
     parentId
     areaName
     sort

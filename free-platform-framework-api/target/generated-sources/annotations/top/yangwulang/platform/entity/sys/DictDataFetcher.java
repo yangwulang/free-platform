@@ -8,6 +8,7 @@ import org.babyfish.jimmer.meta.ImmutableProp;
 import org.babyfish.jimmer.sql.ast.table.Table;
 import org.babyfish.jimmer.sql.fetcher.Fetcher;
 import org.babyfish.jimmer.sql.fetcher.FieldConfig;
+import org.babyfish.jimmer.sql.fetcher.IdOnlyFetchType;
 import org.babyfish.jimmer.sql.fetcher.RecursiveFieldConfig;
 import org.babyfish.jimmer.sql.fetcher.RecursiveListFieldConfig;
 import org.babyfish.jimmer.sql.fetcher.impl.FetcherImpl;
@@ -23,8 +24,9 @@ public class DictDataFetcher extends AbstractTypedFetcher<DictData, DictDataFetc
         super(DictData.class, base);
     }
 
-    private DictDataFetcher(DictDataFetcher prev, ImmutableProp prop, boolean negative) {
-        super(prev, prop, negative);
+    private DictDataFetcher(DictDataFetcher prev, ImmutableProp prop, boolean negative,
+            IdOnlyFetchType idOnlyFetchType) {
+        super(prev, prop, negative, idOnlyFetchType);
     }
 
     private DictDataFetcher(DictDataFetcher prev, ImmutableProp prop,
@@ -120,6 +122,11 @@ public class DictDataFetcher extends AbstractTypedFetcher<DictData, DictDataFetc
     }
 
     @NewChain
+    public DictDataFetcher parent(IdOnlyFetchType idOnlyFetchType) {
+        return add("parent", idOnlyFetchType);
+    }
+
+    @NewChain
     public DictDataFetcher children() {
         return add("children");
     }
@@ -162,6 +169,11 @@ public class DictDataFetcher extends AbstractTypedFetcher<DictData, DictDataFetc
     }
 
     @NewChain
+    public DictDataFetcher dictType(IdOnlyFetchType idOnlyFetchType) {
+        return add("dictType", idOnlyFetchType);
+    }
+
+    @NewChain
     public DictDataFetcher parentId() {
         return add("parentId");
     }
@@ -172,6 +184,11 @@ public class DictDataFetcher extends AbstractTypedFetcher<DictData, DictDataFetc
     }
 
     @NewChain
+    public DictDataFetcher parentId(IdOnlyFetchType idOnlyFetchType) {
+        return add("parentId", idOnlyFetchType);
+    }
+
+    @NewChain
     public DictDataFetcher dictTypeId() {
         return add("dictTypeId");
     }
@@ -179,6 +196,11 @@ public class DictDataFetcher extends AbstractTypedFetcher<DictData, DictDataFetc
     @NewChain
     public DictDataFetcher dictTypeId(boolean enabled) {
         return enabled ? add("dictTypeId") : remove("dictTypeId");
+    }
+
+    @NewChain
+    public DictDataFetcher dictTypeId(IdOnlyFetchType idOnlyFetchType) {
+        return add("dictTypeId", idOnlyFetchType);
     }
 
     @NewChain
@@ -262,8 +284,9 @@ public class DictDataFetcher extends AbstractTypedFetcher<DictData, DictDataFetc
     }
 
     @Override
-    protected DictDataFetcher createFetcher(ImmutableProp prop, boolean negative) {
-        return new DictDataFetcher(this, prop, negative);
+    protected DictDataFetcher createFetcher(ImmutableProp prop, boolean negative,
+            IdOnlyFetchType idOnlyFetchType) {
+        return new DictDataFetcher(this, prop, negative, idOnlyFetchType);
     }
 
     @Override

@@ -34,47 +34,47 @@ public class ConfigTable extends AbstractTypedTable<Config> implements ConfigPro
 
     @Override
     public PropExpression.Str id() {
-        return get("id");
+        return __get(ConfigProps.ID.unwrap());
     }
 
     @Override
     public PropExpression.Str createBy() {
-        return get("createBy");
+        return __get(ConfigProps.CREATE_BY.unwrap());
     }
 
     @Override
     public PropExpression.Cmp<Date> createDate() {
-        return get("createDate");
+        return __get(ConfigProps.CREATE_DATE.unwrap());
     }
 
     @Override
     public PropExpression.Str updateBy() {
-        return get("updateBy");
+        return __get(ConfigProps.UPDATE_BY.unwrap());
     }
 
     @Override
     public PropExpression.Cmp<Date> updateDate() {
-        return get("updateDate");
+        return __get(ConfigProps.UPDATE_DATE.unwrap());
     }
 
     @Override
     public PropExpression.Str remarks() {
-        return get("remarks");
+        return __get(ConfigProps.REMARKS.unwrap());
     }
 
     @Override
     public PropExpression.Str configName() {
-        return get("configName");
+        return __get(ConfigProps.CONFIG_NAME.unwrap());
     }
 
     @Override
     public PropExpression.Str configKey() {
-        return get("configKey");
+        return __get(ConfigProps.CONFIG_KEY.unwrap());
     }
 
     @Override
     public PropExpression.Str configValue() {
-        return get("configValue");
+        return __get(ConfigProps.CONFIG_VALUE.unwrap());
     }
 
     @Override
@@ -97,7 +97,7 @@ public class ConfigTable extends AbstractTypedTable<Config> implements ConfigPro
         }
 
         public PropExpression.Str id() {
-            return get("id");
+            return __get(ConfigProps.ID.unwrap());
         }
 
         @Override

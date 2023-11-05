@@ -38,33 +38,33 @@ public class AreaTableEx extends AreaTable implements TableEx<Area> {
     public AreaTableEx parent() {
         __beforeJoin();
         if (raw != null) {
-            return new AreaTableEx(raw.joinImplementor("parent"));
+            return new AreaTableEx(raw.joinImplementor(AreaProps.PARENT.unwrap()));
         }
-        return new AreaTableEx(joinOperation("parent"));
+        return new AreaTableEx(joinOperation(AreaProps.PARENT.unwrap()));
     }
 
     public AreaTableEx parent(JoinType joinType) {
         __beforeJoin();
         if (raw != null) {
-            return new AreaTableEx(raw.joinImplementor("parent", joinType));
+            return new AreaTableEx(raw.joinImplementor(AreaProps.PARENT.unwrap(), joinType));
         }
-        return new AreaTableEx(joinOperation("parent", joinType));
+        return new AreaTableEx(joinOperation(AreaProps.PARENT.unwrap(), joinType));
     }
 
     public AreaTableEx children() {
         __beforeJoin();
         if (raw != null) {
-            return new AreaTableEx(raw.joinImplementor("children"));
+            return new AreaTableEx(raw.joinImplementor(AreaProps.CHILDREN.unwrap()));
         }
-        return new AreaTableEx(joinOperation("children"));
+        return new AreaTableEx(joinOperation(AreaProps.CHILDREN.unwrap()));
     }
 
     public AreaTableEx children(JoinType joinType) {
         __beforeJoin();
         if (raw != null) {
-            return new AreaTableEx(raw.joinImplementor("children", joinType));
+            return new AreaTableEx(raw.joinImplementor(AreaProps.CHILDREN.unwrap(), joinType));
         }
-        return new AreaTableEx(joinOperation("children", joinType));
+        return new AreaTableEx(joinOperation(AreaProps.CHILDREN.unwrap(), joinType));
     }
 
     @Override

@@ -8,6 +8,7 @@ import org.babyfish.jimmer.meta.ImmutableProp;
 import org.babyfish.jimmer.sql.ast.table.Table;
 import org.babyfish.jimmer.sql.fetcher.Fetcher;
 import org.babyfish.jimmer.sql.fetcher.FieldConfig;
+import org.babyfish.jimmer.sql.fetcher.IdOnlyFetchType;
 import org.babyfish.jimmer.sql.fetcher.ListFieldConfig;
 import org.babyfish.jimmer.sql.fetcher.RecursiveFieldConfig;
 import org.babyfish.jimmer.sql.fetcher.RecursiveListFieldConfig;
@@ -24,8 +25,9 @@ public class MenuFetcher extends AbstractTypedFetcher<Menu, MenuFetcher> {
         super(Menu.class, base);
     }
 
-    private MenuFetcher(MenuFetcher prev, ImmutableProp prop, boolean negative) {
-        super(prev, prop, negative);
+    private MenuFetcher(MenuFetcher prev, ImmutableProp prop, boolean negative,
+            IdOnlyFetchType idOnlyFetchType) {
+        super(prev, prop, negative, idOnlyFetchType);
     }
 
     private MenuFetcher(MenuFetcher prev, ImmutableProp prop,
@@ -121,6 +123,11 @@ public class MenuFetcher extends AbstractTypedFetcher<Menu, MenuFetcher> {
     }
 
     @NewChain
+    public MenuFetcher parent(IdOnlyFetchType idOnlyFetchType) {
+        return add("parent", idOnlyFetchType);
+    }
+
+    @NewChain
     public MenuFetcher parentId() {
         return add("parentId");
     }
@@ -128,6 +135,11 @@ public class MenuFetcher extends AbstractTypedFetcher<Menu, MenuFetcher> {
     @NewChain
     public MenuFetcher parentId(boolean enabled) {
         return enabled ? add("parentId") : remove("parentId");
+    }
+
+    @NewChain
+    public MenuFetcher parentId(IdOnlyFetchType idOnlyFetchType) {
+        return add("parentId", idOnlyFetchType);
     }
 
     @NewChain
@@ -292,9 +304,15 @@ public class MenuFetcher extends AbstractTypedFetcher<Menu, MenuFetcher> {
         return add("roles", childFetcher, fieldConfig);
     }
 
+    @NewChain
+    public MenuFetcher roles(IdOnlyFetchType idOnlyFetchType) {
+        return add("roles", idOnlyFetchType);
+    }
+
     @Override
-    protected MenuFetcher createFetcher(ImmutableProp prop, boolean negative) {
-        return new MenuFetcher(this, prop, negative);
+    protected MenuFetcher createFetcher(ImmutableProp prop, boolean negative,
+            IdOnlyFetchType idOnlyFetchType) {
+        return new MenuFetcher(this, prop, negative, idOnlyFetchType);
     }
 
     @Override

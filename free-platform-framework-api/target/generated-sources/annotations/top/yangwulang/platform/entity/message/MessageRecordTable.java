@@ -34,42 +34,42 @@ public class MessageRecordTable extends AbstractTypedTable<MessageRecord> implem
 
     @Override
     public PropExpression.Str id() {
-        return get("id");
+        return __get(MessageRecordProps.ID.unwrap());
     }
 
     @Override
     public PropExpression.Num<Integer> status() {
-        return get("status");
+        return __get(MessageRecordProps.STATUS.unwrap());
     }
 
     @Override
     public PropExpression.Str type() {
-        return get("type");
+        return __get(MessageRecordProps.TYPE.unwrap());
     }
 
     @Override
     public PropExpression.Str title() {
-        return get("title");
+        return __get(MessageRecordProps.TITLE.unwrap());
     }
 
     @Override
     public PropExpression.Str subTitle() {
-        return get("subTitle");
+        return __get(MessageRecordProps.SUB_TITLE.unwrap());
     }
 
     @Override
     public PropExpression.Str avatar() {
-        return get("avatar");
+        return __get(MessageRecordProps.AVATAR.unwrap());
     }
 
     @Override
     public PropExpression.Str content() {
-        return get("content");
+        return __get(MessageRecordProps.CONTENT.unwrap());
     }
 
     @Override
     public PropExpression.Num<Integer> messageType() {
-        return get("messageType");
+        return __get(MessageRecordProps.MESSAGE_TYPE.unwrap());
     }
 
     @Override
@@ -92,7 +92,7 @@ public class MessageRecordTable extends AbstractTypedTable<MessageRecord> implem
         }
 
         public PropExpression.Str id() {
-            return get("id");
+            return __get(MessageRecordProps.ID.unwrap());
         }
 
         @Override

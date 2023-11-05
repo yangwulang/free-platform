@@ -2,38 +2,37 @@ package top.yangwulang.platform.entity.sys.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.lang.Boolean;
+import java.lang.Integer;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Objects;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
-import lombok.Data;
 import org.babyfish.jimmer.GeneratedBy;
 import org.babyfish.jimmer.View;
+import org.babyfish.jimmer.impl.util.DtoPropAccessor;
+import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
 import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
 import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.sys.Menu;
 import top.yangwulang.platform.entity.sys.MenuDraft;
 import top.yangwulang.platform.entity.sys.MenuFetcher;
-import top.yangwulang.platform.entity.sys.MenuProps;
 import top.yangwulang.platform.entity.sys.Role;
 import top.yangwulang.platform.entity.sys.RoleDraft;
 import top.yangwulang.platform.entity.sys.RoleFetcher;
-import top.yangwulang.platform.entity.sys.RoleProps;
 import top.yangwulang.platform.entity.sys.User;
 import top.yangwulang.platform.entity.sys.UserDraft;
 import top.yangwulang.platform.entity.sys.UserFetcher;
-import top.yangwulang.platform.entity.sys.UserProps;
 
 @GeneratedBy(
         file = "src/main/dto/top/yangwulang/platform/entity/sys/Role.dto"
 )
-@Data
 public class RoleGetView implements View<Role> {
     public static final ViewMetadata<Role, RoleGetView> METADATA = 
         new ViewMetadata<Role, RoleGetView>(
@@ -55,6 +54,20 @@ public class RoleGetView implements View<Role> {
                 .menus(TargetOf_menus.METADATA.getFetcher())
                 .users(TargetOf_users.METADATA.getFetcher()),
             RoleGetView::new
+    );
+
+    private static final DtoPropAccessor MENUS_ACCESSOR = new DtoPropAccessor(
+        true,
+        new int[] { RoleDraft.Producer.SLOT_MENUS },
+        DtoPropAccessor.<Menu, TargetOf_menus>objectListGetter(TargetOf_menus::new),
+        DtoPropAccessor.objectListSetter(TargetOf_menus::toEntity)
+    );
+
+    private static final DtoPropAccessor USERS_ACCESSOR = new DtoPropAccessor(
+        true,
+        new int[] { RoleDraft.Producer.SLOT_USERS },
+        DtoPropAccessor.<User, TargetOf_users>objectListGetter(TargetOf_users::new),
+        DtoPropAccessor.objectListSetter(TargetOf_users::toEntity)
     );
 
     @NotNull
@@ -144,66 +157,308 @@ public class RoleGetView implements View<Role> {
     }
 
     public RoleGetView(@org.jetbrains.annotations.NotNull Role base) {
-        ImmutableSpi spi = (ImmutableSpi)base;
         this.id = base.id();
         this.status = base.status();
         this.createBy = base.createBy();
         this.createDate = base.createDate();
         this.updateBy = base.updateBy();
         this.updateDate = base.updateDate();
-        this.remarks = spi.__isLoaded(RoleProps.REMARKS.unwrap().getId()) ? base.remarks() : null;
+        this.remarks = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(RoleDraft.Producer.SLOT_REMARKS)) ? base.remarks() : null;
         this.roleCode = base.roleCode();
         this.roleName = base.roleName();
-        this.roleType = spi.__isLoaded(RoleProps.ROLE_TYPE.unwrap().getId()) ? base.roleType() : null;
-        this.roleSort = spi.__isLoaded(RoleProps.ROLE_SORT.unwrap().getId()) ? base.roleSort() : null;
-        this.isSys = spi.__isLoaded(RoleProps.IS_SYS.unwrap().getId()) ? base.isSys() : null;
-        this.userType = spi.__isLoaded(RoleProps.USER_TYPE.unwrap().getId()) ? base.userType() : null;
-        this.dataScope = spi.__isLoaded(RoleProps.DATA_SCOPE.unwrap().getId()) ? base.dataScope() : null;
-        this.bizScope = spi.__isLoaded(RoleProps.BIZ_SCOPE.unwrap().getId()) ? base.bizScope() : null;
-        this.menus = base.menus().stream().map(TargetOf_menus::new).collect(Collectors.toList());
-        this.users = base.users().stream().map(TargetOf_users::new).collect(Collectors.toList());
+        this.roleType = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(RoleDraft.Producer.SLOT_ROLE_TYPE)) ? base.roleType() : null;
+        this.roleSort = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(RoleDraft.Producer.SLOT_ROLE_SORT)) ? base.roleSort() : null;
+        this.isSys = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(RoleDraft.Producer.SLOT_IS_SYS)) ? base.isSys() : null;
+        this.userType = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(RoleDraft.Producer.SLOT_USER_TYPE)) ? base.userType() : null;
+        this.dataScope = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(RoleDraft.Producer.SLOT_DATA_SCOPE)) ? base.dataScope() : null;
+        this.bizScope = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(RoleDraft.Producer.SLOT_BIZ_SCOPE)) ? base.bizScope() : null;
+        this.menus = MENUS_ACCESSOR.get(base);
+        this.users = USERS_ACCESSOR.get(base);
     }
 
     public static RoleGetView of(@org.jetbrains.annotations.NotNull Role base) {
         return new RoleGetView(base);
     }
 
+    @org.jetbrains.annotations.NotNull
+    public String getId() {
+        return id;
+    }
+
+    public void setId(@org.jetbrains.annotations.NotNull String id) {
+        this.id = id;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    @org.jetbrains.annotations.NotNull
+    public String getCreateBy() {
+        return createBy;
+    }
+
+    public void setCreateBy(@org.jetbrains.annotations.NotNull String createBy) {
+        this.createBy = createBy;
+    }
+
+    @org.jetbrains.annotations.NotNull
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(@org.jetbrains.annotations.NotNull Date createDate) {
+        this.createDate = createDate;
+    }
+
+    @org.jetbrains.annotations.NotNull
+    public String getUpdateBy() {
+        return updateBy;
+    }
+
+    public void setUpdateBy(@org.jetbrains.annotations.NotNull String updateBy) {
+        this.updateBy = updateBy;
+    }
+
+    @org.jetbrains.annotations.NotNull
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(@org.jetbrains.annotations.NotNull Date updateDate) {
+        this.updateDate = updateDate;
+    }
+
+    @Nullable
+    public String getRemarks() {
+        return remarks;
+    }
+
+    public void setRemarks(@Nullable String remarks) {
+        this.remarks = remarks;
+    }
+
+    @org.jetbrains.annotations.NotNull
+    public String getRoleCode() {
+        return roleCode;
+    }
+
+    public void setRoleCode(@org.jetbrains.annotations.NotNull String roleCode) {
+        this.roleCode = roleCode;
+    }
+
+    @org.jetbrains.annotations.NotNull
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(@org.jetbrains.annotations.NotNull String roleName) {
+        this.roleName = roleName;
+    }
+
+    @Nullable
+    public String getRoleType() {
+        return roleType;
+    }
+
+    public void setRoleType(@Nullable String roleType) {
+        this.roleType = roleType;
+    }
+
+    @Nullable
+    public BigDecimal getRoleSort() {
+        return roleSort;
+    }
+
+    public void setRoleSort(@Nullable BigDecimal roleSort) {
+        this.roleSort = roleSort;
+    }
+
+    @Nullable
+    public Boolean getIsSys() {
+        return isSys;
+    }
+
+    public void setIsSys(@Nullable Boolean isSys) {
+        this.isSys = isSys;
+    }
+
+    @Nullable
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(@Nullable String userType) {
+        this.userType = userType;
+    }
+
+    @Nullable
+    public String getDataScope() {
+        return dataScope;
+    }
+
+    public void setDataScope(@Nullable String dataScope) {
+        this.dataScope = dataScope;
+    }
+
+    @Nullable
+    public String getBizScope() {
+        return bizScope;
+    }
+
+    public void setBizScope(@Nullable String bizScope) {
+        this.bizScope = bizScope;
+    }
+
+    @org.jetbrains.annotations.NotNull
+    public List<TargetOf_menus> getMenus() {
+        return menus;
+    }
+
+    public void setMenus(@org.jetbrains.annotations.NotNull List<TargetOf_menus> menus) {
+        this.menus = menus;
+    }
+
+    @org.jetbrains.annotations.NotNull
+    public List<TargetOf_users> getUsers() {
+        return users;
+    }
+
+    public void setUsers(@org.jetbrains.annotations.NotNull List<TargetOf_users> users) {
+        this.users = users;
+    }
+
     @Override
     public Role toEntity() {
-        return RoleDraft.$.produce(draft -> {
-            draft.setId(id);
-            draft.setStatus(status);
-            draft.setCreateBy(createBy);
-            draft.setCreateDate(createDate);
-            draft.setUpdateBy(updateBy);
-            draft.setUpdateDate(updateDate);
-            draft.setRemarks(remarks);
-            draft.setRoleCode(roleCode);
-            draft.setRoleName(roleName);
-            draft.setRoleType(roleType);
-            draft.setRoleSort(roleSort);
-            draft.setIsSys(isSys);
-            draft.setUserType(userType);
-            draft.setDataScope(dataScope);
-            draft.setBizScope(bizScope);
-            if (menus.isEmpty()) {
-                draft.setMenus(Collections.emptyList());
-            } else {
-                for (TargetOf_menus __e : menus) {
-                    draft.menus(true).add((MenuDraft)__e.toEntity());
-                }
-            }
-            if (users.isEmpty()) {
-                draft.setUsers(Collections.emptyList());
-            } else {
-                for (TargetOf_users __e : users) {
-                    draft.users(true).add((UserDraft)__e.toEntity());
-                }
-            }
+        return RoleDraft.$.produce(__draft -> {
+            __draft.setId(id);
+            __draft.setStatus(status);
+            __draft.setCreateBy(createBy);
+            __draft.setCreateDate(createDate);
+            __draft.setUpdateBy(updateBy);
+            __draft.setUpdateDate(updateDate);
+            __draft.setRemarks(remarks);
+            __draft.setRoleCode(roleCode);
+            __draft.setRoleName(roleName);
+            __draft.setRoleType(roleType);
+            __draft.setRoleSort(roleSort);
+            __draft.setIsSys(isSys);
+            __draft.setUserType(userType);
+            __draft.setDataScope(dataScope);
+            __draft.setBizScope(bizScope);
+            MENUS_ACCESSOR.set(__draft, menus != null ? menus : Collections.emptyList());
+            USERS_ACCESSOR.set(__draft, users != null ? users : Collections.emptyList());
         });
     }
 
-    @Data
+    public int hashCode() {
+        int hash = Objects.hashCode(id);
+        hash = hash * 31 + Integer.hashCode(status);
+        hash = hash * 31 + Objects.hashCode(createBy);
+        hash = hash * 31 + Objects.hashCode(createDate);
+        hash = hash * 31 + Objects.hashCode(updateBy);
+        hash = hash * 31 + Objects.hashCode(updateDate);
+        hash = hash * 31 + Objects.hashCode(remarks);
+        hash = hash * 31 + Objects.hashCode(roleCode);
+        hash = hash * 31 + Objects.hashCode(roleName);
+        hash = hash * 31 + Objects.hashCode(roleType);
+        hash = hash * 31 + Objects.hashCode(roleSort);
+        hash = hash * 31 + Objects.hashCode(isSys);
+        hash = hash * 31 + Objects.hashCode(userType);
+        hash = hash * 31 + Objects.hashCode(dataScope);
+        hash = hash * 31 + Objects.hashCode(bizScope);
+        hash = hash * 31 + Objects.hashCode(menus);
+        hash = hash * 31 + Objects.hashCode(users);
+        return hash;
+    }
+
+    public boolean equals(Object o) {
+        if (o == null || this.getClass() != o.getClass()) {
+            return false;
+        }
+        RoleGetView other = (RoleGetView) o;
+        if (!Objects.equals(id, other.id)) {
+            return false;
+        }
+        if (status != other.status) {
+            return false;
+        }
+        if (!Objects.equals(createBy, other.createBy)) {
+            return false;
+        }
+        if (!Objects.equals(createDate, other.createDate)) {
+            return false;
+        }
+        if (!Objects.equals(updateBy, other.updateBy)) {
+            return false;
+        }
+        if (!Objects.equals(updateDate, other.updateDate)) {
+            return false;
+        }
+        if (!Objects.equals(remarks, other.remarks)) {
+            return false;
+        }
+        if (!Objects.equals(roleCode, other.roleCode)) {
+            return false;
+        }
+        if (!Objects.equals(roleName, other.roleName)) {
+            return false;
+        }
+        if (!Objects.equals(roleType, other.roleType)) {
+            return false;
+        }
+        if (!Objects.equals(roleSort, other.roleSort)) {
+            return false;
+        }
+        if (!Objects.equals(isSys, other.isSys)) {
+            return false;
+        }
+        if (!Objects.equals(userType, other.userType)) {
+            return false;
+        }
+        if (!Objects.equals(dataScope, other.dataScope)) {
+            return false;
+        }
+        if (!Objects.equals(bizScope, other.bizScope)) {
+            return false;
+        }
+        if (!Objects.equals(menus, other.menus)) {
+            return false;
+        }
+        if (!Objects.equals(users, other.users)) {
+            return false;
+        }
+        return true;
+    }
+
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("RoleGetView").append('(');
+        builder.append("id=").append(id);
+        builder.append(", status=").append(status);
+        builder.append(", createBy=").append(createBy);
+        builder.append(", createDate=").append(createDate);
+        builder.append(", updateBy=").append(updateBy);
+        builder.append(", updateDate=").append(updateDate);
+        builder.append(", remarks=").append(remarks);
+        builder.append(", roleCode=").append(roleCode);
+        builder.append(", roleName=").append(roleName);
+        builder.append(", roleType=").append(roleType);
+        builder.append(", roleSort=").append(roleSort);
+        builder.append(", isSys=").append(isSys);
+        builder.append(", userType=").append(userType);
+        builder.append(", dataScope=").append(dataScope);
+        builder.append(", bizScope=").append(bizScope);
+        builder.append(", menus=").append(menus);
+        builder.append(", users=").append(users);
+        builder.append(')');
+        return builder.toString();
+    }
+
     public static class TargetOf_menus implements View<Menu> {
         public static final ViewMetadata<Menu, TargetOf_menus> METADATA = 
             new ViewMetadata<Menu, TargetOf_menus>(
@@ -328,59 +583,342 @@ public class RoleGetView implements View<Role> {
         }
 
         public TargetOf_menus(@org.jetbrains.annotations.NotNull Menu base) {
-            ImmutableSpi spi = (ImmutableSpi)base;
             this.id = base.id();
             this.status = base.status();
             this.createBy = base.createBy();
             this.createDate = base.createDate();
             this.updateBy = base.updateBy();
             this.updateDate = base.updateDate();
-            this.remarks = spi.__isLoaded(MenuProps.REMARKS.unwrap().getId()) ? base.remarks() : null;
+            this.remarks = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_REMARKS)) ? base.remarks() : null;
             this.menuName = base.menuName();
             this.menuType = base.menuType();
-            this.menuHref = spi.__isLoaded(MenuProps.MENU_HREF.unwrap().getId()) ? base.menuHref() : null;
-            this.menuComponent = spi.__isLoaded(MenuProps.MENU_COMPONENT.unwrap().getId()) ? base.menuComponent() : null;
-            this.menuTarget = spi.__isLoaded(MenuProps.MENU_TARGET.unwrap().getId()) ? base.menuTarget() : null;
-            this.menuIcon = spi.__isLoaded(MenuProps.MENU_ICON.unwrap().getId()) ? base.menuIcon() : null;
-            this.menuColor = spi.__isLoaded(MenuProps.MENU_COLOR.unwrap().getId()) ? base.menuColor() : null;
-            this.menuTitle = spi.__isLoaded(MenuProps.MENU_TITLE.unwrap().getId()) ? base.menuTitle() : null;
-            this.permission = spi.__isLoaded(MenuProps.PERMISSION.unwrap().getId()) ? base.permission() : null;
-            this.weight = spi.__isLoaded(MenuProps.WEIGHT.unwrap().getId()) ? base.weight() : null;
-            this.isShow = spi.__isLoaded(MenuProps.IS_SHOW.unwrap().getId()) ? base.isShow() : null;
-            this.sysCode = spi.__isLoaded(MenuProps.SYS_CODE.unwrap().getId()) ? base.sysCode() : null;
+            this.menuHref = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_MENU_HREF)) ? base.menuHref() : null;
+            this.menuComponent = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_MENU_COMPONENT)) ? base.menuComponent() : null;
+            this.menuTarget = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_MENU_TARGET)) ? base.menuTarget() : null;
+            this.menuIcon = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_MENU_ICON)) ? base.menuIcon() : null;
+            this.menuColor = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_MENU_COLOR)) ? base.menuColor() : null;
+            this.menuTitle = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_MENU_TITLE)) ? base.menuTitle() : null;
+            this.permission = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_PERMISSION)) ? base.permission() : null;
+            this.weight = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_WEIGHT)) ? base.weight() : null;
+            this.isShow = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_IS_SHOW)) ? base.isShow() : null;
+            this.sysCode = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_SYS_CODE)) ? base.sysCode() : null;
         }
 
         public static TargetOf_menus of(@org.jetbrains.annotations.NotNull Menu base) {
             return new TargetOf_menus(base);
         }
 
+        @org.jetbrains.annotations.NotNull
+        public String getId() {
+            return id;
+        }
+
+        public void setId(@org.jetbrains.annotations.NotNull String id) {
+            this.id = id;
+        }
+
+        public int getStatus() {
+            return status;
+        }
+
+        public void setStatus(int status) {
+            this.status = status;
+        }
+
+        @org.jetbrains.annotations.NotNull
+        public String getCreateBy() {
+            return createBy;
+        }
+
+        public void setCreateBy(@org.jetbrains.annotations.NotNull String createBy) {
+            this.createBy = createBy;
+        }
+
+        @org.jetbrains.annotations.NotNull
+        public Date getCreateDate() {
+            return createDate;
+        }
+
+        public void setCreateDate(@org.jetbrains.annotations.NotNull Date createDate) {
+            this.createDate = createDate;
+        }
+
+        @org.jetbrains.annotations.NotNull
+        public String getUpdateBy() {
+            return updateBy;
+        }
+
+        public void setUpdateBy(@org.jetbrains.annotations.NotNull String updateBy) {
+            this.updateBy = updateBy;
+        }
+
+        @org.jetbrains.annotations.NotNull
+        public Date getUpdateDate() {
+            return updateDate;
+        }
+
+        public void setUpdateDate(@org.jetbrains.annotations.NotNull Date updateDate) {
+            this.updateDate = updateDate;
+        }
+
+        @Nullable
+        public String getRemarks() {
+            return remarks;
+        }
+
+        public void setRemarks(@Nullable String remarks) {
+            this.remarks = remarks;
+        }
+
+        @org.jetbrains.annotations.NotNull
+        public String getMenuName() {
+            return menuName;
+        }
+
+        public void setMenuName(@org.jetbrains.annotations.NotNull String menuName) {
+            this.menuName = menuName;
+        }
+
+        @org.jetbrains.annotations.NotNull
+        public String getMenuType() {
+            return menuType;
+        }
+
+        public void setMenuType(@org.jetbrains.annotations.NotNull String menuType) {
+            this.menuType = menuType;
+        }
+
+        @Nullable
+        public String getMenuHref() {
+            return menuHref;
+        }
+
+        public void setMenuHref(@Nullable String menuHref) {
+            this.menuHref = menuHref;
+        }
+
+        @Nullable
+        public String getMenuComponent() {
+            return menuComponent;
+        }
+
+        public void setMenuComponent(@Nullable String menuComponent) {
+            this.menuComponent = menuComponent;
+        }
+
+        @Nullable
+        public String getMenuTarget() {
+            return menuTarget;
+        }
+
+        public void setMenuTarget(@Nullable String menuTarget) {
+            this.menuTarget = menuTarget;
+        }
+
+        @Nullable
+        public String getMenuIcon() {
+            return menuIcon;
+        }
+
+        public void setMenuIcon(@Nullable String menuIcon) {
+            this.menuIcon = menuIcon;
+        }
+
+        @Nullable
+        public String getMenuColor() {
+            return menuColor;
+        }
+
+        public void setMenuColor(@Nullable String menuColor) {
+            this.menuColor = menuColor;
+        }
+
+        @Nullable
+        public String getMenuTitle() {
+            return menuTitle;
+        }
+
+        public void setMenuTitle(@Nullable String menuTitle) {
+            this.menuTitle = menuTitle;
+        }
+
+        @Nullable
+        public String getPermission() {
+            return permission;
+        }
+
+        public void setPermission(@Nullable String permission) {
+            this.permission = permission;
+        }
+
+        @Nullable
+        public BigDecimal getWeight() {
+            return weight;
+        }
+
+        public void setWeight(@Nullable BigDecimal weight) {
+            this.weight = weight;
+        }
+
+        @Nullable
+        public Boolean getIsShow() {
+            return isShow;
+        }
+
+        public void setIsShow(@Nullable Boolean isShow) {
+            this.isShow = isShow;
+        }
+
+        @Nullable
+        public String getSysCode() {
+            return sysCode;
+        }
+
+        public void setSysCode(@Nullable String sysCode) {
+            this.sysCode = sysCode;
+        }
+
         @Override
         public Menu toEntity() {
-            return MenuDraft.$.produce(draft -> {
-                draft.setId(id);
-                draft.setStatus(status);
-                draft.setCreateBy(createBy);
-                draft.setCreateDate(createDate);
-                draft.setUpdateBy(updateBy);
-                draft.setUpdateDate(updateDate);
-                draft.setRemarks(remarks);
-                draft.setMenuName(menuName);
-                draft.setMenuType(menuType);
-                draft.setMenuHref(menuHref);
-                draft.setMenuComponent(menuComponent);
-                draft.setMenuTarget(menuTarget);
-                draft.setMenuIcon(menuIcon);
-                draft.setMenuColor(menuColor);
-                draft.setMenuTitle(menuTitle);
-                draft.setPermission(permission);
-                draft.setWeight(weight);
-                draft.setIsShow(isShow);
-                draft.setSysCode(sysCode);
+            return MenuDraft.$.produce(__draft -> {
+                __draft.setId(id);
+                __draft.setStatus(status);
+                __draft.setCreateBy(createBy);
+                __draft.setCreateDate(createDate);
+                __draft.setUpdateBy(updateBy);
+                __draft.setUpdateDate(updateDate);
+                __draft.setRemarks(remarks);
+                __draft.setMenuName(menuName);
+                __draft.setMenuType(menuType);
+                __draft.setMenuHref(menuHref);
+                __draft.setMenuComponent(menuComponent);
+                __draft.setMenuTarget(menuTarget);
+                __draft.setMenuIcon(menuIcon);
+                __draft.setMenuColor(menuColor);
+                __draft.setMenuTitle(menuTitle);
+                __draft.setPermission(permission);
+                __draft.setWeight(weight);
+                __draft.setIsShow(isShow);
+                __draft.setSysCode(sysCode);
             });
+        }
+
+        public int hashCode() {
+            int hash = Objects.hashCode(id);
+            hash = hash * 31 + Integer.hashCode(status);
+            hash = hash * 31 + Objects.hashCode(createBy);
+            hash = hash * 31 + Objects.hashCode(createDate);
+            hash = hash * 31 + Objects.hashCode(updateBy);
+            hash = hash * 31 + Objects.hashCode(updateDate);
+            hash = hash * 31 + Objects.hashCode(remarks);
+            hash = hash * 31 + Objects.hashCode(menuName);
+            hash = hash * 31 + Objects.hashCode(menuType);
+            hash = hash * 31 + Objects.hashCode(menuHref);
+            hash = hash * 31 + Objects.hashCode(menuComponent);
+            hash = hash * 31 + Objects.hashCode(menuTarget);
+            hash = hash * 31 + Objects.hashCode(menuIcon);
+            hash = hash * 31 + Objects.hashCode(menuColor);
+            hash = hash * 31 + Objects.hashCode(menuTitle);
+            hash = hash * 31 + Objects.hashCode(permission);
+            hash = hash * 31 + Objects.hashCode(weight);
+            hash = hash * 31 + Objects.hashCode(isShow);
+            hash = hash * 31 + Objects.hashCode(sysCode);
+            return hash;
+        }
+
+        public boolean equals(Object o) {
+            if (o == null || this.getClass() != o.getClass()) {
+                return false;
+            }
+            TargetOf_menus other = (TargetOf_menus) o;
+            if (!Objects.equals(id, other.id)) {
+                return false;
+            }
+            if (status != other.status) {
+                return false;
+            }
+            if (!Objects.equals(createBy, other.createBy)) {
+                return false;
+            }
+            if (!Objects.equals(createDate, other.createDate)) {
+                return false;
+            }
+            if (!Objects.equals(updateBy, other.updateBy)) {
+                return false;
+            }
+            if (!Objects.equals(updateDate, other.updateDate)) {
+                return false;
+            }
+            if (!Objects.equals(remarks, other.remarks)) {
+                return false;
+            }
+            if (!Objects.equals(menuName, other.menuName)) {
+                return false;
+            }
+            if (!Objects.equals(menuType, other.menuType)) {
+                return false;
+            }
+            if (!Objects.equals(menuHref, other.menuHref)) {
+                return false;
+            }
+            if (!Objects.equals(menuComponent, other.menuComponent)) {
+                return false;
+            }
+            if (!Objects.equals(menuTarget, other.menuTarget)) {
+                return false;
+            }
+            if (!Objects.equals(menuIcon, other.menuIcon)) {
+                return false;
+            }
+            if (!Objects.equals(menuColor, other.menuColor)) {
+                return false;
+            }
+            if (!Objects.equals(menuTitle, other.menuTitle)) {
+                return false;
+            }
+            if (!Objects.equals(permission, other.permission)) {
+                return false;
+            }
+            if (!Objects.equals(weight, other.weight)) {
+                return false;
+            }
+            if (!Objects.equals(isShow, other.isShow)) {
+                return false;
+            }
+            if (!Objects.equals(sysCode, other.sysCode)) {
+                return false;
+            }
+            return true;
+        }
+
+        public String toString() {
+            StringBuilder builder = new StringBuilder();
+            builder.append("RoleGetView").append('.');
+            builder.append("TargetOf_menus").append('(');
+            builder.append("id=").append(id);
+            builder.append(", status=").append(status);
+            builder.append(", createBy=").append(createBy);
+            builder.append(", createDate=").append(createDate);
+            builder.append(", updateBy=").append(updateBy);
+            builder.append(", updateDate=").append(updateDate);
+            builder.append(", remarks=").append(remarks);
+            builder.append(", menuName=").append(menuName);
+            builder.append(", menuType=").append(menuType);
+            builder.append(", menuHref=").append(menuHref);
+            builder.append(", menuComponent=").append(menuComponent);
+            builder.append(", menuTarget=").append(menuTarget);
+            builder.append(", menuIcon=").append(menuIcon);
+            builder.append(", menuColor=").append(menuColor);
+            builder.append(", menuTitle=").append(menuTitle);
+            builder.append(", permission=").append(permission);
+            builder.append(", weight=").append(weight);
+            builder.append(", isShow=").append(isShow);
+            builder.append(", sysCode=").append(sysCode);
+            builder.append(')');
+            return builder.toString();
         }
     }
 
-    @Data
     public static class TargetOf_users implements View<User> {
         public static final ViewMetadata<User, TargetOf_users> METADATA = 
             new ViewMetadata<User, TargetOf_users>(
@@ -440,31 +978,148 @@ public class RoleGetView implements View<Role> {
         }
 
         public TargetOf_users(@org.jetbrains.annotations.NotNull User base) {
-            ImmutableSpi spi = (ImmutableSpi)base;
             this.userCode = base.userCode();
-            this.userName = spi.__isLoaded(UserProps.USER_NAME.unwrap().getId()) ? base.userName() : null;
-            this.userType = spi.__isLoaded(UserProps.USER_TYPE.unwrap().getId()) ? base.userType() : null;
-            this.avatar = spi.__isLoaded(UserProps.AVATAR.unwrap().getId()) ? base.avatar() : null;
-            this.loginCode = spi.__isLoaded(UserProps.LOGIN_CODE.unwrap().getId()) ? base.loginCode() : null;
-            this.email = spi.__isLoaded(UserProps.EMAIL.unwrap().getId()) ? base.email() : null;
-            this.sex = spi.__isLoaded(UserProps.SEX.unwrap().getId()) ? base.sex() : null;
+            this.userName = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(UserDraft.Producer.SLOT_USER_NAME)) ? base.userName() : null;
+            this.userType = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(UserDraft.Producer.SLOT_USER_TYPE)) ? base.userType() : null;
+            this.avatar = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(UserDraft.Producer.SLOT_AVATAR)) ? base.avatar() : null;
+            this.loginCode = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(UserDraft.Producer.SLOT_LOGIN_CODE)) ? base.loginCode() : null;
+            this.email = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(UserDraft.Producer.SLOT_EMAIL)) ? base.email() : null;
+            this.sex = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(UserDraft.Producer.SLOT_SEX)) ? base.sex() : null;
         }
 
         public static TargetOf_users of(@org.jetbrains.annotations.NotNull User base) {
             return new TargetOf_users(base);
         }
 
+        @org.jetbrains.annotations.NotNull
+        public String getUserCode() {
+            return userCode;
+        }
+
+        public void setUserCode(@org.jetbrains.annotations.NotNull String userCode) {
+            this.userCode = userCode;
+        }
+
+        @Nullable
+        public String getUserName() {
+            return userName;
+        }
+
+        public void setUserName(@Nullable String userName) {
+            this.userName = userName;
+        }
+
+        @Nullable
+        public String getUserType() {
+            return userType;
+        }
+
+        public void setUserType(@Nullable String userType) {
+            this.userType = userType;
+        }
+
+        @Nullable
+        public String getAvatar() {
+            return avatar;
+        }
+
+        public void setAvatar(@Nullable String avatar) {
+            this.avatar = avatar;
+        }
+
+        @Nullable
+        public String getLoginCode() {
+            return loginCode;
+        }
+
+        public void setLoginCode(@Nullable String loginCode) {
+            this.loginCode = loginCode;
+        }
+
+        @Nullable
+        public String getEmail() {
+            return email;
+        }
+
+        public void setEmail(@Nullable String email) {
+            this.email = email;
+        }
+
+        @Nullable
+        public String getSex() {
+            return sex;
+        }
+
+        public void setSex(@Nullable String sex) {
+            this.sex = sex;
+        }
+
         @Override
         public User toEntity() {
-            return UserDraft.$.produce(draft -> {
-                draft.setUserCode(userCode);
-                draft.setUserName(userName);
-                draft.setUserType(userType);
-                draft.setAvatar(avatar);
-                draft.setLoginCode(loginCode);
-                draft.setEmail(email);
-                draft.setSex(sex);
+            return UserDraft.$.produce(__draft -> {
+                __draft.setUserCode(userCode);
+                __draft.setUserName(userName);
+                __draft.setUserType(userType);
+                __draft.setAvatar(avatar);
+                __draft.setLoginCode(loginCode);
+                __draft.setEmail(email);
+                __draft.setSex(sex);
             });
+        }
+
+        public int hashCode() {
+            int hash = Objects.hashCode(userCode);
+            hash = hash * 31 + Objects.hashCode(userName);
+            hash = hash * 31 + Objects.hashCode(userType);
+            hash = hash * 31 + Objects.hashCode(avatar);
+            hash = hash * 31 + Objects.hashCode(loginCode);
+            hash = hash * 31 + Objects.hashCode(email);
+            hash = hash * 31 + Objects.hashCode(sex);
+            return hash;
+        }
+
+        public boolean equals(Object o) {
+            if (o == null || this.getClass() != o.getClass()) {
+                return false;
+            }
+            TargetOf_users other = (TargetOf_users) o;
+            if (!Objects.equals(userCode, other.userCode)) {
+                return false;
+            }
+            if (!Objects.equals(userName, other.userName)) {
+                return false;
+            }
+            if (!Objects.equals(userType, other.userType)) {
+                return false;
+            }
+            if (!Objects.equals(avatar, other.avatar)) {
+                return false;
+            }
+            if (!Objects.equals(loginCode, other.loginCode)) {
+                return false;
+            }
+            if (!Objects.equals(email, other.email)) {
+                return false;
+            }
+            if (!Objects.equals(sex, other.sex)) {
+                return false;
+            }
+            return true;
+        }
+
+        public String toString() {
+            StringBuilder builder = new StringBuilder();
+            builder.append("RoleGetView").append('.');
+            builder.append("TargetOf_users").append('(');
+            builder.append("userCode=").append(userCode);
+            builder.append(", userName=").append(userName);
+            builder.append(", userType=").append(userType);
+            builder.append(", avatar=").append(avatar);
+            builder.append(", loginCode=").append(loginCode);
+            builder.append(", email=").append(email);
+            builder.append(", sex=").append(sex);
+            builder.append(')');
+            return builder.toString();
         }
     }
 }

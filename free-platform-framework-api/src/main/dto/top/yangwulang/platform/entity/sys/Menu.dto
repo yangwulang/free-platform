@@ -7,7 +7,7 @@ MenuListView {
     }*
 }
 
-inputOnly MenuListInput {
+unsafe input MenuListInput {
     menuName?
     menuType?
     parentId

@@ -8,6 +8,7 @@ import org.babyfish.jimmer.meta.ImmutableProp;
 import org.babyfish.jimmer.sql.ast.table.Table;
 import org.babyfish.jimmer.sql.fetcher.Fetcher;
 import org.babyfish.jimmer.sql.fetcher.FieldConfig;
+import org.babyfish.jimmer.sql.fetcher.IdOnlyFetchType;
 import org.babyfish.jimmer.sql.fetcher.ListFieldConfig;
 import org.babyfish.jimmer.sql.fetcher.impl.FetcherImpl;
 import org.babyfish.jimmer.sql.fetcher.spi.AbstractTypedFetcher;
@@ -22,8 +23,9 @@ public class PostFetcher extends AbstractTypedFetcher<Post, PostFetcher> {
         super(Post.class, base);
     }
 
-    private PostFetcher(PostFetcher prev, ImmutableProp prop, boolean negative) {
-        super(prev, prop, negative);
+    private PostFetcher(PostFetcher prev, ImmutableProp prop, boolean negative,
+            IdOnlyFetchType idOnlyFetchType) {
+        super(prev, prop, negative, idOnlyFetchType);
     }
 
     private PostFetcher(PostFetcher prev, ImmutableProp prop,
@@ -88,9 +90,15 @@ public class PostFetcher extends AbstractTypedFetcher<Post, PostFetcher> {
         return add("employees", childFetcher, fieldConfig);
     }
 
+    @NewChain
+    public PostFetcher employees(IdOnlyFetchType idOnlyFetchType) {
+        return add("employees", idOnlyFetchType);
+    }
+
     @Override
-    protected PostFetcher createFetcher(ImmutableProp prop, boolean negative) {
-        return new PostFetcher(this, prop, negative);
+    protected PostFetcher createFetcher(ImmutableProp prop, boolean negative,
+            IdOnlyFetchType idOnlyFetchType) {
+        return new PostFetcher(this, prop, negative, idOnlyFetchType);
     }
 
     @Override

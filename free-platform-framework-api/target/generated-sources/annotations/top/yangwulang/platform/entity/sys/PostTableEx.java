@@ -38,17 +38,17 @@ public class PostTableEx extends PostTable implements TableEx<Post> {
     public EmployeeTableEx employees() {
         __beforeJoin();
         if (raw != null) {
-            return new EmployeeTableEx(raw.joinImplementor("employees"));
+            return new EmployeeTableEx(raw.joinImplementor(PostProps.EMPLOYEES.unwrap()));
         }
-        return new EmployeeTableEx(joinOperation("employees"));
+        return new EmployeeTableEx(joinOperation(PostProps.EMPLOYEES.unwrap()));
     }
 
     public EmployeeTableEx employees(JoinType joinType) {
         __beforeJoin();
         if (raw != null) {
-            return new EmployeeTableEx(raw.joinImplementor("employees", joinType));
+            return new EmployeeTableEx(raw.joinImplementor(PostProps.EMPLOYEES.unwrap(), joinType));
         }
-        return new EmployeeTableEx(joinOperation("employees", joinType));
+        return new EmployeeTableEx(joinOperation(PostProps.EMPLOYEES.unwrap(), joinType));
     }
 
     @Override

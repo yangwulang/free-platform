@@ -23,7 +23,7 @@ public interface StatusTypeBase {
      */
     String STATUS_APPROVE_ING = "10";
 
-    @LogicalDeleted(value = STATUS_DELETE, restoredValue = STATUS_NORMAL)
+    @LogicalDeleted(value = STATUS_DELETE)
     @Schema(description = "状态")
     int status();
 }

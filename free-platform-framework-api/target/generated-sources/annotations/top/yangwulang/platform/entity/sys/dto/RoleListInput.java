@@ -1,21 +1,35 @@
 package top.yangwulang.platform.entity.sys.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Objects;
 import javax.validation.constraints.Null;
-import lombok.Data;
 import org.babyfish.jimmer.GeneratedBy;
-import org.babyfish.jimmer.Input;
+import org.babyfish.jimmer.ViewableInput;
+import org.babyfish.jimmer.meta.PropId;
+import org.babyfish.jimmer.runtime.ImmutableSpi;
+import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.sys.Role;
 import top.yangwulang.platform.entity.sys.RoleDraft;
+import top.yangwulang.platform.entity.sys.RoleFetcher;
 
 @GeneratedBy(
         file = "src/main/dto/top/yangwulang/platform/entity/sys/Role.dto"
 )
-@Data
-public class RoleListInput implements Input<Role> {
+public class RoleListInput implements ViewableInput<Role> {
+    public static final ViewMetadata<Role, RoleListInput> METADATA = 
+        new ViewMetadata<Role, RoleListInput>(
+            RoleFetcher.$
+                .roleName()
+                .roleType()
+                .userType(),
+            RoleListInput::new
+    );
+
     @Schema(
             description = "角色名称"
     )
@@ -37,12 +51,83 @@ public class RoleListInput implements Input<Role> {
     public RoleListInput() {
     }
 
+    public RoleListInput(@NotNull Role base) {
+        this.roleName = base.roleName();
+        this.roleType = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(RoleDraft.Producer.SLOT_ROLE_TYPE)) ? base.roleType() : null;
+        this.userType = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(RoleDraft.Producer.SLOT_USER_TYPE)) ? base.userType() : null;
+    }
+
+    public static RoleListInput of(@NotNull Role base) {
+        return new RoleListInput(base);
+    }
+
+    @NotNull
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(@NotNull String roleName) {
+        this.roleName = roleName;
+    }
+
+    @Nullable
+    public String getRoleType() {
+        return roleType;
+    }
+
+    public void setRoleType(@Nullable String roleType) {
+        this.roleType = roleType;
+    }
+
+    @Nullable
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(@Nullable String userType) {
+        this.userType = userType;
+    }
+
     @Override
     public Role toEntity() {
-        return RoleDraft.$.produce(draft -> {
-            draft.setRoleName(roleName);
-            draft.setRoleType(roleType);
-            draft.setUserType(userType);
+        return RoleDraft.$.produce(__draft -> {
+            __draft.setRoleName(roleName);
+            __draft.setRoleType(roleType);
+            __draft.setUserType(userType);
         });
+    }
+
+    public int hashCode() {
+        int hash = Objects.hashCode(roleName);
+        hash = hash * 31 + Objects.hashCode(roleType);
+        hash = hash * 31 + Objects.hashCode(userType);
+        return hash;
+    }
+
+    public boolean equals(Object o) {
+        if (o == null || this.getClass() != o.getClass()) {
+            return false;
+        }
+        RoleListInput other = (RoleListInput) o;
+        if (!Objects.equals(roleName, other.roleName)) {
+            return false;
+        }
+        if (!Objects.equals(roleType, other.roleType)) {
+            return false;
+        }
+        if (!Objects.equals(userType, other.userType)) {
+            return false;
+        }
+        return true;
+    }
+
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("RoleListInput").append('(');
+        builder.append("roleName=").append(roleName);
+        builder.append(", roleType=").append(roleType);
+        builder.append(", userType=").append(userType);
+        builder.append(')');
+        return builder.toString();
     }
 }

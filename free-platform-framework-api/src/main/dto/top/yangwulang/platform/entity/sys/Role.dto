@@ -6,7 +6,7 @@ RoleListView {
     -corpName
 }
 
-inputOnly RoleListInput {
+unsafe input RoleListInput {
     roleName
     roleType
     userType

@@ -33,9 +33,13 @@ public interface MessageRecordUserProps extends TypeBaseProps {
 
     MessageRecordTable record(JoinType joinType);
 
+    PropExpression.Str recordId();
+
     UserTable user();
 
     UserTable user(JoinType joinType);
+
+    PropExpression.Str userId();
 
     PropExpression.Num<Integer> isRead();
 }

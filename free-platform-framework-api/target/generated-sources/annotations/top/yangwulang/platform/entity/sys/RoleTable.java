@@ -37,87 +37,87 @@ public class RoleTable extends AbstractTypedTable<Role> implements RoleProps {
 
     @Override
     public PropExpression.Str id() {
-        return get("id");
+        return __get(RoleProps.ID.unwrap());
     }
 
     @Override
     public PropExpression.Num<Integer> status() {
-        return get("status");
+        return __get(RoleProps.STATUS.unwrap());
     }
 
     @Override
     public PropExpression.Str createBy() {
-        return get("createBy");
+        return __get(RoleProps.CREATE_BY.unwrap());
     }
 
     @Override
     public PropExpression.Cmp<Date> createDate() {
-        return get("createDate");
+        return __get(RoleProps.CREATE_DATE.unwrap());
     }
 
     @Override
     public PropExpression.Str updateBy() {
-        return get("updateBy");
+        return __get(RoleProps.UPDATE_BY.unwrap());
     }
 
     @Override
     public PropExpression.Cmp<Date> updateDate() {
-        return get("updateDate");
+        return __get(RoleProps.UPDATE_DATE.unwrap());
     }
 
     @Override
     public PropExpression.Str remarks() {
-        return get("remarks");
+        return __get(RoleProps.REMARKS.unwrap());
     }
 
     @Override
     public PropExpression.Str roleCode() {
-        return get("roleCode");
+        return __get(RoleProps.ROLE_CODE.unwrap());
     }
 
     @Override
     public PropExpression.Str roleName() {
-        return get("roleName");
+        return __get(RoleProps.ROLE_NAME.unwrap());
     }
 
     @Override
     public PropExpression.Str roleType() {
-        return get("roleType");
+        return __get(RoleProps.ROLE_TYPE.unwrap());
     }
 
     @Override
     public PropExpression.Num<BigDecimal> roleSort() {
-        return get("roleSort");
+        return __get(RoleProps.ROLE_SORT.unwrap());
     }
 
     @Override
     public PropExpression.Cmp<Boolean> isSys() {
-        return get("isSys");
+        return __get(RoleProps.IS_SYS.unwrap());
     }
 
     @Override
     public PropExpression.Str userType() {
-        return get("userType");
+        return __get(RoleProps.USER_TYPE.unwrap());
     }
 
     @Override
     public PropExpression.Str dataScope() {
-        return get("dataScope");
+        return __get(RoleProps.DATA_SCOPE.unwrap());
     }
 
     @Override
     public PropExpression.Str bizScope() {
-        return get("bizScope");
+        return __get(RoleProps.BIZ_SCOPE.unwrap());
     }
 
     @Override
     public PropExpression.Str corpCode() {
-        return get("corpCode");
+        return __get(RoleProps.CORP_CODE.unwrap());
     }
 
     @Override
     public PropExpression.Str corpName() {
-        return get("corpName");
+        return __get(RoleProps.CORP_NAME.unwrap());
     }
 
     @Override
@@ -140,7 +140,7 @@ public class RoleTable extends AbstractTypedTable<Role> implements RoleProps {
         }
 
         public PropExpression.Str id() {
-            return get("id");
+            return __get(RoleProps.ID.unwrap());
         }
 
         @Override

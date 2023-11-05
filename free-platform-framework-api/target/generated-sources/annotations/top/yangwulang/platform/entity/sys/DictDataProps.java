@@ -81,11 +81,11 @@ public interface DictDataProps extends DataTypeBaseProps {
 
     DictDataTable parent(JoinType joinType);
 
+    PropExpression.Str parentId();
+
     DictTypeTable dictType();
 
     DictTypeTable dictType(JoinType joinType);
-
-    PropExpression.Str parentId();
 
     PropExpression.Str dictTypeId();
 

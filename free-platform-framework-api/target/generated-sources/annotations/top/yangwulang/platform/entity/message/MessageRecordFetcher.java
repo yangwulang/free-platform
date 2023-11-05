@@ -8,6 +8,7 @@ import org.babyfish.jimmer.meta.ImmutableProp;
 import org.babyfish.jimmer.sql.ast.table.Table;
 import org.babyfish.jimmer.sql.fetcher.Fetcher;
 import org.babyfish.jimmer.sql.fetcher.FieldConfig;
+import org.babyfish.jimmer.sql.fetcher.IdOnlyFetchType;
 import org.babyfish.jimmer.sql.fetcher.ListFieldConfig;
 import org.babyfish.jimmer.sql.fetcher.impl.FetcherImpl;
 import org.babyfish.jimmer.sql.fetcher.spi.AbstractTypedFetcher;
@@ -24,8 +25,9 @@ public class MessageRecordFetcher extends AbstractTypedFetcher<MessageRecord, Me
         super(MessageRecord.class, base);
     }
 
-    private MessageRecordFetcher(MessageRecordFetcher prev, ImmutableProp prop, boolean negative) {
-        super(prev, prop, negative);
+    private MessageRecordFetcher(MessageRecordFetcher prev, ImmutableProp prop, boolean negative,
+            IdOnlyFetchType idOnlyFetchType) {
+        super(prev, prop, negative, idOnlyFetchType);
     }
 
     private MessageRecordFetcher(MessageRecordFetcher prev, ImmutableProp prop,
@@ -131,6 +133,11 @@ public class MessageRecordFetcher extends AbstractTypedFetcher<MessageRecord, Me
     }
 
     @NewChain
+    public MessageRecordFetcher targetUsers(IdOnlyFetchType idOnlyFetchType) {
+        return add("targetUsers", idOnlyFetchType);
+    }
+
+    @NewChain
     public MessageRecordFetcher messageRecordUsers() {
         return add("messageRecordUsers");
     }
@@ -152,8 +159,9 @@ public class MessageRecordFetcher extends AbstractTypedFetcher<MessageRecord, Me
     }
 
     @Override
-    protected MessageRecordFetcher createFetcher(ImmutableProp prop, boolean negative) {
-        return new MessageRecordFetcher(this, prop, negative);
+    protected MessageRecordFetcher createFetcher(ImmutableProp prop, boolean negative,
+            IdOnlyFetchType idOnlyFetchType) {
+        return new MessageRecordFetcher(this, prop, negative, idOnlyFetchType);
     }
 
     @Override

@@ -3,17 +3,19 @@ package top.yangwulang.platform.entity.sys.dto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.lang.Boolean;
 import java.lang.Integer;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Objects;
 import javax.validation.constraints.Null;
-import lombok.Data;
 import org.babyfish.jimmer.GeneratedBy;
 import org.babyfish.jimmer.View;
+import org.babyfish.jimmer.impl.util.DtoPropAccessor;
+import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
 import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
 import org.jetbrains.annotations.NotNull;
@@ -21,20 +23,16 @@ import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.sys.Menu;
 import top.yangwulang.platform.entity.sys.MenuDraft;
 import top.yangwulang.platform.entity.sys.MenuFetcher;
-import top.yangwulang.platform.entity.sys.MenuProps;
 import top.yangwulang.platform.entity.sys.Role;
 import top.yangwulang.platform.entity.sys.RoleDraft;
 import top.yangwulang.platform.entity.sys.RoleFetcher;
-import top.yangwulang.platform.entity.sys.RoleProps;
 import top.yangwulang.platform.entity.sys.User;
 import top.yangwulang.platform.entity.sys.UserDraft;
 import top.yangwulang.platform.entity.sys.UserFetcher;
-import top.yangwulang.platform.entity.sys.UserProps;
 
 @GeneratedBy(
         file = "src/main/dto/top/yangwulang/platform/entity/sys/User.dto"
 )
-@Data
 public class UserGetView implements View<User> {
     public static final ViewMetadata<User, UserGetView> METADATA = 
         new ViewMetadata<User, UserGetView>(
@@ -63,6 +61,13 @@ public class UserGetView implements View<User> {
                 .userWeight()
                 .roles(TargetOf_roles.METADATA.getFetcher()),
             UserGetView::new
+    );
+
+    private static final DtoPropAccessor ROLES_ACCESSOR = new DtoPropAccessor(
+        true,
+        new int[] { UserDraft.Producer.SLOT_ROLES },
+        DtoPropAccessor.<Role, TargetOf_roles>objectListGetter(TargetOf_roles::new),
+        DtoPropAccessor.objectListSetter(TargetOf_roles::toEntity)
     );
 
     @Schema(
@@ -204,74 +209,420 @@ public class UserGetView implements View<User> {
     }
 
     public UserGetView(@NotNull User base) {
-        ImmutableSpi spi = (ImmutableSpi)base;
         this.userCode = base.userCode();
         this.status = base.status();
         this.createBy = base.createBy();
         this.createDate = base.createDate();
         this.updateBy = base.updateBy();
         this.updateDate = base.updateDate();
-        this.remarks = spi.__isLoaded(UserProps.REMARKS.unwrap().getId()) ? base.remarks() : null;
-        this.loginCode = spi.__isLoaded(UserProps.LOGIN_CODE.unwrap().getId()) ? base.loginCode() : null;
-        this.userName = spi.__isLoaded(UserProps.USER_NAME.unwrap().getId()) ? base.userName() : null;
-        this.email = spi.__isLoaded(UserProps.EMAIL.unwrap().getId()) ? base.email() : null;
-        this.mobile = spi.__isLoaded(UserProps.MOBILE.unwrap().getId()) ? base.mobile() : null;
-        this.phone = spi.__isLoaded(UserProps.PHONE.unwrap().getId()) ? base.phone() : null;
-        this.sex = spi.__isLoaded(UserProps.SEX.unwrap().getId()) ? base.sex() : null;
-        this.avatar = spi.__isLoaded(UserProps.AVATAR.unwrap().getId()) ? base.avatar() : null;
-        this.sign = spi.__isLoaded(UserProps.SIGN.unwrap().getId()) ? base.sign() : null;
-        this.wxOpenId = spi.__isLoaded(UserProps.WX_OPEN_ID.unwrap().getId()) ? base.wxOpenId() : null;
-        this.mobileImei = spi.__isLoaded(UserProps.MOBILE_IMEI.unwrap().getId()) ? base.mobileImei() : null;
-        this.userType = spi.__isLoaded(UserProps.USER_TYPE.unwrap().getId()) ? base.userType() : null;
-        this.refCode = spi.__isLoaded(UserProps.REF_CODE.unwrap().getId()) ? base.refCode() : null;
-        this.refName = spi.__isLoaded(UserProps.REF_NAME.unwrap().getId()) ? base.refName() : null;
+        this.remarks = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(UserDraft.Producer.SLOT_REMARKS)) ? base.remarks() : null;
+        this.loginCode = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(UserDraft.Producer.SLOT_LOGIN_CODE)) ? base.loginCode() : null;
+        this.userName = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(UserDraft.Producer.SLOT_USER_NAME)) ? base.userName() : null;
+        this.email = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(UserDraft.Producer.SLOT_EMAIL)) ? base.email() : null;
+        this.mobile = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(UserDraft.Producer.SLOT_MOBILE)) ? base.mobile() : null;
+        this.phone = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(UserDraft.Producer.SLOT_PHONE)) ? base.phone() : null;
+        this.sex = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(UserDraft.Producer.SLOT_SEX)) ? base.sex() : null;
+        this.avatar = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(UserDraft.Producer.SLOT_AVATAR)) ? base.avatar() : null;
+        this.sign = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(UserDraft.Producer.SLOT_SIGN)) ? base.sign() : null;
+        this.wxOpenId = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(UserDraft.Producer.SLOT_WX_OPEN_ID)) ? base.wxOpenId() : null;
+        this.mobileImei = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(UserDraft.Producer.SLOT_MOBILE_IMEI)) ? base.mobileImei() : null;
+        this.userType = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(UserDraft.Producer.SLOT_USER_TYPE)) ? base.userType() : null;
+        this.refCode = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(UserDraft.Producer.SLOT_REF_CODE)) ? base.refCode() : null;
+        this.refName = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(UserDraft.Producer.SLOT_REF_NAME)) ? base.refName() : null;
         this.mgrType = base.mgrType();
-        this.pwdSecurityLevel = spi.__isLoaded(UserProps.PWD_SECURITY_LEVEL.unwrap().getId()) ? base.pwdSecurityLevel() : null;
-        this.userWeight = spi.__isLoaded(UserProps.USER_WEIGHT.unwrap().getId()) ? base.userWeight() : null;
-        this.roles = base.roles().stream().map(TargetOf_roles::new).collect(Collectors.toList());
+        this.pwdSecurityLevel = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(UserDraft.Producer.SLOT_PWD_SECURITY_LEVEL)) ? base.pwdSecurityLevel() : null;
+        this.userWeight = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(UserDraft.Producer.SLOT_USER_WEIGHT)) ? base.userWeight() : null;
+        this.roles = ROLES_ACCESSOR.get(base);
     }
 
     public static UserGetView of(@NotNull User base) {
         return new UserGetView(base);
     }
 
+    @NotNull
+    public String getUserCode() {
+        return userCode;
+    }
+
+    public void setUserCode(@NotNull String userCode) {
+        this.userCode = userCode;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    @NotNull
+    public String getCreateBy() {
+        return createBy;
+    }
+
+    public void setCreateBy(@NotNull String createBy) {
+        this.createBy = createBy;
+    }
+
+    @NotNull
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(@NotNull Date createDate) {
+        this.createDate = createDate;
+    }
+
+    @NotNull
+    public String getUpdateBy() {
+        return updateBy;
+    }
+
+    public void setUpdateBy(@NotNull String updateBy) {
+        this.updateBy = updateBy;
+    }
+
+    @NotNull
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(@NotNull Date updateDate) {
+        this.updateDate = updateDate;
+    }
+
+    @Nullable
+    public String getRemarks() {
+        return remarks;
+    }
+
+    public void setRemarks(@Nullable String remarks) {
+        this.remarks = remarks;
+    }
+
+    @Nullable
+    public String getLoginCode() {
+        return loginCode;
+    }
+
+    public void setLoginCode(@Nullable String loginCode) {
+        this.loginCode = loginCode;
+    }
+
+    @Nullable
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(@Nullable String userName) {
+        this.userName = userName;
+    }
+
+    @Nullable
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(@Nullable String email) {
+        this.email = email;
+    }
+
+    @Nullable
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(@Nullable String mobile) {
+        this.mobile = mobile;
+    }
+
+    @Nullable
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(@Nullable String phone) {
+        this.phone = phone;
+    }
+
+    @Nullable
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(@Nullable String sex) {
+        this.sex = sex;
+    }
+
+    @Nullable
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(@Nullable String avatar) {
+        this.avatar = avatar;
+    }
+
+    @Nullable
+    public String getSign() {
+        return sign;
+    }
+
+    public void setSign(@Nullable String sign) {
+        this.sign = sign;
+    }
+
+    @Nullable
+    public String getWxOpenId() {
+        return wxOpenId;
+    }
+
+    public void setWxOpenId(@Nullable String wxOpenId) {
+        this.wxOpenId = wxOpenId;
+    }
+
+    @Nullable
+    public String getMobileImei() {
+        return mobileImei;
+    }
+
+    public void setMobileImei(@Nullable String mobileImei) {
+        this.mobileImei = mobileImei;
+    }
+
+    @Nullable
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(@Nullable String userType) {
+        this.userType = userType;
+    }
+
+    @Nullable
+    public String getRefCode() {
+        return refCode;
+    }
+
+    public void setRefCode(@Nullable String refCode) {
+        this.refCode = refCode;
+    }
+
+    @Nullable
+    public String getRefName() {
+        return refName;
+    }
+
+    public void setRefName(@Nullable String refName) {
+        this.refName = refName;
+    }
+
+    @NotNull
+    public String getMgrType() {
+        return mgrType;
+    }
+
+    public void setMgrType(@NotNull String mgrType) {
+        this.mgrType = mgrType;
+    }
+
+    @Nullable
+    public Integer getPwdSecurityLevel() {
+        return pwdSecurityLevel;
+    }
+
+    public void setPwdSecurityLevel(@Nullable Integer pwdSecurityLevel) {
+        this.pwdSecurityLevel = pwdSecurityLevel;
+    }
+
+    @Nullable
+    public Integer getUserWeight() {
+        return userWeight;
+    }
+
+    public void setUserWeight(@Nullable Integer userWeight) {
+        this.userWeight = userWeight;
+    }
+
+    @NotNull
+    public List<TargetOf_roles> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(@NotNull List<TargetOf_roles> roles) {
+        this.roles = roles;
+    }
+
     @Override
     public User toEntity() {
-        return UserDraft.$.produce(draft -> {
-            draft.setUserCode(userCode);
-            draft.setStatus(status);
-            draft.setCreateBy(createBy);
-            draft.setCreateDate(createDate);
-            draft.setUpdateBy(updateBy);
-            draft.setUpdateDate(updateDate);
-            draft.setRemarks(remarks);
-            draft.setLoginCode(loginCode);
-            draft.setUserName(userName);
-            draft.setEmail(email);
-            draft.setMobile(mobile);
-            draft.setPhone(phone);
-            draft.setSex(sex);
-            draft.setAvatar(avatar);
-            draft.setSign(sign);
-            draft.setWxOpenId(wxOpenId);
-            draft.setMobileImei(mobileImei);
-            draft.setUserType(userType);
-            draft.setRefCode(refCode);
-            draft.setRefName(refName);
-            draft.setMgrType(mgrType);
-            draft.setPwdSecurityLevel(pwdSecurityLevel);
-            draft.setUserWeight(userWeight);
-            if (roles.isEmpty()) {
-                draft.setRoles(Collections.emptyList());
-            } else {
-                for (TargetOf_roles __e : roles) {
-                    draft.roles(true).add((RoleDraft)__e.toEntity());
-                }
-            }
+        return UserDraft.$.produce(__draft -> {
+            __draft.setUserCode(userCode);
+            __draft.setStatus(status);
+            __draft.setCreateBy(createBy);
+            __draft.setCreateDate(createDate);
+            __draft.setUpdateBy(updateBy);
+            __draft.setUpdateDate(updateDate);
+            __draft.setRemarks(remarks);
+            __draft.setLoginCode(loginCode);
+            __draft.setUserName(userName);
+            __draft.setEmail(email);
+            __draft.setMobile(mobile);
+            __draft.setPhone(phone);
+            __draft.setSex(sex);
+            __draft.setAvatar(avatar);
+            __draft.setSign(sign);
+            __draft.setWxOpenId(wxOpenId);
+            __draft.setMobileImei(mobileImei);
+            __draft.setUserType(userType);
+            __draft.setRefCode(refCode);
+            __draft.setRefName(refName);
+            __draft.setMgrType(mgrType);
+            __draft.setPwdSecurityLevel(pwdSecurityLevel);
+            __draft.setUserWeight(userWeight);
+            ROLES_ACCESSOR.set(__draft, roles != null ? roles : Collections.emptyList());
         });
     }
 
-    @Data
+    public int hashCode() {
+        int hash = Objects.hashCode(userCode);
+        hash = hash * 31 + Integer.hashCode(status);
+        hash = hash * 31 + Objects.hashCode(createBy);
+        hash = hash * 31 + Objects.hashCode(createDate);
+        hash = hash * 31 + Objects.hashCode(updateBy);
+        hash = hash * 31 + Objects.hashCode(updateDate);
+        hash = hash * 31 + Objects.hashCode(remarks);
+        hash = hash * 31 + Objects.hashCode(loginCode);
+        hash = hash * 31 + Objects.hashCode(userName);
+        hash = hash * 31 + Objects.hashCode(email);
+        hash = hash * 31 + Objects.hashCode(mobile);
+        hash = hash * 31 + Objects.hashCode(phone);
+        hash = hash * 31 + Objects.hashCode(sex);
+        hash = hash * 31 + Objects.hashCode(avatar);
+        hash = hash * 31 + Objects.hashCode(sign);
+        hash = hash * 31 + Objects.hashCode(wxOpenId);
+        hash = hash * 31 + Objects.hashCode(mobileImei);
+        hash = hash * 31 + Objects.hashCode(userType);
+        hash = hash * 31 + Objects.hashCode(refCode);
+        hash = hash * 31 + Objects.hashCode(refName);
+        hash = hash * 31 + Objects.hashCode(mgrType);
+        hash = hash * 31 + Objects.hashCode(pwdSecurityLevel);
+        hash = hash * 31 + Objects.hashCode(userWeight);
+        hash = hash * 31 + Objects.hashCode(roles);
+        return hash;
+    }
+
+    public boolean equals(Object o) {
+        if (o == null || this.getClass() != o.getClass()) {
+            return false;
+        }
+        UserGetView other = (UserGetView) o;
+        if (!Objects.equals(userCode, other.userCode)) {
+            return false;
+        }
+        if (status != other.status) {
+            return false;
+        }
+        if (!Objects.equals(createBy, other.createBy)) {
+            return false;
+        }
+        if (!Objects.equals(createDate, other.createDate)) {
+            return false;
+        }
+        if (!Objects.equals(updateBy, other.updateBy)) {
+            return false;
+        }
+        if (!Objects.equals(updateDate, other.updateDate)) {
+            return false;
+        }
+        if (!Objects.equals(remarks, other.remarks)) {
+            return false;
+        }
+        if (!Objects.equals(loginCode, other.loginCode)) {
+            return false;
+        }
+        if (!Objects.equals(userName, other.userName)) {
+            return false;
+        }
+        if (!Objects.equals(email, other.email)) {
+            return false;
+        }
+        if (!Objects.equals(mobile, other.mobile)) {
+            return false;
+        }
+        if (!Objects.equals(phone, other.phone)) {
+            return false;
+        }
+        if (!Objects.equals(sex, other.sex)) {
+            return false;
+        }
+        if (!Objects.equals(avatar, other.avatar)) {
+            return false;
+        }
+        if (!Objects.equals(sign, other.sign)) {
+            return false;
+        }
+        if (!Objects.equals(wxOpenId, other.wxOpenId)) {
+            return false;
+        }
+        if (!Objects.equals(mobileImei, other.mobileImei)) {
+            return false;
+        }
+        if (!Objects.equals(userType, other.userType)) {
+            return false;
+        }
+        if (!Objects.equals(refCode, other.refCode)) {
+            return false;
+        }
+        if (!Objects.equals(refName, other.refName)) {
+            return false;
+        }
+        if (!Objects.equals(mgrType, other.mgrType)) {
+            return false;
+        }
+        if (!Objects.equals(pwdSecurityLevel, other.pwdSecurityLevel)) {
+            return false;
+        }
+        if (!Objects.equals(userWeight, other.userWeight)) {
+            return false;
+        }
+        if (!Objects.equals(roles, other.roles)) {
+            return false;
+        }
+        return true;
+    }
+
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("UserGetView").append('(');
+        builder.append("userCode=").append(userCode);
+        builder.append(", status=").append(status);
+        builder.append(", createBy=").append(createBy);
+        builder.append(", createDate=").append(createDate);
+        builder.append(", updateBy=").append(updateBy);
+        builder.append(", updateDate=").append(updateDate);
+        builder.append(", remarks=").append(remarks);
+        builder.append(", loginCode=").append(loginCode);
+        builder.append(", userName=").append(userName);
+        builder.append(", email=").append(email);
+        builder.append(", mobile=").append(mobile);
+        builder.append(", phone=").append(phone);
+        builder.append(", sex=").append(sex);
+        builder.append(", avatar=").append(avatar);
+        builder.append(", sign=").append(sign);
+        builder.append(", wxOpenId=").append(wxOpenId);
+        builder.append(", mobileImei=").append(mobileImei);
+        builder.append(", userType=").append(userType);
+        builder.append(", refCode=").append(refCode);
+        builder.append(", refName=").append(refName);
+        builder.append(", mgrType=").append(mgrType);
+        builder.append(", pwdSecurityLevel=").append(pwdSecurityLevel);
+        builder.append(", userWeight=").append(userWeight);
+        builder.append(", roles=").append(roles);
+        builder.append(')');
+        return builder.toString();
+    }
+
     public static class TargetOf_roles implements View<Role> {
         public static final ViewMetadata<Role, TargetOf_roles> METADATA = 
             new ViewMetadata<Role, TargetOf_roles>(
@@ -279,8 +630,15 @@ public class UserGetView implements View<User> {
                     .roleName()
                     .roleType()
                     .userType()
-                    .menus(TargetOf_menus.METADATA.getFetcher()),
+                    .menus(TargetOf_menus_2.METADATA.getFetcher()),
                 TargetOf_roles::new
+        );
+
+        private static final DtoPropAccessor MENUS_ACCESSOR = new DtoPropAccessor(
+            true,
+            new int[] { RoleDraft.Producer.SLOT_MENUS },
+            DtoPropAccessor.<Menu, TargetOf_menus_2>objectListGetter(TargetOf_menus_2::new),
+            DtoPropAccessor.objectListSetter(TargetOf_menus_2::toEntity)
         );
 
         @Schema(
@@ -305,43 +663,111 @@ public class UserGetView implements View<User> {
                 description = "角色拥有的菜单"
         )
         @NotNull
-        private List<TargetOf_menus> menus;
+        private List<TargetOf_menus_2> menus;
 
         public TargetOf_roles() {
         }
 
         public TargetOf_roles(@NotNull Role base) {
-            ImmutableSpi spi = (ImmutableSpi)base;
             this.roleName = base.roleName();
-            this.roleType = spi.__isLoaded(RoleProps.ROLE_TYPE.unwrap().getId()) ? base.roleType() : null;
-            this.userType = spi.__isLoaded(RoleProps.USER_TYPE.unwrap().getId()) ? base.userType() : null;
-            this.menus = base.menus().stream().map(TargetOf_menus::new).collect(Collectors.toList());
+            this.roleType = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(RoleDraft.Producer.SLOT_ROLE_TYPE)) ? base.roleType() : null;
+            this.userType = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(RoleDraft.Producer.SLOT_USER_TYPE)) ? base.userType() : null;
+            this.menus = MENUS_ACCESSOR.get(base);
         }
 
         public static TargetOf_roles of(@NotNull Role base) {
             return new TargetOf_roles(base);
         }
 
+        @NotNull
+        public String getRoleName() {
+            return roleName;
+        }
+
+        public void setRoleName(@NotNull String roleName) {
+            this.roleName = roleName;
+        }
+
+        @Nullable
+        public String getRoleType() {
+            return roleType;
+        }
+
+        public void setRoleType(@Nullable String roleType) {
+            this.roleType = roleType;
+        }
+
+        @Nullable
+        public String getUserType() {
+            return userType;
+        }
+
+        public void setUserType(@Nullable String userType) {
+            this.userType = userType;
+        }
+
+        @NotNull
+        public List<TargetOf_menus_2> getMenus() {
+            return menus;
+        }
+
+        public void setMenus(@NotNull List<TargetOf_menus_2> menus) {
+            this.menus = menus;
+        }
+
         @Override
         public Role toEntity() {
-            return RoleDraft.$.produce(draft -> {
-                draft.setRoleName(roleName);
-                draft.setRoleType(roleType);
-                draft.setUserType(userType);
-                if (menus.isEmpty()) {
-                    draft.setMenus(Collections.emptyList());
-                } else {
-                    for (TargetOf_menus __e : menus) {
-                        draft.menus(true).add((MenuDraft)__e.toEntity());
-                    }
-                }
+            return RoleDraft.$.produce(__draft -> {
+                __draft.setRoleName(roleName);
+                __draft.setRoleType(roleType);
+                __draft.setUserType(userType);
+                MENUS_ACCESSOR.set(__draft, menus != null ? menus : Collections.emptyList());
             });
         }
 
-        @Data
-        public static class TargetOf_menus implements View<Menu> {
-            public static final ViewMetadata<Menu, TargetOf_menus> METADATA = 
-                new ViewMetadata<Menu, TargetOf_menus>(
+        public int hashCode() {
+            int hash = Objects.hashCode(roleName);
+            hash = hash * 31 + Objects.hashCode(roleType);
+            hash = hash * 31 + Objects.hashCode(userType);
+            hash = hash * 31 + Objects.hashCode(menus);
+            return hash;
+        }
+
+        public boolean equals(Object o) {
+            if (o == null || this.getClass() != o.getClass()) {
+                return false;
+            }
+            TargetOf_roles other = (TargetOf_roles) o;
+            if (!Objects.equals(roleName, other.roleName)) {
+                return false;
+            }
+            if (!Objects.equals(roleType, other.roleType)) {
+                return false;
+            }
+            if (!Objects.equals(userType, other.userType)) {
+                return false;
+            }
+            if (!Objects.equals(menus, other.menus)) {
+                return false;
+            }
+            return true;
+        }
+
+        public String toString() {
+            StringBuilder builder = new StringBuilder();
+            builder.append("UserGetView").append('.');
+            builder.append("TargetOf_roles").append('(');
+            builder.append("roleName=").append(roleName);
+            builder.append(", roleType=").append(roleType);
+            builder.append(", userType=").append(userType);
+            builder.append(", menus=").append(menus);
+            builder.append(')');
+            return builder.toString();
+        }
+
+        public static class TargetOf_menus_2 implements View<Menu> {
+            public static final ViewMetadata<Menu, TargetOf_menus_2> METADATA = 
+                new ViewMetadata<Menu, TargetOf_menus_2>(
                     MenuFetcher.$
                         .status()
                         .createBy()
@@ -361,7 +787,7 @@ public class UserGetView implements View<User> {
                         .weight()
                         .isShow()
                         .sysCode(),
-                    TargetOf_menus::new
+                    TargetOf_menus_2::new
             );
 
             @javax.validation.constraints.NotNull
@@ -459,59 +885,344 @@ public class UserGetView implements View<User> {
             @Null
             private String sysCode;
 
-            public TargetOf_menus() {
+            public TargetOf_menus_2() {
             }
 
-            public TargetOf_menus(@NotNull Menu base) {
-                ImmutableSpi spi = (ImmutableSpi)base;
+            public TargetOf_menus_2(@NotNull Menu base) {
                 this.id = base.id();
                 this.status = base.status();
                 this.createBy = base.createBy();
                 this.createDate = base.createDate();
                 this.updateBy = base.updateBy();
                 this.updateDate = base.updateDate();
-                this.remarks = spi.__isLoaded(MenuProps.REMARKS.unwrap().getId()) ? base.remarks() : null;
+                this.remarks = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_REMARKS)) ? base.remarks() : null;
                 this.menuName = base.menuName();
                 this.menuType = base.menuType();
-                this.menuHref = spi.__isLoaded(MenuProps.MENU_HREF.unwrap().getId()) ? base.menuHref() : null;
-                this.menuComponent = spi.__isLoaded(MenuProps.MENU_COMPONENT.unwrap().getId()) ? base.menuComponent() : null;
-                this.menuTarget = spi.__isLoaded(MenuProps.MENU_TARGET.unwrap().getId()) ? base.menuTarget() : null;
-                this.menuIcon = spi.__isLoaded(MenuProps.MENU_ICON.unwrap().getId()) ? base.menuIcon() : null;
-                this.menuColor = spi.__isLoaded(MenuProps.MENU_COLOR.unwrap().getId()) ? base.menuColor() : null;
-                this.menuTitle = spi.__isLoaded(MenuProps.MENU_TITLE.unwrap().getId()) ? base.menuTitle() : null;
-                this.permission = spi.__isLoaded(MenuProps.PERMISSION.unwrap().getId()) ? base.permission() : null;
-                this.weight = spi.__isLoaded(MenuProps.WEIGHT.unwrap().getId()) ? base.weight() : null;
-                this.isShow = spi.__isLoaded(MenuProps.IS_SHOW.unwrap().getId()) ? base.isShow() : null;
-                this.sysCode = spi.__isLoaded(MenuProps.SYS_CODE.unwrap().getId()) ? base.sysCode() : null;
+                this.menuHref = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_MENU_HREF)) ? base.menuHref() : null;
+                this.menuComponent = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_MENU_COMPONENT)) ? base.menuComponent() : null;
+                this.menuTarget = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_MENU_TARGET)) ? base.menuTarget() : null;
+                this.menuIcon = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_MENU_ICON)) ? base.menuIcon() : null;
+                this.menuColor = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_MENU_COLOR)) ? base.menuColor() : null;
+                this.menuTitle = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_MENU_TITLE)) ? base.menuTitle() : null;
+                this.permission = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_PERMISSION)) ? base.permission() : null;
+                this.weight = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_WEIGHT)) ? base.weight() : null;
+                this.isShow = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_IS_SHOW)) ? base.isShow() : null;
+                this.sysCode = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_SYS_CODE)) ? base.sysCode() : null;
             }
 
-            public static TargetOf_menus of(@NotNull Menu base) {
-                return new TargetOf_menus(base);
+            public static TargetOf_menus_2 of(@NotNull Menu base) {
+                return new TargetOf_menus_2(base);
+            }
+
+            @NotNull
+            public String getId() {
+                return id;
+            }
+
+            public void setId(@NotNull String id) {
+                this.id = id;
+            }
+
+            public int getStatus() {
+                return status;
+            }
+
+            public void setStatus(int status) {
+                this.status = status;
+            }
+
+            @NotNull
+            public String getCreateBy() {
+                return createBy;
+            }
+
+            public void setCreateBy(@NotNull String createBy) {
+                this.createBy = createBy;
+            }
+
+            @NotNull
+            public Date getCreateDate() {
+                return createDate;
+            }
+
+            public void setCreateDate(@NotNull Date createDate) {
+                this.createDate = createDate;
+            }
+
+            @NotNull
+            public String getUpdateBy() {
+                return updateBy;
+            }
+
+            public void setUpdateBy(@NotNull String updateBy) {
+                this.updateBy = updateBy;
+            }
+
+            @NotNull
+            public Date getUpdateDate() {
+                return updateDate;
+            }
+
+            public void setUpdateDate(@NotNull Date updateDate) {
+                this.updateDate = updateDate;
+            }
+
+            @Nullable
+            public String getRemarks() {
+                return remarks;
+            }
+
+            public void setRemarks(@Nullable String remarks) {
+                this.remarks = remarks;
+            }
+
+            @NotNull
+            public String getMenuName() {
+                return menuName;
+            }
+
+            public void setMenuName(@NotNull String menuName) {
+                this.menuName = menuName;
+            }
+
+            @NotNull
+            public String getMenuType() {
+                return menuType;
+            }
+
+            public void setMenuType(@NotNull String menuType) {
+                this.menuType = menuType;
+            }
+
+            @Nullable
+            public String getMenuHref() {
+                return menuHref;
+            }
+
+            public void setMenuHref(@Nullable String menuHref) {
+                this.menuHref = menuHref;
+            }
+
+            @Nullable
+            public String getMenuComponent() {
+                return menuComponent;
+            }
+
+            public void setMenuComponent(@Nullable String menuComponent) {
+                this.menuComponent = menuComponent;
+            }
+
+            @Nullable
+            public String getMenuTarget() {
+                return menuTarget;
+            }
+
+            public void setMenuTarget(@Nullable String menuTarget) {
+                this.menuTarget = menuTarget;
+            }
+
+            @Nullable
+            public String getMenuIcon() {
+                return menuIcon;
+            }
+
+            public void setMenuIcon(@Nullable String menuIcon) {
+                this.menuIcon = menuIcon;
+            }
+
+            @Nullable
+            public String getMenuColor() {
+                return menuColor;
+            }
+
+            public void setMenuColor(@Nullable String menuColor) {
+                this.menuColor = menuColor;
+            }
+
+            @Nullable
+            public String getMenuTitle() {
+                return menuTitle;
+            }
+
+            public void setMenuTitle(@Nullable String menuTitle) {
+                this.menuTitle = menuTitle;
+            }
+
+            @Nullable
+            public String getPermission() {
+                return permission;
+            }
+
+            public void setPermission(@Nullable String permission) {
+                this.permission = permission;
+            }
+
+            @Nullable
+            public BigDecimal getWeight() {
+                return weight;
+            }
+
+            public void setWeight(@Nullable BigDecimal weight) {
+                this.weight = weight;
+            }
+
+            @Nullable
+            public Boolean getIsShow() {
+                return isShow;
+            }
+
+            public void setIsShow(@Nullable Boolean isShow) {
+                this.isShow = isShow;
+            }
+
+            @Nullable
+            public String getSysCode() {
+                return sysCode;
+            }
+
+            public void setSysCode(@Nullable String sysCode) {
+                this.sysCode = sysCode;
             }
 
             @Override
             public Menu toEntity() {
-                return MenuDraft.$.produce(draft -> {
-                    draft.setId(id);
-                    draft.setStatus(status);
-                    draft.setCreateBy(createBy);
-                    draft.setCreateDate(createDate);
-                    draft.setUpdateBy(updateBy);
-                    draft.setUpdateDate(updateDate);
-                    draft.setRemarks(remarks);
-                    draft.setMenuName(menuName);
-                    draft.setMenuType(menuType);
-                    draft.setMenuHref(menuHref);
-                    draft.setMenuComponent(menuComponent);
-                    draft.setMenuTarget(menuTarget);
-                    draft.setMenuIcon(menuIcon);
-                    draft.setMenuColor(menuColor);
-                    draft.setMenuTitle(menuTitle);
-                    draft.setPermission(permission);
-                    draft.setWeight(weight);
-                    draft.setIsShow(isShow);
-                    draft.setSysCode(sysCode);
+                return MenuDraft.$.produce(__draft -> {
+                    __draft.setId(id);
+                    __draft.setStatus(status);
+                    __draft.setCreateBy(createBy);
+                    __draft.setCreateDate(createDate);
+                    __draft.setUpdateBy(updateBy);
+                    __draft.setUpdateDate(updateDate);
+                    __draft.setRemarks(remarks);
+                    __draft.setMenuName(menuName);
+                    __draft.setMenuType(menuType);
+                    __draft.setMenuHref(menuHref);
+                    __draft.setMenuComponent(menuComponent);
+                    __draft.setMenuTarget(menuTarget);
+                    __draft.setMenuIcon(menuIcon);
+                    __draft.setMenuColor(menuColor);
+                    __draft.setMenuTitle(menuTitle);
+                    __draft.setPermission(permission);
+                    __draft.setWeight(weight);
+                    __draft.setIsShow(isShow);
+                    __draft.setSysCode(sysCode);
                 });
+            }
+
+            public int hashCode() {
+                int hash = Objects.hashCode(id);
+                hash = hash * 31 + Integer.hashCode(status);
+                hash = hash * 31 + Objects.hashCode(createBy);
+                hash = hash * 31 + Objects.hashCode(createDate);
+                hash = hash * 31 + Objects.hashCode(updateBy);
+                hash = hash * 31 + Objects.hashCode(updateDate);
+                hash = hash * 31 + Objects.hashCode(remarks);
+                hash = hash * 31 + Objects.hashCode(menuName);
+                hash = hash * 31 + Objects.hashCode(menuType);
+                hash = hash * 31 + Objects.hashCode(menuHref);
+                hash = hash * 31 + Objects.hashCode(menuComponent);
+                hash = hash * 31 + Objects.hashCode(menuTarget);
+                hash = hash * 31 + Objects.hashCode(menuIcon);
+                hash = hash * 31 + Objects.hashCode(menuColor);
+                hash = hash * 31 + Objects.hashCode(menuTitle);
+                hash = hash * 31 + Objects.hashCode(permission);
+                hash = hash * 31 + Objects.hashCode(weight);
+                hash = hash * 31 + Objects.hashCode(isShow);
+                hash = hash * 31 + Objects.hashCode(sysCode);
+                return hash;
+            }
+
+            public boolean equals(Object o) {
+                if (o == null || this.getClass() != o.getClass()) {
+                    return false;
+                }
+                TargetOf_menus_2 other = (TargetOf_menus_2) o;
+                if (!Objects.equals(id, other.id)) {
+                    return false;
+                }
+                if (status != other.status) {
+                    return false;
+                }
+                if (!Objects.equals(createBy, other.createBy)) {
+                    return false;
+                }
+                if (!Objects.equals(createDate, other.createDate)) {
+                    return false;
+                }
+                if (!Objects.equals(updateBy, other.updateBy)) {
+                    return false;
+                }
+                if (!Objects.equals(updateDate, other.updateDate)) {
+                    return false;
+                }
+                if (!Objects.equals(remarks, other.remarks)) {
+                    return false;
+                }
+                if (!Objects.equals(menuName, other.menuName)) {
+                    return false;
+                }
+                if (!Objects.equals(menuType, other.menuType)) {
+                    return false;
+                }
+                if (!Objects.equals(menuHref, other.menuHref)) {
+                    return false;
+                }
+                if (!Objects.equals(menuComponent, other.menuComponent)) {
+                    return false;
+                }
+                if (!Objects.equals(menuTarget, other.menuTarget)) {
+                    return false;
+                }
+                if (!Objects.equals(menuIcon, other.menuIcon)) {
+                    return false;
+                }
+                if (!Objects.equals(menuColor, other.menuColor)) {
+                    return false;
+                }
+                if (!Objects.equals(menuTitle, other.menuTitle)) {
+                    return false;
+                }
+                if (!Objects.equals(permission, other.permission)) {
+                    return false;
+                }
+                if (!Objects.equals(weight, other.weight)) {
+                    return false;
+                }
+                if (!Objects.equals(isShow, other.isShow)) {
+                    return false;
+                }
+                if (!Objects.equals(sysCode, other.sysCode)) {
+                    return false;
+                }
+                return true;
+            }
+
+            public String toString() {
+                StringBuilder builder = new StringBuilder();
+                builder.append("UserGetView").append('.');
+                builder.append("TargetOf_roles").append('.');
+                builder.append("TargetOf_menus_2").append('(');
+                builder.append("id=").append(id);
+                builder.append(", status=").append(status);
+                builder.append(", createBy=").append(createBy);
+                builder.append(", createDate=").append(createDate);
+                builder.append(", updateBy=").append(updateBy);
+                builder.append(", updateDate=").append(updateDate);
+                builder.append(", remarks=").append(remarks);
+                builder.append(", menuName=").append(menuName);
+                builder.append(", menuType=").append(menuType);
+                builder.append(", menuHref=").append(menuHref);
+                builder.append(", menuComponent=").append(menuComponent);
+                builder.append(", menuTarget=").append(menuTarget);
+                builder.append(", menuIcon=").append(menuIcon);
+                builder.append(", menuColor=").append(menuColor);
+                builder.append(", menuTitle=").append(menuTitle);
+                builder.append(", permission=").append(permission);
+                builder.append(", weight=").append(weight);
+                builder.append(", isShow=").append(isShow);
+                builder.append(", sysCode=").append(sysCode);
+                builder.append(')');
+                return builder.toString();
             }
         }
     }

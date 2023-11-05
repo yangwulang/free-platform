@@ -8,6 +8,7 @@ import org.babyfish.jimmer.meta.ImmutableProp;
 import org.babyfish.jimmer.sql.ast.table.Table;
 import org.babyfish.jimmer.sql.fetcher.Fetcher;
 import org.babyfish.jimmer.sql.fetcher.FieldConfig;
+import org.babyfish.jimmer.sql.fetcher.IdOnlyFetchType;
 import org.babyfish.jimmer.sql.fetcher.impl.FetcherImpl;
 import org.babyfish.jimmer.sql.fetcher.spi.AbstractTypedFetcher;
 import top.yangwulang.platform.entity.sys.User;
@@ -24,8 +25,8 @@ public class MessageRecordUserFetcher extends AbstractTypedFetcher<MessageRecord
     }
 
     private MessageRecordUserFetcher(MessageRecordUserFetcher prev, ImmutableProp prop,
-            boolean negative) {
-        super(prev, prop, negative);
+            boolean negative, IdOnlyFetchType idOnlyFetchType) {
+        super(prev, prop, negative, idOnlyFetchType);
     }
 
     private MessageRecordUserFetcher(MessageRecordUserFetcher prev, ImmutableProp prop,
@@ -61,6 +62,11 @@ public class MessageRecordUserFetcher extends AbstractTypedFetcher<MessageRecord
     }
 
     @NewChain
+    public MessageRecordUserFetcher record(IdOnlyFetchType idOnlyFetchType) {
+        return add("record", idOnlyFetchType);
+    }
+
+    @NewChain
     public MessageRecordUserFetcher user() {
         return add("user");
     }
@@ -82,6 +88,11 @@ public class MessageRecordUserFetcher extends AbstractTypedFetcher<MessageRecord
     }
 
     @NewChain
+    public MessageRecordUserFetcher user(IdOnlyFetchType idOnlyFetchType) {
+        return add("user", idOnlyFetchType);
+    }
+
+    @NewChain
     public MessageRecordUserFetcher isRead() {
         return add("isRead");
     }
@@ -92,8 +103,9 @@ public class MessageRecordUserFetcher extends AbstractTypedFetcher<MessageRecord
     }
 
     @Override
-    protected MessageRecordUserFetcher createFetcher(ImmutableProp prop, boolean negative) {
-        return new MessageRecordUserFetcher(this, prop, negative);
+    protected MessageRecordUserFetcher createFetcher(ImmutableProp prop, boolean negative,
+            IdOnlyFetchType idOnlyFetchType) {
+        return new MessageRecordUserFetcher(this, prop, negative, idOnlyFetchType);
     }
 
     @Override

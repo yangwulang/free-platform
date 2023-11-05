@@ -8,6 +8,7 @@ import org.babyfish.jimmer.meta.ImmutableProp;
 import org.babyfish.jimmer.sql.ast.table.Table;
 import org.babyfish.jimmer.sql.fetcher.Fetcher;
 import org.babyfish.jimmer.sql.fetcher.FieldConfig;
+import org.babyfish.jimmer.sql.fetcher.IdOnlyFetchType;
 import org.babyfish.jimmer.sql.fetcher.impl.FetcherImpl;
 import org.babyfish.jimmer.sql.fetcher.spi.AbstractTypedFetcher;
 
@@ -21,9 +22,9 @@ public class OptionAnalysisFetcher extends AbstractTypedFetcher<OptionAnalysis, 
         super(OptionAnalysis.class, base);
     }
 
-    private OptionAnalysisFetcher(OptionAnalysisFetcher prev, ImmutableProp prop,
-            boolean negative) {
-        super(prev, prop, negative);
+    private OptionAnalysisFetcher(OptionAnalysisFetcher prev, ImmutableProp prop, boolean negative,
+            IdOnlyFetchType idOnlyFetchType) {
+        super(prev, prop, negative, idOnlyFetchType);
     }
 
     private OptionAnalysisFetcher(OptionAnalysisFetcher prev, ImmutableProp prop,
@@ -79,6 +80,11 @@ public class OptionAnalysisFetcher extends AbstractTypedFetcher<OptionAnalysis, 
     }
 
     @NewChain
+    public OptionAnalysisFetcher optionUser(IdOnlyFetchType idOnlyFetchType) {
+        return add("optionUser", idOnlyFetchType);
+    }
+
+    @NewChain
     public OptionAnalysisFetcher ipAddress() {
         return add("ipAddress");
     }
@@ -109,8 +115,9 @@ public class OptionAnalysisFetcher extends AbstractTypedFetcher<OptionAnalysis, 
     }
 
     @Override
-    protected OptionAnalysisFetcher createFetcher(ImmutableProp prop, boolean negative) {
-        return new OptionAnalysisFetcher(this, prop, negative);
+    protected OptionAnalysisFetcher createFetcher(ImmutableProp prop, boolean negative,
+            IdOnlyFetchType idOnlyFetchType) {
+        return new OptionAnalysisFetcher(this, prop, negative, idOnlyFetchType);
     }
 
     @Override

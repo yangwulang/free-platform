@@ -1,5 +1,5 @@
-inputOnly CompanyListInput {
-
+unsafe input CompanyListInput {
+  companyName
 }
 
 
@@ -12,6 +12,6 @@ CompanyGetView {
 }
 
 
-inputOnly CompanySaveInput {
-
+unsafe input CompanySaveInput {
+  #allScalars
 }

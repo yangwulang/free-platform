@@ -8,6 +8,7 @@ import org.babyfish.jimmer.meta.ImmutableProp;
 import org.babyfish.jimmer.sql.ast.table.Table;
 import org.babyfish.jimmer.sql.fetcher.Fetcher;
 import org.babyfish.jimmer.sql.fetcher.FieldConfig;
+import org.babyfish.jimmer.sql.fetcher.IdOnlyFetchType;
 import org.babyfish.jimmer.sql.fetcher.ListFieldConfig;
 import org.babyfish.jimmer.sql.fetcher.impl.FetcherImpl;
 import org.babyfish.jimmer.sql.fetcher.spi.AbstractTypedFetcher;
@@ -22,8 +23,9 @@ public class RoleFetcher extends AbstractTypedFetcher<Role, RoleFetcher> {
         super(Role.class, base);
     }
 
-    private RoleFetcher(RoleFetcher prev, ImmutableProp prop, boolean negative) {
-        super(prev, prop, negative);
+    private RoleFetcher(RoleFetcher prev, ImmutableProp prop, boolean negative,
+            IdOnlyFetchType idOnlyFetchType) {
+        super(prev, prop, negative, idOnlyFetchType);
     }
 
     private RoleFetcher(RoleFetcher prev, ImmutableProp prop,
@@ -219,6 +221,11 @@ public class RoleFetcher extends AbstractTypedFetcher<Role, RoleFetcher> {
     }
 
     @NewChain
+    public RoleFetcher menus(IdOnlyFetchType idOnlyFetchType) {
+        return add("menus", idOnlyFetchType);
+    }
+
+    @NewChain
     public RoleFetcher users() {
         return add("users");
     }
@@ -239,9 +246,15 @@ public class RoleFetcher extends AbstractTypedFetcher<Role, RoleFetcher> {
         return add("users", childFetcher, fieldConfig);
     }
 
+    @NewChain
+    public RoleFetcher users(IdOnlyFetchType idOnlyFetchType) {
+        return add("users", idOnlyFetchType);
+    }
+
     @Override
-    protected RoleFetcher createFetcher(ImmutableProp prop, boolean negative) {
-        return new RoleFetcher(this, prop, negative);
+    protected RoleFetcher createFetcher(ImmutableProp prop, boolean negative,
+            IdOnlyFetchType idOnlyFetchType) {
+        return new RoleFetcher(this, prop, negative, idOnlyFetchType);
     }
 
     @Override

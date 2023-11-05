@@ -8,6 +8,7 @@ import org.babyfish.jimmer.meta.ImmutableProp;
 import org.babyfish.jimmer.sql.ast.table.Table;
 import org.babyfish.jimmer.sql.fetcher.Fetcher;
 import org.babyfish.jimmer.sql.fetcher.FieldConfig;
+import org.babyfish.jimmer.sql.fetcher.IdOnlyFetchType;
 import org.babyfish.jimmer.sql.fetcher.ListFieldConfig;
 import org.babyfish.jimmer.sql.fetcher.RecursiveFieldConfig;
 import org.babyfish.jimmer.sql.fetcher.RecursiveListFieldConfig;
@@ -24,8 +25,9 @@ public class CompanyFetcher extends AbstractTypedFetcher<Company, CompanyFetcher
         super(Company.class, base);
     }
 
-    private CompanyFetcher(CompanyFetcher prev, ImmutableProp prop, boolean negative) {
-        super(prev, prop, negative);
+    private CompanyFetcher(CompanyFetcher prev, ImmutableProp prop, boolean negative,
+            IdOnlyFetchType idOnlyFetchType) {
+        super(prev, prop, negative, idOnlyFetchType);
     }
 
     private CompanyFetcher(CompanyFetcher prev, ImmutableProp prop,
@@ -61,6 +63,11 @@ public class CompanyFetcher extends AbstractTypedFetcher<Company, CompanyFetcher
     }
 
     @NewChain
+    public CompanyFetcher parent(IdOnlyFetchType idOnlyFetchType) {
+        return add("parent", idOnlyFetchType);
+    }
+
+    @NewChain
     public CompanyFetcher parentId() {
         return add("parentId");
     }
@@ -68,6 +75,11 @@ public class CompanyFetcher extends AbstractTypedFetcher<Company, CompanyFetcher
     @NewChain
     public CompanyFetcher parentId(boolean enabled) {
         return enabled ? add("parentId") : remove("parentId");
+    }
+
+    @NewChain
+    public CompanyFetcher parentId(IdOnlyFetchType idOnlyFetchType) {
+        return add("parentId", idOnlyFetchType);
     }
 
     @NewChain
@@ -163,8 +175,9 @@ public class CompanyFetcher extends AbstractTypedFetcher<Company, CompanyFetcher
     }
 
     @Override
-    protected CompanyFetcher createFetcher(ImmutableProp prop, boolean negative) {
-        return new CompanyFetcher(this, prop, negative);
+    protected CompanyFetcher createFetcher(ImmutableProp prop, boolean negative,
+            IdOnlyFetchType idOnlyFetchType) {
+        return new CompanyFetcher(this, prop, negative, idOnlyFetchType);
     }
 
     @Override

@@ -7,6 +7,7 @@ import org.babyfish.jimmer.meta.ImmutableProp;
 import org.babyfish.jimmer.sql.ast.table.Table;
 import org.babyfish.jimmer.sql.fetcher.Fetcher;
 import org.babyfish.jimmer.sql.fetcher.FieldConfig;
+import org.babyfish.jimmer.sql.fetcher.IdOnlyFetchType;
 import org.babyfish.jimmer.sql.fetcher.impl.FetcherImpl;
 import org.babyfish.jimmer.sql.fetcher.spi.AbstractTypedFetcher;
 
@@ -20,8 +21,9 @@ public class FileEntityFetcher extends AbstractTypedFetcher<FileEntity, FileEnti
         super(FileEntity.class, base);
     }
 
-    private FileEntityFetcher(FileEntityFetcher prev, ImmutableProp prop, boolean negative) {
-        super(prev, prop, negative);
+    private FileEntityFetcher(FileEntityFetcher prev, ImmutableProp prop, boolean negative,
+            IdOnlyFetchType idOnlyFetchType) {
+        super(prev, prop, negative, idOnlyFetchType);
     }
 
     private FileEntityFetcher(FileEntityFetcher prev, ImmutableProp prop,
@@ -76,8 +78,9 @@ public class FileEntityFetcher extends AbstractTypedFetcher<FileEntity, FileEnti
     }
 
     @Override
-    protected FileEntityFetcher createFetcher(ImmutableProp prop, boolean negative) {
-        return new FileEntityFetcher(this, prop, negative);
+    protected FileEntityFetcher createFetcher(ImmutableProp prop, boolean negative,
+            IdOnlyFetchType idOnlyFetchType) {
+        return new FileEntityFetcher(this, prop, negative, idOnlyFetchType);
     }
 
     @Override

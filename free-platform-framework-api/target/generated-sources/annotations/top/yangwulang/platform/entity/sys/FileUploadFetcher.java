@@ -8,6 +8,7 @@ import org.babyfish.jimmer.meta.ImmutableProp;
 import org.babyfish.jimmer.sql.ast.table.Table;
 import org.babyfish.jimmer.sql.fetcher.Fetcher;
 import org.babyfish.jimmer.sql.fetcher.FieldConfig;
+import org.babyfish.jimmer.sql.fetcher.IdOnlyFetchType;
 import org.babyfish.jimmer.sql.fetcher.impl.FetcherImpl;
 import org.babyfish.jimmer.sql.fetcher.spi.AbstractTypedFetcher;
 
@@ -21,8 +22,9 @@ public class FileUploadFetcher extends AbstractTypedFetcher<FileUpload, FileUplo
         super(FileUpload.class, base);
     }
 
-    private FileUploadFetcher(FileUploadFetcher prev, ImmutableProp prop, boolean negative) {
-        super(prev, prop, negative);
+    private FileUploadFetcher(FileUploadFetcher prev, ImmutableProp prop, boolean negative,
+            IdOnlyFetchType idOnlyFetchType) {
+        super(prev, prop, negative, idOnlyFetchType);
     }
 
     private FileUploadFetcher(FileUploadFetcher prev, ImmutableProp prop,
@@ -58,6 +60,11 @@ public class FileUploadFetcher extends AbstractTypedFetcher<FileUpload, FileUplo
     }
 
     @NewChain
+    public FileUploadFetcher fileEntity(IdOnlyFetchType idOnlyFetchType) {
+        return add("fileEntity", idOnlyFetchType);
+    }
+
+    @NewChain
     public FileUploadFetcher fileEntityId() {
         return add("fileEntityId");
     }
@@ -65,6 +72,11 @@ public class FileUploadFetcher extends AbstractTypedFetcher<FileUpload, FileUplo
     @NewChain
     public FileUploadFetcher fileEntityId(boolean enabled) {
         return enabled ? add("fileEntityId") : remove("fileEntityId");
+    }
+
+    @NewChain
+    public FileUploadFetcher fileEntityId(IdOnlyFetchType idOnlyFetchType) {
+        return add("fileEntityId", idOnlyFetchType);
     }
 
     @NewChain
@@ -108,8 +120,9 @@ public class FileUploadFetcher extends AbstractTypedFetcher<FileUpload, FileUplo
     }
 
     @Override
-    protected FileUploadFetcher createFetcher(ImmutableProp prop, boolean negative) {
-        return new FileUploadFetcher(this, prop, negative);
+    protected FileUploadFetcher createFetcher(ImmutableProp prop, boolean negative,
+            IdOnlyFetchType idOnlyFetchType) {
+        return new FileUploadFetcher(this, prop, negative, idOnlyFetchType);
     }
 
     @Override

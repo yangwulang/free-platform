@@ -44,6 +44,8 @@ public interface OptionAnalysisProps extends TypeBaseProps {
 
     UserTable optionUser(JoinType joinType);
 
+    PropExpression.Str optionUserId();
+
     PropExpression.Str ipAddress();
 
     PropExpression.Cmp<Date> createDate();

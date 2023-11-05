@@ -8,6 +8,7 @@ import org.babyfish.jimmer.meta.ImmutableProp;
 import org.babyfish.jimmer.sql.ast.table.Table;
 import org.babyfish.jimmer.sql.fetcher.Fetcher;
 import org.babyfish.jimmer.sql.fetcher.FieldConfig;
+import org.babyfish.jimmer.sql.fetcher.IdOnlyFetchType;
 import org.babyfish.jimmer.sql.fetcher.RecursiveFieldConfig;
 import org.babyfish.jimmer.sql.fetcher.RecursiveListFieldConfig;
 import org.babyfish.jimmer.sql.fetcher.impl.FetcherImpl;
@@ -23,8 +24,9 @@ public class AreaFetcher extends AbstractTypedFetcher<Area, AreaFetcher> {
         super(Area.class, base);
     }
 
-    private AreaFetcher(AreaFetcher prev, ImmutableProp prop, boolean negative) {
-        super(prev, prop, negative);
+    private AreaFetcher(AreaFetcher prev, ImmutableProp prop, boolean negative,
+            IdOnlyFetchType idOnlyFetchType) {
+        super(prev, prop, negative, idOnlyFetchType);
     }
 
     private AreaFetcher(AreaFetcher prev, ImmutableProp prop,
@@ -120,6 +122,11 @@ public class AreaFetcher extends AbstractTypedFetcher<Area, AreaFetcher> {
     }
 
     @NewChain
+    public AreaFetcher parent(IdOnlyFetchType idOnlyFetchType) {
+        return add("parent", idOnlyFetchType);
+    }
+
+    @NewChain
     public AreaFetcher parentId() {
         return add("parentId");
     }
@@ -127,6 +134,11 @@ public class AreaFetcher extends AbstractTypedFetcher<Area, AreaFetcher> {
     @NewChain
     public AreaFetcher parentId(boolean enabled) {
         return enabled ? add("parentId") : remove("parentId");
+    }
+
+    @NewChain
+    public AreaFetcher parentId(IdOnlyFetchType idOnlyFetchType) {
+        return add("parentId", idOnlyFetchType);
     }
 
     @NewChain
@@ -181,8 +193,9 @@ public class AreaFetcher extends AbstractTypedFetcher<Area, AreaFetcher> {
     }
 
     @Override
-    protected AreaFetcher createFetcher(ImmutableProp prop, boolean negative) {
-        return new AreaFetcher(this, prop, negative);
+    protected AreaFetcher createFetcher(ImmutableProp prop, boolean negative,
+            IdOnlyFetchType idOnlyFetchType) {
+        return new AreaFetcher(this, prop, negative, idOnlyFetchType);
     }
 
     @Override

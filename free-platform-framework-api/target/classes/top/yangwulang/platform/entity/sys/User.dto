@@ -3,7 +3,7 @@ UserListView {
     -password
 }
 
-inputOnly UserListInput {
+unsafe input UserListInput {
     userName
 }
 
@@ -33,7 +33,7 @@ UserRoleMenuView {
             #allScalars
             children {
                 #allScalars
-            }*
+            }
         }
     }
 }

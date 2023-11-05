@@ -8,6 +8,7 @@ import org.babyfish.jimmer.meta.ImmutableProp;
 import org.babyfish.jimmer.sql.ast.table.Table;
 import org.babyfish.jimmer.sql.fetcher.Fetcher;
 import org.babyfish.jimmer.sql.fetcher.FieldConfig;
+import org.babyfish.jimmer.sql.fetcher.IdOnlyFetchType;
 import org.babyfish.jimmer.sql.fetcher.ListFieldConfig;
 import org.babyfish.jimmer.sql.fetcher.impl.FetcherImpl;
 import org.babyfish.jimmer.sql.fetcher.spi.AbstractTypedFetcher;
@@ -22,8 +23,9 @@ public class EmployeeFetcher extends AbstractTypedFetcher<Employee, EmployeeFetc
         super(Employee.class, base);
     }
 
-    private EmployeeFetcher(EmployeeFetcher prev, ImmutableProp prop, boolean negative) {
-        super(prev, prop, negative);
+    private EmployeeFetcher(EmployeeFetcher prev, ImmutableProp prop, boolean negative,
+            IdOnlyFetchType idOnlyFetchType) {
+        super(prev, prop, negative, idOnlyFetchType);
     }
 
     private EmployeeFetcher(EmployeeFetcher prev, ImmutableProp prop,
@@ -59,6 +61,11 @@ public class EmployeeFetcher extends AbstractTypedFetcher<Employee, EmployeeFetc
     }
 
     @NewChain
+    public EmployeeFetcher user(IdOnlyFetchType idOnlyFetchType) {
+        return add("user", idOnlyFetchType);
+    }
+
+    @NewChain
     public EmployeeFetcher company() {
         return add("company");
     }
@@ -80,6 +87,11 @@ public class EmployeeFetcher extends AbstractTypedFetcher<Employee, EmployeeFetc
     }
 
     @NewChain
+    public EmployeeFetcher company(IdOnlyFetchType idOnlyFetchType) {
+        return add("company", idOnlyFetchType);
+    }
+
+    @NewChain
     public EmployeeFetcher companyId() {
         return add("companyId");
     }
@@ -87,6 +99,11 @@ public class EmployeeFetcher extends AbstractTypedFetcher<Employee, EmployeeFetc
     @NewChain
     public EmployeeFetcher companyId(boolean enabled) {
         return enabled ? add("companyId") : remove("companyId");
+    }
+
+    @NewChain
+    public EmployeeFetcher companyId(IdOnlyFetchType idOnlyFetchType) {
+        return add("companyId", idOnlyFetchType);
     }
 
     @NewChain
@@ -120,9 +137,15 @@ public class EmployeeFetcher extends AbstractTypedFetcher<Employee, EmployeeFetc
         return add("posts", childFetcher, fieldConfig);
     }
 
+    @NewChain
+    public EmployeeFetcher posts(IdOnlyFetchType idOnlyFetchType) {
+        return add("posts", idOnlyFetchType);
+    }
+
     @Override
-    protected EmployeeFetcher createFetcher(ImmutableProp prop, boolean negative) {
-        return new EmployeeFetcher(this, prop, negative);
+    protected EmployeeFetcher createFetcher(ImmutableProp prop, boolean negative,
+            IdOnlyFetchType idOnlyFetchType) {
+        return new EmployeeFetcher(this, prop, negative, idOnlyFetchType);
     }
 
     @Override

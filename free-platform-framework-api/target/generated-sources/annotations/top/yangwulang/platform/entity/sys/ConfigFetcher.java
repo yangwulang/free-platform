@@ -7,6 +7,7 @@ import org.babyfish.jimmer.meta.ImmutableProp;
 import org.babyfish.jimmer.sql.ast.table.Table;
 import org.babyfish.jimmer.sql.fetcher.Fetcher;
 import org.babyfish.jimmer.sql.fetcher.FieldConfig;
+import org.babyfish.jimmer.sql.fetcher.IdOnlyFetchType;
 import org.babyfish.jimmer.sql.fetcher.impl.FetcherImpl;
 import org.babyfish.jimmer.sql.fetcher.spi.AbstractTypedFetcher;
 
@@ -20,8 +21,9 @@ public class ConfigFetcher extends AbstractTypedFetcher<Config, ConfigFetcher> {
         super(Config.class, base);
     }
 
-    private ConfigFetcher(ConfigFetcher prev, ImmutableProp prop, boolean negative) {
-        super(prev, prop, negative);
+    private ConfigFetcher(ConfigFetcher prev, ImmutableProp prop, boolean negative,
+            IdOnlyFetchType idOnlyFetchType) {
+        super(prev, prop, negative, idOnlyFetchType);
     }
 
     private ConfigFetcher(ConfigFetcher prev, ImmutableProp prop,
@@ -116,8 +118,9 @@ public class ConfigFetcher extends AbstractTypedFetcher<Config, ConfigFetcher> {
     }
 
     @Override
-    protected ConfigFetcher createFetcher(ImmutableProp prop, boolean negative) {
-        return new ConfigFetcher(this, prop, negative);
+    protected ConfigFetcher createFetcher(ImmutableProp prop, boolean negative,
+            IdOnlyFetchType idOnlyFetchType) {
+        return new ConfigFetcher(this, prop, negative, idOnlyFetchType);
     }
 
     @Override

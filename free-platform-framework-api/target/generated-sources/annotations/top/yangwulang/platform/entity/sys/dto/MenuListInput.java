@@ -1,21 +1,46 @@
 package top.yangwulang.platform.entity.sys.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Objects;
 import javax.validation.constraints.Null;
-import lombok.Data;
 import org.babyfish.jimmer.GeneratedBy;
-import org.babyfish.jimmer.Input;
+import org.babyfish.jimmer.ViewableInput;
+import org.babyfish.jimmer.impl.util.DtoPropAccessor;
+import org.babyfish.jimmer.meta.PropId;
+import org.babyfish.jimmer.runtime.ImmutableSpi;
+import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.sys.Menu;
 import top.yangwulang.platform.entity.sys.MenuDraft;
+import top.yangwulang.platform.entity.sys.MenuFetcher;
 
 @GeneratedBy(
         file = "src/main/dto/top/yangwulang/platform/entity/sys/Menu.dto"
 )
-@Data
-public class MenuListInput implements Input<Menu> {
+public class MenuListInput implements ViewableInput<Menu> {
+    public static final ViewMetadata<Menu, MenuListInput> METADATA = 
+        new ViewMetadata<Menu, MenuListInput>(
+            MenuFetcher.$
+                .menuName()
+                .menuType()
+                .parentId(),
+            MenuListInput::new
+    );
+
+    private static final DtoPropAccessor MENU_NAME_ACCESSOR = new DtoPropAccessor(
+        false,
+        new int[] { MenuDraft.Producer.SLOT_MENU_NAME }
+    );
+
+    private static final DtoPropAccessor MENU_TYPE_ACCESSOR = new DtoPropAccessor(
+        false,
+        new int[] { MenuDraft.Producer.SLOT_MENU_TYPE }
+    );
+
     @Schema(
             description = "菜单名称"
     )
@@ -34,16 +59,83 @@ public class MenuListInput implements Input<Menu> {
     public MenuListInput() {
     }
 
+    public MenuListInput(@NotNull Menu base) {
+        this.menuName = MENU_NAME_ACCESSOR.get(base);
+        this.menuType = MENU_TYPE_ACCESSOR.get(base);
+        this.parentId = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_PARENT_ID)) ? base.parentId() : null;
+    }
+
+    public static MenuListInput of(@NotNull Menu base) {
+        return new MenuListInput(base);
+    }
+
+    @Nullable
+    public String getMenuName() {
+        return menuName;
+    }
+
+    public void setMenuName(@Nullable String menuName) {
+        this.menuName = menuName;
+    }
+
+    @Nullable
+    public String getMenuType() {
+        return menuType;
+    }
+
+    public void setMenuType(@Nullable String menuType) {
+        this.menuType = menuType;
+    }
+
+    @Nullable
+    public String getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(@Nullable String parentId) {
+        this.parentId = parentId;
+    }
+
     @Override
     public Menu toEntity() {
-        return MenuDraft.$.produce(draft -> {
-            if (menuName != null) {
-                draft.setMenuName(menuName);
-            }
-            if (menuType != null) {
-                draft.setMenuType(menuType);
-            }
-            draft.setParentId(parentId);
+        return MenuDraft.$.produce(__draft -> {
+            MENU_NAME_ACCESSOR.set(__draft, menuName);
+            MENU_TYPE_ACCESSOR.set(__draft, menuType);
+            __draft.setParentId(parentId);
         });
+    }
+
+    public int hashCode() {
+        int hash = Objects.hashCode(menuName);
+        hash = hash * 31 + Objects.hashCode(menuType);
+        hash = hash * 31 + Objects.hashCode(parentId);
+        return hash;
+    }
+
+    public boolean equals(Object o) {
+        if (o == null || this.getClass() != o.getClass()) {
+            return false;
+        }
+        MenuListInput other = (MenuListInput) o;
+        if (!Objects.equals(menuName, other.menuName)) {
+            return false;
+        }
+        if (!Objects.equals(menuType, other.menuType)) {
+            return false;
+        }
+        if (!Objects.equals(parentId, other.parentId)) {
+            return false;
+        }
+        return true;
+    }
+
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("MenuListInput").append('(');
+        builder.append("menuName=").append(menuName);
+        builder.append(", menuType=").append(menuType);
+        builder.append(", parentId=").append(parentId);
+        builder.append(')');
+        return builder.toString();
     }
 }

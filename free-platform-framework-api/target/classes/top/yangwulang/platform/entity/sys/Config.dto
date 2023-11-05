@@ -4,7 +4,7 @@ ConfigListView {
     #allScalars
 }
 
-inputOnly ConfigListInput {
+unsafe input ConfigListInput {
     configKey?
     configName?
     configValue
@@ -15,7 +15,7 @@ ConfigGetView {
     #allScalars
 }
 
-inputOnly ConfigSaveInput {
+unsafe input ConfigSaveInput {
     @Schema(description = "配置id")
     id?
     configName

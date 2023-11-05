@@ -37,75 +37,75 @@ public class AreaTable extends AbstractTypedTable<Area> implements AreaProps {
 
     @Override
     public PropExpression.Str id() {
-        return get("id");
+        return __get(AreaProps.ID.unwrap());
     }
 
     @Override
     public PropExpression.Num<Integer> status() {
-        return get("status");
+        return __get(AreaProps.STATUS.unwrap());
     }
 
     @Override
     public PropExpression.Str createBy() {
-        return get("createBy");
+        return __get(AreaProps.CREATE_BY.unwrap());
     }
 
     @Override
     public PropExpression.Cmp<Date> createDate() {
-        return get("createDate");
+        return __get(AreaProps.CREATE_DATE.unwrap());
     }
 
     @Override
     public PropExpression.Str updateBy() {
-        return get("updateBy");
+        return __get(AreaProps.UPDATE_BY.unwrap());
     }
 
     @Override
     public PropExpression.Cmp<Date> updateDate() {
-        return get("updateDate");
+        return __get(AreaProps.UPDATE_DATE.unwrap());
     }
 
     @Override
     public PropExpression.Str remarks() {
-        return get("remarks");
+        return __get(AreaProps.REMARKS.unwrap());
     }
 
     @Override
     public AreaTable parent() {
         __beforeJoin();
         if (raw != null) {
-            return new AreaTable(raw.joinImplementor("parent"));
+            return new AreaTable(raw.joinImplementor(AreaProps.PARENT.unwrap()));
         }
-        return new AreaTable(joinOperation("parent"));
+        return new AreaTable(joinOperation(AreaProps.PARENT.unwrap()));
     }
 
     @Override
     public AreaTable parent(JoinType joinType) {
         __beforeJoin();
         if (raw != null) {
-            return new AreaTable(raw.joinImplementor("parent", joinType));
+            return new AreaTable(raw.joinImplementor(AreaProps.PARENT.unwrap(), joinType));
         }
-        return new AreaTable(joinOperation("parent", joinType));
+        return new AreaTable(joinOperation(AreaProps.PARENT.unwrap(), joinType));
     }
 
     @Override
     public PropExpression.Str parentId() {
-        return get("parentId");
+        return __getAssociatedId(AreaProps.PARENT.unwrap());
     }
 
     @Override
     public PropExpression.Str areaName() {
-        return get("areaName");
+        return __get(AreaProps.AREA_NAME.unwrap());
     }
 
     @Override
     public PropExpression.Num<Long> sort() {
-        return get("sort");
+        return __get(AreaProps.SORT.unwrap());
     }
 
     @Override
     public PropExpression.Str areaType() {
-        return get("areaType");
+        return __get(AreaProps.AREA_TYPE.unwrap());
     }
 
     @Override
@@ -128,7 +128,7 @@ public class AreaTable extends AbstractTypedTable<Area> implements AreaProps {
         }
 
         public PropExpression.Str id() {
-            return get("id");
+            return __get(AreaProps.ID.unwrap());
         }
 
         @Override

@@ -2,7 +2,7 @@ PostListView {
     #allScalars
 }
 
-inputOnly PostListInput {
+unsafe input PostListInput {
     postCode
     postName
     postType

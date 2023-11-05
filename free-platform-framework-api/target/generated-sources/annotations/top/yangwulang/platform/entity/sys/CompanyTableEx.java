@@ -38,49 +38,49 @@ public class CompanyTableEx extends CompanyTable implements TableEx<Company> {
     public CompanyTableEx parent() {
         __beforeJoin();
         if (raw != null) {
-            return new CompanyTableEx(raw.joinImplementor("parent"));
+            return new CompanyTableEx(raw.joinImplementor(CompanyProps.PARENT.unwrap()));
         }
-        return new CompanyTableEx(joinOperation("parent"));
+        return new CompanyTableEx(joinOperation(CompanyProps.PARENT.unwrap()));
     }
 
     public CompanyTableEx parent(JoinType joinType) {
         __beforeJoin();
         if (raw != null) {
-            return new CompanyTableEx(raw.joinImplementor("parent", joinType));
+            return new CompanyTableEx(raw.joinImplementor(CompanyProps.PARENT.unwrap(), joinType));
         }
-        return new CompanyTableEx(joinOperation("parent", joinType));
+        return new CompanyTableEx(joinOperation(CompanyProps.PARENT.unwrap(), joinType));
     }
 
     public CompanyTableEx children() {
         __beforeJoin();
         if (raw != null) {
-            return new CompanyTableEx(raw.joinImplementor("children"));
+            return new CompanyTableEx(raw.joinImplementor(CompanyProps.CHILDREN.unwrap()));
         }
-        return new CompanyTableEx(joinOperation("children"));
+        return new CompanyTableEx(joinOperation(CompanyProps.CHILDREN.unwrap()));
     }
 
     public CompanyTableEx children(JoinType joinType) {
         __beforeJoin();
         if (raw != null) {
-            return new CompanyTableEx(raw.joinImplementor("children", joinType));
+            return new CompanyTableEx(raw.joinImplementor(CompanyProps.CHILDREN.unwrap(), joinType));
         }
-        return new CompanyTableEx(joinOperation("children", joinType));
+        return new CompanyTableEx(joinOperation(CompanyProps.CHILDREN.unwrap(), joinType));
     }
 
     public EmployeeTableEx employees() {
         __beforeJoin();
         if (raw != null) {
-            return new EmployeeTableEx(raw.joinImplementor("employees"));
+            return new EmployeeTableEx(raw.joinImplementor(CompanyProps.EMPLOYEES.unwrap()));
         }
-        return new EmployeeTableEx(joinOperation("employees"));
+        return new EmployeeTableEx(joinOperation(CompanyProps.EMPLOYEES.unwrap()));
     }
 
     public EmployeeTableEx employees(JoinType joinType) {
         __beforeJoin();
         if (raw != null) {
-            return new EmployeeTableEx(raw.joinImplementor("employees", joinType));
+            return new EmployeeTableEx(raw.joinImplementor(CompanyProps.EMPLOYEES.unwrap(), joinType));
         }
-        return new EmployeeTableEx(joinOperation("employees", joinType));
+        return new EmployeeTableEx(joinOperation(CompanyProps.EMPLOYEES.unwrap(), joinType));
     }
 
     @Override

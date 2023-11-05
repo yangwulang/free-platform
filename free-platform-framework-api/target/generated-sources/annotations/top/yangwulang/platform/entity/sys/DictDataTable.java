@@ -37,123 +37,123 @@ public class DictDataTable extends AbstractTypedTable<DictData> implements DictD
 
     @Override
     public PropExpression.Str id() {
-        return get("id");
+        return __get(DictDataProps.ID.unwrap());
     }
 
     @Override
     public PropExpression.Num<Integer> status() {
-        return get("status");
+        return __get(DictDataProps.STATUS.unwrap());
     }
 
     @Override
     public PropExpression.Str createBy() {
-        return get("createBy");
+        return __get(DictDataProps.CREATE_BY.unwrap());
     }
 
     @Override
     public PropExpression.Cmp<Date> createDate() {
-        return get("createDate");
+        return __get(DictDataProps.CREATE_DATE.unwrap());
     }
 
     @Override
     public PropExpression.Str updateBy() {
-        return get("updateBy");
+        return __get(DictDataProps.UPDATE_BY.unwrap());
     }
 
     @Override
     public PropExpression.Cmp<Date> updateDate() {
-        return get("updateDate");
+        return __get(DictDataProps.UPDATE_DATE.unwrap());
     }
 
     @Override
     public PropExpression.Str remarks() {
-        return get("remarks");
+        return __get(DictDataProps.REMARKS.unwrap());
     }
 
     @Override
     public DictDataTable parent() {
         __beforeJoin();
         if (raw != null) {
-            return new DictDataTable(raw.joinImplementor("parent"));
+            return new DictDataTable(raw.joinImplementor(DictDataProps.PARENT.unwrap()));
         }
-        return new DictDataTable(joinOperation("parent"));
+        return new DictDataTable(joinOperation(DictDataProps.PARENT.unwrap()));
     }
 
     @Override
     public DictDataTable parent(JoinType joinType) {
         __beforeJoin();
         if (raw != null) {
-            return new DictDataTable(raw.joinImplementor("parent", joinType));
+            return new DictDataTable(raw.joinImplementor(DictDataProps.PARENT.unwrap(), joinType));
         }
-        return new DictDataTable(joinOperation("parent", joinType));
+        return new DictDataTable(joinOperation(DictDataProps.PARENT.unwrap(), joinType));
+    }
+
+    @Override
+    public PropExpression.Str parentId() {
+        return __getAssociatedId(DictDataProps.PARENT.unwrap());
     }
 
     @Override
     public DictTypeTable dictType() {
         __beforeJoin();
         if (raw != null) {
-            return new DictTypeTable(raw.joinImplementor("dictType"));
+            return new DictTypeTable(raw.joinImplementor(DictDataProps.DICT_TYPE.unwrap()));
         }
-        return new DictTypeTable(joinOperation("dictType"));
+        return new DictTypeTable(joinOperation(DictDataProps.DICT_TYPE.unwrap()));
     }
 
     @Override
     public DictTypeTable dictType(JoinType joinType) {
         __beforeJoin();
         if (raw != null) {
-            return new DictTypeTable(raw.joinImplementor("dictType", joinType));
+            return new DictTypeTable(raw.joinImplementor(DictDataProps.DICT_TYPE.unwrap(), joinType));
         }
-        return new DictTypeTable(joinOperation("dictType", joinType));
-    }
-
-    @Override
-    public PropExpression.Str parentId() {
-        return get("parentId");
+        return new DictTypeTable(joinOperation(DictDataProps.DICT_TYPE.unwrap(), joinType));
     }
 
     @Override
     public PropExpression.Str dictTypeId() {
-        return get("dictTypeId");
+        return __getAssociatedId(DictDataProps.DICT_TYPE.unwrap());
     }
 
     @Override
     public PropExpression.Str dictLabel() {
-        return get("dictLabel");
+        return __get(DictDataProps.DICT_LABEL.unwrap());
     }
 
     @Override
     public PropExpression.Str dictValue() {
-        return get("dictValue");
+        return __get(DictDataProps.DICT_VALUE.unwrap());
     }
 
     @Override
     public PropExpression.Cmp<Boolean> isSys() {
-        return get("isSys");
+        return __get(DictDataProps.IS_SYS.unwrap());
     }
 
     @Override
     public PropExpression.Str description() {
-        return get("description");
+        return __get(DictDataProps.DESCRIPTION.unwrap());
     }
 
     @Override
     public PropExpression.Str cssStyle() {
-        return get("cssStyle");
+        return __get(DictDataProps.CSS_STYLE.unwrap());
     }
 
     @Override
     public PropExpression.Str cssClass() {
-        return get("cssClass");
+        return __get(DictDataProps.CSS_CLASS.unwrap());
     }
 
     @Override
     public PropExpression.Str corpCode() {
-        return get("corpCode");
+        return __get(DictDataProps.CORP_CODE.unwrap());
     }
 
     @Override
     public PropExpression.Str corpName() {
-        return get("corpName");
+        return __get(DictDataProps.CORP_NAME.unwrap());
     }
 
     @Override
@@ -176,7 +176,7 @@ public class DictDataTable extends AbstractTypedTable<DictData> implements DictD
         }
 
         public PropExpression.Str id() {
-            return get("id");
+            return __get(DictDataProps.ID.unwrap());
         }
 
         @Override

@@ -33,22 +33,22 @@ public class PostTable extends AbstractTypedTable<Post> implements PostProps {
 
     @Override
     public PropExpression.Str id() {
-        return get("id");
+        return __get(PostProps.ID.unwrap());
     }
 
     @Override
     public PropExpression.Str postCode() {
-        return get("postCode");
+        return __get(PostProps.POST_CODE.unwrap());
     }
 
     @Override
     public PropExpression.Str postName() {
-        return get("postName");
+        return __get(PostProps.POST_NAME.unwrap());
     }
 
     @Override
     public PropExpression.Str postType() {
-        return get("postType");
+        return __get(PostProps.POST_TYPE.unwrap());
     }
 
     @Override
@@ -71,7 +71,7 @@ public class PostTable extends AbstractTypedTable<Post> implements PostProps {
         }
 
         public PropExpression.Str id() {
-            return get("id");
+            return __get(PostProps.ID.unwrap());
         }
 
         @Override

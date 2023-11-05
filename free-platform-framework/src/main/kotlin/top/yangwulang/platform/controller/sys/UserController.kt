@@ -7,24 +7,24 @@ import io.swagger.v3.oas.annotations.enums.ParameterIn
 import io.swagger.v3.oas.annotations.tags.Tag
 import io.swagger.v3.oas.annotations.tags.Tags
 import jakarta.servlet.http.HttpServletRequest
-import jakarta.validation.constraints.NotEmpty
 import org.apache.commons.lang3.StringUtils
 import org.babyfish.jimmer.View
-import org.babyfish.jimmer.sql.fetcher.RecursiveListFieldConfig
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 import top.yangwulang.platform.entity.PageHttpRequest
 import top.yangwulang.platform.entity.Result
-import top.yangwulang.platform.entity.sys.*
+import top.yangwulang.platform.entity.sys.Role
+import top.yangwulang.platform.entity.sys.UserTable
 import top.yangwulang.platform.entity.sys.dto.UserGetView
 import top.yangwulang.platform.entity.sys.dto.UserListInput
 import top.yangwulang.platform.entity.sys.dto.UserListView
 import top.yangwulang.platform.entity.sys.dto.UserRoleMenuView
 import top.yangwulang.platform.entity.sys.input.user.UserSaveInput
+import top.yangwulang.platform.exception.ServiceException
 import top.yangwulang.platform.services.UserService
-import javax.xml.rpc.ServiceException
+
 
 /**
  * @author yangwulang

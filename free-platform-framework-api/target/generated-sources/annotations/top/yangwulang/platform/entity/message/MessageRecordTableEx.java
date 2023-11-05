@@ -40,33 +40,33 @@ public class MessageRecordTableEx extends MessageRecordTable implements TableEx<
     public UserTableEx targetUsers() {
         __beforeJoin();
         if (raw != null) {
-            return new UserTableEx(raw.joinImplementor("targetUsers"));
+            return new UserTableEx(raw.joinImplementor(MessageRecordProps.TARGET_USERS.unwrap()));
         }
-        return new UserTableEx(joinOperation("targetUsers"));
+        return new UserTableEx(joinOperation(MessageRecordProps.TARGET_USERS.unwrap()));
     }
 
     public UserTableEx targetUsers(JoinType joinType) {
         __beforeJoin();
         if (raw != null) {
-            return new UserTableEx(raw.joinImplementor("targetUsers", joinType));
+            return new UserTableEx(raw.joinImplementor(MessageRecordProps.TARGET_USERS.unwrap(), joinType));
         }
-        return new UserTableEx(joinOperation("targetUsers", joinType));
+        return new UserTableEx(joinOperation(MessageRecordProps.TARGET_USERS.unwrap(), joinType));
     }
 
     public MessageRecordUserTableEx messageRecordUsers() {
         __beforeJoin();
         if (raw != null) {
-            return new MessageRecordUserTableEx(raw.joinImplementor("messageRecordUsers"));
+            return new MessageRecordUserTableEx(raw.joinImplementor(MessageRecordProps.MESSAGE_RECORD_USERS.unwrap()));
         }
-        return new MessageRecordUserTableEx(joinOperation("messageRecordUsers"));
+        return new MessageRecordUserTableEx(joinOperation(MessageRecordProps.MESSAGE_RECORD_USERS.unwrap()));
     }
 
     public MessageRecordUserTableEx messageRecordUsers(JoinType joinType) {
         __beforeJoin();
         if (raw != null) {
-            return new MessageRecordUserTableEx(raw.joinImplementor("messageRecordUsers", joinType));
+            return new MessageRecordUserTableEx(raw.joinImplementor(MessageRecordProps.MESSAGE_RECORD_USERS.unwrap(), joinType));
         }
-        return new MessageRecordUserTableEx(joinOperation("messageRecordUsers", joinType));
+        return new MessageRecordUserTableEx(joinOperation(MessageRecordProps.MESSAGE_RECORD_USERS.unwrap(), joinType));
     }
 
     @Override

@@ -18,7 +18,7 @@ EmployeeListView {
     }
 }
 
-inputOnly EmployeeListInput {
+unsafe input EmployeeListInput {
     empCode
     empName
     flat(user) {
@@ -26,4 +26,8 @@ inputOnly EmployeeListInput {
         email
         status
     }
+}
+
+EmployeeGetView {
+    #allScalars
 }

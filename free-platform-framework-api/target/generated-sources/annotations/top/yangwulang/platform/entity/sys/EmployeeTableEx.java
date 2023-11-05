@@ -38,49 +38,49 @@ public class EmployeeTableEx extends EmployeeTable implements TableEx<Employee> 
     public UserTableEx user() {
         __beforeJoin();
         if (raw != null) {
-            return new UserTableEx(raw.joinImplementor("user"));
+            return new UserTableEx(raw.joinImplementor(EmployeeProps.USER.unwrap()));
         }
-        return new UserTableEx(joinOperation("user"));
+        return new UserTableEx(joinOperation(EmployeeProps.USER.unwrap()));
     }
 
     public UserTableEx user(JoinType joinType) {
         __beforeJoin();
         if (raw != null) {
-            return new UserTableEx(raw.joinImplementor("user", joinType));
+            return new UserTableEx(raw.joinImplementor(EmployeeProps.USER.unwrap(), joinType));
         }
-        return new UserTableEx(joinOperation("user", joinType));
+        return new UserTableEx(joinOperation(EmployeeProps.USER.unwrap(), joinType));
     }
 
     public CompanyTableEx company() {
         __beforeJoin();
         if (raw != null) {
-            return new CompanyTableEx(raw.joinImplementor("company"));
+            return new CompanyTableEx(raw.joinImplementor(EmployeeProps.COMPANY.unwrap()));
         }
-        return new CompanyTableEx(joinOperation("company"));
+        return new CompanyTableEx(joinOperation(EmployeeProps.COMPANY.unwrap()));
     }
 
     public CompanyTableEx company(JoinType joinType) {
         __beforeJoin();
         if (raw != null) {
-            return new CompanyTableEx(raw.joinImplementor("company", joinType));
+            return new CompanyTableEx(raw.joinImplementor(EmployeeProps.COMPANY.unwrap(), joinType));
         }
-        return new CompanyTableEx(joinOperation("company", joinType));
+        return new CompanyTableEx(joinOperation(EmployeeProps.COMPANY.unwrap(), joinType));
     }
 
     public PostTableEx posts() {
         __beforeJoin();
         if (raw != null) {
-            return new PostTableEx(raw.joinImplementor("posts"));
+            return new PostTableEx(raw.joinImplementor(EmployeeProps.POSTS.unwrap()));
         }
-        return new PostTableEx(joinOperation("posts"));
+        return new PostTableEx(joinOperation(EmployeeProps.POSTS.unwrap()));
     }
 
     public PostTableEx posts(JoinType joinType) {
         __beforeJoin();
         if (raw != null) {
-            return new PostTableEx(raw.joinImplementor("posts", joinType));
+            return new PostTableEx(raw.joinImplementor(EmployeeProps.POSTS.unwrap(), joinType));
         }
-        return new PostTableEx(joinOperation("posts", joinType));
+        return new PostTableEx(joinOperation(EmployeeProps.POSTS.unwrap(), joinType));
     }
 
     @Override

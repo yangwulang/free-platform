@@ -38,6 +38,8 @@ public interface EmployeeProps extends Props {
 
     UserTable user(JoinType joinType);
 
+    PropExpression.Str userId();
+
     CompanyTable company();
 
     CompanyTable company(JoinType joinType);

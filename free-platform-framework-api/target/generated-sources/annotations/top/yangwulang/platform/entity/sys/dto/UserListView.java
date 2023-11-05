@@ -2,13 +2,15 @@ package top.yangwulang.platform.entity.sys.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.lang.Integer;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Date;
+import java.util.Objects;
 import javax.validation.constraints.Null;
-import lombok.Data;
 import org.babyfish.jimmer.GeneratedBy;
 import org.babyfish.jimmer.View;
+import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
 import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
 import org.jetbrains.annotations.NotNull;
@@ -16,12 +18,10 @@ import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.sys.User;
 import top.yangwulang.platform.entity.sys.UserDraft;
 import top.yangwulang.platform.entity.sys.UserFetcher;
-import top.yangwulang.platform.entity.sys.UserProps;
 
 @GeneratedBy(
         file = "src/main/dto/top/yangwulang/platform/entity/sys/User.dto"
 )
-@Data
 public class UserListView implements View<User> {
     public static final ViewMetadata<User, UserListView> METADATA = 
         new ViewMetadata<User, UserListView>(
@@ -187,62 +187,401 @@ public class UserListView implements View<User> {
     }
 
     public UserListView(@NotNull User base) {
-        ImmutableSpi spi = (ImmutableSpi)base;
         this.userCode = base.userCode();
         this.status = base.status();
         this.createBy = base.createBy();
         this.createDate = base.createDate();
         this.updateBy = base.updateBy();
         this.updateDate = base.updateDate();
-        this.remarks = spi.__isLoaded(UserProps.REMARKS.unwrap().getId()) ? base.remarks() : null;
-        this.loginCode = spi.__isLoaded(UserProps.LOGIN_CODE.unwrap().getId()) ? base.loginCode() : null;
-        this.userName = spi.__isLoaded(UserProps.USER_NAME.unwrap().getId()) ? base.userName() : null;
-        this.email = spi.__isLoaded(UserProps.EMAIL.unwrap().getId()) ? base.email() : null;
-        this.mobile = spi.__isLoaded(UserProps.MOBILE.unwrap().getId()) ? base.mobile() : null;
-        this.phone = spi.__isLoaded(UserProps.PHONE.unwrap().getId()) ? base.phone() : null;
-        this.sex = spi.__isLoaded(UserProps.SEX.unwrap().getId()) ? base.sex() : null;
-        this.avatar = spi.__isLoaded(UserProps.AVATAR.unwrap().getId()) ? base.avatar() : null;
-        this.sign = spi.__isLoaded(UserProps.SIGN.unwrap().getId()) ? base.sign() : null;
-        this.wxOpenId = spi.__isLoaded(UserProps.WX_OPEN_ID.unwrap().getId()) ? base.wxOpenId() : null;
-        this.mobileImei = spi.__isLoaded(UserProps.MOBILE_IMEI.unwrap().getId()) ? base.mobileImei() : null;
-        this.userType = spi.__isLoaded(UserProps.USER_TYPE.unwrap().getId()) ? base.userType() : null;
-        this.refCode = spi.__isLoaded(UserProps.REF_CODE.unwrap().getId()) ? base.refCode() : null;
-        this.refName = spi.__isLoaded(UserProps.REF_NAME.unwrap().getId()) ? base.refName() : null;
+        this.remarks = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(UserDraft.Producer.SLOT_REMARKS)) ? base.remarks() : null;
+        this.loginCode = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(UserDraft.Producer.SLOT_LOGIN_CODE)) ? base.loginCode() : null;
+        this.userName = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(UserDraft.Producer.SLOT_USER_NAME)) ? base.userName() : null;
+        this.email = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(UserDraft.Producer.SLOT_EMAIL)) ? base.email() : null;
+        this.mobile = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(UserDraft.Producer.SLOT_MOBILE)) ? base.mobile() : null;
+        this.phone = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(UserDraft.Producer.SLOT_PHONE)) ? base.phone() : null;
+        this.sex = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(UserDraft.Producer.SLOT_SEX)) ? base.sex() : null;
+        this.avatar = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(UserDraft.Producer.SLOT_AVATAR)) ? base.avatar() : null;
+        this.sign = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(UserDraft.Producer.SLOT_SIGN)) ? base.sign() : null;
+        this.wxOpenId = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(UserDraft.Producer.SLOT_WX_OPEN_ID)) ? base.wxOpenId() : null;
+        this.mobileImei = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(UserDraft.Producer.SLOT_MOBILE_IMEI)) ? base.mobileImei() : null;
+        this.userType = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(UserDraft.Producer.SLOT_USER_TYPE)) ? base.userType() : null;
+        this.refCode = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(UserDraft.Producer.SLOT_REF_CODE)) ? base.refCode() : null;
+        this.refName = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(UserDraft.Producer.SLOT_REF_NAME)) ? base.refName() : null;
         this.mgrType = base.mgrType();
-        this.pwdSecurityLevel = spi.__isLoaded(UserProps.PWD_SECURITY_LEVEL.unwrap().getId()) ? base.pwdSecurityLevel() : null;
-        this.userWeight = spi.__isLoaded(UserProps.USER_WEIGHT.unwrap().getId()) ? base.userWeight() : null;
+        this.pwdSecurityLevel = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(UserDraft.Producer.SLOT_PWD_SECURITY_LEVEL)) ? base.pwdSecurityLevel() : null;
+        this.userWeight = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(UserDraft.Producer.SLOT_USER_WEIGHT)) ? base.userWeight() : null;
     }
 
     public static UserListView of(@NotNull User base) {
         return new UserListView(base);
     }
 
+    @NotNull
+    public String getUserCode() {
+        return userCode;
+    }
+
+    public void setUserCode(@NotNull String userCode) {
+        this.userCode = userCode;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    @NotNull
+    public String getCreateBy() {
+        return createBy;
+    }
+
+    public void setCreateBy(@NotNull String createBy) {
+        this.createBy = createBy;
+    }
+
+    @NotNull
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(@NotNull Date createDate) {
+        this.createDate = createDate;
+    }
+
+    @NotNull
+    public String getUpdateBy() {
+        return updateBy;
+    }
+
+    public void setUpdateBy(@NotNull String updateBy) {
+        this.updateBy = updateBy;
+    }
+
+    @NotNull
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(@NotNull Date updateDate) {
+        this.updateDate = updateDate;
+    }
+
+    @Nullable
+    public String getRemarks() {
+        return remarks;
+    }
+
+    public void setRemarks(@Nullable String remarks) {
+        this.remarks = remarks;
+    }
+
+    @Nullable
+    public String getLoginCode() {
+        return loginCode;
+    }
+
+    public void setLoginCode(@Nullable String loginCode) {
+        this.loginCode = loginCode;
+    }
+
+    @Nullable
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(@Nullable String userName) {
+        this.userName = userName;
+    }
+
+    @Nullable
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(@Nullable String email) {
+        this.email = email;
+    }
+
+    @Nullable
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(@Nullable String mobile) {
+        this.mobile = mobile;
+    }
+
+    @Nullable
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(@Nullable String phone) {
+        this.phone = phone;
+    }
+
+    @Nullable
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(@Nullable String sex) {
+        this.sex = sex;
+    }
+
+    @Nullable
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(@Nullable String avatar) {
+        this.avatar = avatar;
+    }
+
+    @Nullable
+    public String getSign() {
+        return sign;
+    }
+
+    public void setSign(@Nullable String sign) {
+        this.sign = sign;
+    }
+
+    @Nullable
+    public String getWxOpenId() {
+        return wxOpenId;
+    }
+
+    public void setWxOpenId(@Nullable String wxOpenId) {
+        this.wxOpenId = wxOpenId;
+    }
+
+    @Nullable
+    public String getMobileImei() {
+        return mobileImei;
+    }
+
+    public void setMobileImei(@Nullable String mobileImei) {
+        this.mobileImei = mobileImei;
+    }
+
+    @Nullable
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(@Nullable String userType) {
+        this.userType = userType;
+    }
+
+    @Nullable
+    public String getRefCode() {
+        return refCode;
+    }
+
+    public void setRefCode(@Nullable String refCode) {
+        this.refCode = refCode;
+    }
+
+    @Nullable
+    public String getRefName() {
+        return refName;
+    }
+
+    public void setRefName(@Nullable String refName) {
+        this.refName = refName;
+    }
+
+    @NotNull
+    public String getMgrType() {
+        return mgrType;
+    }
+
+    public void setMgrType(@NotNull String mgrType) {
+        this.mgrType = mgrType;
+    }
+
+    @Nullable
+    public Integer getPwdSecurityLevel() {
+        return pwdSecurityLevel;
+    }
+
+    public void setPwdSecurityLevel(@Nullable Integer pwdSecurityLevel) {
+        this.pwdSecurityLevel = pwdSecurityLevel;
+    }
+
+    @Nullable
+    public Integer getUserWeight() {
+        return userWeight;
+    }
+
+    public void setUserWeight(@Nullable Integer userWeight) {
+        this.userWeight = userWeight;
+    }
+
     @Override
     public User toEntity() {
-        return UserDraft.$.produce(draft -> {
-            draft.setUserCode(userCode);
-            draft.setStatus(status);
-            draft.setCreateBy(createBy);
-            draft.setCreateDate(createDate);
-            draft.setUpdateBy(updateBy);
-            draft.setUpdateDate(updateDate);
-            draft.setRemarks(remarks);
-            draft.setLoginCode(loginCode);
-            draft.setUserName(userName);
-            draft.setEmail(email);
-            draft.setMobile(mobile);
-            draft.setPhone(phone);
-            draft.setSex(sex);
-            draft.setAvatar(avatar);
-            draft.setSign(sign);
-            draft.setWxOpenId(wxOpenId);
-            draft.setMobileImei(mobileImei);
-            draft.setUserType(userType);
-            draft.setRefCode(refCode);
-            draft.setRefName(refName);
-            draft.setMgrType(mgrType);
-            draft.setPwdSecurityLevel(pwdSecurityLevel);
-            draft.setUserWeight(userWeight);
+        return UserDraft.$.produce(__draft -> {
+            __draft.setUserCode(userCode);
+            __draft.setStatus(status);
+            __draft.setCreateBy(createBy);
+            __draft.setCreateDate(createDate);
+            __draft.setUpdateBy(updateBy);
+            __draft.setUpdateDate(updateDate);
+            __draft.setRemarks(remarks);
+            __draft.setLoginCode(loginCode);
+            __draft.setUserName(userName);
+            __draft.setEmail(email);
+            __draft.setMobile(mobile);
+            __draft.setPhone(phone);
+            __draft.setSex(sex);
+            __draft.setAvatar(avatar);
+            __draft.setSign(sign);
+            __draft.setWxOpenId(wxOpenId);
+            __draft.setMobileImei(mobileImei);
+            __draft.setUserType(userType);
+            __draft.setRefCode(refCode);
+            __draft.setRefName(refName);
+            __draft.setMgrType(mgrType);
+            __draft.setPwdSecurityLevel(pwdSecurityLevel);
+            __draft.setUserWeight(userWeight);
         });
+    }
+
+    public int hashCode() {
+        int hash = Objects.hashCode(userCode);
+        hash = hash * 31 + Integer.hashCode(status);
+        hash = hash * 31 + Objects.hashCode(createBy);
+        hash = hash * 31 + Objects.hashCode(createDate);
+        hash = hash * 31 + Objects.hashCode(updateBy);
+        hash = hash * 31 + Objects.hashCode(updateDate);
+        hash = hash * 31 + Objects.hashCode(remarks);
+        hash = hash * 31 + Objects.hashCode(loginCode);
+        hash = hash * 31 + Objects.hashCode(userName);
+        hash = hash * 31 + Objects.hashCode(email);
+        hash = hash * 31 + Objects.hashCode(mobile);
+        hash = hash * 31 + Objects.hashCode(phone);
+        hash = hash * 31 + Objects.hashCode(sex);
+        hash = hash * 31 + Objects.hashCode(avatar);
+        hash = hash * 31 + Objects.hashCode(sign);
+        hash = hash * 31 + Objects.hashCode(wxOpenId);
+        hash = hash * 31 + Objects.hashCode(mobileImei);
+        hash = hash * 31 + Objects.hashCode(userType);
+        hash = hash * 31 + Objects.hashCode(refCode);
+        hash = hash * 31 + Objects.hashCode(refName);
+        hash = hash * 31 + Objects.hashCode(mgrType);
+        hash = hash * 31 + Objects.hashCode(pwdSecurityLevel);
+        hash = hash * 31 + Objects.hashCode(userWeight);
+        return hash;
+    }
+
+    public boolean equals(Object o) {
+        if (o == null || this.getClass() != o.getClass()) {
+            return false;
+        }
+        UserListView other = (UserListView) o;
+        if (!Objects.equals(userCode, other.userCode)) {
+            return false;
+        }
+        if (status != other.status) {
+            return false;
+        }
+        if (!Objects.equals(createBy, other.createBy)) {
+            return false;
+        }
+        if (!Objects.equals(createDate, other.createDate)) {
+            return false;
+        }
+        if (!Objects.equals(updateBy, other.updateBy)) {
+            return false;
+        }
+        if (!Objects.equals(updateDate, other.updateDate)) {
+            return false;
+        }
+        if (!Objects.equals(remarks, other.remarks)) {
+            return false;
+        }
+        if (!Objects.equals(loginCode, other.loginCode)) {
+            return false;
+        }
+        if (!Objects.equals(userName, other.userName)) {
+            return false;
+        }
+        if (!Objects.equals(email, other.email)) {
+            return false;
+        }
+        if (!Objects.equals(mobile, other.mobile)) {
+            return false;
+        }
+        if (!Objects.equals(phone, other.phone)) {
+            return false;
+        }
+        if (!Objects.equals(sex, other.sex)) {
+            return false;
+        }
+        if (!Objects.equals(avatar, other.avatar)) {
+            return false;
+        }
+        if (!Objects.equals(sign, other.sign)) {
+            return false;
+        }
+        if (!Objects.equals(wxOpenId, other.wxOpenId)) {
+            return false;
+        }
+        if (!Objects.equals(mobileImei, other.mobileImei)) {
+            return false;
+        }
+        if (!Objects.equals(userType, other.userType)) {
+            return false;
+        }
+        if (!Objects.equals(refCode, other.refCode)) {
+            return false;
+        }
+        if (!Objects.equals(refName, other.refName)) {
+            return false;
+        }
+        if (!Objects.equals(mgrType, other.mgrType)) {
+            return false;
+        }
+        if (!Objects.equals(pwdSecurityLevel, other.pwdSecurityLevel)) {
+            return false;
+        }
+        if (!Objects.equals(userWeight, other.userWeight)) {
+            return false;
+        }
+        return true;
+    }
+
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("UserListView").append('(');
+        builder.append("userCode=").append(userCode);
+        builder.append(", status=").append(status);
+        builder.append(", createBy=").append(createBy);
+        builder.append(", createDate=").append(createDate);
+        builder.append(", updateBy=").append(updateBy);
+        builder.append(", updateDate=").append(updateDate);
+        builder.append(", remarks=").append(remarks);
+        builder.append(", loginCode=").append(loginCode);
+        builder.append(", userName=").append(userName);
+        builder.append(", email=").append(email);
+        builder.append(", mobile=").append(mobile);
+        builder.append(", phone=").append(phone);
+        builder.append(", sex=").append(sex);
+        builder.append(", avatar=").append(avatar);
+        builder.append(", sign=").append(sign);
+        builder.append(", wxOpenId=").append(wxOpenId);
+        builder.append(", mobileImei=").append(mobileImei);
+        builder.append(", userType=").append(userType);
+        builder.append(", refCode=").append(refCode);
+        builder.append(", refName=").append(refName);
+        builder.append(", mgrType=").append(mgrType);
+        builder.append(", pwdSecurityLevel=").append(pwdSecurityLevel);
+        builder.append(", userWeight=").append(userWeight);
+        builder.append(')');
+        return builder.toString();
     }
 }

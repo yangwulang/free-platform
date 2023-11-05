@@ -2,13 +2,16 @@ package top.yangwulang.platform.entity.sys.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.lang.Boolean;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigDecimal;
+import java.util.Objects;
 import javax.validation.constraints.Null;
-import lombok.Data;
 import org.babyfish.jimmer.GeneratedBy;
 import org.babyfish.jimmer.View;
+import org.babyfish.jimmer.impl.util.DtoPropAccessor;
+import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
 import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
 import org.jetbrains.annotations.NotNull;
@@ -16,12 +19,10 @@ import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.sys.Menu;
 import top.yangwulang.platform.entity.sys.MenuDraft;
 import top.yangwulang.platform.entity.sys.MenuFetcher;
-import top.yangwulang.platform.entity.sys.MenuProps;
 
 @GeneratedBy(
         file = "src/main/dto/top/yangwulang/platform/entity/sys/Menu.dto"
 )
-@Data
 public class MenuGetView implements View<Menu> {
     public static final ViewMetadata<Menu, MenuGetView> METADATA = 
         new ViewMetadata<Menu, MenuGetView>(
@@ -41,6 +42,28 @@ public class MenuGetView implements View<Menu> {
                 .parentId()
                 .parent(TargetOf_parent.METADATA.getFetcher()),
             MenuGetView::new
+    );
+
+    private static final DtoPropAccessor ID_ACCESSOR = new DtoPropAccessor(
+        false,
+        new int[] { MenuDraft.Producer.SLOT_ID }
+    );
+
+    private static final DtoPropAccessor MENU_NAME_ACCESSOR = new DtoPropAccessor(
+        false,
+        new int[] { MenuDraft.Producer.SLOT_MENU_NAME }
+    );
+
+    private static final DtoPropAccessor MENU_TYPE_ACCESSOR = new DtoPropAccessor(
+        false,
+        new int[] { MenuDraft.Producer.SLOT_MENU_TYPE }
+    );
+
+    private static final DtoPropAccessor PARENT_ACCESSOR = new DtoPropAccessor(
+        true,
+        new int[] { MenuDraft.Producer.SLOT_PARENT },
+        DtoPropAccessor.<Menu, TargetOf_parent>objectReferenceGetter(TargetOf_parent::new),
+        DtoPropAccessor.objectReferenceSetter(TargetOf_parent::toEntity)
     );
 
     @Schema(
@@ -134,67 +157,288 @@ public class MenuGetView implements View<Menu> {
     }
 
     public MenuGetView(@NotNull Menu base) {
-        ImmutableSpi spi = (ImmutableSpi)base;
-        this.id = spi.__isLoaded(MenuProps.ID.unwrap().getId()) ? base.id() : null;
-        this.menuName = spi.__isLoaded(MenuProps.MENU_NAME.unwrap().getId()) ? base.menuName() : null;
-        this.menuType = spi.__isLoaded(MenuProps.MENU_TYPE.unwrap().getId()) ? base.menuType() : null;
-        this.menuHref = spi.__isLoaded(MenuProps.MENU_HREF.unwrap().getId()) ? base.menuHref() : null;
-        this.menuComponent = spi.__isLoaded(MenuProps.MENU_COMPONENT.unwrap().getId()) ? base.menuComponent() : null;
-        this.menuTarget = spi.__isLoaded(MenuProps.MENU_TARGET.unwrap().getId()) ? base.menuTarget() : null;
-        this.menuIcon = spi.__isLoaded(MenuProps.MENU_ICON.unwrap().getId()) ? base.menuIcon() : null;
-        this.menuColor = spi.__isLoaded(MenuProps.MENU_COLOR.unwrap().getId()) ? base.menuColor() : null;
-        this.menuTitle = spi.__isLoaded(MenuProps.MENU_TITLE.unwrap().getId()) ? base.menuTitle() : null;
-        this.permission = spi.__isLoaded(MenuProps.PERMISSION.unwrap().getId()) ? base.permission() : null;
-        this.weight = spi.__isLoaded(MenuProps.WEIGHT.unwrap().getId()) ? base.weight() : null;
-        this.isShow = spi.__isLoaded(MenuProps.IS_SHOW.unwrap().getId()) ? base.isShow() : null;
-        this.sysCode = spi.__isLoaded(MenuProps.SYS_CODE.unwrap().getId()) ? base.sysCode() : null;
-        this.parentId = spi.__isLoaded(MenuProps.PARENT_ID.unwrap().getId()) ? base.parentId() : null;
-        Menu _tmp_parent = spi.__isLoaded(MenuProps.PARENT.unwrap().getId()) ? base.parent() : null;
-        this.parent = _tmp_parent != null ? new TargetOf_parent(_tmp_parent) : null;
+        this.id = ID_ACCESSOR.get(base);
+        this.menuName = MENU_NAME_ACCESSOR.get(base);
+        this.menuType = MENU_TYPE_ACCESSOR.get(base);
+        this.menuHref = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_MENU_HREF)) ? base.menuHref() : null;
+        this.menuComponent = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_MENU_COMPONENT)) ? base.menuComponent() : null;
+        this.menuTarget = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_MENU_TARGET)) ? base.menuTarget() : null;
+        this.menuIcon = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_MENU_ICON)) ? base.menuIcon() : null;
+        this.menuColor = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_MENU_COLOR)) ? base.menuColor() : null;
+        this.menuTitle = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_MENU_TITLE)) ? base.menuTitle() : null;
+        this.permission = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_PERMISSION)) ? base.permission() : null;
+        this.weight = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_WEIGHT)) ? base.weight() : null;
+        this.isShow = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_IS_SHOW)) ? base.isShow() : null;
+        this.sysCode = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_SYS_CODE)) ? base.sysCode() : null;
+        this.parentId = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_PARENT_ID)) ? base.parentId() : null;
+        this.parent = PARENT_ACCESSOR.get(base);
     }
 
     public static MenuGetView of(@NotNull Menu base) {
         return new MenuGetView(base);
     }
 
+    @Nullable
+    public String getId() {
+        return id;
+    }
+
+    public void setId(@Nullable String id) {
+        this.id = id;
+    }
+
+    @Nullable
+    public String getMenuName() {
+        return menuName;
+    }
+
+    public void setMenuName(@Nullable String menuName) {
+        this.menuName = menuName;
+    }
+
+    @Nullable
+    public String getMenuType() {
+        return menuType;
+    }
+
+    public void setMenuType(@Nullable String menuType) {
+        this.menuType = menuType;
+    }
+
+    @Nullable
+    public String getMenuHref() {
+        return menuHref;
+    }
+
+    public void setMenuHref(@Nullable String menuHref) {
+        this.menuHref = menuHref;
+    }
+
+    @Nullable
+    public String getMenuComponent() {
+        return menuComponent;
+    }
+
+    public void setMenuComponent(@Nullable String menuComponent) {
+        this.menuComponent = menuComponent;
+    }
+
+    @Nullable
+    public String getMenuTarget() {
+        return menuTarget;
+    }
+
+    public void setMenuTarget(@Nullable String menuTarget) {
+        this.menuTarget = menuTarget;
+    }
+
+    @Nullable
+    public String getMenuIcon() {
+        return menuIcon;
+    }
+
+    public void setMenuIcon(@Nullable String menuIcon) {
+        this.menuIcon = menuIcon;
+    }
+
+    @Nullable
+    public String getMenuColor() {
+        return menuColor;
+    }
+
+    public void setMenuColor(@Nullable String menuColor) {
+        this.menuColor = menuColor;
+    }
+
+    @Nullable
+    public String getMenuTitle() {
+        return menuTitle;
+    }
+
+    public void setMenuTitle(@Nullable String menuTitle) {
+        this.menuTitle = menuTitle;
+    }
+
+    @Nullable
+    public String getPermission() {
+        return permission;
+    }
+
+    public void setPermission(@Nullable String permission) {
+        this.permission = permission;
+    }
+
+    @Nullable
+    public BigDecimal getWeight() {
+        return weight;
+    }
+
+    public void setWeight(@Nullable BigDecimal weight) {
+        this.weight = weight;
+    }
+
+    @Nullable
+    public Boolean getIsShow() {
+        return isShow;
+    }
+
+    public void setIsShow(@Nullable Boolean isShow) {
+        this.isShow = isShow;
+    }
+
+    @Nullable
+    public String getSysCode() {
+        return sysCode;
+    }
+
+    public void setSysCode(@Nullable String sysCode) {
+        this.sysCode = sysCode;
+    }
+
+    @Nullable
+    public String getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(@Nullable String parentId) {
+        this.parentId = parentId;
+    }
+
+    @Nullable
+    public TargetOf_parent getParent() {
+        return parent;
+    }
+
+    public void setParent(@Nullable TargetOf_parent parent) {
+        this.parent = parent;
+    }
+
     @Override
     public Menu toEntity() {
-        return MenuDraft.$.produce(draft -> {
-            if (id != null) {
-                draft.setId(id);
-            }
-            if (menuName != null) {
-                draft.setMenuName(menuName);
-            }
-            if (menuType != null) {
-                draft.setMenuType(menuType);
-            }
-            draft.setMenuHref(menuHref);
-            draft.setMenuComponent(menuComponent);
-            draft.setMenuTarget(menuTarget);
-            draft.setMenuIcon(menuIcon);
-            draft.setMenuColor(menuColor);
-            draft.setMenuTitle(menuTitle);
-            draft.setPermission(permission);
-            draft.setWeight(weight);
-            draft.setIsShow(isShow);
-            draft.setSysCode(sysCode);
-            draft.setParentId(parentId);
-            if (parent != null) {
-                draft.setParent(parent.toEntity());
-            } else {
-                draft.setParent((Menu)null);
-            }
+        return MenuDraft.$.produce(__draft -> {
+            ID_ACCESSOR.set(__draft, id);
+            MENU_NAME_ACCESSOR.set(__draft, menuName);
+            MENU_TYPE_ACCESSOR.set(__draft, menuType);
+            __draft.setMenuHref(menuHref);
+            __draft.setMenuComponent(menuComponent);
+            __draft.setMenuTarget(menuTarget);
+            __draft.setMenuIcon(menuIcon);
+            __draft.setMenuColor(menuColor);
+            __draft.setMenuTitle(menuTitle);
+            __draft.setPermission(permission);
+            __draft.setWeight(weight);
+            __draft.setIsShow(isShow);
+            __draft.setSysCode(sysCode);
+            __draft.setParentId(parentId);
+            PARENT_ACCESSOR.set(__draft, parent);
         });
     }
 
-    @Data
+    public int hashCode() {
+        int hash = Objects.hashCode(id);
+        hash = hash * 31 + Objects.hashCode(menuName);
+        hash = hash * 31 + Objects.hashCode(menuType);
+        hash = hash * 31 + Objects.hashCode(menuHref);
+        hash = hash * 31 + Objects.hashCode(menuComponent);
+        hash = hash * 31 + Objects.hashCode(menuTarget);
+        hash = hash * 31 + Objects.hashCode(menuIcon);
+        hash = hash * 31 + Objects.hashCode(menuColor);
+        hash = hash * 31 + Objects.hashCode(menuTitle);
+        hash = hash * 31 + Objects.hashCode(permission);
+        hash = hash * 31 + Objects.hashCode(weight);
+        hash = hash * 31 + Objects.hashCode(isShow);
+        hash = hash * 31 + Objects.hashCode(sysCode);
+        hash = hash * 31 + Objects.hashCode(parentId);
+        hash = hash * 31 + Objects.hashCode(parent);
+        return hash;
+    }
+
+    public boolean equals(Object o) {
+        if (o == null || this.getClass() != o.getClass()) {
+            return false;
+        }
+        MenuGetView other = (MenuGetView) o;
+        if (!Objects.equals(id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(menuName, other.menuName)) {
+            return false;
+        }
+        if (!Objects.equals(menuType, other.menuType)) {
+            return false;
+        }
+        if (!Objects.equals(menuHref, other.menuHref)) {
+            return false;
+        }
+        if (!Objects.equals(menuComponent, other.menuComponent)) {
+            return false;
+        }
+        if (!Objects.equals(menuTarget, other.menuTarget)) {
+            return false;
+        }
+        if (!Objects.equals(menuIcon, other.menuIcon)) {
+            return false;
+        }
+        if (!Objects.equals(menuColor, other.menuColor)) {
+            return false;
+        }
+        if (!Objects.equals(menuTitle, other.menuTitle)) {
+            return false;
+        }
+        if (!Objects.equals(permission, other.permission)) {
+            return false;
+        }
+        if (!Objects.equals(weight, other.weight)) {
+            return false;
+        }
+        if (!Objects.equals(isShow, other.isShow)) {
+            return false;
+        }
+        if (!Objects.equals(sysCode, other.sysCode)) {
+            return false;
+        }
+        if (!Objects.equals(parentId, other.parentId)) {
+            return false;
+        }
+        if (!Objects.equals(parent, other.parent)) {
+            return false;
+        }
+        return true;
+    }
+
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("MenuGetView").append('(');
+        builder.append("id=").append(id);
+        builder.append(", menuName=").append(menuName);
+        builder.append(", menuType=").append(menuType);
+        builder.append(", menuHref=").append(menuHref);
+        builder.append(", menuComponent=").append(menuComponent);
+        builder.append(", menuTarget=").append(menuTarget);
+        builder.append(", menuIcon=").append(menuIcon);
+        builder.append(", menuColor=").append(menuColor);
+        builder.append(", menuTitle=").append(menuTitle);
+        builder.append(", permission=").append(permission);
+        builder.append(", weight=").append(weight);
+        builder.append(", isShow=").append(isShow);
+        builder.append(", sysCode=").append(sysCode);
+        builder.append(", parentId=").append(parentId);
+        builder.append(", parent=").append(parent);
+        builder.append(')');
+        return builder.toString();
+    }
+
     public static class TargetOf_parent implements View<Menu> {
         public static final ViewMetadata<Menu, TargetOf_parent> METADATA = 
             new ViewMetadata<Menu, TargetOf_parent>(
                 MenuFetcher.$
                     .menuName(),
                 TargetOf_parent::new
+        );
+
+        private static final DtoPropAccessor MENU_NAME_ACCESSOR = new DtoPropAccessor(
+            false,
+            new int[] { MenuDraft.Producer.SLOT_MENU_NAME }
         );
 
         @Schema(
@@ -207,21 +451,52 @@ public class MenuGetView implements View<Menu> {
         }
 
         public TargetOf_parent(@NotNull Menu base) {
-            ImmutableSpi spi = (ImmutableSpi)base;
-            this.menuName = spi.__isLoaded(MenuProps.MENU_NAME.unwrap().getId()) ? base.menuName() : null;
+            this.menuName = MENU_NAME_ACCESSOR.get(base);
         }
 
         public static TargetOf_parent of(@NotNull Menu base) {
             return new TargetOf_parent(base);
         }
 
+        @Nullable
+        public String getMenuName() {
+            return menuName;
+        }
+
+        public void setMenuName(@Nullable String menuName) {
+            this.menuName = menuName;
+        }
+
         @Override
         public Menu toEntity() {
-            return MenuDraft.$.produce(draft -> {
-                if (menuName != null) {
-                    draft.setMenuName(menuName);
-                }
+            return MenuDraft.$.produce(__draft -> {
+                MENU_NAME_ACCESSOR.set(__draft, menuName);
             });
+        }
+
+        public int hashCode() {
+            int hash = Objects.hashCode(menuName);
+            return hash;
+        }
+
+        public boolean equals(Object o) {
+            if (o == null || this.getClass() != o.getClass()) {
+                return false;
+            }
+            TargetOf_parent other = (TargetOf_parent) o;
+            if (!Objects.equals(menuName, other.menuName)) {
+                return false;
+            }
+            return true;
+        }
+
+        public String toString() {
+            StringBuilder builder = new StringBuilder();
+            builder.append("MenuGetView").append('.');
+            builder.append("TargetOf_parent").append('(');
+            builder.append("menuName=").append(menuName);
+            builder.append(')');
+            return builder.toString();
         }
     }
 }

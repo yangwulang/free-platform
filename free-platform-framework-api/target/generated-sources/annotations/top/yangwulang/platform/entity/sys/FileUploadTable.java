@@ -34,50 +34,50 @@ public class FileUploadTable extends AbstractTypedTable<FileUpload> implements F
 
     @Override
     public PropExpression.Str id() {
-        return get("id");
+        return __get(FileUploadProps.ID.unwrap());
     }
 
     @Override
     public FileEntityTable fileEntity() {
         __beforeJoin();
         if (raw != null) {
-            return new FileEntityTable(raw.joinImplementor("fileEntity"));
+            return new FileEntityTable(raw.joinImplementor(FileUploadProps.FILE_ENTITY.unwrap()));
         }
-        return new FileEntityTable(joinOperation("fileEntity"));
+        return new FileEntityTable(joinOperation(FileUploadProps.FILE_ENTITY.unwrap()));
     }
 
     @Override
     public FileEntityTable fileEntity(JoinType joinType) {
         __beforeJoin();
         if (raw != null) {
-            return new FileEntityTable(raw.joinImplementor("fileEntity", joinType));
+            return new FileEntityTable(raw.joinImplementor(FileUploadProps.FILE_ENTITY.unwrap(), joinType));
         }
-        return new FileEntityTable(joinOperation("fileEntity", joinType));
+        return new FileEntityTable(joinOperation(FileUploadProps.FILE_ENTITY.unwrap(), joinType));
     }
 
     @Override
     public PropExpression.Str fileEntityId() {
-        return get("fileEntityId");
+        return __getAssociatedId(FileUploadProps.FILE_ENTITY.unwrap());
     }
 
     @Override
     public PropExpression.Str fileName() {
-        return get("fileName");
+        return __get(FileUploadProps.FILE_NAME.unwrap());
     }
 
     @Override
     public PropExpression.Str fileType() {
-        return get("fileType");
+        return __get(FileUploadProps.FILE_TYPE.unwrap());
     }
 
     @Override
     public PropExpression.Str bizKey() {
-        return get("bizKey");
+        return __get(FileUploadProps.BIZ_KEY.unwrap());
     }
 
     @Override
     public PropExpression.Str bizType() {
-        return get("bizType");
+        return __get(FileUploadProps.BIZ_TYPE.unwrap());
     }
 
     @Override
@@ -100,7 +100,7 @@ public class FileUploadTable extends AbstractTypedTable<FileUpload> implements F
         }
 
         public PropExpression.Str id() {
-            return get("id");
+            return __get(FileUploadProps.ID.unwrap());
         }
 
         @Override

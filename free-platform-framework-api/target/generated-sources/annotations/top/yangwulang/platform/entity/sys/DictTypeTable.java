@@ -36,52 +36,52 @@ public class DictTypeTable extends AbstractTypedTable<DictType> implements DictT
 
     @Override
     public PropExpression.Str id() {
-        return get("id");
+        return __get(DictTypeProps.ID.unwrap());
     }
 
     @Override
     public PropExpression.Num<Integer> status() {
-        return get("status");
+        return __get(DictTypeProps.STATUS.unwrap());
     }
 
     @Override
     public PropExpression.Str createBy() {
-        return get("createBy");
+        return __get(DictTypeProps.CREATE_BY.unwrap());
     }
 
     @Override
     public PropExpression.Cmp<Date> createDate() {
-        return get("createDate");
+        return __get(DictTypeProps.CREATE_DATE.unwrap());
     }
 
     @Override
     public PropExpression.Str updateBy() {
-        return get("updateBy");
+        return __get(DictTypeProps.UPDATE_BY.unwrap());
     }
 
     @Override
     public PropExpression.Cmp<Date> updateDate() {
-        return get("updateDate");
+        return __get(DictTypeProps.UPDATE_DATE.unwrap());
     }
 
     @Override
     public PropExpression.Str remarks() {
-        return get("remarks");
+        return __get(DictTypeProps.REMARKS.unwrap());
     }
 
     @Override
     public PropExpression.Str dictName() {
-        return get("dictName");
+        return __get(DictTypeProps.DICT_NAME.unwrap());
     }
 
     @Override
     public PropExpression.Str dictType() {
-        return get("dictType");
+        return __get(DictTypeProps.DICT_TYPE.unwrap());
     }
 
     @Override
     public PropExpression.Cmp<Boolean> isSys() {
-        return get("isSys");
+        return __get(DictTypeProps.IS_SYS.unwrap());
     }
 
     @Override
@@ -104,7 +104,7 @@ public class DictTypeTable extends AbstractTypedTable<DictType> implements DictT
         }
 
         public PropExpression.Str id() {
-            return get("id");
+            return __get(DictTypeProps.ID.unwrap());
         }
 
         @Override

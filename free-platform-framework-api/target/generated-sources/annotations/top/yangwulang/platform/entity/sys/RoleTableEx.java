@@ -38,33 +38,33 @@ public class RoleTableEx extends RoleTable implements TableEx<Role> {
     public MenuTableEx menus() {
         __beforeJoin();
         if (raw != null) {
-            return new MenuTableEx(raw.joinImplementor("menus"));
+            return new MenuTableEx(raw.joinImplementor(RoleProps.MENUS.unwrap()));
         }
-        return new MenuTableEx(joinOperation("menus"));
+        return new MenuTableEx(joinOperation(RoleProps.MENUS.unwrap()));
     }
 
     public MenuTableEx menus(JoinType joinType) {
         __beforeJoin();
         if (raw != null) {
-            return new MenuTableEx(raw.joinImplementor("menus", joinType));
+            return new MenuTableEx(raw.joinImplementor(RoleProps.MENUS.unwrap(), joinType));
         }
-        return new MenuTableEx(joinOperation("menus", joinType));
+        return new MenuTableEx(joinOperation(RoleProps.MENUS.unwrap(), joinType));
     }
 
     public UserTableEx users() {
         __beforeJoin();
         if (raw != null) {
-            return new UserTableEx(raw.joinImplementor("users"));
+            return new UserTableEx(raw.joinImplementor(RoleProps.USERS.unwrap()));
         }
-        return new UserTableEx(joinOperation("users"));
+        return new UserTableEx(joinOperation(RoleProps.USERS.unwrap()));
     }
 
     public UserTableEx users(JoinType joinType) {
         __beforeJoin();
         if (raw != null) {
-            return new UserTableEx(raw.joinImplementor("users", joinType));
+            return new UserTableEx(raw.joinImplementor(RoleProps.USERS.unwrap(), joinType));
         }
-        return new UserTableEx(joinOperation("users", joinType));
+        return new UserTableEx(joinOperation(RoleProps.USERS.unwrap(), joinType));
     }
 
     @Override

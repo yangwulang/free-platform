@@ -34,53 +34,58 @@ public class EmployeeTable extends AbstractTypedTable<Employee> implements Emplo
 
     @Override
     public PropExpression.Str empCode() {
-        return get("empCode");
+        return __get(EmployeeProps.EMP_CODE.unwrap());
     }
 
     @Override
     public UserTable user() {
         __beforeJoin();
         if (raw != null) {
-            return new UserTable(raw.joinImplementor("user"));
+            return new UserTable(raw.joinImplementor(EmployeeProps.USER.unwrap()));
         }
-        return new UserTable(joinOperation("user"));
+        return new UserTable(joinOperation(EmployeeProps.USER.unwrap()));
     }
 
     @Override
     public UserTable user(JoinType joinType) {
         __beforeJoin();
         if (raw != null) {
-            return new UserTable(raw.joinImplementor("user", joinType));
+            return new UserTable(raw.joinImplementor(EmployeeProps.USER.unwrap(), joinType));
         }
-        return new UserTable(joinOperation("user", joinType));
+        return new UserTable(joinOperation(EmployeeProps.USER.unwrap(), joinType));
+    }
+
+    @Override
+    public PropExpression.Str userId() {
+        return __getAssociatedId(EmployeeProps.USER.unwrap());
     }
 
     @Override
     public CompanyTable company() {
         __beforeJoin();
         if (raw != null) {
-            return new CompanyTable(raw.joinImplementor("company"));
+            return new CompanyTable(raw.joinImplementor(EmployeeProps.COMPANY.unwrap()));
         }
-        return new CompanyTable(joinOperation("company"));
+        return new CompanyTable(joinOperation(EmployeeProps.COMPANY.unwrap()));
     }
 
     @Override
     public CompanyTable company(JoinType joinType) {
         __beforeJoin();
         if (raw != null) {
-            return new CompanyTable(raw.joinImplementor("company", joinType));
+            return new CompanyTable(raw.joinImplementor(EmployeeProps.COMPANY.unwrap(), joinType));
         }
-        return new CompanyTable(joinOperation("company", joinType));
+        return new CompanyTable(joinOperation(EmployeeProps.COMPANY.unwrap(), joinType));
     }
 
     @Override
     public PropExpression.Str companyId() {
-        return get("companyId");
+        return __getAssociatedId(EmployeeProps.COMPANY.unwrap());
     }
 
     @Override
     public PropExpression.Str empName() {
-        return get("empName");
+        return __get(EmployeeProps.EMP_NAME.unwrap());
     }
 
     @Override
@@ -103,7 +108,7 @@ public class EmployeeTable extends AbstractTypedTable<Employee> implements Emplo
         }
 
         public PropExpression.Str empCode() {
-            return get("empCode");
+            return __get(EmployeeProps.EMP_CODE.unwrap());
         }
 
         @Override

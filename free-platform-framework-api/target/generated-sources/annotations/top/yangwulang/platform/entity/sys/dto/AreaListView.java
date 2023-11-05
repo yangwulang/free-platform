@@ -1,18 +1,21 @@
 package top.yangwulang.platform.entity.sys.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.lang.Integer;
 import java.lang.Long;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Objects;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
-import lombok.Data;
 import org.babyfish.jimmer.GeneratedBy;
 import org.babyfish.jimmer.View;
+import org.babyfish.jimmer.impl.util.DtoPropAccessor;
+import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
 import org.babyfish.jimmer.sql.fetcher.RecursiveFieldConfig;
 import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
@@ -20,12 +23,10 @@ import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.sys.Area;
 import top.yangwulang.platform.entity.sys.AreaDraft;
 import top.yangwulang.platform.entity.sys.AreaFetcher;
-import top.yangwulang.platform.entity.sys.AreaProps;
 
 @GeneratedBy(
         file = "src/main/dto/top/yangwulang/platform/entity/sys/Area.dto"
 )
-@Data
 public class AreaListView implements View<Area> {
     public static final ViewMetadata<Area, AreaListView> METADATA = 
         new ViewMetadata<Area, AreaListView>(
@@ -41,6 +42,13 @@ public class AreaListView implements View<Area> {
                 .areaType()
                 .children(TargetOf_children.METADATA.getFetcher(), RecursiveFieldConfig::recursive),
             AreaListView::new
+    );
+
+    private static final DtoPropAccessor CHILDREN_ACCESSOR = new DtoPropAccessor(
+        false,
+        new int[] { AreaDraft.Producer.SLOT_CHILDREN },
+        DtoPropAccessor.<Area, TargetOf_children>objectListGetter(TargetOf_children::new),
+        DtoPropAccessor.objectListSetter(TargetOf_children::toEntity)
     );
 
     @NotNull
@@ -94,54 +102,212 @@ public class AreaListView implements View<Area> {
     }
 
     public AreaListView(@org.jetbrains.annotations.NotNull Area base) {
-        ImmutableSpi spi = (ImmutableSpi)base;
         this.id = base.id();
         this.status = base.status();
         this.createBy = base.createBy();
         this.createDate = base.createDate();
         this.updateBy = base.updateBy();
         this.updateDate = base.updateDate();
-        this.remarks = spi.__isLoaded(AreaProps.REMARKS.unwrap().getId()) ? base.remarks() : null;
+        this.remarks = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(AreaDraft.Producer.SLOT_REMARKS)) ? base.remarks() : null;
         this.areaName = base.areaName();
-        this.sort = spi.__isLoaded(AreaProps.SORT.unwrap().getId()) ? base.sort() : null;
-        this.areaType = spi.__isLoaded(AreaProps.AREA_TYPE.unwrap().getId()) ? base.areaType() : null;
-        this.children = spi.__isLoaded(AreaProps.CHILDREN.unwrap().getId()) ? 
-                    base.children().stream().map(TargetOf_children::new).collect(Collectors.toList()) : 
-                    null;
+        this.sort = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(AreaDraft.Producer.SLOT_SORT)) ? base.sort() : null;
+        this.areaType = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(AreaDraft.Producer.SLOT_AREA_TYPE)) ? base.areaType() : null;
+        this.children = CHILDREN_ACCESSOR.get(base);
     }
 
     public static AreaListView of(@org.jetbrains.annotations.NotNull Area base) {
         return new AreaListView(base);
     }
 
+    @org.jetbrains.annotations.NotNull
+    public String getId() {
+        return id;
+    }
+
+    public void setId(@org.jetbrains.annotations.NotNull String id) {
+        this.id = id;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    @org.jetbrains.annotations.NotNull
+    public String getCreateBy() {
+        return createBy;
+    }
+
+    public void setCreateBy(@org.jetbrains.annotations.NotNull String createBy) {
+        this.createBy = createBy;
+    }
+
+    @org.jetbrains.annotations.NotNull
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(@org.jetbrains.annotations.NotNull Date createDate) {
+        this.createDate = createDate;
+    }
+
+    @org.jetbrains.annotations.NotNull
+    public String getUpdateBy() {
+        return updateBy;
+    }
+
+    public void setUpdateBy(@org.jetbrains.annotations.NotNull String updateBy) {
+        this.updateBy = updateBy;
+    }
+
+    @org.jetbrains.annotations.NotNull
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(@org.jetbrains.annotations.NotNull Date updateDate) {
+        this.updateDate = updateDate;
+    }
+
+    @Nullable
+    public String getRemarks() {
+        return remarks;
+    }
+
+    public void setRemarks(@Nullable String remarks) {
+        this.remarks = remarks;
+    }
+
+    @org.jetbrains.annotations.NotNull
+    public String getAreaName() {
+        return areaName;
+    }
+
+    public void setAreaName(@org.jetbrains.annotations.NotNull String areaName) {
+        this.areaName = areaName;
+    }
+
+    @Nullable
+    public Long getSort() {
+        return sort;
+    }
+
+    public void setSort(@Nullable Long sort) {
+        this.sort = sort;
+    }
+
+    @Nullable
+    public String getAreaType() {
+        return areaType;
+    }
+
+    public void setAreaType(@Nullable String areaType) {
+        this.areaType = areaType;
+    }
+
+    @Nullable
+    public List<TargetOf_children> getChildren() {
+        return children;
+    }
+
+    public void setChildren(@Nullable List<TargetOf_children> children) {
+        this.children = children;
+    }
+
     @Override
     public Area toEntity() {
-        return AreaDraft.$.produce(draft -> {
-            draft.setId(id);
-            draft.setStatus(status);
-            draft.setCreateBy(createBy);
-            draft.setCreateDate(createDate);
-            draft.setUpdateBy(updateBy);
-            draft.setUpdateDate(updateDate);
-            draft.setRemarks(remarks);
-            draft.setAreaName(areaName);
-            draft.setSort(sort);
-            draft.setAreaType(areaType);
-            if (children != null) {
-                if (children.isEmpty()) {
-                    draft.setChildren(Collections.emptyList());
-                } else {
-                    for (TargetOf_children __e : children) {
-                        draft.children(true).add((AreaDraft)__e.toEntity());
-                    }
-                }
-            } else {
-                draft.setChildren(Collections.emptyList());
-            }
+        return AreaDraft.$.produce(__draft -> {
+            __draft.setId(id);
+            __draft.setStatus(status);
+            __draft.setCreateBy(createBy);
+            __draft.setCreateDate(createDate);
+            __draft.setUpdateBy(updateBy);
+            __draft.setUpdateDate(updateDate);
+            __draft.setRemarks(remarks);
+            __draft.setAreaName(areaName);
+            __draft.setSort(sort);
+            __draft.setAreaType(areaType);
+            CHILDREN_ACCESSOR.set(__draft, children != null ? children : Collections.emptyList());
         });
     }
 
-    @Data
+    public int hashCode() {
+        int hash = Objects.hashCode(id);
+        hash = hash * 31 + Integer.hashCode(status);
+        hash = hash * 31 + Objects.hashCode(createBy);
+        hash = hash * 31 + Objects.hashCode(createDate);
+        hash = hash * 31 + Objects.hashCode(updateBy);
+        hash = hash * 31 + Objects.hashCode(updateDate);
+        hash = hash * 31 + Objects.hashCode(remarks);
+        hash = hash * 31 + Objects.hashCode(areaName);
+        hash = hash * 31 + Objects.hashCode(sort);
+        hash = hash * 31 + Objects.hashCode(areaType);
+        hash = hash * 31 + Objects.hashCode(children);
+        return hash;
+    }
+
+    public boolean equals(Object o) {
+        if (o == null || this.getClass() != o.getClass()) {
+            return false;
+        }
+        AreaListView other = (AreaListView) o;
+        if (!Objects.equals(id, other.id)) {
+            return false;
+        }
+        if (status != other.status) {
+            return false;
+        }
+        if (!Objects.equals(createBy, other.createBy)) {
+            return false;
+        }
+        if (!Objects.equals(createDate, other.createDate)) {
+            return false;
+        }
+        if (!Objects.equals(updateBy, other.updateBy)) {
+            return false;
+        }
+        if (!Objects.equals(updateDate, other.updateDate)) {
+            return false;
+        }
+        if (!Objects.equals(remarks, other.remarks)) {
+            return false;
+        }
+        if (!Objects.equals(areaName, other.areaName)) {
+            return false;
+        }
+        if (!Objects.equals(sort, other.sort)) {
+            return false;
+        }
+        if (!Objects.equals(areaType, other.areaType)) {
+            return false;
+        }
+        if (!Objects.equals(children, other.children)) {
+            return false;
+        }
+        return true;
+    }
+
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("AreaListView").append('(');
+        builder.append("id=").append(id);
+        builder.append(", status=").append(status);
+        builder.append(", createBy=").append(createBy);
+        builder.append(", createDate=").append(createDate);
+        builder.append(", updateBy=").append(updateBy);
+        builder.append(", updateDate=").append(updateDate);
+        builder.append(", remarks=").append(remarks);
+        builder.append(", areaName=").append(areaName);
+        builder.append(", sort=").append(sort);
+        builder.append(", areaType=").append(areaType);
+        builder.append(", children=").append(children);
+        builder.append(')');
+        return builder.toString();
+    }
+
     public static class TargetOf_children implements View<Area> {
         public static final ViewMetadata<Area, TargetOf_children> METADATA = 
             new ViewMetadata<Area, TargetOf_children>(
@@ -156,6 +322,13 @@ public class AreaListView implements View<Area> {
                     .sort()
                     .areaType(),
                 TargetOf_children::new
+        );
+
+        private static final DtoPropAccessor CHILDREN_ACCESSOR = new DtoPropAccessor(
+            false,
+            new int[] { AreaDraft.Producer.SLOT_CHILDREN },
+            DtoPropAccessor.<Area, TargetOf_children>objectListGetter(TargetOf_children::new),
+            DtoPropAccessor.objectListSetter(TargetOf_children::toEntity)
         );
 
         @NotNull
@@ -209,51 +382,211 @@ public class AreaListView implements View<Area> {
         }
 
         public TargetOf_children(@org.jetbrains.annotations.NotNull Area base) {
-            ImmutableSpi spi = (ImmutableSpi)base;
             this.id = base.id();
             this.status = base.status();
             this.createBy = base.createBy();
             this.createDate = base.createDate();
             this.updateBy = base.updateBy();
             this.updateDate = base.updateDate();
-            this.remarks = spi.__isLoaded(AreaProps.REMARKS.unwrap().getId()) ? base.remarks() : null;
+            this.remarks = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(AreaDraft.Producer.SLOT_REMARKS)) ? base.remarks() : null;
             this.areaName = base.areaName();
-            this.sort = spi.__isLoaded(AreaProps.SORT.unwrap().getId()) ? base.sort() : null;
-            this.areaType = spi.__isLoaded(AreaProps.AREA_TYPE.unwrap().getId()) ? base.areaType() : null;
-            this.children = spi.__isLoaded(AreaProps.CHILDREN.unwrap().getId()) ? 
-                        base.children().stream().map(TargetOf_children::new).collect(Collectors.toList()) : 
-                        null;
+            this.sort = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(AreaDraft.Producer.SLOT_SORT)) ? base.sort() : null;
+            this.areaType = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(AreaDraft.Producer.SLOT_AREA_TYPE)) ? base.areaType() : null;
+            this.children = CHILDREN_ACCESSOR.get(base);
         }
 
         public static TargetOf_children of(@org.jetbrains.annotations.NotNull Area base) {
             return new TargetOf_children(base);
         }
 
+        @org.jetbrains.annotations.NotNull
+        public String getId() {
+            return id;
+        }
+
+        public void setId(@org.jetbrains.annotations.NotNull String id) {
+            this.id = id;
+        }
+
+        public int getStatus() {
+            return status;
+        }
+
+        public void setStatus(int status) {
+            this.status = status;
+        }
+
+        @org.jetbrains.annotations.NotNull
+        public String getCreateBy() {
+            return createBy;
+        }
+
+        public void setCreateBy(@org.jetbrains.annotations.NotNull String createBy) {
+            this.createBy = createBy;
+        }
+
+        @org.jetbrains.annotations.NotNull
+        public Date getCreateDate() {
+            return createDate;
+        }
+
+        public void setCreateDate(@org.jetbrains.annotations.NotNull Date createDate) {
+            this.createDate = createDate;
+        }
+
+        @org.jetbrains.annotations.NotNull
+        public String getUpdateBy() {
+            return updateBy;
+        }
+
+        public void setUpdateBy(@org.jetbrains.annotations.NotNull String updateBy) {
+            this.updateBy = updateBy;
+        }
+
+        @org.jetbrains.annotations.NotNull
+        public Date getUpdateDate() {
+            return updateDate;
+        }
+
+        public void setUpdateDate(@org.jetbrains.annotations.NotNull Date updateDate) {
+            this.updateDate = updateDate;
+        }
+
+        @Nullable
+        public String getRemarks() {
+            return remarks;
+        }
+
+        public void setRemarks(@Nullable String remarks) {
+            this.remarks = remarks;
+        }
+
+        @org.jetbrains.annotations.NotNull
+        public String getAreaName() {
+            return areaName;
+        }
+
+        public void setAreaName(@org.jetbrains.annotations.NotNull String areaName) {
+            this.areaName = areaName;
+        }
+
+        @Nullable
+        public Long getSort() {
+            return sort;
+        }
+
+        public void setSort(@Nullable Long sort) {
+            this.sort = sort;
+        }
+
+        @Nullable
+        public String getAreaType() {
+            return areaType;
+        }
+
+        public void setAreaType(@Nullable String areaType) {
+            this.areaType = areaType;
+        }
+
+        @Nullable
+        public List<TargetOf_children> getChildren() {
+            return children;
+        }
+
+        public void setChildren(@Nullable List<TargetOf_children> children) {
+            this.children = children;
+        }
+
         @Override
         public Area toEntity() {
-            return AreaDraft.$.produce(draft -> {
-                draft.setId(id);
-                draft.setStatus(status);
-                draft.setCreateBy(createBy);
-                draft.setCreateDate(createDate);
-                draft.setUpdateBy(updateBy);
-                draft.setUpdateDate(updateDate);
-                draft.setRemarks(remarks);
-                draft.setAreaName(areaName);
-                draft.setSort(sort);
-                draft.setAreaType(areaType);
-                if (children != null) {
-                    if (children.isEmpty()) {
-                        draft.setChildren(Collections.emptyList());
-                    } else {
-                        for (TargetOf_children __e : children) {
-                            draft.children(true).add((AreaDraft)__e.toEntity());
-                        }
-                    }
-                } else {
-                    draft.setChildren(Collections.emptyList());
-                }
+            return AreaDraft.$.produce(__draft -> {
+                __draft.setId(id);
+                __draft.setStatus(status);
+                __draft.setCreateBy(createBy);
+                __draft.setCreateDate(createDate);
+                __draft.setUpdateBy(updateBy);
+                __draft.setUpdateDate(updateDate);
+                __draft.setRemarks(remarks);
+                __draft.setAreaName(areaName);
+                __draft.setSort(sort);
+                __draft.setAreaType(areaType);
+                CHILDREN_ACCESSOR.set(__draft, children != null ? children : Collections.emptyList());
             });
+        }
+
+        public int hashCode() {
+            int hash = Objects.hashCode(id);
+            hash = hash * 31 + Integer.hashCode(status);
+            hash = hash * 31 + Objects.hashCode(createBy);
+            hash = hash * 31 + Objects.hashCode(createDate);
+            hash = hash * 31 + Objects.hashCode(updateBy);
+            hash = hash * 31 + Objects.hashCode(updateDate);
+            hash = hash * 31 + Objects.hashCode(remarks);
+            hash = hash * 31 + Objects.hashCode(areaName);
+            hash = hash * 31 + Objects.hashCode(sort);
+            hash = hash * 31 + Objects.hashCode(areaType);
+            hash = hash * 31 + Objects.hashCode(children);
+            return hash;
+        }
+
+        public boolean equals(Object o) {
+            if (o == null || this.getClass() != o.getClass()) {
+                return false;
+            }
+            TargetOf_children other = (TargetOf_children) o;
+            if (!Objects.equals(id, other.id)) {
+                return false;
+            }
+            if (status != other.status) {
+                return false;
+            }
+            if (!Objects.equals(createBy, other.createBy)) {
+                return false;
+            }
+            if (!Objects.equals(createDate, other.createDate)) {
+                return false;
+            }
+            if (!Objects.equals(updateBy, other.updateBy)) {
+                return false;
+            }
+            if (!Objects.equals(updateDate, other.updateDate)) {
+                return false;
+            }
+            if (!Objects.equals(remarks, other.remarks)) {
+                return false;
+            }
+            if (!Objects.equals(areaName, other.areaName)) {
+                return false;
+            }
+            if (!Objects.equals(sort, other.sort)) {
+                return false;
+            }
+            if (!Objects.equals(areaType, other.areaType)) {
+                return false;
+            }
+            if (!Objects.equals(children, other.children)) {
+                return false;
+            }
+            return true;
+        }
+
+        public String toString() {
+            StringBuilder builder = new StringBuilder();
+            builder.append("AreaListView").append('.');
+            builder.append("TargetOf_children").append('(');
+            builder.append("id=").append(id);
+            builder.append(", status=").append(status);
+            builder.append(", createBy=").append(createBy);
+            builder.append(", createDate=").append(createDate);
+            builder.append(", updateBy=").append(updateBy);
+            builder.append(", updateDate=").append(updateDate);
+            builder.append(", remarks=").append(remarks);
+            builder.append(", areaName=").append(areaName);
+            builder.append(", sort=").append(sort);
+            builder.append(", areaType=").append(areaType);
+            builder.append(", children=").append(children);
+            builder.append(')');
+            return builder.toString();
         }
     }
 }

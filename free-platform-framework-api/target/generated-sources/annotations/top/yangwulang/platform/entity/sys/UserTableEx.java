@@ -38,17 +38,17 @@ public class UserTableEx extends UserTable implements TableEx<User> {
     public RoleTableEx roles() {
         __beforeJoin();
         if (raw != null) {
-            return new RoleTableEx(raw.joinImplementor("roles"));
+            return new RoleTableEx(raw.joinImplementor(UserProps.ROLES.unwrap()));
         }
-        return new RoleTableEx(joinOperation("roles"));
+        return new RoleTableEx(joinOperation(UserProps.ROLES.unwrap()));
     }
 
     public RoleTableEx roles(JoinType joinType) {
         __beforeJoin();
         if (raw != null) {
-            return new RoleTableEx(raw.joinImplementor("roles", joinType));
+            return new RoleTableEx(raw.joinImplementor(UserProps.ROLES.unwrap(), joinType));
         }
-        return new RoleTableEx(joinOperation("roles", joinType));
+        return new RoleTableEx(joinOperation(UserProps.ROLES.unwrap(), joinType));
     }
 
     @Override

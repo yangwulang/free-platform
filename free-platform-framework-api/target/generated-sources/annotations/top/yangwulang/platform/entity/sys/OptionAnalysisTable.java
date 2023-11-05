@@ -36,50 +36,55 @@ public class OptionAnalysisTable extends AbstractTypedTable<OptionAnalysis> impl
 
     @Override
     public PropExpression.Str id() {
-        return get("id");
+        return __get(OptionAnalysisProps.ID.unwrap());
     }
 
     @Override
     public PropExpression.Str eventName() {
-        return get("eventName");
+        return __get(OptionAnalysisProps.EVENT_NAME.unwrap());
     }
 
     @Override
     public PropExpression.Str eventCode() {
-        return get("eventCode");
+        return __get(OptionAnalysisProps.EVENT_CODE.unwrap());
     }
 
     @Override
     public UserTable optionUser() {
         __beforeJoin();
         if (raw != null) {
-            return new UserTable(raw.joinImplementor("optionUser"));
+            return new UserTable(raw.joinImplementor(OptionAnalysisProps.OPTION_USER.unwrap()));
         }
-        return new UserTable(joinOperation("optionUser"));
+        return new UserTable(joinOperation(OptionAnalysisProps.OPTION_USER.unwrap()));
     }
 
     @Override
     public UserTable optionUser(JoinType joinType) {
         __beforeJoin();
         if (raw != null) {
-            return new UserTable(raw.joinImplementor("optionUser", joinType));
+            return new UserTable(raw.joinImplementor(OptionAnalysisProps.OPTION_USER.unwrap(), joinType));
         }
-        return new UserTable(joinOperation("optionUser", joinType));
+        return new UserTable(joinOperation(OptionAnalysisProps.OPTION_USER.unwrap(), joinType));
+    }
+
+    @Override
+    public PropExpression.Str optionUserId() {
+        return __getAssociatedId(OptionAnalysisProps.OPTION_USER.unwrap());
     }
 
     @Override
     public PropExpression.Str ipAddress() {
-        return get("ipAddress");
+        return __get(OptionAnalysisProps.IP_ADDRESS.unwrap());
     }
 
     @Override
     public PropExpression.Cmp<Date> createDate() {
-        return get("createDate");
+        return __get(OptionAnalysisProps.CREATE_DATE.unwrap());
     }
 
     @Override
     public PropExpression.Str meta() {
-        return get("meta");
+        return __get(OptionAnalysisProps.META.unwrap());
     }
 
     @Override
@@ -102,7 +107,7 @@ public class OptionAnalysisTable extends AbstractTypedTable<OptionAnalysis> impl
         }
 
         public PropExpression.Str id() {
-            return get("id");
+            return __get(OptionAnalysisProps.ID.unwrap());
         }
 
         @Override

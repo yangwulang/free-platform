@@ -35,122 +35,122 @@ public class UserTable extends AbstractTypedTable<User> implements UserProps {
 
     @Override
     public PropExpression.Str userCode() {
-        return get("userCode");
+        return __get(UserProps.USER_CODE.unwrap());
     }
 
     @Override
     public PropExpression.Num<Integer> status() {
-        return get("status");
+        return __get(UserProps.STATUS.unwrap());
     }
 
     @Override
     public PropExpression.Str createBy() {
-        return get("createBy");
+        return __get(UserProps.CREATE_BY.unwrap());
     }
 
     @Override
     public PropExpression.Cmp<Date> createDate() {
-        return get("createDate");
+        return __get(UserProps.CREATE_DATE.unwrap());
     }
 
     @Override
     public PropExpression.Str updateBy() {
-        return get("updateBy");
+        return __get(UserProps.UPDATE_BY.unwrap());
     }
 
     @Override
     public PropExpression.Cmp<Date> updateDate() {
-        return get("updateDate");
+        return __get(UserProps.UPDATE_DATE.unwrap());
     }
 
     @Override
     public PropExpression.Str remarks() {
-        return get("remarks");
+        return __get(UserProps.REMARKS.unwrap());
     }
 
     @Override
     public PropExpression.Str loginCode() {
-        return get("loginCode");
+        return __get(UserProps.LOGIN_CODE.unwrap());
     }
 
     @Override
     public PropExpression.Str userName() {
-        return get("userName");
+        return __get(UserProps.USER_NAME.unwrap());
     }
 
     @Override
     public PropExpression.Str password() {
-        return get("password");
+        return __get(UserProps.PASSWORD.unwrap());
     }
 
     @Override
     public PropExpression.Str email() {
-        return get("email");
+        return __get(UserProps.EMAIL.unwrap());
     }
 
     @Override
     public PropExpression.Str mobile() {
-        return get("mobile");
+        return __get(UserProps.MOBILE.unwrap());
     }
 
     @Override
     public PropExpression.Str phone() {
-        return get("phone");
+        return __get(UserProps.PHONE.unwrap());
     }
 
     @Override
     public PropExpression.Str sex() {
-        return get("sex");
+        return __get(UserProps.SEX.unwrap());
     }
 
     @Override
     public PropExpression.Str avatar() {
-        return get("avatar");
+        return __get(UserProps.AVATAR.unwrap());
     }
 
     @Override
     public PropExpression.Str sign() {
-        return get("sign");
+        return __get(UserProps.SIGN.unwrap());
     }
 
     @Override
     public PropExpression.Str wxOpenId() {
-        return get("wxOpenId");
+        return __get(UserProps.WX_OPEN_ID.unwrap());
     }
 
     @Override
     public PropExpression.Str mobileImei() {
-        return get("mobileImei");
+        return __get(UserProps.MOBILE_IMEI.unwrap());
     }
 
     @Override
     public PropExpression.Str userType() {
-        return get("userType");
+        return __get(UserProps.USER_TYPE.unwrap());
     }
 
     @Override
     public PropExpression.Str refCode() {
-        return get("refCode");
+        return __get(UserProps.REF_CODE.unwrap());
     }
 
     @Override
     public PropExpression.Str refName() {
-        return get("refName");
+        return __get(UserProps.REF_NAME.unwrap());
     }
 
     @Override
     public PropExpression.Str mgrType() {
-        return get("mgrType");
+        return __get(UserProps.MGR_TYPE.unwrap());
     }
 
     @Override
     public PropExpression.Num<Integer> pwdSecurityLevel() {
-        return get("pwdSecurityLevel");
+        return __get(UserProps.PWD_SECURITY_LEVEL.unwrap());
     }
 
     @Override
     public PropExpression.Num<Integer> userWeight() {
-        return get("userWeight");
+        return __get(UserProps.USER_WEIGHT.unwrap());
     }
 
     @Override
@@ -173,7 +173,7 @@ public class UserTable extends AbstractTypedTable<User> implements UserProps {
         }
 
         public PropExpression.Str userCode() {
-            return get("userCode");
+            return __get(UserProps.USER_CODE.unwrap());
         }
 
         @Override

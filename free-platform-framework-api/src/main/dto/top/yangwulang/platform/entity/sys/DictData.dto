@@ -1,4 +1,4 @@
-inputOnly DictDataListInput {
+unsafe input DictDataListInput {
     dictTypeId
     dictLabel
     dictValue
@@ -23,7 +23,7 @@ DictDataGetView {
     -corpName
 }
 
-inputOnly DictDataSaveInput {
+unsafe input DictDataSaveInput {
     id?
     parentId
     dictTypeId

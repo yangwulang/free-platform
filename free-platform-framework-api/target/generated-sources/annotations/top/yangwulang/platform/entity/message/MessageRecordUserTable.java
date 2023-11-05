@@ -37,48 +37,58 @@ public class MessageRecordUserTable extends AbstractTypedTable<MessageRecordUser
 
     @Override
     public PropExpression.Str id() {
-        return get("id");
+        return __get(MessageRecordUserProps.ID.unwrap());
     }
 
     @Override
     public MessageRecordTable record() {
         __beforeJoin();
         if (raw != null) {
-            return new MessageRecordTable(raw.joinImplementor("record"));
+            return new MessageRecordTable(raw.joinImplementor(MessageRecordUserProps.RECORD.unwrap()));
         }
-        return new MessageRecordTable(joinOperation("record"));
+        return new MessageRecordTable(joinOperation(MessageRecordUserProps.RECORD.unwrap()));
     }
 
     @Override
     public MessageRecordTable record(JoinType joinType) {
         __beforeJoin();
         if (raw != null) {
-            return new MessageRecordTable(raw.joinImplementor("record", joinType));
+            return new MessageRecordTable(raw.joinImplementor(MessageRecordUserProps.RECORD.unwrap(), joinType));
         }
-        return new MessageRecordTable(joinOperation("record", joinType));
+        return new MessageRecordTable(joinOperation(MessageRecordUserProps.RECORD.unwrap(), joinType));
+    }
+
+    @Override
+    public PropExpression.Str recordId() {
+        return __getAssociatedId(MessageRecordUserProps.RECORD.unwrap());
     }
 
     @Override
     public UserTable user() {
         __beforeJoin();
         if (raw != null) {
-            return new UserTable(raw.joinImplementor("user"));
+            return new UserTable(raw.joinImplementor(MessageRecordUserProps.USER.unwrap()));
         }
-        return new UserTable(joinOperation("user"));
+        return new UserTable(joinOperation(MessageRecordUserProps.USER.unwrap()));
     }
 
     @Override
     public UserTable user(JoinType joinType) {
         __beforeJoin();
         if (raw != null) {
-            return new UserTable(raw.joinImplementor("user", joinType));
+            return new UserTable(raw.joinImplementor(MessageRecordUserProps.USER.unwrap(), joinType));
         }
-        return new UserTable(joinOperation("user", joinType));
+        return new UserTable(joinOperation(MessageRecordUserProps.USER.unwrap(), joinType));
+    }
+
+    @Override
+    public PropExpression.Str userId() {
+        return __getAssociatedId(MessageRecordUserProps.USER.unwrap());
     }
 
     @Override
     public PropExpression.Num<Integer> isRead() {
-        return get("isRead");
+        return __get(MessageRecordUserProps.IS_READ.unwrap());
     }
 
     @Override
@@ -101,7 +111,7 @@ public class MessageRecordUserTable extends AbstractTypedTable<MessageRecordUser
         }
 
         public PropExpression.Str id() {
-            return get("id");
+            return __get(MessageRecordUserProps.ID.unwrap());
         }
 
         @Override

@@ -38,49 +38,49 @@ public class DictDataTableEx extends DictDataTable implements TableEx<DictData> 
     public DictDataTableEx parent() {
         __beforeJoin();
         if (raw != null) {
-            return new DictDataTableEx(raw.joinImplementor("parent"));
+            return new DictDataTableEx(raw.joinImplementor(DictDataProps.PARENT.unwrap()));
         }
-        return new DictDataTableEx(joinOperation("parent"));
+        return new DictDataTableEx(joinOperation(DictDataProps.PARENT.unwrap()));
     }
 
     public DictDataTableEx parent(JoinType joinType) {
         __beforeJoin();
         if (raw != null) {
-            return new DictDataTableEx(raw.joinImplementor("parent", joinType));
+            return new DictDataTableEx(raw.joinImplementor(DictDataProps.PARENT.unwrap(), joinType));
         }
-        return new DictDataTableEx(joinOperation("parent", joinType));
+        return new DictDataTableEx(joinOperation(DictDataProps.PARENT.unwrap(), joinType));
     }
 
     public DictDataTableEx children() {
         __beforeJoin();
         if (raw != null) {
-            return new DictDataTableEx(raw.joinImplementor("children"));
+            return new DictDataTableEx(raw.joinImplementor(DictDataProps.CHILDREN.unwrap()));
         }
-        return new DictDataTableEx(joinOperation("children"));
+        return new DictDataTableEx(joinOperation(DictDataProps.CHILDREN.unwrap()));
     }
 
     public DictDataTableEx children(JoinType joinType) {
         __beforeJoin();
         if (raw != null) {
-            return new DictDataTableEx(raw.joinImplementor("children", joinType));
+            return new DictDataTableEx(raw.joinImplementor(DictDataProps.CHILDREN.unwrap(), joinType));
         }
-        return new DictDataTableEx(joinOperation("children", joinType));
+        return new DictDataTableEx(joinOperation(DictDataProps.CHILDREN.unwrap(), joinType));
     }
 
     public DictTypeTableEx dictType() {
         __beforeJoin();
         if (raw != null) {
-            return new DictTypeTableEx(raw.joinImplementor("dictType"));
+            return new DictTypeTableEx(raw.joinImplementor(DictDataProps.DICT_TYPE.unwrap()));
         }
-        return new DictTypeTableEx(joinOperation("dictType"));
+        return new DictTypeTableEx(joinOperation(DictDataProps.DICT_TYPE.unwrap()));
     }
 
     public DictTypeTableEx dictType(JoinType joinType) {
         __beforeJoin();
         if (raw != null) {
-            return new DictTypeTableEx(raw.joinImplementor("dictType", joinType));
+            return new DictTypeTableEx(raw.joinImplementor(DictDataProps.DICT_TYPE.unwrap(), joinType));
         }
-        return new DictTypeTableEx(joinOperation("dictType", joinType));
+        return new DictTypeTableEx(joinOperation(DictDataProps.DICT_TYPE.unwrap(), joinType));
     }
 
     @Override

@@ -38,120 +38,120 @@ public class MenuTable extends AbstractTypedTable<Menu> implements MenuProps {
 
     @Override
     public PropExpression.Str id() {
-        return get("id");
+        return __get(MenuProps.ID.unwrap());
     }
 
     @Override
     public PropExpression.Num<Integer> status() {
-        return get("status");
+        return __get(MenuProps.STATUS.unwrap());
     }
 
     @Override
     public PropExpression.Str createBy() {
-        return get("createBy");
+        return __get(MenuProps.CREATE_BY.unwrap());
     }
 
     @Override
     public PropExpression.Cmp<Date> createDate() {
-        return get("createDate");
+        return __get(MenuProps.CREATE_DATE.unwrap());
     }
 
     @Override
     public PropExpression.Str updateBy() {
-        return get("updateBy");
+        return __get(MenuProps.UPDATE_BY.unwrap());
     }
 
     @Override
     public PropExpression.Cmp<Date> updateDate() {
-        return get("updateDate");
+        return __get(MenuProps.UPDATE_DATE.unwrap());
     }
 
     @Override
     public PropExpression.Str remarks() {
-        return get("remarks");
+        return __get(MenuProps.REMARKS.unwrap());
     }
 
     @Override
     public MenuTable parent() {
         __beforeJoin();
         if (raw != null) {
-            return new MenuTable(raw.joinImplementor("parent"));
+            return new MenuTable(raw.joinImplementor(MenuProps.PARENT.unwrap()));
         }
-        return new MenuTable(joinOperation("parent"));
+        return new MenuTable(joinOperation(MenuProps.PARENT.unwrap()));
     }
 
     @Override
     public MenuTable parent(JoinType joinType) {
         __beforeJoin();
         if (raw != null) {
-            return new MenuTable(raw.joinImplementor("parent", joinType));
+            return new MenuTable(raw.joinImplementor(MenuProps.PARENT.unwrap(), joinType));
         }
-        return new MenuTable(joinOperation("parent", joinType));
+        return new MenuTable(joinOperation(MenuProps.PARENT.unwrap(), joinType));
     }
 
     @Override
     public PropExpression.Str parentId() {
-        return get("parentId");
+        return __getAssociatedId(MenuProps.PARENT.unwrap());
     }
 
     @Override
     public PropExpression.Str menuName() {
-        return get("menuName");
+        return __get(MenuProps.MENU_NAME.unwrap());
     }
 
     @Override
     public PropExpression.Str menuType() {
-        return get("menuType");
+        return __get(MenuProps.MENU_TYPE.unwrap());
     }
 
     @Override
     public PropExpression.Str menuHref() {
-        return get("menuHref");
+        return __get(MenuProps.MENU_HREF.unwrap());
     }
 
     @Override
     public PropExpression.Str menuComponent() {
-        return get("menuComponent");
+        return __get(MenuProps.MENU_COMPONENT.unwrap());
     }
 
     @Override
     public PropExpression.Str menuTarget() {
-        return get("menuTarget");
+        return __get(MenuProps.MENU_TARGET.unwrap());
     }
 
     @Override
     public PropExpression.Str menuIcon() {
-        return get("menuIcon");
+        return __get(MenuProps.MENU_ICON.unwrap());
     }
 
     @Override
     public PropExpression.Str menuColor() {
-        return get("menuColor");
+        return __get(MenuProps.MENU_COLOR.unwrap());
     }
 
     @Override
     public PropExpression.Str menuTitle() {
-        return get("menuTitle");
+        return __get(MenuProps.MENU_TITLE.unwrap());
     }
 
     @Override
     public PropExpression.Str permission() {
-        return get("permission");
+        return __get(MenuProps.PERMISSION.unwrap());
     }
 
     @Override
     public PropExpression.Num<BigDecimal> weight() {
-        return get("weight");
+        return __get(MenuProps.WEIGHT.unwrap());
     }
 
     @Override
     public PropExpression.Cmp<Boolean> isShow() {
-        return get("isShow");
+        return __get(MenuProps.IS_SHOW.unwrap());
     }
 
     @Override
     public PropExpression.Str sysCode() {
-        return get("sysCode");
+        return __get(MenuProps.SYS_CODE.unwrap());
     }
 
     @Override
@@ -174,7 +174,7 @@ public class MenuTable extends AbstractTypedTable<Menu> implements MenuProps {
         }
 
         public PropExpression.Str id() {
-            return get("id");
+            return __get(MenuProps.ID.unwrap());
         }
 
         @Override

@@ -33,27 +33,27 @@ public class FileEntityTable extends AbstractTypedTable<FileEntity> implements F
 
     @Override
     public PropExpression.Str id() {
-        return get("id");
+        return __get(FileEntityProps.ID.unwrap());
     }
 
     @Override
     public PropExpression.Str fileMd5() {
-        return get("fileMd5");
+        return __get(FileEntityProps.FILE_MD5.unwrap());
     }
 
     @Override
     public PropExpression.Str filePath() {
-        return get("filePath");
+        return __get(FileEntityProps.FILE_PATH.unwrap());
     }
 
     @Override
     public PropExpression.Str fileContentType() {
-        return get("fileContentType");
+        return __get(FileEntityProps.FILE_CONTENT_TYPE.unwrap());
     }
 
     @Override
     public PropExpression.Str fileMeta() {
-        return get("fileMeta");
+        return __get(FileEntityProps.FILE_META.unwrap());
     }
 
     @Override
@@ -76,7 +76,7 @@ public class FileEntityTable extends AbstractTypedTable<FileEntity> implements F
         }
 
         public PropExpression.Str id() {
-            return get("id");
+            return __get(FileEntityProps.ID.unwrap());
         }
 
         @Override

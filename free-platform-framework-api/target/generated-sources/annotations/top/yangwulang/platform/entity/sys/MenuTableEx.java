@@ -38,49 +38,49 @@ public class MenuTableEx extends MenuTable implements TableEx<Menu> {
     public MenuTableEx parent() {
         __beforeJoin();
         if (raw != null) {
-            return new MenuTableEx(raw.joinImplementor("parent"));
+            return new MenuTableEx(raw.joinImplementor(MenuProps.PARENT.unwrap()));
         }
-        return new MenuTableEx(joinOperation("parent"));
+        return new MenuTableEx(joinOperation(MenuProps.PARENT.unwrap()));
     }
 
     public MenuTableEx parent(JoinType joinType) {
         __beforeJoin();
         if (raw != null) {
-            return new MenuTableEx(raw.joinImplementor("parent", joinType));
+            return new MenuTableEx(raw.joinImplementor(MenuProps.PARENT.unwrap(), joinType));
         }
-        return new MenuTableEx(joinOperation("parent", joinType));
+        return new MenuTableEx(joinOperation(MenuProps.PARENT.unwrap(), joinType));
     }
 
     public MenuTableEx children() {
         __beforeJoin();
         if (raw != null) {
-            return new MenuTableEx(raw.joinImplementor("children"));
+            return new MenuTableEx(raw.joinImplementor(MenuProps.CHILDREN.unwrap()));
         }
-        return new MenuTableEx(joinOperation("children"));
+        return new MenuTableEx(joinOperation(MenuProps.CHILDREN.unwrap()));
     }
 
     public MenuTableEx children(JoinType joinType) {
         __beforeJoin();
         if (raw != null) {
-            return new MenuTableEx(raw.joinImplementor("children", joinType));
+            return new MenuTableEx(raw.joinImplementor(MenuProps.CHILDREN.unwrap(), joinType));
         }
-        return new MenuTableEx(joinOperation("children", joinType));
+        return new MenuTableEx(joinOperation(MenuProps.CHILDREN.unwrap(), joinType));
     }
 
     public RoleTableEx roles() {
         __beforeJoin();
         if (raw != null) {
-            return new RoleTableEx(raw.joinImplementor("roles"));
+            return new RoleTableEx(raw.joinImplementor(MenuProps.ROLES.unwrap()));
         }
-        return new RoleTableEx(joinOperation("roles"));
+        return new RoleTableEx(joinOperation(MenuProps.ROLES.unwrap()));
     }
 
     public RoleTableEx roles(JoinType joinType) {
         __beforeJoin();
         if (raw != null) {
-            return new RoleTableEx(raw.joinImplementor("roles", joinType));
+            return new RoleTableEx(raw.joinImplementor(MenuProps.ROLES.unwrap(), joinType));
         }
-        return new RoleTableEx(joinOperation("roles", joinType));
+        return new RoleTableEx(joinOperation(MenuProps.ROLES.unwrap(), joinType));
     }
 
     @Override

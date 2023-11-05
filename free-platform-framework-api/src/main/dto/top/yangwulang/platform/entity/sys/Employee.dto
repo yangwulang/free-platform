@@ -18,7 +18,7 @@ EmployeeListView {
     }
 }
 
-inputOnly EmployeeListInput {
+unsafe input EmployeeListInput {
     empCode
     empName
     flat(user) {

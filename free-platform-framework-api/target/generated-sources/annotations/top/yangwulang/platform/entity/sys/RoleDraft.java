@@ -160,7 +160,7 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.23",
+                "0.8.35",
                 Role.class,
                 Collections.singleton(DataTypeBaseDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (Role)base)

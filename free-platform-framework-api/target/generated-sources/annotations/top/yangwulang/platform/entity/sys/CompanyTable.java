@@ -34,55 +34,55 @@ public class CompanyTable extends AbstractTypedTable<Company> implements Company
 
     @Override
     public PropExpression.Str id() {
-        return get("id");
+        return __get(CompanyProps.ID.unwrap());
     }
 
     @Override
     public CompanyTable parent() {
         __beforeJoin();
         if (raw != null) {
-            return new CompanyTable(raw.joinImplementor("parent"));
+            return new CompanyTable(raw.joinImplementor(CompanyProps.PARENT.unwrap()));
         }
-        return new CompanyTable(joinOperation("parent"));
+        return new CompanyTable(joinOperation(CompanyProps.PARENT.unwrap()));
     }
 
     @Override
     public CompanyTable parent(JoinType joinType) {
         __beforeJoin();
         if (raw != null) {
-            return new CompanyTable(raw.joinImplementor("parent", joinType));
+            return new CompanyTable(raw.joinImplementor(CompanyProps.PARENT.unwrap(), joinType));
         }
-        return new CompanyTable(joinOperation("parent", joinType));
+        return new CompanyTable(joinOperation(CompanyProps.PARENT.unwrap(), joinType));
     }
 
     @Override
     public PropExpression.Str parentId() {
-        return get("parentId");
+        return __getAssociatedId(CompanyProps.PARENT.unwrap());
     }
 
     @Override
     public PropExpression.Str companyCode() {
-        return get("companyCode");
+        return __get(CompanyProps.COMPANY_CODE.unwrap());
     }
 
     @Override
     public PropExpression.Str companyName() {
-        return get("companyName");
+        return __get(CompanyProps.COMPANY_NAME.unwrap());
     }
 
     @Override
     public PropExpression.Str companyFullName() {
-        return get("companyFullName");
+        return __get(CompanyProps.COMPANY_FULL_NAME.unwrap());
     }
 
     @Override
     public PropExpression.Str corpCode() {
-        return get("corpCode");
+        return __get(CompanyProps.CORP_CODE.unwrap());
     }
 
     @Override
     public PropExpression.Str corpName() {
-        return get("corpName");
+        return __get(CompanyProps.CORP_NAME.unwrap());
     }
 
     @Override
@@ -105,7 +105,7 @@ public class CompanyTable extends AbstractTypedTable<Company> implements Company
         }
 
         public PropExpression.Str id() {
-            return get("id");
+            return __get(CompanyProps.ID.unwrap());
         }
 
         @Override

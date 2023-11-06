@@ -19,8 +19,9 @@ EmployeeListView {
 }
 
 unsafe input EmployeeListInput {
-    empCode
+    empCode?
     empName
+    companyId
     flat(user) {
         userName
         email

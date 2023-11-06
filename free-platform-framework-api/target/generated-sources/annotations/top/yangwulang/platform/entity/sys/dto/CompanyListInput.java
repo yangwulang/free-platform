@@ -7,8 +7,10 @@ import java.lang.String;
 import java.util.Objects;
 import org.babyfish.jimmer.GeneratedBy;
 import org.babyfish.jimmer.ViewableInput;
+import org.babyfish.jimmer.impl.util.DtoPropAccessor;
 import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.sys.Company;
 import top.yangwulang.platform.entity.sys.CompanyDraft;
 import top.yangwulang.platform.entity.sys.CompanyFetcher;
@@ -24,36 +26,41 @@ public class CompanyListInput implements ViewableInput<Company> {
             CompanyListInput::new
     );
 
+    private static final DtoPropAccessor COMPANY_NAME_ACCESSOR = new DtoPropAccessor(
+        false,
+        new int[] { CompanyDraft.Producer.SLOT_COMPANY_NAME }
+    );
+
     @Schema(
             description = "公司名称"
     )
-    @NotNull
+    @Nullable
     private String companyName;
 
     public CompanyListInput() {
     }
 
     public CompanyListInput(@NotNull Company base) {
-        this.companyName = base.companyName();
+        this.companyName = COMPANY_NAME_ACCESSOR.get(base);
     }
 
     public static CompanyListInput of(@NotNull Company base) {
         return new CompanyListInput(base);
     }
 
-    @NotNull
+    @Nullable
     public String getCompanyName() {
         return companyName;
     }
 
-    public void setCompanyName(@NotNull String companyName) {
+    public void setCompanyName(@Nullable String companyName) {
         this.companyName = companyName;
     }
 
     @Override
     public Company toEntity() {
         return CompanyDraft.$.produce(__draft -> {
-            __draft.setCompanyName(companyName);
+            COMPANY_NAME_ACCESSOR.set(__draft, companyName);
         });
     }
 

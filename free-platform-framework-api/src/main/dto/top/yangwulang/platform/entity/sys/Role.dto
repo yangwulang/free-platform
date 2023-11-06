@@ -7,7 +7,7 @@ RoleListView {
 }
 
 unsafe input RoleListInput {
-    roleName
+    roleName?
     roleType
     userType
 }

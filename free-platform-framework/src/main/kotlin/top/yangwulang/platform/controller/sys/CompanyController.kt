@@ -51,6 +51,7 @@ class CompanyController {
             .execute(
                 repository.sql()
                     .createQuery(table)
+                    .where(table.parentId().isNull)
                     .select(table.fetch(CompanyListView::class.java))
             )
     }
@@ -64,8 +65,12 @@ class CompanyController {
 
     @PutMapping
     @Operation(summary = "新增或修改企业信息")
-    fun save(@RequestBody input: CompanySaveInput): Company {
-        return companyService.save(input)
+    fun save(@RequestBody input: CompanySaveInput): Result<Company> {
+        return Result<Company>()
+            .success(companyService.save(input))
+            .apply {
+                message = "操作成功"
+            }
     }
 
 

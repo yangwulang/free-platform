@@ -35,7 +35,7 @@ class MenuController {
         val table = MenuTable.`$`
         return menuService.repository().sql()
             .createQuery(table)
-            .where(table.parent().isNull())
+            .where(table.parentId().isNull)
             .whereIf(StringUtils.isNotEmpty(input.menuName), table.menuName().like(input.menuName))
             .whereIf(StringUtils.isNotEmpty(input.menuType), table.menuName().eq(input.menuType))
             .whereIf(StringUtils.isNotEmpty(input.parentId), table.parent().id().eq(input.parentId))

@@ -7,7 +7,6 @@ import top.yangwulang.platform.entity.sys.Menu;
 import top.yangwulang.platform.entity.sys.MenuDraft;
 import top.yangwulang.platform.entity.sys.Role;
 import top.yangwulang.platform.entity.sys.input.MenuInput;
-import top.yangwulang.platform.repository.book.BookChapterRepository;
 import top.yangwulang.platform.repository.sys.MenuRepository;
 import top.yangwulang.platform.role.RoleTest;
 import top.yangwulang.platform.services.MenuService;
@@ -24,8 +23,6 @@ public class MenuTest {
 
     @Autowired
     private MenuService menuService;
-    @Autowired
-    private BookChapterRepository bookChapterRepository;
 
     @Test
     public void testSaveMenu() {

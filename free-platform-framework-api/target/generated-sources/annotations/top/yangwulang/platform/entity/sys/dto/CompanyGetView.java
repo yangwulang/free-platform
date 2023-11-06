@@ -28,7 +28,8 @@ public class CompanyGetView implements View<Company> {
                 .companyName()
                 .companyFullName()
                 .corpCode()
-                .corpName(),
+                .corpName()
+                .parentId(),
             CompanyGetView::new
     );
 
@@ -59,6 +60,12 @@ public class CompanyGetView implements View<Company> {
     @Null
     private String corpName;
 
+    @Schema(
+            description = "父级id"
+    )
+    @Null
+    private String parentId;
+
     public CompanyGetView() {
     }
 
@@ -69,6 +76,7 @@ public class CompanyGetView implements View<Company> {
         this.companyFullName = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(CompanyDraft.Producer.SLOT_COMPANY_FULL_NAME)) ? base.companyFullName() : null;
         this.corpCode = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(CompanyDraft.Producer.SLOT_CORP_CODE)) ? base.corpCode() : null;
         this.corpName = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(CompanyDraft.Producer.SLOT_CORP_NAME)) ? base.corpName() : null;
+        this.parentId = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(CompanyDraft.Producer.SLOT_PARENT_ID)) ? base.parentId() : null;
     }
 
     public static CompanyGetView of(@org.jetbrains.annotations.NotNull Company base) {
@@ -129,6 +137,15 @@ public class CompanyGetView implements View<Company> {
         this.corpName = corpName;
     }
 
+    @Nullable
+    public String getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(@Nullable String parentId) {
+        this.parentId = parentId;
+    }
+
     @Override
     public Company toEntity() {
         return CompanyDraft.$.produce(__draft -> {
@@ -138,6 +155,7 @@ public class CompanyGetView implements View<Company> {
             __draft.setCompanyFullName(companyFullName);
             __draft.setCorpCode(corpCode);
             __draft.setCorpName(corpName);
+            __draft.setParentId(parentId);
         });
     }
 
@@ -148,6 +166,7 @@ public class CompanyGetView implements View<Company> {
         hash = hash * 31 + Objects.hashCode(companyFullName);
         hash = hash * 31 + Objects.hashCode(corpCode);
         hash = hash * 31 + Objects.hashCode(corpName);
+        hash = hash * 31 + Objects.hashCode(parentId);
         return hash;
     }
 
@@ -174,6 +193,9 @@ public class CompanyGetView implements View<Company> {
         if (!Objects.equals(corpName, other.corpName)) {
             return false;
         }
+        if (!Objects.equals(parentId, other.parentId)) {
+            return false;
+        }
         return true;
     }
 
@@ -186,6 +208,7 @@ public class CompanyGetView implements View<Company> {
         builder.append(", companyFullName=").append(companyFullName);
         builder.append(", corpCode=").append(corpCode);
         builder.append(", corpName=").append(corpName);
+        builder.append(", parentId=").append(parentId);
         builder.append(')');
         return builder.toString();
     }

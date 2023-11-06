@@ -25,6 +25,7 @@ public interface Post extends TypeBase {
      * @return 岗位编码
      */
     @Schema(description = "岗位编码")
+    @Key
     String postCode();
 
     /**
@@ -33,6 +34,7 @@ public interface Post extends TypeBase {
      * @return 岗位名称
      */
     @Schema(description = "岗位名称")
+    @Key
     String postName();
 
     /**

@@ -83,8 +83,8 @@ public interface PostDraft extends Post, TypeBaseDraft {
                 (ctx, base) -> new DraftImpl(ctx, (Post)base)
             )
             .redefine("id", SLOT_ID)
-            .add(SLOT_POST_CODE, "postCode", ImmutablePropCategory.SCALAR, String.class, false)
-            .add(SLOT_POST_NAME, "postName", ImmutablePropCategory.SCALAR, String.class, false)
+            .key(SLOT_POST_CODE, "postCode", String.class, false)
+            .key(SLOT_POST_NAME, "postName", String.class, false)
             .add(SLOT_POST_TYPE, "postType", ImmutablePropCategory.SCALAR, String.class, true)
             .add(SLOT_EMPLOYEES, "employees", ManyToMany.class, Employee.class, false)
             .build();

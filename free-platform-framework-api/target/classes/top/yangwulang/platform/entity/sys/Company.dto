@@ -5,13 +5,19 @@ unsafe input CompanyListInput {
 
 CompanyListView {
   #allScalars
+  children {
+    #allScalars
+  }*
 }
 
 CompanyGetView {
   #allScalars
+  parentId
 }
 
 
 unsafe input CompanySaveInput {
   #allScalars
+  parentId
+  id?
 }

@@ -29,12 +29,18 @@ public class EmployeeListInput implements ViewableInput<Employee> {
         new ViewMetadata<Employee, EmployeeListInput>(
             EmployeeFetcher.$
                 .empName()
+                .companyId()
                 .user(UserFetcher.$
                         .userName()
                         .email()
                         .status()
                 ),
             EmployeeListInput::new
+    );
+
+    private static final DtoPropAccessor EMP_CODE_ACCESSOR = new DtoPropAccessor(
+        false,
+        new int[] { EmployeeDraft.Producer.SLOT_EMP_CODE }
     );
 
     private static final DtoPropAccessor USER_NAME_ACCESSOR = new DtoPropAccessor(
@@ -64,7 +70,7 @@ public class EmployeeListInput implements ViewableInput<Employee> {
     @Schema(
             description = "员工编码"
     )
-    @NotNull
+    @Nullable
     private String empCode;
 
     @Schema(
@@ -72,6 +78,9 @@ public class EmployeeListInput implements ViewableInput<Employee> {
     )
     @Null
     private String empName;
+
+    @Null
+    private String companyId;
 
     @Schema(
             description = "用户"
@@ -95,8 +104,9 @@ public class EmployeeListInput implements ViewableInput<Employee> {
     }
 
     public EmployeeListInput(@NotNull Employee base) {
-        this.empCode = base.empCode();
+        this.empCode = EMP_CODE_ACCESSOR.get(base);
         this.empName = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(EmployeeDraft.Producer.SLOT_EMP_NAME)) ? base.empName() : null;
+        this.companyId = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(EmployeeDraft.Producer.SLOT_COMPANY_ID)) ? base.companyId() : null;
         this.userName = USER_NAME_ACCESSOR.get(base);
         this.email = EMAIL_ACCESSOR.get(base);
         this.status = STATUS_ACCESSOR.get(base);
@@ -106,12 +116,12 @@ public class EmployeeListInput implements ViewableInput<Employee> {
         return new EmployeeListInput(base);
     }
 
-    @NotNull
+    @Nullable
     public String getEmpCode() {
         return empCode;
     }
 
-    public void setEmpCode(@NotNull String empCode) {
+    public void setEmpCode(@Nullable String empCode) {
         this.empCode = empCode;
     }
 
@@ -122,6 +132,15 @@ public class EmployeeListInput implements ViewableInput<Employee> {
 
     public void setEmpName(@Nullable String empName) {
         this.empName = empName;
+    }
+
+    @Nullable
+    public String getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(@Nullable String companyId) {
+        this.companyId = companyId;
     }
 
     @Nullable
@@ -154,8 +173,9 @@ public class EmployeeListInput implements ViewableInput<Employee> {
     @Override
     public Employee toEntity() {
         return EmployeeDraft.$.produce(__draft -> {
-            __draft.setEmpCode(empCode);
+            EMP_CODE_ACCESSOR.set(__draft, empCode);
             __draft.setEmpName(empName);
+            __draft.setCompanyId(companyId);
             USER_NAME_ACCESSOR.set(__draft, userName);
             EMAIL_ACCESSOR.set(__draft, email);
             STATUS_ACCESSOR.set(__draft, status);
@@ -165,6 +185,7 @@ public class EmployeeListInput implements ViewableInput<Employee> {
     public int hashCode() {
         int hash = Objects.hashCode(empCode);
         hash = hash * 31 + Objects.hashCode(empName);
+        hash = hash * 31 + Objects.hashCode(companyId);
         hash = hash * 31 + Objects.hashCode(userName);
         hash = hash * 31 + Objects.hashCode(email);
         hash = hash * 31 + Objects.hashCode(status);
@@ -180,6 +201,9 @@ public class EmployeeListInput implements ViewableInput<Employee> {
             return false;
         }
         if (!Objects.equals(empName, other.empName)) {
+            return false;
+        }
+        if (!Objects.equals(companyId, other.companyId)) {
             return false;
         }
         if (!Objects.equals(userName, other.userName)) {
@@ -199,6 +223,7 @@ public class EmployeeListInput implements ViewableInput<Employee> {
         builder.append("EmployeeListInput").append('(');
         builder.append("empCode=").append(empCode);
         builder.append(", empName=").append(empName);
+        builder.append(", companyId=").append(companyId);
         builder.append(", userName=").append(userName);
         builder.append(", email=").append(email);
         builder.append(", status=").append(status);

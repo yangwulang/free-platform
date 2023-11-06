@@ -88,7 +88,7 @@ class DictController {
         return dictDataService.repository().sql().createQuery(table)
             .where(
                 Predicate.and(
-                    table.parent().isNull(),
+                    table.parentId().isNull,
                     table.dictType().id().eq(dictDataInput.dictTypeId)
                 )
             )

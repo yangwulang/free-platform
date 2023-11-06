@@ -8,6 +8,7 @@ import java.util.Objects;
 import javax.validation.constraints.Null;
 import org.babyfish.jimmer.GeneratedBy;
 import org.babyfish.jimmer.ViewableInput;
+import org.babyfish.jimmer.impl.util.DtoPropAccessor;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
 import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
@@ -30,10 +31,15 @@ public class RoleListInput implements ViewableInput<Role> {
             RoleListInput::new
     );
 
+    private static final DtoPropAccessor ROLE_NAME_ACCESSOR = new DtoPropAccessor(
+        false,
+        new int[] { RoleDraft.Producer.SLOT_ROLE_NAME }
+    );
+
     @Schema(
             description = "角色名称"
     )
-    @NotNull
+    @Nullable
     private String roleName;
 
     @Schema(
@@ -52,7 +58,7 @@ public class RoleListInput implements ViewableInput<Role> {
     }
 
     public RoleListInput(@NotNull Role base) {
-        this.roleName = base.roleName();
+        this.roleName = ROLE_NAME_ACCESSOR.get(base);
         this.roleType = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(RoleDraft.Producer.SLOT_ROLE_TYPE)) ? base.roleType() : null;
         this.userType = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(RoleDraft.Producer.SLOT_USER_TYPE)) ? base.userType() : null;
     }
@@ -61,12 +67,12 @@ public class RoleListInput implements ViewableInput<Role> {
         return new RoleListInput(base);
     }
 
-    @NotNull
+    @Nullable
     public String getRoleName() {
         return roleName;
     }
 
-    public void setRoleName(@NotNull String roleName) {
+    public void setRoleName(@Nullable String roleName) {
         this.roleName = roleName;
     }
 
@@ -91,7 +97,7 @@ public class RoleListInput implements ViewableInput<Role> {
     @Override
     public Role toEntity() {
         return RoleDraft.$.produce(__draft -> {
-            __draft.setRoleName(roleName);
+            ROLE_NAME_ACCESSOR.set(__draft, roleName);
             __draft.setRoleType(roleType);
             __draft.setUserType(userType);
         });

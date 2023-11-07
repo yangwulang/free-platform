@@ -5,7 +5,7 @@ unsafe input CompanyListInput {
 
 CompanyListView {
   #allScalars
-  children {
+  children? {
     #allScalars
   }*
 }

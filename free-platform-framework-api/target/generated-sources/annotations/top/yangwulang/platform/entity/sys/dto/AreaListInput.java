@@ -116,6 +116,7 @@ public class AreaListInput implements ViewableInput<Area> {
         });
     }
 
+    @Override
     public int hashCode() {
         int hash = Objects.hashCode(parentId);
         hash = hash * 31 + Objects.hashCode(areaName);
@@ -124,6 +125,7 @@ public class AreaListInput implements ViewableInput<Area> {
         return hash;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
@@ -144,6 +146,7 @@ public class AreaListInput implements ViewableInput<Area> {
         return true;
     }
 
+    @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("AreaListInput").append('(');

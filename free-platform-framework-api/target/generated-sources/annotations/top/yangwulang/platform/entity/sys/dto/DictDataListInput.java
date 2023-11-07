@@ -115,6 +115,7 @@ public class DictDataListInput implements ViewableInput<DictData> {
         });
     }
 
+    @Override
     public int hashCode() {
         int hash = Objects.hashCode(dictTypeId);
         hash = hash * 31 + Objects.hashCode(dictLabel);
@@ -123,6 +124,7 @@ public class DictDataListInput implements ViewableInput<DictData> {
         return hash;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
@@ -143,6 +145,7 @@ public class DictDataListInput implements ViewableInput<DictData> {
         return true;
     }
 
+    @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("DictDataListInput").append('(');

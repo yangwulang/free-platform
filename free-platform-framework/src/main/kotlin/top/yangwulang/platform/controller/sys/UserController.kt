@@ -66,7 +66,7 @@ class UserController {
             .pager(PageHttpRequest.of(request).toPage())
             .execute(
                 repository.sql().createQuery(table)
-                    .whereIf(StringUtils.isNotEmpty(user.userName), table.userName().ilike(user.userName))
+                    .whereIf(StringUtils.isNotEmpty(user.userName)) { table.userName().ilike(user.userName) }
                     .select(table.fetch(UserListView::class.java))
             )
     }
@@ -97,7 +97,7 @@ class UserController {
 
     @PutMapping("/resetPassword/{id}")
     @Operation(summary = "管理员重置用户密码")
-    fun adminResetPassword(@PathVariable("id") id: String) : Result<Void>{
+    fun adminResetPassword(@PathVariable("id") id: String): Result<Void> {
         userService.adminResetPassword(id);
         return Result<Void>().success("重置成功")
     }

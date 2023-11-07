@@ -23,6 +23,7 @@ import top.yangwulang.platform.services.AreaService
 class AreaController {
     @Autowired
     lateinit var areaService: AreaService
+
     @PostMapping
     @Operation(summary = "获取区域列表")
     fun listData(@RequestBody areaQo: AreaListInput): List<AreaListView> {
@@ -31,9 +32,9 @@ class AreaController {
         areaService.dataScopeManager<AreaTable>().filter(query)
         return query
             .where(table.parent().id().eq(areaQo.parentId))
-            .whereIf(StringUtils.isNotEmpty(areaQo.areaName), table.areaName().eq(areaQo.areaName))
-            .whereIf(StringUtils.isNotEmpty(areaQo.areaType), table.areaType().eq(areaQo.areaType))
-            .whereIf(areaQo.sort != null, table.sort().eq(areaQo.sort))
+            .whereIf(StringUtils.isNotEmpty(areaQo.areaName)) { table.areaName().eq(areaQo.areaName) }
+            .whereIf(StringUtils.isNotEmpty(areaQo.areaType)) { table.areaType().eq(areaQo.areaType) }
+            .whereIf(areaQo.sort != null) { table.sort().eq(areaQo.sort) }
             .select(table.fetch(AreaListView::class.java))
             .execute()
     }

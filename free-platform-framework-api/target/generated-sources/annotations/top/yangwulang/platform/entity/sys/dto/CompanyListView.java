@@ -14,7 +14,6 @@ import org.babyfish.jimmer.View;
 import org.babyfish.jimmer.impl.util.DtoPropAccessor;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
-import org.babyfish.jimmer.sql.fetcher.RecursiveFieldConfig;
 import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
 import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.sys.Company;
@@ -33,7 +32,7 @@ public class CompanyListView implements View<Company> {
                 .companyFullName()
                 .corpCode()
                 .corpName()
-                .children(TargetOf_children.METADATA.getFetcher(), RecursiveFieldConfig::recursive),
+                .children(TargetOf_children.METADATA.getFetcher()),
             CompanyListView::new
     );
 
@@ -170,6 +169,7 @@ public class CompanyListView implements View<Company> {
         });
     }
 
+    @Override
     public int hashCode() {
         int hash = Objects.hashCode(id);
         hash = hash * 31 + Objects.hashCode(companyCode);
@@ -181,6 +181,7 @@ public class CompanyListView implements View<Company> {
         return hash;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
@@ -210,6 +211,7 @@ public class CompanyListView implements View<Company> {
         return true;
     }
 
+    @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("CompanyListView").append('(');
@@ -369,6 +371,7 @@ public class CompanyListView implements View<Company> {
             });
         }
 
+        @Override
         public int hashCode() {
             int hash = Objects.hashCode(id);
             hash = hash * 31 + Objects.hashCode(companyCode);
@@ -380,6 +383,7 @@ public class CompanyListView implements View<Company> {
             return hash;
         }
 
+        @Override
         public boolean equals(Object o) {
             if (o == null || this.getClass() != o.getClass()) {
                 return false;
@@ -409,6 +413,7 @@ public class CompanyListView implements View<Company> {
             return true;
         }
 
+        @Override
         public String toString() {
             StringBuilder builder = new StringBuilder();
             builder.append("CompanyListView").append('.');

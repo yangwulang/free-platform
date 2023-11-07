@@ -111,6 +111,7 @@ public class PostListView implements View<Post> {
         });
     }
 
+    @Override
     public int hashCode() {
         int hash = Objects.hashCode(id);
         hash = hash * 31 + Objects.hashCode(postCode);
@@ -119,6 +120,7 @@ public class PostListView implements View<Post> {
         return hash;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
@@ -139,6 +141,7 @@ public class PostListView implements View<Post> {
         return true;
     }
 
+    @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("PostListView").append('(');

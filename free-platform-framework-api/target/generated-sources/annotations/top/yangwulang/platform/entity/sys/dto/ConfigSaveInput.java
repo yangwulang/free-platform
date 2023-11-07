@@ -135,6 +135,7 @@ public class ConfigSaveInput implements ViewableInput<Config> {
         });
     }
 
+    @Override
     public int hashCode() {
         int hash = Objects.hashCode(id);
         hash = hash * 31 + Objects.hashCode(configName);
@@ -144,6 +145,7 @@ public class ConfigSaveInput implements ViewableInput<Config> {
         return hash;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
@@ -167,6 +169,7 @@ public class ConfigSaveInput implements ViewableInput<Config> {
         return true;
     }
 
+    @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("ConfigSaveInput").append('(');

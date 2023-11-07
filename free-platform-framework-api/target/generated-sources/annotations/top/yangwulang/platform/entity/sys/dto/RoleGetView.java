@@ -355,6 +355,7 @@ public class RoleGetView implements View<Role> {
         });
     }
 
+    @Override
     public int hashCode() {
         int hash = Objects.hashCode(id);
         hash = hash * 31 + Integer.hashCode(status);
@@ -376,6 +377,7 @@ public class RoleGetView implements View<Role> {
         return hash;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
@@ -435,6 +437,7 @@ public class RoleGetView implements View<Role> {
         return true;
     }
 
+    @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("RoleGetView").append('(');
@@ -803,6 +806,7 @@ public class RoleGetView implements View<Role> {
             });
         }
 
+        @Override
         public int hashCode() {
             int hash = Objects.hashCode(id);
             hash = hash * 31 + Integer.hashCode(status);
@@ -826,6 +830,7 @@ public class RoleGetView implements View<Role> {
             return hash;
         }
 
+        @Override
         public boolean equals(Object o) {
             if (o == null || this.getClass() != o.getClass()) {
                 return false;
@@ -891,6 +896,7 @@ public class RoleGetView implements View<Role> {
             return true;
         }
 
+        @Override
         public String toString() {
             StringBuilder builder = new StringBuilder();
             builder.append("RoleGetView").append('.');
@@ -1067,6 +1073,7 @@ public class RoleGetView implements View<Role> {
             });
         }
 
+        @Override
         public int hashCode() {
             int hash = Objects.hashCode(userCode);
             hash = hash * 31 + Objects.hashCode(userName);
@@ -1078,6 +1085,7 @@ public class RoleGetView implements View<Role> {
             return hash;
         }
 
+        @Override
         public boolean equals(Object o) {
             if (o == null || this.getClass() != o.getClass()) {
                 return false;
@@ -1107,6 +1115,7 @@ public class RoleGetView implements View<Role> {
             return true;
         }
 
+        @Override
         public String toString() {
             StringBuilder builder = new StringBuilder();
             builder.append("RoleGetView").append('.');

@@ -127,6 +127,7 @@ public class DictTypeGetView implements View<DictType> {
         });
     }
 
+    @Override
     public int hashCode() {
         int hash = Objects.hashCode(id);
         hash = hash * 31 + Objects.hashCode(remarks);
@@ -136,6 +137,7 @@ public class DictTypeGetView implements View<DictType> {
         return hash;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
@@ -159,6 +161,7 @@ public class DictTypeGetView implements View<DictType> {
         return true;
     }
 
+    @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("DictTypeGetView").append('(');

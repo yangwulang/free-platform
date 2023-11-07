@@ -38,9 +38,9 @@ class ConfigController {
             .execute(
                 repository.sql()
                     .createQuery(table)
-                    .whereIf(StringUtils.isNotEmpty(input.configName), table.configName().like(input.configName))
-                    .whereIf(StringUtils.isNotEmpty(input.configKey), table.configKey().like(input.configKey))
-                    .whereIf(StringUtils.isNotEmpty(input.configValue), table.configValue().like(input.configValue))
+                    .whereIf(StringUtils.isNotEmpty(input.configName)) { table.configName().like(input.configName) }
+                    .whereIf(StringUtils.isNotEmpty(input.configKey)) { table.configKey().like(input.configKey) }
+                    .whereIf(StringUtils.isNotEmpty(input.configValue)) { table.configValue().like(input.configValue) }
                     .select(table.fetch(ConfigListView::class.java))
             )
     }

@@ -182,6 +182,7 @@ public class MessageRecordListView implements View<MessageRecord> {
         });
     }
 
+    @Override
     public int hashCode() {
         int hash = Objects.hashCode(id);
         hash = hash * 31 + Integer.hashCode(status);
@@ -194,6 +195,7 @@ public class MessageRecordListView implements View<MessageRecord> {
         return hash;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
@@ -226,6 +228,7 @@ public class MessageRecordListView implements View<MessageRecord> {
         return true;
     }
 
+    @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("MessageRecordListView").append('(');

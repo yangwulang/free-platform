@@ -61,11 +61,13 @@ public class UserListInput implements ViewableInput<User> {
         });
     }
 
+    @Override
     public int hashCode() {
         int hash = Objects.hashCode(userName);
         return hash;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
@@ -77,6 +79,7 @@ public class UserListInput implements ViewableInput<User> {
         return true;
     }
 
+    @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("UserListInput").append('(');

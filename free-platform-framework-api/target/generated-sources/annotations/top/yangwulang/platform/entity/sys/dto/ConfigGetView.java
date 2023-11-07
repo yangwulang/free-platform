@@ -187,6 +187,7 @@ public class ConfigGetView implements View<Config> {
         });
     }
 
+    @Override
     public int hashCode() {
         int hash = Objects.hashCode(id);
         hash = hash * 31 + Objects.hashCode(createBy);
@@ -200,6 +201,7 @@ public class ConfigGetView implements View<Config> {
         return hash;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
@@ -235,6 +237,7 @@ public class ConfigGetView implements View<Config> {
         return true;
     }
 
+    @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("ConfigGetView").append('(');

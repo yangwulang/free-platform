@@ -105,6 +105,7 @@ public class MenuListInput implements ViewableInput<Menu> {
         });
     }
 
+    @Override
     public int hashCode() {
         int hash = Objects.hashCode(menuName);
         hash = hash * 31 + Objects.hashCode(menuType);
@@ -112,6 +113,7 @@ public class MenuListInput implements ViewableInput<Menu> {
         return hash;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
@@ -129,6 +131,7 @@ public class MenuListInput implements ViewableInput<Menu> {
         return true;
     }
 
+    @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("MenuListInput").append('(');

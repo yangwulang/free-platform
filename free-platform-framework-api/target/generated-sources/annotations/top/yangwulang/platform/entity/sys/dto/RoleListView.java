@@ -296,6 +296,7 @@ public class RoleListView implements View<Role> {
         });
     }
 
+    @Override
     public int hashCode() {
         int hash = Objects.hashCode(id);
         hash = hash * 31 + Integer.hashCode(status);
@@ -315,6 +316,7 @@ public class RoleListView implements View<Role> {
         return hash;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
@@ -368,6 +370,7 @@ public class RoleListView implements View<Role> {
         return true;
     }
 
+    @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("RoleListView").append('(');

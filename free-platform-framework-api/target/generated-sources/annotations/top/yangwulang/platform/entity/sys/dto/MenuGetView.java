@@ -334,6 +334,7 @@ public class MenuGetView implements View<Menu> {
         });
     }
 
+    @Override
     public int hashCode() {
         int hash = Objects.hashCode(id);
         hash = hash * 31 + Objects.hashCode(menuName);
@@ -353,6 +354,7 @@ public class MenuGetView implements View<Menu> {
         return hash;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
@@ -406,6 +408,7 @@ public class MenuGetView implements View<Menu> {
         return true;
     }
 
+    @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("MenuGetView").append('(');
@@ -474,11 +477,13 @@ public class MenuGetView implements View<Menu> {
             });
         }
 
+        @Override
         public int hashCode() {
             int hash = Objects.hashCode(menuName);
             return hash;
         }
 
+        @Override
         public boolean equals(Object o) {
             if (o == null || this.getClass() != o.getClass()) {
                 return false;
@@ -490,6 +495,7 @@ public class MenuGetView implements View<Menu> {
             return true;
         }
 
+        @Override
         public String toString() {
             StringBuilder builder = new StringBuilder();
             builder.append("MenuGetView").append('.');

@@ -103,6 +103,7 @@ public class RoleListInput implements ViewableInput<Role> {
         });
     }
 
+    @Override
     public int hashCode() {
         int hash = Objects.hashCode(roleName);
         hash = hash * 31 + Objects.hashCode(roleType);
@@ -110,6 +111,7 @@ public class RoleListInput implements ViewableInput<Role> {
         return hash;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
@@ -127,6 +129,7 @@ public class RoleListInput implements ViewableInput<Role> {
         return true;
     }
 
+    @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("RoleListInput").append('(');

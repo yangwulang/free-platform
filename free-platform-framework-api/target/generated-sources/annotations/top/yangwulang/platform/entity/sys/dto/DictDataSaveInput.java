@@ -208,6 +208,7 @@ public class DictDataSaveInput implements ViewableInput<DictData> {
         });
     }
 
+    @Override
     public int hashCode() {
         int hash = Objects.hashCode(id);
         hash = hash * 31 + Objects.hashCode(parentId);
@@ -221,6 +222,7 @@ public class DictDataSaveInput implements ViewableInput<DictData> {
         return hash;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
@@ -256,6 +258,7 @@ public class DictDataSaveInput implements ViewableInput<DictData> {
         return true;
     }
 
+    @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("DictDataSaveInput").append('(');

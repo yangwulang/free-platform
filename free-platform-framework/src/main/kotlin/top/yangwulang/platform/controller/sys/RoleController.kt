@@ -52,9 +52,9 @@ class RoleController {
             .execute(
                 repository.sql()
                     .createQuery(table)
-                    .whereIf(StringUtils.isNotEmpty(input.roleName), table.roleName().like(input.roleName))
-                    .whereIf(StringUtils.isNotEmpty(input.roleType), table.roleType().eq(input.roleType))
-                    .whereIf(StringUtils.isNotEmpty(input.userType), table.userType().eq(input.userType))
+                    .whereIf(StringUtils.isNotEmpty(input.roleName)) { table.roleName().like(input.roleName) }
+                    .whereIf(StringUtils.isNotEmpty(input.roleType)) { table.roleType().eq(input.roleType) }
+                    .whereIf(StringUtils.isNotEmpty(input.userType)) { table.userType().eq(input.userType) }
                     .select(table.fetch(RoleListView::class.java))
             )
     }

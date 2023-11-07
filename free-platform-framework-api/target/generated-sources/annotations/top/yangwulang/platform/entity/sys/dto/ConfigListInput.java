@@ -123,6 +123,7 @@ public class ConfigListInput implements ViewableInput<Config> {
         });
     }
 
+    @Override
     public int hashCode() {
         int hash = Objects.hashCode(configKey);
         hash = hash * 31 + Objects.hashCode(configName);
@@ -131,6 +132,7 @@ public class ConfigListInput implements ViewableInput<Config> {
         return hash;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
@@ -151,6 +153,7 @@ public class ConfigListInput implements ViewableInput<Config> {
         return true;
     }
 
+    @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("ConfigListInput").append('(');

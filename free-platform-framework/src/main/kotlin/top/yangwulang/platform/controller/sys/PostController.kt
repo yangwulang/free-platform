@@ -40,9 +40,9 @@ class PostController {
             .execute(
                 repository.sql()
                     .createQuery(table)
-                    .whereIf(StringUtils.isNotEmpty(input.postCode), table.postCode().like(input.postCode))
-                    .whereIf(StringUtils.isNotEmpty(input.postName), table.postName().like(input.postName))
-                    .whereIf(StringUtils.isNotEmpty(input.postType), table.postType().eq(input.postType))
+                    .whereIf(StringUtils.isNotEmpty(input.postCode)){table.postCode().like(input.postCode)}
+                    .whereIf(StringUtils.isNotEmpty(input.postName)){table.postName().like(input.postName)}
+                    .whereIf(StringUtils.isNotEmpty(input.postType)){table.postType().eq(input.postType)}
                     .select(table.fetch(PostListView::class.java))
             )
     }

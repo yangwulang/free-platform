@@ -53,8 +53,12 @@ class DictController {
             .pager(PageHttpRequest.of(httpServletRequest).toPage())
             .execute(
                 repository.sql().createQuery(table)
-                    .whereIf(StringUtils.isNotEmpty(dictTypeInput.dictType),table.dictType().like(dictTypeInput.dictType))
-                    .whereIf(StringUtils.isNotEmpty(dictTypeInput.dictName),table.dictName().like(dictTypeInput.dictName))
+                    .whereIf(StringUtils.isNotEmpty(dictTypeInput.dictType)) {
+                        table.dictType().like(dictTypeInput.dictType)
+                    }
+                    .whereIf(StringUtils.isNotEmpty(dictTypeInput.dictName)) {
+                        table.dictName().like(dictTypeInput.dictName)
+                    }
                     .select(table.fetch(DictTypeListView::class.java))
             )
     }

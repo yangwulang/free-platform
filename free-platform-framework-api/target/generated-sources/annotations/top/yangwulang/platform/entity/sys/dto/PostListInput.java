@@ -108,6 +108,7 @@ public class PostListInput implements ViewableInput<Post> {
         });
     }
 
+    @Override
     public int hashCode() {
         int hash = Objects.hashCode(postCode);
         hash = hash * 31 + Objects.hashCode(postName);
@@ -115,6 +116,7 @@ public class PostListInput implements ViewableInput<Post> {
         return hash;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
@@ -132,6 +134,7 @@ public class PostListInput implements ViewableInput<Post> {
         return true;
     }
 
+    @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("PostListInput").append('(');

@@ -64,11 +64,13 @@ public class CompanyListInput implements ViewableInput<Company> {
         });
     }
 
+    @Override
     public int hashCode() {
         int hash = Objects.hashCode(companyName);
         return hash;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
@@ -80,6 +82,7 @@ public class CompanyListInput implements ViewableInput<Company> {
         return true;
     }
 
+    @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("CompanyListInput").append('(');

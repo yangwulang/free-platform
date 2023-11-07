@@ -38,7 +38,7 @@ public interface BaseEntityDraft extends BaseEntity, Draft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.35",
+                "0.8.36",
                 BaseEntity.class,
                 Collections.emptyList(),
                 null

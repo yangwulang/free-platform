@@ -40,14 +40,13 @@ class EmployeeController {
             .execute(
                 repository.sql()
                     .createQuery(table)
-                    .apply {
-
+                    .whereIf(StringUtils.isNotEmpty(input.empCode)) { table.empCode().eq(input.empCode) }
+                    .whereIf(StringUtils.isNotEmpty(input.empName)) { table.empName().like(input.empName) }
+                    .whereIf(StringUtils.isNotEmpty(input.userName)) { table.user().userName().like(input.userName) }
+                    .whereIf(StringUtils.isNotEmpty(input.email)) { table.user().email().like(input.email) }
+                    .whereIf(input.status != User.STATUS_DELETE.toInt() && input.status != null) {
+                        table.user().status().eq(input.status)
                     }
-                    .whereIf(StringUtils.isNotEmpty(input.empCode), table.empCode().eq(input.empCode))
-                    .whereIf(StringUtils.isNotEmpty(input.empName), table.empName().like(input.empName))
-                    .whereIf(StringUtils.isNotEmpty(input.userName), table.user().userName().like(input.userName))
-                    .whereIf(StringUtils.isNotEmpty(input.email), table.user().email().like(input.email))
-                    .whereIf(input.status != User.STATUS_DELETE.toInt(), table.user().status().eq(input.status))
                     .select(table.fetch(EmployeeListView::class.java))
             )
     }

@@ -17,6 +17,7 @@ import top.yangwulang.platform.entity.sys.dto.MenuListView
 import top.yangwulang.platform.entity.sys.input.menu.MenuSaveInput
 import top.yangwulang.platform.entity.sys.vo.RoleMenuVo
 import top.yangwulang.platform.services.MenuService
+import java.util.function.Supplier
 
 /**
  * @author yangwulang
@@ -36,9 +37,9 @@ class MenuController {
         return menuService.repository().sql()
             .createQuery(table)
             .where(table.parentId().isNull)
-            .whereIf(StringUtils.isNotEmpty(input.menuName), table.menuName().like(input.menuName))
-            .whereIf(StringUtils.isNotEmpty(input.menuType), table.menuName().eq(input.menuType))
-            .whereIf(StringUtils.isNotEmpty(input.parentId), table.parent().id().eq(input.parentId))
+            .whereIf(StringUtils.isNotEmpty(input.menuName)) { table.menuName().like(input.menuName) }
+            .whereIf(StringUtils.isNotEmpty(input.menuType)) { table.menuName().eq(input.menuType) }
+            .whereIf(StringUtils.isNotEmpty(input.parentId)) { table.parent().id().eq(input.parentId) }
             .select(table.fetch(MenuListView::class.java))
             .execute()
     }
@@ -51,7 +52,7 @@ class MenuController {
 
     @DeleteMapping("/{id}")
     @Operation(summary = "删除菜单")
-    fun delete(@PathVariable(value = "id") id: String) : Result<Void>{
+    fun delete(@PathVariable(value = "id") id: String): Result<Void> {
         menuService.deleteById(id)
         return Result<Void>().success("删除成功")
     }

@@ -17,7 +17,6 @@ import org.babyfish.jimmer.View;
 import org.babyfish.jimmer.impl.util.DtoPropAccessor;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
-import org.babyfish.jimmer.sql.fetcher.RecursiveFieldConfig;
 import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
 import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.sys.Area;
@@ -40,7 +39,7 @@ public class AreaListView implements View<Area> {
                 .areaName()
                 .sort()
                 .areaType()
-                .children(TargetOf_children.METADATA.getFetcher(), RecursiveFieldConfig::recursive),
+                .children(TargetOf_children.METADATA.getFetcher()),
             AreaListView::new
     );
 
@@ -234,6 +233,7 @@ public class AreaListView implements View<Area> {
         });
     }
 
+    @Override
     public int hashCode() {
         int hash = Objects.hashCode(id);
         hash = hash * 31 + Integer.hashCode(status);
@@ -249,6 +249,7 @@ public class AreaListView implements View<Area> {
         return hash;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
@@ -290,6 +291,7 @@ public class AreaListView implements View<Area> {
         return true;
     }
 
+    @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("AreaListView").append('(');
@@ -514,6 +516,7 @@ public class AreaListView implements View<Area> {
             });
         }
 
+        @Override
         public int hashCode() {
             int hash = Objects.hashCode(id);
             hash = hash * 31 + Integer.hashCode(status);
@@ -529,6 +532,7 @@ public class AreaListView implements View<Area> {
             return hash;
         }
 
+        @Override
         public boolean equals(Object o) {
             if (o == null || this.getClass() != o.getClass()) {
                 return false;
@@ -570,6 +574,7 @@ public class AreaListView implements View<Area> {
             return true;
         }
 
+        @Override
         public String toString() {
             StringBuilder builder = new StringBuilder();
             builder.append("AreaListView").append('.');

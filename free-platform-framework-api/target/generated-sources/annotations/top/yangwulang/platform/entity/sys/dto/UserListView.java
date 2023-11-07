@@ -451,6 +451,7 @@ public class UserListView implements View<User> {
         });
     }
 
+    @Override
     public int hashCode() {
         int hash = Objects.hashCode(userCode);
         hash = hash * 31 + Integer.hashCode(status);
@@ -478,6 +479,7 @@ public class UserListView implements View<User> {
         return hash;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
@@ -555,6 +557,7 @@ public class UserListView implements View<User> {
         return true;
     }
 
+    @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("UserListView").append('(');

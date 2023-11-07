@@ -78,12 +78,14 @@ public class EmployeeGetView implements View<Employee> {
         });
     }
 
+    @Override
     public int hashCode() {
         int hash = Objects.hashCode(empCode);
         hash = hash * 31 + Objects.hashCode(empName);
         return hash;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
@@ -98,6 +100,7 @@ public class EmployeeGetView implements View<Employee> {
         return true;
     }
 
+    @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("EmployeeGetView").append('(');

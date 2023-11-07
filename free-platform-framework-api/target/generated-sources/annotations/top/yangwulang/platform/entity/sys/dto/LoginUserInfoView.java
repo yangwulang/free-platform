@@ -419,6 +419,7 @@ public class LoginUserInfoView implements View<User> {
         });
     }
 
+    @Override
     public int hashCode() {
         int hash = Objects.hashCode(userCode);
         hash = hash * 31 + Objects.hashCode(createBy);
@@ -444,6 +445,7 @@ public class LoginUserInfoView implements View<User> {
         return hash;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
@@ -515,6 +517,7 @@ public class LoginUserInfoView implements View<User> {
         return true;
     }
 
+    @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("LoginUserInfoView").append('(');

@@ -18,7 +18,6 @@ import org.babyfish.jimmer.View;
 import org.babyfish.jimmer.impl.util.DtoPropAccessor;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
-import org.babyfish.jimmer.sql.fetcher.RecursiveFieldConfig;
 import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
 import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.sys.Menu;
@@ -50,7 +49,7 @@ public class MenuListView implements View<Menu> {
                 .weight()
                 .isShow()
                 .sysCode()
-                .children(TargetOf_children.METADATA.getFetcher(), RecursiveFieldConfig::recursive),
+                .children(TargetOf_children.METADATA.getFetcher()),
             MenuListView::new
     );
 
@@ -397,6 +396,7 @@ public class MenuListView implements View<Menu> {
         });
     }
 
+    @Override
     public int hashCode() {
         int hash = Objects.hashCode(id);
         hash = hash * 31 + Integer.hashCode(status);
@@ -421,6 +421,7 @@ public class MenuListView implements View<Menu> {
         return hash;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
@@ -489,6 +490,7 @@ public class MenuListView implements View<Menu> {
         return true;
     }
 
+    @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("MenuListView").append('(');
@@ -884,6 +886,7 @@ public class MenuListView implements View<Menu> {
             });
         }
 
+        @Override
         public int hashCode() {
             int hash = Objects.hashCode(id);
             hash = hash * 31 + Integer.hashCode(status);
@@ -908,6 +911,7 @@ public class MenuListView implements View<Menu> {
             return hash;
         }
 
+        @Override
         public boolean equals(Object o) {
             if (o == null || this.getClass() != o.getClass()) {
                 return false;
@@ -976,6 +980,7 @@ public class MenuListView implements View<Menu> {
             return true;
         }
 
+        @Override
         public String toString() {
             StringBuilder builder = new StringBuilder();
             builder.append("MenuListView").append('.');

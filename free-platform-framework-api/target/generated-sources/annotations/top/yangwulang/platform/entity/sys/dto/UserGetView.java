@@ -484,6 +484,7 @@ public class UserGetView implements View<User> {
         });
     }
 
+    @Override
     public int hashCode() {
         int hash = Objects.hashCode(userCode);
         hash = hash * 31 + Integer.hashCode(status);
@@ -512,6 +513,7 @@ public class UserGetView implements View<User> {
         return hash;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
@@ -592,6 +594,7 @@ public class UserGetView implements View<User> {
         return true;
     }
 
+    @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("UserGetView").append('(');
@@ -725,6 +728,7 @@ public class UserGetView implements View<User> {
             });
         }
 
+        @Override
         public int hashCode() {
             int hash = Objects.hashCode(roleName);
             hash = hash * 31 + Objects.hashCode(roleType);
@@ -733,6 +737,7 @@ public class UserGetView implements View<User> {
             return hash;
         }
 
+        @Override
         public boolean equals(Object o) {
             if (o == null || this.getClass() != o.getClass()) {
                 return false;
@@ -753,6 +758,7 @@ public class UserGetView implements View<User> {
             return true;
         }
 
+        @Override
         public String toString() {
             StringBuilder builder = new StringBuilder();
             builder.append("UserGetView").append('.');
@@ -1109,6 +1115,7 @@ public class UserGetView implements View<User> {
                 });
             }
 
+            @Override
             public int hashCode() {
                 int hash = Objects.hashCode(id);
                 hash = hash * 31 + Integer.hashCode(status);
@@ -1132,6 +1139,7 @@ public class UserGetView implements View<User> {
                 return hash;
             }
 
+            @Override
             public boolean equals(Object o) {
                 if (o == null || this.getClass() != o.getClass()) {
                     return false;
@@ -1197,6 +1205,7 @@ public class UserGetView implements View<User> {
                 return true;
             }
 
+            @Override
             public String toString() {
                 StringBuilder builder = new StringBuilder();
                 builder.append("UserGetView").append('.');

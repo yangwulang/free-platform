@@ -17,7 +17,6 @@ import org.babyfish.jimmer.View;
 import org.babyfish.jimmer.impl.util.DtoPropAccessor;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
-import org.babyfish.jimmer.sql.fetcher.RecursiveFieldConfig;
 import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
 import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.sys.DictData;
@@ -43,7 +42,7 @@ public class DictDataListView implements View<DictData> {
                 .description()
                 .cssStyle()
                 .cssClass()
-                .children(TargetOf_children.METADATA.getFetcher(), RecursiveFieldConfig::recursive),
+                .children(TargetOf_children.METADATA.getFetcher()),
             DictDataListView::new
     );
 
@@ -288,6 +287,7 @@ public class DictDataListView implements View<DictData> {
         });
     }
 
+    @Override
     public int hashCode() {
         int hash = Objects.hashCode(id);
         hash = hash * 31 + Integer.hashCode(status);
@@ -306,6 +306,7 @@ public class DictDataListView implements View<DictData> {
         return hash;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
@@ -356,6 +357,7 @@ public class DictDataListView implements View<DictData> {
         return true;
     }
 
+    @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("DictDataListView").append('(');
@@ -637,6 +639,7 @@ public class DictDataListView implements View<DictData> {
             });
         }
 
+        @Override
         public int hashCode() {
             int hash = Objects.hashCode(id);
             hash = hash * 31 + Integer.hashCode(status);
@@ -655,6 +658,7 @@ public class DictDataListView implements View<DictData> {
             return hash;
         }
 
+        @Override
         public boolean equals(Object o) {
             if (o == null || this.getClass() != o.getClass()) {
                 return false;
@@ -705,6 +709,7 @@ public class DictDataListView implements View<DictData> {
             return true;
         }
 
+        @Override
         public String toString() {
             StringBuilder builder = new StringBuilder();
             builder.append("DictDataListView").append('.');

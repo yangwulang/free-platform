@@ -159,6 +159,7 @@ public class CompanyGetView implements View<Company> {
         });
     }
 
+    @Override
     public int hashCode() {
         int hash = Objects.hashCode(id);
         hash = hash * 31 + Objects.hashCode(companyCode);
@@ -170,6 +171,7 @@ public class CompanyGetView implements View<Company> {
         return hash;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
@@ -199,6 +201,7 @@ public class CompanyGetView implements View<Company> {
         return true;
     }
 
+    @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("CompanyGetView").append('(');

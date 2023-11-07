@@ -165,6 +165,7 @@ public class CompanySaveInput implements ViewableInput<Company> {
         });
     }
 
+    @Override
     public int hashCode() {
         int hash = Objects.hashCode(companyCode);
         hash = hash * 31 + Objects.hashCode(companyName);
@@ -176,6 +177,7 @@ public class CompanySaveInput implements ViewableInput<Company> {
         return hash;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
@@ -205,6 +207,7 @@ public class CompanySaveInput implements ViewableInput<Company> {
         return true;
     }
 
+    @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("CompanySaveInput").append('(');

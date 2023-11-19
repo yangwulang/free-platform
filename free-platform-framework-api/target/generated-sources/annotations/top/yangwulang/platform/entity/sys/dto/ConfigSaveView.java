@@ -19,7 +19,7 @@ import top.yangwulang.platform.entity.sys.ConfigDraft;
 import top.yangwulang.platform.entity.sys.ConfigFetcher;
 
 @GeneratedBy(
-        file = "src/main/dto/top/yangwulang/platform/entity/sys/Config.dto"
+        file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Config.dto"
 )
 public class ConfigSaveView implements View<Config> {
     public static final ViewMetadata<Config, ConfigSaveView> METADATA = 

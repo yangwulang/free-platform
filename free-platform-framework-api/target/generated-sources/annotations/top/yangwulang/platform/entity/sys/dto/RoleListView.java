@@ -22,7 +22,7 @@ import top.yangwulang.platform.entity.sys.RoleDraft;
 import top.yangwulang.platform.entity.sys.RoleFetcher;
 
 @GeneratedBy(
-        file = "src/main/dto/top/yangwulang/platform/entity/sys/Role.dto"
+        file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Role.dto"
 )
 public class RoleListView implements View<Role> {
     public static final ViewMetadata<Role, RoleListView> METADATA = 

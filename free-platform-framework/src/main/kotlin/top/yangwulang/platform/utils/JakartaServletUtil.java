@@ -2,7 +2,6 @@ package top.yangwulang.platform.utils;
 
 import cn.hutool.core.net.NetUtil;
 import cn.hutool.core.util.ArrayUtil;
-import cn.hutool.extra.servlet.ServletUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -10,7 +9,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 /**
  * @author yangwulang
  */
-public class ServletUtils extends ServletUtil {
+public class JakartaServletUtil extends cn.hutool.extra.servlet.JakartaServletUtil {
 
     public static ServletRequestAttributes getServletRequestAttributes() {
         return (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
@@ -64,7 +63,7 @@ public class ServletUtils extends ServletUtil {
      * 需要注意的是，使用此方法获取的客户IP地址必须在Http服务器（例如Nginx）中配置头信息，否则容易造成IP伪造。
      * </p>
      *
-     * @param request          请求对象{@link javax.servlet.http.HttpServletRequest}
+     * @param request          请求对象{@link jakarta.servlet.http.HttpServletRequest}
      * @param otherHeaderNames 其他自定义头文件，通常在Http服务器（例如Nginx）中配置
      * @return IP地址
      */

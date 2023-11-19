@@ -20,7 +20,7 @@ import top.yangwulang.platform.entity.sys.DictDataDraft;
 import top.yangwulang.platform.entity.sys.DictDataFetcher;
 
 @GeneratedBy(
-        file = "src/main/dto/top/yangwulang/platform/entity/sys/DictData.dto"
+        file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/DictData.dto"
 )
 public class DictDataGetView implements View<DictData> {
     public static final ViewMetadata<DictData, DictDataGetView> METADATA = 

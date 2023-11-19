@@ -40,7 +40,7 @@ public interface DataTypeBaseDraft extends DataTypeBase, TypeBaseDraft, StatusTy
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.36",
+                "0.8.42",
                 DataTypeBase.class,
                 Arrays.asList(
                     TypeBaseDraft.Producer.TYPE,

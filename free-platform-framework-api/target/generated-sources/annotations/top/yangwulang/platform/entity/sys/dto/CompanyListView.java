@@ -14,6 +14,7 @@ import org.babyfish.jimmer.View;
 import org.babyfish.jimmer.impl.util.DtoPropAccessor;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
+import org.babyfish.jimmer.sql.fetcher.RecursiveFieldConfig;
 import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
 import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.sys.Company;
@@ -21,7 +22,7 @@ import top.yangwulang.platform.entity.sys.CompanyDraft;
 import top.yangwulang.platform.entity.sys.CompanyFetcher;
 
 @GeneratedBy(
-        file = "src/main/dto/top/yangwulang/platform/entity/sys/Company.dto"
+        file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Company.dto"
 )
 public class CompanyListView implements View<Company> {
     public static final ViewMetadata<Company, CompanyListView> METADATA = 
@@ -32,7 +33,7 @@ public class CompanyListView implements View<Company> {
                 .companyFullName()
                 .corpCode()
                 .corpName()
-                .children(TargetOf_children.METADATA.getFetcher()),
+                .children(TargetOf_children.METADATA.getFetcher(), RecursiveFieldConfig::recursive),
             CompanyListView::new
     );
 

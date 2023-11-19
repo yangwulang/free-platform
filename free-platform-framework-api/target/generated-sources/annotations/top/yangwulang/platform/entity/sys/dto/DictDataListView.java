@@ -17,6 +17,7 @@ import org.babyfish.jimmer.View;
 import org.babyfish.jimmer.impl.util.DtoPropAccessor;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
+import org.babyfish.jimmer.sql.fetcher.RecursiveFieldConfig;
 import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
 import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.sys.DictData;
@@ -24,7 +25,7 @@ import top.yangwulang.platform.entity.sys.DictDataDraft;
 import top.yangwulang.platform.entity.sys.DictDataFetcher;
 
 @GeneratedBy(
-        file = "src/main/dto/top/yangwulang/platform/entity/sys/DictData.dto"
+        file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/DictData.dto"
 )
 public class DictDataListView implements View<DictData> {
     public static final ViewMetadata<DictData, DictDataListView> METADATA = 
@@ -42,7 +43,7 @@ public class DictDataListView implements View<DictData> {
                 .description()
                 .cssStyle()
                 .cssClass()
-                .children(TargetOf_children.METADATA.getFetcher()),
+                .children(TargetOf_children.METADATA.getFetcher(), RecursiveFieldConfig::recursive),
             DictDataListView::new
     );
 

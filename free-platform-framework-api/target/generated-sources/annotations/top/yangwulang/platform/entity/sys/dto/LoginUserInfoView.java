@@ -20,7 +20,7 @@ import top.yangwulang.platform.entity.sys.UserDraft;
 import top.yangwulang.platform.entity.sys.UserFetcher;
 
 @GeneratedBy(
-        file = "src/main/dto/top/yangwulang/platform/entity/sys/User.dto"
+        file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/User.dto"
 )
 public class LoginUserInfoView implements View<User> {
     public static final ViewMetadata<User, LoginUserInfoView> METADATA = 

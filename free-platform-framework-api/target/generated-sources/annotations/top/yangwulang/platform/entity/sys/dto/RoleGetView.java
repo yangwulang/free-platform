@@ -31,7 +31,7 @@ import top.yangwulang.platform.entity.sys.UserDraft;
 import top.yangwulang.platform.entity.sys.UserFetcher;
 
 @GeneratedBy(
-        file = "src/main/dto/top/yangwulang/platform/entity/sys/Role.dto"
+        file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Role.dto"
 )
 public class RoleGetView implements View<Role> {
     public static final ViewMetadata<Role, RoleGetView> METADATA = 

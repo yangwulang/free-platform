@@ -22,7 +22,7 @@ import top.yangwulang.platform.entity.sys.UserDraft;
 import top.yangwulang.platform.entity.sys.UserFetcher;
 
 @GeneratedBy(
-        file = "src/main/dto/top/yangwulang/platform/entity/sys/Employee.dto"
+        file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Employee.dto"
 )
 public class EmployeeListInput implements ViewableInput<Employee> {
     public static final ViewMetadata<Employee, EmployeeListInput> METADATA = 

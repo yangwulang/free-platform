@@ -13,6 +13,7 @@ import top.yangwulang.platform.entity.sys.Post
 import top.yangwulang.platform.entity.sys.PostTable
 import top.yangwulang.platform.entity.sys.dto.PostGetView
 import top.yangwulang.platform.entity.sys.dto.PostListInput
+import top.yangwulang.platform.entity.sys.dto.PostListSpecification
 import top.yangwulang.platform.entity.sys.dto.PostListView
 import top.yangwulang.platform.entity.sys.dto.PostSaveInput
 import top.yangwulang.platform.services.PostService
@@ -33,16 +34,14 @@ class PostController {
 
     @PostMapping
     @Operation(summary = "获取岗位列表")
-    fun listData(request: HttpServletRequest?, @RequestBody input: PostListInput): Page<PostListView> {
+    fun listData(request: HttpServletRequest?, @RequestBody input: PostListSpecification): Page<PostListView> {
         val repository = postService.repository()
         val table = PostTable.`$`
         return repository.pager(PageHttpRequest.of(request).toPage())
             .execute(
                 repository.sql()
                     .createQuery(table)
-                    .whereIf(StringUtils.isNotEmpty(input.postCode)){table.postCode().like(input.postCode)}
-                    .whereIf(StringUtils.isNotEmpty(input.postName)){table.postName().like(input.postName)}
-                    .whereIf(StringUtils.isNotEmpty(input.postType)){table.postType().eq(input.postType)}
+                    .where(input)
                     .select(table.fetch(PostListView::class.java))
             )
     }

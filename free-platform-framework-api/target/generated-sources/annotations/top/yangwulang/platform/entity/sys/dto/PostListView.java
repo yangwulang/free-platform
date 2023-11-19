@@ -18,7 +18,7 @@ import top.yangwulang.platform.entity.sys.PostDraft;
 import top.yangwulang.platform.entity.sys.PostFetcher;
 
 @GeneratedBy(
-        file = "src/main/dto/top/yangwulang/platform/entity/sys/Post.dto"
+        file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Post.dto"
 )
 public class PostListView implements View<Post> {
     public static final ViewMetadata<Post, PostListView> METADATA = 

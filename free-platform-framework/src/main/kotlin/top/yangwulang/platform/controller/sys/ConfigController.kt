@@ -12,8 +12,9 @@ import top.yangwulang.platform.entity.PageHttpRequest
 import top.yangwulang.platform.entity.Result
 import top.yangwulang.platform.entity.sys.ConfigTable
 import top.yangwulang.platform.entity.sys.dto.*
+import top.yangwulang.platform.exception.ServiceException
 import top.yangwulang.platform.services.ConfigService
-import javax.xml.rpc.ServiceException
+
 
 @RestController
 @Tags(value = [Tag(name = "系统模块"), Tag(name = "配置管理")])

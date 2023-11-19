@@ -18,6 +18,7 @@ import org.babyfish.jimmer.View;
 import org.babyfish.jimmer.impl.util.DtoPropAccessor;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
+import org.babyfish.jimmer.sql.fetcher.RecursiveFieldConfig;
 import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
 import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.sys.Menu;
@@ -25,7 +26,7 @@ import top.yangwulang.platform.entity.sys.MenuDraft;
 import top.yangwulang.platform.entity.sys.MenuFetcher;
 
 @GeneratedBy(
-        file = "src/main/dto/top/yangwulang/platform/entity/sys/Menu.dto"
+        file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Menu.dto"
 )
 public class MenuListView implements View<Menu> {
     public static final ViewMetadata<Menu, MenuListView> METADATA = 
@@ -49,7 +50,7 @@ public class MenuListView implements View<Menu> {
                 .weight()
                 .isShow()
                 .sysCode()
-                .children(TargetOf_children.METADATA.getFetcher()),
+                .children(TargetOf_children.METADATA.getFetcher(), RecursiveFieldConfig::recursive),
             MenuListView::new
     );
 

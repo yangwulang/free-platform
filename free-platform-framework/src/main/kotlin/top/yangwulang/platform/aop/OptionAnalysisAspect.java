@@ -12,7 +12,7 @@ import top.yangwulang.platform.annotation.OptionAnalysis;
 import top.yangwulang.platform.entity.sys.OptionAnalysisDraft;
 import top.yangwulang.platform.entity.sys.User;
 import top.yangwulang.platform.services.OptionAnalysisService;
-import top.yangwulang.platform.utils.ServletUtils;
+import top.yangwulang.platform.utils.JakartaServletUtil;
 import top.yangwulang.platform.utils.UserUtils;
 
 import java.util.Date;
@@ -38,7 +38,7 @@ public class OptionAnalysisAspect {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         OptionAnalysis optionAnalysis = signature.getMethod().getAnnotation(OptionAnalysis.class);
         User optionUser = UserUtils.getCurrentUser();
-        String clientIP = ServletUtils.getClientIP(ServletUtils.getCurrentServletRequest());
+        String clientIP = JakartaServletUtil.getClientIP(JakartaServletUtil.getCurrentServletRequest());
         top.yangwulang.platform.entity.sys.OptionAnalysis produce = OptionAnalysisDraft.$.produce(it ->
                 it.setCreateDate(new Date())
                         .setEventCode(optionAnalysis.eventCode())

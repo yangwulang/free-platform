@@ -21,7 +21,7 @@ import top.yangwulang.platform.entity.sys.MenuDraft;
 import top.yangwulang.platform.entity.sys.MenuFetcher;
 
 @GeneratedBy(
-        file = "src/main/dto/top/yangwulang/platform/entity/sys/Menu.dto"
+        file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Menu.dto"
 )
 public class MenuGetView implements View<Menu> {
     public static final ViewMetadata<Menu, MenuGetView> METADATA = 

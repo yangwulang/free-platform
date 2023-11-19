@@ -8,6 +8,12 @@ unsafe input PostListInput {
     postType
 }
 
+specification PostListSpecification {
+    like(postCode)
+    like(postName)
+    postType
+}
+
 PostGetView {
     #allScalars
 }

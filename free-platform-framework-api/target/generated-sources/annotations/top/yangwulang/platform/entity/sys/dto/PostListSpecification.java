@@ -1,46 +1,26 @@
 package top.yangwulang.platform.entity.sys.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.lang.Class;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
 import javax.validation.constraints.Null;
 import org.babyfish.jimmer.GeneratedBy;
-import org.babyfish.jimmer.ViewableInput;
-import org.babyfish.jimmer.impl.util.DtoPropAccessor;
-import org.babyfish.jimmer.meta.PropId;
-import org.babyfish.jimmer.runtime.ImmutableSpi;
-import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
-import org.jetbrains.annotations.NotNull;
+import org.babyfish.jimmer.meta.ImmutableProp;
+import org.babyfish.jimmer.sql.ast.query.specification.JSpecification;
+import org.babyfish.jimmer.sql.ast.query.specification.PredicateApplier;
+import org.babyfish.jimmer.sql.ast.query.specification.SpecificationArgs;
 import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.sys.Post;
-import top.yangwulang.platform.entity.sys.PostDraft;
-import top.yangwulang.platform.entity.sys.PostFetcher;
+import top.yangwulang.platform.entity.sys.PostProps;
+import top.yangwulang.platform.entity.sys.PostTable;
 
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Post.dto"
 )
-public class PostListInput implements ViewableInput<Post> {
-    public static final ViewMetadata<Post, PostListInput> METADATA = 
-        new ViewMetadata<Post, PostListInput>(
-            PostFetcher.$
-                .postCode()
-                .postName()
-                .postType(),
-            PostListInput::new
-    );
-
-    private static final DtoPropAccessor POST_CODE_ACCESSOR = new DtoPropAccessor(
-        false,
-        new int[] { PostDraft.Producer.SLOT_POST_CODE }
-    );
-
-    private static final DtoPropAccessor POST_NAME_ACCESSOR = new DtoPropAccessor(
-        false,
-        new int[] { PostDraft.Producer.SLOT_POST_NAME }
-    );
-
+public class PostListSpecification implements JSpecification<Post, PostTable> {
     @Schema(
             description = "岗位编码"
     )
@@ -59,17 +39,7 @@ public class PostListInput implements ViewableInput<Post> {
     @Null
     private String postType;
 
-    public PostListInput() {
-    }
-
-    public PostListInput(@NotNull Post base) {
-        this.postCode = POST_CODE_ACCESSOR.get(base);
-        this.postName = POST_NAME_ACCESSOR.get(base);
-        this.postType = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(PostDraft.Producer.SLOT_POST_TYPE)) ? base.postType() : null;
-    }
-
-    public static PostListInput of(@NotNull Post base) {
-        return new PostListInput(base);
+    public PostListSpecification() {
     }
 
     @Nullable
@@ -100,12 +70,16 @@ public class PostListInput implements ViewableInput<Post> {
     }
 
     @Override
-    public Post toEntity() {
-        return PostDraft.$.produce(__draft -> {
-            POST_CODE_ACCESSOR.set(__draft, postCode);
-            POST_NAME_ACCESSOR.set(__draft, postName);
-            __draft.setPostType(postType);
-        });
+    public Class<Post> entityType() {
+        return Post.class;
+    }
+
+    @Override
+    public void applyTo(SpecificationArgs<Post, PostTable> args) {
+        PredicateApplier __applier = args.getApplier();
+        __applier.like(new ImmutableProp[] { PostProps.POST_CODE.unwrap() }, this.postCode, false, false, false);
+        __applier.like(new ImmutableProp[] { PostProps.POST_NAME.unwrap() }, this.postName, false, false, false);
+        __applier.eq(new ImmutableProp[] { PostProps.POST_TYPE.unwrap() }, this.postType);
     }
 
     @Override
@@ -121,7 +95,7 @@ public class PostListInput implements ViewableInput<Post> {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
-        PostListInput other = (PostListInput) o;
+        PostListSpecification other = (PostListSpecification) o;
         if (!Objects.equals(postCode, other.postCode)) {
             return false;
         }
@@ -137,7 +111,7 @@ public class PostListInput implements ViewableInput<Post> {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("PostListInput").append('(');
+        builder.append("PostListSpecification").append('(');
         builder.append("postCode=").append(postCode);
         builder.append(", postName=").append(postName);
         builder.append(", postType=").append(postType);

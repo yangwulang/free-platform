@@ -17,6 +17,7 @@ import org.babyfish.jimmer.View;
 import org.babyfish.jimmer.impl.util.DtoPropAccessor;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
+import org.babyfish.jimmer.sql.fetcher.RecursiveFieldConfig;
 import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
 import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.sys.Area;
@@ -24,7 +25,7 @@ import top.yangwulang.platform.entity.sys.AreaDraft;
 import top.yangwulang.platform.entity.sys.AreaFetcher;
 
 @GeneratedBy(
-        file = "src/main/dto/top/yangwulang/platform/entity/sys/Area.dto"
+        file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Area.dto"
 )
 public class AreaListView implements View<Area> {
     public static final ViewMetadata<Area, AreaListView> METADATA = 
@@ -39,7 +40,7 @@ public class AreaListView implements View<Area> {
                 .areaName()
                 .sort()
                 .areaType()
-                .children(TargetOf_children.METADATA.getFetcher()),
+                .children(TargetOf_children.METADATA.getFetcher(), RecursiveFieldConfig::recursive),
             AreaListView::new
     );
 

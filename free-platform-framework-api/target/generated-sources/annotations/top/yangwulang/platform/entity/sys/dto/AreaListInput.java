@@ -19,7 +19,7 @@ import top.yangwulang.platform.entity.sys.AreaDraft;
 import top.yangwulang.platform.entity.sys.AreaFetcher;
 
 @GeneratedBy(
-        file = "src/main/dto/top/yangwulang/platform/entity/sys/Area.dto"
+        file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Area.dto"
 )
 public class AreaListInput implements ViewableInput<Area> {
     public static final ViewMetadata<Area, AreaListInput> METADATA = 

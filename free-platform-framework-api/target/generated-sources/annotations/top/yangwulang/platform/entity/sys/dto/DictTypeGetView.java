@@ -19,7 +19,7 @@ import top.yangwulang.platform.entity.sys.DictTypeDraft;
 import top.yangwulang.platform.entity.sys.DictTypeFetcher;
 
 @GeneratedBy(
-        file = "src/main/dto/top/yangwulang/platform/entity/sys/DictType.dto"
+        file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/DictType.dto"
 )
 public class DictTypeGetView implements View<DictType> {
     public static final ViewMetadata<DictType, DictTypeGetView> METADATA = 

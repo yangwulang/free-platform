@@ -19,7 +19,7 @@ import top.yangwulang.platform.entity.message.MessageRecordDraft;
 import top.yangwulang.platform.entity.message.MessageRecordFetcher;
 
 @GeneratedBy(
-        file = "src/main/dto/top/yangwulang/platform/entity/message/MessageRecord.dto"
+        file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/message/MessageRecord.dto"
 )
 public class MessageRecordListView implements View<MessageRecord> {
     public static final ViewMetadata<MessageRecord, MessageRecordListView> METADATA = 

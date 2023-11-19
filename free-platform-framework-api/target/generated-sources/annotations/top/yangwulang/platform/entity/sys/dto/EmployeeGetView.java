@@ -18,7 +18,7 @@ import top.yangwulang.platform.entity.sys.EmployeeDraft;
 import top.yangwulang.platform.entity.sys.EmployeeFetcher;
 
 @GeneratedBy(
-        file = "src/main/dto/top/yangwulang/platform/entity/sys/Employee.dto"
+        file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Employee.dto"
 )
 public class EmployeeGetView implements View<Employee> {
     public static final ViewMetadata<Employee, EmployeeGetView> METADATA = 

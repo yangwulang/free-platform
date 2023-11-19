@@ -16,7 +16,7 @@ import top.yangwulang.platform.entity.sys.CompanyDraft;
 import top.yangwulang.platform.entity.sys.CompanyFetcher;
 
 @GeneratedBy(
-        file = "src/main/dto/top/yangwulang/platform/entity/sys/Company.dto"
+        file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Company.dto"
 )
 public class CompanyListInput implements ViewableInput<Company> {
     public static final ViewMetadata<Company, CompanyListInput> METADATA = 

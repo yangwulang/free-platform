@@ -8,8 +8,8 @@ import top.yangwulang.platform.entity.sys.MenuDraft;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-11-18T16:51:08+0800",
-    comments = "version: 1.5.3.Final, compiler: javac, environment: Java 17.0.7 (Oracle Corporation)"
+    date = "2023-11-19T20:35:42+0800",
+    comments = "version: 1.5.3.Final, compiler: javac, environment: Java 17.0.5 (Oracle Corporation)"
 )
 class MenuInput$ConverterImpl implements MenuInput.Converter {
 

@@ -13,6 +13,7 @@ import top.yangwulang.platform.entity.Result
 import top.yangwulang.platform.entity.sys.*
 import top.yangwulang.platform.entity.sys.dto.RoleGetView
 import top.yangwulang.platform.entity.sys.dto.RoleListInput
+import top.yangwulang.platform.entity.sys.dto.RoleListSpecification
 import top.yangwulang.platform.entity.sys.dto.RoleListView
 import top.yangwulang.platform.entity.sys.dto.UserListView
 import top.yangwulang.platform.entity.sys.input.RoleInput
@@ -44,7 +45,7 @@ class RoleController {
 
     @PostMapping
     @Operation(summary = "获取角色列表")
-    fun listData(request: HttpServletRequest?, @RequestBody input: RoleListInput): Page<RoleListView> {
+    fun listData(request: HttpServletRequest?, @RequestBody specification: RoleListSpecification): Page<RoleListView> {
         val repository = roleService.repository()
         val table = RoleTable.`$`
         return repository
@@ -52,9 +53,7 @@ class RoleController {
             .execute(
                 repository.sql()
                     .createQuery(table)
-                    .whereIf(StringUtils.isNotEmpty(input.roleName)) { table.roleName().like(input.roleName) }
-                    .whereIf(StringUtils.isNotEmpty(input.roleType)) { table.roleType().eq(input.roleType) }
-                    .whereIf(StringUtils.isNotEmpty(input.userType)) { table.userType().eq(input.userType) }
+                    .where(specification)
                     .select(table.fetch(RoleListView::class.java))
             )
     }

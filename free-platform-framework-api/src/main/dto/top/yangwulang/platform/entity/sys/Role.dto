@@ -12,6 +12,12 @@ unsafe input RoleListInput {
     userType
 }
 
+specification RoleListSpecification {
+    like(roleName)
+    roleType
+    userType
+}
+
 RoleGetView {
     #allScalars
     -corpCode

@@ -45,7 +45,7 @@ class DictController {
     @Operation(summary = "获取字典类型列表")
     fun listData(
         httpServletRequest: HttpServletRequest?,
-        @RequestBody dictTypeInput: DictTypeInput
+        @RequestBody listSpecification: DictTypeListSpecification
     ): Page<DictTypeListView> {
         val repository = dictTypeService.repository()
         val table = DictTypeTable.`$`
@@ -53,12 +53,7 @@ class DictController {
             .pager(PageHttpRequest.of(httpServletRequest).toPage())
             .execute(
                 repository.sql().createQuery(table)
-                    .whereIf(StringUtils.isNotEmpty(dictTypeInput.dictType)) {
-                        table.dictType().like(dictTypeInput.dictType)
-                    }
-                    .whereIf(StringUtils.isNotEmpty(dictTypeInput.dictName)) {
-                        table.dictName().like(dictTypeInput.dictName)
-                    }
+                    .where(listSpecification)
                     .select(table.fetch(DictTypeListView::class.java))
             )
     }

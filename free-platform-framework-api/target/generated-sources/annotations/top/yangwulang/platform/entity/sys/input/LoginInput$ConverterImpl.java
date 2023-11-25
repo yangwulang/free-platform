@@ -6,8 +6,8 @@ import top.yangwulang.platform.entity.sys.UserDraft;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-11-19T20:35:42+0800",
-    comments = "version: 1.5.3.Final, compiler: javac, environment: Java 17.0.5 (Oracle Corporation)"
+    date = "2023-11-25T12:07:27+0800",
+    comments = "version: 1.5.3.Final, compiler: javac, environment: Java 17.0.7 (Oracle Corporation)"
 )
 class LoginInput$ConverterImpl implements LoginInput.Converter {
 

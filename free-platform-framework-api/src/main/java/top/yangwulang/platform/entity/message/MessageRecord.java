@@ -52,11 +52,6 @@ public interface MessageRecord extends TypeBase, StatusTypeBase {
 
     @Schema(description = "接收的用户")
     @ManyToManyView(prop = "messageRecordUsers", deeperProp = "user")
-/*    @JoinTable(
-            name = "SYS_MESSAGE_RECORD_USER",
-            joinColumnName = "RECORD_ID",
-            inverseJoinColumnName = "USER_ID"
-    )*/
     List<User> targetUsers();
 
     @OneToMany(mappedBy = "record")

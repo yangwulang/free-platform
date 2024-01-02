@@ -4,8 +4,10 @@ import java.lang.Class;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import org.babyfish.jimmer.GeneratedBy;
+import java.util.function.Function;
+import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.sql.JoinType;
+import org.babyfish.jimmer.sql.ast.Predicate;
 import org.babyfish.jimmer.sql.ast.impl.table.TableImplementor;
 import org.babyfish.jimmer.sql.ast.impl.table.TableProxies;
 import org.babyfish.jimmer.sql.ast.table.Table;
@@ -53,6 +55,11 @@ public class MessageRecordTableEx extends MessageRecordTable implements TableEx<
         return new UserTableEx(joinOperation(MessageRecordProps.TARGET_USERS.unwrap(), joinType));
     }
 
+    @Override
+    public Predicate targetUsers(Function<UserTableEx, Predicate> block) {
+        return exists(MessageRecordProps.TARGET_USERS.unwrap(), block);
+    }
+
     public MessageRecordUserTableEx messageRecordUsers() {
         __beforeJoin();
         if (raw != null) {
@@ -67,6 +74,11 @@ public class MessageRecordTableEx extends MessageRecordTable implements TableEx<
             return new MessageRecordUserTableEx(raw.joinImplementor(MessageRecordProps.MESSAGE_RECORD_USERS.unwrap(), joinType));
         }
         return new MessageRecordUserTableEx(joinOperation(MessageRecordProps.MESSAGE_RECORD_USERS.unwrap(), joinType));
+    }
+
+    @Override
+    public Predicate messageRecordUsers(Function<MessageRecordUserTableEx, Predicate> block) {
+        return exists(MessageRecordProps.MESSAGE_RECORD_USERS.unwrap(), block);
     }
 
     @Override

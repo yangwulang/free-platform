@@ -2,7 +2,7 @@ package top.yangwulang.platform.entity.message;
 
 import java.lang.Integer;
 import java.lang.String;
-import org.babyfish.jimmer.GeneratedBy;
+import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.ImmutableType;
 import org.babyfish.jimmer.meta.TypedProp;
 import org.babyfish.jimmer.sql.JoinType;

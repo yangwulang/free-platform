@@ -8,13 +8,12 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Date;
 import java.util.Objects;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
-import org.babyfish.jimmer.GeneratedBy;
 import org.babyfish.jimmer.View;
+import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
 import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.sys.Area;
 import top.yangwulang.platform.entity.sys.AreaDraft;
@@ -59,31 +58,31 @@ public class AreaGetView implements View<Area> {
     @NotNull
     private Date updateDate;
 
-    @Null
+    @Nullable
     private String remarks;
 
     @Schema(
             description = "区域名称"
     )
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     private String areaName;
 
     @Schema(
             description = "排序"
     )
-    @Null
+    @Nullable
     private Long sort;
 
     @Schema(
             description = "地区类型(1：国家；2：省份、直辖市；3：地市；4：区县)"
     )
-    @Null
+    @Nullable
     private String areaType;
 
     public AreaGetView() {
     }
 
-    public AreaGetView(@org.jetbrains.annotations.NotNull Area base) {
+    public AreaGetView(@NotNull Area base) {
         this.id = base.id();
         this.status = base.status();
         this.createBy = base.createBy();
@@ -96,16 +95,16 @@ public class AreaGetView implements View<Area> {
         this.areaType = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(AreaDraft.Producer.SLOT_AREA_TYPE)) ? base.areaType() : null;
     }
 
-    public static AreaGetView of(@org.jetbrains.annotations.NotNull Area base) {
+    public static AreaGetView of(@NotNull Area base) {
         return new AreaGetView(base);
     }
 
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     public String getId() {
         return id;
     }
 
-    public void setId(@org.jetbrains.annotations.NotNull String id) {
+    public void setId(@NotNull String id) {
         this.id = id;
     }
 
@@ -117,39 +116,39 @@ public class AreaGetView implements View<Area> {
         this.status = status;
     }
 
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     public String getCreateBy() {
         return createBy;
     }
 
-    public void setCreateBy(@org.jetbrains.annotations.NotNull String createBy) {
+    public void setCreateBy(@NotNull String createBy) {
         this.createBy = createBy;
     }
 
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     public Date getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(@org.jetbrains.annotations.NotNull Date createDate) {
+    public void setCreateDate(@NotNull Date createDate) {
         this.createDate = createDate;
     }
 
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     public String getUpdateBy() {
         return updateBy;
     }
 
-    public void setUpdateBy(@org.jetbrains.annotations.NotNull String updateBy) {
+    public void setUpdateBy(@NotNull String updateBy) {
         this.updateBy = updateBy;
     }
 
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     public Date getUpdateDate() {
         return updateDate;
     }
 
-    public void setUpdateDate(@org.jetbrains.annotations.NotNull Date updateDate) {
+    public void setUpdateDate(@NotNull Date updateDate) {
         this.updateDate = updateDate;
     }
 
@@ -162,12 +161,12 @@ public class AreaGetView implements View<Area> {
         this.remarks = remarks;
     }
 
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     public String getAreaName() {
         return areaName;
     }
 
-    public void setAreaName(@org.jetbrains.annotations.NotNull String areaName) {
+    public void setAreaName(@NotNull String areaName) {
         this.areaName = areaName;
     }
 

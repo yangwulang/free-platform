@@ -1,0 +1,24 @@
+PostListView {
+    #allScalars
+}
+
+unsafe input PostListInput {
+    postCode?
+    postName?
+    postType
+}
+
+specification PostListSpecification {
+    like(postCode)
+    like(postName)
+    postType
+}
+
+PostGetView {
+    #allScalars
+}
+
+unsafe input PostSaveInput {
+    #allScalars
+    id?
+}

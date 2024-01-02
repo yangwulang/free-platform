@@ -6,13 +6,12 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
-import org.babyfish.jimmer.GeneratedBy;
 import org.babyfish.jimmer.View;
+import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
 import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.message.MessageRecord;
 import top.yangwulang.platform.entity.message.MessageRecordDraft;
@@ -46,31 +45,31 @@ public class MessageRecordListView implements View<MessageRecord> {
     @Schema(
             description = "类型"
     )
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     private String type;
 
     @Schema(
             description = "消息标题"
     )
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     private String title;
 
     @Schema(
             description = "消息子标题"
     )
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     private String subTitle;
 
     @Schema(
             description = "消息icon"
     )
-    @Null
+    @Nullable
     private String avatar;
 
     @Schema(
             description = "消息内容"
     )
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     private String content;
 
     @Schema(
@@ -82,7 +81,7 @@ public class MessageRecordListView implements View<MessageRecord> {
     public MessageRecordListView() {
     }
 
-    public MessageRecordListView(@org.jetbrains.annotations.NotNull MessageRecord base) {
+    public MessageRecordListView(@NotNull MessageRecord base) {
         this.id = base.id();
         this.status = base.status();
         this.type = base.type();
@@ -93,16 +92,16 @@ public class MessageRecordListView implements View<MessageRecord> {
         this.messageType = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MessageRecordDraft.Producer.SLOT_MESSAGE_TYPE)) ? base.messageType() : null;
     }
 
-    public static MessageRecordListView of(@org.jetbrains.annotations.NotNull MessageRecord base) {
+    public static MessageRecordListView of(@NotNull MessageRecord base) {
         return new MessageRecordListView(base);
     }
 
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     public String getId() {
         return id;
     }
 
-    public void setId(@org.jetbrains.annotations.NotNull String id) {
+    public void setId(@NotNull String id) {
         this.id = id;
     }
 
@@ -114,30 +113,30 @@ public class MessageRecordListView implements View<MessageRecord> {
         this.status = status;
     }
 
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     public String getType() {
         return type;
     }
 
-    public void setType(@org.jetbrains.annotations.NotNull String type) {
+    public void setType(@NotNull String type) {
         this.type = type;
     }
 
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(@org.jetbrains.annotations.NotNull String title) {
+    public void setTitle(@NotNull String title) {
         this.title = title;
     }
 
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     public String getSubTitle() {
         return subTitle;
     }
 
-    public void setSubTitle(@org.jetbrains.annotations.NotNull String subTitle) {
+    public void setSubTitle(@NotNull String subTitle) {
         this.subTitle = subTitle;
     }
 
@@ -150,12 +149,12 @@ public class MessageRecordListView implements View<MessageRecord> {
         this.avatar = avatar;
     }
 
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     public String getContent() {
         return content;
     }
 
-    public void setContent(@org.jetbrains.annotations.NotNull String content) {
+    public void setContent(@NotNull String content) {
         this.content = content;
     }
 

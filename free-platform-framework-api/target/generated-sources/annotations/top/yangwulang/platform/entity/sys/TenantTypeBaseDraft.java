@@ -3,7 +3,7 @@ package top.yangwulang.platform.entity.sys;
 import java.lang.String;
 import java.util.Collections;
 import org.babyfish.jimmer.Draft;
-import org.babyfish.jimmer.GeneratedBy;
+import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.lang.OldChain;
 import org.babyfish.jimmer.meta.ImmutablePropCategory;
 import org.babyfish.jimmer.meta.ImmutableType;
@@ -22,7 +22,7 @@ public interface TenantTypeBaseDraft extends TenantTypeBase, Draft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.42",
+                "0.8.54",
                 TenantTypeBase.class,
                 Collections.emptyList(),
                 null

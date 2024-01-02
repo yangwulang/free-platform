@@ -3,7 +3,7 @@ package top.yangwulang.platform.entity;
 import java.lang.String;
 import java.util.Arrays;
 import java.util.Date;
-import org.babyfish.jimmer.GeneratedBy;
+import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.lang.OldChain;
 import org.babyfish.jimmer.meta.ImmutablePropCategory;
 import org.babyfish.jimmer.meta.ImmutableType;
@@ -40,7 +40,7 @@ public interface DataTypeBaseDraft extends DataTypeBase, TypeBaseDraft, StatusTy
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.42",
+                "0.8.54",
                 DataTypeBase.class,
                 Arrays.asList(
                     TypeBaseDraft.Producer.TYPE,

@@ -4,8 +4,10 @@ import java.lang.Class;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import org.babyfish.jimmer.GeneratedBy;
+import java.util.function.Function;
+import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.sql.JoinType;
+import org.babyfish.jimmer.sql.ast.Predicate;
 import org.babyfish.jimmer.sql.ast.impl.table.TableImplementor;
 import org.babyfish.jimmer.sql.ast.impl.table.TableProxies;
 import org.babyfish.jimmer.sql.ast.table.Table;
@@ -49,6 +51,11 @@ public class PostTableEx extends PostTable implements TableEx<Post> {
             return new EmployeeTableEx(raw.joinImplementor(PostProps.EMPLOYEES.unwrap(), joinType));
         }
         return new EmployeeTableEx(joinOperation(PostProps.EMPLOYEES.unwrap(), joinType));
+    }
+
+    @Override
+    public Predicate employees(Function<EmployeeTableEx, Predicate> block) {
+        return exists(PostProps.EMPLOYEES.unwrap(), block);
     }
 
     @Override

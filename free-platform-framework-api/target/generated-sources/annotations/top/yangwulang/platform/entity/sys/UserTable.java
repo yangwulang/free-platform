@@ -5,7 +5,9 @@ import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Date;
-import org.babyfish.jimmer.GeneratedBy;
+import java.util.function.Function;
+import org.babyfish.jimmer.internal.GeneratedBy;
+import org.babyfish.jimmer.sql.ast.Predicate;
 import org.babyfish.jimmer.sql.ast.PropExpression;
 import org.babyfish.jimmer.sql.ast.impl.table.TableImplementor;
 import org.babyfish.jimmer.sql.ast.table.TableEx;
@@ -151,6 +153,11 @@ public class UserTable extends AbstractTypedTable<User> implements UserProps {
     @Override
     public PropExpression.Num<Integer> userWeight() {
         return __get(UserProps.USER_WEIGHT.unwrap());
+    }
+
+    @Override
+    public Predicate roles(Function<RoleTableEx, Predicate> block) {
+        return exists(UserProps.ROLES.unwrap(), block);
     }
 
     @Override

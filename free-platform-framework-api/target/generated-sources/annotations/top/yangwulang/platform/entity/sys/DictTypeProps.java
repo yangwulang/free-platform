@@ -4,7 +4,7 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Date;
-import org.babyfish.jimmer.GeneratedBy;
+import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.ImmutableType;
 import org.babyfish.jimmer.meta.TypedProp;
 import org.babyfish.jimmer.sql.ast.PropExpression;

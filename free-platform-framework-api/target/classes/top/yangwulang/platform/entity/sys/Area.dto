@@ -1,0 +1,18 @@
+AreaListView {
+    #allScalars
+    children ? {
+        #allScalars
+    }*
+}
+
+unsafe input AreaListInput {
+    parentId
+    areaName
+    sort
+    areaType
+}
+
+
+AreaGetView {
+    #allScalars
+}

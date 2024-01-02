@@ -5,10 +5,9 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import javax.validation.constraints.Null;
-import org.babyfish.jimmer.GeneratedBy;
-import org.babyfish.jimmer.ViewableInput;
+import org.babyfish.jimmer.Input;
 import org.babyfish.jimmer.impl.util.DtoPropAccessor;
+import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
 import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
@@ -21,7 +20,7 @@ import top.yangwulang.platform.entity.sys.MenuFetcher;
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Menu.dto"
 )
-public class MenuListInput implements ViewableInput<Menu> {
+public class MenuListInput implements Input<Menu> {
     public static final ViewMetadata<Menu, MenuListInput> METADATA = 
         new ViewMetadata<Menu, MenuListInput>(
             MenuFetcher.$
@@ -53,7 +52,7 @@ public class MenuListInput implements ViewableInput<Menu> {
     @Nullable
     private String menuType;
 
-    @Null
+    @Nullable
     private String parentId;
 
     public MenuListInput() {

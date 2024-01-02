@@ -4,8 +4,10 @@ import java.lang.Class;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import org.babyfish.jimmer.GeneratedBy;
+import java.util.function.Function;
+import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.sql.JoinType;
+import org.babyfish.jimmer.sql.ast.Predicate;
 import org.babyfish.jimmer.sql.ast.impl.table.TableImplementor;
 import org.babyfish.jimmer.sql.ast.impl.table.TableProxies;
 import org.babyfish.jimmer.sql.ast.table.Table;
@@ -65,6 +67,11 @@ public class DictDataTableEx extends DictDataTable implements TableEx<DictData> 
             return new DictDataTableEx(raw.joinImplementor(DictDataProps.CHILDREN.unwrap(), joinType));
         }
         return new DictDataTableEx(joinOperation(DictDataProps.CHILDREN.unwrap(), joinType));
+    }
+
+    @Override
+    public Predicate children(Function<DictDataTableEx, Predicate> block) {
+        return exists(DictDataProps.CHILDREN.unwrap(), block);
     }
 
     public DictTypeTableEx dictType() {

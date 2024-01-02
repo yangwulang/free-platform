@@ -6,8 +6,7 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import javax.validation.constraints.Null;
-import org.babyfish.jimmer.GeneratedBy;
+import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.ImmutableProp;
 import org.babyfish.jimmer.sql.ast.query.specification.JSpecification;
 import org.babyfish.jimmer.sql.ast.query.specification.PredicateApplier;
@@ -36,7 +35,7 @@ public class PostListSpecification implements JSpecification<Post, PostTable> {
     @Schema(
             description = "岗位类型（高管、中层、低层）"
     )
-    @Null
+    @Nullable
     private String postType;
 
     public PostListSpecification() {

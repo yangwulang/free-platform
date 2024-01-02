@@ -2,14 +2,17 @@ package top.yangwulang.platform.entity.message;
 
 import java.lang.Integer;
 import java.lang.String;
-import org.babyfish.jimmer.GeneratedBy;
+import java.util.function.Function;
+import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.ImmutableType;
 import org.babyfish.jimmer.meta.TypedProp;
+import org.babyfish.jimmer.sql.ast.Predicate;
 import org.babyfish.jimmer.sql.ast.PropExpression;
 import org.babyfish.jimmer.sql.ast.table.PropsFor;
 import top.yangwulang.platform.entity.StatusTypeBaseProps;
 import top.yangwulang.platform.entity.TypeBaseProps;
 import top.yangwulang.platform.entity.sys.User;
+import top.yangwulang.platform.entity.sys.UserTableEx;
 
 @GeneratedBy(
         type = MessageRecord.class
@@ -57,4 +60,8 @@ public interface MessageRecordProps extends TypeBaseProps, StatusTypeBaseProps {
     PropExpression.Str content();
 
     PropExpression.Num<Integer> messageType();
+
+    Predicate targetUsers(Function<UserTableEx, Predicate> block);
+
+    Predicate messageRecordUsers(Function<MessageRecordUserTableEx, Predicate> block);
 }

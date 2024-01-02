@@ -4,7 +4,7 @@ import java.lang.Deprecated;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Date;
-import org.babyfish.jimmer.GeneratedBy;
+import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.sql.JoinType;
 import org.babyfish.jimmer.sql.ast.PropExpression;
 import org.babyfish.jimmer.sql.ast.impl.table.TableImplementor;

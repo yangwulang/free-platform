@@ -7,7 +7,9 @@ import java.lang.Override;
 import java.lang.String;
 import java.math.BigDecimal;
 import java.util.Date;
-import org.babyfish.jimmer.GeneratedBy;
+import java.util.function.Function;
+import org.babyfish.jimmer.internal.GeneratedBy;
+import org.babyfish.jimmer.sql.ast.Predicate;
 import org.babyfish.jimmer.sql.ast.PropExpression;
 import org.babyfish.jimmer.sql.ast.impl.table.TableImplementor;
 import org.babyfish.jimmer.sql.ast.table.TableEx;
@@ -118,6 +120,16 @@ public class RoleTable extends AbstractTypedTable<Role> implements RoleProps {
     @Override
     public PropExpression.Str corpName() {
         return __get(RoleProps.CORP_NAME.unwrap());
+    }
+
+    @Override
+    public Predicate menus(Function<MenuTableEx, Predicate> block) {
+        return exists(RoleProps.MENUS.unwrap(), block);
+    }
+
+    @Override
+    public Predicate users(Function<UserTableEx, Predicate> block) {
+        return exists(RoleProps.USERS.unwrap(), block);
     }
 
     @Override

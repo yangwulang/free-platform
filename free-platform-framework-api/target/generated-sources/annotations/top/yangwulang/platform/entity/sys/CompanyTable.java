@@ -3,8 +3,10 @@ package top.yangwulang.platform.entity.sys;
 import java.lang.Deprecated;
 import java.lang.Override;
 import java.lang.String;
-import org.babyfish.jimmer.GeneratedBy;
+import java.util.function.Function;
+import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.sql.JoinType;
+import org.babyfish.jimmer.sql.ast.Predicate;
 import org.babyfish.jimmer.sql.ast.PropExpression;
 import org.babyfish.jimmer.sql.ast.impl.table.TableImplementor;
 import org.babyfish.jimmer.sql.ast.table.TableEx;
@@ -58,6 +60,16 @@ public class CompanyTable extends AbstractTypedTable<Company> implements Company
     @Override
     public PropExpression.Str parentId() {
         return __getAssociatedId(CompanyProps.PARENT.unwrap());
+    }
+
+    @Override
+    public Predicate children(Function<CompanyTableEx, Predicate> block) {
+        return exists(CompanyProps.CHILDREN.unwrap(), block);
+    }
+
+    @Override
+    public Predicate employees(Function<EmployeeTableEx, Predicate> block) {
+        return exists(CompanyProps.EMPLOYEES.unwrap(), block);
     }
 
     @Override

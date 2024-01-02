@@ -5,9 +5,8 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import javax.validation.constraints.Null;
-import org.babyfish.jimmer.GeneratedBy;
-import org.babyfish.jimmer.ViewableInput;
+import org.babyfish.jimmer.Input;
+import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
 import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
@@ -20,7 +19,7 @@ import top.yangwulang.platform.entity.sys.DictDataFetcher;
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/DictData.dto"
 )
-public class DictDataListInput implements ViewableInput<DictData> {
+public class DictDataListInput implements Input<DictData> {
     public static final ViewMetadata<DictData, DictDataListInput> METADATA = 
         new ViewMetadata<DictData, DictDataListInput>(
             DictDataFetcher.$
@@ -34,25 +33,25 @@ public class DictDataListInput implements ViewableInput<DictData> {
     @Schema(
             description = "字典类型id"
     )
-    @Null
+    @Nullable
     private String dictTypeId;
 
     @Schema(
             description = "字典标签"
     )
-    @Null
+    @Nullable
     private String dictLabel;
 
     @Schema(
             description = "字典键值"
     )
-    @Null
+    @Nullable
     private String dictValue;
 
     @Schema(
             description = "字典描述"
     )
-    @Null
+    @Nullable
     private String description;
 
     public DictDataListInput() {

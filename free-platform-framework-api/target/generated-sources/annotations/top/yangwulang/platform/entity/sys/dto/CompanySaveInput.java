@@ -5,10 +5,9 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import javax.validation.constraints.Null;
-import org.babyfish.jimmer.GeneratedBy;
-import org.babyfish.jimmer.ViewableInput;
+import org.babyfish.jimmer.Input;
 import org.babyfish.jimmer.impl.util.DtoPropAccessor;
+import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
 import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
@@ -21,7 +20,7 @@ import top.yangwulang.platform.entity.sys.CompanyFetcher;
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Company.dto"
 )
-public class CompanySaveInput implements ViewableInput<Company> {
+public class CompanySaveInput implements Input<Company> {
     public static final ViewMetadata<Company, CompanySaveInput> METADATA = 
         new ViewMetadata<Company, CompanySaveInput>(
             CompanyFetcher.$
@@ -54,22 +53,22 @@ public class CompanySaveInput implements ViewableInput<Company> {
     @Schema(
             description = "公司全名"
     )
-    @Null
+    @Nullable
     private String companyFullName;
 
-    @Null
+    @Nullable
     private String corpCode;
 
-    @Null
+    @Nullable
     private String corpName;
 
     @Schema(
             description = "父级id"
     )
-    @Null
+    @Nullable
     private String parentId;
 
-    @javax.validation.constraints.NotNull
+    @Nullable
     private String id;
 
     public CompanySaveInput() {

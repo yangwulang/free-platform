@@ -6,14 +6,13 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
-import org.babyfish.jimmer.GeneratedBy;
-import org.babyfish.jimmer.ViewableInput;
+import org.babyfish.jimmer.Input;
 import org.babyfish.jimmer.impl.util.DtoPropAccessor;
+import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
 import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.sys.DictData;
 import top.yangwulang.platform.entity.sys.DictDataDraft;
@@ -22,7 +21,7 @@ import top.yangwulang.platform.entity.sys.DictDataFetcher;
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/DictData.dto"
 )
-public class DictDataSaveInput implements ViewableInput<DictData> {
+public class DictDataSaveInput implements Input<DictData> {
     public static final ViewMetadata<DictData, DictDataSaveInput> METADATA = 
         new ViewMetadata<DictData, DictDataSaveInput>(
             DictDataFetcher.$
@@ -42,31 +41,31 @@ public class DictDataSaveInput implements ViewableInput<DictData> {
         new int[] { DictDataDraft.Producer.SLOT_ID }
     );
 
-    @NotNull
+    @Nullable
     private String id;
 
     @Schema(
             description = "父级id"
     )
-    @Null
+    @Nullable
     private String parentId;
 
     @Schema(
             description = "字典类型id"
     )
-    @Null
+    @Nullable
     private String dictTypeId;
 
     @Schema(
             description = "字典标签"
     )
-    @Null
+    @Nullable
     private String dictLabel;
 
     @Schema(
             description = "字典键值"
     )
-    @Null
+    @Nullable
     private String dictValue;
 
     @Schema(
@@ -78,25 +77,25 @@ public class DictDataSaveInput implements ViewableInput<DictData> {
     @Schema(
             description = "字典描述"
     )
-    @Null
+    @Nullable
     private String description;
 
     @Schema(
             description = "css样式（如：color:red)"
     )
-    @Null
+    @Nullable
     private String cssStyle;
 
     @Schema(
             description = "css类名（如：red）"
     )
-    @Null
+    @Nullable
     private String cssClass;
 
     public DictDataSaveInput() {
     }
 
-    public DictDataSaveInput(@org.jetbrains.annotations.NotNull DictData base) {
+    public DictDataSaveInput(@NotNull DictData base) {
         this.id = ID_ACCESSOR.get(base);
         this.parentId = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(DictDataDraft.Producer.SLOT_PARENT_ID)) ? base.parentId() : null;
         this.dictTypeId = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(DictDataDraft.Producer.SLOT_DICT_TYPE_ID)) ? base.dictTypeId() : null;
@@ -108,7 +107,7 @@ public class DictDataSaveInput implements ViewableInput<DictData> {
         this.cssClass = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(DictDataDraft.Producer.SLOT_CSS_CLASS)) ? base.cssClass() : null;
     }
 
-    public static DictDataSaveInput of(@org.jetbrains.annotations.NotNull DictData base) {
+    public static DictDataSaveInput of(@NotNull DictData base) {
         return new DictDataSaveInput(base);
     }
 

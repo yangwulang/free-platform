@@ -6,8 +6,10 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Date;
-import org.babyfish.jimmer.GeneratedBy;
+import java.util.function.Function;
+import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.sql.JoinType;
+import org.babyfish.jimmer.sql.ast.Predicate;
 import org.babyfish.jimmer.sql.ast.PropExpression;
 import org.babyfish.jimmer.sql.ast.impl.table.TableImplementor;
 import org.babyfish.jimmer.sql.ast.table.TableEx;
@@ -91,6 +93,11 @@ public class AreaTable extends AbstractTypedTable<Area> implements AreaProps {
     @Override
     public PropExpression.Str parentId() {
         return __getAssociatedId(AreaProps.PARENT.unwrap());
+    }
+
+    @Override
+    public Predicate children(Function<AreaTableEx, Predicate> block) {
+        return exists(AreaProps.CHILDREN.unwrap(), block);
     }
 
     @Override

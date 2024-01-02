@@ -17,9 +17,9 @@ import java.util.Date;
 import java.util.Objects;
 import org.babyfish.jimmer.CircularReferenceException;
 import org.babyfish.jimmer.DraftConsumer;
-import org.babyfish.jimmer.GeneratedBy;
 import org.babyfish.jimmer.ImmutableObjects;
 import org.babyfish.jimmer.UnloadedException;
+import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.jackson.ImmutableModuleRequiredException;
 import org.babyfish.jimmer.lang.OldChain;
 import org.babyfish.jimmer.meta.ImmutablePropCategory;
@@ -94,7 +94,7 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.42",
+                "0.8.54",
                 DictType.class,
                 Collections.singleton(DataTypeBaseDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (DictType)base)

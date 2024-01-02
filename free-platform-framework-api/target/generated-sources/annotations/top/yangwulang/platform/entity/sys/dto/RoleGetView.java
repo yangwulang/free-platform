@@ -11,14 +11,13 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
-import org.babyfish.jimmer.GeneratedBy;
 import org.babyfish.jimmer.View;
 import org.babyfish.jimmer.impl.util.DtoPropAccessor;
+import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
 import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.sys.Menu;
 import top.yangwulang.platform.entity.sys.MenuDraft;
@@ -90,31 +89,31 @@ public class RoleGetView implements View<Role> {
     @NotNull
     private Date updateDate;
 
-    @Null
+    @Nullable
     private String remarks;
 
     @Schema(
             description = "角色编码"
     )
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     private String roleCode;
 
     @Schema(
             description = "角色名称"
     )
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     private String roleName;
 
     @Schema(
             description = "角色类型"
     )
-    @Null
+    @Nullable
     private String roleType;
 
     @Schema(
             description = "角色排序"
     )
-    @Null
+    @Nullable
     private BigDecimal roleSort;
 
     @Schema(
@@ -126,37 +125,37 @@ public class RoleGetView implements View<Role> {
     @Schema(
             description = "用户类型"
     )
-    @Null
+    @Nullable
     private String userType;
 
     @Schema(
             description = "数据范围设置"
     )
-    @Null
+    @Nullable
     private String dataScope;
 
     @Schema(
             description = "适应业务范围"
     )
-    @Null
+    @Nullable
     private String bizScope;
 
     @Schema(
             description = "角色拥有的菜单"
     )
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     private List<TargetOf_menus> menus;
 
     @Schema(
             description = "角色拥有的用户"
     )
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     private List<TargetOf_users> users;
 
     public RoleGetView() {
     }
 
-    public RoleGetView(@org.jetbrains.annotations.NotNull Role base) {
+    public RoleGetView(@NotNull Role base) {
         this.id = base.id();
         this.status = base.status();
         this.createBy = base.createBy();
@@ -176,16 +175,16 @@ public class RoleGetView implements View<Role> {
         this.users = USERS_ACCESSOR.get(base);
     }
 
-    public static RoleGetView of(@org.jetbrains.annotations.NotNull Role base) {
+    public static RoleGetView of(@NotNull Role base) {
         return new RoleGetView(base);
     }
 
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     public String getId() {
         return id;
     }
 
-    public void setId(@org.jetbrains.annotations.NotNull String id) {
+    public void setId(@NotNull String id) {
         this.id = id;
     }
 
@@ -197,39 +196,39 @@ public class RoleGetView implements View<Role> {
         this.status = status;
     }
 
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     public String getCreateBy() {
         return createBy;
     }
 
-    public void setCreateBy(@org.jetbrains.annotations.NotNull String createBy) {
+    public void setCreateBy(@NotNull String createBy) {
         this.createBy = createBy;
     }
 
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     public Date getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(@org.jetbrains.annotations.NotNull Date createDate) {
+    public void setCreateDate(@NotNull Date createDate) {
         this.createDate = createDate;
     }
 
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     public String getUpdateBy() {
         return updateBy;
     }
 
-    public void setUpdateBy(@org.jetbrains.annotations.NotNull String updateBy) {
+    public void setUpdateBy(@NotNull String updateBy) {
         this.updateBy = updateBy;
     }
 
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     public Date getUpdateDate() {
         return updateDate;
     }
 
-    public void setUpdateDate(@org.jetbrains.annotations.NotNull Date updateDate) {
+    public void setUpdateDate(@NotNull Date updateDate) {
         this.updateDate = updateDate;
     }
 
@@ -242,21 +241,21 @@ public class RoleGetView implements View<Role> {
         this.remarks = remarks;
     }
 
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     public String getRoleCode() {
         return roleCode;
     }
 
-    public void setRoleCode(@org.jetbrains.annotations.NotNull String roleCode) {
+    public void setRoleCode(@NotNull String roleCode) {
         this.roleCode = roleCode;
     }
 
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     public String getRoleName() {
         return roleName;
     }
 
-    public void setRoleName(@org.jetbrains.annotations.NotNull String roleName) {
+    public void setRoleName(@NotNull String roleName) {
         this.roleName = roleName;
     }
 
@@ -314,21 +313,21 @@ public class RoleGetView implements View<Role> {
         this.bizScope = bizScope;
     }
 
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     public List<TargetOf_menus> getMenus() {
         return menus;
     }
 
-    public void setMenus(@org.jetbrains.annotations.NotNull List<TargetOf_menus> menus) {
+    public void setMenus(@NotNull List<TargetOf_menus> menus) {
         this.menus = menus;
     }
 
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     public List<TargetOf_users> getUsers() {
         return users;
     }
 
-    public void setUsers(@org.jetbrains.annotations.NotNull List<TargetOf_users> users) {
+    public void setUsers(@NotNull List<TargetOf_users> users) {
         this.users = users;
     }
 
@@ -507,85 +506,85 @@ public class RoleGetView implements View<Role> {
         @NotNull
         private Date updateDate;
 
-        @Null
+        @Nullable
         private String remarks;
 
         @Schema(
                 description = "菜单名称"
         )
-        @org.jetbrains.annotations.NotNull
+        @NotNull
         private String menuName;
 
         @Schema(
                 description = "菜单类型（1菜单 2权限 3开发）"
         )
-        @org.jetbrains.annotations.NotNull
+        @NotNull
         private String menuType;
 
         @Schema(
                 description = "链接"
         )
-        @Null
+        @Nullable
         private String menuHref;
 
         @Schema(
                 description = "组件地址"
         )
-        @Null
+        @Nullable
         private String menuComponent;
 
         @Schema(
                 description = "目标"
         )
-        @Null
+        @Nullable
         private String menuTarget;
 
         @Schema(
                 description = "图标"
         )
-        @Null
+        @Nullable
         private String menuIcon;
 
         @Schema(
                 description = "颜色"
         )
-        @Null
+        @Nullable
         private String menuColor;
 
         @Schema(
                 description = "菜单标题"
         )
-        @Null
+        @Nullable
         private String menuTitle;
 
         @Schema(
                 description = "权限标识"
         )
-        @Null
+        @Nullable
         private String permission;
 
         @Schema(
                 description = "菜单权重"
         )
-        @Null
+        @Nullable
         private BigDecimal weight;
 
         @Schema(
                 description = "是否显示"
         )
-        @Null
+        @Nullable
         private Boolean isShow;
 
         @Schema(
                 description = "归属系统（default:主导航菜单、mobileApp:APP菜单）"
         )
-        @Null
+        @Nullable
         private String sysCode;
 
         public TargetOf_menus() {
         }
 
-        public TargetOf_menus(@org.jetbrains.annotations.NotNull Menu base) {
+        public TargetOf_menus(@NotNull Menu base) {
             this.id = base.id();
             this.status = base.status();
             this.createBy = base.createBy();
@@ -607,16 +606,16 @@ public class RoleGetView implements View<Role> {
             this.sysCode = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_SYS_CODE)) ? base.sysCode() : null;
         }
 
-        public static TargetOf_menus of(@org.jetbrains.annotations.NotNull Menu base) {
+        public static TargetOf_menus of(@NotNull Menu base) {
             return new TargetOf_menus(base);
         }
 
-        @org.jetbrains.annotations.NotNull
+        @NotNull
         public String getId() {
             return id;
         }
 
-        public void setId(@org.jetbrains.annotations.NotNull String id) {
+        public void setId(@NotNull String id) {
             this.id = id;
         }
 
@@ -628,39 +627,39 @@ public class RoleGetView implements View<Role> {
             this.status = status;
         }
 
-        @org.jetbrains.annotations.NotNull
+        @NotNull
         public String getCreateBy() {
             return createBy;
         }
 
-        public void setCreateBy(@org.jetbrains.annotations.NotNull String createBy) {
+        public void setCreateBy(@NotNull String createBy) {
             this.createBy = createBy;
         }
 
-        @org.jetbrains.annotations.NotNull
+        @NotNull
         public Date getCreateDate() {
             return createDate;
         }
 
-        public void setCreateDate(@org.jetbrains.annotations.NotNull Date createDate) {
+        public void setCreateDate(@NotNull Date createDate) {
             this.createDate = createDate;
         }
 
-        @org.jetbrains.annotations.NotNull
+        @NotNull
         public String getUpdateBy() {
             return updateBy;
         }
 
-        public void setUpdateBy(@org.jetbrains.annotations.NotNull String updateBy) {
+        public void setUpdateBy(@NotNull String updateBy) {
             this.updateBy = updateBy;
         }
 
-        @org.jetbrains.annotations.NotNull
+        @NotNull
         public Date getUpdateDate() {
             return updateDate;
         }
 
-        public void setUpdateDate(@org.jetbrains.annotations.NotNull Date updateDate) {
+        public void setUpdateDate(@NotNull Date updateDate) {
             this.updateDate = updateDate;
         }
 
@@ -673,21 +672,21 @@ public class RoleGetView implements View<Role> {
             this.remarks = remarks;
         }
 
-        @org.jetbrains.annotations.NotNull
+        @NotNull
         public String getMenuName() {
             return menuName;
         }
 
-        public void setMenuName(@org.jetbrains.annotations.NotNull String menuName) {
+        public void setMenuName(@NotNull String menuName) {
             this.menuName = menuName;
         }
 
-        @org.jetbrains.annotations.NotNull
+        @NotNull
         public String getMenuType() {
             return menuType;
         }
 
-        public void setMenuType(@org.jetbrains.annotations.NotNull String menuType) {
+        public void setMenuType(@NotNull String menuType) {
             this.menuType = menuType;
         }
 
@@ -941,49 +940,49 @@ public class RoleGetView implements View<Role> {
         @Schema(
                 description = "用户编码"
         )
-        @org.jetbrains.annotations.NotNull
+        @NotNull
         private String userCode;
 
         @Schema(
                 description = "用户名"
         )
-        @Null
+        @Nullable
         private String userName;
 
         @Schema(
                 description = "用户类型"
         )
-        @Null
+        @Nullable
         private String userType;
 
         @Schema(
                 description = "头像地址"
         )
-        @Null
+        @Nullable
         private String avatar;
 
         @Schema(
                 description = "登录编码(账号)"
         )
-        @Null
+        @Nullable
         private String loginCode;
 
         @Schema(
                 description = "邮件"
         )
-        @Null
+        @Nullable
         private String email;
 
         @Schema(
                 description = "性别"
         )
-        @Null
+        @Nullable
         private String sex;
 
         public TargetOf_users() {
         }
 
-        public TargetOf_users(@org.jetbrains.annotations.NotNull User base) {
+        public TargetOf_users(@NotNull User base) {
             this.userCode = base.userCode();
             this.userName = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(UserDraft.Producer.SLOT_USER_NAME)) ? base.userName() : null;
             this.userType = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(UserDraft.Producer.SLOT_USER_TYPE)) ? base.userType() : null;
@@ -993,16 +992,16 @@ public class RoleGetView implements View<Role> {
             this.sex = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(UserDraft.Producer.SLOT_SEX)) ? base.sex() : null;
         }
 
-        public static TargetOf_users of(@org.jetbrains.annotations.NotNull User base) {
+        public static TargetOf_users of(@NotNull User base) {
             return new TargetOf_users(base);
         }
 
-        @org.jetbrains.annotations.NotNull
+        @NotNull
         public String getUserCode() {
             return userCode;
         }
 
-        public void setUserCode(@org.jetbrains.annotations.NotNull String userCode) {
+        public void setUserCode(@NotNull String userCode) {
             this.userCode = userCode;
         }
 

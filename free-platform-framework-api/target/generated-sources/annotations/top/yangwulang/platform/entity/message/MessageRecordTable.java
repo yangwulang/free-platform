@@ -4,11 +4,14 @@ import java.lang.Deprecated;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
-import org.babyfish.jimmer.GeneratedBy;
+import java.util.function.Function;
+import org.babyfish.jimmer.internal.GeneratedBy;
+import org.babyfish.jimmer.sql.ast.Predicate;
 import org.babyfish.jimmer.sql.ast.PropExpression;
 import org.babyfish.jimmer.sql.ast.impl.table.TableImplementor;
 import org.babyfish.jimmer.sql.ast.table.TableEx;
 import org.babyfish.jimmer.sql.ast.table.spi.AbstractTypedTable;
+import top.yangwulang.platform.entity.sys.UserTableEx;
 
 @GeneratedBy(
         type = MessageRecord.class
@@ -70,6 +73,16 @@ public class MessageRecordTable extends AbstractTypedTable<MessageRecord> implem
     @Override
     public PropExpression.Num<Integer> messageType() {
         return __get(MessageRecordProps.MESSAGE_TYPE.unwrap());
+    }
+
+    @Override
+    public Predicate targetUsers(Function<UserTableEx, Predicate> block) {
+        return exists(MessageRecordProps.TARGET_USERS.unwrap(), block);
+    }
+
+    @Override
+    public Predicate messageRecordUsers(Function<MessageRecordUserTableEx, Predicate> block) {
+        return exists(MessageRecordProps.MESSAGE_RECORD_USERS.unwrap(), block);
     }
 
     @Override

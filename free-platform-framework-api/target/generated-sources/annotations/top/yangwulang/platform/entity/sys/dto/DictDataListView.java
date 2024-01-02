@@ -10,15 +10,14 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
-import org.babyfish.jimmer.GeneratedBy;
 import org.babyfish.jimmer.View;
 import org.babyfish.jimmer.impl.util.DtoPropAccessor;
+import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
 import org.babyfish.jimmer.sql.fetcher.RecursiveFieldConfig;
 import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.sys.DictData;
 import top.yangwulang.platform.entity.sys.DictDataDraft;
@@ -74,19 +73,19 @@ public class DictDataListView implements View<DictData> {
     @NotNull
     private Date updateDate;
 
-    @Null
+    @Nullable
     private String remarks;
 
     @Schema(
             description = "字典标签"
     )
-    @Null
+    @Nullable
     private String dictLabel;
 
     @Schema(
             description = "字典键值"
     )
-    @Null
+    @Nullable
     private String dictValue;
 
     @Schema(
@@ -98,31 +97,31 @@ public class DictDataListView implements View<DictData> {
     @Schema(
             description = "字典描述"
     )
-    @Null
+    @Nullable
     private String description;
 
     @Schema(
             description = "css样式（如：color:red)"
     )
-    @Null
+    @Nullable
     private String cssStyle;
 
     @Schema(
             description = "css类名（如：red）"
     )
-    @Null
+    @Nullable
     private String cssClass;
 
-    @NotNull
     @Schema(
             description = "子集"
     )
+    @Nullable
     private List<TargetOf_children> children;
 
     public DictDataListView() {
     }
 
-    public DictDataListView(@org.jetbrains.annotations.NotNull DictData base) {
+    public DictDataListView(@NotNull DictData base) {
         this.id = base.id();
         this.status = base.status();
         this.createBy = base.createBy();
@@ -139,16 +138,16 @@ public class DictDataListView implements View<DictData> {
         this.children = CHILDREN_ACCESSOR.get(base);
     }
 
-    public static DictDataListView of(@org.jetbrains.annotations.NotNull DictData base) {
+    public static DictDataListView of(@NotNull DictData base) {
         return new DictDataListView(base);
     }
 
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     public String getId() {
         return id;
     }
 
-    public void setId(@org.jetbrains.annotations.NotNull String id) {
+    public void setId(@NotNull String id) {
         this.id = id;
     }
 
@@ -160,39 +159,39 @@ public class DictDataListView implements View<DictData> {
         this.status = status;
     }
 
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     public String getCreateBy() {
         return createBy;
     }
 
-    public void setCreateBy(@org.jetbrains.annotations.NotNull String createBy) {
+    public void setCreateBy(@NotNull String createBy) {
         this.createBy = createBy;
     }
 
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     public Date getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(@org.jetbrains.annotations.NotNull Date createDate) {
+    public void setCreateDate(@NotNull Date createDate) {
         this.createDate = createDate;
     }
 
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     public String getUpdateBy() {
         return updateBy;
     }
 
-    public void setUpdateBy(@org.jetbrains.annotations.NotNull String updateBy) {
+    public void setUpdateBy(@NotNull String updateBy) {
         this.updateBy = updateBy;
     }
 
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     public Date getUpdateDate() {
         return updateDate;
     }
 
-    public void setUpdateDate(@org.jetbrains.annotations.NotNull Date updateDate) {
+    public void setUpdateDate(@NotNull Date updateDate) {
         this.updateDate = updateDate;
     }
 
@@ -426,19 +425,19 @@ public class DictDataListView implements View<DictData> {
         @NotNull
         private Date updateDate;
 
-        @Null
+        @Nullable
         private String remarks;
 
         @Schema(
                 description = "字典标签"
         )
-        @Null
+        @Nullable
         private String dictLabel;
 
         @Schema(
                 description = "字典键值"
         )
-        @Null
+        @Nullable
         private String dictValue;
 
         @Schema(
@@ -450,31 +449,31 @@ public class DictDataListView implements View<DictData> {
         @Schema(
                 description = "字典描述"
         )
-        @Null
+        @Nullable
         private String description;
 
         @Schema(
                 description = "css样式（如：color:red)"
         )
-        @Null
+        @Nullable
         private String cssStyle;
 
         @Schema(
                 description = "css类名（如：red）"
         )
-        @Null
+        @Nullable
         private String cssClass;
 
-        @NotNull
         @Schema(
                 description = "子集"
         )
+        @Nullable
         private List<TargetOf_children> children;
 
         public TargetOf_children() {
         }
 
-        public TargetOf_children(@org.jetbrains.annotations.NotNull DictData base) {
+        public TargetOf_children(@NotNull DictData base) {
             this.id = base.id();
             this.status = base.status();
             this.createBy = base.createBy();
@@ -491,16 +490,16 @@ public class DictDataListView implements View<DictData> {
             this.children = CHILDREN_ACCESSOR.get(base);
         }
 
-        public static TargetOf_children of(@org.jetbrains.annotations.NotNull DictData base) {
+        public static TargetOf_children of(@NotNull DictData base) {
             return new TargetOf_children(base);
         }
 
-        @org.jetbrains.annotations.NotNull
+        @NotNull
         public String getId() {
             return id;
         }
 
-        public void setId(@org.jetbrains.annotations.NotNull String id) {
+        public void setId(@NotNull String id) {
             this.id = id;
         }
 
@@ -512,39 +511,39 @@ public class DictDataListView implements View<DictData> {
             this.status = status;
         }
 
-        @org.jetbrains.annotations.NotNull
+        @NotNull
         public String getCreateBy() {
             return createBy;
         }
 
-        public void setCreateBy(@org.jetbrains.annotations.NotNull String createBy) {
+        public void setCreateBy(@NotNull String createBy) {
             this.createBy = createBy;
         }
 
-        @org.jetbrains.annotations.NotNull
+        @NotNull
         public Date getCreateDate() {
             return createDate;
         }
 
-        public void setCreateDate(@org.jetbrains.annotations.NotNull Date createDate) {
+        public void setCreateDate(@NotNull Date createDate) {
             this.createDate = createDate;
         }
 
-        @org.jetbrains.annotations.NotNull
+        @NotNull
         public String getUpdateBy() {
             return updateBy;
         }
 
-        public void setUpdateBy(@org.jetbrains.annotations.NotNull String updateBy) {
+        public void setUpdateBy(@NotNull String updateBy) {
             this.updateBy = updateBy;
         }
 
-        @org.jetbrains.annotations.NotNull
+        @NotNull
         public Date getUpdateDate() {
             return updateDate;
         }
 
-        public void setUpdateDate(@org.jetbrains.annotations.NotNull Date updateDate) {
+        public void setUpdateDate(@NotNull Date updateDate) {
             this.updateDate = updateDate;
         }
 

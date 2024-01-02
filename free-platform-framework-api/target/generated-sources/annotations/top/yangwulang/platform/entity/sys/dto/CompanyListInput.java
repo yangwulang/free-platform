@@ -5,9 +5,9 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import org.babyfish.jimmer.GeneratedBy;
-import org.babyfish.jimmer.ViewableInput;
+import org.babyfish.jimmer.Input;
 import org.babyfish.jimmer.impl.util.DtoPropAccessor;
+import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -18,7 +18,7 @@ import top.yangwulang.platform.entity.sys.CompanyFetcher;
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Company.dto"
 )
-public class CompanyListInput implements ViewableInput<Company> {
+public class CompanyListInput implements Input<Company> {
     public static final ViewMetadata<Company, CompanyListInput> METADATA = 
         new ViewMetadata<Company, CompanyListInput>(
             CompanyFetcher.$

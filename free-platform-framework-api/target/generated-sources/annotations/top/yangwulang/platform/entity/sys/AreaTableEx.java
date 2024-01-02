@@ -4,8 +4,10 @@ import java.lang.Class;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import org.babyfish.jimmer.GeneratedBy;
+import java.util.function.Function;
+import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.sql.JoinType;
+import org.babyfish.jimmer.sql.ast.Predicate;
 import org.babyfish.jimmer.sql.ast.impl.table.TableImplementor;
 import org.babyfish.jimmer.sql.ast.impl.table.TableProxies;
 import org.babyfish.jimmer.sql.ast.table.Table;
@@ -65,6 +67,11 @@ public class AreaTableEx extends AreaTable implements TableEx<Area> {
             return new AreaTableEx(raw.joinImplementor(AreaProps.CHILDREN.unwrap(), joinType));
         }
         return new AreaTableEx(joinOperation(AreaProps.CHILDREN.unwrap(), joinType));
+    }
+
+    @Override
+    public Predicate children(Function<AreaTableEx, Predicate> block) {
+        return exists(AreaProps.CHILDREN.unwrap(), block);
     }
 
     @Override

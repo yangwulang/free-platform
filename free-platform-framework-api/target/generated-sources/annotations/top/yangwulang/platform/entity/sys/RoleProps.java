@@ -5,9 +5,11 @@ import java.lang.Integer;
 import java.lang.String;
 import java.math.BigDecimal;
 import java.util.Date;
-import org.babyfish.jimmer.GeneratedBy;
+import java.util.function.Function;
+import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.ImmutableType;
 import org.babyfish.jimmer.meta.TypedProp;
+import org.babyfish.jimmer.sql.ast.Predicate;
 import org.babyfish.jimmer.sql.ast.PropExpression;
 import org.babyfish.jimmer.sql.ast.table.PropsFor;
 import top.yangwulang.platform.entity.DataTypeBaseProps;
@@ -93,4 +95,8 @@ public interface RoleProps extends DataTypeBaseProps {
     PropExpression.Str corpCode();
 
     PropExpression.Str corpName();
+
+    Predicate menus(Function<MenuTableEx, Predicate> block);
+
+    Predicate users(Function<UserTableEx, Predicate> block);
 }

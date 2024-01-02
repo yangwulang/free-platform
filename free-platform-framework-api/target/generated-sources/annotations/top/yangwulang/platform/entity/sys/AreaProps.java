@@ -4,10 +4,12 @@ import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Date;
-import org.babyfish.jimmer.GeneratedBy;
+import java.util.function.Function;
+import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.ImmutableType;
 import org.babyfish.jimmer.meta.TypedProp;
 import org.babyfish.jimmer.sql.JoinType;
+import org.babyfish.jimmer.sql.ast.Predicate;
 import org.babyfish.jimmer.sql.ast.PropExpression;
 import org.babyfish.jimmer.sql.ast.table.PropsFor;
 import top.yangwulang.platform.entity.DataTypeBaseProps;
@@ -61,6 +63,8 @@ public interface AreaProps extends DataTypeBaseProps {
     AreaTable parent(JoinType joinType);
 
     PropExpression.Str parentId();
+
+    Predicate children(Function<AreaTableEx, Predicate> block);
 
     PropExpression.Str areaName();
 

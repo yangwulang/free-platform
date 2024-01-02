@@ -5,13 +5,12 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
-import org.babyfish.jimmer.GeneratedBy;
 import org.babyfish.jimmer.View;
+import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
 import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.sys.Post;
 import top.yangwulang.platform.entity.sys.PostDraft;
@@ -36,59 +35,59 @@ public class PostListView implements View<Post> {
     @Schema(
             description = "岗位编码"
     )
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     private String postCode;
 
     @Schema(
             description = "岗位名称"
     )
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     private String postName;
 
     @Schema(
             description = "岗位类型（高管、中层、低层）"
     )
-    @Null
+    @Nullable
     private String postType;
 
     public PostListView() {
     }
 
-    public PostListView(@org.jetbrains.annotations.NotNull Post base) {
+    public PostListView(@NotNull Post base) {
         this.id = base.id();
         this.postCode = base.postCode();
         this.postName = base.postName();
         this.postType = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(PostDraft.Producer.SLOT_POST_TYPE)) ? base.postType() : null;
     }
 
-    public static PostListView of(@org.jetbrains.annotations.NotNull Post base) {
+    public static PostListView of(@NotNull Post base) {
         return new PostListView(base);
     }
 
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     public String getId() {
         return id;
     }
 
-    public void setId(@org.jetbrains.annotations.NotNull String id) {
+    public void setId(@NotNull String id) {
         this.id = id;
     }
 
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     public String getPostCode() {
         return postCode;
     }
 
-    public void setPostCode(@org.jetbrains.annotations.NotNull String postCode) {
+    public void setPostCode(@NotNull String postCode) {
         this.postCode = postCode;
     }
 
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     public String getPostName() {
         return postName;
     }
 
-    public void setPostName(@org.jetbrains.annotations.NotNull String postName) {
+    public void setPostName(@NotNull String postName) {
         this.postName = postName;
     }
 

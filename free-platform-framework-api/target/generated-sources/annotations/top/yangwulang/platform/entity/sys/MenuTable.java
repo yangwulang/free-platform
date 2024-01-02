@@ -7,8 +7,10 @@ import java.lang.Override;
 import java.lang.String;
 import java.math.BigDecimal;
 import java.util.Date;
-import org.babyfish.jimmer.GeneratedBy;
+import java.util.function.Function;
+import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.sql.JoinType;
+import org.babyfish.jimmer.sql.ast.Predicate;
 import org.babyfish.jimmer.sql.ast.PropExpression;
 import org.babyfish.jimmer.sql.ast.impl.table.TableImplementor;
 import org.babyfish.jimmer.sql.ast.table.TableEx;
@@ -95,6 +97,11 @@ public class MenuTable extends AbstractTypedTable<Menu> implements MenuProps {
     }
 
     @Override
+    public Predicate children(Function<MenuTableEx, Predicate> block) {
+        return exists(MenuProps.CHILDREN.unwrap(), block);
+    }
+
+    @Override
     public PropExpression.Str menuName() {
         return __get(MenuProps.MENU_NAME.unwrap());
     }
@@ -152,6 +159,11 @@ public class MenuTable extends AbstractTypedTable<Menu> implements MenuProps {
     @Override
     public PropExpression.Str sysCode() {
         return __get(MenuProps.SYS_CODE.unwrap());
+    }
+
+    @Override
+    public Predicate roles(Function<RoleTableEx, Predicate> block) {
+        return exists(MenuProps.ROLES.unwrap(), block);
     }
 
     @Override

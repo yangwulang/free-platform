@@ -1,10 +1,12 @@
 package top.yangwulang.platform.entity.sys;
 
 import java.lang.String;
-import org.babyfish.jimmer.GeneratedBy;
+import java.util.function.Function;
+import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.ImmutableType;
 import org.babyfish.jimmer.meta.TypedProp;
 import org.babyfish.jimmer.sql.JoinType;
+import org.babyfish.jimmer.sql.ast.Predicate;
 import org.babyfish.jimmer.sql.ast.PropExpression;
 import org.babyfish.jimmer.sql.ast.table.PropsFor;
 import top.yangwulang.platform.entity.TypeBaseProps;
@@ -49,6 +51,10 @@ public interface CompanyProps extends TypeBaseProps {
     CompanyTable parent(JoinType joinType);
 
     PropExpression.Str parentId();
+
+    Predicate children(Function<CompanyTableEx, Predicate> block);
+
+    Predicate employees(Function<EmployeeTableEx, Predicate> block);
 
     PropExpression.Str companyCode();
 

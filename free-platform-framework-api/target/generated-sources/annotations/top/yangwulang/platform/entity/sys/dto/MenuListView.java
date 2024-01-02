@@ -11,15 +11,14 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
-import org.babyfish.jimmer.GeneratedBy;
 import org.babyfish.jimmer.View;
 import org.babyfish.jimmer.impl.util.DtoPropAccessor;
+import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
 import org.babyfish.jimmer.sql.fetcher.RecursiveFieldConfig;
 import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.sys.Menu;
 import top.yangwulang.platform.entity.sys.MenuDraft;
@@ -81,79 +80,79 @@ public class MenuListView implements View<Menu> {
     @NotNull
     private Date updateDate;
 
-    @Null
+    @Nullable
     private String remarks;
 
     @Schema(
             description = "菜单名称"
     )
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     private String menuName;
 
     @Schema(
             description = "菜单类型（1菜单 2权限 3开发）"
     )
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     private String menuType;
 
     @Schema(
             description = "链接"
     )
-    @Null
+    @Nullable
     private String menuHref;
 
     @Schema(
             description = "组件地址"
     )
-    @Null
+    @Nullable
     private String menuComponent;
 
     @Schema(
             description = "目标"
     )
-    @Null
+    @Nullable
     private String menuTarget;
 
     @Schema(
             description = "图标"
     )
-    @Null
+    @Nullable
     private String menuIcon;
 
     @Schema(
             description = "颜色"
     )
-    @Null
+    @Nullable
     private String menuColor;
 
     @Schema(
             description = "菜单标题"
     )
-    @Null
+    @Nullable
     private String menuTitle;
 
     @Schema(
             description = "权限标识"
     )
-    @Null
+    @Nullable
     private String permission;
 
     @Schema(
             description = "菜单权重"
     )
-    @Null
+    @Nullable
     private BigDecimal weight;
 
     @Schema(
             description = "是否显示"
     )
-    @Null
+    @Nullable
     private Boolean isShow;
 
     @Schema(
             description = "归属系统（default:主导航菜单、mobileApp:APP菜单）"
     )
-    @Null
+    @Nullable
     private String sysCode;
 
     @Schema(
@@ -165,7 +164,7 @@ public class MenuListView implements View<Menu> {
     public MenuListView() {
     }
 
-    public MenuListView(@org.jetbrains.annotations.NotNull Menu base) {
+    public MenuListView(@NotNull Menu base) {
         this.id = base.id();
         this.status = base.status();
         this.createBy = base.createBy();
@@ -188,16 +187,16 @@ public class MenuListView implements View<Menu> {
         this.children = CHILDREN_ACCESSOR.get(base);
     }
 
-    public static MenuListView of(@org.jetbrains.annotations.NotNull Menu base) {
+    public static MenuListView of(@NotNull Menu base) {
         return new MenuListView(base);
     }
 
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     public String getId() {
         return id;
     }
 
-    public void setId(@org.jetbrains.annotations.NotNull String id) {
+    public void setId(@NotNull String id) {
         this.id = id;
     }
 
@@ -209,39 +208,39 @@ public class MenuListView implements View<Menu> {
         this.status = status;
     }
 
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     public String getCreateBy() {
         return createBy;
     }
 
-    public void setCreateBy(@org.jetbrains.annotations.NotNull String createBy) {
+    public void setCreateBy(@NotNull String createBy) {
         this.createBy = createBy;
     }
 
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     public Date getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(@org.jetbrains.annotations.NotNull Date createDate) {
+    public void setCreateDate(@NotNull Date createDate) {
         this.createDate = createDate;
     }
 
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     public String getUpdateBy() {
         return updateBy;
     }
 
-    public void setUpdateBy(@org.jetbrains.annotations.NotNull String updateBy) {
+    public void setUpdateBy(@NotNull String updateBy) {
         this.updateBy = updateBy;
     }
 
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     public Date getUpdateDate() {
         return updateDate;
     }
 
-    public void setUpdateDate(@org.jetbrains.annotations.NotNull Date updateDate) {
+    public void setUpdateDate(@NotNull Date updateDate) {
         this.updateDate = updateDate;
     }
 
@@ -254,21 +253,21 @@ public class MenuListView implements View<Menu> {
         this.remarks = remarks;
     }
 
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     public String getMenuName() {
         return menuName;
     }
 
-    public void setMenuName(@org.jetbrains.annotations.NotNull String menuName) {
+    public void setMenuName(@NotNull String menuName) {
         this.menuName = menuName;
     }
 
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     public String getMenuType() {
         return menuType;
     }
 
-    public void setMenuType(@org.jetbrains.annotations.NotNull String menuType) {
+    public void setMenuType(@NotNull String menuType) {
         this.menuType = menuType;
     }
 
@@ -571,79 +570,79 @@ public class MenuListView implements View<Menu> {
         @NotNull
         private Date updateDate;
 
-        @Null
+        @Nullable
         private String remarks;
 
         @Schema(
                 description = "菜单名称"
         )
-        @org.jetbrains.annotations.NotNull
+        @NotNull
         private String menuName;
 
         @Schema(
                 description = "菜单类型（1菜单 2权限 3开发）"
         )
-        @org.jetbrains.annotations.NotNull
+        @NotNull
         private String menuType;
 
         @Schema(
                 description = "链接"
         )
-        @Null
+        @Nullable
         private String menuHref;
 
         @Schema(
                 description = "组件地址"
         )
-        @Null
+        @Nullable
         private String menuComponent;
 
         @Schema(
                 description = "目标"
         )
-        @Null
+        @Nullable
         private String menuTarget;
 
         @Schema(
                 description = "图标"
         )
-        @Null
+        @Nullable
         private String menuIcon;
 
         @Schema(
                 description = "颜色"
         )
-        @Null
+        @Nullable
         private String menuColor;
 
         @Schema(
                 description = "菜单标题"
         )
-        @Null
+        @Nullable
         private String menuTitle;
 
         @Schema(
                 description = "权限标识"
         )
-        @Null
+        @Nullable
         private String permission;
 
         @Schema(
                 description = "菜单权重"
         )
-        @Null
+        @Nullable
         private BigDecimal weight;
 
         @Schema(
                 description = "是否显示"
         )
-        @Null
+        @Nullable
         private Boolean isShow;
 
         @Schema(
                 description = "归属系统（default:主导航菜单、mobileApp:APP菜单）"
         )
-        @Null
+        @Nullable
         private String sysCode;
 
         @Schema(
@@ -655,7 +654,7 @@ public class MenuListView implements View<Menu> {
         public TargetOf_children() {
         }
 
-        public TargetOf_children(@org.jetbrains.annotations.NotNull Menu base) {
+        public TargetOf_children(@NotNull Menu base) {
             this.id = base.id();
             this.status = base.status();
             this.createBy = base.createBy();
@@ -678,16 +677,16 @@ public class MenuListView implements View<Menu> {
             this.children = CHILDREN_ACCESSOR.get(base);
         }
 
-        public static TargetOf_children of(@org.jetbrains.annotations.NotNull Menu base) {
+        public static TargetOf_children of(@NotNull Menu base) {
             return new TargetOf_children(base);
         }
 
-        @org.jetbrains.annotations.NotNull
+        @NotNull
         public String getId() {
             return id;
         }
 
-        public void setId(@org.jetbrains.annotations.NotNull String id) {
+        public void setId(@NotNull String id) {
             this.id = id;
         }
 
@@ -699,39 +698,39 @@ public class MenuListView implements View<Menu> {
             this.status = status;
         }
 
-        @org.jetbrains.annotations.NotNull
+        @NotNull
         public String getCreateBy() {
             return createBy;
         }
 
-        public void setCreateBy(@org.jetbrains.annotations.NotNull String createBy) {
+        public void setCreateBy(@NotNull String createBy) {
             this.createBy = createBy;
         }
 
-        @org.jetbrains.annotations.NotNull
+        @NotNull
         public Date getCreateDate() {
             return createDate;
         }
 
-        public void setCreateDate(@org.jetbrains.annotations.NotNull Date createDate) {
+        public void setCreateDate(@NotNull Date createDate) {
             this.createDate = createDate;
         }
 
-        @org.jetbrains.annotations.NotNull
+        @NotNull
         public String getUpdateBy() {
             return updateBy;
         }
 
-        public void setUpdateBy(@org.jetbrains.annotations.NotNull String updateBy) {
+        public void setUpdateBy(@NotNull String updateBy) {
             this.updateBy = updateBy;
         }
 
-        @org.jetbrains.annotations.NotNull
+        @NotNull
         public Date getUpdateDate() {
             return updateDate;
         }
 
-        public void setUpdateDate(@org.jetbrains.annotations.NotNull Date updateDate) {
+        public void setUpdateDate(@NotNull Date updateDate) {
             this.updateDate = updateDate;
         }
 
@@ -744,21 +743,21 @@ public class MenuListView implements View<Menu> {
             this.remarks = remarks;
         }
 
-        @org.jetbrains.annotations.NotNull
+        @NotNull
         public String getMenuName() {
             return menuName;
         }
 
-        public void setMenuName(@org.jetbrains.annotations.NotNull String menuName) {
+        public void setMenuName(@NotNull String menuName) {
             this.menuName = menuName;
         }
 
-        @org.jetbrains.annotations.NotNull
+        @NotNull
         public String getMenuType() {
             return menuType;
         }
 
-        public void setMenuType(@org.jetbrains.annotations.NotNull String menuType) {
+        public void setMenuType(@NotNull String menuType) {
             this.menuType = menuType;
         }
 

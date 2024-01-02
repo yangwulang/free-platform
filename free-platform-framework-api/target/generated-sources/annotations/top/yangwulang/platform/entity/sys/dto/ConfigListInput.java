@@ -5,10 +5,9 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import javax.validation.constraints.Null;
-import org.babyfish.jimmer.GeneratedBy;
-import org.babyfish.jimmer.ViewableInput;
+import org.babyfish.jimmer.Input;
 import org.babyfish.jimmer.impl.util.DtoPropAccessor;
+import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
 import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
@@ -21,7 +20,7 @@ import top.yangwulang.platform.entity.sys.ConfigFetcher;
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Config.dto"
 )
-public class ConfigListInput implements ViewableInput<Config> {
+public class ConfigListInput implements Input<Config> {
     public static final ViewMetadata<Config, ConfigListInput> METADATA = 
         new ViewMetadata<Config, ConfigListInput>(
             ConfigFetcher.$
@@ -57,10 +56,10 @@ public class ConfigListInput implements ViewableInput<Config> {
     @Schema(
             description = "参数值"
     )
-    @Null
+    @Nullable
     private String configValue;
 
-    @Null
+    @Nullable
     private String remarks;
 
     public ConfigListInput() {

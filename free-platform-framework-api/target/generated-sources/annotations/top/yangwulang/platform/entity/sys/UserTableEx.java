@@ -4,8 +4,10 @@ import java.lang.Class;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import org.babyfish.jimmer.GeneratedBy;
+import java.util.function.Function;
+import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.sql.JoinType;
+import org.babyfish.jimmer.sql.ast.Predicate;
 import org.babyfish.jimmer.sql.ast.impl.table.TableImplementor;
 import org.babyfish.jimmer.sql.ast.impl.table.TableProxies;
 import org.babyfish.jimmer.sql.ast.table.Table;
@@ -49,6 +51,11 @@ public class UserTableEx extends UserTable implements TableEx<User> {
             return new RoleTableEx(raw.joinImplementor(UserProps.ROLES.unwrap(), joinType));
         }
         return new RoleTableEx(joinOperation(UserProps.ROLES.unwrap(), joinType));
+    }
+
+    @Override
+    public Predicate roles(Function<RoleTableEx, Predicate> block) {
+        return exists(UserProps.ROLES.unwrap(), block);
     }
 
     @Override

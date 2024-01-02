@@ -6,8 +6,7 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import javax.validation.constraints.Null;
-import org.babyfish.jimmer.GeneratedBy;
+import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.ImmutableProp;
 import org.babyfish.jimmer.sql.ast.query.specification.JSpecification;
 import org.babyfish.jimmer.sql.ast.query.specification.PredicateApplier;
@@ -30,13 +29,13 @@ public class RoleListSpecification implements JSpecification<Role, RoleTable> {
     @Schema(
             description = "角色类型"
     )
-    @Null
+    @Nullable
     private String roleType;
 
     @Schema(
             description = "用户类型"
     )
-    @Null
+    @Nullable
     private String userType;
 
     public RoleListSpecification() {

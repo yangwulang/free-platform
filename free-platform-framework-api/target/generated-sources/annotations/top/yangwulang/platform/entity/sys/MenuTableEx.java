@@ -4,8 +4,10 @@ import java.lang.Class;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import org.babyfish.jimmer.GeneratedBy;
+import java.util.function.Function;
+import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.sql.JoinType;
+import org.babyfish.jimmer.sql.ast.Predicate;
 import org.babyfish.jimmer.sql.ast.impl.table.TableImplementor;
 import org.babyfish.jimmer.sql.ast.impl.table.TableProxies;
 import org.babyfish.jimmer.sql.ast.table.Table;
@@ -67,6 +69,11 @@ public class MenuTableEx extends MenuTable implements TableEx<Menu> {
         return new MenuTableEx(joinOperation(MenuProps.CHILDREN.unwrap(), joinType));
     }
 
+    @Override
+    public Predicate children(Function<MenuTableEx, Predicate> block) {
+        return exists(MenuProps.CHILDREN.unwrap(), block);
+    }
+
     public RoleTableEx roles() {
         __beforeJoin();
         if (raw != null) {
@@ -81,6 +88,11 @@ public class MenuTableEx extends MenuTable implements TableEx<Menu> {
             return new RoleTableEx(raw.joinImplementor(MenuProps.ROLES.unwrap(), joinType));
         }
         return new RoleTableEx(joinOperation(MenuProps.ROLES.unwrap(), joinType));
+    }
+
+    @Override
+    public Predicate roles(Function<RoleTableEx, Predicate> block) {
+        return exists(MenuProps.ROLES.unwrap(), block);
     }
 
     @Override

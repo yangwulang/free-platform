@@ -7,13 +7,12 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Date;
 import java.util.Objects;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
-import org.babyfish.jimmer.GeneratedBy;
 import org.babyfish.jimmer.View;
+import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
 import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.sys.DictData;
 import top.yangwulang.platform.entity.sys.DictDataDraft;
@@ -55,19 +54,19 @@ public class DictDataGetView implements View<DictData> {
     @NotNull
     private Date updateDate;
 
-    @Null
+    @Nullable
     private String remarks;
 
     @Schema(
             description = "字典标签"
     )
-    @Null
+    @Nullable
     private String dictLabel;
 
     @Schema(
             description = "字典键值"
     )
-    @Null
+    @Nullable
     private String dictValue;
 
     @Schema(
@@ -79,25 +78,25 @@ public class DictDataGetView implements View<DictData> {
     @Schema(
             description = "字典描述"
     )
-    @Null
+    @Nullable
     private String description;
 
     @Schema(
             description = "css样式（如：color:red)"
     )
-    @Null
+    @Nullable
     private String cssStyle;
 
     @Schema(
             description = "css类名（如：red）"
     )
-    @Null
+    @Nullable
     private String cssClass;
 
     public DictDataGetView() {
     }
 
-    public DictDataGetView(@org.jetbrains.annotations.NotNull DictData base) {
+    public DictDataGetView(@NotNull DictData base) {
         this.id = base.id();
         this.createBy = base.createBy();
         this.createDate = base.createDate();
@@ -112,52 +111,52 @@ public class DictDataGetView implements View<DictData> {
         this.cssClass = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(DictDataDraft.Producer.SLOT_CSS_CLASS)) ? base.cssClass() : null;
     }
 
-    public static DictDataGetView of(@org.jetbrains.annotations.NotNull DictData base) {
+    public static DictDataGetView of(@NotNull DictData base) {
         return new DictDataGetView(base);
     }
 
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     public String getId() {
         return id;
     }
 
-    public void setId(@org.jetbrains.annotations.NotNull String id) {
+    public void setId(@NotNull String id) {
         this.id = id;
     }
 
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     public String getCreateBy() {
         return createBy;
     }
 
-    public void setCreateBy(@org.jetbrains.annotations.NotNull String createBy) {
+    public void setCreateBy(@NotNull String createBy) {
         this.createBy = createBy;
     }
 
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     public Date getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(@org.jetbrains.annotations.NotNull Date createDate) {
+    public void setCreateDate(@NotNull Date createDate) {
         this.createDate = createDate;
     }
 
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     public String getUpdateBy() {
         return updateBy;
     }
 
-    public void setUpdateBy(@org.jetbrains.annotations.NotNull String updateBy) {
+    public void setUpdateBy(@NotNull String updateBy) {
         this.updateBy = updateBy;
     }
 
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     public Date getUpdateDate() {
         return updateDate;
     }
 
-    public void setUpdateDate(@org.jetbrains.annotations.NotNull Date updateDate) {
+    public void setUpdateDate(@NotNull Date updateDate) {
         this.updateDate = updateDate;
     }
 

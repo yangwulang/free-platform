@@ -6,9 +6,8 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import javax.validation.constraints.Null;
-import org.babyfish.jimmer.GeneratedBy;
-import org.babyfish.jimmer.ViewableInput;
+import org.babyfish.jimmer.Input;
+import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
 import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
@@ -21,7 +20,7 @@ import top.yangwulang.platform.entity.sys.AreaFetcher;
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Area.dto"
 )
-public class AreaListInput implements ViewableInput<Area> {
+public class AreaListInput implements Input<Area> {
     public static final ViewMetadata<Area, AreaListInput> METADATA = 
         new ViewMetadata<Area, AreaListInput>(
             AreaFetcher.$
@@ -35,7 +34,7 @@ public class AreaListInput implements ViewableInput<Area> {
     @Schema(
             description = "父级id"
     )
-    @Null
+    @Nullable
     private String parentId;
 
     @Schema(
@@ -47,13 +46,13 @@ public class AreaListInput implements ViewableInput<Area> {
     @Schema(
             description = "排序"
     )
-    @Null
+    @Nullable
     private Long sort;
 
     @Schema(
             description = "地区类型(1：国家；2：省份、直辖市；3：地市；4：区县)"
     )
-    @Null
+    @Nullable
     private String areaType;
 
     public AreaListInput() {

@@ -3,8 +3,10 @@ package top.yangwulang.platform.entity.sys;
 import java.lang.Deprecated;
 import java.lang.Override;
 import java.lang.String;
-import org.babyfish.jimmer.GeneratedBy;
+import java.util.function.Function;
+import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.sql.JoinType;
+import org.babyfish.jimmer.sql.ast.Predicate;
 import org.babyfish.jimmer.sql.ast.PropExpression;
 import org.babyfish.jimmer.sql.ast.impl.table.TableImplementor;
 import org.babyfish.jimmer.sql.ast.table.TableEx;
@@ -86,6 +88,11 @@ public class EmployeeTable extends AbstractTypedTable<Employee> implements Emplo
     @Override
     public PropExpression.Str empName() {
         return __get(EmployeeProps.EMP_NAME.unwrap());
+    }
+
+    @Override
+    public Predicate posts(Function<PostTableEx, Predicate> block) {
+        return exists(EmployeeProps.POSTS.unwrap(), block);
     }
 
     @Override

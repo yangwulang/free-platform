@@ -6,13 +6,12 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
-import org.babyfish.jimmer.GeneratedBy;
 import org.babyfish.jimmer.View;
+import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
 import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.sys.DictType;
 import top.yangwulang.platform.entity.sys.DictTypeDraft;
@@ -35,19 +34,19 @@ public class DictTypeGetView implements View<DictType> {
     @NotNull
     private String id;
 
-    @Null
+    @Nullable
     private String remarks;
 
     @Schema(
             description = "字典名称"
     )
-    @Null
+    @Nullable
     private String dictName;
 
     @Schema(
             description = "字典类型标签"
     )
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     private String dictType;
 
     @Schema(
@@ -59,7 +58,7 @@ public class DictTypeGetView implements View<DictType> {
     public DictTypeGetView() {
     }
 
-    public DictTypeGetView(@org.jetbrains.annotations.NotNull DictType base) {
+    public DictTypeGetView(@NotNull DictType base) {
         this.id = base.id();
         this.remarks = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(DictTypeDraft.Producer.SLOT_REMARKS)) ? base.remarks() : null;
         this.dictName = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(DictTypeDraft.Producer.SLOT_DICT_NAME)) ? base.dictName() : null;
@@ -67,16 +66,16 @@ public class DictTypeGetView implements View<DictType> {
         this.isSys = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(DictTypeDraft.Producer.SLOT_IS_SYS)) ? base.isSys() : null;
     }
 
-    public static DictTypeGetView of(@org.jetbrains.annotations.NotNull DictType base) {
+    public static DictTypeGetView of(@NotNull DictType base) {
         return new DictTypeGetView(base);
     }
 
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     public String getId() {
         return id;
     }
 
-    public void setId(@org.jetbrains.annotations.NotNull String id) {
+    public void setId(@NotNull String id) {
         this.id = id;
     }
 
@@ -98,12 +97,12 @@ public class DictTypeGetView implements View<DictType> {
         this.dictName = dictName;
     }
 
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     public String getDictType() {
         return dictType;
     }
 
-    public void setDictType(@org.jetbrains.annotations.NotNull String dictType) {
+    public void setDictType(@NotNull String dictType) {
         this.dictType = dictType;
     }
 

@@ -11,10 +11,9 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
-import javax.validation.constraints.Null;
-import org.babyfish.jimmer.GeneratedBy;
 import org.babyfish.jimmer.View;
 import org.babyfish.jimmer.impl.util.DtoPropAccessor;
+import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
 import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
@@ -214,7 +213,7 @@ public class UserRoleMenuView implements View<User> {
                 DtoPropAccessor.objectListSetter(TargetOf_children_3::toEntity)
             );
 
-            @javax.validation.constraints.NotNull
+            @NotNull
             private String id;
 
             @Schema(
@@ -222,19 +221,19 @@ public class UserRoleMenuView implements View<User> {
             )
             private int status;
 
-            @javax.validation.constraints.NotNull
+            @NotNull
             private String createBy;
 
-            @javax.validation.constraints.NotNull
+            @NotNull
             private Date createDate;
 
-            @javax.validation.constraints.NotNull
+            @NotNull
             private String updateBy;
 
-            @javax.validation.constraints.NotNull
+            @NotNull
             private Date updateDate;
 
-            @Null
+            @Nullable
             private String remarks;
 
             @Schema(
@@ -252,61 +251,61 @@ public class UserRoleMenuView implements View<User> {
             @Schema(
                     description = "链接"
             )
-            @Null
+            @Nullable
             private String menuHref;
 
             @Schema(
                     description = "组件地址"
             )
-            @Null
+            @Nullable
             private String menuComponent;
 
             @Schema(
                     description = "目标"
             )
-            @Null
+            @Nullable
             private String menuTarget;
 
             @Schema(
                     description = "图标"
             )
-            @Null
+            @Nullable
             private String menuIcon;
 
             @Schema(
                     description = "颜色"
             )
-            @Null
+            @Nullable
             private String menuColor;
 
             @Schema(
                     description = "菜单标题"
             )
-            @Null
+            @Nullable
             private String menuTitle;
 
             @Schema(
                     description = "权限标识"
             )
-            @Null
+            @Nullable
             private String permission;
 
             @Schema(
                     description = "菜单权重"
             )
-            @Null
+            @Nullable
             private BigDecimal weight;
 
             @Schema(
                     description = "是否显示"
             )
-            @Null
+            @Nullable
             private Boolean isShow;
 
             @Schema(
                     description = "归属系统（default:主导航菜单、mobileApp:APP菜单）"
             )
-            @Null
+            @Nullable
             private String sysCode;
 
             @Schema(
@@ -699,7 +698,7 @@ public class UserRoleMenuView implements View<User> {
                         TargetOf_children_3::new
                 );
 
-                @javax.validation.constraints.NotNull
+                @NotNull
                 private String id;
 
                 @Schema(
@@ -707,19 +706,19 @@ public class UserRoleMenuView implements View<User> {
                 )
                 private int status;
 
-                @javax.validation.constraints.NotNull
+                @NotNull
                 private String createBy;
 
-                @javax.validation.constraints.NotNull
+                @NotNull
                 private Date createDate;
 
-                @javax.validation.constraints.NotNull
+                @NotNull
                 private String updateBy;
 
-                @javax.validation.constraints.NotNull
+                @NotNull
                 private Date updateDate;
 
-                @Null
+                @Nullable
                 private String remarks;
 
                 @Schema(
@@ -737,61 +736,61 @@ public class UserRoleMenuView implements View<User> {
                 @Schema(
                         description = "链接"
                 )
-                @Null
+                @Nullable
                 private String menuHref;
 
                 @Schema(
                         description = "组件地址"
                 )
-                @Null
+                @Nullable
                 private String menuComponent;
 
                 @Schema(
                         description = "目标"
                 )
-                @Null
+                @Nullable
                 private String menuTarget;
 
                 @Schema(
                         description = "图标"
                 )
-                @Null
+                @Nullable
                 private String menuIcon;
 
                 @Schema(
                         description = "颜色"
                 )
-                @Null
+                @Nullable
                 private String menuColor;
 
                 @Schema(
                         description = "菜单标题"
                 )
-                @Null
+                @Nullable
                 private String menuTitle;
 
                 @Schema(
                         description = "权限标识"
                 )
-                @Null
+                @Nullable
                 private String permission;
 
                 @Schema(
                         description = "菜单权重"
                 )
-                @Null
+                @Nullable
                 private BigDecimal weight;
 
                 @Schema(
                         description = "是否显示"
                 )
-                @Null
+                @Nullable
                 private Boolean isShow;
 
                 @Schema(
                         description = "归属系统（default:主导航菜单、mobileApp:APP菜单）"
                 )
-                @Null
+                @Nullable
                 private String sysCode;
 
                 public TargetOf_children_3() {

@@ -1,7 +1,7 @@
 package top.yangwulang.platform.entity.sys;
 
 import java.lang.Override;
-import org.babyfish.jimmer.GeneratedBy;
+import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.lang.NewChain;
 import org.babyfish.jimmer.meta.ImmutableProp;
 import org.babyfish.jimmer.sql.ast.table.Table;

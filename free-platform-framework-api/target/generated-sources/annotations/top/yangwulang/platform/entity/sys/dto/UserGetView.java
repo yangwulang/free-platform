@@ -11,10 +11,9 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
-import javax.validation.constraints.Null;
-import org.babyfish.jimmer.GeneratedBy;
 import org.babyfish.jimmer.View;
 import org.babyfish.jimmer.impl.util.DtoPropAccessor;
+import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
 import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
@@ -76,118 +75,117 @@ public class UserGetView implements View<User> {
     @NotNull
     private String userCode;
 
-    @javax.validation.constraints.NotNull
     @Schema(
             description = "状态"
     )
     private int status;
 
-    @javax.validation.constraints.NotNull
     @Schema(
             description = "创建人"
     )
+    @NotNull
     private String createBy;
 
-    @javax.validation.constraints.NotNull
     @Schema(
             description = "创建时间"
     )
+    @NotNull
     private Date createDate;
 
-    @javax.validation.constraints.NotNull
     @Schema(
             description = "修改者"
     )
+    @NotNull
     private String updateBy;
 
-    @javax.validation.constraints.NotNull
     @Schema(
             description = "修改时间"
     )
+    @NotNull
     private Date updateDate;
 
-    @Null
     @Schema(
             description = "备注"
     )
+    @Nullable
     private String remarks;
 
     @Schema(
             description = "登录编码(账号)"
     )
-    @Null
+    @Nullable
     private String loginCode;
 
     @Schema(
             description = "用户名"
     )
-    @Null
+    @Nullable
     private String userName;
 
     @Schema(
             description = "邮件"
     )
-    @Null
+    @Nullable
     private String email;
 
     @Schema(
             description = "手机"
     )
-    @Null
+    @Nullable
     private String mobile;
 
     @Schema(
             description = "电话"
     )
-    @Null
+    @Nullable
     private String phone;
 
     @Schema(
             description = "性别"
     )
-    @Null
+    @Nullable
     private String sex;
 
     @Schema(
             description = "头像地址"
     )
-    @Null
+    @Nullable
     private String avatar;
 
     @Schema(
             description = "个性签名"
     )
-    @Null
+    @Nullable
     private String sign;
 
     @Schema(
             description = "微信开发id"
     )
-    @Null
+    @Nullable
     private String wxOpenId;
 
     @Schema(
             description = "手机imei"
     )
-    @Null
+    @Nullable
     private String mobileImei;
 
     @Schema(
             description = "用户类型"
     )
-    @Null
+    @Nullable
     private String userType;
 
     @Schema(
             description = "用户类型引用编号"
     )
-    @Null
+    @Nullable
     private String refCode;
 
     @Schema(
             description = "用户类型引用名称"
     )
-    @Null
+    @Nullable
     private String refName;
 
     @Schema(
@@ -653,13 +651,13 @@ public class UserGetView implements View<User> {
         @Schema(
                 description = "角色类型"
         )
-        @Null
+        @Nullable
         private String roleType;
 
         @Schema(
                 description = "用户类型"
         )
-        @Null
+        @Nullable
         private String userType;
 
         @Schema(
@@ -796,7 +794,7 @@ public class UserGetView implements View<User> {
                     TargetOf_menus_2::new
             );
 
-            @javax.validation.constraints.NotNull
+            @NotNull
             private String id;
 
             @Schema(
@@ -804,19 +802,19 @@ public class UserGetView implements View<User> {
             )
             private int status;
 
-            @javax.validation.constraints.NotNull
+            @NotNull
             private String createBy;
 
-            @javax.validation.constraints.NotNull
+            @NotNull
             private Date createDate;
 
-            @javax.validation.constraints.NotNull
+            @NotNull
             private String updateBy;
 
-            @javax.validation.constraints.NotNull
+            @NotNull
             private Date updateDate;
 
-            @Null
+            @Nullable
             private String remarks;
 
             @Schema(
@@ -834,61 +832,61 @@ public class UserGetView implements View<User> {
             @Schema(
                     description = "链接"
             )
-            @Null
+            @Nullable
             private String menuHref;
 
             @Schema(
                     description = "组件地址"
             )
-            @Null
+            @Nullable
             private String menuComponent;
 
             @Schema(
                     description = "目标"
             )
-            @Null
+            @Nullable
             private String menuTarget;
 
             @Schema(
                     description = "图标"
             )
-            @Null
+            @Nullable
             private String menuIcon;
 
             @Schema(
                     description = "颜色"
             )
-            @Null
+            @Nullable
             private String menuColor;
 
             @Schema(
                     description = "菜单标题"
             )
-            @Null
+            @Nullable
             private String menuTitle;
 
             @Schema(
                     description = "权限标识"
             )
-            @Null
+            @Nullable
             private String permission;
 
             @Schema(
                     description = "菜单权重"
             )
-            @Null
+            @Nullable
             private BigDecimal weight;
 
             @Schema(
                     description = "是否显示"
             )
-            @Null
+            @Nullable
             private Boolean isShow;
 
             @Schema(
                     description = "归属系统（default:主导航菜单、mobileApp:APP菜单）"
             )
-            @Null
+            @Nullable
             private String sysCode;
 
             public TargetOf_menus_2() {

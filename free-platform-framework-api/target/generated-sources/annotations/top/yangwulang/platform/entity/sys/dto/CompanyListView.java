@@ -7,15 +7,14 @@ import java.lang.String;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
-import org.babyfish.jimmer.GeneratedBy;
 import org.babyfish.jimmer.View;
 import org.babyfish.jimmer.impl.util.DtoPropAccessor;
+import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
 import org.babyfish.jimmer.sql.fetcher.RecursiveFieldConfig;
 import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.sys.Company;
 import top.yangwulang.platform.entity.sys.CompanyDraft;
@@ -50,25 +49,25 @@ public class CompanyListView implements View<Company> {
     @Schema(
             description = "公司编码"
     )
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     private String companyCode;
 
     @Schema(
             description = "公司名称"
     )
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     private String companyName;
 
     @Schema(
             description = "公司全名"
     )
-    @Null
+    @Nullable
     private String companyFullName;
 
-    @Null
+    @Nullable
     private String corpCode;
 
-    @Null
+    @Nullable
     private String corpName;
 
     @Schema(
@@ -80,7 +79,7 @@ public class CompanyListView implements View<Company> {
     public CompanyListView() {
     }
 
-    public CompanyListView(@org.jetbrains.annotations.NotNull Company base) {
+    public CompanyListView(@NotNull Company base) {
         this.id = base.id();
         this.companyCode = base.companyCode();
         this.companyName = base.companyName();
@@ -90,34 +89,34 @@ public class CompanyListView implements View<Company> {
         this.children = CHILDREN_ACCESSOR.get(base);
     }
 
-    public static CompanyListView of(@org.jetbrains.annotations.NotNull Company base) {
+    public static CompanyListView of(@NotNull Company base) {
         return new CompanyListView(base);
     }
 
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     public String getId() {
         return id;
     }
 
-    public void setId(@org.jetbrains.annotations.NotNull String id) {
+    public void setId(@NotNull String id) {
         this.id = id;
     }
 
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     public String getCompanyCode() {
         return companyCode;
     }
 
-    public void setCompanyCode(@org.jetbrains.annotations.NotNull String companyCode) {
+    public void setCompanyCode(@NotNull String companyCode) {
         this.companyCode = companyCode;
     }
 
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     public String getCompanyName() {
         return companyName;
     }
 
-    public void setCompanyName(@org.jetbrains.annotations.NotNull String companyName) {
+    public void setCompanyName(@NotNull String companyName) {
         this.companyName = companyName;
     }
 
@@ -252,25 +251,25 @@ public class CompanyListView implements View<Company> {
         @Schema(
                 description = "公司编码"
         )
-        @org.jetbrains.annotations.NotNull
+        @NotNull
         private String companyCode;
 
         @Schema(
                 description = "公司名称"
         )
-        @org.jetbrains.annotations.NotNull
+        @NotNull
         private String companyName;
 
         @Schema(
                 description = "公司全名"
         )
-        @Null
+        @Nullable
         private String companyFullName;
 
-        @Null
+        @Nullable
         private String corpCode;
 
-        @Null
+        @Nullable
         private String corpName;
 
         @Schema(
@@ -282,7 +281,7 @@ public class CompanyListView implements View<Company> {
         public TargetOf_children() {
         }
 
-        public TargetOf_children(@org.jetbrains.annotations.NotNull Company base) {
+        public TargetOf_children(@NotNull Company base) {
             this.id = base.id();
             this.companyCode = base.companyCode();
             this.companyName = base.companyName();
@@ -292,34 +291,34 @@ public class CompanyListView implements View<Company> {
             this.children = CHILDREN_ACCESSOR.get(base);
         }
 
-        public static TargetOf_children of(@org.jetbrains.annotations.NotNull Company base) {
+        public static TargetOf_children of(@NotNull Company base) {
             return new TargetOf_children(base);
         }
 
-        @org.jetbrains.annotations.NotNull
+        @NotNull
         public String getId() {
             return id;
         }
 
-        public void setId(@org.jetbrains.annotations.NotNull String id) {
+        public void setId(@NotNull String id) {
             this.id = id;
         }
 
-        @org.jetbrains.annotations.NotNull
+        @NotNull
         public String getCompanyCode() {
             return companyCode;
         }
 
-        public void setCompanyCode(@org.jetbrains.annotations.NotNull String companyCode) {
+        public void setCompanyCode(@NotNull String companyCode) {
             this.companyCode = companyCode;
         }
 
-        @org.jetbrains.annotations.NotNull
+        @NotNull
         public String getCompanyName() {
             return companyName;
         }
 
-        public void setCompanyName(@org.jetbrains.annotations.NotNull String companyName) {
+        public void setCompanyName(@NotNull String companyName) {
             this.companyName = companyName;
         }
 

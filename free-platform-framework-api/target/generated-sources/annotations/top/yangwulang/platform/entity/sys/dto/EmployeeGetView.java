@@ -5,9 +5,8 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import javax.validation.constraints.Null;
-import org.babyfish.jimmer.GeneratedBy;
 import org.babyfish.jimmer.View;
+import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
 import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
@@ -37,7 +36,7 @@ public class EmployeeGetView implements View<Employee> {
     @Schema(
             description = "员工名称"
     )
-    @Null
+    @Nullable
     private String empName;
 
     public EmployeeGetView() {

@@ -5,10 +5,9 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import javax.validation.constraints.Null;
-import org.babyfish.jimmer.GeneratedBy;
-import org.babyfish.jimmer.ViewableInput;
+import org.babyfish.jimmer.Input;
 import org.babyfish.jimmer.impl.util.DtoPropAccessor;
+import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
 import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
@@ -21,7 +20,7 @@ import top.yangwulang.platform.entity.sys.PostFetcher;
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Post.dto"
 )
-public class PostListInput implements ViewableInput<Post> {
+public class PostListInput implements Input<Post> {
     public static final ViewMetadata<Post, PostListInput> METADATA = 
         new ViewMetadata<Post, PostListInput>(
             PostFetcher.$
@@ -56,7 +55,7 @@ public class PostListInput implements ViewableInput<Post> {
     @Schema(
             description = "岗位类型（高管、中层、低层）"
     )
-    @Null
+    @Nullable
     private String postType;
 
     public PostListInput() {

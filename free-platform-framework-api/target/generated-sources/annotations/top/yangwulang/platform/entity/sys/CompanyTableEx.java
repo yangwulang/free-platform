@@ -4,8 +4,10 @@ import java.lang.Class;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import org.babyfish.jimmer.GeneratedBy;
+import java.util.function.Function;
+import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.sql.JoinType;
+import org.babyfish.jimmer.sql.ast.Predicate;
 import org.babyfish.jimmer.sql.ast.impl.table.TableImplementor;
 import org.babyfish.jimmer.sql.ast.impl.table.TableProxies;
 import org.babyfish.jimmer.sql.ast.table.Table;
@@ -67,6 +69,11 @@ public class CompanyTableEx extends CompanyTable implements TableEx<Company> {
         return new CompanyTableEx(joinOperation(CompanyProps.CHILDREN.unwrap(), joinType));
     }
 
+    @Override
+    public Predicate children(Function<CompanyTableEx, Predicate> block) {
+        return exists(CompanyProps.CHILDREN.unwrap(), block);
+    }
+
     public EmployeeTableEx employees() {
         __beforeJoin();
         if (raw != null) {
@@ -81,6 +88,11 @@ public class CompanyTableEx extends CompanyTable implements TableEx<Company> {
             return new EmployeeTableEx(raw.joinImplementor(CompanyProps.EMPLOYEES.unwrap(), joinType));
         }
         return new EmployeeTableEx(joinOperation(CompanyProps.EMPLOYEES.unwrap(), joinType));
+    }
+
+    @Override
+    public Predicate employees(Function<EmployeeTableEx, Predicate> block) {
+        return exists(CompanyProps.EMPLOYEES.unwrap(), block);
     }
 
     @Override

@@ -3,7 +3,7 @@ package top.yangwulang.platform.entity;
 import java.lang.String;
 import java.util.Collections;
 import org.babyfish.jimmer.Draft;
-import org.babyfish.jimmer.GeneratedBy;
+import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.lang.OldChain;
 import org.babyfish.jimmer.meta.ImmutableType;
 
@@ -21,7 +21,7 @@ public interface TypeBaseDraft extends TypeBase, Draft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.42",
+                "0.8.54",
                 TypeBase.class,
                 Collections.emptyList(),
                 null

@@ -6,10 +6,9 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import javax.validation.constraints.Null;
-import org.babyfish.jimmer.GeneratedBy;
-import org.babyfish.jimmer.ViewableInput;
+import org.babyfish.jimmer.Input;
 import org.babyfish.jimmer.impl.util.DtoPropAccessor;
+import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
 import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
@@ -24,7 +23,7 @@ import top.yangwulang.platform.entity.sys.UserFetcher;
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Employee.dto"
 )
-public class EmployeeListInput implements ViewableInput<Employee> {
+public class EmployeeListInput implements Input<Employee> {
     public static final ViewMetadata<Employee, EmployeeListInput> METADATA = 
         new ViewMetadata<Employee, EmployeeListInput>(
             EmployeeFetcher.$
@@ -76,28 +75,28 @@ public class EmployeeListInput implements ViewableInput<Employee> {
     @Schema(
             description = "员工名称"
     )
-    @Null
+    @Nullable
     private String empName;
 
-    @Null
+    @Nullable
     private String companyId;
 
     @Schema(
             description = "用户"
     )
-    @Null
+    @Nullable
     private String userName;
 
     @Schema(
             description = "用户"
     )
-    @Null
+    @Nullable
     private String email;
 
     @Schema(
             description = "用户"
     )
-    @Null
+    @Nullable
     private Integer status;
 
     public EmployeeListInput() {

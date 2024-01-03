@@ -7,19 +7,17 @@ import org.babyfish.jimmer.jackson.ImmutableModule;
 import org.babyfish.jimmer.meta.ImmutableProp;
 import org.babyfish.jimmer.meta.ImmutableType;
 import org.babyfish.jimmer.spring.cache.CaffeineBinder;
+import org.babyfish.jimmer.spring.cache.RedisCaches;
 import org.babyfish.jimmer.spring.cache.RedisHashBinder;
 import org.babyfish.jimmer.spring.cache.RedisValueBinder;
 import org.babyfish.jimmer.sql.cache.Cache;
 import org.babyfish.jimmer.sql.cache.CacheFactory;
-import org.babyfish.jimmer.spring.cache.RedisCaches;
 import org.babyfish.jimmer.sql.cache.chain.ChainCacheBuilder;
-import org.babyfish.jimmer.sql.runtime.EntityManager;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
-import top.yangwulang.platform.entity.JimmerModule;
 import top.yangwulang.platform.entity.TenantTypeBase;
 
 import java.time.Duration;
@@ -43,10 +41,6 @@ public class JimmerConfiguration {
 
 
 
-    @Bean
-    public EntityManager entityManager() {
-        return JimmerModule.ENTITY_MANAGER;
-    }
 
     @Bean
     public CacheFactory cacheFactory(

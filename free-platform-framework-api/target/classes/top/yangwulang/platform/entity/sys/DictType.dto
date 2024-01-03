@@ -1,0 +1,20 @@
+DictTypeListView {
+    #allScalars
+}
+
+specification DictTypeListSpecification {
+    like(dictType)
+    like(dictName)
+    isSys
+    like(remarks)
+}
+
+DictTypeGetView {
+    #allScalars
+    -status
+    -createBy
+    -createDate
+    -updateBy
+    -updateDate
+}
+

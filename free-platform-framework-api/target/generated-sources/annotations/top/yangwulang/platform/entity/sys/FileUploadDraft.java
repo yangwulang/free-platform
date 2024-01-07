@@ -87,7 +87,7 @@ public interface FileUploadDraft extends FileUpload, TypeBaseDraft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.54",
+                "0.8.69",
                 FileUpload.class,
                 Collections.singleton(TypeBaseDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (FileUpload)base)

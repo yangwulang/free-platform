@@ -111,6 +111,10 @@ public class DictDataSaveInput implements Input<DictData> {
         return new DictDataSaveInput(base);
     }
 
+    /**
+     * 字典类型编码
+     * @return 主键值
+     */
     @Nullable
     public String getId() {
         return id;
@@ -138,6 +142,9 @@ public class DictDataSaveInput implements Input<DictData> {
         this.dictTypeId = dictTypeId;
     }
 
+    /**
+     * 字典标签
+     */
     @Nullable
     public String getDictLabel() {
         return dictLabel;
@@ -147,6 +154,9 @@ public class DictDataSaveInput implements Input<DictData> {
         this.dictLabel = dictLabel;
     }
 
+    /**
+     * 字典键值
+     */
     @Nullable
     public String getDictValue() {
         return dictValue;
@@ -156,6 +166,9 @@ public class DictDataSaveInput implements Input<DictData> {
         this.dictValue = dictValue;
     }
 
+    /**
+     * 系统内置（1是 0否）
+     */
     @Nullable
     public Boolean getIsSys() {
         return isSys;
@@ -165,6 +178,9 @@ public class DictDataSaveInput implements Input<DictData> {
         this.isSys = isSys;
     }
 
+    /**
+     * 字典描述
+     */
     @Nullable
     public String getDescription() {
         return description;
@@ -174,6 +190,9 @@ public class DictDataSaveInput implements Input<DictData> {
         this.description = description;
     }
 
+    /**
+     * css样式（如：color:red)
+     */
     @Nullable
     public String getCssStyle() {
         return cssStyle;
@@ -183,6 +202,9 @@ public class DictDataSaveInput implements Input<DictData> {
         this.cssStyle = cssStyle;
     }
 
+    /**
+     * css类名（如：red）
+     */
     @Nullable
     public String getCssClass() {
         return cssClass;

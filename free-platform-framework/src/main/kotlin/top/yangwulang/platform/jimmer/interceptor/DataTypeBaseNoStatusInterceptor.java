@@ -6,7 +6,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.babyfish.jimmer.ImmutableObjects;
 import org.babyfish.jimmer.sql.DraftInterceptor;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.springframework.stereotype.Component;
+import top.yangwulang.platform.entity.DataTypeBaseNoStatus;
 import top.yangwulang.platform.entity.DataTypeBaseNoStatusDraft;
 import top.yangwulang.platform.entity.DataTypeBaseProps;
 import top.yangwulang.platform.entity.sys.User;
@@ -17,9 +19,10 @@ import java.util.Date;
 
 @Slf4j
 @Component
-public class DataTypeBaseNoStatusInterceptor implements DraftInterceptor<DataTypeBaseNoStatusDraft> {
+public class DataTypeBaseNoStatusInterceptor implements DraftInterceptor<DataTypeBaseNoStatus, DataTypeBaseNoStatusDraft> {
+
     @Override
-    public void beforeSave(@NotNull DataTypeBaseNoStatusDraft draft, boolean isNew) {
+    public void beforeSave(@NotNull DataTypeBaseNoStatusDraft draft, @Nullable DataTypeBaseNoStatus dataTypeBaseNoStatus) {
         try (Cache<String, Object> cache = UserUtils.loginUserCache()) {
             String loginId = (String) StpUtil.getTokenInfo().getLoginId();
             User user = (User) cache.get(loginId);
@@ -27,7 +30,7 @@ public class DataTypeBaseNoStatusInterceptor implements DraftInterceptor<DataTyp
                 draft.setUpdateDate(new Date());
                 draft.setUpdateBy(user.userCode());
             }
-            if (isNew) {
+            if (dataTypeBaseNoStatus == null) {
                 draft.setCreateDate(new Date());
                 draft.setCreateBy(user.userCode());
                 draft.setUpdateBy(user.userCode());
@@ -42,7 +45,7 @@ public class DataTypeBaseNoStatusInterceptor implements DraftInterceptor<DataTyp
                 draft.setUpdateDate(new Date());
                 draft.setUpdateBy("system");
             }
-            if (isNew) {
+            if (dataTypeBaseNoStatus == null) {
                 draft.setUpdateDate(new Date());
                 draft.setCreateDate(new Date());
                 draft.setCreateBy("system");

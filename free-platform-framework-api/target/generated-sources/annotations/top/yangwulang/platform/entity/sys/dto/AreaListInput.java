@@ -17,6 +17,9 @@ import top.yangwulang.platform.entity.sys.Area;
 import top.yangwulang.platform.entity.sys.AreaDraft;
 import top.yangwulang.platform.entity.sys.AreaFetcher;
 
+/**
+ * 区域表
+ */
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Area.dto"
 )
@@ -69,6 +72,9 @@ public class AreaListInput implements Input<Area> {
         return new AreaListInput(base);
     }
 
+    /**
+     * 父级编号
+     */
     @Nullable
     public String getParentId() {
         return parentId;
@@ -78,6 +84,9 @@ public class AreaListInput implements Input<Area> {
         this.parentId = parentId;
     }
 
+    /**
+     * 名称
+     */
     @NotNull
     public String getAreaName() {
         return areaName;
@@ -87,6 +96,9 @@ public class AreaListInput implements Input<Area> {
         this.areaName = areaName;
     }
 
+    /**
+     * 排序
+     */
     @Nullable
     public Long getSort() {
         return sort;
@@ -96,6 +108,9 @@ public class AreaListInput implements Input<Area> {
         this.sort = sort;
     }
 
+    /**
+     * 区域类型
+     */
     @Nullable
     public String getAreaType() {
         return areaType;

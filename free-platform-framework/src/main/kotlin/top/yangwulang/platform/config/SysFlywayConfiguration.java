@@ -15,6 +15,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.flyway.FlywayProperties;
 import org.springframework.context.annotation.Configuration;
 import top.yangwulang.platform.entity.event.FlywayMigrateSuccessEvent;
+import top.yangwulang.platform.flyway.SysFlywayStartedConfigInitCallback;
 
 import javax.annotation.PostConstruct;
 
@@ -40,6 +41,10 @@ public class SysFlywayConfiguration extends AbstractFlywayConfiguration implemen
         return dbType;
     }
 
+    @Override
+    protected Callback[] callbacks() {
+        return new Callback[] { new SysFlywayStartedConfigInitCallback()};
+    }
 
     @Override
     public void run(ApplicationArguments args) throws Exception {

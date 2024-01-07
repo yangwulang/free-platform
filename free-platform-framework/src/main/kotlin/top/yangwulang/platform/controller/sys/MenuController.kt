@@ -5,7 +5,7 @@ import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import io.swagger.v3.oas.annotations.tags.Tags
 import org.apache.commons.lang3.StringUtils
-import org.babyfish.jimmer.client.NotApi
+import org.babyfish.jimmer.client.ApiIgnore
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 import top.yangwulang.platform.entity.Result
@@ -63,14 +63,14 @@ class MenuController {
         return menuService.save(menu)
     }
 
-    @NotApi
+    @ApiIgnore
     @GetMapping("/findByUserId")
     @Operation(summary = "查询用户下所拥有的菜单")
     fun findByUserId(userId: String?): List<Tree<String>> {
         return menuService.findByUserIdTree(userId)
     }
 
-    @NotApi
+    @ApiIgnore
     @GetMapping("/findByRoleId")
     @Operation(summary = "查询角色下所有的菜单")
     fun findByRoleId(roleId: String?): List<Tree<String>> {

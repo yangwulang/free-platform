@@ -2,14 +2,12 @@ package top.yangwulang.platform.entity.sys.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.lang.Boolean;
-import java.lang.Integer;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigDecimal;
-import java.util.Date;
 import java.util.Objects;
-import org.babyfish.jimmer.View;
+import org.babyfish.jimmer.Input;
 import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
@@ -23,16 +21,10 @@ import top.yangwulang.platform.entity.sys.RoleFetcher;
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Role.dto"
 )
-public class RoleListView implements View<Role> {
-    public static final ViewMetadata<Role, RoleListView> METADATA = 
-        new ViewMetadata<Role, RoleListView>(
+public class RoleSaveInput implements Input<Role> {
+    public static final ViewMetadata<Role, RoleSaveInput> METADATA = 
+        new ViewMetadata<Role, RoleSaveInput>(
             RoleFetcher.$
-                .status()
-                .createBy()
-                .createDate()
-                .updateBy()
-                .updateDate()
-                .remarks()
                 .roleCode()
                 .roleName()
                 .roleType()
@@ -41,31 +33,8 @@ public class RoleListView implements View<Role> {
                 .userType()
                 .dataScope()
                 .bizScope(),
-            RoleListView::new
+            RoleSaveInput::new
     );
-
-    @NotNull
-    private String id;
-
-    @Schema(
-            description = "状态"
-    )
-    private int status;
-
-    @NotNull
-    private String createBy;
-
-    @NotNull
-    private Date createDate;
-
-    @NotNull
-    private String updateBy;
-
-    @NotNull
-    private Date updateDate;
-
-    @Nullable
-    private String remarks;
 
     @Schema(
             description = "角色编码"
@@ -115,17 +84,10 @@ public class RoleListView implements View<Role> {
     @Nullable
     private String bizScope;
 
-    public RoleListView() {
+    public RoleSaveInput() {
     }
 
-    public RoleListView(@NotNull Role base) {
-        this.id = base.id();
-        this.status = base.status();
-        this.createBy = base.createBy();
-        this.createDate = base.createDate();
-        this.updateBy = base.updateBy();
-        this.updateDate = base.updateDate();
-        this.remarks = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(RoleDraft.Producer.SLOT_REMARKS)) ? base.remarks() : null;
+    public RoleSaveInput(@NotNull Role base) {
         this.roleCode = base.roleCode();
         this.roleName = base.roleName();
         this.roleType = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(RoleDraft.Producer.SLOT_ROLE_TYPE)) ? base.roleType() : null;
@@ -136,99 +98,8 @@ public class RoleListView implements View<Role> {
         this.bizScope = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(RoleDraft.Producer.SLOT_BIZ_SCOPE)) ? base.bizScope() : null;
     }
 
-    public static RoleListView of(@NotNull Role base) {
-        return new RoleListView(base);
-    }
-
-    /**
-     * 字典类型编码
-     * @return 主键值
-     */
-    @NotNull
-    public String getId() {
-        return id;
-    }
-
-    public void setId(@NotNull String id) {
-        this.id = id;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
-    /**
-     * 创建者
-     *
-     * @return 创建者
-     */
-    @NotNull
-    public String getCreateBy() {
-        return createBy;
-    }
-
-    public void setCreateBy(@NotNull String createBy) {
-        this.createBy = createBy;
-    }
-
-    /**
-     * 创建时间
-     *
-     * @return 创建时间
-     */
-    @NotNull
-    public Date getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(@NotNull Date createDate) {
-        this.createDate = createDate;
-    }
-
-    /**
-     * 更新者
-     *
-     * @return 更新者
-     */
-    @NotNull
-    public String getUpdateBy() {
-        return updateBy;
-    }
-
-    public void setUpdateBy(@NotNull String updateBy) {
-        this.updateBy = updateBy;
-    }
-
-    /**
-     * 更新时间
-     *
-     * @return 更新时间
-     */
-    @NotNull
-    public Date getUpdateDate() {
-        return updateDate;
-    }
-
-    public void setUpdateDate(@NotNull Date updateDate) {
-        this.updateDate = updateDate;
-    }
-
-    /**
-     * 备注信息
-     *
-     * @return 备注信息
-     */
-    @Nullable
-    public String getRemarks() {
-        return remarks;
-    }
-
-    public void setRemarks(@Nullable String remarks) {
-        this.remarks = remarks;
+    public static RoleSaveInput of(@NotNull Role base) {
+        return new RoleSaveInput(base);
     }
 
     /**
@@ -330,13 +201,6 @@ public class RoleListView implements View<Role> {
     @Override
     public Role toEntity() {
         return RoleDraft.$.produce(__draft -> {
-            __draft.setId(id);
-            __draft.setStatus(status);
-            __draft.setCreateBy(createBy);
-            __draft.setCreateDate(createDate);
-            __draft.setUpdateBy(updateBy);
-            __draft.setUpdateDate(updateDate);
-            __draft.setRemarks(remarks);
             __draft.setRoleCode(roleCode);
             __draft.setRoleName(roleName);
             __draft.setRoleType(roleType);
@@ -350,14 +214,7 @@ public class RoleListView implements View<Role> {
 
     @Override
     public int hashCode() {
-        int hash = Objects.hashCode(id);
-        hash = hash * 31 + Integer.hashCode(status);
-        hash = hash * 31 + Objects.hashCode(createBy);
-        hash = hash * 31 + Objects.hashCode(createDate);
-        hash = hash * 31 + Objects.hashCode(updateBy);
-        hash = hash * 31 + Objects.hashCode(updateDate);
-        hash = hash * 31 + Objects.hashCode(remarks);
-        hash = hash * 31 + Objects.hashCode(roleCode);
+        int hash = Objects.hashCode(roleCode);
         hash = hash * 31 + Objects.hashCode(roleName);
         hash = hash * 31 + Objects.hashCode(roleType);
         hash = hash * 31 + Objects.hashCode(roleSort);
@@ -373,28 +230,7 @@ public class RoleListView implements View<Role> {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
-        RoleListView other = (RoleListView) o;
-        if (!Objects.equals(id, other.id)) {
-            return false;
-        }
-        if (status != other.status) {
-            return false;
-        }
-        if (!Objects.equals(createBy, other.createBy)) {
-            return false;
-        }
-        if (!Objects.equals(createDate, other.createDate)) {
-            return false;
-        }
-        if (!Objects.equals(updateBy, other.updateBy)) {
-            return false;
-        }
-        if (!Objects.equals(updateDate, other.updateDate)) {
-            return false;
-        }
-        if (!Objects.equals(remarks, other.remarks)) {
-            return false;
-        }
+        RoleSaveInput other = (RoleSaveInput) o;
         if (!Objects.equals(roleCode, other.roleCode)) {
             return false;
         }
@@ -425,15 +261,8 @@ public class RoleListView implements View<Role> {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("RoleListView").append('(');
-        builder.append("id=").append(id);
-        builder.append(", status=").append(status);
-        builder.append(", createBy=").append(createBy);
-        builder.append(", createDate=").append(createDate);
-        builder.append(", updateBy=").append(updateBy);
-        builder.append(", updateDate=").append(updateDate);
-        builder.append(", remarks=").append(remarks);
-        builder.append(", roleCode=").append(roleCode);
+        builder.append("RoleSaveInput").append('(');
+        builder.append("roleCode=").append(roleCode);
         builder.append(", roleName=").append(roleName);
         builder.append(", roleType=").append(roleType);
         builder.append(", roleSort=").append(roleSort);

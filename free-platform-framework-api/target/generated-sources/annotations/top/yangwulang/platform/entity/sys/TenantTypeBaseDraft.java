@@ -22,7 +22,7 @@ public interface TenantTypeBaseDraft extends TenantTypeBase, Draft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.54",
+                "0.8.69",
                 TenantTypeBase.class,
                 Collections.emptyList(),
                 null

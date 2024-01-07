@@ -1,2 +1,3 @@
 *.class
 .iml
+/free-platform-framework-api/target/maven-status/

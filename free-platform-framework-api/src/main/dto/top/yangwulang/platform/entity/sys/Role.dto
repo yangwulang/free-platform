@@ -18,6 +18,17 @@ specification RoleListSpecification {
     userType
 }
 
+input RoleSaveInput {
+    roleCode
+    roleName
+    roleType
+    roleSort
+    isSys
+    userType
+    dataScope
+    bizScope
+}
+
 RoleGetView {
     #allScalars
     -corpCode

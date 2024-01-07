@@ -88,7 +88,7 @@ public interface OptionAnalysisDraft extends OptionAnalysis, TypeBaseDraft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.54",
+                "0.8.69",
                 OptionAnalysis.class,
                 Collections.singleton(TypeBaseDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (OptionAnalysis)base)

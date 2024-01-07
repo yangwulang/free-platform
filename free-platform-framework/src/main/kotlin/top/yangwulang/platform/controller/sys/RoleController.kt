@@ -4,19 +4,17 @@ import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import io.swagger.v3.oas.annotations.tags.Tags
 import jakarta.servlet.http.HttpServletRequest
-import org.apache.commons.lang3.StringUtils
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
 import org.springframework.web.bind.annotation.*
 import top.yangwulang.platform.entity.PageHttpRequest
 import top.yangwulang.platform.entity.Result
-import top.yangwulang.platform.entity.sys.*
-import top.yangwulang.platform.entity.sys.dto.RoleGetView
-import top.yangwulang.platform.entity.sys.dto.RoleListInput
-import top.yangwulang.platform.entity.sys.dto.RoleListSpecification
-import top.yangwulang.platform.entity.sys.dto.RoleListView
-import top.yangwulang.platform.entity.sys.dto.UserListView
-import top.yangwulang.platform.entity.sys.input.RoleInput
+import top.yangwulang.platform.entity.Tables
+import top.yangwulang.platform.entity.sys.Role
+import top.yangwulang.platform.entity.sys.RoleTable
+import top.yangwulang.platform.entity.sys.UserTable
+import top.yangwulang.platform.entity.sys.UserTableEx
+import top.yangwulang.platform.entity.sys.dto.*
 import top.yangwulang.platform.entity.sys.input.role.AllocationUserQo
 import top.yangwulang.platform.entity.sys.input.role.BindUserRoleBatchQo
 import top.yangwulang.platform.entity.sys.input.role.BindUserRoleQo
@@ -47,14 +45,13 @@ class RoleController {
     @Operation(summary = "获取角色列表")
     fun listData(request: HttpServletRequest?, @RequestBody specification: RoleListSpecification): Page<RoleListView> {
         val repository = roleService.repository()
-        val table = RoleTable.`$`
         return repository
             .pager(PageHttpRequest.of(request).toPage())
             .execute(
                 repository.sql()
-                    .createQuery(table)
+                    .createQuery(Tables.ROLE_TABLE)
                     .where(specification)
-                    .select(table.fetch(RoleListView::class.java))
+                    .select(Tables.ROLE_TABLE.fetch(RoleListView::class.java))
             )
     }
 
@@ -100,7 +97,7 @@ class RoleController {
 
     @PutMapping
     @Operation(summary = "保存或修改角色信息")
-    fun save(@RequestBody roleInput: RoleInput): Role {
+    fun save(@RequestBody roleInput: RoleSaveInput): Role {
         return roleService.save(roleInput)
     }
 

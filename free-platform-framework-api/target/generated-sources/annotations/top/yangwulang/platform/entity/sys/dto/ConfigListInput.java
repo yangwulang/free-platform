@@ -76,6 +76,11 @@ public class ConfigListInput implements Input<Config> {
         return new ConfigListInput(base);
     }
 
+    /**
+     * 参数键
+     *
+     * @return 键
+     */
     @Nullable
     public String getConfigKey() {
         return configKey;
@@ -85,6 +90,11 @@ public class ConfigListInput implements Input<Config> {
         this.configKey = configKey;
     }
 
+    /**
+     * 名称
+     *
+     * @return 配置名称
+     */
     @Nullable
     public String getConfigName() {
         return configName;
@@ -94,6 +104,11 @@ public class ConfigListInput implements Input<Config> {
         this.configName = configName;
     }
 
+    /**
+     * 参数值
+     *
+     * @return 值
+     */
     @Nullable
     public String getConfigValue() {
         return configValue;
@@ -103,6 +118,11 @@ public class ConfigListInput implements Input<Config> {
         this.configValue = configValue;
     }
 
+    /**
+     * 备注信息
+     *
+     * @return 备注信息
+     */
     @Nullable
     public String getRemarks() {
         return remarks;

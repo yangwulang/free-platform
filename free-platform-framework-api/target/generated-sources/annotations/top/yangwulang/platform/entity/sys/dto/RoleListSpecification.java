@@ -41,6 +41,9 @@ public class RoleListSpecification implements JSpecification<Role, RoleTable> {
     public RoleListSpecification() {
     }
 
+    /**
+     * 角色名称
+     */
     @Nullable
     public String getRoleName() {
         return roleName;
@@ -50,6 +53,9 @@ public class RoleListSpecification implements JSpecification<Role, RoleTable> {
         this.roleName = roleName;
     }
 
+    /**
+     * 角色分类（高管、中层、基层、其它）
+     */
     @Nullable
     public String getRoleType() {
         return roleType;
@@ -59,6 +65,9 @@ public class RoleListSpecification implements JSpecification<Role, RoleTable> {
         this.roleType = roleType;
     }
 
+    /**
+     * 用户类型（employee员工 member会员）
+     */
     @Nullable
     public String getUserType() {
         return userType;

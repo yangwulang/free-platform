@@ -48,6 +48,9 @@ public class CompanyListInput implements Input<Company> {
         return new CompanyListInput(base);
     }
 
+    /**
+     * 公司名称
+     */
     @Nullable
     public String getCompanyName() {
         return companyName;

@@ -8,12 +8,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import top.yangwulang.platform.entity.sys.Menu;
 import top.yangwulang.platform.entity.sys.MenuProps;
-import top.yangwulang.platform.entity.sys.input.MenuInput;
 import top.yangwulang.platform.repository.sys.MenuRepository;
 import top.yangwulang.platform.services.MenuService;
 
-import java.util.*;
-import java.util.stream.Stream;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * @author yangwulang
@@ -23,13 +24,6 @@ public class MenuServiceImpl extends BaseServiceImpl<Menu, String, MenuRepositor
 
     public MenuServiceImpl(@Autowired MenuRepository repository) {
         super(repository);
-    }
-
-
-    @Override
-    @Transactional(rollbackFor = {Exception.class})
-    public Menu save(MenuInput menu) {
-        return super.repository.save(menu.toEntity());
     }
 
     public List<Menu> findByUserId(String userId) {

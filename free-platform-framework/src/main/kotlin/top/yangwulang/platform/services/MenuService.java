@@ -2,13 +2,9 @@ package top.yangwulang.platform.services;
 
 import cn.hutool.core.lang.tree.Tree;
 import top.yangwulang.platform.entity.sys.Menu;
-import top.yangwulang.platform.entity.sys.input.MenuInput;
 import top.yangwulang.platform.repository.sys.MenuRepository;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Stream;
 
 /**
  * 菜单服务层
@@ -16,13 +12,7 @@ import java.util.stream.Stream;
  * @author yangwulang
  */
 public interface MenuService extends BaseService<Menu, String, MenuRepository> {
-    /**
-     * 保存菜单
-     *
-     * @param menu 菜单
-     * @return 存取后的菜单
-     */
-    Menu save(MenuInput menu);
+
 
     /**
      * 查询用户下所有的菜单树

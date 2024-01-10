@@ -6,7 +6,7 @@ import top.yangwulang.platform.entity.sys.UserDraft;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-01-09T17:37:58+0800",
+    date = "2024-01-10T18:00:27+0800",
     comments = "version: 1.5.3.Final, compiler: javac, environment: Java 17.0.7 (Oracle Corporation)"
 )
 class UserSaveInput$ConverterImpl implements UserSaveInput.Converter {

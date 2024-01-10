@@ -10,15 +10,19 @@ import org.springframework.data.domain.Page
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import top.yangwulang.platform.entity.PageHttpRequest
+import top.yangwulang.platform.entity.Result
+import top.yangwulang.platform.entity.sys.Employee
 import top.yangwulang.platform.entity.sys.EmployeeTable
 import top.yangwulang.platform.entity.sys.User
 import top.yangwulang.platform.entity.sys.dto.EmployeeGetView
 import top.yangwulang.platform.entity.sys.dto.EmployeeListInput
 import top.yangwulang.platform.entity.sys.dto.EmployeeListView
+import top.yangwulang.platform.entity.sys.dto.EmployeeSaveInput
 import top.yangwulang.platform.services.EmployeeService
 
 /**
@@ -55,5 +59,15 @@ class EmployeeController {
     @GetMapping("/{id}")
     fun get(@PathVariable("id") id: String): EmployeeGetView? {
         return employeeService.repository().sql().findById(EmployeeGetView::class.java, id);
+    }
+
+    @PutMapping
+    @Operation(summary = "新增或修改员工信息")
+    fun save(@RequestBody input: EmployeeSaveInput) : Result<Employee>{
+        return Result<Employee>()
+            .success(employeeService.save(input))
+            .apply {
+                message = "操作成功"
+            }
     }
 }

@@ -4,17 +4,18 @@ import cn.hutool.crypto.digest.DigestUtil;
 import cn.hutool.extra.spring.SpringUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.babyfish.jimmer.Input;
+import org.babyfish.jimmer.meta.TypedProp;
 import org.babyfish.jimmer.spring.repository.support.JRepositoryImpl;
 import org.babyfish.jimmer.sql.JSqlClient;
+import org.babyfish.jimmer.sql.ast.Predicate;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import top.yangwulang.platform.entity.Fetchers;
+import top.yangwulang.platform.entity.Tables;
 import top.yangwulang.platform.entity.event.RegisterUserSuccessEvent;
-import top.yangwulang.platform.entity.sys.User;
-import top.yangwulang.platform.entity.sys.UserDraft;
-import top.yangwulang.platform.entity.sys.UserProps;
-import top.yangwulang.platform.entity.sys.UserTable;
+import top.yangwulang.platform.entity.sys.*;
 import top.yangwulang.platform.exception.ServiceException;
 import top.yangwulang.platform.exception.SystemError;
 import top.yangwulang.platform.repository.sys.UserRepository;
@@ -23,8 +24,13 @@ import top.yangwulang.platform.utils.ConfigUtils;
 import top.yangwulang.platform.utils.UserUtils;
 
 import java.rmi.server.ServerCloneException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 /**
  * @author yangwulang
@@ -109,5 +115,27 @@ public class UserServiceImpl
         ));
     }
 
+    @Override
+    public List<String> getPermissionString(String id) {
+        return this.repository().sql()
+                .createQuery(Tables.MENU_TABLE)
+                .where(Predicate.and(
+                        MenuTableEx.$.roles().users().userCode().eq(id),
+                        Tables.MENU_TABLE.permission().ne("")
+                ))
+                .select(Tables.MENU_TABLE.fetch(
+                        Fetchers.MENU_FETCHER.permission()
+                ))
+                .execute()
+                .stream()
+                .map(Menu::permission)
+                .flatMap((Function<String, Stream<String>>) s -> {
+                    if (s.contains(",")) {
+                        return Arrays.stream(s.split(","));
+                    }
+                    return Stream.of(s);
+                })
+                .toList();
+    }
 
 }

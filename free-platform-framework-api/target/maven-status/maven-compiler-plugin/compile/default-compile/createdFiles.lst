@@ -6,7 +6,6 @@ top\yangwulang\platform\entity\sys\dto\CompanySaveInput.class
 top\yangwulang\platform\entity\sys\input\user\UserSaveInput$ConverterImpl.class
 top\yangwulang\platform\entity\sys\input\user\UserSaveInput.class
 top\yangwulang\platform\entity\TableExes.class
-top\yangwulang\platform\entity\sys\input\RoleInput.class
 top\yangwulang\platform\entity\sys\CompanyDraft$Producer.class
 top\yangwulang\platform\entity\sys\RoleDraft.class
 top\yangwulang\platform\entity\TenantTypeBaseDraft$Producer.class
@@ -111,6 +110,7 @@ top\yangwulang\platform\entity\DataTypeBaseDraft$Producer.class
 top\yangwulang\platform\entity\sys\BaseEntityProps.class
 top\yangwulang\platform\entity\sys\dto\MenuListView$TargetOf_children.class
 top\yangwulang\platform\entity\sys\TypeBaseDraft.class
+top\yangwulang\platform\entity\sys\dto\LoginUserInfoView$TargetOf_roles.class
 top\yangwulang\platform\entity\sys\input\MenuInput$Converter.class
 top\yangwulang\platform\entity\sys\MenuDraft.class
 top\yangwulang\platform\entity\sys\PostDraft$Producer$Implementor.class
@@ -179,7 +179,6 @@ META-INF\jimmer\immutables
 top\yangwulang\platform\entity\sys\PostTable$Remote.class
 top\yangwulang\platform\entity\BaseEntity.class
 top\yangwulang\platform\entity\message\MessageRecordUserProps.class
-top\yangwulang\platform\entity\sys\input\RoleInput$ConverterImpl.class
 top\yangwulang\platform\entity\sys\input\LoginInput$ConverterImpl.class
 top\yangwulang\platform\entity\sys\AreaTable.class
 top\yangwulang\platform\entity\sys\DictDataDraft$Producer$Implementor.class
@@ -216,7 +215,6 @@ top\yangwulang\platform\entity\sys\FileUploadDraft$Producer$DraftImpl.class
 top\yangwulang\platform\entity\sys\FileUploadDraft.class
 top\yangwulang\platform\entity\sys\FileEntityTable.class
 top\yangwulang\platform\entity\sys\PostTable.class
-top\yangwulang\platform\entity\sys\input\RoleInput$Converter.class
 top\yangwulang\platform\entity\BaseEntityDraft.class
 top\yangwulang\platform\entity\sys\FileUploadDraft$Producer$Implementor.class
 top\yangwulang\platform\entity\sys\Company.class
@@ -293,6 +291,7 @@ top\yangwulang\platform\entity\sys\ConfigTableEx.class
 top\yangwulang\platform\entity\sys\MenuFetcher.class
 top\yangwulang\platform\entity\sys\DictTypeTable$Remote.class
 top\yangwulang\platform\entity\sys\AreaTableEx.class
+top\yangwulang\platform\entity\sys\dto\RoleSaveInput.class
 top\yangwulang\platform\entity\TenantTypeBase.class
 top\yangwulang\platform\entity\sys\dto\RoleGetView$TargetOf_users.class
 top\yangwulang\platform\entity\sys\input\DictTypeInput$ConverterImpl.class

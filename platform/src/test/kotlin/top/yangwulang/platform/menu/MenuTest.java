@@ -4,11 +4,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import top.yangwulang.platform.entity.sys.Menu;
-import top.yangwulang.platform.entity.sys.MenuDraft;
 import top.yangwulang.platform.entity.sys.Role;
 import top.yangwulang.platform.entity.sys.input.MenuInput;
 import top.yangwulang.platform.repository.sys.MenuRepository;
-import top.yangwulang.platform.role.RoleTest;
 import top.yangwulang.platform.services.MenuService;
 
 import java.math.BigDecimal;

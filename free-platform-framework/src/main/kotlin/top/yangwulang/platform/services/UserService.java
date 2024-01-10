@@ -3,10 +3,12 @@ package top.yangwulang.platform.services;
 import org.babyfish.jimmer.Input;
 import org.jetbrains.annotations.NotNull;
 import top.yangwulang.platform.entity.event.RegisterUserSuccessEvent;
+import top.yangwulang.platform.entity.sys.Role;
 import top.yangwulang.platform.entity.sys.User;
 import top.yangwulang.platform.repository.sys.UserRepository;
 
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
 
 /**
  * @author yangwulang
@@ -59,4 +61,6 @@ public interface UserService extends BaseService<User, String, UserRepository> {
      * @param id 用户id
      */
     void adminResetPassword(@NotEmpty(message = "用户id不能为空") String id);
+
+    List<String> getPermissionString(@NotEmpty(message = "用户id不能为空") String id);
 }

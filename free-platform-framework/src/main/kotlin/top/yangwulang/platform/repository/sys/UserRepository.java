@@ -2,7 +2,10 @@ package top.yangwulang.platform.repository.sys;
 
 import org.babyfish.jimmer.spring.repository.JRepository;
 import org.babyfish.jimmer.sql.ast.Predicate;
+import org.babyfish.jimmer.sql.fetcher.RecursiveFieldConfig;
 import org.springframework.stereotype.Repository;
+import top.yangwulang.platform.entity.Fetchers;
+import top.yangwulang.platform.entity.Tables;
 import top.yangwulang.platform.entity.sys.*;
 
 import javax.validation.constraints.NotNull;
@@ -13,7 +16,7 @@ import javax.validation.constraints.NotNull;
  */
 @Repository
 public interface UserRepository extends JRepository<User, String> {
-    UserTable TABLE = UserTable.$;
+    UserTable TABLE = Tables.USER_TABLE;
 
     /**
      * 通过登录编号和密码查询用户信息
@@ -30,7 +33,20 @@ public interface UserRepository extends JRepository<User, String> {
                 ))
                 .select(
                         TABLE.fetch(
-                                UserFetcher.$
+                                Fetchers.USER_FETCHER
+                                        .roles(
+                                                Fetchers.ROLE_FETCHER
+                                                        .roleName()
+                                                        .roleCode()
+                                                        .menus(
+                                                                Fetchers.MENU_FETCHER
+                                                                        .children(
+                                                                                Fetchers.MENU_FETCHER.permission(),
+                                                                                RecursiveFieldConfig::recursive
+                                                                        )
+                                                                        .permission()
+                                                        )
+                                        )
                                         .allScalarFields()
                                         .password(false)
                         )

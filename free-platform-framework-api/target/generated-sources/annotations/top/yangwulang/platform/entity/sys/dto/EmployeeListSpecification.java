@@ -1,24 +1,22 @@
 package top.yangwulang.platform.entity.sys.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.lang.Class;
 import java.lang.Integer;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import org.babyfish.jimmer.Input;
-import org.babyfish.jimmer.impl.util.DtoPropAccessor;
 import org.babyfish.jimmer.internal.GeneratedBy;
-import org.babyfish.jimmer.meta.PropId;
-import org.babyfish.jimmer.runtime.ImmutableSpi;
-import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
-import org.jetbrains.annotations.NotNull;
+import org.babyfish.jimmer.meta.ImmutableProp;
+import org.babyfish.jimmer.sql.ast.query.specification.JSpecification;
+import org.babyfish.jimmer.sql.ast.query.specification.PredicateApplier;
+import org.babyfish.jimmer.sql.ast.query.specification.SpecificationArgs;
 import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.sys.Employee;
-import top.yangwulang.platform.entity.sys.EmployeeDraft;
-import top.yangwulang.platform.entity.sys.EmployeeFetcher;
-import top.yangwulang.platform.entity.sys.UserDraft;
-import top.yangwulang.platform.entity.sys.UserFetcher;
+import top.yangwulang.platform.entity.sys.EmployeeProps;
+import top.yangwulang.platform.entity.sys.EmployeeTable;
+import top.yangwulang.platform.entity.sys.UserProps;
 
 /**
  * 员工
@@ -26,49 +24,7 @@ import top.yangwulang.platform.entity.sys.UserFetcher;
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Employee.dto"
 )
-public class EmployeeListInput implements Input<Employee> {
-    public static final ViewMetadata<Employee, EmployeeListInput> METADATA = 
-        new ViewMetadata<Employee, EmployeeListInput>(
-            EmployeeFetcher.$
-                .empName()
-                .companyId()
-                .user(UserFetcher.$
-                        .userName()
-                        .email()
-                        .status()
-                ),
-            EmployeeListInput::new
-    );
-
-    private static final DtoPropAccessor EMP_CODE_ACCESSOR = new DtoPropAccessor(
-        false,
-        new int[] { EmployeeDraft.Producer.SLOT_EMP_CODE }
-    );
-
-    private static final DtoPropAccessor USER_NAME_ACCESSOR = new DtoPropAccessor(
-        true,
-        new int[] {
-            EmployeeDraft.Producer.SLOT_USER,
-            UserDraft.Producer.SLOT_USER_NAME
-        }
-    );
-
-    private static final DtoPropAccessor EMAIL_ACCESSOR = new DtoPropAccessor(
-        true,
-        new int[] {
-            EmployeeDraft.Producer.SLOT_USER,
-            UserDraft.Producer.SLOT_EMAIL
-        }
-    );
-
-    private static final DtoPropAccessor STATUS_ACCESSOR = new DtoPropAccessor(
-        false,
-        new int[] {
-            EmployeeDraft.Producer.SLOT_USER,
-            UserDraft.Producer.SLOT_STATUS
-        }
-    );
-
+public class EmployeeListSpecification implements JSpecification<Employee, EmployeeTable> {
     @Schema(
             description = "员工编码"
     )
@@ -102,20 +58,7 @@ public class EmployeeListInput implements Input<Employee> {
     @Nullable
     private Integer status;
 
-    public EmployeeListInput() {
-    }
-
-    public EmployeeListInput(@NotNull Employee base) {
-        this.empCode = EMP_CODE_ACCESSOR.get(base);
-        this.empName = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(EmployeeDraft.Producer.SLOT_EMP_NAME)) ? base.empName() : null;
-        this.companyId = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(EmployeeDraft.Producer.SLOT_COMPANY_ID)) ? base.companyId() : null;
-        this.userName = USER_NAME_ACCESSOR.get(base);
-        this.email = EMAIL_ACCESSOR.get(base);
-        this.status = STATUS_ACCESSOR.get(base);
-    }
-
-    public static EmployeeListInput of(@NotNull Employee base) {
-        return new EmployeeListInput(base);
+    public EmployeeListSpecification() {
     }
 
     /**
@@ -182,15 +125,21 @@ public class EmployeeListInput implements Input<Employee> {
     }
 
     @Override
-    public Employee toEntity() {
-        return EmployeeDraft.$.produce(__draft -> {
-            EMP_CODE_ACCESSOR.set(__draft, empCode);
-            __draft.setEmpName(empName);
-            __draft.setCompanyId(companyId);
-            USER_NAME_ACCESSOR.set(__draft, userName);
-            EMAIL_ACCESSOR.set(__draft, email);
-            STATUS_ACCESSOR.set(__draft, status);
-        });
+    public Class<Employee> entityType() {
+        return Employee.class;
+    }
+
+    @Override
+    public void applyTo(SpecificationArgs<Employee, EmployeeTable> args) {
+        PredicateApplier __applier = args.getApplier();
+        __applier.eq(new ImmutableProp[] { EmployeeProps.EMP_CODE.unwrap() }, this.empCode);
+        __applier.like(new ImmutableProp[] { EmployeeProps.EMP_NAME.unwrap() }, this.empName, false, false, false);
+        __applier.eq(new ImmutableProp[] { EmployeeProps.COMPANY_ID.unwrap() }, this.companyId);
+        __applier.push(EmployeeProps.USER.unwrap());
+        __applier.like(new ImmutableProp[] { UserProps.USER_NAME.unwrap() }, this.userName, false, false, false);
+        __applier.like(new ImmutableProp[] { UserProps.EMAIL.unwrap() }, this.email, false, false, false);
+        __applier.eq(new ImmutableProp[] { UserProps.STATUS.unwrap() }, this.status);
+        __applier.pop();
     }
 
     @Override
@@ -209,7 +158,7 @@ public class EmployeeListInput implements Input<Employee> {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
-        EmployeeListInput other = (EmployeeListInput) o;
+        EmployeeListSpecification other = (EmployeeListSpecification) o;
         if (!Objects.equals(empCode, other.empCode)) {
             return false;
         }
@@ -234,7 +183,7 @@ public class EmployeeListInput implements Input<Employee> {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("EmployeeListInput").append('(');
+        builder.append("EmployeeListSpecification").append('(');
         builder.append("empCode=").append(empCode);
         builder.append(", empName=").append(empName);
         builder.append(", companyId=").append(companyId);

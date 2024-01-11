@@ -14,11 +14,13 @@ import org.springframework.web.bind.annotation.*
 import top.yangwulang.platform.entity.Objects
 import top.yangwulang.platform.entity.PageHttpRequest
 import top.yangwulang.platform.entity.Result
+import top.yangwulang.platform.entity.Tables
 import top.yangwulang.platform.entity.sys.Employee
 import top.yangwulang.platform.entity.sys.EmployeeTable
 import top.yangwulang.platform.entity.sys.User
 import top.yangwulang.platform.entity.sys.dto.EmployeeGetView
 import top.yangwulang.platform.entity.sys.dto.EmployeeListInput
+import top.yangwulang.platform.entity.sys.dto.EmployeeListSpecification
 import top.yangwulang.platform.entity.sys.dto.EmployeeListView
 import top.yangwulang.platform.entity.sys.dto.EmployeeSaveInput
 import top.yangwulang.platform.services.EmployeeService
@@ -37,21 +39,23 @@ class EmployeeController {
 
     @PostMapping
     @Operation(summary = "获取员工列表")
-    fun listData(@RequestBody input: EmployeeListInput, request: HttpServletRequest?): Page<EmployeeListView> {
-        val table = EmployeeTable.`$`
+    fun listData(
+        @RequestBody specification: EmployeeListSpecification,
+        request: HttpServletRequest?
+    ): Page<EmployeeListView> {
         val repository = employeeService.repository()
         return employeeService.pager(PageHttpRequest.of(request).toPage())
             .execute(
                 repository.sql()
-                    .createQuery(table)
-                    .whereIf(StringUtils.isNotEmpty(input.empCode)) { table.empCode().eq(input.empCode) }
-                    .whereIf(StringUtils.isNotEmpty(input.empName)) { table.empName().like(input.empName) }
-                    .whereIf(StringUtils.isNotEmpty(input.userName)) { table.user().userName().like(input.userName) }
-                    .whereIf(StringUtils.isNotEmpty(input.email)) { table.user().email().like(input.email) }
-                    .whereIf(input.status != User.STATUS_DELETE.toInt() && input.status != null) {
-                        table.user().status().eq(input.status)
+                    .createQuery(Tables.EMPLOYEE_TABLE)
+                    .where(specification)
+                    .whereIf(
+                        specification.status != User.STATUS_DELETE.toInt()
+                                && specification.status != null
+                    ) {
+                        Tables.EMPLOYEE_TABLE.user().status().eq(specification.status)
                     }
-                    .select(table.fetch(EmployeeListView::class.java))
+                    .select(Tables.EMPLOYEE_TABLE.fetch(EmployeeListView::class.java))
             )
     }
 
@@ -63,11 +67,11 @@ class EmployeeController {
 
     @PutMapping
     @Operation(summary = "新增或修改员工信息")
-    fun save(@RequestBody input: EmployeeSaveInput) : Result<Employee>{
+    fun save(@RequestBody input: EmployeeSaveInput): Result<Employee> {
         if (StringUtils.isEmpty(input.mgrType)) {
             input.mgrType = User.USER_TYPE_SIMPLE_USER
         }
-        input.userWeight  = input.userWeight ?: 10
+        input.userWeight = input.userWeight ?: 10
         val employee = Objects.createEmployee(input.toEntity()) { employeeDraft ->
             employeeDraft.applyUser(employeeDraft.user()) { userDraft ->
                 val useDefaultValue = ConfigUtils.getConfigValueBoolean("sys.useDefaultPassword")

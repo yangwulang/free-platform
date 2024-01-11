@@ -124,6 +124,12 @@ public class EmployeeSaveInput implements Input<Employee> {
     @Nullable
     private String empName;
 
+    @Schema(
+            description = "员工编码"
+    )
+    @NotNull
+    private String empCode;
+
     @NotEmpty(
             message = "登陆编码不能为空"
     )
@@ -193,6 +199,7 @@ public class EmployeeSaveInput implements Input<Employee> {
 
     public EmployeeSaveInput(@NotNull Employee base) {
         this.empName = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(EmployeeDraft.Producer.SLOT_EMP_NAME)) ? base.empName() : null;
+        this.empCode = base.empCode();
         this.loginCode = LOGIN_CODE_ACCESSOR.get(base);
         this.userName = USER_NAME_ACCESSOR.get(base);
         this.mobile = MOBILE_ACCESSOR.get(base);
@@ -218,6 +225,18 @@ public class EmployeeSaveInput implements Input<Employee> {
 
     public void setEmpName(@Nullable String empName) {
         this.empName = empName;
+    }
+
+    /**
+     * 员工编码
+     */
+    @NotNull
+    public String getEmpCode() {
+        return empCode;
+    }
+
+    public void setEmpCode(@NotNull String empCode) {
+        this.empCode = empCode;
     }
 
     @Nullable
@@ -305,6 +324,7 @@ public class EmployeeSaveInput implements Input<Employee> {
     public Employee toEntity() {
         return EmployeeDraft.$.produce(__draft -> {
             __draft.setEmpName(empName);
+            __draft.setEmpCode(empCode);
             LOGIN_CODE_ACCESSOR.set(__draft, loginCode);
             USER_NAME_ACCESSOR.set(__draft, userName);
             MOBILE_ACCESSOR.set(__draft, mobile);
@@ -320,6 +340,7 @@ public class EmployeeSaveInput implements Input<Employee> {
     @Override
     public int hashCode() {
         int hash = Objects.hashCode(empName);
+        hash = hash * 31 + Objects.hashCode(empCode);
         hash = hash * 31 + Objects.hashCode(loginCode);
         hash = hash * 31 + Objects.hashCode(userName);
         hash = hash * 31 + Objects.hashCode(mobile);
@@ -339,6 +360,9 @@ public class EmployeeSaveInput implements Input<Employee> {
         }
         EmployeeSaveInput other = (EmployeeSaveInput) o;
         if (!Objects.equals(empName, other.empName)) {
+            return false;
+        }
+        if (!Objects.equals(empCode, other.empCode)) {
             return false;
         }
         if (!Objects.equals(loginCode, other.loginCode)) {
@@ -376,6 +400,7 @@ public class EmployeeSaveInput implements Input<Employee> {
         StringBuilder builder = new StringBuilder();
         builder.append("EmployeeSaveInput").append('(');
         builder.append("empName=").append(empName);
+        builder.append(", empCode=").append(empCode);
         builder.append(", loginCode=").append(loginCode);
         builder.append(", userName=").append(userName);
         builder.append(", mobile=").append(mobile);

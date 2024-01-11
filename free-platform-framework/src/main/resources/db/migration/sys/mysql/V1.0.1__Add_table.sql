@@ -38,6 +38,16 @@ CREATE TABLE `sys_config`
 INSERT INTO `sys_config`
 VALUES ('1648339399024902144', 'askldfns', 'test.test', 'dddd', '1614867934644609024', '2023-04-18 22:55:10',
         '1614867934644609024', '2023-04-18 22:55:11', '');
+INSERT INTO `sys_config` (id, config_name, config_key, config_value, create_by, create_date, update_by, update_date,
+                          remarks)
+VALUES ('1708320311583735808', '用户默认密码', 'sys.defaultPassword', '123456', '1614867934644609024',
+        '2023-10-01 03:17:56', '1614867934644609024', '2023-10-01 03:18:20',
+        '默认的用户密码，管理员重置密码也是读取的此处');
+INSERT INTO `sys_config` (id, config_name, config_key, config_value, create_by, create_date, update_by, update_date,
+                          remarks)
+VALUES ('1708351447915675648', '是否使用默认密码', 'sys.useDefaultPassword', 'true', '1614867934644609024',
+        '2023-10-01 05:21:39', '1614867934644609024', '2023-10-01 05:30:19', null);
+
 
 
 CREATE TABLE `sys_dict_type`
@@ -646,12 +656,13 @@ create table sys_employee
 (
     emp_code   varchar(64)  not null comment '员工编码'
         primary key,
+    user_code  varchar(64)  not null comment '用户id',
     company_id varchar(64)  null comment '公司id',
     emp_name   varchar(500) null comment '员工姓名',
     constraint sys_employee_sys_company_id_fk
         foreign key (company_id) references sys_company (id),
     constraint sys_employee_sys_user_user_code_fk
-        foreign key (emp_code) references sys_user (user_code)
+        foreign key (user_code) references sys_user (user_code)
 )
     comment '员工表';
 

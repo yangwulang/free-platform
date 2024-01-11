@@ -19,13 +19,13 @@ EmployeeListView {
     }
 }
 
-unsafe input EmployeeListInput {
-    empCode?
-    empName
-    companyId
+specification EmployeeListSpecification {
+    eq(empCode)
+    like(empName)
+    eq(companyId)
     flat(user) {
-        userName
-        email
+        like(userName)
+        like(email)
         status
     }
 }
@@ -37,7 +37,7 @@ EmployeeGetView {
 
 unsafe input EmployeeSaveInput {
     #allScalars
-    -empCode
+    empCode
     flat(user) {
         @NotEmpty(message = "登陆编码不能为空")
         @Schema(description = "登陆编码，用户登陆的账号", requiredMode = Schema.RequiredMode.REQUIRED)

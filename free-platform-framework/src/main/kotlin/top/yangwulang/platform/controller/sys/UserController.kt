@@ -21,7 +21,7 @@ import top.yangwulang.platform.entity.sys.dto.UserGetView
 import top.yangwulang.platform.entity.sys.dto.UserListInput
 import top.yangwulang.platform.entity.sys.dto.UserListView
 import top.yangwulang.platform.entity.sys.dto.UserRoleMenuView
-import top.yangwulang.platform.entity.sys.input.user.UserSaveInput
+import top.yangwulang.platform.entity.sys.dto.UserSaveInput
 import top.yangwulang.platform.exception.ServiceException
 import top.yangwulang.platform.services.UserService
 

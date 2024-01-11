@@ -6,7 +6,7 @@ import top.yangwulang.platform.entity.sys.MenuDraft;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-01-10T18:00:27+0800",
+    date = "2024-01-11T09:31:28+0800",
     comments = "version: 1.5.3.Final, compiler: javac, environment: Java 17.0.7 (Oracle Corporation)"
 )
 class MenuSaveInput$ConverterImpl implements MenuSaveInput.Converter {

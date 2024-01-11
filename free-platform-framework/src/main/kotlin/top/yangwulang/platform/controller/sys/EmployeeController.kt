@@ -4,16 +4,14 @@ import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import io.swagger.v3.oas.annotations.tags.Tags
 import jakarta.servlet.http.HttpServletRequest
+import okhttp3.internal.notify
 import org.apache.commons.lang3.StringUtils
+import org.babyfish.jimmer.ImmutableObjects
+import org.babyfish.jimmer.client.meta.Prop
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.PutMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
+import top.yangwulang.platform.entity.Objects
 import top.yangwulang.platform.entity.PageHttpRequest
 import top.yangwulang.platform.entity.Result
 import top.yangwulang.platform.entity.sys.Employee
@@ -24,6 +22,8 @@ import top.yangwulang.platform.entity.sys.dto.EmployeeListInput
 import top.yangwulang.platform.entity.sys.dto.EmployeeListView
 import top.yangwulang.platform.entity.sys.dto.EmployeeSaveInput
 import top.yangwulang.platform.services.EmployeeService
+import top.yangwulang.platform.utils.ConfigUtils
+import top.yangwulang.platform.utils.UserUtils
 
 /**
  * @author yangwulang
@@ -64,8 +64,21 @@ class EmployeeController {
     @PutMapping
     @Operation(summary = "新增或修改员工信息")
     fun save(@RequestBody input: EmployeeSaveInput) : Result<Employee>{
+        if (StringUtils.isEmpty(input.mgrType)) {
+            input.mgrType = User.USER_TYPE_SIMPLE_USER
+        }
+        input.userWeight  = input.userWeight ?: 10
+        val employee = Objects.createEmployee(input.toEntity()) { employeeDraft ->
+            employeeDraft.applyUser(employeeDraft.user()) { userDraft ->
+                val useDefaultValue = ConfigUtils.getConfigValueBoolean("sys.useDefaultPassword")
+                if (useDefaultValue && !ImmutableObjects.isLoaded(userDraft, "password")) {
+                    val configValue = ConfigUtils.getConfigValue("sys.defaultPassword")
+                    userDraft.setPassword(UserUtils.encryptPassword(configValue))
+                }
+            }
+        }
         return Result<Employee>()
-            .success(employeeService.save(input))
+            .success(employeeService.save(employee))
             .apply {
                 message = "操作成功"
             }

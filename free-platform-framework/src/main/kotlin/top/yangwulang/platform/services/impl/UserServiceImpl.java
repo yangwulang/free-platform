@@ -98,10 +98,7 @@ public class UserServiceImpl
 
     @Override
     public String encryptPassword(String password) {
-        if (StringUtils.isEmpty(password)) {
-            throw new ServiceException("加密的密码明文不能为空!");
-        }
-        return DigestUtil.md5Hex(password);
+        return UserUtils.encryptPassword(password);
     }
 
     @Override

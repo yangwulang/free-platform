@@ -1,3 +1,7 @@
+import io.swagger.v3.oas.annotations.media.Schema
+import javax.validation.constraints.NotEmpty
+
+
 UserListView {
     #allScalars
     -password
@@ -18,6 +22,31 @@ UserGetView {
             #allScalars
         }
     }
+}
+
+unsafe input UserSaveInput {
+    @Schema(description = "用户编码,用户id,为空则新增，不为空则修改")
+    userCode?
+    @NotEmpty(message = "登陆编码不能为空")
+    @Schema(description = "登陆编码，用户登陆的账号", requiredMode = Schema.RequiredMode.REQUIRED)
+    loginCode!
+    @Schema(description = "用户名")
+    userName
+    @Schema(description = "手机")
+    mobile
+    @Schema(description = "邮件")
+    email
+    @Schema(description = "性别")
+    sex
+    @Schema(description = "个性签名")
+    sign
+    @NotEmpty(message = "用户类型不能为空")
+    @Schema(description = "用户类型", requiredMode = Schema.RequiredMode.REQUIRED)
+    userType
+    @Schema(description = "用户权重", requiredMode = Schema.RequiredMode.REQUIRED)
+    userWeight!
+    @Schema(description = "管理员类型", requiredMode = Schema.RequiredMode.REQUIRED)
+    mgrType
 }
 
 LoginUserInfoView {

@@ -1,11 +1,14 @@
 package top.yangwulang.platform.utils;
 
 import cn.dev33.satoken.stp.StpUtil;
+import cn.hutool.crypto.digest.DigestUtil;
 import com.alicp.jetcache.Cache;
 import com.alicp.jetcache.RefreshPolicy;
 import com.alicp.jetcache.anno.CacheType;
 import com.alicp.jetcache.template.QuickConfig;
+import org.apache.commons.lang3.StringUtils;
 import top.yangwulang.platform.entity.sys.User;
+import top.yangwulang.platform.exception.ServiceException;
 
 import java.time.Duration;
 import java.time.temporal.TemporalUnit;
@@ -52,6 +55,19 @@ public class UserUtils {
             String loginId = (String) StpUtil.getTokenInfo().getLoginId();
             return (User) cache.get(loginId);
         }
+    }
+
+    /**
+     * 加密密码
+     *
+     * @param password 密码铭文
+     * @return 密码密文
+     */
+    public static String encryptPassword(String password) {
+        if (StringUtils.isEmpty(password)) {
+            throw new ServiceException("加密的密码明文不能为空!");
+        }
+        return DigestUtil.md5Hex(password);
     }
 
 

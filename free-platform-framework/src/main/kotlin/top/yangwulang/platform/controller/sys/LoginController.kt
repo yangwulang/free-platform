@@ -5,24 +5,15 @@ import cn.dev33.satoken.stp.StpUtil
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import io.swagger.v3.oas.annotations.tags.Tags
-import org.babyfish.jimmer.View
-import org.babyfish.jimmer.sql.ast.Predicate
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 import top.yangwulang.platform.entity.DeviceType
-import top.yangwulang.platform.entity.Fetchers
 import top.yangwulang.platform.entity.Result
-import top.yangwulang.platform.entity.Tables
-import top.yangwulang.platform.entity.sys.Menu
-import top.yangwulang.platform.entity.sys.MenuTableEx
-import top.yangwulang.platform.entity.sys.Role
-import top.yangwulang.platform.entity.sys.RoleTableEx
 import top.yangwulang.platform.entity.sys.dto.LoginUserInfoView
-import top.yangwulang.platform.entity.sys.dto.UserRoleMenuView
+import top.yangwulang.platform.entity.sys.dto.UserSaveInput
 import top.yangwulang.platform.entity.sys.input.LoginInput
-import top.yangwulang.platform.entity.sys.input.user.UserSaveInput
 import top.yangwulang.platform.services.UserService
 import top.yangwulang.platform.utils.UserUtils
 

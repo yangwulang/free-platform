@@ -32,12 +32,34 @@ specification EmployeeListSpecification {
 
 EmployeeGetView {
     #allScalars
+    flat(user) {
+        @NotEmpty(message = "登陆编码不能为空")
+        @Schema(description = "登陆编码，用户登陆的账号", requiredMode = Schema.RequiredMode.REQUIRED)
+        loginCode
+        @Schema(description = "用户名")
+        userName
+        @Schema(description = "手机")
+        mobile
+        @Schema(description = "邮件")
+        email
+        @Schema(description = "性别")
+        sex
+        @Schema(description = "个性签名")
+        sign
+        @NotEmpty(message = "用户类型不能为空")
+        @Schema(description = "用户类型", requiredMode = Schema.RequiredMode.REQUIRED)
+        userType
+        @Schema(description = "用户权重", requiredMode = Schema.RequiredMode.REQUIRED)
+        userWeight
+        @Schema(description = "管理员类型", requiredMode = Schema.RequiredMode.REQUIRED)
+        mgrType
+        }
 }
 
 
 unsafe input EmployeeSaveInput {
     #allScalars
-    empCode
+    empCode?
     flat(user) {
         @NotEmpty(message = "登陆编码不能为空")
         @Schema(description = "登陆编码，用户登陆的账号", requiredMode = Schema.RequiredMode.REQUIRED)

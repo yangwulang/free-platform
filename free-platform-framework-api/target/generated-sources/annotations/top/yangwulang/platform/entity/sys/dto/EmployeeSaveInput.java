@@ -46,6 +46,11 @@ public class EmployeeSaveInput implements Input<Employee> {
             EmployeeSaveInput::new
     );
 
+    private static final DtoPropAccessor EMP_CODE_ACCESSOR = new DtoPropAccessor(
+        false,
+        new int[] { EmployeeDraft.Producer.SLOT_EMP_CODE }
+    );
+
     private static final DtoPropAccessor LOGIN_CODE_ACCESSOR = new DtoPropAccessor(
         true,
         new int[] {
@@ -127,7 +132,7 @@ public class EmployeeSaveInput implements Input<Employee> {
     @Schema(
             description = "员工编码"
     )
-    @NotNull
+    @Nullable
     private String empCode;
 
     @NotEmpty(
@@ -199,7 +204,7 @@ public class EmployeeSaveInput implements Input<Employee> {
 
     public EmployeeSaveInput(@NotNull Employee base) {
         this.empName = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(EmployeeDraft.Producer.SLOT_EMP_NAME)) ? base.empName() : null;
-        this.empCode = base.empCode();
+        this.empCode = EMP_CODE_ACCESSOR.get(base);
         this.loginCode = LOGIN_CODE_ACCESSOR.get(base);
         this.userName = USER_NAME_ACCESSOR.get(base);
         this.mobile = MOBILE_ACCESSOR.get(base);
@@ -230,12 +235,12 @@ public class EmployeeSaveInput implements Input<Employee> {
     /**
      * 员工编码
      */
-    @NotNull
+    @Nullable
     public String getEmpCode() {
         return empCode;
     }
 
-    public void setEmpCode(@NotNull String empCode) {
+    public void setEmpCode(@Nullable String empCode) {
         this.empCode = empCode;
     }
 
@@ -324,7 +329,7 @@ public class EmployeeSaveInput implements Input<Employee> {
     public Employee toEntity() {
         return EmployeeDraft.$.produce(__draft -> {
             __draft.setEmpName(empName);
-            __draft.setEmpCode(empCode);
+            EMP_CODE_ACCESSOR.set(__draft, empCode);
             LOGIN_CODE_ACCESSOR.set(__draft, loginCode);
             USER_NAME_ACCESSOR.set(__draft, userName);
             MOBILE_ACCESSOR.set(__draft, mobile);

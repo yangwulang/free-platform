@@ -82,10 +82,6 @@ public class CompanyGetView implements View<Company> {
         return new CompanyGetView(base);
     }
 
-    /**
-     * 字典类型编码
-     * @return 主键值
-     */
     @NotNull
     public String getId() {
         return id;
@@ -95,9 +91,6 @@ public class CompanyGetView implements View<Company> {
         this.id = id;
     }
 
-    /**
-     * 公司编码
-     */
     @NotNull
     public String getCompanyCode() {
         return companyCode;
@@ -107,9 +100,6 @@ public class CompanyGetView implements View<Company> {
         this.companyCode = companyCode;
     }
 
-    /**
-     * 公司名称
-     */
     @NotNull
     public String getCompanyName() {
         return companyName;
@@ -119,9 +109,6 @@ public class CompanyGetView implements View<Company> {
         this.companyName = companyName;
     }
 
-    /**
-     * 公司全名
-     */
     @Nullable
     public String getCompanyFullName() {
         return companyFullName;
@@ -149,9 +136,6 @@ public class CompanyGetView implements View<Company> {
         this.corpName = corpName;
     }
 
-    /**
-     * 父级编号
-     */
     @Nullable
     public String getParentId() {
         return parentId;

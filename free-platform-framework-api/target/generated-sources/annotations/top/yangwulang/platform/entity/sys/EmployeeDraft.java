@@ -112,7 +112,7 @@ public interface EmployeeDraft extends Employee, Draft {
                 (ctx, base) -> new DraftImpl(ctx, (Employee)base)
             )
             .id(SLOT_EMP_CODE, "empCode", String.class)
-            .add(SLOT_USER, "user", OneToOne.class, User.class, true)
+            .keyReference(SLOT_USER, "user", OneToOne.class, User.class, true)
             .add(SLOT_COMPANY, "company", ManyToOne.class, Company.class, true)
             .add(SLOT_COMPANY_ID, "companyId", ImmutablePropCategory.SCALAR, String.class, true)
             .add(SLOT_EMP_NAME, "empName", ImmutablePropCategory.SCALAR, String.class, true)

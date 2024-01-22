@@ -115,10 +115,6 @@ public class DictDataGetView implements View<DictData> {
         return new DictDataGetView(base);
     }
 
-    /**
-     * 字典类型编码
-     * @return 主键值
-     */
     @NotNull
     public String getId() {
         return id;
@@ -128,11 +124,6 @@ public class DictDataGetView implements View<DictData> {
         this.id = id;
     }
 
-    /**
-     * 创建者
-     *
-     * @return 创建者
-     */
     @NotNull
     public String getCreateBy() {
         return createBy;
@@ -142,11 +133,6 @@ public class DictDataGetView implements View<DictData> {
         this.createBy = createBy;
     }
 
-    /**
-     * 创建时间
-     *
-     * @return 创建时间
-     */
     @NotNull
     public Date getCreateDate() {
         return createDate;
@@ -156,11 +142,6 @@ public class DictDataGetView implements View<DictData> {
         this.createDate = createDate;
     }
 
-    /**
-     * 更新者
-     *
-     * @return 更新者
-     */
     @NotNull
     public String getUpdateBy() {
         return updateBy;
@@ -170,11 +151,6 @@ public class DictDataGetView implements View<DictData> {
         this.updateBy = updateBy;
     }
 
-    /**
-     * 更新时间
-     *
-     * @return 更新时间
-     */
     @NotNull
     public Date getUpdateDate() {
         return updateDate;
@@ -184,11 +160,6 @@ public class DictDataGetView implements View<DictData> {
         this.updateDate = updateDate;
     }
 
-    /**
-     * 备注信息
-     *
-     * @return 备注信息
-     */
     @Nullable
     public String getRemarks() {
         return remarks;
@@ -198,9 +169,6 @@ public class DictDataGetView implements View<DictData> {
         this.remarks = remarks;
     }
 
-    /**
-     * 字典标签
-     */
     @Nullable
     public String getDictLabel() {
         return dictLabel;
@@ -210,9 +178,6 @@ public class DictDataGetView implements View<DictData> {
         this.dictLabel = dictLabel;
     }
 
-    /**
-     * 字典键值
-     */
     @Nullable
     public String getDictValue() {
         return dictValue;
@@ -222,9 +187,6 @@ public class DictDataGetView implements View<DictData> {
         this.dictValue = dictValue;
     }
 
-    /**
-     * 系统内置（1是 0否）
-     */
     @Nullable
     public Boolean getIsSys() {
         return isSys;
@@ -234,9 +196,6 @@ public class DictDataGetView implements View<DictData> {
         this.isSys = isSys;
     }
 
-    /**
-     * 字典描述
-     */
     @Nullable
     public String getDescription() {
         return description;
@@ -246,9 +205,6 @@ public class DictDataGetView implements View<DictData> {
         this.description = description;
     }
 
-    /**
-     * css样式（如：color:red)
-     */
     @Nullable
     public String getCssStyle() {
         return cssStyle;
@@ -258,9 +214,6 @@ public class DictDataGetView implements View<DictData> {
         this.cssStyle = cssStyle;
     }
 
-    /**
-     * css类名（如：red）
-     */
     @Nullable
     public String getCssClass() {
         return cssClass;

@@ -70,10 +70,6 @@ public class DictTypeGetView implements View<DictType> {
         return new DictTypeGetView(base);
     }
 
-    /**
-     * 字典类型编码
-     * @return 主键值
-     */
     @NotNull
     public String getId() {
         return id;
@@ -83,11 +79,6 @@ public class DictTypeGetView implements View<DictType> {
         this.id = id;
     }
 
-    /**
-     * 备注信息
-     *
-     * @return 备注信息
-     */
     @Nullable
     public String getRemarks() {
         return remarks;
@@ -97,10 +88,6 @@ public class DictTypeGetView implements View<DictType> {
         this.remarks = remarks;
     }
 
-    /**
-     * 字典名称
-     * @return 字典名称
-     */
     @Nullable
     public String getDictName() {
         return dictName;
@@ -110,11 +97,6 @@ public class DictTypeGetView implements View<DictType> {
         this.dictName = dictName;
     }
 
-    /**
-     * 字典类型
-     *
-     * @return 字典类型
-     */
     @NotNull
     public String getDictType() {
         return dictType;
@@ -124,11 +106,6 @@ public class DictTypeGetView implements View<DictType> {
         this.dictType = dictType;
     }
 
-    /**
-     * 是否系统字典
-     *
-     * @return 是否系统字典
-     */
     @Nullable
     public Boolean getIsSys() {
         return isSys;

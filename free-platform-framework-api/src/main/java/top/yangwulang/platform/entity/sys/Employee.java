@@ -21,6 +21,7 @@ public interface Employee {
     String empCode();
 
     @OneToOne
+    @Key
     @JoinColumn(name = "USER_CODE")
     @Schema(description = "用户")
     @Null User user();

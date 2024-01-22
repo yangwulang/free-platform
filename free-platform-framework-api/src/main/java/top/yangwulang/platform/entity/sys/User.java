@@ -30,6 +30,18 @@ public interface User extends BaseEntity {
      * 普通用户类型
      */
     String USER_TYPE_SIMPLE_USER = "1";
+    /**
+     * 高管
+     */
+    String MGRTYPE_SENIOR_EXECUTIVE = "1";
+    /**
+     * 中层
+     */
+    String MGRTYPE_MIDDLE_LEVEL = "1";
+    /**
+     * 普通员工
+     */
+    String MGRTYPE_SIMPLE_EMPLOYEE = "1";
 
     @Id
     @Schema(description = "用户编码")

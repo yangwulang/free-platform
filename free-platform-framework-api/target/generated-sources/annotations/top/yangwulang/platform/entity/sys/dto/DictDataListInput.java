@@ -77,9 +77,6 @@ public class DictDataListInput implements Input<DictData> {
         this.dictTypeId = dictTypeId;
     }
 
-    /**
-     * 字典标签
-     */
     @Nullable
     public String getDictLabel() {
         return dictLabel;
@@ -89,9 +86,6 @@ public class DictDataListInput implements Input<DictData> {
         this.dictLabel = dictLabel;
     }
 
-    /**
-     * 字典键值
-     */
     @Nullable
     public String getDictValue() {
         return dictValue;
@@ -101,9 +95,6 @@ public class DictDataListInput implements Input<DictData> {
         this.dictValue = dictValue;
     }
 
-    /**
-     * 字典描述
-     */
     @Nullable
     public String getDescription() {
         return description;

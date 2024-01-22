@@ -107,7 +107,7 @@ jetcache:
 
 sa-token:
   token-name: satoken
-  timeout: -1
+  timeout: 86400
   is-concurrent: true
   is-share: false
   is-log: true

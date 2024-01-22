@@ -68,9 +68,6 @@ public class MenuListInput implements Input<Menu> {
         return new MenuListInput(base);
     }
 
-    /**
-     * 菜单名称
-     */
     @Nullable
     public String getMenuName() {
         return menuName;
@@ -80,9 +77,6 @@ public class MenuListInput implements Input<Menu> {
         this.menuName = menuName;
     }
 
-    /**
-     * 菜单类型（1菜单 2权限 3开发）
-     */
     @Nullable
     public String getMenuType() {
         return menuType;

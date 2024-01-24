@@ -100,9 +100,6 @@ class EmployeeController {
             }
         }
         employeeService.save(employee)
-        return Result<Void>()
-            .apply {
-                message = "操作成功"
-            }
+        return Result<Void>().success("操作成功")
     }
 }

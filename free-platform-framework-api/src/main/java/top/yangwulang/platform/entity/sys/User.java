@@ -33,11 +33,11 @@ public interface User extends BaseEntity {
     /**
      * 高管
      */
-    String MGRTYPE_SENIOR_EXECUTIVE = "1";
+    String MGRTYPE_SENIOR_EXECUTIVE = "3";
     /**
      * 中层
      */
-    String MGRTYPE_MIDDLE_LEVEL = "1";
+    String MGRTYPE_MIDDLE_LEVEL = "2";
     /**
      * 普通员工
      */

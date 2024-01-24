@@ -64,6 +64,10 @@ public class PostListView implements View<Post> {
         return new PostListView(base);
     }
 
+    /**
+     * 字典类型编码
+     * @return 主键值
+     */
     @NotNull
     public String getId() {
         return id;
@@ -73,6 +77,11 @@ public class PostListView implements View<Post> {
         this.id = id;
     }
 
+    /**
+     * 岗位编码
+     *
+     * @return 岗位编码
+     */
     @NotNull
     public String getPostCode() {
         return postCode;
@@ -82,6 +91,11 @@ public class PostListView implements View<Post> {
         this.postCode = postCode;
     }
 
+    /**
+     * 岗位名称
+     *
+     * @return 岗位名称
+     */
     @NotNull
     public String getPostName() {
         return postName;
@@ -91,6 +105,11 @@ public class PostListView implements View<Post> {
         this.postName = postName;
     }
 
+    /**
+     * 岗位类型（高管、中层、低层）
+     *
+     * @return 高管、中层、低层 此处是字典
+     */
     @Nullable
     public String getPostType() {
         return postType;

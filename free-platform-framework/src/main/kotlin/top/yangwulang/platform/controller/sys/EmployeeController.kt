@@ -13,7 +13,6 @@ import top.yangwulang.platform.entity.Objects
 import top.yangwulang.platform.entity.PageHttpRequest
 import top.yangwulang.platform.entity.Result
 import top.yangwulang.platform.entity.Tables
-import top.yangwulang.platform.entity.sys.Employee
 import top.yangwulang.platform.entity.sys.User
 import top.yangwulang.platform.entity.sys.dto.EmployeeGetView
 import top.yangwulang.platform.entity.sys.dto.EmployeeListSpecification
@@ -71,7 +70,7 @@ class EmployeeController {
 
     @PutMapping
     @Operation(summary = "新增或修改员工信息")
-    fun save(@RequestBody input: EmployeeSaveInput): Result<Employee> {
+    fun save(@RequestBody input: EmployeeSaveInput): Result<Void> {
         if (StringUtils.isEmpty(input.mgrType)) {
             input.mgrType = User.MGRTYPE_SIMPLE_EMPLOYEE
         }
@@ -100,8 +99,8 @@ class EmployeeController {
                 }
             }
         }
-        return Result<Employee>()
-            .success(employeeService.save(employee))
+        employeeService.save(employee)
+        return Result<Void>()
             .apply {
                 message = "操作成功"
             }

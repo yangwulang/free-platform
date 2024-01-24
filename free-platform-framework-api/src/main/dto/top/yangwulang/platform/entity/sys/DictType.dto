@@ -1,3 +1,5 @@
+import javax.validation.constraints.NotEmpty
+
 DictTypeListView {
     #allScalars
 }
@@ -7,6 +9,15 @@ specification DictTypeListSpecification {
     like(dictName)
     isSys
     like(remarks)
+}
+
+unsafe input DictSaveInput {
+    @NotEmpty(message = "字典类型不能为空")
+    dictType
+    @NotEmpty(message = "字典名称不能为空")
+    dictName!
+    isSys
+    remarks
 }
 
 DictTypeGetView {

@@ -93,6 +93,10 @@ public class CompanyListView implements View<Company> {
         return new CompanyListView(base);
     }
 
+    /**
+     * 字典类型编码
+     * @return 主键值
+     */
     @NotNull
     public String getId() {
         return id;
@@ -102,6 +106,9 @@ public class CompanyListView implements View<Company> {
         this.id = id;
     }
 
+    /**
+     * 公司编码
+     */
     @NotNull
     public String getCompanyCode() {
         return companyCode;
@@ -111,6 +118,9 @@ public class CompanyListView implements View<Company> {
         this.companyCode = companyCode;
     }
 
+    /**
+     * 公司名称
+     */
     @NotNull
     public String getCompanyName() {
         return companyName;
@@ -120,6 +130,9 @@ public class CompanyListView implements View<Company> {
         this.companyName = companyName;
     }
 
+    /**
+     * 公司全名
+     */
     @Nullable
     public String getCompanyFullName() {
         return companyFullName;
@@ -147,6 +160,11 @@ public class CompanyListView implements View<Company> {
         this.corpName = corpName;
     }
 
+    /**
+     * 子级公司
+     *
+     * @return 子级公司
+     */
     @Nullable
     public List<TargetOf_children> getChildren() {
         return children;
@@ -295,6 +313,10 @@ public class CompanyListView implements View<Company> {
             return new TargetOf_children(base);
         }
 
+        /**
+         * 字典类型编码
+         * @return 主键值
+         */
         @NotNull
         public String getId() {
             return id;
@@ -304,6 +326,9 @@ public class CompanyListView implements View<Company> {
             this.id = id;
         }
 
+        /**
+         * 公司编码
+         */
         @NotNull
         public String getCompanyCode() {
             return companyCode;
@@ -313,6 +338,9 @@ public class CompanyListView implements View<Company> {
             this.companyCode = companyCode;
         }
 
+        /**
+         * 公司名称
+         */
         @NotNull
         public String getCompanyName() {
             return companyName;
@@ -322,6 +350,9 @@ public class CompanyListView implements View<Company> {
             this.companyName = companyName;
         }
 
+        /**
+         * 公司全名
+         */
         @Nullable
         public String getCompanyFullName() {
             return companyFullName;
@@ -349,6 +380,11 @@ public class CompanyListView implements View<Company> {
             this.corpName = corpName;
         }
 
+        /**
+         * 子级公司
+         *
+         * @return 子级公司
+         */
         @Nullable
         public List<TargetOf_children> getChildren() {
             return children;

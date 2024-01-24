@@ -5,7 +5,6 @@ import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import io.swagger.v3.oas.annotations.tags.Tags
 import jakarta.servlet.http.HttpServletRequest
-import org.apache.commons.lang3.StringUtils
 import org.babyfish.jimmer.sql.ast.Predicate
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
@@ -13,10 +12,8 @@ import org.springframework.web.bind.annotation.*
 import top.yangwulang.platform.entity.PageHttpRequest
 import top.yangwulang.platform.entity.Result
 import top.yangwulang.platform.entity.sys.DictDataTable
-import top.yangwulang.platform.entity.sys.DictType
 import top.yangwulang.platform.entity.sys.DictTypeTable
 import top.yangwulang.platform.entity.sys.dto.*
-import top.yangwulang.platform.entity.sys.input.DictTypeInput
 import top.yangwulang.platform.services.DictDataService
 import top.yangwulang.platform.services.DictTypeService
 
@@ -60,8 +57,9 @@ class DictController {
 
     @PutMapping("/dictType")
     @Operation(summary = "新增或修改字典类型")
-    fun saveType(dictTypeInput: DictTypeInput): DictType {
-        return dictTypeService.save(dictTypeInput)
+    fun saveType(@RequestBody dictTypeInput: DictSaveInput): Result<Void> {
+        dictTypeService.save(dictTypeInput)
+        return Result<Void>().success("操作成功")
     }
 
     @DeleteMapping("/dictType/{id}")
@@ -96,7 +94,7 @@ class DictController {
 
     @PutMapping("/dictData")
     @Operation(summary = "新增或修改字典数据")
-    fun saveData(dictData: DictDataSaveInput): Result<Void> {
+    fun saveData(@RequestBody dictData: DictDataSaveInput): Result<Void> {
         dictDataService.save(dictData)
         return Result<Void>().success("操作成功")
     }

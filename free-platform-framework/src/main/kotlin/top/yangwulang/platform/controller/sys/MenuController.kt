@@ -17,7 +17,6 @@ import top.yangwulang.platform.entity.sys.dto.MenuListView
 import top.yangwulang.platform.entity.sys.input.menu.MenuSaveInput
 import top.yangwulang.platform.entity.sys.vo.RoleMenuVo
 import top.yangwulang.platform.services.MenuService
-import java.util.function.Supplier
 
 /**
  * @author yangwulang

@@ -5,19 +5,11 @@ unsafe input DictDataListInput {
     description
 }
 
-DictDataListView {
-    #allScalars
-    -corpCode
-    -corpName
-    children? {
-        #allScalars
-        -corpCode
-        -corpName
-    }*
-}
 
 DictDataGetView {
     #allScalars
+    parentId
+    dictTypeId
     -status
     -corpCode
     -corpName

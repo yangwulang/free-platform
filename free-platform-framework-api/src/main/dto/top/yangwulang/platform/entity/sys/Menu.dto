@@ -1,11 +1,5 @@
 import io.swagger.v3.oas.annotations.media.Schema
 
-MenuListView {
-    #allScalars
-    children? {
-        #allScalars
-    }*
-}
 
 unsafe input MenuListInput {
     menuName?

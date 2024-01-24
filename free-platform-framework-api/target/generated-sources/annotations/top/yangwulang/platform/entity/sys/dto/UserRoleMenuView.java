@@ -345,6 +345,10 @@ public class UserRoleMenuView implements View<User> {
                 return new TargetOf_menus_2(base);
             }
 
+            /**
+             * 字典类型编码
+             * @return 主键值
+             */
             @NotNull
             public String getId() {
                 return id;
@@ -362,6 +366,11 @@ public class UserRoleMenuView implements View<User> {
                 this.status = status;
             }
 
+            /**
+             * 创建者
+             *
+             * @return 创建者
+             */
             @NotNull
             public String getCreateBy() {
                 return createBy;
@@ -371,6 +380,11 @@ public class UserRoleMenuView implements View<User> {
                 this.createBy = createBy;
             }
 
+            /**
+             * 创建时间
+             *
+             * @return 创建时间
+             */
             @NotNull
             public Date getCreateDate() {
                 return createDate;
@@ -380,6 +394,11 @@ public class UserRoleMenuView implements View<User> {
                 this.createDate = createDate;
             }
 
+            /**
+             * 更新者
+             *
+             * @return 更新者
+             */
             @NotNull
             public String getUpdateBy() {
                 return updateBy;
@@ -389,6 +408,11 @@ public class UserRoleMenuView implements View<User> {
                 this.updateBy = updateBy;
             }
 
+            /**
+             * 更新时间
+             *
+             * @return 更新时间
+             */
             @NotNull
             public Date getUpdateDate() {
                 return updateDate;
@@ -398,6 +422,11 @@ public class UserRoleMenuView implements View<User> {
                 this.updateDate = updateDate;
             }
 
+            /**
+             * 备注信息
+             *
+             * @return 备注信息
+             */
             @Nullable
             public String getRemarks() {
                 return remarks;
@@ -407,6 +436,9 @@ public class UserRoleMenuView implements View<User> {
                 this.remarks = remarks;
             }
 
+            /**
+             * 菜单名称
+             */
             @NotNull
             public String getMenuName() {
                 return menuName;
@@ -416,6 +448,9 @@ public class UserRoleMenuView implements View<User> {
                 this.menuName = menuName;
             }
 
+            /**
+             * 菜单类型（1菜单 2权限 3开发）
+             */
             @NotNull
             public String getMenuType() {
                 return menuType;
@@ -425,6 +460,9 @@ public class UserRoleMenuView implements View<User> {
                 this.menuType = menuType;
             }
 
+            /**
+             * 链接
+             */
             @Nullable
             public String getMenuHref() {
                 return menuHref;
@@ -434,6 +472,9 @@ public class UserRoleMenuView implements View<User> {
                 this.menuHref = menuHref;
             }
 
+            /**
+             * 组件地址
+             */
             @Nullable
             public String getMenuComponent() {
                 return menuComponent;
@@ -443,6 +484,9 @@ public class UserRoleMenuView implements View<User> {
                 this.menuComponent = menuComponent;
             }
 
+            /**
+             * 目标
+             */
             @Nullable
             public String getMenuTarget() {
                 return menuTarget;
@@ -452,6 +496,9 @@ public class UserRoleMenuView implements View<User> {
                 this.menuTarget = menuTarget;
             }
 
+            /**
+             * 图标
+             */
             @Nullable
             public String getMenuIcon() {
                 return menuIcon;
@@ -461,6 +508,9 @@ public class UserRoleMenuView implements View<User> {
                 this.menuIcon = menuIcon;
             }
 
+            /**
+             * 颜色
+             */
             @Nullable
             public String getMenuColor() {
                 return menuColor;
@@ -470,6 +520,9 @@ public class UserRoleMenuView implements View<User> {
                 this.menuColor = menuColor;
             }
 
+            /**
+             * 菜单标题
+             */
             @Nullable
             public String getMenuTitle() {
                 return menuTitle;
@@ -479,6 +532,9 @@ public class UserRoleMenuView implements View<User> {
                 this.menuTitle = menuTitle;
             }
 
+            /**
+             * 权限标识
+             */
             @Nullable
             public String getPermission() {
                 return permission;
@@ -488,6 +544,9 @@ public class UserRoleMenuView implements View<User> {
                 this.permission = permission;
             }
 
+            /**
+             * 菜单权重
+             */
             @Nullable
             public BigDecimal getWeight() {
                 return weight;
@@ -497,6 +556,9 @@ public class UserRoleMenuView implements View<User> {
                 this.weight = weight;
             }
 
+            /**
+             * 是否显示
+             */
             @Nullable
             public Boolean getIsShow() {
                 return isShow;
@@ -506,6 +568,9 @@ public class UserRoleMenuView implements View<User> {
                 this.isShow = isShow;
             }
 
+            /**
+             * 归属系统（default:主导航菜单、mobileApp:APP菜单）
+             */
             @Nullable
             public String getSysCode() {
                 return sysCode;
@@ -837,6 +902,10 @@ public class UserRoleMenuView implements View<User> {
                     return new TargetOf_children_3(base);
                 }
 
+                /**
+                 * 字典类型编码
+                 * @return 主键值
+                 */
                 @NotNull
                 public String getId() {
                     return id;
@@ -854,6 +923,11 @@ public class UserRoleMenuView implements View<User> {
                     this.status = status;
                 }
 
+                /**
+                 * 创建者
+                 *
+                 * @return 创建者
+                 */
                 @NotNull
                 public String getCreateBy() {
                     return createBy;
@@ -863,6 +937,11 @@ public class UserRoleMenuView implements View<User> {
                     this.createBy = createBy;
                 }
 
+                /**
+                 * 创建时间
+                 *
+                 * @return 创建时间
+                 */
                 @NotNull
                 public Date getCreateDate() {
                     return createDate;
@@ -872,6 +951,11 @@ public class UserRoleMenuView implements View<User> {
                     this.createDate = createDate;
                 }
 
+                /**
+                 * 更新者
+                 *
+                 * @return 更新者
+                 */
                 @NotNull
                 public String getUpdateBy() {
                     return updateBy;
@@ -881,6 +965,11 @@ public class UserRoleMenuView implements View<User> {
                     this.updateBy = updateBy;
                 }
 
+                /**
+                 * 更新时间
+                 *
+                 * @return 更新时间
+                 */
                 @NotNull
                 public Date getUpdateDate() {
                     return updateDate;
@@ -890,6 +979,11 @@ public class UserRoleMenuView implements View<User> {
                     this.updateDate = updateDate;
                 }
 
+                /**
+                 * 备注信息
+                 *
+                 * @return 备注信息
+                 */
                 @Nullable
                 public String getRemarks() {
                     return remarks;
@@ -899,6 +993,9 @@ public class UserRoleMenuView implements View<User> {
                     this.remarks = remarks;
                 }
 
+                /**
+                 * 菜单名称
+                 */
                 @NotNull
                 public String getMenuName() {
                     return menuName;
@@ -908,6 +1005,9 @@ public class UserRoleMenuView implements View<User> {
                     this.menuName = menuName;
                 }
 
+                /**
+                 * 菜单类型（1菜单 2权限 3开发）
+                 */
                 @NotNull
                 public String getMenuType() {
                     return menuType;
@@ -917,6 +1017,9 @@ public class UserRoleMenuView implements View<User> {
                     this.menuType = menuType;
                 }
 
+                /**
+                 * 链接
+                 */
                 @Nullable
                 public String getMenuHref() {
                     return menuHref;
@@ -926,6 +1029,9 @@ public class UserRoleMenuView implements View<User> {
                     this.menuHref = menuHref;
                 }
 
+                /**
+                 * 组件地址
+                 */
                 @Nullable
                 public String getMenuComponent() {
                     return menuComponent;
@@ -935,6 +1041,9 @@ public class UserRoleMenuView implements View<User> {
                     this.menuComponent = menuComponent;
                 }
 
+                /**
+                 * 目标
+                 */
                 @Nullable
                 public String getMenuTarget() {
                     return menuTarget;
@@ -944,6 +1053,9 @@ public class UserRoleMenuView implements View<User> {
                     this.menuTarget = menuTarget;
                 }
 
+                /**
+                 * 图标
+                 */
                 @Nullable
                 public String getMenuIcon() {
                     return menuIcon;
@@ -953,6 +1065,9 @@ public class UserRoleMenuView implements View<User> {
                     this.menuIcon = menuIcon;
                 }
 
+                /**
+                 * 颜色
+                 */
                 @Nullable
                 public String getMenuColor() {
                     return menuColor;
@@ -962,6 +1077,9 @@ public class UserRoleMenuView implements View<User> {
                     this.menuColor = menuColor;
                 }
 
+                /**
+                 * 菜单标题
+                 */
                 @Nullable
                 public String getMenuTitle() {
                     return menuTitle;
@@ -971,6 +1089,9 @@ public class UserRoleMenuView implements View<User> {
                     this.menuTitle = menuTitle;
                 }
 
+                /**
+                 * 权限标识
+                 */
                 @Nullable
                 public String getPermission() {
                     return permission;
@@ -980,6 +1101,9 @@ public class UserRoleMenuView implements View<User> {
                     this.permission = permission;
                 }
 
+                /**
+                 * 菜单权重
+                 */
                 @Nullable
                 public BigDecimal getWeight() {
                     return weight;
@@ -989,6 +1113,9 @@ public class UserRoleMenuView implements View<User> {
                     this.weight = weight;
                 }
 
+                /**
+                 * 是否显示
+                 */
                 @Nullable
                 public Boolean getIsShow() {
                     return isShow;
@@ -998,6 +1125,9 @@ public class UserRoleMenuView implements View<User> {
                     this.isShow = isShow;
                 }
 
+                /**
+                 * 归属系统（default:主导航菜单、mobileApp:APP菜单）
+                 */
                 @Nullable
                 public String getSysCode() {
                     return sysCode;

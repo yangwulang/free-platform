@@ -2,35 +2,52 @@ package top.yangwulang.platform.entity.sys.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.lang.Boolean;
-import java.lang.Class;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
+import javax.validation.constraints.NotEmpty;
+import org.babyfish.jimmer.Input;
 import org.babyfish.jimmer.internal.GeneratedBy;
-import org.babyfish.jimmer.meta.ImmutableProp;
-import org.babyfish.jimmer.sql.ast.query.specification.JSpecification;
-import org.babyfish.jimmer.sql.ast.query.specification.PredicateApplier;
-import org.babyfish.jimmer.sql.ast.query.specification.SpecificationArgs;
+import org.babyfish.jimmer.meta.PropId;
+import org.babyfish.jimmer.runtime.ImmutableSpi;
+import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.sys.DictType;
-import top.yangwulang.platform.entity.sys.DictTypeProps;
-import top.yangwulang.platform.entity.sys.DictTypeTable;
+import top.yangwulang.platform.entity.sys.DictTypeDraft;
+import top.yangwulang.platform.entity.sys.DictTypeFetcher;
 
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/DictType.dto"
 )
-public class DictTypeListSpecification implements JSpecification<DictType, DictTypeTable> {
+public class DictSaveInput implements Input<DictType> {
+    public static final ViewMetadata<DictType, DictSaveInput> METADATA = 
+        new ViewMetadata<DictType, DictSaveInput>(
+            DictTypeFetcher.$
+                .dictType()
+                .dictName()
+                .isSys()
+                .remarks(),
+            DictSaveInput::new
+    );
+
     @Schema(
             description = "字典类型标签"
     )
-    @Nullable
+    @NotEmpty(
+            message = "字典类型不能为空"
+    )
+    @NotNull
     private String dictType;
 
     @Schema(
             description = "字典名称"
     )
-    @Nullable
+    @NotEmpty(
+            message = "字典名称不能为空"
+    )
+    @NotNull
     private String dictName;
 
     @Schema(
@@ -42,7 +59,18 @@ public class DictTypeListSpecification implements JSpecification<DictType, DictT
     @Nullable
     private String remarks;
 
-    public DictTypeListSpecification() {
+    public DictSaveInput() {
+    }
+
+    public DictSaveInput(@NotNull DictType base) {
+        this.dictType = base.dictType();
+        this.dictName = base.dictName();
+        this.isSys = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(DictTypeDraft.Producer.SLOT_IS_SYS)) ? base.isSys() : null;
+        this.remarks = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(DictTypeDraft.Producer.SLOT_REMARKS)) ? base.remarks() : null;
+    }
+
+    public static DictSaveInput of(@NotNull DictType base) {
+        return new DictSaveInput(base);
     }
 
     /**
@@ -50,12 +78,12 @@ public class DictTypeListSpecification implements JSpecification<DictType, DictT
      *
      * @return 字典类型
      */
-    @Nullable
+    @NotNull
     public String getDictType() {
         return dictType;
     }
 
-    public void setDictType(@Nullable String dictType) {
+    public void setDictType(@NotNull String dictType) {
         this.dictType = dictType;
     }
 
@@ -63,12 +91,12 @@ public class DictTypeListSpecification implements JSpecification<DictType, DictT
      * 字典名称
      * @return 字典名称
      */
-    @Nullable
+    @NotNull
     public String getDictName() {
         return dictName;
     }
 
-    public void setDictName(@Nullable String dictName) {
+    public void setDictName(@NotNull String dictName) {
         this.dictName = dictName;
     }
 
@@ -101,17 +129,13 @@ public class DictTypeListSpecification implements JSpecification<DictType, DictT
     }
 
     @Override
-    public Class<DictType> entityType() {
-        return DictType.class;
-    }
-
-    @Override
-    public void applyTo(SpecificationArgs<DictType, DictTypeTable> args) {
-        PredicateApplier __applier = args.getApplier();
-        __applier.like(new ImmutableProp[] { DictTypeProps.DICT_TYPE.unwrap() }, this.dictType, false, false, false);
-        __applier.like(new ImmutableProp[] { DictTypeProps.DICT_NAME.unwrap() }, this.dictName, false, false, false);
-        __applier.eq(new ImmutableProp[] { DictTypeProps.IS_SYS.unwrap() }, this.isSys);
-        __applier.like(new ImmutableProp[] { DictTypeProps.REMARKS.unwrap() }, this.remarks, false, false, false);
+    public DictType toEntity() {
+        return DictTypeDraft.$.produce(__draft -> {
+            __draft.setDictType(dictType);
+            __draft.setDictName(dictName);
+            __draft.setIsSys(isSys);
+            __draft.setRemarks(remarks);
+        });
     }
 
     @Override
@@ -128,7 +152,7 @@ public class DictTypeListSpecification implements JSpecification<DictType, DictT
         if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
-        DictTypeListSpecification other = (DictTypeListSpecification) o;
+        DictSaveInput other = (DictSaveInput) o;
         if (!Objects.equals(dictType, other.dictType)) {
             return false;
         }
@@ -147,7 +171,7 @@ public class DictTypeListSpecification implements JSpecification<DictType, DictT
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("DictTypeListSpecification").append('(');
+        builder.append("DictSaveInput").append('(');
         builder.append("dictType=").append(dictType);
         builder.append(", dictName=").append(dictName);
         builder.append(", isSys=").append(isSys);

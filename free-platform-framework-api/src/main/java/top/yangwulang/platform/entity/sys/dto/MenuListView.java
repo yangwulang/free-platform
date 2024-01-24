@@ -1,22 +1,10 @@
 package top.yangwulang.platform.entity.sys.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import java.lang.Boolean;
-import java.lang.Integer;
-import java.lang.Object;
-import java.lang.Override;
-import java.lang.String;
-import java.math.BigDecimal;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
 import org.babyfish.jimmer.View;
 import org.babyfish.jimmer.impl.util.DtoPropAccessor;
-import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
-import org.babyfish.jimmer.sql.fetcher.RecursiveFieldConfig;
 import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -24,34 +12,41 @@ import top.yangwulang.platform.entity.sys.Menu;
 import top.yangwulang.platform.entity.sys.MenuDraft;
 import top.yangwulang.platform.entity.sys.MenuFetcher;
 
-@GeneratedBy(
-        file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Menu.dto"
-)
+import java.math.BigDecimal;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+import java.util.Objects;
+
 public class MenuListView implements View<Menu> {
-    public static final ViewMetadata<Menu, MenuListView> METADATA = 
-        new ViewMetadata<Menu, MenuListView>(
-            MenuFetcher.$
-                .status()
-                .createBy()
-                .createDate()
-                .updateBy()
-                .updateDate()
-                .remarks()
-                .menuName()
-                .menuType()
-                .menuHref()
-                .menuComponent()
-                .menuTarget()
-                .menuIcon()
-                .menuColor()
-                .menuTitle()
-                .permission()
-                .weight()
-                .isShow()
-                .sysCode()
-                .children(TargetOf_children.METADATA.getFetcher(), RecursiveFieldConfig::recursive),
-            MenuListView::new
-    );
+    public static final ViewMetadata<Menu, MenuListView> METADATA =
+            new ViewMetadata<>(
+                    MenuFetcher.$
+                            .status()
+                            .createBy()
+                            .createDate()
+                            .updateBy()
+                            .updateDate()
+                            .remarks()
+                            .menuName()
+                            .menuType()
+                            .menuHref()
+                            .menuComponent()
+                            .menuTarget()
+                            .menuIcon()
+                            .menuColor()
+                            .menuTitle()
+                            .permission()
+                            .weight()
+                            .isShow()
+                            .sysCode()
+                            .children(TargetOf_children.METADATA.getFetcher(), it ->
+                                    it.recursive(args ->
+                                            !args.getEntity().menuType().equals(Menu.MENU_TYPE_PERMISSION)
+                                    )
+                            ),
+                    MenuListView::new
+            );
 
     private static final DtoPropAccessor CHILDREN_ACCESSOR = new DtoPropAccessor(
         false,
@@ -191,6 +186,10 @@ public class MenuListView implements View<Menu> {
         return new MenuListView(base);
     }
 
+    /**
+     * 字典类型编码
+     * @return 主键值
+     */
     @NotNull
     public String getId() {
         return id;
@@ -208,6 +207,11 @@ public class MenuListView implements View<Menu> {
         this.status = status;
     }
 
+    /**
+     * 创建者
+     *
+     * @return 创建者
+     */
     @NotNull
     public String getCreateBy() {
         return createBy;
@@ -217,6 +221,11 @@ public class MenuListView implements View<Menu> {
         this.createBy = createBy;
     }
 
+    /**
+     * 创建时间
+     *
+     * @return 创建时间
+     */
     @NotNull
     public Date getCreateDate() {
         return createDate;
@@ -226,6 +235,11 @@ public class MenuListView implements View<Menu> {
         this.createDate = createDate;
     }
 
+    /**
+     * 更新者
+     *
+     * @return 更新者
+     */
     @NotNull
     public String getUpdateBy() {
         return updateBy;
@@ -235,6 +249,11 @@ public class MenuListView implements View<Menu> {
         this.updateBy = updateBy;
     }
 
+    /**
+     * 更新时间
+     *
+     * @return 更新时间
+     */
     @NotNull
     public Date getUpdateDate() {
         return updateDate;
@@ -244,6 +263,11 @@ public class MenuListView implements View<Menu> {
         this.updateDate = updateDate;
     }
 
+    /**
+     * 备注信息
+     *
+     * @return 备注信息
+     */
     @Nullable
     public String getRemarks() {
         return remarks;
@@ -253,6 +277,9 @@ public class MenuListView implements View<Menu> {
         this.remarks = remarks;
     }
 
+    /**
+     * 菜单名称
+     */
     @NotNull
     public String getMenuName() {
         return menuName;
@@ -262,6 +289,9 @@ public class MenuListView implements View<Menu> {
         this.menuName = menuName;
     }
 
+    /**
+     * 菜单类型（1菜单 2权限 3开发）
+     */
     @NotNull
     public String getMenuType() {
         return menuType;
@@ -271,6 +301,9 @@ public class MenuListView implements View<Menu> {
         this.menuType = menuType;
     }
 
+    /**
+     * 链接
+     */
     @Nullable
     public String getMenuHref() {
         return menuHref;
@@ -280,6 +313,9 @@ public class MenuListView implements View<Menu> {
         this.menuHref = menuHref;
     }
 
+    /**
+     * 组件地址
+     */
     @Nullable
     public String getMenuComponent() {
         return menuComponent;
@@ -289,6 +325,9 @@ public class MenuListView implements View<Menu> {
         this.menuComponent = menuComponent;
     }
 
+    /**
+     * 目标
+     */
     @Nullable
     public String getMenuTarget() {
         return menuTarget;
@@ -298,6 +337,9 @@ public class MenuListView implements View<Menu> {
         this.menuTarget = menuTarget;
     }
 
+    /**
+     * 图标
+     */
     @Nullable
     public String getMenuIcon() {
         return menuIcon;
@@ -307,6 +349,9 @@ public class MenuListView implements View<Menu> {
         this.menuIcon = menuIcon;
     }
 
+    /**
+     * 颜色
+     */
     @Nullable
     public String getMenuColor() {
         return menuColor;
@@ -316,6 +361,9 @@ public class MenuListView implements View<Menu> {
         this.menuColor = menuColor;
     }
 
+    /**
+     * 菜单标题
+     */
     @Nullable
     public String getMenuTitle() {
         return menuTitle;
@@ -325,6 +373,9 @@ public class MenuListView implements View<Menu> {
         this.menuTitle = menuTitle;
     }
 
+    /**
+     * 权限标识
+     */
     @Nullable
     public String getPermission() {
         return permission;
@@ -334,6 +385,9 @@ public class MenuListView implements View<Menu> {
         this.permission = permission;
     }
 
+    /**
+     * 菜单权重
+     */
     @Nullable
     public BigDecimal getWeight() {
         return weight;
@@ -343,6 +397,9 @@ public class MenuListView implements View<Menu> {
         this.weight = weight;
     }
 
+    /**
+     * 是否显示
+     */
     @Nullable
     public Boolean getIsShow() {
         return isShow;
@@ -352,6 +409,9 @@ public class MenuListView implements View<Menu> {
         this.isShow = isShow;
     }
 
+    /**
+     * 归属系统（default:主导航菜单、mobileApp:APP菜单）
+     */
     @Nullable
     public String getSysCode() {
         return sysCode;
@@ -519,29 +579,29 @@ public class MenuListView implements View<Menu> {
     }
 
     public static class TargetOf_children implements View<Menu> {
-        public static final ViewMetadata<Menu, TargetOf_children> METADATA = 
-            new ViewMetadata<Menu, TargetOf_children>(
-                MenuFetcher.$
-                    .status()
-                    .createBy()
-                    .createDate()
-                    .updateBy()
-                    .updateDate()
-                    .remarks()
-                    .menuName()
-                    .menuType()
-                    .menuHref()
-                    .menuComponent()
-                    .menuTarget()
-                    .menuIcon()
-                    .menuColor()
-                    .menuTitle()
-                    .permission()
-                    .weight()
-                    .isShow()
-                    .sysCode(),
-                TargetOf_children::new
-        );
+        public static final ViewMetadata<Menu, TargetOf_children> METADATA =
+                new ViewMetadata<>(
+                        MenuFetcher.$
+                                .status()
+                                .createBy()
+                                .createDate()
+                                .updateBy()
+                                .updateDate()
+                                .remarks()
+                                .menuName()
+                                .menuType()
+                                .menuHref()
+                                .menuComponent()
+                                .menuTarget()
+                                .menuIcon()
+                                .menuColor()
+                                .menuTitle()
+                                .permission()
+                                .weight()
+                                .isShow()
+                                .sysCode(),
+                        TargetOf_children::new
+                );
 
         private static final DtoPropAccessor CHILDREN_ACCESSOR = new DtoPropAccessor(
             false,
@@ -681,6 +741,10 @@ public class MenuListView implements View<Menu> {
             return new TargetOf_children(base);
         }
 
+        /**
+         * 字典类型编码
+         * @return 主键值
+         */
         @NotNull
         public String getId() {
             return id;
@@ -698,6 +762,11 @@ public class MenuListView implements View<Menu> {
             this.status = status;
         }
 
+        /**
+         * 创建者
+         *
+         * @return 创建者
+         */
         @NotNull
         public String getCreateBy() {
             return createBy;
@@ -707,6 +776,11 @@ public class MenuListView implements View<Menu> {
             this.createBy = createBy;
         }
 
+        /**
+         * 创建时间
+         *
+         * @return 创建时间
+         */
         @NotNull
         public Date getCreateDate() {
             return createDate;
@@ -716,6 +790,11 @@ public class MenuListView implements View<Menu> {
             this.createDate = createDate;
         }
 
+        /**
+         * 更新者
+         *
+         * @return 更新者
+         */
         @NotNull
         public String getUpdateBy() {
             return updateBy;
@@ -725,6 +804,11 @@ public class MenuListView implements View<Menu> {
             this.updateBy = updateBy;
         }
 
+        /**
+         * 更新时间
+         *
+         * @return 更新时间
+         */
         @NotNull
         public Date getUpdateDate() {
             return updateDate;
@@ -734,6 +818,11 @@ public class MenuListView implements View<Menu> {
             this.updateDate = updateDate;
         }
 
+        /**
+         * 备注信息
+         *
+         * @return 备注信息
+         */
         @Nullable
         public String getRemarks() {
             return remarks;
@@ -743,6 +832,9 @@ public class MenuListView implements View<Menu> {
             this.remarks = remarks;
         }
 
+        /**
+         * 菜单名称
+         */
         @NotNull
         public String getMenuName() {
             return menuName;
@@ -752,6 +844,9 @@ public class MenuListView implements View<Menu> {
             this.menuName = menuName;
         }
 
+        /**
+         * 菜单类型（1菜单 2权限 3开发）
+         */
         @NotNull
         public String getMenuType() {
             return menuType;
@@ -761,6 +856,9 @@ public class MenuListView implements View<Menu> {
             this.menuType = menuType;
         }
 
+        /**
+         * 链接
+         */
         @Nullable
         public String getMenuHref() {
             return menuHref;
@@ -770,6 +868,9 @@ public class MenuListView implements View<Menu> {
             this.menuHref = menuHref;
         }
 
+        /**
+         * 组件地址
+         */
         @Nullable
         public String getMenuComponent() {
             return menuComponent;
@@ -779,6 +880,9 @@ public class MenuListView implements View<Menu> {
             this.menuComponent = menuComponent;
         }
 
+        /**
+         * 目标
+         */
         @Nullable
         public String getMenuTarget() {
             return menuTarget;
@@ -788,6 +892,9 @@ public class MenuListView implements View<Menu> {
             this.menuTarget = menuTarget;
         }
 
+        /**
+         * 图标
+         */
         @Nullable
         public String getMenuIcon() {
             return menuIcon;
@@ -797,6 +904,9 @@ public class MenuListView implements View<Menu> {
             this.menuIcon = menuIcon;
         }
 
+        /**
+         * 颜色
+         */
         @Nullable
         public String getMenuColor() {
             return menuColor;
@@ -806,6 +916,9 @@ public class MenuListView implements View<Menu> {
             this.menuColor = menuColor;
         }
 
+        /**
+         * 菜单标题
+         */
         @Nullable
         public String getMenuTitle() {
             return menuTitle;
@@ -815,6 +928,9 @@ public class MenuListView implements View<Menu> {
             this.menuTitle = menuTitle;
         }
 
+        /**
+         * 权限标识
+         */
         @Nullable
         public String getPermission() {
             return permission;
@@ -824,6 +940,9 @@ public class MenuListView implements View<Menu> {
             this.permission = permission;
         }
 
+        /**
+         * 菜单权重
+         */
         @Nullable
         public BigDecimal getWeight() {
             return weight;
@@ -833,6 +952,9 @@ public class MenuListView implements View<Menu> {
             this.weight = weight;
         }
 
+        /**
+         * 是否显示
+         */
         @Nullable
         public Boolean getIsShow() {
             return isShow;
@@ -842,6 +964,9 @@ public class MenuListView implements View<Menu> {
             this.isShow = isShow;
         }
 
+        /**
+         * 归属系统（default:主导航菜单、mobileApp:APP菜单）
+         */
         @Nullable
         public String getSysCode() {
             return sysCode;

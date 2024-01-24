@@ -96,6 +96,10 @@ public class MessageRecordListView implements View<MessageRecord> {
         return new MessageRecordListView(base);
     }
 
+    /**
+     * 字典类型编码
+     * @return 主键值
+     */
     @NotNull
     public String getId() {
         return id;

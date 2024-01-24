@@ -177,6 +177,10 @@ public class MenuGetView implements View<Menu> {
         return new MenuGetView(base);
     }
 
+    /**
+     * 字典类型编码
+     * @return 主键值
+     */
     @Nullable
     public String getId() {
         return id;
@@ -186,6 +190,9 @@ public class MenuGetView implements View<Menu> {
         this.id = id;
     }
 
+    /**
+     * 菜单名称
+     */
     @Nullable
     public String getMenuName() {
         return menuName;
@@ -195,6 +202,9 @@ public class MenuGetView implements View<Menu> {
         this.menuName = menuName;
     }
 
+    /**
+     * 菜单类型（1菜单 2权限 3开发）
+     */
     @Nullable
     public String getMenuType() {
         return menuType;
@@ -204,6 +214,9 @@ public class MenuGetView implements View<Menu> {
         this.menuType = menuType;
     }
 
+    /**
+     * 链接
+     */
     @Nullable
     public String getMenuHref() {
         return menuHref;
@@ -213,6 +226,9 @@ public class MenuGetView implements View<Menu> {
         this.menuHref = menuHref;
     }
 
+    /**
+     * 组件地址
+     */
     @Nullable
     public String getMenuComponent() {
         return menuComponent;
@@ -222,6 +238,9 @@ public class MenuGetView implements View<Menu> {
         this.menuComponent = menuComponent;
     }
 
+    /**
+     * 目标
+     */
     @Nullable
     public String getMenuTarget() {
         return menuTarget;
@@ -231,6 +250,9 @@ public class MenuGetView implements View<Menu> {
         this.menuTarget = menuTarget;
     }
 
+    /**
+     * 图标
+     */
     @Nullable
     public String getMenuIcon() {
         return menuIcon;
@@ -240,6 +262,9 @@ public class MenuGetView implements View<Menu> {
         this.menuIcon = menuIcon;
     }
 
+    /**
+     * 颜色
+     */
     @Nullable
     public String getMenuColor() {
         return menuColor;
@@ -249,6 +274,9 @@ public class MenuGetView implements View<Menu> {
         this.menuColor = menuColor;
     }
 
+    /**
+     * 菜单标题
+     */
     @Nullable
     public String getMenuTitle() {
         return menuTitle;
@@ -258,6 +286,9 @@ public class MenuGetView implements View<Menu> {
         this.menuTitle = menuTitle;
     }
 
+    /**
+     * 权限标识
+     */
     @Nullable
     public String getPermission() {
         return permission;
@@ -267,6 +298,9 @@ public class MenuGetView implements View<Menu> {
         this.permission = permission;
     }
 
+    /**
+     * 菜单权重
+     */
     @Nullable
     public BigDecimal getWeight() {
         return weight;
@@ -276,6 +310,9 @@ public class MenuGetView implements View<Menu> {
         this.weight = weight;
     }
 
+    /**
+     * 是否显示
+     */
     @Nullable
     public Boolean getIsShow() {
         return isShow;
@@ -285,6 +322,9 @@ public class MenuGetView implements View<Menu> {
         this.isShow = isShow;
     }
 
+    /**
+     * 归属系统（default:主导航菜单、mobileApp:APP菜单）
+     */
     @Nullable
     public String getSysCode() {
         return sysCode;
@@ -303,6 +343,9 @@ public class MenuGetView implements View<Menu> {
         this.parentId = parentId;
     }
 
+    /**
+     * 父级编号
+     */
     @Nullable
     public TargetOf_parent getParent() {
         return parent;
@@ -460,6 +503,9 @@ public class MenuGetView implements View<Menu> {
             return new TargetOf_parent(base);
         }
 
+        /**
+         * 菜单名称
+         */
         @Nullable
         public String getMenuName() {
             return menuName;

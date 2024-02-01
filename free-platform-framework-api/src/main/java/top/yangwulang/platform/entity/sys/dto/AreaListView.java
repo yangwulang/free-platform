@@ -1,56 +1,50 @@
 package top.yangwulang.platform.entity.sys.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import java.lang.Integer;
-import java.lang.Long;
-import java.lang.Object;
-import java.lang.Override;
-import java.lang.String;
+import org.babyfish.jimmer.ImmutableObjects;
+import org.babyfish.jimmer.View;
+import org.babyfish.jimmer.impl.util.DtoPropAccessor;
+import org.babyfish.jimmer.meta.PropId;
+import org.babyfish.jimmer.runtime.ImmutableSpi;
+import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import top.yangwulang.platform.entity.sys.*;
+
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
-import org.babyfish.jimmer.View;
-import org.babyfish.jimmer.impl.util.DtoPropAccessor;
-import org.babyfish.jimmer.internal.GeneratedBy;
-import org.babyfish.jimmer.meta.PropId;
-import org.babyfish.jimmer.runtime.ImmutableSpi;
-import org.babyfish.jimmer.sql.fetcher.RecursiveFieldConfig;
-import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import top.yangwulang.platform.entity.sys.Area;
-import top.yangwulang.platform.entity.sys.AreaDraft;
-import top.yangwulang.platform.entity.sys.AreaFetcher;
 
 /**
  * 区域表
  */
-@GeneratedBy(
-        file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Area.dto"
-)
 public class AreaListView implements View<Area> {
-    public static final ViewMetadata<Area, AreaListView> METADATA = 
-        new ViewMetadata<Area, AreaListView>(
-            AreaFetcher.$
-                .status()
-                .createBy()
-                .createDate()
-                .updateBy()
-                .updateDate()
-                .remarks()
-                .areaName()
-                .sort()
-                .areaType()
-                .children(TargetOf_children.METADATA.getFetcher(), RecursiveFieldConfig::recursive),
-            AreaListView::new
-    );
+    public static final ViewMetadata<Area, AreaListView> METADATA =
+            new ViewMetadata<Area, AreaListView>(
+                    AreaFetcher.$
+                            .status()
+                            .createBy()
+                            .createDate()
+                            .updateBy()
+                            .updateDate()
+                            .remarks()
+                            .areaName()
+                            .sort()
+                            .areaType()
+                            .children(
+                                    TargetOf_children.METADATA.getFetcher(),
+                                    it -> it.recursive(args -> !args.getEntity().areaType().equals(Area.AREA_TYPE_COUNTY)
+                                    )
+                            ),
+                    AreaListView::new
+            );
 
     private static final DtoPropAccessor CHILDREN_ACCESSOR = new DtoPropAccessor(
-        false,
-        new int[] { AreaDraft.Producer.SLOT_CHILDREN },
-        DtoPropAccessor.<Area, TargetOf_children>objectListGetter(TargetOf_children::new),
-        DtoPropAccessor.objectListSetter(TargetOf_children::toEntity)
+            false,
+            new int[]{AreaDraft.Producer.SLOT_CHILDREN},
+            DtoPropAccessor.<Area, TargetOf_children>objectListGetter(TargetOf_children::new),
+            DtoPropAccessor.objectListSetter(TargetOf_children::toEntity)
     );
 
     @NotNull
@@ -89,7 +83,7 @@ public class AreaListView implements View<Area> {
     private Long sort;
 
     @Schema(
-            description = "地区类型(1：国家；2：省份、直辖市；3：地市；4：区县)"
+            description = "地区类型(1：省份、直辖市；2：地市；3：区县)"
     )
     @Nullable
     private String areaType;
@@ -110,10 +104,10 @@ public class AreaListView implements View<Area> {
         this.createDate = base.createDate();
         this.updateBy = base.updateBy();
         this.updateDate = base.updateDate();
-        this.remarks = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(AreaDraft.Producer.SLOT_REMARKS)) ? base.remarks() : null;
+        this.remarks = ((ImmutableSpi) base).__isLoaded(PropId.byIndex(AreaDraft.Producer.SLOT_REMARKS)) ? base.remarks() : null;
         this.areaName = base.areaName();
-        this.sort = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(AreaDraft.Producer.SLOT_SORT)) ? base.sort() : null;
-        this.areaType = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(AreaDraft.Producer.SLOT_AREA_TYPE)) ? base.areaType() : null;
+        this.sort = ((ImmutableSpi) base).__isLoaded(PropId.byIndex(AreaDraft.Producer.SLOT_SORT)) ? base.sort() : null;
+        this.areaType = ((ImmutableSpi) base).__isLoaded(PropId.byIndex(AreaDraft.Producer.SLOT_AREA_TYPE)) ? base.areaType() : null;
         this.children = CHILDREN_ACCESSOR.get(base);
     }
 
@@ -123,6 +117,7 @@ public class AreaListView implements View<Area> {
 
     /**
      * 字典类型编码
+     *
      * @return 主键值
      */
     @NotNull
@@ -355,26 +350,26 @@ public class AreaListView implements View<Area> {
      * 区域表
      */
     public static class TargetOf_children implements View<Area> {
-        public static final ViewMetadata<Area, TargetOf_children> METADATA = 
-            new ViewMetadata<Area, TargetOf_children>(
-                AreaFetcher.$
-                    .status()
-                    .createBy()
-                    .createDate()
-                    .updateBy()
-                    .updateDate()
-                    .remarks()
-                    .areaName()
-                    .sort()
-                    .areaType(),
-                TargetOf_children::new
-        );
+        public static final ViewMetadata<Area, TargetOf_children> METADATA =
+                new ViewMetadata<Area, TargetOf_children>(
+                        AreaFetcher.$
+                                .status()
+                                .createBy()
+                                .createDate()
+                                .updateBy()
+                                .updateDate()
+                                .remarks()
+                                .areaName()
+                                .sort()
+                                .areaType(),
+                        TargetOf_children::new
+                );
 
         private static final DtoPropAccessor CHILDREN_ACCESSOR = new DtoPropAccessor(
-            false,
-            new int[] { AreaDraft.Producer.SLOT_CHILDREN },
-            DtoPropAccessor.<Area, TargetOf_children>objectListGetter(TargetOf_children::new),
-            DtoPropAccessor.objectListSetter(TargetOf_children::toEntity)
+                false,
+                new int[]{AreaDraft.Producer.SLOT_CHILDREN},
+                DtoPropAccessor.<Area, TargetOf_children>objectListGetter(TargetOf_children::new),
+                DtoPropAccessor.objectListSetter(TargetOf_children::toEntity)
         );
 
         @NotNull
@@ -434,10 +429,10 @@ public class AreaListView implements View<Area> {
             this.createDate = base.createDate();
             this.updateBy = base.updateBy();
             this.updateDate = base.updateDate();
-            this.remarks = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(AreaDraft.Producer.SLOT_REMARKS)) ? base.remarks() : null;
+            this.remarks = ((ImmutableSpi) base).__isLoaded(PropId.byIndex(AreaDraft.Producer.SLOT_REMARKS)) ? base.remarks() : null;
             this.areaName = base.areaName();
-            this.sort = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(AreaDraft.Producer.SLOT_SORT)) ? base.sort() : null;
-            this.areaType = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(AreaDraft.Producer.SLOT_AREA_TYPE)) ? base.areaType() : null;
+            this.sort = ((ImmutableSpi) base).__isLoaded(PropId.byIndex(AreaDraft.Producer.SLOT_SORT)) ? base.sort() : null;
+            this.areaType = ((ImmutableSpi) base).__isLoaded(PropId.byIndex(AreaDraft.Producer.SLOT_AREA_TYPE)) ? base.areaType() : null;
             this.children = CHILDREN_ACCESSOR.get(base);
         }
 
@@ -447,6 +442,7 @@ public class AreaListView implements View<Area> {
 
         /**
          * 字典类型编码
+         *
          * @return 主键值
          */
         @NotNull

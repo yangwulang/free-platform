@@ -1,21 +1,21 @@
 package top.yangwulang.platform.entity.sys.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.lang.Class;
 import java.lang.Long;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import org.babyfish.jimmer.Input;
 import org.babyfish.jimmer.internal.GeneratedBy;
-import org.babyfish.jimmer.meta.PropId;
-import org.babyfish.jimmer.runtime.ImmutableSpi;
-import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
-import org.jetbrains.annotations.NotNull;
+import org.babyfish.jimmer.meta.ImmutableProp;
+import org.babyfish.jimmer.sql.ast.query.specification.JSpecification;
+import org.babyfish.jimmer.sql.ast.query.specification.PredicateApplier;
+import org.babyfish.jimmer.sql.ast.query.specification.SpecificationArgs;
 import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.sys.Area;
-import top.yangwulang.platform.entity.sys.AreaDraft;
-import top.yangwulang.platform.entity.sys.AreaFetcher;
+import top.yangwulang.platform.entity.sys.AreaProps;
+import top.yangwulang.platform.entity.sys.AreaTable;
 
 /**
  * 区域表
@@ -23,17 +23,7 @@ import top.yangwulang.platform.entity.sys.AreaFetcher;
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Area.dto"
 )
-public class AreaListInput implements Input<Area> {
-    public static final ViewMetadata<Area, AreaListInput> METADATA = 
-        new ViewMetadata<Area, AreaListInput>(
-            AreaFetcher.$
-                .parentId()
-                .areaName()
-                .sort()
-                .areaType(),
-            AreaListInput::new
-    );
-
+public class AreaListSpecification implements JSpecification<Area, AreaTable> {
     @Schema(
             description = "父级id"
     )
@@ -43,7 +33,7 @@ public class AreaListInput implements Input<Area> {
     @Schema(
             description = "区域名称"
     )
-    @NotNull
+    @Nullable
     private String areaName;
 
     @Schema(
@@ -53,23 +43,12 @@ public class AreaListInput implements Input<Area> {
     private Long sort;
 
     @Schema(
-            description = "地区类型(1：国家；2：省份、直辖市；3：地市；4：区县)"
+            description = "地区类型(1：省份、直辖市；2：地市；3：区县)"
     )
     @Nullable
     private String areaType;
 
-    public AreaListInput() {
-    }
-
-    public AreaListInput(@NotNull Area base) {
-        this.parentId = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(AreaDraft.Producer.SLOT_PARENT_ID)) ? base.parentId() : null;
-        this.areaName = base.areaName();
-        this.sort = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(AreaDraft.Producer.SLOT_SORT)) ? base.sort() : null;
-        this.areaType = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(AreaDraft.Producer.SLOT_AREA_TYPE)) ? base.areaType() : null;
-    }
-
-    public static AreaListInput of(@NotNull Area base) {
-        return new AreaListInput(base);
+    public AreaListSpecification() {
     }
 
     /**
@@ -87,12 +66,12 @@ public class AreaListInput implements Input<Area> {
     /**
      * 名称
      */
-    @NotNull
+    @Nullable
     public String getAreaName() {
         return areaName;
     }
 
-    public void setAreaName(@NotNull String areaName) {
+    public void setAreaName(@Nullable String areaName) {
         this.areaName = areaName;
     }
 
@@ -121,13 +100,17 @@ public class AreaListInput implements Input<Area> {
     }
 
     @Override
-    public Area toEntity() {
-        return AreaDraft.$.produce(__draft -> {
-            __draft.setParentId(parentId);
-            __draft.setAreaName(areaName);
-            __draft.setSort(sort);
-            __draft.setAreaType(areaType);
-        });
+    public Class<Area> entityType() {
+        return Area.class;
+    }
+
+    @Override
+    public void applyTo(SpecificationArgs<Area, AreaTable> args) {
+        PredicateApplier __applier = args.getApplier();
+        __applier.eq(new ImmutableProp[] { AreaProps.PARENT_ID.unwrap() }, this.parentId);
+        __applier.eq(new ImmutableProp[] { AreaProps.AREA_NAME.unwrap() }, this.areaName);
+        __applier.eq(new ImmutableProp[] { AreaProps.SORT.unwrap() }, this.sort);
+        __applier.eq(new ImmutableProp[] { AreaProps.AREA_TYPE.unwrap() }, this.areaType);
     }
 
     @Override
@@ -144,7 +127,7 @@ public class AreaListInput implements Input<Area> {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
-        AreaListInput other = (AreaListInput) o;
+        AreaListSpecification other = (AreaListSpecification) o;
         if (!Objects.equals(parentId, other.parentId)) {
             return false;
         }
@@ -163,7 +146,7 @@ public class AreaListInput implements Input<Area> {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("AreaListInput").append('(');
+        builder.append("AreaListSpecification").append('(');
         builder.append("parentId=").append(parentId);
         builder.append(", areaName=").append(areaName);
         builder.append(", sort=").append(sort);

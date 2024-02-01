@@ -78,10 +78,6 @@ public class ConfigSaveInput implements Input<Config> {
         return new ConfigSaveInput(base);
     }
 
-    /**
-     * 字典类型编码
-     * @return 主键值
-     */
     @Nullable
     public String getId() {
         return id;
@@ -91,11 +87,6 @@ public class ConfigSaveInput implements Input<Config> {
         this.id = id;
     }
 
-    /**
-     * 名称
-     *
-     * @return 配置名称
-     */
     @NotNull
     public String getConfigName() {
         return configName;
@@ -105,11 +96,6 @@ public class ConfigSaveInput implements Input<Config> {
         this.configName = configName;
     }
 
-    /**
-     * 参数键
-     *
-     * @return 键
-     */
     @NotNull
     public String getConfigKey() {
         return configKey;
@@ -119,11 +105,6 @@ public class ConfigSaveInput implements Input<Config> {
         this.configKey = configKey;
     }
 
-    /**
-     * 参数值
-     *
-     * @return 值
-     */
     @Nullable
     public String getConfigValue() {
         return configValue;
@@ -133,11 +114,6 @@ public class ConfigSaveInput implements Input<Config> {
         this.configValue = configValue;
     }
 
-    /**
-     * 备注信息
-     *
-     * @return 备注信息
-     */
     @Nullable
     public String getRemarks() {
         return remarks;

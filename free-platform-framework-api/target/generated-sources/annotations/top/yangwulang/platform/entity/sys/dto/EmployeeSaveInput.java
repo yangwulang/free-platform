@@ -21,9 +21,6 @@ import top.yangwulang.platform.entity.sys.EmployeeFetcher;
 import top.yangwulang.platform.entity.sys.UserDraft;
 import top.yangwulang.platform.entity.sys.UserFetcher;
 
-/**
- * 员工
- */
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Employee.dto"
 )
@@ -220,9 +217,6 @@ public class EmployeeSaveInput implements Input<Employee> {
         return new EmployeeSaveInput(base);
     }
 
-    /**
-     * 员工姓名
-     */
     @Nullable
     public String getEmpName() {
         return empName;
@@ -232,9 +226,6 @@ public class EmployeeSaveInput implements Input<Employee> {
         this.empName = empName;
     }
 
-    /**
-     * 员工编码
-     */
     @Nullable
     public String getEmpCode() {
         return empCode;

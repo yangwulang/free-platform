@@ -6,8 +6,8 @@ import top.yangwulang.platform.entity.sys.AreaDraft;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-01-24T16:57:55+0800",
-    comments = "version: 1.5.3.Final, compiler: javac, environment: Java 17.0.7 (Oracle Corporation)"
+    date = "2024-02-01T10:41:14+0800",
+    comments = "version: 1.5.3.Final, compiler: javac, environment: Java 17.0.5 (Oracle Corporation)"
 )
 class AreaSaveInput$ConverterImpl implements AreaSaveInput.Converter {
 

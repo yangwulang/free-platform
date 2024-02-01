@@ -102,9 +102,6 @@ public class RoleSaveInput implements Input<Role> {
         return new RoleSaveInput(base);
     }
 
-    /**
-     * 角色编码
-     */
     @NotNull
     public String getRoleCode() {
         return roleCode;
@@ -114,9 +111,6 @@ public class RoleSaveInput implements Input<Role> {
         this.roleCode = roleCode;
     }
 
-    /**
-     * 角色名称
-     */
     @NotNull
     public String getRoleName() {
         return roleName;
@@ -126,9 +120,6 @@ public class RoleSaveInput implements Input<Role> {
         this.roleName = roleName;
     }
 
-    /**
-     * 角色分类（高管、中层、基层、其它）
-     */
     @Nullable
     public String getRoleType() {
         return roleType;
@@ -138,9 +129,6 @@ public class RoleSaveInput implements Input<Role> {
         this.roleType = roleType;
     }
 
-    /**
-     * 角色排序（升序）
-     */
     @Nullable
     public BigDecimal getRoleSort() {
         return roleSort;
@@ -150,9 +138,6 @@ public class RoleSaveInput implements Input<Role> {
         this.roleSort = roleSort;
     }
 
-    /**
-     * 系统内置（1是 0否）
-     */
     @Nullable
     public Boolean getIsSys() {
         return isSys;
@@ -162,9 +147,6 @@ public class RoleSaveInput implements Input<Role> {
         this.isSys = isSys;
     }
 
-    /**
-     * 用户类型（employee员工 member会员）
-     */
     @Nullable
     public String getUserType() {
         return userType;
@@ -174,9 +156,6 @@ public class RoleSaveInput implements Input<Role> {
         this.userType = userType;
     }
 
-    /**
-     * 数据范围设置（0未设置  1全部数据 2自定义数据）
-     */
     @Nullable
     public String getDataScope() {
         return dataScope;
@@ -186,9 +165,6 @@ public class RoleSaveInput implements Input<Role> {
         this.dataScope = dataScope;
     }
 
-    /**
-     * 适应业务范围（不同的功能，不同的数据权限支持）
-     */
     @Nullable
     public String getBizScope() {
         return bizScope;

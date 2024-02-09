@@ -107,7 +107,7 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.69",
+                "0.8.93",
                 MessageRecord.class,
                 Arrays.asList(
                     TypeBaseDraft.Producer.TYPE,
@@ -1032,7 +1032,7 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
                     case SLOT_ID:
                     		setId((String)value);break;
                     case SLOT_STATUS:
-                    		if (value == null) throw new IllegalArgumentException("'status' cannot be null");
+                    		if (value == null) throw new IllegalArgumentException("'status' cannot be null, if you want to set null, please use any annotation whose simple name is \"Nullable\" to decorate the property");
                             setStatus((Integer)value);
                             break;
                     case SLOT_TYPE:
@@ -1062,7 +1062,7 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
                     case "id":
                     		setId((String)value);break;
                     case "status":
-                    		if (value == null) throw new IllegalArgumentException("'status' cannot be null");
+                    		if (value == null) throw new IllegalArgumentException("'status' cannot be null, if you want to set null, please use any annotation whose simple name is \"Nullable\" to decorate the property");
                             setStatus((Integer)value);
                             break;
                     case "type":
@@ -1344,33 +1344,33 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
         }
 
         public MessageRecord build() {
-            return MessageRecordDraft.$.produce(draft -> {
+            return MessageRecordDraft.$.produce(__draft -> {
                 if (id != null) {
-                    draft.setId(id);
+                    __draft.setId(id);
                 }
                 if (status != null) {
-                    draft.setStatus(status);
+                    __draft.setStatus(status);
                 }
                 if (type != null) {
-                    draft.setType(type);
+                    __draft.setType(type);
                 }
                 if (title != null) {
-                    draft.setTitle(title);
+                    __draft.setTitle(title);
                 }
                 if (subTitle != null) {
-                    draft.setSubTitle(subTitle);
+                    __draft.setSubTitle(subTitle);
                 }
                 if (__avatarLoaded) {
-                    draft.setAvatar(avatar);
+                    __draft.setAvatar(avatar);
                 }
                 if (content != null) {
-                    draft.setContent(content);
+                    __draft.setContent(content);
                 }
                 if (__messageTypeLoaded) {
-                    draft.setMessageType(messageType);
+                    __draft.setMessageType(messageType);
                 }
                 if (messageRecordUsers != null) {
-                    draft.setMessageRecordUsers(messageRecordUsers);
+                    __draft.setMessageRecordUsers(messageRecordUsers);
                 }
             });
         }

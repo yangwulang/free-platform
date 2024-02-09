@@ -3,7 +3,6 @@ package top.yangwulang.platform.controller.sys
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import io.swagger.v3.oas.annotations.tags.Tags
-import org.babyfish.jimmer.sql.ast.Predicate
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 import top.yangwulang.platform.entity.Tables
@@ -12,7 +11,7 @@ import top.yangwulang.platform.entity.sys.AreaTable
 import top.yangwulang.platform.entity.sys.dto.AreaGetView
 import top.yangwulang.platform.entity.sys.dto.AreaListSpecification
 import top.yangwulang.platform.entity.sys.dto.AreaListView
-import top.yangwulang.platform.entity.sys.input.area.AreaSaveInput
+import top.yangwulang.platform.entity.sys.dto.AreaSaveInput
 import top.yangwulang.platform.services.AreaService
 
 /**

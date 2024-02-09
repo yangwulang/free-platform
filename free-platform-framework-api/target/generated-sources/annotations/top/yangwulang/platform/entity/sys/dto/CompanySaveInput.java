@@ -89,6 +89,9 @@ public class CompanySaveInput implements Input<Company> {
     }
 
     @NotNull
+    @Schema(
+            description = "公司编码"
+    )
     public String getCompanyCode() {
         return companyCode;
     }
@@ -98,6 +101,9 @@ public class CompanySaveInput implements Input<Company> {
     }
 
     @NotNull
+    @Schema(
+            description = "公司名称"
+    )
     public String getCompanyName() {
         return companyName;
     }
@@ -107,6 +113,9 @@ public class CompanySaveInput implements Input<Company> {
     }
 
     @Nullable
+    @Schema(
+            description = "公司全名"
+    )
     public String getCompanyFullName() {
         return companyFullName;
     }
@@ -134,6 +143,9 @@ public class CompanySaveInput implements Input<Company> {
     }
 
     @Nullable
+    @Schema(
+            description = "父级id"
+    )
     public String getParentId() {
         return parentId;
     }

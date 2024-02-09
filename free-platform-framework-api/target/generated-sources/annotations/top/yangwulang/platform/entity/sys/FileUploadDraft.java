@@ -4,12 +4,15 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.lang.CloneNotSupportedException;
 import java.lang.Cloneable;
+import java.lang.IllegalArgumentException;
+import java.lang.Integer;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.lang.System;
 import java.util.Collections;
+import java.util.Date;
 import java.util.Objects;
 import org.babyfish.jimmer.CircularReferenceException;
 import org.babyfish.jimmer.DraftConsumer;
@@ -28,16 +31,34 @@ import org.babyfish.jimmer.runtime.Internal;
 import org.babyfish.jimmer.runtime.Visibility;
 import org.babyfish.jimmer.sql.ManyToOne;
 import org.jetbrains.annotations.Nullable;
-import top.yangwulang.platform.entity.TypeBaseDraft;
+import top.yangwulang.platform.entity.DataTypeBaseDraft;
 
 @GeneratedBy(
         type = FileUpload.class
 )
-public interface FileUploadDraft extends FileUpload, TypeBaseDraft {
+public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
     FileUploadDraft.Producer $ = Producer.INSTANCE;
 
     @OldChain
     FileUploadDraft setId(String id);
+
+    @OldChain
+    FileUploadDraft setStatus(int status);
+
+    @OldChain
+    FileUploadDraft setCreateBy(String createBy);
+
+    @OldChain
+    FileUploadDraft setCreateDate(Date createDate);
+
+    @OldChain
+    FileUploadDraft setUpdateBy(String updateBy);
+
+    @OldChain
+    FileUploadDraft setUpdateDate(Date updateDate);
+
+    @OldChain
+    FileUploadDraft setRemarks(String remarks);
 
     @Nullable
     FileEntityDraft fileEntity();
@@ -73,26 +94,44 @@ public interface FileUploadDraft extends FileUpload, TypeBaseDraft {
 
         public static final int SLOT_ID = 0;
 
-        public static final int SLOT_FILE_ENTITY = 1;
+        public static final int SLOT_STATUS = 1;
 
-        public static final int SLOT_FILE_ENTITY_ID = 2;
+        public static final int SLOT_CREATE_BY = 2;
 
-        public static final int SLOT_FILE_NAME = 3;
+        public static final int SLOT_CREATE_DATE = 3;
 
-        public static final int SLOT_FILE_TYPE = 4;
+        public static final int SLOT_UPDATE_BY = 4;
 
-        public static final int SLOT_BIZ_KEY = 5;
+        public static final int SLOT_UPDATE_DATE = 5;
 
-        public static final int SLOT_BIZ_TYPE = 6;
+        public static final int SLOT_REMARKS = 6;
+
+        public static final int SLOT_FILE_ENTITY = 7;
+
+        public static final int SLOT_FILE_ENTITY_ID = 8;
+
+        public static final int SLOT_FILE_NAME = 9;
+
+        public static final int SLOT_FILE_TYPE = 10;
+
+        public static final int SLOT_BIZ_KEY = 11;
+
+        public static final int SLOT_BIZ_TYPE = 12;
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.69",
+                "0.8.93",
                 FileUpload.class,
-                Collections.singleton(TypeBaseDraft.Producer.TYPE),
+                Collections.singleton(DataTypeBaseDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (FileUpload)base)
             )
             .redefine("id", SLOT_ID)
+            .redefine("status", SLOT_STATUS)
+            .redefine("createBy", SLOT_CREATE_BY)
+            .redefine("createDate", SLOT_CREATE_DATE)
+            .redefine("updateBy", SLOT_UPDATE_BY)
+            .redefine("updateDate", SLOT_UPDATE_DATE)
+            .redefine("remarks", SLOT_REMARKS)
             .keyReference(SLOT_FILE_ENTITY, "fileEntity", ManyToOne.class, FileEntity.class, true)
             .add(SLOT_FILE_ENTITY_ID, "fileEntityId", ImmutablePropCategory.SCALAR, String.class, true)
             .add(SLOT_FILE_NAME, "fileName", ImmutablePropCategory.SCALAR, String.class, false)
@@ -121,6 +160,18 @@ public interface FileUploadDraft extends FileUpload, TypeBaseDraft {
                     		return __get(prop.asName());
                     case SLOT_ID:
                     		return id();
+                    case SLOT_STATUS:
+                    		return (Integer)status();
+                    case SLOT_CREATE_BY:
+                    		return createBy();
+                    case SLOT_CREATE_DATE:
+                    		return createDate();
+                    case SLOT_UPDATE_BY:
+                    		return updateBy();
+                    case SLOT_UPDATE_DATE:
+                    		return updateDate();
+                    case SLOT_REMARKS:
+                    		return remarks();
                     case SLOT_FILE_ENTITY:
                     		return fileEntity();
                     case SLOT_FILE_ENTITY_ID:
@@ -142,6 +193,18 @@ public interface FileUploadDraft extends FileUpload, TypeBaseDraft {
                 switch (prop) {
                     case "id":
                     		return id();
+                    case "status":
+                    		return (Integer)status();
+                    case "createBy":
+                    		return createBy();
+                    case "createDate":
+                    		return createDate();
+                    case "updateBy":
+                    		return updateBy();
+                    case "updateDate":
+                    		return updateDate();
+                    case "remarks":
+                    		return remarks();
                     case "fileEntity":
                     		return fileEntity();
                     case "fileEntityId":
@@ -161,6 +224,36 @@ public interface FileUploadDraft extends FileUpload, TypeBaseDraft {
             @JsonIgnore
             default String getId() {
                 return id();
+            }
+
+            @JsonIgnore
+            default int getStatus() {
+                return status();
+            }
+
+            @JsonIgnore
+            default String getCreateBy() {
+                return createBy();
+            }
+
+            @JsonIgnore
+            default Date getCreateDate() {
+                return createDate();
+            }
+
+            @JsonIgnore
+            default String getUpdateBy() {
+                return updateBy();
+            }
+
+            @JsonIgnore
+            default Date getUpdateDate() {
+                return updateDate();
+            }
+
+            @JsonIgnore
+            default String getRemarks() {
+                return remarks();
             }
 
             @JsonIgnore
@@ -208,6 +301,22 @@ public interface FileUploadDraft extends FileUpload, TypeBaseDraft {
 
             String __idValue;
 
+            int __statusValue;
+
+            boolean __statusLoaded = false;
+
+            String __createByValue;
+
+            Date __createDateValue;
+
+            String __updateByValue;
+
+            Date __updateDateValue;
+
+            String __remarksValue;
+
+            boolean __remarksLoaded = false;
+
             FileEntity __fileEntityValue;
 
             boolean __fileEntityLoaded = false;
@@ -225,7 +334,7 @@ public interface FileUploadDraft extends FileUpload, TypeBaseDraft {
             boolean __bizTypeLoaded = false;
 
             Impl() {
-                __visibility = Visibility.of(7);
+                __visibility = Visibility.of(13);
                 __visibility.show(SLOT_FILE_ENTITY_ID, false);
             }
 
@@ -235,6 +344,55 @@ public interface FileUploadDraft extends FileUpload, TypeBaseDraft {
                     throw new UnloadedException(FileUpload.class, "id");
                 }
                 return __idValue;
+            }
+
+            @Override
+            public int status() {
+                if (!__statusLoaded) {
+                    throw new UnloadedException(FileUpload.class, "status");
+                }
+                return __statusValue;
+            }
+
+            @Override
+            public String createBy() {
+                if (__createByValue == null) {
+                    throw new UnloadedException(FileUpload.class, "createBy");
+                }
+                return __createByValue;
+            }
+
+            @Override
+            public Date createDate() {
+                if (__createDateValue == null) {
+                    throw new UnloadedException(FileUpload.class, "createDate");
+                }
+                return __createDateValue;
+            }
+
+            @Override
+            public String updateBy() {
+                if (__updateByValue == null) {
+                    throw new UnloadedException(FileUpload.class, "updateBy");
+                }
+                return __updateByValue;
+            }
+
+            @Override
+            public Date updateDate() {
+                if (__updateDateValue == null) {
+                    throw new UnloadedException(FileUpload.class, "updateDate");
+                }
+                return __updateDateValue;
+            }
+
+            @Override
+            @Nullable
+            public String remarks() {
+                if (!__remarksLoaded) {
+                    throw new UnloadedException(FileUpload.class, "remarks");
+                }
+                return __remarksValue;
             }
 
             @Override
@@ -304,6 +462,18 @@ public interface FileUploadDraft extends FileUpload, TypeBaseDraft {
                     		return __isLoaded(prop.asName());
                     case SLOT_ID:
                     		return __idValue != null;
+                    case SLOT_STATUS:
+                    		return __statusLoaded;
+                    case SLOT_CREATE_BY:
+                    		return __createByValue != null;
+                    case SLOT_CREATE_DATE:
+                    		return __createDateValue != null;
+                    case SLOT_UPDATE_BY:
+                    		return __updateByValue != null;
+                    case SLOT_UPDATE_DATE:
+                    		return __updateDateValue != null;
+                    case SLOT_REMARKS:
+                    		return __remarksLoaded;
                     case SLOT_FILE_ENTITY:
                     		return __fileEntityLoaded;
                     case SLOT_FILE_ENTITY_ID:
@@ -326,6 +496,18 @@ public interface FileUploadDraft extends FileUpload, TypeBaseDraft {
                 switch (prop) {
                     case "id":
                     		return __idValue != null;
+                    case "status":
+                    		return __statusLoaded;
+                    case "createBy":
+                    		return __createByValue != null;
+                    case "createDate":
+                    		return __createDateValue != null;
+                    case "updateBy":
+                    		return __updateByValue != null;
+                    case "updateDate":
+                    		return __updateDateValue != null;
+                    case "remarks":
+                    		return __remarksLoaded;
                     case "fileEntity":
                     		return __fileEntityLoaded;
                     case "fileEntityId":
@@ -354,6 +536,18 @@ public interface FileUploadDraft extends FileUpload, TypeBaseDraft {
                     		return __isVisible(prop.asName());
                     case SLOT_ID:
                     		return __visibility.visible(SLOT_ID);
+                    case SLOT_STATUS:
+                    		return __visibility.visible(SLOT_STATUS);
+                    case SLOT_CREATE_BY:
+                    		return __visibility.visible(SLOT_CREATE_BY);
+                    case SLOT_CREATE_DATE:
+                    		return __visibility.visible(SLOT_CREATE_DATE);
+                    case SLOT_UPDATE_BY:
+                    		return __visibility.visible(SLOT_UPDATE_BY);
+                    case SLOT_UPDATE_DATE:
+                    		return __visibility.visible(SLOT_UPDATE_DATE);
+                    case SLOT_REMARKS:
+                    		return __visibility.visible(SLOT_REMARKS);
                     case SLOT_FILE_ENTITY:
                     		return __visibility.visible(SLOT_FILE_ENTITY);
                     case SLOT_FILE_ENTITY_ID:
@@ -378,6 +572,18 @@ public interface FileUploadDraft extends FileUpload, TypeBaseDraft {
                 switch (prop) {
                     case "id":
                     		return __visibility.visible(SLOT_ID);
+                    case "status":
+                    		return __visibility.visible(SLOT_STATUS);
+                    case "createBy":
+                    		return __visibility.visible(SLOT_CREATE_BY);
+                    case "createDate":
+                    		return __visibility.visible(SLOT_CREATE_DATE);
+                    case "updateBy":
+                    		return __visibility.visible(SLOT_UPDATE_BY);
+                    case "updateDate":
+                    		return __visibility.visible(SLOT_UPDATE_DATE);
+                    case "remarks":
+                    		return __visibility.visible(SLOT_REMARKS);
                     case "fileEntity":
                     		return __visibility.visible(SLOT_FILE_ENTITY);
                     case "fileEntityId":
@@ -402,6 +608,24 @@ public interface FileUploadDraft extends FileUpload, TypeBaseDraft {
                     // If entity-id is loaded, return directly
                     return hash;
                 }
+                if (__statusLoaded) {
+                    hash = 31 * hash + Integer.hashCode(__statusValue);
+                }
+                if (__createByValue != null) {
+                    hash = 31 * hash + __createByValue.hashCode();
+                }
+                if (__createDateValue != null) {
+                    hash = 31 * hash + __createDateValue.hashCode();
+                }
+                if (__updateByValue != null) {
+                    hash = 31 * hash + __updateByValue.hashCode();
+                }
+                if (__updateDateValue != null) {
+                    hash = 31 * hash + __updateDateValue.hashCode();
+                }
+                if (__remarksLoaded && __remarksValue != null) {
+                    hash = 31 * hash + __remarksValue.hashCode();
+                }
                 if (__fileEntityLoaded && __fileEntityValue != null) {
                     hash = 31 * hash + __fileEntityValue.hashCode();
                 }
@@ -424,6 +648,24 @@ public interface FileUploadDraft extends FileUpload, TypeBaseDraft {
                 int hash = __visibility != null ? __visibility.hashCode() : 0;
                 if (__idValue != null) {
                     hash = 31 * hash + System.identityHashCode(__idValue);
+                }
+                if (__statusLoaded) {
+                    hash = 31 * hash + Integer.hashCode(__statusValue);
+                }
+                if (__createByValue != null) {
+                    hash = 31 * hash + System.identityHashCode(__createByValue);
+                }
+                if (__createDateValue != null) {
+                    hash = 31 * hash + System.identityHashCode(__createDateValue);
+                }
+                if (__updateByValue != null) {
+                    hash = 31 * hash + System.identityHashCode(__updateByValue);
+                }
+                if (__updateDateValue != null) {
+                    hash = 31 * hash + System.identityHashCode(__updateDateValue);
+                }
+                if (__remarksLoaded) {
+                    hash = 31 * hash + System.identityHashCode(__remarksValue);
                 }
                 if (__fileEntityLoaded) {
                     hash = 31 * hash + System.identityHashCode(__fileEntityValue);
@@ -464,6 +706,66 @@ public interface FileUploadDraft extends FileUpload, TypeBaseDraft {
                 if (__idLoaded) {
                     // If entity-id is loaded, return directly
                     return Objects.equals(__idValue, __other.id());
+                }
+                if (__isVisible(PropId.byIndex(SLOT_STATUS)) != __other.__isVisible(PropId.byIndex(SLOT_STATUS))) {
+                    return false;
+                }
+                boolean __statusLoaded = this.__statusLoaded;
+                if (__statusLoaded != __other.__isLoaded(PropId.byIndex(SLOT_STATUS))) {
+                    return false;
+                }
+                if (__statusLoaded && __statusValue != __other.status()) {
+                    return false;
+                }
+                if (__isVisible(PropId.byIndex(SLOT_CREATE_BY)) != __other.__isVisible(PropId.byIndex(SLOT_CREATE_BY))) {
+                    return false;
+                }
+                boolean __createByLoaded = __createByValue != null;
+                if (__createByLoaded != __other.__isLoaded(PropId.byIndex(SLOT_CREATE_BY))) {
+                    return false;
+                }
+                if (__createByLoaded && !Objects.equals(__createByValue, __other.createBy())) {
+                    return false;
+                }
+                if (__isVisible(PropId.byIndex(SLOT_CREATE_DATE)) != __other.__isVisible(PropId.byIndex(SLOT_CREATE_DATE))) {
+                    return false;
+                }
+                boolean __createDateLoaded = __createDateValue != null;
+                if (__createDateLoaded != __other.__isLoaded(PropId.byIndex(SLOT_CREATE_DATE))) {
+                    return false;
+                }
+                if (__createDateLoaded && !Objects.equals(__createDateValue, __other.createDate())) {
+                    return false;
+                }
+                if (__isVisible(PropId.byIndex(SLOT_UPDATE_BY)) != __other.__isVisible(PropId.byIndex(SLOT_UPDATE_BY))) {
+                    return false;
+                }
+                boolean __updateByLoaded = __updateByValue != null;
+                if (__updateByLoaded != __other.__isLoaded(PropId.byIndex(SLOT_UPDATE_BY))) {
+                    return false;
+                }
+                if (__updateByLoaded && !Objects.equals(__updateByValue, __other.updateBy())) {
+                    return false;
+                }
+                if (__isVisible(PropId.byIndex(SLOT_UPDATE_DATE)) != __other.__isVisible(PropId.byIndex(SLOT_UPDATE_DATE))) {
+                    return false;
+                }
+                boolean __updateDateLoaded = __updateDateValue != null;
+                if (__updateDateLoaded != __other.__isLoaded(PropId.byIndex(SLOT_UPDATE_DATE))) {
+                    return false;
+                }
+                if (__updateDateLoaded && !Objects.equals(__updateDateValue, __other.updateDate())) {
+                    return false;
+                }
+                if (__isVisible(PropId.byIndex(SLOT_REMARKS)) != __other.__isVisible(PropId.byIndex(SLOT_REMARKS))) {
+                    return false;
+                }
+                boolean __remarksLoaded = this.__remarksLoaded;
+                if (__remarksLoaded != __other.__isLoaded(PropId.byIndex(SLOT_REMARKS))) {
+                    return false;
+                }
+                if (__remarksLoaded && !Objects.equals(__remarksValue, __other.remarks())) {
+                    return false;
                 }
                 if (__isVisible(PropId.byIndex(SLOT_FILE_ENTITY)) != __other.__isVisible(PropId.byIndex(SLOT_FILE_ENTITY))) {
                     return false;
@@ -534,6 +836,66 @@ public interface FileUploadDraft extends FileUpload, TypeBaseDraft {
                     return false;
                 }
                 if (__idLoaded && __idValue != __other.id()) {
+                    return false;
+                }
+                if (__isVisible(PropId.byIndex(SLOT_STATUS)) != __other.__isVisible(PropId.byIndex(SLOT_STATUS))) {
+                    return false;
+                }
+                boolean __statusLoaded = this.__statusLoaded;
+                if (__statusLoaded != __other.__isLoaded(PropId.byIndex(SLOT_STATUS))) {
+                    return false;
+                }
+                if (__statusLoaded && __statusValue != __other.status()) {
+                    return false;
+                }
+                if (__isVisible(PropId.byIndex(SLOT_CREATE_BY)) != __other.__isVisible(PropId.byIndex(SLOT_CREATE_BY))) {
+                    return false;
+                }
+                boolean __createByLoaded = __createByValue != null;
+                if (__createByLoaded != __other.__isLoaded(PropId.byIndex(SLOT_CREATE_BY))) {
+                    return false;
+                }
+                if (__createByLoaded && __createByValue != __other.createBy()) {
+                    return false;
+                }
+                if (__isVisible(PropId.byIndex(SLOT_CREATE_DATE)) != __other.__isVisible(PropId.byIndex(SLOT_CREATE_DATE))) {
+                    return false;
+                }
+                boolean __createDateLoaded = __createDateValue != null;
+                if (__createDateLoaded != __other.__isLoaded(PropId.byIndex(SLOT_CREATE_DATE))) {
+                    return false;
+                }
+                if (__createDateLoaded && __createDateValue != __other.createDate()) {
+                    return false;
+                }
+                if (__isVisible(PropId.byIndex(SLOT_UPDATE_BY)) != __other.__isVisible(PropId.byIndex(SLOT_UPDATE_BY))) {
+                    return false;
+                }
+                boolean __updateByLoaded = __updateByValue != null;
+                if (__updateByLoaded != __other.__isLoaded(PropId.byIndex(SLOT_UPDATE_BY))) {
+                    return false;
+                }
+                if (__updateByLoaded && __updateByValue != __other.updateBy()) {
+                    return false;
+                }
+                if (__isVisible(PropId.byIndex(SLOT_UPDATE_DATE)) != __other.__isVisible(PropId.byIndex(SLOT_UPDATE_DATE))) {
+                    return false;
+                }
+                boolean __updateDateLoaded = __updateDateValue != null;
+                if (__updateDateLoaded != __other.__isLoaded(PropId.byIndex(SLOT_UPDATE_DATE))) {
+                    return false;
+                }
+                if (__updateDateLoaded && __updateDateValue != __other.updateDate()) {
+                    return false;
+                }
+                if (__isVisible(PropId.byIndex(SLOT_REMARKS)) != __other.__isVisible(PropId.byIndex(SLOT_REMARKS))) {
+                    return false;
+                }
+                boolean __remarksLoaded = this.__remarksLoaded;
+                if (__remarksLoaded != __other.__isLoaded(PropId.byIndex(SLOT_REMARKS))) {
+                    return false;
+                }
+                if (__remarksLoaded && __remarksValue != __other.remarks()) {
                     return false;
                 }
                 if (__isVisible(PropId.byIndex(SLOT_FILE_ENTITY)) != __other.__isVisible(PropId.byIndex(SLOT_FILE_ENTITY))) {
@@ -685,6 +1047,101 @@ public interface FileUploadDraft extends FileUpload, TypeBaseDraft {
             }
 
             @Override
+            public int status() {
+                return (__modified!= null ? __modified : __base).status();
+            }
+
+            @Override
+            public FileUploadDraft setStatus(int status) {
+                Impl __tmpModified = __modified();
+                __tmpModified.__statusValue = status;
+                __tmpModified.__statusLoaded = true;
+                return this;
+            }
+
+            @Override
+            public String createBy() {
+                return (__modified!= null ? __modified : __base).createBy();
+            }
+
+            @Override
+            public FileUploadDraft setCreateBy(String createBy) {
+                if (createBy == null) {
+                    throw new IllegalArgumentException(
+                        "'createBy' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
+                    );
+                }
+                Impl __tmpModified = __modified();
+                __tmpModified.__createByValue = createBy;
+                return this;
+            }
+
+            @Override
+            public Date createDate() {
+                return (__modified!= null ? __modified : __base).createDate();
+            }
+
+            @Override
+            public FileUploadDraft setCreateDate(Date createDate) {
+                if (createDate == null) {
+                    throw new IllegalArgumentException(
+                        "'createDate' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
+                    );
+                }
+                Impl __tmpModified = __modified();
+                __tmpModified.__createDateValue = createDate;
+                return this;
+            }
+
+            @Override
+            public String updateBy() {
+                return (__modified!= null ? __modified : __base).updateBy();
+            }
+
+            @Override
+            public FileUploadDraft setUpdateBy(String updateBy) {
+                if (updateBy == null) {
+                    throw new IllegalArgumentException(
+                        "'updateBy' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
+                    );
+                }
+                Impl __tmpModified = __modified();
+                __tmpModified.__updateByValue = updateBy;
+                return this;
+            }
+
+            @Override
+            public Date updateDate() {
+                return (__modified!= null ? __modified : __base).updateDate();
+            }
+
+            @Override
+            public FileUploadDraft setUpdateDate(Date updateDate) {
+                if (updateDate == null) {
+                    throw new IllegalArgumentException(
+                        "'updateDate' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
+                    );
+                }
+                Impl __tmpModified = __modified();
+                __tmpModified.__updateDateValue = updateDate;
+                return this;
+            }
+
+            @Override
+            @Nullable
+            public String remarks() {
+                return (__modified!= null ? __modified : __base).remarks();
+            }
+
+            @Override
+            public FileUploadDraft setRemarks(String remarks) {
+                Impl __tmpModified = __modified();
+                __tmpModified.__remarksValue = remarks;
+                __tmpModified.__remarksLoaded = true;
+                return this;
+            }
+
+            @Override
             @Nullable
             public FileEntityDraft fileEntity() {
                 return __ctx.toDraftObject((__modified!= null ? __modified : __base).fileEntity());
@@ -808,6 +1265,20 @@ public interface FileUploadDraft extends FileUpload, TypeBaseDraft {
                     return;
                     case SLOT_ID:
                     		setId((String)value);break;
+                    case SLOT_STATUS:
+                    		if (value == null) throw new IllegalArgumentException("'status' cannot be null, if you want to set null, please use any annotation whose simple name is \"Nullable\" to decorate the property");
+                            setStatus((Integer)value);
+                            break;
+                    case SLOT_CREATE_BY:
+                    		setCreateBy((String)value);break;
+                    case SLOT_CREATE_DATE:
+                    		setCreateDate((Date)value);break;
+                    case SLOT_UPDATE_BY:
+                    		setUpdateBy((String)value);break;
+                    case SLOT_UPDATE_DATE:
+                    		setUpdateDate((Date)value);break;
+                    case SLOT_REMARKS:
+                    		setRemarks((String)value);break;
                     case SLOT_FILE_ENTITY:
                     		setFileEntity((FileEntity)value);break;
                     case SLOT_FILE_ENTITY_ID:
@@ -830,6 +1301,20 @@ public interface FileUploadDraft extends FileUpload, TypeBaseDraft {
                 switch (prop) {
                     case "id":
                     		setId((String)value);break;
+                    case "status":
+                    		if (value == null) throw new IllegalArgumentException("'status' cannot be null, if you want to set null, please use any annotation whose simple name is \"Nullable\" to decorate the property");
+                            setStatus((Integer)value);
+                            break;
+                    case "createBy":
+                    		setCreateBy((String)value);break;
+                    case "createDate":
+                    		setCreateDate((Date)value);break;
+                    case "updateBy":
+                    		setUpdateBy((String)value);break;
+                    case "updateDate":
+                    		setUpdateDate((Date)value);break;
+                    case "remarks":
+                    		setRemarks((String)value);break;
                     case "fileEntity":
                     		setFileEntity((FileEntity)value);break;
                     case "fileEntityId":
@@ -853,7 +1338,7 @@ public interface FileUploadDraft extends FileUpload, TypeBaseDraft {
                     if (visible) {
                         return;
                     }
-                    __modified().__visibility = __visibility = Visibility.of(7);
+                    __modified().__visibility = __visibility = Visibility.of(13);
                 }
                 int __propIndex = prop.asIndex();
                 switch (__propIndex) {
@@ -862,6 +1347,18 @@ public interface FileUploadDraft extends FileUpload, TypeBaseDraft {
                     return;
                     case SLOT_ID:
                     		__visibility.show(SLOT_ID, visible);break;
+                    case SLOT_STATUS:
+                    		__visibility.show(SLOT_STATUS, visible);break;
+                    case SLOT_CREATE_BY:
+                    		__visibility.show(SLOT_CREATE_BY, visible);break;
+                    case SLOT_CREATE_DATE:
+                    		__visibility.show(SLOT_CREATE_DATE, visible);break;
+                    case SLOT_UPDATE_BY:
+                    		__visibility.show(SLOT_UPDATE_BY, visible);break;
+                    case SLOT_UPDATE_DATE:
+                    		__visibility.show(SLOT_UPDATE_DATE, visible);break;
+                    case SLOT_REMARKS:
+                    		__visibility.show(SLOT_REMARKS, visible);break;
                     case SLOT_FILE_ENTITY:
                     		__visibility.show(SLOT_FILE_ENTITY, visible);break;
                     case SLOT_FILE_ENTITY_ID:
@@ -889,11 +1386,23 @@ public interface FileUploadDraft extends FileUpload, TypeBaseDraft {
                     if (visible) {
                         return;
                     }
-                    __modified().__visibility = __visibility = Visibility.of(7);
+                    __modified().__visibility = __visibility = Visibility.of(13);
                 }
                 switch (prop) {
                     case "id":
                     		__visibility.show(SLOT_ID, visible);break;
+                    case "status":
+                    		__visibility.show(SLOT_STATUS, visible);break;
+                    case "createBy":
+                    		__visibility.show(SLOT_CREATE_BY, visible);break;
+                    case "createDate":
+                    		__visibility.show(SLOT_CREATE_DATE, visible);break;
+                    case "updateBy":
+                    		__visibility.show(SLOT_UPDATE_BY, visible);break;
+                    case "updateDate":
+                    		__visibility.show(SLOT_UPDATE_DATE, visible);break;
+                    case "remarks":
+                    		__visibility.show(SLOT_REMARKS, visible);break;
                     case "fileEntity":
                     		__visibility.show(SLOT_FILE_ENTITY, visible);break;
                     case "fileEntityId":
@@ -923,6 +1432,18 @@ public interface FileUploadDraft extends FileUpload, TypeBaseDraft {
                     return;
                     case SLOT_ID:
                     		__modified().__idValue = null;break;
+                    case SLOT_STATUS:
+                    		__modified().__statusLoaded = false;break;
+                    case SLOT_CREATE_BY:
+                    		__modified().__createByValue = null;break;
+                    case SLOT_CREATE_DATE:
+                    		__modified().__createDateValue = null;break;
+                    case SLOT_UPDATE_BY:
+                    		__modified().__updateByValue = null;break;
+                    case SLOT_UPDATE_DATE:
+                    		__modified().__updateDateValue = null;break;
+                    case SLOT_REMARKS:
+                    		__modified().__remarksLoaded = false;break;
                     case SLOT_FILE_ENTITY:
                     		__modified().__fileEntityLoaded = false;break;
                     case SLOT_FILE_ENTITY_ID:
@@ -944,6 +1465,18 @@ public interface FileUploadDraft extends FileUpload, TypeBaseDraft {
                 switch (prop) {
                     case "id":
                     		__modified().__idValue = null;break;
+                    case "status":
+                    		__modified().__statusLoaded = false;break;
+                    case "createBy":
+                    		__modified().__createByValue = null;break;
+                    case "createDate":
+                    		__modified().__createDateValue = null;break;
+                    case "updateBy":
+                    		__modified().__updateByValue = null;break;
+                    case "updateDate":
+                    		__modified().__updateDateValue = null;break;
+                    case "remarks":
+                    		__modified().__remarksLoaded = false;break;
                     case "fileEntity":
                     		__modified().__fileEntityLoaded = false;break;
                     case "fileEntityId":
@@ -1011,6 +1544,20 @@ public interface FileUploadDraft extends FileUpload, TypeBaseDraft {
     class MapStruct {
         private String id;
 
+        private Integer status;
+
+        private String createBy;
+
+        private Date createDate;
+
+        private String updateBy;
+
+        private Date updateDate;
+
+        private boolean __remarksLoaded;
+
+        private String remarks;
+
         private boolean __fileEntityLoaded;
 
         private FileEntity fileEntity;
@@ -1029,6 +1576,37 @@ public interface FileUploadDraft extends FileUpload, TypeBaseDraft {
 
         public MapStruct id(String id) {
             this.id = id;
+            return this;
+        }
+
+        public MapStruct status(Integer status) {
+            this.status = status;
+            return this;
+        }
+
+        public MapStruct createBy(String createBy) {
+            this.createBy = createBy;
+            return this;
+        }
+
+        public MapStruct createDate(Date createDate) {
+            this.createDate = createDate;
+            return this;
+        }
+
+        public MapStruct updateBy(String updateBy) {
+            this.updateBy = updateBy;
+            return this;
+        }
+
+        public MapStruct updateDate(Date updateDate) {
+            this.updateDate = updateDate;
+            return this;
+        }
+
+        public MapStruct remarks(String remarks) {
+            this.__remarksLoaded = true;
+            this.remarks = remarks;
             return this;
         }
 
@@ -1071,24 +1649,42 @@ public interface FileUploadDraft extends FileUpload, TypeBaseDraft {
         }
 
         public FileUpload build() {
-            return FileUploadDraft.$.produce(draft -> {
+            return FileUploadDraft.$.produce(__draft -> {
                 if (id != null) {
-                    draft.setId(id);
+                    __draft.setId(id);
+                }
+                if (status != null) {
+                    __draft.setStatus(status);
+                }
+                if (createBy != null) {
+                    __draft.setCreateBy(createBy);
+                }
+                if (createDate != null) {
+                    __draft.setCreateDate(createDate);
+                }
+                if (updateBy != null) {
+                    __draft.setUpdateBy(updateBy);
+                }
+                if (updateDate != null) {
+                    __draft.setUpdateDate(updateDate);
+                }
+                if (__remarksLoaded) {
+                    __draft.setRemarks(remarks);
                 }
                 if (__fileEntityLoaded) {
-                    draft.setFileEntity(fileEntity);
+                    __draft.setFileEntity(fileEntity);
                 }
                 if (fileName != null) {
-                    draft.setFileName(fileName);
+                    __draft.setFileName(fileName);
                 }
                 if (fileType != null) {
-                    draft.setFileType(fileType);
+                    __draft.setFileType(fileType);
                 }
                 if (__bizKeyLoaded) {
-                    draft.setBizKey(bizKey);
+                    __draft.setBizKey(bizKey);
                 }
                 if (__bizTypeLoaded) {
-                    draft.setBizType(bizType);
+                    __draft.setBizType(bizType);
                 }
             });
         }

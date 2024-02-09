@@ -1,7 +1,7 @@
 package top.yangwulang.platform.services.impl;
 
-import cn.hutool.core.lang.TypeReference;
 import cn.hutool.extra.spring.SpringUtil;
+import jakarta.transaction.Transactional;
 import org.babyfish.jimmer.Input;
 import org.babyfish.jimmer.meta.TypedProp;
 import org.babyfish.jimmer.spring.repository.JRepository;
@@ -170,19 +170,16 @@ public abstract class BaseServiceImpl<E, ID, P extends JRepository<E, ID>>
     }
 
     @NotNull
+    @Transactional(rollbackOn = { Exception.class })
     public <S extends E> SimpleEntitySaveCommand<S> saveCommand(@NotNull S entity) {
         return repository.saveCommand(entity);
     }
 
-    @NotNull
-    public <S extends E> BatchSaveResult<S> saveAll(@NotNull Iterable<S> entities, SaveMode mode) {
-        return repository.saveAll(entities, mode);
+    @Override
+    public @NotNull <S extends E> BatchEntitySaveCommand<S> saveEntitiesCommand(@NotNull Iterable<S> entities) {
+        return repository.saveEntitiesCommand(entities);
     }
 
-    @NotNull
-    public <S extends E> BatchEntitySaveCommand<S> saveAllCommand(@NotNull Iterable<S> entities) {
-        return repository.saveAllCommand(entities);
-    }
 
     @Override
     public int delete(@NotNull E entity, DeleteMode mode) {

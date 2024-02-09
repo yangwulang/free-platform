@@ -26,3 +26,10 @@ unsafe input DictDataSaveInput {
     cssStyle
     cssClass
 }
+
+/* DictDataListView {
+    #allScalars
+    -corpCode
+    -corpName
+    children*
+} */

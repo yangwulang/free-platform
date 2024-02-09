@@ -69,6 +69,9 @@ public class MenuListInput implements Input<Menu> {
     }
 
     @Nullable
+    @Schema(
+            description = "菜单名称"
+    )
     public String getMenuName() {
         return menuName;
     }
@@ -78,6 +81,9 @@ public class MenuListInput implements Input<Menu> {
     }
 
     @Nullable
+    @Schema(
+            description = "菜单类型（1菜单 2权限 3开发）"
+    )
     public String getMenuType() {
         return menuType;
     }

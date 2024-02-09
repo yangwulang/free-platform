@@ -72,6 +72,9 @@ public class PostListInput implements Input<Post> {
     }
 
     @Nullable
+    @Schema(
+            description = "岗位编码"
+    )
     public String getPostCode() {
         return postCode;
     }
@@ -81,6 +84,9 @@ public class PostListInput implements Input<Post> {
     }
 
     @Nullable
+    @Schema(
+            description = "岗位名称"
+    )
     public String getPostName() {
         return postName;
     }
@@ -90,6 +96,9 @@ public class PostListInput implements Input<Post> {
     }
 
     @Nullable
+    @Schema(
+            description = "岗位类型（高管、中层、低层）"
+    )
     public String getPostType() {
         return postType;
     }

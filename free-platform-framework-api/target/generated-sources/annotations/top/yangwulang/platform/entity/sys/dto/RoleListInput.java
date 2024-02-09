@@ -67,6 +67,9 @@ public class RoleListInput implements Input<Role> {
     }
 
     @Nullable
+    @Schema(
+            description = "角色名称"
+    )
     public String getRoleName() {
         return roleName;
     }
@@ -76,6 +79,9 @@ public class RoleListInput implements Input<Role> {
     }
 
     @Nullable
+    @Schema(
+            description = "角色类型"
+    )
     public String getRoleType() {
         return roleType;
     }
@@ -85,6 +91,9 @@ public class RoleListInput implements Input<Role> {
     }
 
     @Nullable
+    @Schema(
+            description = "用户类型"
+    )
     public String getUserType() {
         return userType;
     }

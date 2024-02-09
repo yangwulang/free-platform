@@ -1,35 +1,55 @@
 package top.yangwulang.platform.entity.sys.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
+
+import org.babyfish.jimmer.ImmutableObjects;
 import org.babyfish.jimmer.View;
+import org.babyfish.jimmer.impl.util.DtoPropAccessor;
 import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
+import org.babyfish.jimmer.sql.fetcher.RecursionStrategy;
 import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import top.yangwulang.platform.entity.sys.Company;
-import top.yangwulang.platform.entity.sys.CompanyDraft;
-import top.yangwulang.platform.entity.sys.CompanyFetcher;
+import top.yangwulang.platform.entity.sys.*;
 
+/**
+ * 公司
+ *
+ * @author yangwulang
+ */
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Company.dto"
 )
-public class CompanyGetView implements View<Company> {
-    public static final ViewMetadata<Company, CompanyGetView> METADATA = 
-        new ViewMetadata<Company, CompanyGetView>(
-            CompanyFetcher.$
-                .companyCode()
-                .companyName()
-                .companyFullName()
-                .corpCode()
-                .corpName()
-                .parentId(),
-            CompanyGetView::new
+public class CompanyListView implements View<Company> {
+    public static final ViewMetadata<Company, CompanyListView> METADATA =
+            new ViewMetadata<Company, CompanyListView>(
+                    CompanyFetcher.$
+                            .companyCode()
+                            .companyName()
+                            .companyFullName()
+                            .corpCode()
+                            .corpName()
+                            .recursiveChildren(it -> it.recursive(
+                                    args -> ImmutableObjects.isLoaded(args.getEntity(), CompanyProps.CHILDREN) &&
+                                            !args.getEntity().children().isEmpty()
+                            )),
+                    CompanyListView::new
+            );
+
+    private static final DtoPropAccessor CHILDREN_ACCESSOR = new DtoPropAccessor(
+            false,
+            new int[]{CompanyDraft.Producer.SLOT_CHILDREN},
+            DtoPropAccessor.<Company, CompanyListView>objectListGetter(CompanyListView::new),
+            DtoPropAccessor.objectListSetter(CompanyListView::toEntity)
     );
 
     @NotNull
@@ -60,28 +80,33 @@ public class CompanyGetView implements View<Company> {
     private String corpName;
 
     @Schema(
-            description = "父级id"
+            description = "子级公司"
     )
     @Nullable
-    private String parentId;
+    private List<CompanyListView> children;
 
-    public CompanyGetView() {
+    public CompanyListView() {
     }
 
-    public CompanyGetView(@NotNull Company base) {
+    public CompanyListView(@NotNull Company base) {
         this.id = base.id();
         this.companyCode = base.companyCode();
         this.companyName = base.companyName();
-        this.companyFullName = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(CompanyDraft.Producer.SLOT_COMPANY_FULL_NAME)) ? base.companyFullName() : null;
-        this.corpCode = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(CompanyDraft.Producer.SLOT_CORP_CODE)) ? base.corpCode() : null;
-        this.corpName = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(CompanyDraft.Producer.SLOT_CORP_NAME)) ? base.corpName() : null;
-        this.parentId = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(CompanyDraft.Producer.SLOT_PARENT_ID)) ? base.parentId() : null;
+        this.companyFullName = ((ImmutableSpi) base).__isLoaded(PropId.byIndex(CompanyDraft.Producer.SLOT_COMPANY_FULL_NAME)) ? base.companyFullName() : null;
+        this.corpCode = ((ImmutableSpi) base).__isLoaded(PropId.byIndex(CompanyDraft.Producer.SLOT_CORP_CODE)) ? base.corpCode() : null;
+        this.corpName = ((ImmutableSpi) base).__isLoaded(PropId.byIndex(CompanyDraft.Producer.SLOT_CORP_NAME)) ? base.corpName() : null;
+        this.children = CHILDREN_ACCESSOR.get(base);
     }
 
-    public static CompanyGetView of(@NotNull Company base) {
-        return new CompanyGetView(base);
+    public static CompanyListView of(@NotNull Company base) {
+        return new CompanyListView(base);
     }
 
+    /**
+     * 字典类型编码
+     *
+     * @return 主键值
+     */
     @NotNull
     public String getId() {
         return id;
@@ -91,6 +116,9 @@ public class CompanyGetView implements View<Company> {
         this.id = id;
     }
 
+    /**
+     * 公司编码
+     */
     @NotNull
     @Schema(
             description = "公司编码"
@@ -103,6 +131,9 @@ public class CompanyGetView implements View<Company> {
         this.companyCode = companyCode;
     }
 
+    /**
+     * 公司名称
+     */
     @NotNull
     @Schema(
             description = "公司名称"
@@ -115,6 +146,9 @@ public class CompanyGetView implements View<Company> {
         this.companyName = companyName;
     }
 
+    /**
+     * 公司全名
+     */
     @Nullable
     @Schema(
             description = "公司全名"
@@ -145,16 +179,21 @@ public class CompanyGetView implements View<Company> {
         this.corpName = corpName;
     }
 
+    /**
+     * 子级公司
+     *
+     * @return 子级公司
+     */
     @Nullable
     @Schema(
-            description = "父级id"
+            description = "子级公司"
     )
-    public String getParentId() {
-        return parentId;
+    public List<CompanyListView> getChildren() {
+        return children;
     }
 
-    public void setParentId(@Nullable String parentId) {
-        this.parentId = parentId;
+    public void setChildren(@Nullable List<CompanyListView> children) {
+        this.children = children;
     }
 
     @Override
@@ -166,7 +205,7 @@ public class CompanyGetView implements View<Company> {
             __draft.setCompanyFullName(companyFullName);
             __draft.setCorpCode(corpCode);
             __draft.setCorpName(corpName);
-            __draft.setParentId(parentId);
+            CHILDREN_ACCESSOR.set(__draft, children != null ? children : Collections.emptyList());
         });
     }
 
@@ -178,7 +217,7 @@ public class CompanyGetView implements View<Company> {
         hash = hash * 31 + Objects.hashCode(companyFullName);
         hash = hash * 31 + Objects.hashCode(corpCode);
         hash = hash * 31 + Objects.hashCode(corpName);
-        hash = hash * 31 + Objects.hashCode(parentId);
+        hash = hash * 31 + Objects.hashCode(children);
         return hash;
     }
 
@@ -187,7 +226,7 @@ public class CompanyGetView implements View<Company> {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
-        CompanyGetView other = (CompanyGetView) o;
+        CompanyListView other = (CompanyListView) o;
         if (!Objects.equals(id, other.id)) {
             return false;
         }
@@ -206,7 +245,7 @@ public class CompanyGetView implements View<Company> {
         if (!Objects.equals(corpName, other.corpName)) {
             return false;
         }
-        if (!Objects.equals(parentId, other.parentId)) {
+        if (!Objects.equals(children, other.children)) {
             return false;
         }
         return true;
@@ -215,14 +254,14 @@ public class CompanyGetView implements View<Company> {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("CompanyGetView").append('(');
+        builder.append("CompanyListView").append('(');
         builder.append("id=").append(id);
         builder.append(", companyCode=").append(companyCode);
         builder.append(", companyName=").append(companyName);
         builder.append(", companyFullName=").append(companyFullName);
         builder.append(", corpCode=").append(corpCode);
         builder.append(", corpName=").append(corpName);
-        builder.append(", parentId=").append(parentId);
+        builder.append(", children=").append(children);
         builder.append(')');
         return builder.toString();
     }

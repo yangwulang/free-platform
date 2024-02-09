@@ -74,6 +74,12 @@ public class DictSaveInput implements Input<DictType> {
     }
 
     @NotNull
+    @Schema(
+            description = "字典类型标签"
+    )
+    @NotEmpty(
+            message = "字典类型不能为空"
+    )
     public String getDictType() {
         return dictType;
     }
@@ -83,6 +89,12 @@ public class DictSaveInput implements Input<DictType> {
     }
 
     @NotNull
+    @Schema(
+            description = "字典名称"
+    )
+    @NotEmpty(
+            message = "字典名称不能为空"
+    )
     public String getDictName() {
         return dictName;
     }
@@ -92,6 +104,9 @@ public class DictSaveInput implements Input<DictType> {
     }
 
     @Nullable
+    @Schema(
+            description = "是否系统自带"
+    )
     public Boolean getIsSys() {
         return isSys;
     }

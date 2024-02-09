@@ -238,6 +238,9 @@ public class UserGetView implements View<User> {
     }
 
     @NotNull
+    @Schema(
+            description = "用户编码"
+    )
     public String getUserCode() {
         return userCode;
     }
@@ -246,6 +249,9 @@ public class UserGetView implements View<User> {
         this.userCode = userCode;
     }
 
+    @Schema(
+            description = "状态"
+    )
     public int getStatus() {
         return status;
     }
@@ -255,6 +261,9 @@ public class UserGetView implements View<User> {
     }
 
     @NotNull
+    @Schema(
+            description = "创建人"
+    )
     public String getCreateBy() {
         return createBy;
     }
@@ -264,6 +273,9 @@ public class UserGetView implements View<User> {
     }
 
     @NotNull
+    @Schema(
+            description = "创建时间"
+    )
     public Date getCreateDate() {
         return createDate;
     }
@@ -273,6 +285,9 @@ public class UserGetView implements View<User> {
     }
 
     @NotNull
+    @Schema(
+            description = "修改者"
+    )
     public String getUpdateBy() {
         return updateBy;
     }
@@ -282,6 +297,9 @@ public class UserGetView implements View<User> {
     }
 
     @NotNull
+    @Schema(
+            description = "修改时间"
+    )
     public Date getUpdateDate() {
         return updateDate;
     }
@@ -291,6 +309,9 @@ public class UserGetView implements View<User> {
     }
 
     @Nullable
+    @Schema(
+            description = "备注"
+    )
     public String getRemarks() {
         return remarks;
     }
@@ -300,6 +321,9 @@ public class UserGetView implements View<User> {
     }
 
     @Nullable
+    @Schema(
+            description = "登录编码(账号)"
+    )
     public String getLoginCode() {
         return loginCode;
     }
@@ -309,6 +333,9 @@ public class UserGetView implements View<User> {
     }
 
     @Nullable
+    @Schema(
+            description = "用户名"
+    )
     public String getUserName() {
         return userName;
     }
@@ -318,6 +345,9 @@ public class UserGetView implements View<User> {
     }
 
     @Nullable
+    @Schema(
+            description = "邮件"
+    )
     public String getEmail() {
         return email;
     }
@@ -327,6 +357,9 @@ public class UserGetView implements View<User> {
     }
 
     @Nullable
+    @Schema(
+            description = "手机"
+    )
     public String getMobile() {
         return mobile;
     }
@@ -336,6 +369,9 @@ public class UserGetView implements View<User> {
     }
 
     @Nullable
+    @Schema(
+            description = "电话"
+    )
     public String getPhone() {
         return phone;
     }
@@ -345,6 +381,9 @@ public class UserGetView implements View<User> {
     }
 
     @Nullable
+    @Schema(
+            description = "性别"
+    )
     public String getSex() {
         return sex;
     }
@@ -354,6 +393,9 @@ public class UserGetView implements View<User> {
     }
 
     @Nullable
+    @Schema(
+            description = "头像地址"
+    )
     public String getAvatar() {
         return avatar;
     }
@@ -363,6 +405,9 @@ public class UserGetView implements View<User> {
     }
 
     @Nullable
+    @Schema(
+            description = "个性签名"
+    )
     public String getSign() {
         return sign;
     }
@@ -372,6 +417,9 @@ public class UserGetView implements View<User> {
     }
 
     @Nullable
+    @Schema(
+            description = "微信开发id"
+    )
     public String getWxOpenId() {
         return wxOpenId;
     }
@@ -381,6 +429,9 @@ public class UserGetView implements View<User> {
     }
 
     @Nullable
+    @Schema(
+            description = "手机imei"
+    )
     public String getMobileImei() {
         return mobileImei;
     }
@@ -390,6 +441,9 @@ public class UserGetView implements View<User> {
     }
 
     @Nullable
+    @Schema(
+            description = "用户类型"
+    )
     public String getUserType() {
         return userType;
     }
@@ -399,6 +453,9 @@ public class UserGetView implements View<User> {
     }
 
     @Nullable
+    @Schema(
+            description = "用户类型引用编号"
+    )
     public String getRefCode() {
         return refCode;
     }
@@ -408,6 +465,9 @@ public class UserGetView implements View<User> {
     }
 
     @Nullable
+    @Schema(
+            description = "用户类型引用名称"
+    )
     public String getRefName() {
         return refName;
     }
@@ -417,6 +477,9 @@ public class UserGetView implements View<User> {
     }
 
     @NotNull
+    @Schema(
+            description = "管理员类型"
+    )
     public String getMgrType() {
         return mgrType;
     }
@@ -681,6 +744,9 @@ public class UserGetView implements View<User> {
         }
 
         @NotNull
+        @Schema(
+                description = "角色名称"
+        )
         public String getRoleName() {
             return roleName;
         }
@@ -690,6 +756,9 @@ public class UserGetView implements View<User> {
         }
 
         @Nullable
+        @Schema(
+                description = "角色类型"
+        )
         public String getRoleType() {
             return roleType;
         }
@@ -699,6 +768,9 @@ public class UserGetView implements View<User> {
         }
 
         @Nullable
+        @Schema(
+                description = "用户类型"
+        )
         public String getUserType() {
             return userType;
         }
@@ -708,6 +780,9 @@ public class UserGetView implements View<User> {
         }
 
         @NotNull
+        @Schema(
+                description = "角色拥有的菜单"
+        )
         public List<TargetOf_menus_2> getMenus() {
             return menus;
         }
@@ -927,6 +1002,9 @@ public class UserGetView implements View<User> {
                 this.id = id;
             }
 
+            @Schema(
+                    description = "状态"
+            )
             public int getStatus() {
                 return status;
             }
@@ -981,6 +1059,9 @@ public class UserGetView implements View<User> {
             }
 
             @NotNull
+            @Schema(
+                    description = "菜单名称"
+            )
             public String getMenuName() {
                 return menuName;
             }
@@ -990,6 +1071,9 @@ public class UserGetView implements View<User> {
             }
 
             @NotNull
+            @Schema(
+                    description = "菜单类型（1菜单 2权限 3开发）"
+            )
             public String getMenuType() {
                 return menuType;
             }
@@ -999,6 +1083,9 @@ public class UserGetView implements View<User> {
             }
 
             @Nullable
+            @Schema(
+                    description = "链接"
+            )
             public String getMenuHref() {
                 return menuHref;
             }
@@ -1008,6 +1095,9 @@ public class UserGetView implements View<User> {
             }
 
             @Nullable
+            @Schema(
+                    description = "组件地址"
+            )
             public String getMenuComponent() {
                 return menuComponent;
             }
@@ -1017,6 +1107,9 @@ public class UserGetView implements View<User> {
             }
 
             @Nullable
+            @Schema(
+                    description = "目标"
+            )
             public String getMenuTarget() {
                 return menuTarget;
             }
@@ -1026,6 +1119,9 @@ public class UserGetView implements View<User> {
             }
 
             @Nullable
+            @Schema(
+                    description = "图标"
+            )
             public String getMenuIcon() {
                 return menuIcon;
             }
@@ -1035,6 +1131,9 @@ public class UserGetView implements View<User> {
             }
 
             @Nullable
+            @Schema(
+                    description = "颜色"
+            )
             public String getMenuColor() {
                 return menuColor;
             }
@@ -1044,6 +1143,9 @@ public class UserGetView implements View<User> {
             }
 
             @Nullable
+            @Schema(
+                    description = "菜单标题"
+            )
             public String getMenuTitle() {
                 return menuTitle;
             }
@@ -1053,6 +1155,9 @@ public class UserGetView implements View<User> {
             }
 
             @Nullable
+            @Schema(
+                    description = "权限标识"
+            )
             public String getPermission() {
                 return permission;
             }
@@ -1062,6 +1167,9 @@ public class UserGetView implements View<User> {
             }
 
             @Nullable
+            @Schema(
+                    description = "菜单权重"
+            )
             public BigDecimal getWeight() {
                 return weight;
             }
@@ -1071,6 +1179,9 @@ public class UserGetView implements View<User> {
             }
 
             @Nullable
+            @Schema(
+                    description = "是否显示"
+            )
             public Boolean getIsShow() {
                 return isShow;
             }
@@ -1080,6 +1191,9 @@ public class UserGetView implements View<User> {
             }
 
             @Nullable
+            @Schema(
+                    description = "归属系统（default:主导航菜单、mobileApp:APP菜单）"
+            )
             public String getSysCode() {
                 return sysCode;
             }

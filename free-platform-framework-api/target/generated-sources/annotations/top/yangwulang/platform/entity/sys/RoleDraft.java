@@ -160,7 +160,7 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.69",
+                "0.8.93",
                 Role.class,
                 Collections.singleton(DataTypeBaseDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (Role)base)
@@ -1767,7 +1767,7 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
                     case SLOT_ID:
                     		setId((String)value);break;
                     case SLOT_STATUS:
-                    		if (value == null) throw new IllegalArgumentException("'status' cannot be null");
+                    		if (value == null) throw new IllegalArgumentException("'status' cannot be null, if you want to set null, please use any annotation whose simple name is \"Nullable\" to decorate the property");
                             setStatus((Integer)value);
                             break;
                     case SLOT_CREATE_BY:
@@ -1815,7 +1815,7 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
                     case "id":
                     		setId((String)value);break;
                     case "status":
-                    		if (value == null) throw new IllegalArgumentException("'status' cannot be null");
+                    		if (value == null) throw new IllegalArgumentException("'status' cannot be null, if you want to set null, please use any annotation whose simple name is \"Nullable\" to decorate the property");
                             setStatus((Integer)value);
                             break;
                     case "createBy":
@@ -2284,63 +2284,63 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
         }
 
         public Role build() {
-            return RoleDraft.$.produce(draft -> {
+            return RoleDraft.$.produce(__draft -> {
                 if (id != null) {
-                    draft.setId(id);
+                    __draft.setId(id);
                 }
                 if (status != null) {
-                    draft.setStatus(status);
+                    __draft.setStatus(status);
                 }
                 if (createBy != null) {
-                    draft.setCreateBy(createBy);
+                    __draft.setCreateBy(createBy);
                 }
                 if (createDate != null) {
-                    draft.setCreateDate(createDate);
+                    __draft.setCreateDate(createDate);
                 }
                 if (updateBy != null) {
-                    draft.setUpdateBy(updateBy);
+                    __draft.setUpdateBy(updateBy);
                 }
                 if (updateDate != null) {
-                    draft.setUpdateDate(updateDate);
+                    __draft.setUpdateDate(updateDate);
                 }
                 if (__remarksLoaded) {
-                    draft.setRemarks(remarks);
+                    __draft.setRemarks(remarks);
                 }
                 if (roleCode != null) {
-                    draft.setRoleCode(roleCode);
+                    __draft.setRoleCode(roleCode);
                 }
                 if (roleName != null) {
-                    draft.setRoleName(roleName);
+                    __draft.setRoleName(roleName);
                 }
                 if (__roleTypeLoaded) {
-                    draft.setRoleType(roleType);
+                    __draft.setRoleType(roleType);
                 }
                 if (__roleSortLoaded) {
-                    draft.setRoleSort(roleSort);
+                    __draft.setRoleSort(roleSort);
                 }
                 if (__isSysLoaded) {
-                    draft.setIsSys(isSys);
+                    __draft.setIsSys(isSys);
                 }
                 if (__userTypeLoaded) {
-                    draft.setUserType(userType);
+                    __draft.setUserType(userType);
                 }
                 if (__dataScopeLoaded) {
-                    draft.setDataScope(dataScope);
+                    __draft.setDataScope(dataScope);
                 }
                 if (__bizScopeLoaded) {
-                    draft.setBizScope(bizScope);
+                    __draft.setBizScope(bizScope);
                 }
                 if (__corpCodeLoaded) {
-                    draft.setCorpCode(corpCode);
+                    __draft.setCorpCode(corpCode);
                 }
                 if (__corpNameLoaded) {
-                    draft.setCorpName(corpName);
+                    __draft.setCorpName(corpName);
                 }
                 if (menus != null) {
-                    draft.setMenus(menus);
+                    __draft.setMenus(menus);
                 }
                 if (users != null) {
-                    draft.setUsers(users);
+                    __draft.setUsers(users);
                 }
             });
         }

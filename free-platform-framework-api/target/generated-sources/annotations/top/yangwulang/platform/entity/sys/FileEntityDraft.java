@@ -65,7 +65,7 @@ public interface FileEntityDraft extends FileEntity, TypeBaseDraft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.69",
+                "0.8.93",
                 FileEntity.class,
                 Collections.singleton(TypeBaseDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (FileEntity)base)
@@ -842,21 +842,21 @@ public interface FileEntityDraft extends FileEntity, TypeBaseDraft {
         }
 
         public FileEntity build() {
-            return FileEntityDraft.$.produce(draft -> {
+            return FileEntityDraft.$.produce(__draft -> {
                 if (id != null) {
-                    draft.setId(id);
+                    __draft.setId(id);
                 }
                 if (fileMd5 != null) {
-                    draft.setFileMd5(fileMd5);
+                    __draft.setFileMd5(fileMd5);
                 }
                 if (filePath != null) {
-                    draft.setFilePath(filePath);
+                    __draft.setFilePath(filePath);
                 }
                 if (fileContentType != null) {
-                    draft.setFileContentType(fileContentType);
+                    __draft.setFileContentType(fileContentType);
                 }
                 if (__fileMetaLoaded) {
-                    draft.setFileMeta(fileMeta);
+                    __draft.setFileMeta(fileMeta);
                 }
             });
         }

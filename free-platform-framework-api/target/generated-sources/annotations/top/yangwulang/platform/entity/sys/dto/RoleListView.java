@@ -149,6 +149,9 @@ public class RoleListView implements View<Role> {
         this.id = id;
     }
 
+    @Schema(
+            description = "状态"
+    )
     public int getStatus() {
         return status;
     }
@@ -203,6 +206,9 @@ public class RoleListView implements View<Role> {
     }
 
     @NotNull
+    @Schema(
+            description = "角色编码"
+    )
     public String getRoleCode() {
         return roleCode;
     }
@@ -212,6 +218,9 @@ public class RoleListView implements View<Role> {
     }
 
     @NotNull
+    @Schema(
+            description = "角色名称"
+    )
     public String getRoleName() {
         return roleName;
     }
@@ -221,6 +230,9 @@ public class RoleListView implements View<Role> {
     }
 
     @Nullable
+    @Schema(
+            description = "角色类型"
+    )
     public String getRoleType() {
         return roleType;
     }
@@ -230,6 +242,9 @@ public class RoleListView implements View<Role> {
     }
 
     @Nullable
+    @Schema(
+            description = "角色排序"
+    )
     public BigDecimal getRoleSort() {
         return roleSort;
     }
@@ -239,6 +254,9 @@ public class RoleListView implements View<Role> {
     }
 
     @Nullable
+    @Schema(
+            description = "系统内置 1是 0否"
+    )
     public Boolean getIsSys() {
         return isSys;
     }
@@ -248,6 +266,9 @@ public class RoleListView implements View<Role> {
     }
 
     @Nullable
+    @Schema(
+            description = "用户类型"
+    )
     public String getUserType() {
         return userType;
     }
@@ -257,6 +278,9 @@ public class RoleListView implements View<Role> {
     }
 
     @Nullable
+    @Schema(
+            description = "数据范围设置"
+    )
     public String getDataScope() {
         return dataScope;
     }
@@ -266,6 +290,9 @@ public class RoleListView implements View<Role> {
     }
 
     @Nullable
+    @Schema(
+            description = "适应业务范围"
+    )
     public String getBizScope() {
         return bizScope;
     }

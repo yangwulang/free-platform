@@ -49,6 +49,9 @@ public class CompanyListInput implements Input<Company> {
     }
 
     @Nullable
+    @Schema(
+            description = "公司名称"
+    )
     public String getCompanyName() {
         return companyName;
     }

@@ -193,7 +193,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.69",
+                "0.8.93",
                 Menu.class,
                 Collections.singleton(DataTypeBaseDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (Menu)base)
@@ -2088,7 +2088,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                     case SLOT_ID:
                     		setId((String)value);break;
                     case SLOT_STATUS:
-                    		if (value == null) throw new IllegalArgumentException("'status' cannot be null");
+                    		if (value == null) throw new IllegalArgumentException("'status' cannot be null, if you want to set null, please use any annotation whose simple name is \"Nullable\" to decorate the property");
                             setStatus((Integer)value);
                             break;
                     case SLOT_CREATE_BY:
@@ -2144,7 +2144,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                     case "id":
                     		setId((String)value);break;
                     case "status":
-                    		if (value == null) throw new IllegalArgumentException("'status' cannot be null");
+                    		if (value == null) throw new IllegalArgumentException("'status' cannot be null, if you want to set null, please use any annotation whose simple name is \"Nullable\" to decorate the property");
                             setStatus((Integer)value);
                             break;
                     case "createBy":
@@ -2701,72 +2701,72 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
         }
 
         public Menu build() {
-            return MenuDraft.$.produce(draft -> {
+            return MenuDraft.$.produce(__draft -> {
                 if (id != null) {
-                    draft.setId(id);
+                    __draft.setId(id);
                 }
                 if (status != null) {
-                    draft.setStatus(status);
+                    __draft.setStatus(status);
                 }
                 if (createBy != null) {
-                    draft.setCreateBy(createBy);
+                    __draft.setCreateBy(createBy);
                 }
                 if (createDate != null) {
-                    draft.setCreateDate(createDate);
+                    __draft.setCreateDate(createDate);
                 }
                 if (updateBy != null) {
-                    draft.setUpdateBy(updateBy);
+                    __draft.setUpdateBy(updateBy);
                 }
                 if (updateDate != null) {
-                    draft.setUpdateDate(updateDate);
+                    __draft.setUpdateDate(updateDate);
                 }
                 if (__remarksLoaded) {
-                    draft.setRemarks(remarks);
+                    __draft.setRemarks(remarks);
                 }
                 if (__parentLoaded) {
-                    draft.setParent(parent);
+                    __draft.setParent(parent);
                 }
                 if (children != null) {
-                    draft.setChildren(children);
+                    __draft.setChildren(children);
                 }
                 if (menuName != null) {
-                    draft.setMenuName(menuName);
+                    __draft.setMenuName(menuName);
                 }
                 if (menuType != null) {
-                    draft.setMenuType(menuType);
+                    __draft.setMenuType(menuType);
                 }
                 if (__menuHrefLoaded) {
-                    draft.setMenuHref(menuHref);
+                    __draft.setMenuHref(menuHref);
                 }
                 if (__menuComponentLoaded) {
-                    draft.setMenuComponent(menuComponent);
+                    __draft.setMenuComponent(menuComponent);
                 }
                 if (__menuTargetLoaded) {
-                    draft.setMenuTarget(menuTarget);
+                    __draft.setMenuTarget(menuTarget);
                 }
                 if (__menuIconLoaded) {
-                    draft.setMenuIcon(menuIcon);
+                    __draft.setMenuIcon(menuIcon);
                 }
                 if (__menuColorLoaded) {
-                    draft.setMenuColor(menuColor);
+                    __draft.setMenuColor(menuColor);
                 }
                 if (__menuTitleLoaded) {
-                    draft.setMenuTitle(menuTitle);
+                    __draft.setMenuTitle(menuTitle);
                 }
                 if (__permissionLoaded) {
-                    draft.setPermission(permission);
+                    __draft.setPermission(permission);
                 }
                 if (__weightLoaded) {
-                    draft.setWeight(weight);
+                    __draft.setWeight(weight);
                 }
                 if (__isShowLoaded) {
-                    draft.setIsShow(isShow);
+                    __draft.setIsShow(isShow);
                 }
                 if (__sysCodeLoaded) {
-                    draft.setSysCode(sysCode);
+                    __draft.setSysCode(sysCode);
                 }
                 if (roles != null) {
-                    draft.setRoles(roles);
+                    __draft.setRoles(roles);
                 }
             });
         }

@@ -69,6 +69,9 @@ public class DictDataListInput implements Input<DictData> {
     }
 
     @Nullable
+    @Schema(
+            description = "字典类型id"
+    )
     public String getDictTypeId() {
         return dictTypeId;
     }
@@ -78,6 +81,9 @@ public class DictDataListInput implements Input<DictData> {
     }
 
     @Nullable
+    @Schema(
+            description = "字典标签"
+    )
     public String getDictLabel() {
         return dictLabel;
     }
@@ -87,6 +93,9 @@ public class DictDataListInput implements Input<DictData> {
     }
 
     @Nullable
+    @Schema(
+            description = "字典键值"
+    )
     public String getDictValue() {
         return dictValue;
     }
@@ -96,6 +105,9 @@ public class DictDataListInput implements Input<DictData> {
     }
 
     @Nullable
+    @Schema(
+            description = "字典描述"
+    )
     public String getDescription() {
         return description;
     }

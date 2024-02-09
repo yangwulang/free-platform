@@ -42,6 +42,9 @@ public class PostListSpecification implements JSpecification<Post, PostTable> {
     }
 
     @Nullable
+    @Schema(
+            description = "岗位编码"
+    )
     public String getPostCode() {
         return postCode;
     }
@@ -51,6 +54,9 @@ public class PostListSpecification implements JSpecification<Post, PostTable> {
     }
 
     @Nullable
+    @Schema(
+            description = "岗位名称"
+    )
     public String getPostName() {
         return postName;
     }
@@ -60,6 +66,9 @@ public class PostListSpecification implements JSpecification<Post, PostTable> {
     }
 
     @Nullable
+    @Schema(
+            description = "岗位类型（高管、中层、低层）"
+    )
     public String getPostType() {
         return postType;
     }

@@ -59,6 +59,9 @@ public class EmployeeListSpecification implements JSpecification<Employee, Emplo
     }
 
     @Nullable
+    @Schema(
+            description = "员工编码"
+    )
     public String getEmpCode() {
         return empCode;
     }
@@ -68,6 +71,9 @@ public class EmployeeListSpecification implements JSpecification<Employee, Emplo
     }
 
     @Nullable
+    @Schema(
+            description = "员工名称"
+    )
     public String getEmpName() {
         return empName;
     }
@@ -86,6 +92,9 @@ public class EmployeeListSpecification implements JSpecification<Employee, Emplo
     }
 
     @Nullable
+    @Schema(
+            description = "用户"
+    )
     public String getUserName() {
         return userName;
     }
@@ -95,6 +104,9 @@ public class EmployeeListSpecification implements JSpecification<Employee, Emplo
     }
 
     @Nullable
+    @Schema(
+            description = "用户"
+    )
     public String getEmail() {
         return email;
     }
@@ -104,6 +116,9 @@ public class EmployeeListSpecification implements JSpecification<Employee, Emplo
     }
 
     @Nullable
+    @Schema(
+            description = "用户"
+    )
     public Integer getStatus() {
         return status;
     }

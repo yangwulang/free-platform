@@ -86,7 +86,7 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.69",
+                "0.8.93",
                 Config.class,
                 Collections.singleton(DataTypeBaseNoStatusDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (Config)base)
@@ -1226,33 +1226,33 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
         }
 
         public Config build() {
-            return ConfigDraft.$.produce(draft -> {
+            return ConfigDraft.$.produce(__draft -> {
                 if (id != null) {
-                    draft.setId(id);
+                    __draft.setId(id);
                 }
                 if (createBy != null) {
-                    draft.setCreateBy(createBy);
+                    __draft.setCreateBy(createBy);
                 }
                 if (createDate != null) {
-                    draft.setCreateDate(createDate);
+                    __draft.setCreateDate(createDate);
                 }
                 if (updateBy != null) {
-                    draft.setUpdateBy(updateBy);
+                    __draft.setUpdateBy(updateBy);
                 }
                 if (updateDate != null) {
-                    draft.setUpdateDate(updateDate);
+                    __draft.setUpdateDate(updateDate);
                 }
                 if (__remarksLoaded) {
-                    draft.setRemarks(remarks);
+                    __draft.setRemarks(remarks);
                 }
                 if (configName != null) {
-                    draft.setConfigName(configName);
+                    __draft.setConfigName(configName);
                 }
                 if (configKey != null) {
-                    draft.setConfigKey(configKey);
+                    __draft.setConfigKey(configKey);
                 }
                 if (__configValueLoaded) {
-                    draft.setConfigValue(configValue);
+                    __draft.setConfigValue(configValue);
                 }
             });
         }

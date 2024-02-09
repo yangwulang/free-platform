@@ -40,7 +40,7 @@ public class FileUploadController {
     @ResponseBody()
     public FileUpload uploadFile(MultipartFile file, @Parameter String bizType) {
         try {
-            return fileUploadService.putObject(file, file.getOriginalFilename(), bizType);
+            return fileUploadService.putObject(FileUploadService.DEFAULT_BUCKET_NAME, file, file.getOriginalFilename(), bizType);
         } catch (Throwable e) {
             log.error("文件上传失败", e);
             throw new ServiceException(FileUploadError.UPLOAD_FILE_FAIL);

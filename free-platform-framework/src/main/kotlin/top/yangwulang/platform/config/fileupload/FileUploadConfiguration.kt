@@ -1,19 +1,13 @@
 package top.yangwulang.platform.config.fileupload
 
 import io.minio.MinioClient
-import okhttp3.HttpUrl
-import okhttp3.HttpUrl.Companion.toHttpUrl
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import top.yangwulang.platform.repository.sys.FileUploadRepository
-import top.yangwulang.platform.services.FileEntityService
-import top.yangwulang.platform.services.FileUploadService
 import top.yangwulang.platform.services.OssFileUploadService
-import top.yangwulang.platform.services.impl.FileUploadServiceImpl
 import top.yangwulang.platform.services.impl.LocalFileUploadServiceImpl
 import top.yangwulang.platform.services.impl.MinioClientOption
 import top.yangwulang.platform.services.impl.MinioFileUploadServiceImpl

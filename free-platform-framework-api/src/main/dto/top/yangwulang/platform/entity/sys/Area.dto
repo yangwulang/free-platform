@@ -10,3 +10,16 @@ specification AreaListSpecification {
 AreaGetView {
     #allScalars
 }
+
+unsafe input AreaSaveInput {
+    id
+    parentId
+    areaName
+    sort
+    areaType
+}
+
+/* AreaListView {
+    #allScalars
+    children*
+} */

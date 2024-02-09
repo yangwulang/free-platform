@@ -105,6 +105,9 @@ public class MessageRecordListView implements View<MessageRecord> {
         this.id = id;
     }
 
+    @Schema(
+            description = "状态"
+    )
     public int getStatus() {
         return status;
     }
@@ -114,6 +117,9 @@ public class MessageRecordListView implements View<MessageRecord> {
     }
 
     @NotNull
+    @Schema(
+            description = "类型"
+    )
     public String getType() {
         return type;
     }
@@ -123,6 +129,9 @@ public class MessageRecordListView implements View<MessageRecord> {
     }
 
     @NotNull
+    @Schema(
+            description = "消息标题"
+    )
     public String getTitle() {
         return title;
     }
@@ -132,6 +141,9 @@ public class MessageRecordListView implements View<MessageRecord> {
     }
 
     @NotNull
+    @Schema(
+            description = "消息子标题"
+    )
     public String getSubTitle() {
         return subTitle;
     }
@@ -141,6 +153,9 @@ public class MessageRecordListView implements View<MessageRecord> {
     }
 
     @Nullable
+    @Schema(
+            description = "消息icon"
+    )
     public String getAvatar() {
         return avatar;
     }
@@ -150,6 +165,9 @@ public class MessageRecordListView implements View<MessageRecord> {
     }
 
     @NotNull
+    @Schema(
+            description = "消息内容"
+    )
     public String getContent() {
         return content;
     }
@@ -159,6 +177,9 @@ public class MessageRecordListView implements View<MessageRecord> {
     }
 
     @Nullable
+    @Schema(
+            description = "消息类型"
+    )
     public Integer getMessageType() {
         return messageType;
     }

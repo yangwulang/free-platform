@@ -1,5 +1,6 @@
 package top.yangwulang.platform.entity.sys;
 
+import org.babyfish.jimmer.sql.Column;
 import org.babyfish.jimmer.sql.Entity;
 import org.babyfish.jimmer.sql.Key;
 import org.babyfish.jimmer.sql.Table;
@@ -11,6 +12,7 @@ import javax.validation.constraints.Null;
 @Table(name = "sys_file_entity")
 public interface FileEntity extends TypeBase {
     @Key
+    @Column(name = "file_md_5")
     String fileMd5();
 
     String filePath();

@@ -108,6 +108,9 @@ public class DictTypeListView implements View<DictType> {
         this.id = id;
     }
 
+    @Schema(
+            description = "状态"
+    )
     public int getStatus() {
         return status;
     }
@@ -162,6 +165,9 @@ public class DictTypeListView implements View<DictType> {
     }
 
     @Nullable
+    @Schema(
+            description = "字典名称"
+    )
     public String getDictName() {
         return dictName;
     }
@@ -171,6 +177,9 @@ public class DictTypeListView implements View<DictType> {
     }
 
     @NotNull
+    @Schema(
+            description = "字典类型标签"
+    )
     public String getDictType() {
         return dictType;
     }
@@ -180,6 +189,9 @@ public class DictTypeListView implements View<DictType> {
     }
 
     @Nullable
+    @Schema(
+            description = "是否系统自带"
+    )
     public Boolean getIsSys() {
         return isSys;
     }

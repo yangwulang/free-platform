@@ -45,6 +45,9 @@ public class UserListInput implements Input<User> {
     }
 
     @Nullable
+    @Schema(
+            description = "用户名"
+    )
     public String getUserName() {
         return userName;
     }

@@ -180,7 +180,7 @@ public interface UserDraft extends User, BaseEntityDraft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.69",
+                "0.8.93",
                 User.class,
                 Collections.singleton(BaseEntityDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (User)base)
@@ -2191,7 +2191,7 @@ public interface UserDraft extends User, BaseEntityDraft {
                     		__set(prop.asName(), value);
                     return;
                     case SLOT_STATUS:
-                    		if (value == null) throw new IllegalArgumentException("'status' cannot be null");
+                    		if (value == null) throw new IllegalArgumentException("'status' cannot be null, if you want to set null, please use any annotation whose simple name is \"Nullable\" to decorate the property");
                             setStatus((Integer)value);
                             break;
                     case SLOT_CREATE_BY:
@@ -2251,7 +2251,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             public void __set(String prop, Object value) {
                 switch (prop) {
                     case "status":
-                    		if (value == null) throw new IllegalArgumentException("'status' cannot be null");
+                    		if (value == null) throw new IllegalArgumentException("'status' cannot be null, if you want to set null, please use any annotation whose simple name is \"Nullable\" to decorate the property");
                             setStatus((Integer)value);
                             break;
                     case "createBy":
@@ -2840,81 +2840,81 @@ public interface UserDraft extends User, BaseEntityDraft {
         }
 
         public User build() {
-            return UserDraft.$.produce(draft -> {
+            return UserDraft.$.produce(__draft -> {
                 if (userCode != null) {
-                    draft.setUserCode(userCode);
+                    __draft.setUserCode(userCode);
                 }
                 if (status != null) {
-                    draft.setStatus(status);
+                    __draft.setStatus(status);
                 }
                 if (createBy != null) {
-                    draft.setCreateBy(createBy);
+                    __draft.setCreateBy(createBy);
                 }
                 if (createDate != null) {
-                    draft.setCreateDate(createDate);
+                    __draft.setCreateDate(createDate);
                 }
                 if (updateBy != null) {
-                    draft.setUpdateBy(updateBy);
+                    __draft.setUpdateBy(updateBy);
                 }
                 if (updateDate != null) {
-                    draft.setUpdateDate(updateDate);
+                    __draft.setUpdateDate(updateDate);
                 }
                 if (__remarksLoaded) {
-                    draft.setRemarks(remarks);
+                    __draft.setRemarks(remarks);
                 }
                 if (__loginCodeLoaded) {
-                    draft.setLoginCode(loginCode);
+                    __draft.setLoginCode(loginCode);
                 }
                 if (__userNameLoaded) {
-                    draft.setUserName(userName);
+                    __draft.setUserName(userName);
                 }
                 if (__passwordLoaded) {
-                    draft.setPassword(password);
+                    __draft.setPassword(password);
                 }
                 if (__emailLoaded) {
-                    draft.setEmail(email);
+                    __draft.setEmail(email);
                 }
                 if (__mobileLoaded) {
-                    draft.setMobile(mobile);
+                    __draft.setMobile(mobile);
                 }
                 if (__phoneLoaded) {
-                    draft.setPhone(phone);
+                    __draft.setPhone(phone);
                 }
                 if (__sexLoaded) {
-                    draft.setSex(sex);
+                    __draft.setSex(sex);
                 }
                 if (__avatarLoaded) {
-                    draft.setAvatar(avatar);
+                    __draft.setAvatar(avatar);
                 }
                 if (__signLoaded) {
-                    draft.setSign(sign);
+                    __draft.setSign(sign);
                 }
                 if (__wxOpenIdLoaded) {
-                    draft.setWxOpenId(wxOpenId);
+                    __draft.setWxOpenId(wxOpenId);
                 }
                 if (__mobileImeiLoaded) {
-                    draft.setMobileImei(mobileImei);
+                    __draft.setMobileImei(mobileImei);
                 }
                 if (__userTypeLoaded) {
-                    draft.setUserType(userType);
+                    __draft.setUserType(userType);
                 }
                 if (__refCodeLoaded) {
-                    draft.setRefCode(refCode);
+                    __draft.setRefCode(refCode);
                 }
                 if (__refNameLoaded) {
-                    draft.setRefName(refName);
+                    __draft.setRefName(refName);
                 }
                 if (mgrType != null) {
-                    draft.setMgrType(mgrType);
+                    __draft.setMgrType(mgrType);
                 }
                 if (__pwdSecurityLevelLoaded) {
-                    draft.setPwdSecurityLevel(pwdSecurityLevel);
+                    __draft.setPwdSecurityLevel(pwdSecurityLevel);
                 }
                 if (__userWeightLoaded) {
-                    draft.setUserWeight(userWeight);
+                    __draft.setUserWeight(userWeight);
                 }
                 if (roles != null) {
-                    draft.setRoles(roles);
+                    __draft.setRoles(roles);
                 }
             });
         }

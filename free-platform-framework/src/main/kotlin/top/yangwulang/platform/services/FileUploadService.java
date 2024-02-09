@@ -29,6 +29,7 @@ public interface FileUploadService extends BaseService<FileUpload, String, FileU
     FileUpload putObject(String bucketName, MultipartFile multipartFile, String filename, String bizType) throws Throwable;
 
     default FileUpload putObject(MultipartFile multipartFile, String filename, String bizType) throws Throwable {
+        // TODO: 此处会导致事务失效
         return this.putObject(DEFAULT_BUCKET_NAME, multipartFile, filename, bizType);
     }
 

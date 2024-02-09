@@ -54,6 +54,12 @@ public interface OptionAnalysisDraft extends OptionAnalysis, TypeBaseDraft {
     @OldChain
     OptionAnalysisDraft setOptionUser(User optionUser);
 
+    @Nullable
+    String optionUserId();
+
+    @OldChain
+    OptionAnalysisDraft setOptionUserId(@Nullable String optionUserId);
+
     @OldChain
     OptionAnalysisDraft applyOptionUser(DraftConsumer<UserDraft> block);
 
@@ -88,7 +94,7 @@ public interface OptionAnalysisDraft extends OptionAnalysis, TypeBaseDraft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.69",
+                "0.8.93",
                 OptionAnalysis.class,
                 Collections.singleton(TypeBaseDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (OptionAnalysis)base)
@@ -755,6 +761,27 @@ public interface OptionAnalysisDraft extends OptionAnalysis, TypeBaseDraft {
                 return this;
             }
 
+            @Nullable
+            @Override
+            public String optionUserId() {
+                User optionUser = optionUser();
+                if (optionUser == null) {
+                    return null;
+                }
+                return optionUser.userCode();
+            }
+
+            @OldChain
+            @Override
+            public OptionAnalysisDraft setOptionUserId(@Nullable String optionUserId) {
+                if (optionUserId == null) {
+                    setOptionUser(null);
+                    return this;
+                }
+                optionUser(true).setUserCode(optionUserId);
+                return this;
+            }
+
             @Override
             public OptionAnalysisDraft applyOptionUser(DraftConsumer<UserDraft> block) {
                 applyOptionUser(null, block);
@@ -1082,27 +1109,27 @@ public interface OptionAnalysisDraft extends OptionAnalysis, TypeBaseDraft {
         }
 
         public OptionAnalysis build() {
-            return OptionAnalysisDraft.$.produce(draft -> {
+            return OptionAnalysisDraft.$.produce(__draft -> {
                 if (id != null) {
-                    draft.setId(id);
+                    __draft.setId(id);
                 }
                 if (eventName != null) {
-                    draft.setEventName(eventName);
+                    __draft.setEventName(eventName);
                 }
                 if (eventCode != null) {
-                    draft.setEventCode(eventCode);
+                    __draft.setEventCode(eventCode);
                 }
                 if (__optionUserLoaded) {
-                    draft.setOptionUser(optionUser);
+                    __draft.setOptionUser(optionUser);
                 }
                 if (ipAddress != null) {
-                    draft.setIpAddress(ipAddress);
+                    __draft.setIpAddress(ipAddress);
                 }
                 if (createDate != null) {
-                    draft.setCreateDate(createDate);
+                    __draft.setCreateDate(createDate);
                 }
                 if (__metaLoaded) {
-                    draft.setMeta(meta);
+                    __draft.setMeta(meta);
                 }
             });
         }

@@ -9,6 +9,7 @@ import org.babyfish.jimmer.sql.ast.table.Table;
 import org.babyfish.jimmer.sql.fetcher.Fetcher;
 import org.babyfish.jimmer.sql.fetcher.FieldConfig;
 import org.babyfish.jimmer.sql.fetcher.IdOnlyFetchType;
+import org.babyfish.jimmer.sql.fetcher.ListFieldConfig;
 import org.babyfish.jimmer.sql.fetcher.RecursiveFieldConfig;
 import org.babyfish.jimmer.sql.fetcher.RecursiveListFieldConfig;
 import org.babyfish.jimmer.sql.fetcher.impl.FetcherImpl;
@@ -117,8 +118,19 @@ public class AreaFetcher extends AbstractTypedFetcher<Area, AreaFetcher> {
 
     @NewChain
     public AreaFetcher parent(Fetcher<Area> childFetcher,
-            Consumer<RecursiveFieldConfig<Area, AreaTable>> fieldConfig) {
+            Consumer<FieldConfig<Area, AreaTable>> fieldConfig) {
         return add("parent", childFetcher, fieldConfig);
+    }
+
+    @NewChain
+    public AreaFetcher recursiveParent() {
+        return addRecursion("parent", null);
+    }
+
+    @NewChain
+    public AreaFetcher recursiveParent(
+            Consumer<RecursiveFieldConfig<Area, AreaTable>> fieldConfig) {
+        return addRecursion("parent", fieldConfig);
     }
 
     @NewChain
@@ -158,8 +170,19 @@ public class AreaFetcher extends AbstractTypedFetcher<Area, AreaFetcher> {
 
     @NewChain
     public AreaFetcher children(Fetcher<Area> childFetcher,
-            Consumer<RecursiveListFieldConfig<Area, AreaTable>> fieldConfig) {
+            Consumer<ListFieldConfig<Area, AreaTable>> fieldConfig) {
         return add("children", childFetcher, fieldConfig);
+    }
+
+    @NewChain
+    public AreaFetcher recursiveChildren() {
+        return addRecursion("children", null);
+    }
+
+    @NewChain
+    public AreaFetcher recursiveChildren(
+            Consumer<RecursiveListFieldConfig<Area, AreaTable>> fieldConfig) {
+        return addRecursion("children", fieldConfig);
     }
 
     @NewChain

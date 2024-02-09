@@ -145,6 +145,9 @@ public class ConfigListView implements View<Config> {
     }
 
     @NotNull
+    @Schema(
+            description = "配置名称"
+    )
     public String getConfigName() {
         return configName;
     }
@@ -154,6 +157,9 @@ public class ConfigListView implements View<Config> {
     }
 
     @NotNull
+    @Schema(
+            description = "参数键"
+    )
     public String getConfigKey() {
         return configKey;
     }
@@ -163,6 +169,9 @@ public class ConfigListView implements View<Config> {
     }
 
     @Nullable
+    @Schema(
+            description = "参数值"
+    )
     public String getConfigValue() {
         return configValue;
     }

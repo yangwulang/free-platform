@@ -52,6 +52,12 @@ public interface EmployeeDraft extends Employee, Draft {
     @OldChain
     EmployeeDraft setUser(User user);
 
+    @Nullable
+    String userId();
+
+    @OldChain
+    EmployeeDraft setUserId(@Nullable String userId);
+
     @OldChain
     EmployeeDraft applyUser(DraftConsumer<UserDraft> block);
 
@@ -106,7 +112,7 @@ public interface EmployeeDraft extends Employee, Draft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.69",
+                "0.8.93",
                 Employee.class,
                 Collections.emptyList(),
                 (ctx, base) -> new DraftImpl(ctx, (Employee)base)
@@ -671,6 +677,27 @@ public interface EmployeeDraft extends Employee, Draft {
                 return this;
             }
 
+            @Nullable
+            @Override
+            public String userId() {
+                User user = user();
+                if (user == null) {
+                    return null;
+                }
+                return user.userCode();
+            }
+
+            @OldChain
+            @Override
+            public EmployeeDraft setUserId(@Nullable String userId) {
+                if (userId == null) {
+                    setUser(null);
+                    return this;
+                }
+                user(true).setUserCode(userId);
+                return this;
+            }
+
             @Override
             public EmployeeDraft applyUser(DraftConsumer<UserDraft> block) {
                 applyUser(null, block);
@@ -1055,21 +1082,21 @@ public interface EmployeeDraft extends Employee, Draft {
         }
 
         public Employee build() {
-            return EmployeeDraft.$.produce(draft -> {
+            return EmployeeDraft.$.produce(__draft -> {
                 if (empCode != null) {
-                    draft.setEmpCode(empCode);
+                    __draft.setEmpCode(empCode);
                 }
                 if (__userLoaded) {
-                    draft.setUser(user);
+                    __draft.setUser(user);
                 }
                 if (__companyLoaded) {
-                    draft.setCompany(company);
+                    __draft.setCompany(company);
                 }
                 if (__empNameLoaded) {
-                    draft.setEmpName(empName);
+                    __draft.setEmpName(empName);
                 }
                 if (posts != null) {
-                    draft.setPosts(posts);
+                    __draft.setPosts(posts);
                 }
             });
         }

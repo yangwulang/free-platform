@@ -27,3 +27,25 @@ MenuGetView {
         menuName?
     }
 }
+
+unsafe input MenuSaveInput {
+    id
+    parentId
+    menuName
+    menuType
+    menuHref
+    menuComponent
+    menuTarget
+    menuIcon
+    menuColor
+    menuTitle
+    permission
+    weight
+    isShow
+    sysCode
+}
+
+/* MenuListView {
+    #allScalars
+    children*
+} */

@@ -50,6 +50,12 @@ public interface MessageRecordUserDraft extends MessageRecordUser, TypeBaseDraft
     @OldChain
     MessageRecordUserDraft setRecord(MessageRecord record);
 
+    @Nullable
+    String recordId();
+
+    @OldChain
+    MessageRecordUserDraft setRecordId(@Nullable String recordId);
+
     @OldChain
     MessageRecordUserDraft applyRecord(DraftConsumer<MessageRecordDraft> block);
 
@@ -63,6 +69,12 @@ public interface MessageRecordUserDraft extends MessageRecordUser, TypeBaseDraft
 
     @OldChain
     MessageRecordUserDraft setUser(User user);
+
+    @Nullable
+    String userId();
+
+    @OldChain
+    MessageRecordUserDraft setUserId(@Nullable String userId);
 
     @OldChain
     MessageRecordUserDraft applyUser(DraftConsumer<UserDraft> block);
@@ -86,7 +98,7 @@ public interface MessageRecordUserDraft extends MessageRecordUser, TypeBaseDraft
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.69",
+                "0.8.93",
                 MessageRecordUser.class,
                 Collections.singleton(TypeBaseDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (MessageRecordUser)base)
@@ -560,6 +572,27 @@ public interface MessageRecordUserDraft extends MessageRecordUser, TypeBaseDraft
                 return this;
             }
 
+            @Nullable
+            @Override
+            public String recordId() {
+                MessageRecord record = record();
+                if (record == null) {
+                    return null;
+                }
+                return record.id();
+            }
+
+            @OldChain
+            @Override
+            public MessageRecordUserDraft setRecordId(@Nullable String recordId) {
+                if (recordId == null) {
+                    setRecord(null);
+                    return this;
+                }
+                record(true).setId(recordId);
+                return this;
+            }
+
             @Override
             public MessageRecordUserDraft applyRecord(DraftConsumer<MessageRecordDraft> block) {
                 applyRecord(null, block);
@@ -592,6 +625,27 @@ public interface MessageRecordUserDraft extends MessageRecordUser, TypeBaseDraft
                 Impl __tmpModified = __modified();
                 __tmpModified.__userValue = user;
                 __tmpModified.__userLoaded = true;
+                return this;
+            }
+
+            @Nullable
+            @Override
+            public String userId() {
+                User user = user();
+                if (user == null) {
+                    return null;
+                }
+                return user.userCode();
+            }
+
+            @OldChain
+            @Override
+            public MessageRecordUserDraft setUserId(@Nullable String userId) {
+                if (userId == null) {
+                    setUser(null);
+                    return this;
+                }
+                user(true).setUserCode(userId);
                 return this;
             }
 
@@ -842,18 +896,18 @@ public interface MessageRecordUserDraft extends MessageRecordUser, TypeBaseDraft
         }
 
         public MessageRecordUser build() {
-            return MessageRecordUserDraft.$.produce(draft -> {
+            return MessageRecordUserDraft.$.produce(__draft -> {
                 if (id != null) {
-                    draft.setId(id);
+                    __draft.setId(id);
                 }
                 if (__recordLoaded) {
-                    draft.setRecord(record);
+                    __draft.setRecord(record);
                 }
                 if (__userLoaded) {
-                    draft.setUser(user);
+                    __draft.setUser(user);
                 }
                 if (__isReadLoaded) {
-                    draft.setIsRead(isRead);
+                    __draft.setIsRead(isRead);
                 }
             });
         }

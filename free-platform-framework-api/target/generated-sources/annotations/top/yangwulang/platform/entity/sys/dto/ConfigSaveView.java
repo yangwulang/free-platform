@@ -90,10 +90,6 @@ public class ConfigSaveView implements View<Config> {
         return new ConfigSaveView(base);
     }
 
-    /**
-     * 字典类型编码
-     * @return 主键值
-     */
     @NotNull
     public String getId() {
         return id;
@@ -103,11 +99,6 @@ public class ConfigSaveView implements View<Config> {
         this.id = id;
     }
 
-    /**
-     * 创建者
-     *
-     * @return 创建者
-     */
     @NotNull
     public String getCreateBy() {
         return createBy;
@@ -117,11 +108,6 @@ public class ConfigSaveView implements View<Config> {
         this.createBy = createBy;
     }
 
-    /**
-     * 创建时间
-     *
-     * @return 创建时间
-     */
     @NotNull
     public Date getCreateDate() {
         return createDate;
@@ -131,11 +117,6 @@ public class ConfigSaveView implements View<Config> {
         this.createDate = createDate;
     }
 
-    /**
-     * 更新者
-     *
-     * @return 更新者
-     */
     @NotNull
     public String getUpdateBy() {
         return updateBy;
@@ -145,11 +126,6 @@ public class ConfigSaveView implements View<Config> {
         this.updateBy = updateBy;
     }
 
-    /**
-     * 更新时间
-     *
-     * @return 更新时间
-     */
     @NotNull
     public Date getUpdateDate() {
         return updateDate;
@@ -159,11 +135,6 @@ public class ConfigSaveView implements View<Config> {
         this.updateDate = updateDate;
     }
 
-    /**
-     * 备注信息
-     *
-     * @return 备注信息
-     */
     @Nullable
     public String getRemarks() {
         return remarks;
@@ -173,11 +144,6 @@ public class ConfigSaveView implements View<Config> {
         this.remarks = remarks;
     }
 
-    /**
-     * 名称
-     *
-     * @return 配置名称
-     */
     @NotNull
     public String getConfigName() {
         return configName;
@@ -187,11 +153,6 @@ public class ConfigSaveView implements View<Config> {
         this.configName = configName;
     }
 
-    /**
-     * 参数键
-     *
-     * @return 键
-     */
     @NotNull
     public String getConfigKey() {
         return configKey;
@@ -201,11 +162,6 @@ public class ConfigSaveView implements View<Config> {
         this.configKey = configKey;
     }
 
-    /**
-     * 参数值
-     *
-     * @return 值
-     */
     @Nullable
     public String getConfigValue() {
         return configValue;

@@ -88,9 +88,6 @@ public class CompanySaveInput implements Input<Company> {
         return new CompanySaveInput(base);
     }
 
-    /**
-     * 公司编码
-     */
     @NotNull
     public String getCompanyCode() {
         return companyCode;
@@ -100,9 +97,6 @@ public class CompanySaveInput implements Input<Company> {
         this.companyCode = companyCode;
     }
 
-    /**
-     * 公司名称
-     */
     @NotNull
     public String getCompanyName() {
         return companyName;
@@ -112,9 +106,6 @@ public class CompanySaveInput implements Input<Company> {
         this.companyName = companyName;
     }
 
-    /**
-     * 公司全名
-     */
     @Nullable
     public String getCompanyFullName() {
         return companyFullName;
@@ -142,9 +133,6 @@ public class CompanySaveInput implements Input<Company> {
         this.corpName = corpName;
     }
 
-    /**
-     * 父级编号
-     */
     @Nullable
     public String getParentId() {
         return parentId;
@@ -154,10 +142,6 @@ public class CompanySaveInput implements Input<Company> {
         this.parentId = parentId;
     }
 
-    /**
-     * 字典类型编码
-     * @return 主键值
-     */
     @Nullable
     public String getId() {
         return id;

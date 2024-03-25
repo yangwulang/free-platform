@@ -71,11 +71,6 @@ public class PostListInput implements Input<Post> {
         return new PostListInput(base);
     }
 
-    /**
-     * 岗位编码
-     *
-     * @return 岗位编码
-     */
     @Nullable
     public String getPostCode() {
         return postCode;
@@ -85,11 +80,6 @@ public class PostListInput implements Input<Post> {
         this.postCode = postCode;
     }
 
-    /**
-     * 岗位名称
-     *
-     * @return 岗位名称
-     */
     @Nullable
     public String getPostName() {
         return postName;
@@ -99,11 +89,6 @@ public class PostListInput implements Input<Post> {
         this.postName = postName;
     }
 
-    /**
-     * 岗位类型（高管、中层、低层）
-     *
-     * @return 高管、中层、低层 此处是字典
-     */
     @Nullable
     public String getPostType() {
         return postType;

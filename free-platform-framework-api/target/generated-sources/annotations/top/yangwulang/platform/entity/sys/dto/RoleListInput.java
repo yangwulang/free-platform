@@ -66,9 +66,6 @@ public class RoleListInput implements Input<Role> {
         return new RoleListInput(base);
     }
 
-    /**
-     * 角色名称
-     */
     @Nullable
     public String getRoleName() {
         return roleName;
@@ -78,9 +75,6 @@ public class RoleListInput implements Input<Role> {
         this.roleName = roleName;
     }
 
-    /**
-     * 角色分类（高管、中层、基层、其它）
-     */
     @Nullable
     public String getRoleType() {
         return roleType;
@@ -90,9 +84,6 @@ public class RoleListInput implements Input<Role> {
         this.roleType = roleType;
     }
 
-    /**
-     * 用户类型（employee员工 member会员）
-     */
     @Nullable
     public String getUserType() {
         return userType;

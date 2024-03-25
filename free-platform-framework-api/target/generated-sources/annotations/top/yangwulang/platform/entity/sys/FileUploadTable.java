@@ -1,8 +1,10 @@
 package top.yangwulang.platform.entity.sys;
 
 import java.lang.Deprecated;
+import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Date;
 import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.sql.JoinType;
 import org.babyfish.jimmer.sql.ast.PropExpression;
@@ -35,6 +37,36 @@ public class FileUploadTable extends AbstractTypedTable<FileUpload> implements F
     @Override
     public PropExpression.Str id() {
         return __get(FileUploadProps.ID.unwrap());
+    }
+
+    @Override
+    public PropExpression.Num<Integer> status() {
+        return __get(FileUploadProps.STATUS.unwrap());
+    }
+
+    @Override
+    public PropExpression.Str createBy() {
+        return __get(FileUploadProps.CREATE_BY.unwrap());
+    }
+
+    @Override
+    public PropExpression.Cmp<Date> createDate() {
+        return __get(FileUploadProps.CREATE_DATE.unwrap());
+    }
+
+    @Override
+    public PropExpression.Str updateBy() {
+        return __get(FileUploadProps.UPDATE_BY.unwrap());
+    }
+
+    @Override
+    public PropExpression.Cmp<Date> updateDate() {
+        return __get(FileUploadProps.UPDATE_DATE.unwrap());
+    }
+
+    @Override
+    public PropExpression.Str remarks() {
+        return __get(FileUploadProps.REMARKS.unwrap());
     }
 
     @Override

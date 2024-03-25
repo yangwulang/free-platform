@@ -15,6 +15,23 @@ import java.util.List;
 @Schema(description = "区域实体")
 public interface Area extends DataTypeBase {
 
+    /**
+     * 国家 (暂未取值)
+     */
+    String AREA_TYPE_COUNTRY = "";
+    /**
+     * 省
+     */
+    String AREA_TYPE_PROVINCE = "1";
+    /**
+     * 地市
+     */
+    String AREA_TYPE_CITY = "2";
+    /**
+     * 区县
+     */
+    String AREA_TYPE_COUNTY = "3";
+
     @Key
     @ManyToOne
     @JoinColumn(name = "pid")
@@ -48,7 +65,7 @@ public interface Area extends DataTypeBase {
     /**
      * 区域类型
      */
-    @Schema(description = "地区类型(1：国家；2：省份、直辖市；3：地市；4：区县)")
+    @Schema(description = "地区类型(1：省份、直辖市；2：地市；3：区县)")
     @Null String areaType();
 }
 

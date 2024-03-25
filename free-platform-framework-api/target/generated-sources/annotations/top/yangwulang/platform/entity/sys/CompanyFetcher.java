@@ -58,8 +58,19 @@ public class CompanyFetcher extends AbstractTypedFetcher<Company, CompanyFetcher
 
     @NewChain
     public CompanyFetcher parent(Fetcher<Company> childFetcher,
-            Consumer<RecursiveFieldConfig<Company, CompanyTable>> fieldConfig) {
+            Consumer<FieldConfig<Company, CompanyTable>> fieldConfig) {
         return add("parent", childFetcher, fieldConfig);
+    }
+
+    @NewChain
+    public CompanyFetcher recursiveParent() {
+        return addRecursion("parent", null);
+    }
+
+    @NewChain
+    public CompanyFetcher recursiveParent(
+            Consumer<RecursiveFieldConfig<Company, CompanyTable>> fieldConfig) {
+        return addRecursion("parent", fieldConfig);
     }
 
     @NewChain
@@ -99,8 +110,19 @@ public class CompanyFetcher extends AbstractTypedFetcher<Company, CompanyFetcher
 
     @NewChain
     public CompanyFetcher children(Fetcher<Company> childFetcher,
-            Consumer<RecursiveListFieldConfig<Company, CompanyTable>> fieldConfig) {
+            Consumer<ListFieldConfig<Company, CompanyTable>> fieldConfig) {
         return add("children", childFetcher, fieldConfig);
+    }
+
+    @NewChain
+    public CompanyFetcher recursiveChildren() {
+        return addRecursion("children", null);
+    }
+
+    @NewChain
+    public CompanyFetcher recursiveChildren(
+            Consumer<RecursiveListFieldConfig<Company, CompanyTable>> fieldConfig) {
+        return addRecursion("children", fieldConfig);
     }
 
     @NewChain

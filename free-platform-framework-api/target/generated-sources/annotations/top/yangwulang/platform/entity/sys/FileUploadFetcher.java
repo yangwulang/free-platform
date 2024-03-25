@@ -39,6 +39,66 @@ public class FileUploadFetcher extends AbstractTypedFetcher<FileUpload, FileUplo
     }
 
     @NewChain
+    public FileUploadFetcher status() {
+        return add("status");
+    }
+
+    @NewChain
+    public FileUploadFetcher status(boolean enabled) {
+        return enabled ? add("status") : remove("status");
+    }
+
+    @NewChain
+    public FileUploadFetcher createBy() {
+        return add("createBy");
+    }
+
+    @NewChain
+    public FileUploadFetcher createBy(boolean enabled) {
+        return enabled ? add("createBy") : remove("createBy");
+    }
+
+    @NewChain
+    public FileUploadFetcher createDate() {
+        return add("createDate");
+    }
+
+    @NewChain
+    public FileUploadFetcher createDate(boolean enabled) {
+        return enabled ? add("createDate") : remove("createDate");
+    }
+
+    @NewChain
+    public FileUploadFetcher updateBy() {
+        return add("updateBy");
+    }
+
+    @NewChain
+    public FileUploadFetcher updateBy(boolean enabled) {
+        return enabled ? add("updateBy") : remove("updateBy");
+    }
+
+    @NewChain
+    public FileUploadFetcher updateDate() {
+        return add("updateDate");
+    }
+
+    @NewChain
+    public FileUploadFetcher updateDate(boolean enabled) {
+        return enabled ? add("updateDate") : remove("updateDate");
+    }
+
+    @NewChain
+    public FileUploadFetcher remarks() {
+        return add("remarks");
+    }
+
+    @NewChain
+    public FileUploadFetcher remarks(boolean enabled) {
+        return enabled ? add("remarks") : remove("remarks");
+    }
+
+    @NewChain
     public FileUploadFetcher fileEntity() {
         return add("fileEntity");
     }

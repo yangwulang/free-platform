@@ -186,6 +186,9 @@ public class DictDataGetView implements View<DictData> {
     }
 
     @Nullable
+    @Schema(
+            description = "字典标签"
+    )
     public String getDictLabel() {
         return dictLabel;
     }
@@ -195,6 +198,9 @@ public class DictDataGetView implements View<DictData> {
     }
 
     @Nullable
+    @Schema(
+            description = "字典键值"
+    )
     public String getDictValue() {
         return dictValue;
     }
@@ -204,6 +210,9 @@ public class DictDataGetView implements View<DictData> {
     }
 
     @Nullable
+    @Schema(
+            description = "系统内置（1是 0否）"
+    )
     public Boolean getIsSys() {
         return isSys;
     }
@@ -213,6 +222,9 @@ public class DictDataGetView implements View<DictData> {
     }
 
     @Nullable
+    @Schema(
+            description = "字典描述"
+    )
     public String getDescription() {
         return description;
     }
@@ -222,6 +234,9 @@ public class DictDataGetView implements View<DictData> {
     }
 
     @Nullable
+    @Schema(
+            description = "css样式（如：color:red)"
+    )
     public String getCssStyle() {
         return cssStyle;
     }
@@ -231,6 +246,9 @@ public class DictDataGetView implements View<DictData> {
     }
 
     @Nullable
+    @Schema(
+            description = "css类名（如：red）"
+    )
     public String getCssClass() {
         return cssClass;
     }
@@ -240,6 +258,9 @@ public class DictDataGetView implements View<DictData> {
     }
 
     @Nullable
+    @Schema(
+            description = "父级id"
+    )
     public String getParentId() {
         return parentId;
     }
@@ -249,6 +270,9 @@ public class DictDataGetView implements View<DictData> {
     }
 
     @Nullable
+    @Schema(
+            description = "字典类型id"
+    )
     public String getDictTypeId() {
         return dictTypeId;
     }

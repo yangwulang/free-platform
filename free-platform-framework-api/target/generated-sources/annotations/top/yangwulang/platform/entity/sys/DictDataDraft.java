@@ -179,7 +179,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.69",
+                "0.8.93",
                 DictData.class,
                 Collections.singleton(DataTypeBaseDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (DictData)base)
@@ -1842,7 +1842,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
                     case SLOT_ID:
                     		setId((String)value);break;
                     case SLOT_STATUS:
-                    		if (value == null) throw new IllegalArgumentException("'status' cannot be null");
+                    		if (value == null) throw new IllegalArgumentException("'status' cannot be null, if you want to set null, please use any annotation whose simple name is \"Nullable\" to decorate the property");
                             setStatus((Integer)value);
                             break;
                     case SLOT_CREATE_BY:
@@ -1892,7 +1892,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
                     case "id":
                     		setId((String)value);break;
                     case "status":
-                    		if (value == null) throw new IllegalArgumentException("'status' cannot be null");
+                    		if (value == null) throw new IllegalArgumentException("'status' cannot be null, if you want to set null, please use any annotation whose simple name is \"Nullable\" to decorate the property");
                             setStatus((Integer)value);
                             break;
                     case "createBy":
@@ -2398,60 +2398,60 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
         }
 
         public DictData build() {
-            return DictDataDraft.$.produce(draft -> {
+            return DictDataDraft.$.produce(__draft -> {
                 if (id != null) {
-                    draft.setId(id);
+                    __draft.setId(id);
                 }
                 if (status != null) {
-                    draft.setStatus(status);
+                    __draft.setStatus(status);
                 }
                 if (createBy != null) {
-                    draft.setCreateBy(createBy);
+                    __draft.setCreateBy(createBy);
                 }
                 if (createDate != null) {
-                    draft.setCreateDate(createDate);
+                    __draft.setCreateDate(createDate);
                 }
                 if (updateBy != null) {
-                    draft.setUpdateBy(updateBy);
+                    __draft.setUpdateBy(updateBy);
                 }
                 if (updateDate != null) {
-                    draft.setUpdateDate(updateDate);
+                    __draft.setUpdateDate(updateDate);
                 }
                 if (__remarksLoaded) {
-                    draft.setRemarks(remarks);
+                    __draft.setRemarks(remarks);
                 }
                 if (__parentLoaded) {
-                    draft.setParent(parent);
+                    __draft.setParent(parent);
                 }
                 if (children != null) {
-                    draft.setChildren(children);
+                    __draft.setChildren(children);
                 }
                 if (__dictTypeLoaded) {
-                    draft.setDictType(dictType);
+                    __draft.setDictType(dictType);
                 }
                 if (__dictLabelLoaded) {
-                    draft.setDictLabel(dictLabel);
+                    __draft.setDictLabel(dictLabel);
                 }
                 if (__dictValueLoaded) {
-                    draft.setDictValue(dictValue);
+                    __draft.setDictValue(dictValue);
                 }
                 if (__isSysLoaded) {
-                    draft.setIsSys(isSys);
+                    __draft.setIsSys(isSys);
                 }
                 if (__descriptionLoaded) {
-                    draft.setDescription(description);
+                    __draft.setDescription(description);
                 }
                 if (__cssStyleLoaded) {
-                    draft.setCssStyle(cssStyle);
+                    __draft.setCssStyle(cssStyle);
                 }
                 if (__cssClassLoaded) {
-                    draft.setCssClass(cssClass);
+                    __draft.setCssClass(cssClass);
                 }
                 if (__corpCodeLoaded) {
-                    draft.setCorpCode(corpCode);
+                    __draft.setCorpCode(corpCode);
                 }
                 if (__corpNameLoaded) {
-                    draft.setCorpName(corpName);
+                    __draft.setCorpName(corpName);
                 }
             });
         }

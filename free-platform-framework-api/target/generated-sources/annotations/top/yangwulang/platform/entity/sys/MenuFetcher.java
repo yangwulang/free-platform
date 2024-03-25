@@ -118,8 +118,19 @@ public class MenuFetcher extends AbstractTypedFetcher<Menu, MenuFetcher> {
 
     @NewChain
     public MenuFetcher parent(Fetcher<Menu> childFetcher,
-            Consumer<RecursiveFieldConfig<Menu, MenuTable>> fieldConfig) {
+            Consumer<FieldConfig<Menu, MenuTable>> fieldConfig) {
         return add("parent", childFetcher, fieldConfig);
+    }
+
+    @NewChain
+    public MenuFetcher recursiveParent() {
+        return addRecursion("parent", null);
+    }
+
+    @NewChain
+    public MenuFetcher recursiveParent(
+            Consumer<RecursiveFieldConfig<Menu, MenuTable>> fieldConfig) {
+        return addRecursion("parent", fieldConfig);
     }
 
     @NewChain
@@ -159,8 +170,19 @@ public class MenuFetcher extends AbstractTypedFetcher<Menu, MenuFetcher> {
 
     @NewChain
     public MenuFetcher children(Fetcher<Menu> childFetcher,
-            Consumer<RecursiveListFieldConfig<Menu, MenuTable>> fieldConfig) {
+            Consumer<ListFieldConfig<Menu, MenuTable>> fieldConfig) {
         return add("children", childFetcher, fieldConfig);
+    }
+
+    @NewChain
+    public MenuFetcher recursiveChildren() {
+        return addRecursion("children", null);
+    }
+
+    @NewChain
+    public MenuFetcher recursiveChildren(
+            Consumer<RecursiveListFieldConfig<Menu, MenuTable>> fieldConfig) {
+        return addRecursion("children", fieldConfig);
     }
 
     @NewChain

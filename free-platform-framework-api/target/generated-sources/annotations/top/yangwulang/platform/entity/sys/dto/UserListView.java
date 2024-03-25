@@ -215,6 +215,9 @@ public class UserListView implements View<User> {
     }
 
     @NotNull
+    @Schema(
+            description = "用户编码"
+    )
     public String getUserCode() {
         return userCode;
     }
@@ -223,6 +226,9 @@ public class UserListView implements View<User> {
         this.userCode = userCode;
     }
 
+    @Schema(
+            description = "状态"
+    )
     public int getStatus() {
         return status;
     }
@@ -232,6 +238,9 @@ public class UserListView implements View<User> {
     }
 
     @NotNull
+    @Schema(
+            description = "创建人"
+    )
     public String getCreateBy() {
         return createBy;
     }
@@ -241,6 +250,9 @@ public class UserListView implements View<User> {
     }
 
     @NotNull
+    @Schema(
+            description = "创建时间"
+    )
     public Date getCreateDate() {
         return createDate;
     }
@@ -250,6 +262,9 @@ public class UserListView implements View<User> {
     }
 
     @NotNull
+    @Schema(
+            description = "修改者"
+    )
     public String getUpdateBy() {
         return updateBy;
     }
@@ -259,6 +274,9 @@ public class UserListView implements View<User> {
     }
 
     @NotNull
+    @Schema(
+            description = "修改时间"
+    )
     public Date getUpdateDate() {
         return updateDate;
     }
@@ -268,6 +286,9 @@ public class UserListView implements View<User> {
     }
 
     @Nullable
+    @Schema(
+            description = "备注"
+    )
     public String getRemarks() {
         return remarks;
     }
@@ -277,6 +298,9 @@ public class UserListView implements View<User> {
     }
 
     @Nullable
+    @Schema(
+            description = "登录编码(账号)"
+    )
     public String getLoginCode() {
         return loginCode;
     }
@@ -286,6 +310,9 @@ public class UserListView implements View<User> {
     }
 
     @Nullable
+    @Schema(
+            description = "用户名"
+    )
     public String getUserName() {
         return userName;
     }
@@ -295,6 +322,9 @@ public class UserListView implements View<User> {
     }
 
     @Nullable
+    @Schema(
+            description = "邮件"
+    )
     public String getEmail() {
         return email;
     }
@@ -304,6 +334,9 @@ public class UserListView implements View<User> {
     }
 
     @Nullable
+    @Schema(
+            description = "手机"
+    )
     public String getMobile() {
         return mobile;
     }
@@ -313,6 +346,9 @@ public class UserListView implements View<User> {
     }
 
     @Nullable
+    @Schema(
+            description = "电话"
+    )
     public String getPhone() {
         return phone;
     }
@@ -322,6 +358,9 @@ public class UserListView implements View<User> {
     }
 
     @Nullable
+    @Schema(
+            description = "性别"
+    )
     public String getSex() {
         return sex;
     }
@@ -331,6 +370,9 @@ public class UserListView implements View<User> {
     }
 
     @Nullable
+    @Schema(
+            description = "头像地址"
+    )
     public String getAvatar() {
         return avatar;
     }
@@ -340,6 +382,9 @@ public class UserListView implements View<User> {
     }
 
     @Nullable
+    @Schema(
+            description = "个性签名"
+    )
     public String getSign() {
         return sign;
     }
@@ -349,6 +394,9 @@ public class UserListView implements View<User> {
     }
 
     @Nullable
+    @Schema(
+            description = "微信开发id"
+    )
     public String getWxOpenId() {
         return wxOpenId;
     }
@@ -358,6 +406,9 @@ public class UserListView implements View<User> {
     }
 
     @Nullable
+    @Schema(
+            description = "手机imei"
+    )
     public String getMobileImei() {
         return mobileImei;
     }
@@ -367,6 +418,9 @@ public class UserListView implements View<User> {
     }
 
     @Nullable
+    @Schema(
+            description = "用户类型"
+    )
     public String getUserType() {
         return userType;
     }
@@ -376,6 +430,9 @@ public class UserListView implements View<User> {
     }
 
     @Nullable
+    @Schema(
+            description = "用户类型引用编号"
+    )
     public String getRefCode() {
         return refCode;
     }
@@ -385,6 +442,9 @@ public class UserListView implements View<User> {
     }
 
     @Nullable
+    @Schema(
+            description = "用户类型引用名称"
+    )
     public String getRefName() {
         return refName;
     }
@@ -394,6 +454,9 @@ public class UserListView implements View<User> {
     }
 
     @NotNull
+    @Schema(
+            description = "管理员类型"
+    )
     public String getMgrType() {
         return mgrType;
     }

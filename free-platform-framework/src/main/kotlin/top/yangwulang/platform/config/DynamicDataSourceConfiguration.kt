@@ -12,6 +12,7 @@ import org.springframework.context.ApplicationContext
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.transaction.PlatformTransactionManager
+import org.springframework.transaction.annotation.EnableTransactionManagement
 import org.springframework.transaction.jta.JtaTransactionManager
 import top.yangwulang.platform.properties.DynamicDataSourceProperties
 import top.yangwulang.platform.utils.DataSourceHolder
@@ -19,6 +20,7 @@ import javax.sql.DataSource
 
 
 @Configuration
+@EnableTransactionManagement
 @EnableConfigurationProperties(DynamicDataSourceProperties::class)
 open class DynamicDataSourceConfiguration {
     @Autowired

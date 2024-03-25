@@ -77,7 +77,7 @@ class UserController {
         if (StringUtils.isEmpty(user.userCode)) {
             throw ServiceException("系统无法新增，只能编辑，新增请通过注册");
         }
-        userService.findById(user.userCode)
+        userService.findById(user.userCode!!)
             .orElseThrow { ServiceException("用户不存在") }
             .apply {
                 if (!this.loginCode().equals(user.loginCode)) {

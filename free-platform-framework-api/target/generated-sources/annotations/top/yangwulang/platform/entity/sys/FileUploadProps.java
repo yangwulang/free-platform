@@ -1,21 +1,41 @@
 package top.yangwulang.platform.entity.sys;
 
+import java.lang.Integer;
 import java.lang.String;
+import java.util.Date;
 import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.ImmutableType;
 import org.babyfish.jimmer.meta.TypedProp;
 import org.babyfish.jimmer.sql.JoinType;
 import org.babyfish.jimmer.sql.ast.PropExpression;
 import org.babyfish.jimmer.sql.ast.table.PropsFor;
-import top.yangwulang.platform.entity.TypeBaseProps;
+import top.yangwulang.platform.entity.DataTypeBaseProps;
 
 @GeneratedBy(
         type = FileUpload.class
 )
 @PropsFor(FileUpload.class)
-public interface FileUploadProps extends TypeBaseProps {
+public interface FileUploadProps extends DataTypeBaseProps {
     TypedProp.Scalar<FileUpload, String> ID = 
         TypedProp.scalar(ImmutableType.get(FileUpload.class).getProp("id"));
+
+    TypedProp.Scalar<FileUpload, Integer> STATUS = 
+        TypedProp.scalar(ImmutableType.get(FileUpload.class).getProp("status"));
+
+    TypedProp.Scalar<FileUpload, String> CREATE_BY = 
+        TypedProp.scalar(ImmutableType.get(FileUpload.class).getProp("createBy"));
+
+    TypedProp.Scalar<FileUpload, Date> CREATE_DATE = 
+        TypedProp.scalar(ImmutableType.get(FileUpload.class).getProp("createDate"));
+
+    TypedProp.Scalar<FileUpload, String> UPDATE_BY = 
+        TypedProp.scalar(ImmutableType.get(FileUpload.class).getProp("updateBy"));
+
+    TypedProp.Scalar<FileUpload, Date> UPDATE_DATE = 
+        TypedProp.scalar(ImmutableType.get(FileUpload.class).getProp("updateDate"));
+
+    TypedProp.Scalar<FileUpload, String> REMARKS = 
+        TypedProp.scalar(ImmutableType.get(FileUpload.class).getProp("remarks"));
 
     TypedProp.Reference<FileUpload, FileEntity> FILE_ENTITY = 
         TypedProp.reference(ImmutableType.get(FileUpload.class).getProp("fileEntity"));

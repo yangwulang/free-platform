@@ -1,14 +1,19 @@
 package top.yangwulang.platform.entity.sys.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+
 import java.lang.Integer;
 import java.lang.Long;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
+
 import org.babyfish.jimmer.View;
+import org.babyfish.jimmer.impl.util.DtoPropAccessor;
 import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
@@ -19,23 +24,36 @@ import top.yangwulang.platform.entity.sys.Area;
 import top.yangwulang.platform.entity.sys.AreaDraft;
 import top.yangwulang.platform.entity.sys.AreaFetcher;
 
+/**
+ * 区域表
+ */
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Area.dto"
 )
-public class AreaGetView implements View<Area> {
-    public static final ViewMetadata<Area, AreaGetView> METADATA = 
-        new ViewMetadata<Area, AreaGetView>(
-            AreaFetcher.$
-                .status()
-                .createBy()
-                .createDate()
-                .updateBy()
-                .updateDate()
-                .remarks()
-                .areaName()
-                .sort()
-                .areaType(),
-            AreaGetView::new
+public class AreaListView implements View<Area> {
+    public static final ViewMetadata<Area, AreaListView> METADATA =
+            new ViewMetadata<Area, AreaListView>(
+                    AreaFetcher.$
+                            .status()
+                            .createBy()
+                            .createDate()
+                            .updateBy()
+                            .updateDate()
+                            .remarks()
+                            .areaName()
+                            .sort()
+                            .areaType()
+                            .recursiveChildren(it -> it.recursive(args ->
+                                    !args.getEntity().areaType().equals(Area.AREA_TYPE_COUNTY)
+                            )),
+                    AreaListView::new
+            );
+
+    private static final DtoPropAccessor CHILDREN_ACCESSOR = new DtoPropAccessor(
+            false,
+            new int[]{AreaDraft.Producer.SLOT_CHILDREN},
+            DtoPropAccessor.<Area, AreaListView>objectListGetter(AreaListView::new),
+            DtoPropAccessor.objectListSetter(AreaListView::toEntity)
     );
 
     @NotNull
@@ -79,26 +97,38 @@ public class AreaGetView implements View<Area> {
     @Nullable
     private String areaType;
 
-    public AreaGetView() {
+    @Schema(
+            description = "子级区域"
+    )
+    @Nullable
+    private List<AreaListView> children;
+
+    public AreaListView() {
     }
 
-    public AreaGetView(@NotNull Area base) {
+    public AreaListView(@NotNull Area base) {
         this.id = base.id();
         this.status = base.status();
         this.createBy = base.createBy();
         this.createDate = base.createDate();
         this.updateBy = base.updateBy();
         this.updateDate = base.updateDate();
-        this.remarks = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(AreaDraft.Producer.SLOT_REMARKS)) ? base.remarks() : null;
+        this.remarks = ((ImmutableSpi) base).__isLoaded(PropId.byIndex(AreaDraft.Producer.SLOT_REMARKS)) ? base.remarks() : null;
         this.areaName = base.areaName();
-        this.sort = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(AreaDraft.Producer.SLOT_SORT)) ? base.sort() : null;
-        this.areaType = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(AreaDraft.Producer.SLOT_AREA_TYPE)) ? base.areaType() : null;
+        this.sort = ((ImmutableSpi) base).__isLoaded(PropId.byIndex(AreaDraft.Producer.SLOT_SORT)) ? base.sort() : null;
+        this.areaType = ((ImmutableSpi) base).__isLoaded(PropId.byIndex(AreaDraft.Producer.SLOT_AREA_TYPE)) ? base.areaType() : null;
+        this.children = CHILDREN_ACCESSOR.get(base);
     }
 
-    public static AreaGetView of(@NotNull Area base) {
-        return new AreaGetView(base);
+    public static AreaListView of(@NotNull Area base) {
+        return new AreaListView(base);
     }
 
+    /**
+     * 字典类型编码
+     *
+     * @return 主键值
+     */
     @NotNull
     public String getId() {
         return id;
@@ -119,6 +149,11 @@ public class AreaGetView implements View<Area> {
         this.status = status;
     }
 
+    /**
+     * 创建者
+     *
+     * @return 创建者
+     */
     @NotNull
     public String getCreateBy() {
         return createBy;
@@ -128,6 +163,11 @@ public class AreaGetView implements View<Area> {
         this.createBy = createBy;
     }
 
+    /**
+     * 创建时间
+     *
+     * @return 创建时间
+     */
     @NotNull
     public Date getCreateDate() {
         return createDate;
@@ -137,6 +177,11 @@ public class AreaGetView implements View<Area> {
         this.createDate = createDate;
     }
 
+    /**
+     * 更新者
+     *
+     * @return 更新者
+     */
     @NotNull
     public String getUpdateBy() {
         return updateBy;
@@ -146,6 +191,11 @@ public class AreaGetView implements View<Area> {
         this.updateBy = updateBy;
     }
 
+    /**
+     * 更新时间
+     *
+     * @return 更新时间
+     */
     @NotNull
     public Date getUpdateDate() {
         return updateDate;
@@ -155,6 +205,11 @@ public class AreaGetView implements View<Area> {
         this.updateDate = updateDate;
     }
 
+    /**
+     * 备注信息
+     *
+     * @return 备注信息
+     */
     @Nullable
     public String getRemarks() {
         return remarks;
@@ -164,6 +219,9 @@ public class AreaGetView implements View<Area> {
         this.remarks = remarks;
     }
 
+    /**
+     * 名称
+     */
     @NotNull
     @Schema(
             description = "区域名称"
@@ -176,6 +234,9 @@ public class AreaGetView implements View<Area> {
         this.areaName = areaName;
     }
 
+    /**
+     * 排序
+     */
     @Nullable
     @Schema(
             description = "排序"
@@ -188,6 +249,9 @@ public class AreaGetView implements View<Area> {
         this.sort = sort;
     }
 
+    /**
+     * 区域类型
+     */
     @Nullable
     @Schema(
             description = "地区类型(1：省份、直辖市；2：地市；3：区县)"
@@ -198,6 +262,18 @@ public class AreaGetView implements View<Area> {
 
     public void setAreaType(@Nullable String areaType) {
         this.areaType = areaType;
+    }
+
+    @Nullable
+    @Schema(
+            description = "子级区域"
+    )
+    public List<AreaListView> getChildren() {
+        return children;
+    }
+
+    public void setChildren(@Nullable List<AreaListView> children) {
+        this.children = children;
     }
 
     @Override
@@ -213,6 +289,7 @@ public class AreaGetView implements View<Area> {
             __draft.setAreaName(areaName);
             __draft.setSort(sort);
             __draft.setAreaType(areaType);
+            CHILDREN_ACCESSOR.set(__draft, children != null ? children : Collections.emptyList());
         });
     }
 
@@ -228,6 +305,7 @@ public class AreaGetView implements View<Area> {
         hash = hash * 31 + Objects.hashCode(areaName);
         hash = hash * 31 + Objects.hashCode(sort);
         hash = hash * 31 + Objects.hashCode(areaType);
+        hash = hash * 31 + Objects.hashCode(children);
         return hash;
     }
 
@@ -236,7 +314,7 @@ public class AreaGetView implements View<Area> {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
-        AreaGetView other = (AreaGetView) o;
+        AreaListView other = (AreaListView) o;
         if (!Objects.equals(id, other.id)) {
             return false;
         }
@@ -267,13 +345,16 @@ public class AreaGetView implements View<Area> {
         if (!Objects.equals(areaType, other.areaType)) {
             return false;
         }
+        if (!Objects.equals(children, other.children)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("AreaGetView").append('(');
+        builder.append("AreaListView").append('(');
         builder.append("id=").append(id);
         builder.append(", status=").append(status);
         builder.append(", createBy=").append(createBy);
@@ -284,6 +365,7 @@ public class AreaGetView implements View<Area> {
         builder.append(", areaName=").append(areaName);
         builder.append(", sort=").append(sort);
         builder.append(", areaType=").append(areaType);
+        builder.append(", children=").append(children);
         builder.append(')');
         return builder.toString();
     }

@@ -213,6 +213,9 @@ public class EmployeeGetView implements View<Employee> {
     }
 
     @NotNull
+    @Schema(
+            description = "员工编码"
+    )
     public String getEmpCode() {
         return empCode;
     }
@@ -222,6 +225,9 @@ public class EmployeeGetView implements View<Employee> {
     }
 
     @Nullable
+    @Schema(
+            description = "员工名称"
+    )
     public String getEmpName() {
         return empName;
     }
@@ -231,6 +237,13 @@ public class EmployeeGetView implements View<Employee> {
     }
 
     @Nullable
+    @NotEmpty(
+            message = "登陆编码不能为空"
+    )
+    @Schema(
+            description = "登陆编码，用户登陆的账号",
+            requiredMode = Schema.RequiredMode.REQUIRED
+    )
     public String getLoginCode() {
         return loginCode;
     }
@@ -240,6 +253,9 @@ public class EmployeeGetView implements View<Employee> {
     }
 
     @Nullable
+    @Schema(
+            description = "用户名"
+    )
     public String getUserName() {
         return userName;
     }
@@ -249,6 +265,9 @@ public class EmployeeGetView implements View<Employee> {
     }
 
     @Nullable
+    @Schema(
+            description = "手机"
+    )
     public String getMobile() {
         return mobile;
     }
@@ -258,6 +277,9 @@ public class EmployeeGetView implements View<Employee> {
     }
 
     @Nullable
+    @Schema(
+            description = "邮件"
+    )
     public String getEmail() {
         return email;
     }
@@ -267,6 +289,9 @@ public class EmployeeGetView implements View<Employee> {
     }
 
     @Nullable
+    @Schema(
+            description = "性别"
+    )
     public String getSex() {
         return sex;
     }
@@ -276,6 +301,9 @@ public class EmployeeGetView implements View<Employee> {
     }
 
     @Nullable
+    @Schema(
+            description = "个性签名"
+    )
     public String getSign() {
         return sign;
     }
@@ -285,6 +313,13 @@ public class EmployeeGetView implements View<Employee> {
     }
 
     @Nullable
+    @NotEmpty(
+            message = "用户类型不能为空"
+    )
+    @Schema(
+            description = "用户类型",
+            requiredMode = Schema.RequiredMode.REQUIRED
+    )
     public String getUserType() {
         return userType;
     }
@@ -294,6 +329,10 @@ public class EmployeeGetView implements View<Employee> {
     }
 
     @Nullable
+    @Schema(
+            description = "用户权重",
+            requiredMode = Schema.RequiredMode.REQUIRED
+    )
     public Integer getUserWeight() {
         return userWeight;
     }
@@ -303,6 +342,10 @@ public class EmployeeGetView implements View<Employee> {
     }
 
     @Nullable
+    @Schema(
+            description = "管理员类型",
+            requiredMode = Schema.RequiredMode.REQUIRED
+    )
     public String getMgrType() {
         return mgrType;
     }

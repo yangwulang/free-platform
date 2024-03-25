@@ -46,6 +46,9 @@ public class DictTypeListSpecification implements JSpecification<DictType, DictT
     }
 
     @Nullable
+    @Schema(
+            description = "字典类型标签"
+    )
     public String getDictType() {
         return dictType;
     }
@@ -55,6 +58,9 @@ public class DictTypeListSpecification implements JSpecification<DictType, DictT
     }
 
     @Nullable
+    @Schema(
+            description = "字典名称"
+    )
     public String getDictName() {
         return dictName;
     }
@@ -64,6 +70,9 @@ public class DictTypeListSpecification implements JSpecification<DictType, DictT
     }
 
     @Nullable
+    @Schema(
+            description = "是否系统自带"
+    )
     public Boolean getIsSys() {
         return isSys;
     }

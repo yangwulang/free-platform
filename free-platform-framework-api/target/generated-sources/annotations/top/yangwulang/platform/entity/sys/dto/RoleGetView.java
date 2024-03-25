@@ -188,6 +188,9 @@ public class RoleGetView implements View<Role> {
         this.id = id;
     }
 
+    @Schema(
+            description = "状态"
+    )
     public int getStatus() {
         return status;
     }
@@ -242,6 +245,9 @@ public class RoleGetView implements View<Role> {
     }
 
     @NotNull
+    @Schema(
+            description = "角色编码"
+    )
     public String getRoleCode() {
         return roleCode;
     }
@@ -251,6 +257,9 @@ public class RoleGetView implements View<Role> {
     }
 
     @NotNull
+    @Schema(
+            description = "角色名称"
+    )
     public String getRoleName() {
         return roleName;
     }
@@ -260,6 +269,9 @@ public class RoleGetView implements View<Role> {
     }
 
     @Nullable
+    @Schema(
+            description = "角色类型"
+    )
     public String getRoleType() {
         return roleType;
     }
@@ -269,6 +281,9 @@ public class RoleGetView implements View<Role> {
     }
 
     @Nullable
+    @Schema(
+            description = "角色排序"
+    )
     public BigDecimal getRoleSort() {
         return roleSort;
     }
@@ -278,6 +293,9 @@ public class RoleGetView implements View<Role> {
     }
 
     @Nullable
+    @Schema(
+            description = "系统内置 1是 0否"
+    )
     public Boolean getIsSys() {
         return isSys;
     }
@@ -287,6 +305,9 @@ public class RoleGetView implements View<Role> {
     }
 
     @Nullable
+    @Schema(
+            description = "用户类型"
+    )
     public String getUserType() {
         return userType;
     }
@@ -296,6 +317,9 @@ public class RoleGetView implements View<Role> {
     }
 
     @Nullable
+    @Schema(
+            description = "数据范围设置"
+    )
     public String getDataScope() {
         return dataScope;
     }
@@ -305,6 +329,9 @@ public class RoleGetView implements View<Role> {
     }
 
     @Nullable
+    @Schema(
+            description = "适应业务范围"
+    )
     public String getBizScope() {
         return bizScope;
     }
@@ -314,6 +341,9 @@ public class RoleGetView implements View<Role> {
     }
 
     @NotNull
+    @Schema(
+            description = "角色拥有的菜单"
+    )
     public List<TargetOf_menus> getMenus() {
         return menus;
     }
@@ -323,6 +353,9 @@ public class RoleGetView implements View<Role> {
     }
 
     @NotNull
+    @Schema(
+            description = "角色拥有的用户"
+    )
     public List<TargetOf_users> getUsers() {
         return users;
     }
@@ -619,6 +652,9 @@ public class RoleGetView implements View<Role> {
             this.id = id;
         }
 
+        @Schema(
+                description = "状态"
+        )
         public int getStatus() {
             return status;
         }
@@ -673,6 +709,9 @@ public class RoleGetView implements View<Role> {
         }
 
         @NotNull
+        @Schema(
+                description = "菜单名称"
+        )
         public String getMenuName() {
             return menuName;
         }
@@ -682,6 +721,9 @@ public class RoleGetView implements View<Role> {
         }
 
         @NotNull
+        @Schema(
+                description = "菜单类型（1菜单 2权限 3开发）"
+        )
         public String getMenuType() {
             return menuType;
         }
@@ -691,6 +733,9 @@ public class RoleGetView implements View<Role> {
         }
 
         @Nullable
+        @Schema(
+                description = "链接"
+        )
         public String getMenuHref() {
             return menuHref;
         }
@@ -700,6 +745,9 @@ public class RoleGetView implements View<Role> {
         }
 
         @Nullable
+        @Schema(
+                description = "组件地址"
+        )
         public String getMenuComponent() {
             return menuComponent;
         }
@@ -709,6 +757,9 @@ public class RoleGetView implements View<Role> {
         }
 
         @Nullable
+        @Schema(
+                description = "目标"
+        )
         public String getMenuTarget() {
             return menuTarget;
         }
@@ -718,6 +769,9 @@ public class RoleGetView implements View<Role> {
         }
 
         @Nullable
+        @Schema(
+                description = "图标"
+        )
         public String getMenuIcon() {
             return menuIcon;
         }
@@ -727,6 +781,9 @@ public class RoleGetView implements View<Role> {
         }
 
         @Nullable
+        @Schema(
+                description = "颜色"
+        )
         public String getMenuColor() {
             return menuColor;
         }
@@ -736,6 +793,9 @@ public class RoleGetView implements View<Role> {
         }
 
         @Nullable
+        @Schema(
+                description = "菜单标题"
+        )
         public String getMenuTitle() {
             return menuTitle;
         }
@@ -745,6 +805,9 @@ public class RoleGetView implements View<Role> {
         }
 
         @Nullable
+        @Schema(
+                description = "权限标识"
+        )
         public String getPermission() {
             return permission;
         }
@@ -754,6 +817,9 @@ public class RoleGetView implements View<Role> {
         }
 
         @Nullable
+        @Schema(
+                description = "菜单权重"
+        )
         public BigDecimal getWeight() {
             return weight;
         }
@@ -763,6 +829,9 @@ public class RoleGetView implements View<Role> {
         }
 
         @Nullable
+        @Schema(
+                description = "是否显示"
+        )
         public Boolean getIsShow() {
             return isShow;
         }
@@ -772,6 +841,9 @@ public class RoleGetView implements View<Role> {
         }
 
         @Nullable
+        @Schema(
+                description = "归属系统（default:主导航菜单、mobileApp:APP菜单）"
+        )
         public String getSysCode() {
             return sysCode;
         }
@@ -997,6 +1069,9 @@ public class RoleGetView implements View<Role> {
         }
 
         @NotNull
+        @Schema(
+                description = "用户编码"
+        )
         public String getUserCode() {
             return userCode;
         }
@@ -1006,6 +1081,9 @@ public class RoleGetView implements View<Role> {
         }
 
         @Nullable
+        @Schema(
+                description = "用户名"
+        )
         public String getUserName() {
             return userName;
         }
@@ -1015,6 +1093,9 @@ public class RoleGetView implements View<Role> {
         }
 
         @Nullable
+        @Schema(
+                description = "用户类型"
+        )
         public String getUserType() {
             return userType;
         }
@@ -1024,6 +1105,9 @@ public class RoleGetView implements View<Role> {
         }
 
         @Nullable
+        @Schema(
+                description = "头像地址"
+        )
         public String getAvatar() {
             return avatar;
         }
@@ -1033,6 +1117,9 @@ public class RoleGetView implements View<Role> {
         }
 
         @Nullable
+        @Schema(
+                description = "登录编码(账号)"
+        )
         public String getLoginCode() {
             return loginCode;
         }
@@ -1042,6 +1129,9 @@ public class RoleGetView implements View<Role> {
         }
 
         @Nullable
+        @Schema(
+                description = "邮件"
+        )
         public String getEmail() {
             return email;
         }
@@ -1051,6 +1141,9 @@ public class RoleGetView implements View<Role> {
         }
 
         @Nullable
+        @Schema(
+                description = "性别"
+        )
         public String getSex() {
             return sex;
         }

@@ -122,7 +122,7 @@ public interface CompanyDraft extends Company, TypeBaseDraft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.69",
+                "0.8.93",
                 Company.class,
                 Collections.singleton(TypeBaseDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (Company)base)
@@ -1435,33 +1435,33 @@ public interface CompanyDraft extends Company, TypeBaseDraft {
         }
 
         public Company build() {
-            return CompanyDraft.$.produce(draft -> {
+            return CompanyDraft.$.produce(__draft -> {
                 if (id != null) {
-                    draft.setId(id);
+                    __draft.setId(id);
                 }
                 if (__parentLoaded) {
-                    draft.setParent(parent);
+                    __draft.setParent(parent);
                 }
                 if (children != null) {
-                    draft.setChildren(children);
+                    __draft.setChildren(children);
                 }
                 if (employees != null) {
-                    draft.setEmployees(employees);
+                    __draft.setEmployees(employees);
                 }
                 if (companyCode != null) {
-                    draft.setCompanyCode(companyCode);
+                    __draft.setCompanyCode(companyCode);
                 }
                 if (companyName != null) {
-                    draft.setCompanyName(companyName);
+                    __draft.setCompanyName(companyName);
                 }
                 if (__companyFullNameLoaded) {
-                    draft.setCompanyFullName(companyFullName);
+                    __draft.setCompanyFullName(companyFullName);
                 }
                 if (__corpCodeLoaded) {
-                    draft.setCorpCode(corpCode);
+                    __draft.setCorpCode(corpCode);
                 }
                 if (__corpNameLoaded) {
-                    draft.setCorpName(corpName);
+                    __draft.setCorpName(corpName);
                 }
             });
         }

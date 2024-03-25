@@ -178,6 +178,9 @@ public class MenuGetView implements View<Menu> {
     }
 
     @Nullable
+    @Schema(
+            description = "登录编码"
+    )
     public String getId() {
         return id;
     }
@@ -187,6 +190,9 @@ public class MenuGetView implements View<Menu> {
     }
 
     @Nullable
+    @Schema(
+            description = "菜单名称"
+    )
     public String getMenuName() {
         return menuName;
     }
@@ -196,6 +202,9 @@ public class MenuGetView implements View<Menu> {
     }
 
     @Nullable
+    @Schema(
+            description = "菜单类型（1菜单 2权限 3开发）"
+    )
     public String getMenuType() {
         return menuType;
     }
@@ -205,6 +214,9 @@ public class MenuGetView implements View<Menu> {
     }
 
     @Nullable
+    @Schema(
+            description = "链接"
+    )
     public String getMenuHref() {
         return menuHref;
     }
@@ -214,6 +226,9 @@ public class MenuGetView implements View<Menu> {
     }
 
     @Nullable
+    @Schema(
+            description = "组件地址"
+    )
     public String getMenuComponent() {
         return menuComponent;
     }
@@ -223,6 +238,9 @@ public class MenuGetView implements View<Menu> {
     }
 
     @Nullable
+    @Schema(
+            description = "目标"
+    )
     public String getMenuTarget() {
         return menuTarget;
     }
@@ -232,6 +250,9 @@ public class MenuGetView implements View<Menu> {
     }
 
     @Nullable
+    @Schema(
+            description = "图标"
+    )
     public String getMenuIcon() {
         return menuIcon;
     }
@@ -241,6 +262,9 @@ public class MenuGetView implements View<Menu> {
     }
 
     @Nullable
+    @Schema(
+            description = "颜色"
+    )
     public String getMenuColor() {
         return menuColor;
     }
@@ -250,6 +274,9 @@ public class MenuGetView implements View<Menu> {
     }
 
     @Nullable
+    @Schema(
+            description = "菜单标题"
+    )
     public String getMenuTitle() {
         return menuTitle;
     }
@@ -259,6 +286,9 @@ public class MenuGetView implements View<Menu> {
     }
 
     @Nullable
+    @Schema(
+            description = "权限标识"
+    )
     public String getPermission() {
         return permission;
     }
@@ -268,6 +298,9 @@ public class MenuGetView implements View<Menu> {
     }
 
     @Nullable
+    @Schema(
+            description = "菜单权重"
+    )
     public BigDecimal getWeight() {
         return weight;
     }
@@ -277,6 +310,9 @@ public class MenuGetView implements View<Menu> {
     }
 
     @Nullable
+    @Schema(
+            description = "是否显示"
+    )
     public Boolean getIsShow() {
         return isShow;
     }
@@ -286,6 +322,9 @@ public class MenuGetView implements View<Menu> {
     }
 
     @Nullable
+    @Schema(
+            description = "归属系统（default:主导航菜单、mobileApp:APP菜单）"
+    )
     public String getSysCode() {
         return sysCode;
     }
@@ -304,6 +343,9 @@ public class MenuGetView implements View<Menu> {
     }
 
     @Nullable
+    @Schema(
+            description = "父级菜单"
+    )
     public TargetOf_parent getParent() {
         return parent;
     }
@@ -461,6 +503,9 @@ public class MenuGetView implements View<Menu> {
         }
 
         @Nullable
+        @Schema(
+                description = "菜单名称"
+        )
         public String getMenuName() {
             return menuName;
         }

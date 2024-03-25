@@ -9,6 +9,7 @@ import org.babyfish.jimmer.sql.ast.table.Table;
 import org.babyfish.jimmer.sql.fetcher.Fetcher;
 import org.babyfish.jimmer.sql.fetcher.FieldConfig;
 import org.babyfish.jimmer.sql.fetcher.IdOnlyFetchType;
+import org.babyfish.jimmer.sql.fetcher.ListFieldConfig;
 import org.babyfish.jimmer.sql.fetcher.RecursiveFieldConfig;
 import org.babyfish.jimmer.sql.fetcher.RecursiveListFieldConfig;
 import org.babyfish.jimmer.sql.fetcher.impl.FetcherImpl;
@@ -117,8 +118,19 @@ public class DictDataFetcher extends AbstractTypedFetcher<DictData, DictDataFetc
 
     @NewChain
     public DictDataFetcher parent(Fetcher<DictData> childFetcher,
-            Consumer<RecursiveFieldConfig<DictData, DictDataTable>> fieldConfig) {
+            Consumer<FieldConfig<DictData, DictDataTable>> fieldConfig) {
         return add("parent", childFetcher, fieldConfig);
+    }
+
+    @NewChain
+    public DictDataFetcher recursiveParent() {
+        return addRecursion("parent", null);
+    }
+
+    @NewChain
+    public DictDataFetcher recursiveParent(
+            Consumer<RecursiveFieldConfig<DictData, DictDataTable>> fieldConfig) {
+        return addRecursion("parent", fieldConfig);
     }
 
     @NewChain
@@ -143,8 +155,19 @@ public class DictDataFetcher extends AbstractTypedFetcher<DictData, DictDataFetc
 
     @NewChain
     public DictDataFetcher children(Fetcher<DictData> childFetcher,
-            Consumer<RecursiveListFieldConfig<DictData, DictDataTable>> fieldConfig) {
+            Consumer<ListFieldConfig<DictData, DictDataTable>> fieldConfig) {
         return add("children", childFetcher, fieldConfig);
+    }
+
+    @NewChain
+    public DictDataFetcher recursiveChildren() {
+        return addRecursion("children", null);
+    }
+
+    @NewChain
+    public DictDataFetcher recursiveChildren(
+            Consumer<RecursiveListFieldConfig<DictData, DictDataTable>> fieldConfig) {
+        return addRecursion("children", fieldConfig);
     }
 
     @NewChain

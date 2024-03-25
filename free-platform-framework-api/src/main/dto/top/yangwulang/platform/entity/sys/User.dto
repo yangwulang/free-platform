@@ -65,9 +65,7 @@ UserRoleMenuView {
     roles {
         menus {
             #allScalars
-            children {
-                #allScalars
-            }*
+            children*
         }
     }
 }

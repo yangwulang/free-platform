@@ -14,7 +14,7 @@ import top.yangwulang.platform.entity.sys.MenuTable
 import top.yangwulang.platform.entity.sys.dto.MenuGetView
 import top.yangwulang.platform.entity.sys.dto.MenuListInput
 import top.yangwulang.platform.entity.sys.dto.MenuListView
-import top.yangwulang.platform.entity.sys.input.menu.MenuSaveInput
+import top.yangwulang.platform.entity.sys.dto.MenuSaveInput
 import top.yangwulang.platform.entity.sys.vo.RoleMenuVo
 import top.yangwulang.platform.services.MenuService
 

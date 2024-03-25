@@ -154,6 +154,9 @@ public class EmployeeListView implements View<Employee> {
     }
 
     @NotNull
+    @Schema(
+            description = "员工编码"
+    )
     public String getEmpCode() {
         return empCode;
     }
@@ -163,6 +166,9 @@ public class EmployeeListView implements View<Employee> {
     }
 
     @Nullable
+    @Schema(
+            description = "员工名称"
+    )
     public String getEmpName() {
         return empName;
     }
@@ -172,6 +178,9 @@ public class EmployeeListView implements View<Employee> {
     }
 
     @Nullable
+    @Schema(
+            description = "登录编码"
+    )
     public String getLoginCode() {
         return loginCode;
     }
@@ -181,6 +190,9 @@ public class EmployeeListView implements View<Employee> {
     }
 
     @Nullable
+    @Schema(
+            description = "用户名"
+    )
     public String getUserName() {
         return userName;
     }
@@ -190,6 +202,9 @@ public class EmployeeListView implements View<Employee> {
     }
 
     @Nullable
+    @Schema(
+            description = "邮箱"
+    )
     public String getEmail() {
         return email;
     }
@@ -199,6 +214,9 @@ public class EmployeeListView implements View<Employee> {
     }
 
     @Nullable
+    @Schema(
+            description = "手机号"
+    )
     public String getMobile() {
         return mobile;
     }
@@ -208,6 +226,9 @@ public class EmployeeListView implements View<Employee> {
     }
 
     @Nullable
+    @Schema(
+            description = "头像"
+    )
     public String getAvatar() {
         return avatar;
     }
@@ -217,6 +238,9 @@ public class EmployeeListView implements View<Employee> {
     }
 
     @Nullable
+    @Schema(
+            description = "状态"
+    )
     public Integer getStatus() {
         return status;
     }

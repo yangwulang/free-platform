@@ -41,8 +41,9 @@ public interface UserRepository extends JRepository<User, String> {
                                                         .menus(
                                                                 Fetchers.MENU_FETCHER
                                                                         .children(
-                                                                                Fetchers.MENU_FETCHER.permission(),
-                                                                                RecursiveFieldConfig::recursive
+                                                                                Fetchers.MENU_FETCHER
+                                                                                        .permission()
+                                                                                        .recursiveChildren()
                                                                         )
                                                                         .permission()
                                                         )

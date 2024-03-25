@@ -1,13 +1,13 @@
 package top.yangwulang.platform.entity.sys;
 
 import org.babyfish.jimmer.sql.*;
-import top.yangwulang.platform.entity.TypeBase;
+import top.yangwulang.platform.entity.DataTypeBase;
 
 import javax.validation.constraints.Null;
 
 @Entity
 @Table(name = "sys_file_upload")
-public interface FileUpload extends TypeBase {
+public interface FileUpload extends DataTypeBase {
     /**
      * 文件类型-图片
      */

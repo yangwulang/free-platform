@@ -79,6 +79,9 @@ public class ConfigSaveInput implements Input<Config> {
     }
 
     @Nullable
+    @Schema(
+            description = "配置id"
+    )
     public String getId() {
         return id;
     }
@@ -88,6 +91,9 @@ public class ConfigSaveInput implements Input<Config> {
     }
 
     @NotNull
+    @Schema(
+            description = "配置名称"
+    )
     public String getConfigName() {
         return configName;
     }
@@ -97,6 +103,9 @@ public class ConfigSaveInput implements Input<Config> {
     }
 
     @NotNull
+    @Schema(
+            description = "参数键"
+    )
     public String getConfigKey() {
         return configKey;
     }
@@ -106,6 +115,9 @@ public class ConfigSaveInput implements Input<Config> {
     }
 
     @Nullable
+    @Schema(
+            description = "参数值"
+    )
     public String getConfigValue() {
         return configValue;
     }

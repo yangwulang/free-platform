@@ -133,7 +133,7 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.69",
+                "0.8.93",
                 Area.class,
                 Collections.singleton(DataTypeBaseDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (Area)base)
@@ -1298,7 +1298,7 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
                     case SLOT_ID:
                     		setId((String)value);break;
                     case SLOT_STATUS:
-                    		if (value == null) throw new IllegalArgumentException("'status' cannot be null");
+                    		if (value == null) throw new IllegalArgumentException("'status' cannot be null, if you want to set null, please use any annotation whose simple name is \"Nullable\" to decorate the property");
                             setStatus((Integer)value);
                             break;
                     case SLOT_CREATE_BY:
@@ -1334,7 +1334,7 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
                     case "id":
                     		setId((String)value);break;
                     case "status":
-                    		if (value == null) throw new IllegalArgumentException("'status' cannot be null");
+                    		if (value == null) throw new IllegalArgumentException("'status' cannot be null, if you want to set null, please use any annotation whose simple name is \"Nullable\" to decorate the property");
                             setStatus((Integer)value);
                             break;
                     case "createBy":
@@ -1689,42 +1689,42 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
         }
 
         public Area build() {
-            return AreaDraft.$.produce(draft -> {
+            return AreaDraft.$.produce(__draft -> {
                 if (id != null) {
-                    draft.setId(id);
+                    __draft.setId(id);
                 }
                 if (status != null) {
-                    draft.setStatus(status);
+                    __draft.setStatus(status);
                 }
                 if (createBy != null) {
-                    draft.setCreateBy(createBy);
+                    __draft.setCreateBy(createBy);
                 }
                 if (createDate != null) {
-                    draft.setCreateDate(createDate);
+                    __draft.setCreateDate(createDate);
                 }
                 if (updateBy != null) {
-                    draft.setUpdateBy(updateBy);
+                    __draft.setUpdateBy(updateBy);
                 }
                 if (updateDate != null) {
-                    draft.setUpdateDate(updateDate);
+                    __draft.setUpdateDate(updateDate);
                 }
                 if (__remarksLoaded) {
-                    draft.setRemarks(remarks);
+                    __draft.setRemarks(remarks);
                 }
                 if (__parentLoaded) {
-                    draft.setParent(parent);
+                    __draft.setParent(parent);
                 }
                 if (children != null) {
-                    draft.setChildren(children);
+                    __draft.setChildren(children);
                 }
                 if (areaName != null) {
-                    draft.setAreaName(areaName);
+                    __draft.setAreaName(areaName);
                 }
                 if (__sortLoaded) {
-                    draft.setSort(sort);
+                    __draft.setSort(sort);
                 }
                 if (__areaTypeLoaded) {
-                    draft.setAreaType(areaType);
+                    __draft.setAreaType(areaType);
                 }
             });
         }

@@ -77,7 +77,7 @@ public interface PostDraft extends Post, TypeBaseDraft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.69",
+                "0.8.93",
                 Post.class,
                 Collections.singleton(TypeBaseDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (Post)base)
@@ -887,21 +887,21 @@ public interface PostDraft extends Post, TypeBaseDraft {
         }
 
         public Post build() {
-            return PostDraft.$.produce(draft -> {
+            return PostDraft.$.produce(__draft -> {
                 if (id != null) {
-                    draft.setId(id);
+                    __draft.setId(id);
                 }
                 if (postCode != null) {
-                    draft.setPostCode(postCode);
+                    __draft.setPostCode(postCode);
                 }
                 if (postName != null) {
-                    draft.setPostName(postName);
+                    __draft.setPostName(postName);
                 }
                 if (__postTypeLoaded) {
-                    draft.setPostType(postType);
+                    __draft.setPostType(postType);
                 }
                 if (employees != null) {
-                    draft.setEmployees(employees);
+                    __draft.setEmployees(employees);
                 }
             });
         }

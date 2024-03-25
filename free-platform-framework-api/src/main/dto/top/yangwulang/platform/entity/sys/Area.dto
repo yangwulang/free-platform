@@ -1,18 +1,25 @@
-AreaListView {
-    #allScalars
-    children ? {
-        #allScalars
-    }*
-}
 
-unsafe input AreaListInput {
-    parentId
-    areaName
-    sort
-    areaType
+specification AreaListSpecification {
+    eq(parentId)
+    eq(areaName)
+    eq(sort)
+    eq(areaType)
 }
 
 
 AreaGetView {
     #allScalars
 }
+
+unsafe input AreaSaveInput {
+    id
+    parentId
+    areaName
+    sort
+    areaType
+}
+
+/* AreaListView {
+    #allScalars
+    children*
+} */

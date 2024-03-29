@@ -4,11 +4,13 @@ import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import io.swagger.v3.oas.annotations.tags.Tags
 import jakarta.servlet.http.HttpServletRequest
+import org.babyfish.jimmer.spring.repository.support.SpringPageFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
 import org.springframework.web.bind.annotation.*
 import top.yangwulang.platform.entity.PageHttpRequest
 import top.yangwulang.platform.entity.Result
+import top.yangwulang.platform.entity.TableExes
 import top.yangwulang.platform.entity.Tables
 import top.yangwulang.platform.entity.sys.Role
 import top.yangwulang.platform.entity.sys.RoleTable
@@ -45,14 +47,12 @@ class RoleController {
     @Operation(summary = "获取角色列表")
     fun listData(request: HttpServletRequest?, @RequestBody specification: RoleListSpecification): Page<RoleListView> {
         val repository = roleService.repository()
-        return repository
-            .pager(PageHttpRequest.of(request).toPage())
-            .execute(
-                repository.sql()
-                    .createQuery(Tables.ROLE_TABLE)
-                    .where(specification)
-                    .select(Tables.ROLE_TABLE.fetch(RoleListView::class.java))
-            )
+        val page = PageHttpRequest.of(request).toPage()
+        return repository.sql()
+            .createQuery(Tables.ROLE_TABLE)
+            .where(specification)
+            .select(Tables.ROLE_TABLE.fetch(RoleListView::class.java))
+            .fetchPage(page.pageNumber, page.pageSize, SpringPageFactory.getInstance())
     }
 
     @PostMapping("/allocationUser")
@@ -64,17 +64,15 @@ class RoleController {
         if (allocationUserQo.roleId.isEmpty()) {
             throw ServiceException("角色id不能为空")
         }
-        val table = UserTable.`$`
-        return userService
-            .pager(PageHttpRequest.of(request).toPage())
-            .execute(
-                userService.repository().sql()
-                    .createQuery(table)
-                    .where(UserTableEx.`$`.roles().id().eq(allocationUserQo.roleId))
-                    .select(
-                        table.fetch(UserListView::class.java)
-                    )
+        val table = Tables.USER_TABLE
+        val page = PageHttpRequest.of(request).toPage()
+        return userService.repository().sql()
+            .createQuery(table)
+            .where(TableExes.USER_TABLE_EX.roles().id().eq(allocationUserQo.roleId))
+            .select(
+                table.fetch(UserListView::class.java)
             )
+            .fetchPage(page.pageNumber, page.pageSize, SpringPageFactory.getInstance())
     }
 
     @DeleteMapping("/unBindUserRole")

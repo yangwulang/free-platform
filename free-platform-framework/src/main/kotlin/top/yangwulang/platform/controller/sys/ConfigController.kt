@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.tags.Tag
 import io.swagger.v3.oas.annotations.tags.Tags
 import jakarta.servlet.http.HttpServletRequest
 import org.apache.commons.lang3.StringUtils
+import org.babyfish.jimmer.spring.repository.support.SpringPageFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
 import org.springframework.web.bind.annotation.*
@@ -34,16 +35,15 @@ class ConfigController {
     @Operation(summary = "获取配置列表")
     fun listData(@RequestBody input: ConfigListInput, request: HttpServletRequest?): Page<ConfigListView> {
         val table = ConfigTable.`$`
+        val page = PageHttpRequest.of(request).toPage()
         val repository = configService.repository()
-        return repository.pager(PageHttpRequest.of(request).toPage())
-            .execute(
-                repository.sql()
-                    .createQuery(table)
-                    .whereIf(StringUtils.isNotEmpty(input.configName)) { table.configName().like(input.configName) }
-                    .whereIf(StringUtils.isNotEmpty(input.configKey)) { table.configKey().like(input.configKey) }
-                    .whereIf(StringUtils.isNotEmpty(input.configValue)) { table.configValue().like(input.configValue) }
-                    .select(table.fetch(ConfigListView::class.java))
-            )
+        return repository.sql()
+            .createQuery(table)
+            .whereIf(StringUtils.isNotEmpty(input.configName)) { table.configName().like(input.configName) }
+            .whereIf(StringUtils.isNotEmpty(input.configKey)) { table.configKey().like(input.configKey) }
+            .whereIf(StringUtils.isNotEmpty(input.configValue)) { table.configValue().like(input.configValue) }
+            .select(table.fetch(ConfigListView::class.java))
+            .fetchPage(page.pageNumber, page.pageSize, SpringPageFactory.getInstance())
     }
 
     @PutMapping

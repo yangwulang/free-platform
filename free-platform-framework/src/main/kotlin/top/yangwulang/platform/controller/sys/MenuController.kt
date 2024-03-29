@@ -9,6 +9,7 @@ import org.babyfish.jimmer.client.ApiIgnore
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 import top.yangwulang.platform.entity.Result
+import top.yangwulang.platform.entity.Tables
 import top.yangwulang.platform.entity.sys.Menu
 import top.yangwulang.platform.entity.sys.MenuTable
 import top.yangwulang.platform.entity.sys.dto.MenuGetView
@@ -32,7 +33,7 @@ class MenuController {
     @PostMapping
     @Operation(summary = "获取菜单列表")
     fun listData(@RequestBody input: MenuListInput): List<MenuListView> {
-        val table = MenuTable.`$`
+        val table = Tables.MENU_TABLE
         return menuService.repository().sql()
             .createQuery(table)
             .where(table.parentId().isNull)

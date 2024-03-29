@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import io.swagger.v3.oas.annotations.tags.Tags
 import jakarta.servlet.http.HttpServletRequest
+import org.babyfish.jimmer.spring.repository.support.SpringPageFactory
 import org.babyfish.jimmer.sql.ast.Predicate
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
@@ -45,14 +46,13 @@ class DictController {
         @RequestBody listSpecification: DictTypeListSpecification
     ): Page<DictTypeListView> {
         val repository = dictTypeService.repository()
+        val page = PageHttpRequest.of(httpServletRequest).toPage()
         val table = DictTypeTable.`$`
-        return dictTypeService
-            .pager(PageHttpRequest.of(httpServletRequest).toPage())
-            .execute(
-                repository.sql().createQuery(table)
-                    .where(listSpecification)
-                    .select(table.fetch(DictTypeListView::class.java))
-            )
+        return repository.sql()
+            .createQuery(table)
+            .where(listSpecification)
+            .select(table.fetch(DictTypeListView::class.java))
+            .fetchPage(page.pageNumber, page.pageSize, SpringPageFactory.getInstance())
     }
 
     @PutMapping("/dictType")

@@ -66,6 +66,7 @@ public class FileUploadServiceImpl
     @Transactional(rollbackFor = {Exception.class})
     public FileUpload putObject(String bucketName, MultipartFile multipartFile, String filename, String bizType) throws Throwable {
         uploadValid();
+        // TODO: 此处需要修改流程，此MD5需由前端生成
         String md5 = MD5.create().digestHex(multipartFile.getBytes());
         FileEntity fileEntity = Objects.createFileEntity(it ->
                 it.setFileMd5(md5)

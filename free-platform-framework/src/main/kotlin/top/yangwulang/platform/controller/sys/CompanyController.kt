@@ -4,6 +4,8 @@ import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import io.swagger.v3.oas.annotations.tags.Tags
 import jakarta.servlet.http.HttpServletRequest
+import org.babyfish.jimmer.spring.repository.SpringOrders
+import org.babyfish.jimmer.spring.repository.support.SpringPageFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
 import org.springframework.web.bind.annotation.DeleteMapping
@@ -45,15 +47,14 @@ class CompanyController {
         request: HttpServletRequest?
     ): Page<CompanyListView> {
         val repository = companyService.repository()
+        val page = PageHttpRequest.of(request).toPage()
         val table = CompanyTable.`$`
-        return repository
-            .pager(PageHttpRequest.of(request).toPage())
-            .execute(
-                repository.sql()
-                    .createQuery(table)
-                    .where(table.parentId().isNull)
-                    .select(table.fetch(CompanyListView::class.java))
-            )
+        return repository.sql()
+            .createQuery(table)
+            .orderBy(SpringOrders.toOrders(table, page.sort).asList())
+            .where(table.parentId().isNull)
+            .select(table.fetch(CompanyListView::class.java))
+            .fetchPage(page.pageNumber, page.pageSize, SpringPageFactory.getInstance())
     }
 
     @DeleteMapping("/{id}")

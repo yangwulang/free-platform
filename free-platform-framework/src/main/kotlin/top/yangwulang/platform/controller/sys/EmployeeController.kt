@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.tags.Tags
 import jakarta.servlet.http.HttpServletRequest
 import org.apache.commons.lang3.StringUtils
 import org.babyfish.jimmer.ImmutableObjects
+import org.babyfish.jimmer.spring.repository.support.SpringPageFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
 import org.springframework.web.bind.annotation.*
@@ -39,20 +40,19 @@ class EmployeeController {
         @RequestBody specification: EmployeeListSpecification,
         request: HttpServletRequest?
     ): Page<EmployeeListView> {
+        val page = PageHttpRequest.of(request).toPage()
         val repository = employeeService.repository()
-        return employeeService.pager(PageHttpRequest.of(request).toPage())
-            .execute(
-                repository.sql()
-                    .createQuery(Tables.EMPLOYEE_TABLE)
-                    .where(specification)
-                    .whereIf(
-                        specification.status != User.STATUS_DELETE.toInt()
-                                && specification.status != null
-                    ) {
-                        Tables.EMPLOYEE_TABLE.user().status().eq(specification.status)
-                    }
-                    .select(Tables.EMPLOYEE_TABLE.fetch(EmployeeListView::class.java))
-            )
+        return repository.sql()
+            .createQuery(Tables.EMPLOYEE_TABLE)
+            .where(specification)
+            .whereIf(
+                specification.status != User.STATUS_DELETE.toInt()
+                        && specification.status != null
+            ) {
+                Tables.EMPLOYEE_TABLE.user().status().eq(specification.status)
+            }
+            .select(Tables.EMPLOYEE_TABLE.fetch(EmployeeListView::class.java))
+            .fetchPage(page.pageNumber, page.pageSize, SpringPageFactory.getInstance())
     }
 
     @Operation(summary = "获取员工信息")

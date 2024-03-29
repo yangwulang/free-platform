@@ -9,12 +9,14 @@ import io.swagger.v3.oas.annotations.tags.Tags
 import jakarta.servlet.http.HttpServletRequest
 import org.apache.commons.lang3.StringUtils
 import org.babyfish.jimmer.View
+import org.babyfish.jimmer.spring.repository.support.SpringPageFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 import top.yangwulang.platform.entity.PageHttpRequest
 import top.yangwulang.platform.entity.Result
+import top.yangwulang.platform.entity.Tables
 import top.yangwulang.platform.entity.sys.Role
 import top.yangwulang.platform.entity.sys.UserTable
 import top.yangwulang.platform.entity.sys.dto.UserGetView
@@ -61,14 +63,12 @@ class UserController {
     @Operation(summary = "获取用户列表")
     fun listData(request: HttpServletRequest?, @RequestBody user: UserListInput): Page<UserListView> {
         val repository = userService.repository()
-        val table = UserTable.`$`
-        return repository
-            .pager(PageHttpRequest.of(request).toPage())
-            .execute(
-                repository.sql().createQuery(table)
-                    .whereIf(StringUtils.isNotEmpty(user.userName)) { table.userName().ilike(user.userName) }
-                    .select(table.fetch(UserListView::class.java))
-            )
+        val table = Tables.USER_TABLE
+        val page = PageHttpRequest.of(request).toPage()
+        return repository.sql().createQuery(table)
+            .whereIf(StringUtils.isNotEmpty(user.userName)) { table.userName().ilike(user.userName) }
+            .select(table.fetch(UserListView::class.java))
+            .fetchPage(page.pageNumber, page.pageSize, SpringPageFactory.getInstance())
     }
 
     @PutMapping

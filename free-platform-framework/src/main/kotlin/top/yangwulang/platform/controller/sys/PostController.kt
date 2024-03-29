@@ -5,10 +5,12 @@ import io.swagger.v3.oas.annotations.tags.Tag
 import io.swagger.v3.oas.annotations.tags.Tags
 import jakarta.servlet.http.HttpServletRequest
 import org.apache.commons.lang3.StringUtils
+import org.babyfish.jimmer.spring.repository.support.SpringPageFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
 import org.springframework.web.bind.annotation.*
 import top.yangwulang.platform.entity.PageHttpRequest
+import top.yangwulang.platform.entity.Tables
 import top.yangwulang.platform.entity.sys.Post
 import top.yangwulang.platform.entity.sys.PostTable
 import top.yangwulang.platform.entity.sys.dto.PostGetView
@@ -36,14 +38,13 @@ class PostController {
     @Operation(summary = "获取岗位列表")
     fun listData(request: HttpServletRequest?, @RequestBody input: PostListSpecification): Page<PostListView> {
         val repository = postService.repository()
-        val table = PostTable.`$`
-        return repository.pager(PageHttpRequest.of(request).toPage())
-            .execute(
-                repository.sql()
-                    .createQuery(table)
-                    .where(input)
-                    .select(table.fetch(PostListView::class.java))
-            )
+        val page = PageHttpRequest.of(request).toPage()
+        val table = Tables.POST_TABLE
+        return repository.sql()
+            .createQuery(table)
+            .where(input)
+            .select(table.fetch(PostListView::class.java))
+            .fetchPage(page.pageNumber, page.pageSize, SpringPageFactory.getInstance())
     }
 
     @PutMapping

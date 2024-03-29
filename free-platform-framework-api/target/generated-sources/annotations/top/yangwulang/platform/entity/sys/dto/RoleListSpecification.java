@@ -16,6 +16,11 @@ import top.yangwulang.platform.entity.sys.Role;
 import top.yangwulang.platform.entity.sys.RoleProps;
 import top.yangwulang.platform.entity.sys.RoleTable;
 
+/**
+ *  角色表
+ *
+ *  @author yangwulang
+ */
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Role.dto"
 )
@@ -41,6 +46,9 @@ public class RoleListSpecification implements JSpecification<Role, RoleTable> {
     public RoleListSpecification() {
     }
 
+    /**
+     * 角色名称
+     */
     @Nullable
     @Schema(
             description = "角色名称"
@@ -53,6 +61,9 @@ public class RoleListSpecification implements JSpecification<Role, RoleTable> {
         this.roleName = roleName;
     }
 
+    /**
+     * 角色分类（高管、中层、基层、其它）
+     */
     @Nullable
     @Schema(
             description = "角色类型"
@@ -65,6 +76,9 @@ public class RoleListSpecification implements JSpecification<Role, RoleTable> {
         this.roleType = roleType;
     }
 
+    /**
+     * 用户类型（employee员工 member会员）
+     */
     @Nullable
     @Schema(
             description = "用户类型"

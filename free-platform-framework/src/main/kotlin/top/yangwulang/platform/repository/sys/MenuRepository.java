@@ -6,6 +6,7 @@ import top.yangwulang.platform.entity.sys.Menu;
 import top.yangwulang.platform.entity.sys.MenuFetcher;
 import top.yangwulang.platform.entity.sys.MenuTable;
 import top.yangwulang.platform.entity.sys.MenuTableEx;
+import top.yangwulang.platform.entity.sys.dto.MenuUserTreeView;
 
 import java.util.List;
 
@@ -34,6 +35,20 @@ public interface MenuRepository extends JRepository<Menu, String> {
                                         .parentId()
                         )
                 )
+                .execute();
+    }
+
+    /**
+     * 通过用户id查询菜单树视图
+     *
+     * @param userId 用户id
+     * @return 菜单树
+     */
+    default List<MenuUserTreeView> findByUserIdTreeView(String userId) {
+        return sql()
+                .createQuery(TABLE)
+                .where(MenuTableEx.$.roles().users().userCode().eq(userId))
+                .select(TABLE.fetch(MenuUserTreeView.class))
                 .execute();
     }
 

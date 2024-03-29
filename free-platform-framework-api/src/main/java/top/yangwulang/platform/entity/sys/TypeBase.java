@@ -3,7 +3,7 @@ package top.yangwulang.platform.entity.sys;
 import org.babyfish.jimmer.sql.Id;
 import org.babyfish.jimmer.sql.MappedSuperclass;
 
-import javax.validation.constraints.NotNull;
+import org.jetbrains.annotations.NotNull;;
 import java.io.Serializable;
 
 /**

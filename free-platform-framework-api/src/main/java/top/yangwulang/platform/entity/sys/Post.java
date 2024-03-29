@@ -3,7 +3,7 @@ package top.yangwulang.platform.entity.sys;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.babyfish.jimmer.sql.*;
 
-import javax.validation.constraints.Null;
+import jakarta.annotation.Nullable;
 
 import top.yangwulang.platform.entity.TypeBase;
 
@@ -43,7 +43,7 @@ public interface Post extends TypeBase {
      * @return 高管、中层、低层 此处是字典
      */
     @Schema(description = "岗位类型（高管、中层、低层）")
-    @Null String postType();
+    @Nullable String postType();
 
     /**
      * 岗位下的员工

@@ -4,7 +4,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import org.babyfish.jimmer.sql.*;
 import top.yangwulang.platform.entity.DataTypeBase;
 
-import javax.validation.constraints.Null;
+import jakarta.annotation.Nullable;
 import java.util.List;
 
 /**
@@ -37,14 +37,14 @@ public interface Area extends DataTypeBase {
     @JoinColumn(name = "pid")
     @Schema(description = "父级区域")
     @OnDissociate(DissociateAction.DELETE)
-    @Null Area parent();
+    @Nullable Area parent();
 
     /**
      * 父级编号
      */
     @IdView
     @Schema(description = "父级id")
-    @Null String parentId();
+    @Nullable String parentId();
 
     @OneToMany(mappedBy = "parent")
     @Schema(description = "子级区域")
@@ -60,12 +60,12 @@ public interface Area extends DataTypeBase {
      * 排序
      */
     @Schema(description = "排序")
-    @Null Long sort();
+    @Nullable Long sort();
 
     /**
      * 区域类型
      */
     @Schema(description = "地区类型(1：省份、直辖市；2：地市；3：区县)")
-    @Null String areaType();
+    @Nullable String areaType();
 }
 

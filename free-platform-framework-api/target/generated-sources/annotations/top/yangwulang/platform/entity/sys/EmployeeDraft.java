@@ -112,7 +112,7 @@ public interface EmployeeDraft extends Employee, Draft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.93",
+                "0.8.114",
                 Employee.class,
                 Collections.emptyList(),
                 (ctx, base) -> new DraftImpl(ctx, (Employee)base)

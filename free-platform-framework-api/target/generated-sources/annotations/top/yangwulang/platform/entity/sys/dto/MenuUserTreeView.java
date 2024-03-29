@@ -2,12 +2,17 @@ package top.yangwulang.platform.entity.sys.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigDecimal;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
 import java.util.Objects;
-import org.babyfish.jimmer.Input;
+import org.babyfish.jimmer.View;
+import org.babyfish.jimmer.impl.util.DtoPropAccessor;
 import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
@@ -26,11 +31,16 @@ import top.yangwulang.platform.entity.sys.MenuFetcher;
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Menu.dto"
 )
-public class MenuSaveInput implements Input<Menu> {
-    public static final ViewMetadata<Menu, MenuSaveInput> METADATA = 
-        new ViewMetadata<Menu, MenuSaveInput>(
+public class MenuUserTreeView implements View<Menu> {
+    public static final ViewMetadata<Menu, MenuUserTreeView> METADATA = 
+        new ViewMetadata<Menu, MenuUserTreeView>(
             MenuFetcher.$
-                .parentId()
+                .status()
+                .createBy()
+                .createDate()
+                .updateBy()
+                .updateDate()
+                .remarks()
                 .menuName()
                 .menuType()
                 .menuHref()
@@ -42,15 +52,41 @@ public class MenuSaveInput implements Input<Menu> {
                 .permission()
                 .weight()
                 .isShow()
-                .sysCode(),
-            MenuSaveInput::new
+                .sysCode()
+                .recursiveChildren()
+                .parentId(),
+            MenuUserTreeView::new
+    );
+
+    private static final DtoPropAccessor CHILDREN_ACCESSOR = new DtoPropAccessor(
+        false,
+        new int[] { MenuDraft.Producer.SLOT_CHILDREN },
+        DtoPropAccessor.<Menu, MenuUserTreeView>objectListGetter(MenuUserTreeView::new),
+        DtoPropAccessor.objectListSetter(MenuUserTreeView::toEntity)
     );
 
     @NotNull
     private String id;
 
+    @Schema(
+            description = "状态"
+    )
+    private int status;
+
+    @NotNull
+    private String createBy;
+
+    @NotNull
+    private Date createDate;
+
+    @NotNull
+    private String updateBy;
+
+    @NotNull
+    private Date updateDate;
+
     @Nullable
-    private String parentId;
+    private String remarks;
 
     @Schema(
             description = "菜单名称"
@@ -124,12 +160,26 @@ public class MenuSaveInput implements Input<Menu> {
     @Nullable
     private String sysCode;
 
-    public MenuSaveInput() {
+    @Schema(
+            description = "子级菜单"
+    )
+    @Nullable
+    private List<MenuUserTreeView> children;
+
+    @Nullable
+    private String parentId;
+
+    public MenuUserTreeView() {
     }
 
-    public MenuSaveInput(@NotNull Menu base) {
+    public MenuUserTreeView(@NotNull Menu base) {
         this.id = base.id();
-        this.parentId = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_PARENT_ID)) ? base.parentId() : null;
+        this.status = base.status();
+        this.createBy = base.createBy();
+        this.createDate = base.createDate();
+        this.updateBy = base.updateBy();
+        this.updateDate = base.updateDate();
+        this.remarks = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_REMARKS)) ? base.remarks() : null;
         this.menuName = base.menuName();
         this.menuType = base.menuType();
         this.menuHref = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_MENU_HREF)) ? base.menuHref() : null;
@@ -142,10 +192,12 @@ public class MenuSaveInput implements Input<Menu> {
         this.weight = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_WEIGHT)) ? base.weight() : null;
         this.isShow = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_IS_SHOW)) ? base.isShow() : null;
         this.sysCode = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_SYS_CODE)) ? base.sysCode() : null;
+        this.children = CHILDREN_ACCESSOR.get(base);
+        this.parentId = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_PARENT_ID)) ? base.parentId() : null;
     }
 
-    public static MenuSaveInput of(@NotNull Menu base) {
-        return new MenuSaveInput(base);
+    public static MenuUserTreeView of(@NotNull Menu base) {
+        return new MenuUserTreeView(base);
     }
 
     /**
@@ -161,13 +213,85 @@ public class MenuSaveInput implements Input<Menu> {
         this.id = id;
     }
 
-    @Nullable
-    public String getParentId() {
-        return parentId;
+    @Schema(
+            description = "状态"
+    )
+    public int getStatus() {
+        return status;
     }
 
-    public void setParentId(@Nullable String parentId) {
-        this.parentId = parentId;
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    /**
+     * 创建者
+     *
+     * @return 创建者
+     */
+    @NotNull
+    public String getCreateBy() {
+        return createBy;
+    }
+
+    public void setCreateBy(@NotNull String createBy) {
+        this.createBy = createBy;
+    }
+
+    /**
+     * 创建时间
+     *
+     * @return 创建时间
+     */
+    @NotNull
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(@NotNull Date createDate) {
+        this.createDate = createDate;
+    }
+
+    /**
+     * 更新者
+     *
+     * @return 更新者
+     */
+    @NotNull
+    public String getUpdateBy() {
+        return updateBy;
+    }
+
+    public void setUpdateBy(@NotNull String updateBy) {
+        this.updateBy = updateBy;
+    }
+
+    /**
+     * 更新时间
+     *
+     * @return 更新时间
+     */
+    @NotNull
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(@NotNull Date updateDate) {
+        this.updateDate = updateDate;
+    }
+
+    /**
+     * 备注信息
+     *
+     * @return 备注信息
+     */
+    @Nullable
+    public String getRemarks() {
+        return remarks;
+    }
+
+    public void setRemarks(@Nullable String remarks) {
+        this.remarks = remarks;
     }
 
     /**
@@ -350,11 +474,37 @@ public class MenuSaveInput implements Input<Menu> {
         this.sysCode = sysCode;
     }
 
+    @Nullable
+    @Schema(
+            description = "子级菜单"
+    )
+    public List<MenuUserTreeView> getChildren() {
+        return children;
+    }
+
+    public void setChildren(@Nullable List<MenuUserTreeView> children) {
+        this.children = children;
+    }
+
+    @Nullable
+    public String getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(@Nullable String parentId) {
+        this.parentId = parentId;
+    }
+
     @Override
     public Menu toEntity() {
         return MenuDraft.$.produce(__draft -> {
             __draft.setId(id);
-            __draft.setParentId(parentId);
+            __draft.setStatus(status);
+            __draft.setCreateBy(createBy);
+            __draft.setCreateDate(createDate);
+            __draft.setUpdateBy(updateBy);
+            __draft.setUpdateDate(updateDate);
+            __draft.setRemarks(remarks);
             __draft.setMenuName(menuName);
             __draft.setMenuType(menuType);
             __draft.setMenuHref(menuHref);
@@ -367,13 +517,20 @@ public class MenuSaveInput implements Input<Menu> {
             __draft.setWeight(weight);
             __draft.setIsShow(isShow);
             __draft.setSysCode(sysCode);
+            CHILDREN_ACCESSOR.set(__draft, children != null ? children : Collections.emptyList());
+            __draft.setParentId(parentId);
         });
     }
 
     @Override
     public int hashCode() {
         int hash = Objects.hashCode(id);
-        hash = hash * 31 + Objects.hashCode(parentId);
+        hash = hash * 31 + Integer.hashCode(status);
+        hash = hash * 31 + Objects.hashCode(createBy);
+        hash = hash * 31 + Objects.hashCode(createDate);
+        hash = hash * 31 + Objects.hashCode(updateBy);
+        hash = hash * 31 + Objects.hashCode(updateDate);
+        hash = hash * 31 + Objects.hashCode(remarks);
         hash = hash * 31 + Objects.hashCode(menuName);
         hash = hash * 31 + Objects.hashCode(menuType);
         hash = hash * 31 + Objects.hashCode(menuHref);
@@ -386,6 +543,8 @@ public class MenuSaveInput implements Input<Menu> {
         hash = hash * 31 + Objects.hashCode(weight);
         hash = hash * 31 + Objects.hashCode(isShow);
         hash = hash * 31 + Objects.hashCode(sysCode);
+        hash = hash * 31 + Objects.hashCode(children);
+        hash = hash * 31 + Objects.hashCode(parentId);
         return hash;
     }
 
@@ -394,11 +553,26 @@ public class MenuSaveInput implements Input<Menu> {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
-        MenuSaveInput other = (MenuSaveInput) o;
+        MenuUserTreeView other = (MenuUserTreeView) o;
         if (!Objects.equals(id, other.id)) {
             return false;
         }
-        if (!Objects.equals(parentId, other.parentId)) {
+        if (status != other.status) {
+            return false;
+        }
+        if (!Objects.equals(createBy, other.createBy)) {
+            return false;
+        }
+        if (!Objects.equals(createDate, other.createDate)) {
+            return false;
+        }
+        if (!Objects.equals(updateBy, other.updateBy)) {
+            return false;
+        }
+        if (!Objects.equals(updateDate, other.updateDate)) {
+            return false;
+        }
+        if (!Objects.equals(remarks, other.remarks)) {
             return false;
         }
         if (!Objects.equals(menuName, other.menuName)) {
@@ -437,15 +611,26 @@ public class MenuSaveInput implements Input<Menu> {
         if (!Objects.equals(sysCode, other.sysCode)) {
             return false;
         }
+        if (!Objects.equals(children, other.children)) {
+            return false;
+        }
+        if (!Objects.equals(parentId, other.parentId)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("MenuSaveInput").append('(');
+        builder.append("MenuUserTreeView").append('(');
         builder.append("id=").append(id);
-        builder.append(", parentId=").append(parentId);
+        builder.append(", status=").append(status);
+        builder.append(", createBy=").append(createBy);
+        builder.append(", createDate=").append(createDate);
+        builder.append(", updateBy=").append(updateBy);
+        builder.append(", updateDate=").append(updateDate);
+        builder.append(", remarks=").append(remarks);
         builder.append(", menuName=").append(menuName);
         builder.append(", menuType=").append(menuType);
         builder.append(", menuHref=").append(menuHref);
@@ -458,6 +643,8 @@ public class MenuSaveInput implements Input<Menu> {
         builder.append(", weight=").append(weight);
         builder.append(", isShow=").append(isShow);
         builder.append(", sysCode=").append(sysCode);
+        builder.append(", children=").append(children);
+        builder.append(", parentId=").append(parentId);
         builder.append(')');
         return builder.toString();
     }

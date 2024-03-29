@@ -4,7 +4,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import org.babyfish.jimmer.sql.*;
 import top.yangwulang.platform.entity.DataTypeBase;
 
-import javax.validation.constraints.Null;
+import jakarta.annotation.Nullable;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -36,10 +36,10 @@ public interface Menu extends DataTypeBase {
     @JoinColumn(name = "pid")
     @Schema(description = "父级菜单")
     @OnDissociate(DissociateAction.DELETE)
-    @Null Menu parent();
+    @Nullable Menu parent();
 
     @IdView
-    @Null String parentId();
+    @Nullable String parentId();
 
     @OneToMany(mappedBy = "parent")
     @Schema(description = "子级菜单")
@@ -61,62 +61,62 @@ public interface Menu extends DataTypeBase {
      * 链接
      */
     @Schema(description = "链接")
-    @Null String menuHref();
+    @Nullable String menuHref();
 
     /**
      * 组件地址
      */
     @Schema(description = "组件地址")
-    @Null String menuComponent();
+    @Nullable String menuComponent();
 
     /**
      * 目标
      */
     @Schema(description = "目标")
-    @Null String menuTarget();
+    @Nullable String menuTarget();
 
     /**
      * 图标
      */
     @Schema(description = "图标")
-    @Null String menuIcon();
+    @Nullable String menuIcon();
 
     /**
      * 颜色
      */
     @Schema(description = "颜色")
-    @Null String menuColor();
+    @Nullable String menuColor();
 
     /**
      * 菜单标题
      */
     @Schema(description = "菜单标题")
-    @Null String menuTitle();
+    @Nullable String menuTitle();
 
     /**
      * 权限标识
      */
     @Schema(description = "权限标识")
-    @Null String permission();
+    @Nullable String permission();
 
     /**
      * 菜单权重
      */
     @Schema(description = "菜单权重")
-    @Null BigDecimal weight();
+    @Nullable BigDecimal weight();
 
     /**
      * 是否显示
      */
     @Schema(description = "是否显示")
     @Column(name = "is_show")
-    @Null Boolean isShow();
+    @Nullable Boolean isShow();
 
     /**
      * 归属系统（default:主导航菜单、mobileApp:APP菜单）
      */
     @Schema(description = "归属系统（default:主导航菜单、mobileApp:APP菜单）")
-    @Null String sysCode();
+    @Nullable String sysCode();
 
 
     @ManyToMany

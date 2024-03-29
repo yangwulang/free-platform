@@ -16,6 +16,11 @@ import top.yangwulang.platform.entity.sys.Post;
 import top.yangwulang.platform.entity.sys.PostProps;
 import top.yangwulang.platform.entity.sys.PostTable;
 
+/**
+ *  岗位表
+ *
+ *  @author yangwulang
+ */
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Post.dto"
 )
@@ -41,6 +46,11 @@ public class PostListSpecification implements JSpecification<Post, PostTable> {
     public PostListSpecification() {
     }
 
+    /**
+     * 岗位编码
+     *
+     * @return 岗位编码
+     */
     @Nullable
     @Schema(
             description = "岗位编码"
@@ -53,6 +63,11 @@ public class PostListSpecification implements JSpecification<Post, PostTable> {
         this.postCode = postCode;
     }
 
+    /**
+     * 岗位名称
+     *
+     * @return 岗位名称
+     */
     @Nullable
     @Schema(
             description = "岗位名称"
@@ -65,6 +80,11 @@ public class PostListSpecification implements JSpecification<Post, PostTable> {
         this.postName = postName;
     }
 
+    /**
+     * 岗位类型（高管、中层、低层）
+     *
+     * @return 高管、中层、低层 此处是字典
+     */
     @Nullable
     @Schema(
             description = "岗位类型（高管、中层、低层）"

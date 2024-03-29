@@ -8,7 +8,7 @@ import top.yangwulang.platform.entity.Fetchers;
 import top.yangwulang.platform.entity.Tables;
 import top.yangwulang.platform.entity.sys.*;
 
-import javax.validation.constraints.NotNull;
+import org.jetbrains.annotations.NotNull;;
 
 
 /**

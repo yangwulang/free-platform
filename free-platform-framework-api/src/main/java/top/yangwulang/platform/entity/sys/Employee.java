@@ -3,7 +3,7 @@ package top.yangwulang.platform.entity.sys;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.babyfish.jimmer.sql.*;
 
-import javax.validation.constraints.Null;
+import jakarta.annotation.Nullable;
 import java.util.List;
 
 /**
@@ -24,24 +24,24 @@ public interface Employee {
     @Key
     @JoinColumn(name = "USER_CODE")
     @Schema(description = "用户")
-    @Null User user();
+    @Nullable User user();
 
     @ManyToOne
     @Schema(description = "公司")
-    @Null Company company();
+    @Nullable Company company();
 
     /**
      * 公司主键
      */
     @IdView
-    @Null String companyId();
+    @Nullable String companyId();
 
 
     /**
      * 员工姓名
      */
     @Schema(description = "员工名称")
-    @Null String empName();
+    @Nullable String empName();
 
     /**
      * 员工拥有的岗位

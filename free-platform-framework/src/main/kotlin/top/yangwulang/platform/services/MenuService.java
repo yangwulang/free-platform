@@ -2,6 +2,7 @@ package top.yangwulang.platform.services;
 
 import cn.hutool.core.lang.tree.Tree;
 import top.yangwulang.platform.entity.sys.Menu;
+import top.yangwulang.platform.entity.sys.dto.MenuUserTreeView;
 import top.yangwulang.platform.repository.sys.MenuRepository;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public interface MenuService extends BaseService<Menu, String, MenuRepository> {
      * @param userId 用户id
      * @return 菜单树
      */
-    List<Menu> findByUserId(String userId);
+    List<MenuUserTreeView> findByUserId(String userId);
 
     /**
      * 通过角色id查询角色拥有的菜单树（扁平化）
@@ -53,7 +54,7 @@ public interface MenuService extends BaseService<Menu, String, MenuRepository> {
      * @param userId 用户id
      * @return 树形结构数据
      */
-    List<Tree<String>> findByUserIdTree(String userId);
+//    List<Tree<String>> findByUserIdTree(String userId);
 
     /**
      * 绑定角色与菜单的关系

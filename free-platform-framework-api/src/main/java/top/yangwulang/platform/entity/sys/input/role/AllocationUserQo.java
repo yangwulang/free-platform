@@ -2,7 +2,7 @@ package top.yangwulang.platform.entity.sys.input.role;
 
 import lombok.Data;
 
-import javax.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotEmpty;
 
 /**
  * @author yangwulang

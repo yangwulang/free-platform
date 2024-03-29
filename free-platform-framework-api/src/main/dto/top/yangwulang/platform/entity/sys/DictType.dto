@@ -1,4 +1,4 @@
-import javax.validation.constraints.NotEmpty
+import jakarta.validation.constraints.NotEmpty
 
 DictTypeListView {
     #allScalars
@@ -15,7 +15,7 @@ unsafe input DictSaveInput {
     @NotEmpty(message = "字典类型不能为空")
     dictType
     @NotEmpty(message = "字典名称不能为空")
-    dictName!
+    dictName
     isSys
     remarks
 }

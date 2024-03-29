@@ -6,7 +6,7 @@ import org.babyfish.jimmer.sql.Key;
 import org.babyfish.jimmer.sql.Table;
 import top.yangwulang.platform.entity.TypeBase;
 
-import javax.validation.constraints.Null;
+import jakarta.annotation.Nullable;
 
 @Entity
 @Table(name = "sys_file_entity")
@@ -19,5 +19,5 @@ public interface FileEntity extends TypeBase {
 
     String fileContentType();
 
-    @Null String fileMeta();
+    @Nullable String fileMeta();
 }

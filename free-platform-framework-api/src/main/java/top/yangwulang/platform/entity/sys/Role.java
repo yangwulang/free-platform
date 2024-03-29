@@ -4,7 +4,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import org.babyfish.jimmer.sql.*;
 import top.yangwulang.platform.entity.DataTypeBase;
 
-import javax.validation.constraints.Null;
+import jakarta.annotation.Nullable;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -35,13 +35,13 @@ public interface Role extends DataTypeBase {
      * 角色分类（高管、中层、基层、其它）
      */
     @Schema(description = "角色类型")
-    @Null String roleType();
+    @Nullable String roleType();
 
     /**
      * 角色排序（升序）
      */
     @Schema(description = "角色排序")
-    @Null BigDecimal roleSort();
+    @Nullable BigDecimal roleSort();
 
     /**
      * 系统内置（1是 0否）
@@ -54,29 +54,29 @@ public interface Role extends DataTypeBase {
      * 用户类型（employee员工 member会员）
      */
     @Schema(description = "用户类型")
-    @Null String userType();
+    @Nullable String userType();
 
     /**
      * 数据范围设置（0未设置  1全部数据 2自定义数据）
      */
     @Schema(description = "数据范围设置")
-    @Null String dataScope();
+    @Nullable String dataScope();
 
     /**
      * 适应业务范围（不同的功能，不同的数据权限支持）
      */
     @Schema(description = "适应业务范围")
-    @Null String bizScope();
+    @Nullable String bizScope();
 
     /**
      * 租户代码
      */
-    @Null String corpCode();
+    @Nullable String corpCode();
 
     /**
      * 租户名称
      */
-    @Null String corpName();
+    @Nullable String corpName();
 
     @ManyToMany(mappedBy = "roles")
     @Schema(description = "角色拥有的菜单")

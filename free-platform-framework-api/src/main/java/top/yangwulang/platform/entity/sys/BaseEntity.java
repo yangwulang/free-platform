@@ -3,8 +3,9 @@ package top.yangwulang.platform.entity.sys;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.babyfish.jimmer.sql.MappedSuperclass;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
+import jakarta.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -65,7 +66,7 @@ public interface BaseEntity extends Serializable {
      *
      * @return 备注信息
      */
-    @Null
+    @Nullable
     @Schema(description = "备注")
     String remarks();
 }

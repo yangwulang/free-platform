@@ -49,3 +49,9 @@ unsafe input MenuSaveInput {
     #allScalars
     children*
 } */
+
+MenuUserTreeView {
+    #allScalars
+    children*
+    parentId
+}

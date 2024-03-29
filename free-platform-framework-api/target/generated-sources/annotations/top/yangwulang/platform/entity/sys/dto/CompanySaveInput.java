@@ -17,6 +17,10 @@ import top.yangwulang.platform.entity.sys.Company;
 import top.yangwulang.platform.entity.sys.CompanyDraft;
 import top.yangwulang.platform.entity.sys.CompanyFetcher;
 
+/**
+ *  公司
+ *  @author yangwulang
+ */
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Company.dto"
 )
@@ -88,6 +92,9 @@ public class CompanySaveInput implements Input<Company> {
         return new CompanySaveInput(base);
     }
 
+    /**
+     * 公司编码
+     */
     @NotNull
     @Schema(
             description = "公司编码"
@@ -100,6 +107,9 @@ public class CompanySaveInput implements Input<Company> {
         this.companyCode = companyCode;
     }
 
+    /**
+     * 公司名称
+     */
     @NotNull
     @Schema(
             description = "公司名称"
@@ -112,6 +122,9 @@ public class CompanySaveInput implements Input<Company> {
         this.companyName = companyName;
     }
 
+    /**
+     * 公司全名
+     */
     @Nullable
     @Schema(
             description = "公司全名"
@@ -142,6 +155,9 @@ public class CompanySaveInput implements Input<Company> {
         this.corpName = corpName;
     }
 
+    /**
+     * 父级编号
+     */
     @Nullable
     @Schema(
             description = "父级id"
@@ -154,6 +170,10 @@ public class CompanySaveInput implements Input<Company> {
         this.parentId = parentId;
     }
 
+    /**
+     * 字典类型编码
+     * @return 主键值
+     */
     @Nullable
     public String getId() {
         return id;

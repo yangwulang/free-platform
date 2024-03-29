@@ -3,8 +3,8 @@ package top.yangwulang.platform.entity.sys;
 
 import org.babyfish.jimmer.sql.*;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
+import org.jetbrains.annotations.NotNull;;
+import jakarta.annotation.Nullable;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -28,7 +28,7 @@ public interface TreeNodeTypeBase<T extends TreeNodeTypeBase<T>> extends DataTyp
     @ManyToOne
     @JoinColumn(name = "pid")
     @OnDissociate(DissociateAction.DELETE)
-    @Null T parent();
+    @Nullable T parent();
 
     @OneToMany(mappedBy = "parent")
     @NotNull
@@ -40,42 +40,42 @@ public interface TreeNodeTypeBase<T extends TreeNodeTypeBase<T>> extends DataTyp
      * 所有父级编号
      *//*
 
-    @Null String parentCodes();
+    @Nullable String parentCodes();
 
     */
 /**
      * 本级排序号（升序）
      *//*
 
-    @Null BigDecimal treeSort();
+    @Nullable BigDecimal treeSort();
 
     */
 /**
      * 所有级别排序号
      *//*
 
-    @Null String treeSorts();
+    @Nullable String treeSorts();
 
     */
 /**
      * 是否最末级
      *//*
 
-    @Null String treeLeaf();
+    @Nullable String treeLeaf();
 
     */
 /**
      * 层次级别
      *//*
 
-    @Null BigDecimal treeLevel();
+    @Nullable BigDecimal treeLevel();
 
     */
 /**
      * 全节点名
      *//*
 
-    @Null String treeNames();
+    @Nullable String treeNames();
 
 }
 */

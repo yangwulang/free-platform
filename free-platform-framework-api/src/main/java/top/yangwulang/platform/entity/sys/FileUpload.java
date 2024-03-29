@@ -3,7 +3,7 @@ package top.yangwulang.platform.entity.sys;
 import org.babyfish.jimmer.sql.*;
 import top.yangwulang.platform.entity.DataTypeBase;
 
-import javax.validation.constraints.Null;
+import jakarta.annotation.Nullable;
 
 @Entity
 @Table(name = "sys_file_upload")
@@ -23,16 +23,16 @@ public interface FileUpload extends DataTypeBase {
     @Key
     @ManyToOne
     @OnDissociate(DissociateAction.DELETE)
-    @Null FileEntity fileEntity();
+    @Nullable FileEntity fileEntity();
 
     @IdView
-    @Null String fileEntityId();
+    @Nullable String fileEntityId();
     
     String fileName();
 
     String fileType();
 
-    @Null String bizKey();
+    @Nullable String bizKey();
 
-    @Null String bizType();
+    @Nullable String bizType();
 }

@@ -18,6 +18,11 @@ import top.yangwulang.platform.entity.sys.DictData;
 import top.yangwulang.platform.entity.sys.DictDataDraft;
 import top.yangwulang.platform.entity.sys.DictDataFetcher;
 
+/**
+ *  字典数据
+ *
+ *  @author yangwulang
+ */
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/DictData.dto"
 )
@@ -131,6 +136,10 @@ public class DictDataGetView implements View<DictData> {
         return new DictDataGetView(base);
     }
 
+    /**
+     * 字典类型编码
+     * @return 主键值
+     */
     @NotNull
     public String getId() {
         return id;
@@ -140,6 +149,11 @@ public class DictDataGetView implements View<DictData> {
         this.id = id;
     }
 
+    /**
+     * 创建者
+     *
+     * @return 创建者
+     */
     @NotNull
     public String getCreateBy() {
         return createBy;
@@ -149,6 +163,11 @@ public class DictDataGetView implements View<DictData> {
         this.createBy = createBy;
     }
 
+    /**
+     * 创建时间
+     *
+     * @return 创建时间
+     */
     @NotNull
     public Date getCreateDate() {
         return createDate;
@@ -158,6 +177,11 @@ public class DictDataGetView implements View<DictData> {
         this.createDate = createDate;
     }
 
+    /**
+     * 更新者
+     *
+     * @return 更新者
+     */
     @NotNull
     public String getUpdateBy() {
         return updateBy;
@@ -167,6 +191,11 @@ public class DictDataGetView implements View<DictData> {
         this.updateBy = updateBy;
     }
 
+    /**
+     * 更新时间
+     *
+     * @return 更新时间
+     */
     @NotNull
     public Date getUpdateDate() {
         return updateDate;
@@ -176,6 +205,11 @@ public class DictDataGetView implements View<DictData> {
         this.updateDate = updateDate;
     }
 
+    /**
+     * 备注信息
+     *
+     * @return 备注信息
+     */
     @Nullable
     public String getRemarks() {
         return remarks;
@@ -185,6 +219,9 @@ public class DictDataGetView implements View<DictData> {
         this.remarks = remarks;
     }
 
+    /**
+     * 字典标签
+     */
     @Nullable
     @Schema(
             description = "字典标签"
@@ -197,6 +234,9 @@ public class DictDataGetView implements View<DictData> {
         this.dictLabel = dictLabel;
     }
 
+    /**
+     * 字典键值
+     */
     @Nullable
     @Schema(
             description = "字典键值"
@@ -209,6 +249,9 @@ public class DictDataGetView implements View<DictData> {
         this.dictValue = dictValue;
     }
 
+    /**
+     * 系统内置（1是 0否）
+     */
     @Nullable
     @Schema(
             description = "系统内置（1是 0否）"
@@ -221,6 +264,9 @@ public class DictDataGetView implements View<DictData> {
         this.isSys = isSys;
     }
 
+    /**
+     * 字典描述
+     */
     @Nullable
     @Schema(
             description = "字典描述"
@@ -233,6 +279,9 @@ public class DictDataGetView implements View<DictData> {
         this.description = description;
     }
 
+    /**
+     * css样式（如：color:red)
+     */
     @Nullable
     @Schema(
             description = "css样式（如：color:red)"
@@ -245,6 +294,9 @@ public class DictDataGetView implements View<DictData> {
         this.cssStyle = cssStyle;
     }
 
+    /**
+     * css类名（如：red）
+     */
     @Nullable
     @Schema(
             description = "css类名（如：red）"

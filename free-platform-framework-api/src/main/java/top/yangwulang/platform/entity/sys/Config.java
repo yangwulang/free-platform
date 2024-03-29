@@ -5,7 +5,7 @@ import org.babyfish.jimmer.sql.Table;
 import org.babyfish.jimmer.sql.Entity;
 import org.babyfish.jimmer.sql.Key;
 
-import javax.validation.constraints.Null;
+import jakarta.annotation.Nullable;
 
 import top.yangwulang.platform.entity.DataTypeBaseNoStatus;
 
@@ -41,7 +41,7 @@ public interface Config extends DataTypeBaseNoStatus {
      * @return 值
      */
     @Schema(description = "参数值")
-    @Null String configValue();
+    @Nullable String configValue();
 
 
 }

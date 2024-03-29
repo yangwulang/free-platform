@@ -4,8 +4,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import org.babyfish.jimmer.sql.*;
 import top.yangwulang.platform.entity.DataTypeBase;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
+import org.jetbrains.annotations.NotNull;;
+import jakarta.annotation.Nullable;
 import java.util.List;
 
 /**
@@ -27,7 +27,7 @@ public interface DictData extends DataTypeBase {
     @JoinColumn(name = "pid")
     @OnDissociate(DissociateAction.DELETE)
     @Schema(description = "父级")
-    @Null DictData parent();
+    @Nullable DictData parent();
 
     @OneToMany(mappedBy = "parent")
     @NotNull
@@ -41,29 +41,29 @@ public interface DictData extends DataTypeBase {
     @ManyToOne
     @OnDissociate(DissociateAction.DELETE)
     @Schema(description = "字典类型")
-    @Null DictType dictType();
+    @Nullable DictType dictType();
 
     @IdView
     @Schema(description = "父级id")
-    @Null String parentId();
+    @Nullable String parentId();
 
     @IdView
     @Schema(description = "字典类型id")
-    @Null String dictTypeId();
+    @Nullable String dictTypeId();
 
     /**
      * 字典标签
      */
     @Key
     @Schema(description = "字典标签")
-    @Null String dictLabel();
+    @Nullable String dictLabel();
 
     /**
      * 字典键值
      */
     @Key
     @Schema(description = "字典键值")
-    @Null String dictValue();
+    @Nullable String dictValue();
 
     /**
      * 系统内置（1是 0否）
@@ -76,30 +76,30 @@ public interface DictData extends DataTypeBase {
      * 字典描述
      */
     @Schema(description = "字典描述")
-    @Null String description();
+    @Nullable String description();
 
     /**
      * css样式（如：color:red)
      */
     @Schema(description = "css样式（如：color:red)")
-    @Null String cssStyle();
+    @Nullable String cssStyle();
 
     /**
      * css类名（如：red）
      */
     @Schema(description = "css类名（如：red）")
-    @Null String cssClass();
+    @Nullable String cssClass();
 
     /**
      * 租户代码
      */
     @Schema(description = "租户代码")
-    @Null String corpCode();
+    @Nullable String corpCode();
 
     /**
      * 租户名称
      */
     @Schema(description = "租户名称")
-    @Null String corpName();
+    @Nullable String corpName();
 }
 

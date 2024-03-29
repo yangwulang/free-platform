@@ -24,6 +24,9 @@ import top.yangwulang.platform.entity.sys.User;
 import top.yangwulang.platform.entity.sys.UserDraft;
 import top.yangwulang.platform.entity.sys.UserFetcher;
 
+/**
+ *  @author yangwulang
+ */
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/User.dto"
 )
@@ -235,6 +238,11 @@ public class LoginUserInfoView implements View<User> {
         this.userCode = userCode;
     }
 
+    /**
+     * 创建者
+     *
+     * @return 创建者
+     */
     @NotNull
     @Schema(
             description = "创建人"
@@ -247,6 +255,11 @@ public class LoginUserInfoView implements View<User> {
         this.createBy = createBy;
     }
 
+    /**
+     * 创建时间
+     *
+     * @return 创建时间
+     */
     @NotNull
     @Schema(
             description = "创建时间"
@@ -259,6 +272,11 @@ public class LoginUserInfoView implements View<User> {
         this.createDate = createDate;
     }
 
+    /**
+     * 更新者
+     *
+     * @return 更新者
+     */
     @NotNull
     @Schema(
             description = "修改者"
@@ -271,6 +289,11 @@ public class LoginUserInfoView implements View<User> {
         this.updateBy = updateBy;
     }
 
+    /**
+     * 更新时间
+     *
+     * @return 更新时间
+     */
     @NotNull
     @Schema(
             description = "修改时间"
@@ -283,6 +306,11 @@ public class LoginUserInfoView implements View<User> {
         this.updateDate = updateDate;
     }
 
+    /**
+     * 备注信息
+     *
+     * @return 备注信息
+     */
     @Nullable
     @Schema(
             description = "备注"
@@ -655,6 +683,11 @@ public class LoginUserInfoView implements View<User> {
         return builder.toString();
     }
 
+    /**
+     *  角色表
+     *
+     *  @author yangwulang
+     */
     public static class TargetOf_roles implements View<Role> {
         public static final ViewMetadata<Role, TargetOf_roles> METADATA = 
             new ViewMetadata<Role, TargetOf_roles>(
@@ -688,6 +721,9 @@ public class LoginUserInfoView implements View<User> {
             return new TargetOf_roles(base);
         }
 
+        /**
+         * 角色名称
+         */
         @NotNull
         @Schema(
                 description = "角色名称"
@@ -700,6 +736,9 @@ public class LoginUserInfoView implements View<User> {
             this.roleName = roleName;
         }
 
+        /**
+         * 角色编码
+         */
         @NotNull
         @Schema(
                 description = "角色编码"
@@ -745,8 +784,7 @@ public class LoginUserInfoView implements View<User> {
         @Override
         public String toString() {
             StringBuilder builder = new StringBuilder();
-            builder.append("LoginUserInfoView").append('.');
-            builder.append("TargetOf_roles").append('(');
+            builder.append("LoginUserInfoView.TargetOf_roles").append('(');
             builder.append("roleName=").append(roleName);
             builder.append(", roleCode=").append(roleCode);
             builder.append(')');

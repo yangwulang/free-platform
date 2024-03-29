@@ -4,7 +4,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import org.babyfish.jimmer.sql.*;
 import top.yangwulang.platform.entity.TypeBase;
 
-import javax.validation.constraints.Null;
+import jakarta.annotation.Nullable;
 import java.util.Date;
 
 @Entity
@@ -27,7 +27,7 @@ public interface OptionAnalysis extends TypeBase {
     @JoinColumn(name = "option_user_id")
     @Schema(description = "操作人，如果没有就是游客")
     @Key
-    @Null User optionUser();
+    @Nullable User optionUser();
 
     /**
      * ip地址
@@ -42,5 +42,5 @@ public interface OptionAnalysis extends TypeBase {
     Date createDate();
 
     @Schema(description = "元数据存取某些相关分析数据json")
-    @Null String meta();
+    @Nullable String meta();
 }

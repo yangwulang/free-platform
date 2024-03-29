@@ -7,7 +7,7 @@ import org.babyfish.jimmer.sql.Table;
 import top.yangwulang.platform.entity.TypeBase;
 import top.yangwulang.platform.entity.sys.User;
 
-import javax.validation.constraints.Null;
+import jakarta.annotation.Nullable;
 
 /**
  * 用户消息
@@ -24,7 +24,7 @@ public interface MessageRecordUser extends TypeBase {
      * @return 消息
      */
     @ManyToOne
-    @Null MessageRecord record();
+    @Nullable MessageRecord record();
 
     /**
      * 用户
@@ -32,7 +32,7 @@ public interface MessageRecordUser extends TypeBase {
      * @return 用户
      */
     @ManyToOne
-    @Null User user();
+    @Nullable User user();
 
     /**
      * 是否已读

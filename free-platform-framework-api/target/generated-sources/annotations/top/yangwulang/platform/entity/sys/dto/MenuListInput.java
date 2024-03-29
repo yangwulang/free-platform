@@ -17,6 +17,11 @@ import top.yangwulang.platform.entity.sys.Menu;
 import top.yangwulang.platform.entity.sys.MenuDraft;
 import top.yangwulang.platform.entity.sys.MenuFetcher;
 
+/**
+ *  菜单表
+ *
+ *  @author yangwulang
+ */
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Menu.dto"
 )
@@ -68,6 +73,9 @@ public class MenuListInput implements Input<Menu> {
         return new MenuListInput(base);
     }
 
+    /**
+     * 菜单名称
+     */
     @Nullable
     @Schema(
             description = "菜单名称"
@@ -80,6 +88,9 @@ public class MenuListInput implements Input<Menu> {
         this.menuName = menuName;
     }
 
+    /**
+     * 菜单类型（1菜单 2权限 3开发）
+     */
     @Nullable
     @Schema(
             description = "菜单类型（1菜单 2权限 3开发）"

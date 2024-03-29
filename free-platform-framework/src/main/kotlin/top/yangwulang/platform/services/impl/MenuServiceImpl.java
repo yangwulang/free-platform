@@ -6,8 +6,10 @@ import cn.hutool.core.lang.tree.TreeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import top.yangwulang.platform.entity.TreeNodeString;
 import top.yangwulang.platform.entity.sys.Menu;
 import top.yangwulang.platform.entity.sys.MenuProps;
+import top.yangwulang.platform.entity.sys.dto.MenuUserTreeView;
 import top.yangwulang.platform.repository.sys.MenuRepository;
 import top.yangwulang.platform.services.MenuService;
 
@@ -26,8 +28,8 @@ public class MenuServiceImpl extends BaseServiceImpl<Menu, String, MenuRepositor
         super(repository);
     }
 
-    public List<Menu> findByUserId(String userId) {
-        return repository().findByUserIdTree(userId);
+    public List<MenuUserTreeView> findByUserId(String userId) {
+        return repository().findByUserIdTreeView(userId);
     }
 
     @Override
@@ -38,7 +40,7 @@ public class MenuServiceImpl extends BaseServiceImpl<Menu, String, MenuRepositor
     @Override
     public List<Tree<String>> convertMenusToTree(List<Menu> menus) {
         List<TreeNode<String>> list = menus.stream().map(m -> {
-            TreeNode<String> menuTreeNode = new TreeNode<>(m.id(), m.parentId(), m.menuName(), m.weight());
+            TreeNode<String> menuTreeNode = new TreeNodeString<>(m.id(), m.parentId(), m.menuName(), m.weight());
             menuTreeNode.setExtra(new HashMap<>() {{
                 put("menuType", m.menuType());
                 put("menuHref", m.menuHref());
@@ -61,10 +63,10 @@ public class MenuServiceImpl extends BaseServiceImpl<Menu, String, MenuRepositor
         return this.convertMenusToTree(this.findByRoleId(roleId));
     }
 
-    @Override
+/*    @Override
     public List<Tree<String>> findByUserIdTree(String userId) {
         return this.convertMenusToTree(this.findByUserId(userId));
-    }
+    }*/
 
     @Override
     @Transactional(rollbackFor = Exception.class)

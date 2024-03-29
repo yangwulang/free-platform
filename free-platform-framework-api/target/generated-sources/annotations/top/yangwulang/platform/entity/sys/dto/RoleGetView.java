@@ -29,6 +29,11 @@ import top.yangwulang.platform.entity.sys.User;
 import top.yangwulang.platform.entity.sys.UserDraft;
 import top.yangwulang.platform.entity.sys.UserFetcher;
 
+/**
+ *  角色表
+ *
+ *  @author yangwulang
+ */
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Role.dto"
 )
@@ -179,6 +184,10 @@ public class RoleGetView implements View<Role> {
         return new RoleGetView(base);
     }
 
+    /**
+     * 字典类型编码
+     * @return 主键值
+     */
     @NotNull
     public String getId() {
         return id;
@@ -199,6 +208,11 @@ public class RoleGetView implements View<Role> {
         this.status = status;
     }
 
+    /**
+     * 创建者
+     *
+     * @return 创建者
+     */
     @NotNull
     public String getCreateBy() {
         return createBy;
@@ -208,6 +222,11 @@ public class RoleGetView implements View<Role> {
         this.createBy = createBy;
     }
 
+    /**
+     * 创建时间
+     *
+     * @return 创建时间
+     */
     @NotNull
     public Date getCreateDate() {
         return createDate;
@@ -217,6 +236,11 @@ public class RoleGetView implements View<Role> {
         this.createDate = createDate;
     }
 
+    /**
+     * 更新者
+     *
+     * @return 更新者
+     */
     @NotNull
     public String getUpdateBy() {
         return updateBy;
@@ -226,6 +250,11 @@ public class RoleGetView implements View<Role> {
         this.updateBy = updateBy;
     }
 
+    /**
+     * 更新时间
+     *
+     * @return 更新时间
+     */
     @NotNull
     public Date getUpdateDate() {
         return updateDate;
@@ -235,6 +264,11 @@ public class RoleGetView implements View<Role> {
         this.updateDate = updateDate;
     }
 
+    /**
+     * 备注信息
+     *
+     * @return 备注信息
+     */
     @Nullable
     public String getRemarks() {
         return remarks;
@@ -244,6 +278,9 @@ public class RoleGetView implements View<Role> {
         this.remarks = remarks;
     }
 
+    /**
+     * 角色编码
+     */
     @NotNull
     @Schema(
             description = "角色编码"
@@ -256,6 +293,9 @@ public class RoleGetView implements View<Role> {
         this.roleCode = roleCode;
     }
 
+    /**
+     * 角色名称
+     */
     @NotNull
     @Schema(
             description = "角色名称"
@@ -268,6 +308,9 @@ public class RoleGetView implements View<Role> {
         this.roleName = roleName;
     }
 
+    /**
+     * 角色分类（高管、中层、基层、其它）
+     */
     @Nullable
     @Schema(
             description = "角色类型"
@@ -280,6 +323,9 @@ public class RoleGetView implements View<Role> {
         this.roleType = roleType;
     }
 
+    /**
+     * 角色排序（升序）
+     */
     @Nullable
     @Schema(
             description = "角色排序"
@@ -292,6 +338,9 @@ public class RoleGetView implements View<Role> {
         this.roleSort = roleSort;
     }
 
+    /**
+     * 系统内置（1是 0否）
+     */
     @Nullable
     @Schema(
             description = "系统内置 1是 0否"
@@ -304,6 +353,9 @@ public class RoleGetView implements View<Role> {
         this.isSys = isSys;
     }
 
+    /**
+     * 用户类型（employee员工 member会员）
+     */
     @Nullable
     @Schema(
             description = "用户类型"
@@ -316,6 +368,9 @@ public class RoleGetView implements View<Role> {
         this.userType = userType;
     }
 
+    /**
+     * 数据范围设置（0未设置  1全部数据 2自定义数据）
+     */
     @Nullable
     @Schema(
             description = "数据范围设置"
@@ -328,6 +383,9 @@ public class RoleGetView implements View<Role> {
         this.dataScope = dataScope;
     }
 
+    /**
+     * 适应业务范围（不同的功能，不同的数据权限支持）
+     */
     @Nullable
     @Schema(
             description = "适应业务范围"
@@ -494,6 +552,11 @@ public class RoleGetView implements View<Role> {
         return builder.toString();
     }
 
+    /**
+     *  菜单表
+     *
+     *  @author yangwulang
+     */
     public static class TargetOf_menus implements View<Menu> {
         public static final ViewMetadata<Menu, TargetOf_menus> METADATA = 
             new ViewMetadata<Menu, TargetOf_menus>(
@@ -643,6 +706,10 @@ public class RoleGetView implements View<Role> {
             return new TargetOf_menus(base);
         }
 
+        /**
+         * 字典类型编码
+         * @return 主键值
+         */
         @NotNull
         public String getId() {
             return id;
@@ -663,6 +730,11 @@ public class RoleGetView implements View<Role> {
             this.status = status;
         }
 
+        /**
+         * 创建者
+         *
+         * @return 创建者
+         */
         @NotNull
         public String getCreateBy() {
             return createBy;
@@ -672,6 +744,11 @@ public class RoleGetView implements View<Role> {
             this.createBy = createBy;
         }
 
+        /**
+         * 创建时间
+         *
+         * @return 创建时间
+         */
         @NotNull
         public Date getCreateDate() {
             return createDate;
@@ -681,6 +758,11 @@ public class RoleGetView implements View<Role> {
             this.createDate = createDate;
         }
 
+        /**
+         * 更新者
+         *
+         * @return 更新者
+         */
         @NotNull
         public String getUpdateBy() {
             return updateBy;
@@ -690,6 +772,11 @@ public class RoleGetView implements View<Role> {
             this.updateBy = updateBy;
         }
 
+        /**
+         * 更新时间
+         *
+         * @return 更新时间
+         */
         @NotNull
         public Date getUpdateDate() {
             return updateDate;
@@ -699,6 +786,11 @@ public class RoleGetView implements View<Role> {
             this.updateDate = updateDate;
         }
 
+        /**
+         * 备注信息
+         *
+         * @return 备注信息
+         */
         @Nullable
         public String getRemarks() {
             return remarks;
@@ -708,6 +800,9 @@ public class RoleGetView implements View<Role> {
             this.remarks = remarks;
         }
 
+        /**
+         * 菜单名称
+         */
         @NotNull
         @Schema(
                 description = "菜单名称"
@@ -720,6 +815,9 @@ public class RoleGetView implements View<Role> {
             this.menuName = menuName;
         }
 
+        /**
+         * 菜单类型（1菜单 2权限 3开发）
+         */
         @NotNull
         @Schema(
                 description = "菜单类型（1菜单 2权限 3开发）"
@@ -732,6 +830,9 @@ public class RoleGetView implements View<Role> {
             this.menuType = menuType;
         }
 
+        /**
+         * 链接
+         */
         @Nullable
         @Schema(
                 description = "链接"
@@ -744,6 +845,9 @@ public class RoleGetView implements View<Role> {
             this.menuHref = menuHref;
         }
 
+        /**
+         * 组件地址
+         */
         @Nullable
         @Schema(
                 description = "组件地址"
@@ -756,6 +860,9 @@ public class RoleGetView implements View<Role> {
             this.menuComponent = menuComponent;
         }
 
+        /**
+         * 目标
+         */
         @Nullable
         @Schema(
                 description = "目标"
@@ -768,6 +875,9 @@ public class RoleGetView implements View<Role> {
             this.menuTarget = menuTarget;
         }
 
+        /**
+         * 图标
+         */
         @Nullable
         @Schema(
                 description = "图标"
@@ -780,6 +890,9 @@ public class RoleGetView implements View<Role> {
             this.menuIcon = menuIcon;
         }
 
+        /**
+         * 颜色
+         */
         @Nullable
         @Schema(
                 description = "颜色"
@@ -792,6 +905,9 @@ public class RoleGetView implements View<Role> {
             this.menuColor = menuColor;
         }
 
+        /**
+         * 菜单标题
+         */
         @Nullable
         @Schema(
                 description = "菜单标题"
@@ -804,6 +920,9 @@ public class RoleGetView implements View<Role> {
             this.menuTitle = menuTitle;
         }
 
+        /**
+         * 权限标识
+         */
         @Nullable
         @Schema(
                 description = "权限标识"
@@ -816,6 +935,9 @@ public class RoleGetView implements View<Role> {
             this.permission = permission;
         }
 
+        /**
+         * 菜单权重
+         */
         @Nullable
         @Schema(
                 description = "菜单权重"
@@ -828,6 +950,9 @@ public class RoleGetView implements View<Role> {
             this.weight = weight;
         }
 
+        /**
+         * 是否显示
+         */
         @Nullable
         @Schema(
                 description = "是否显示"
@@ -840,6 +965,9 @@ public class RoleGetView implements View<Role> {
             this.isShow = isShow;
         }
 
+        /**
+         * 归属系统（default:主导航菜单、mobileApp:APP菜单）
+         */
         @Nullable
         @Schema(
                 description = "归属系统（default:主导航菜单、mobileApp:APP菜单）"
@@ -970,8 +1098,7 @@ public class RoleGetView implements View<Role> {
         @Override
         public String toString() {
             StringBuilder builder = new StringBuilder();
-            builder.append("RoleGetView").append('.');
-            builder.append("TargetOf_menus").append('(');
+            builder.append("RoleGetView.TargetOf_menus").append('(');
             builder.append("id=").append(id);
             builder.append(", status=").append(status);
             builder.append(", createBy=").append(createBy);
@@ -996,6 +1123,9 @@ public class RoleGetView implements View<Role> {
         }
     }
 
+    /**
+     *  @author yangwulang
+     */
     public static class TargetOf_users implements View<User> {
         public static final ViewMetadata<User, TargetOf_users> METADATA = 
             new ViewMetadata<User, TargetOf_users>(
@@ -1210,8 +1340,7 @@ public class RoleGetView implements View<Role> {
         @Override
         public String toString() {
             StringBuilder builder = new StringBuilder();
-            builder.append("RoleGetView").append('.');
-            builder.append("TargetOf_users").append('(');
+            builder.append("RoleGetView.TargetOf_users").append('(');
             builder.append("userCode=").append(userCode);
             builder.append(", userName=").append(userName);
             builder.append(", userType=").append(userType);

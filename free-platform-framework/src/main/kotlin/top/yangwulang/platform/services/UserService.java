@@ -7,7 +7,7 @@ import top.yangwulang.platform.entity.sys.Role;
 import top.yangwulang.platform.entity.sys.User;
 import top.yangwulang.platform.repository.sys.UserRepository;
 
-import javax.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotEmpty;
 import java.util.List;
 
 /**

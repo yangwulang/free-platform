@@ -19,6 +19,10 @@ import top.yangwulang.platform.entity.sys.DictType;
 import top.yangwulang.platform.entity.sys.DictTypeDraft;
 import top.yangwulang.platform.entity.sys.DictTypeFetcher;
 
+/**
+ *  字典类型表
+ *  @author yangwulang
+ */
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/DictType.dto"
 )
@@ -99,6 +103,10 @@ public class DictTypeListView implements View<DictType> {
         return new DictTypeListView(base);
     }
 
+    /**
+     * 字典类型编码
+     * @return 主键值
+     */
     @NotNull
     public String getId() {
         return id;
@@ -119,6 +127,11 @@ public class DictTypeListView implements View<DictType> {
         this.status = status;
     }
 
+    /**
+     * 创建者
+     *
+     * @return 创建者
+     */
     @NotNull
     public String getCreateBy() {
         return createBy;
@@ -128,6 +141,11 @@ public class DictTypeListView implements View<DictType> {
         this.createBy = createBy;
     }
 
+    /**
+     * 创建时间
+     *
+     * @return 创建时间
+     */
     @NotNull
     public Date getCreateDate() {
         return createDate;
@@ -137,6 +155,11 @@ public class DictTypeListView implements View<DictType> {
         this.createDate = createDate;
     }
 
+    /**
+     * 更新者
+     *
+     * @return 更新者
+     */
     @NotNull
     public String getUpdateBy() {
         return updateBy;
@@ -146,6 +169,11 @@ public class DictTypeListView implements View<DictType> {
         this.updateBy = updateBy;
     }
 
+    /**
+     * 更新时间
+     *
+     * @return 更新时间
+     */
     @NotNull
     public Date getUpdateDate() {
         return updateDate;
@@ -155,6 +183,11 @@ public class DictTypeListView implements View<DictType> {
         this.updateDate = updateDate;
     }
 
+    /**
+     * 备注信息
+     *
+     * @return 备注信息
+     */
     @Nullable
     public String getRemarks() {
         return remarks;
@@ -164,6 +197,10 @@ public class DictTypeListView implements View<DictType> {
         this.remarks = remarks;
     }
 
+    /**
+     * 字典名称
+     * @return 字典名称
+     */
     @Nullable
     @Schema(
             description = "字典名称"
@@ -176,6 +213,11 @@ public class DictTypeListView implements View<DictType> {
         this.dictName = dictName;
     }
 
+    /**
+     * 字典类型
+     *
+     * @return 字典类型
+     */
     @NotNull
     @Schema(
             description = "字典类型标签"
@@ -188,6 +230,11 @@ public class DictTypeListView implements View<DictType> {
         this.dictType = dictType;
     }
 
+    /**
+     * 是否系统字典
+     *
+     * @return 是否系统字典
+     */
     @Nullable
     @Schema(
             description = "是否系统自带"

@@ -3,7 +3,7 @@ package top.yangwulang.platform.entity.sys;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.babyfish.jimmer.sql.*;
 
-import javax.validation.constraints.Null;
+import jakarta.annotation.Nullable;
 
 import top.yangwulang.platform.entity.TypeBase;
 
@@ -26,14 +26,14 @@ public interface Company extends TypeBase {
     @JoinColumn(name = "pid")
     @Schema(description = "父级公司")
     @OnDissociate(DissociateAction.DELETE)
-    @Null Company parent();
+    @Nullable Company parent();
 
     /**
      * 父级编号
      */
     @IdView
     @Schema(description = "父级id")
-    @Null String parentId();
+    @Nullable String parentId();
 
     /**
      * 子级公司
@@ -65,10 +65,10 @@ public interface Company extends TypeBase {
      * 公司全名
      */
     @Schema(description = "公司全名")
-    @Null String companyFullName();
+    @Nullable String companyFullName();
 
-    @Null String corpCode();
+    @Nullable String corpCode();
 
-    @Null String corpName();
+    @Nullable String corpName();
 }
 

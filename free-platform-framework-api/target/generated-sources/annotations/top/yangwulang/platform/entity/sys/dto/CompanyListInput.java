@@ -15,6 +15,10 @@ import top.yangwulang.platform.entity.sys.Company;
 import top.yangwulang.platform.entity.sys.CompanyDraft;
 import top.yangwulang.platform.entity.sys.CompanyFetcher;
 
+/**
+ *  公司
+ *  @author yangwulang
+ */
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Company.dto"
 )
@@ -48,6 +52,9 @@ public class CompanyListInput implements Input<Company> {
         return new CompanyListInput(base);
     }
 
+    /**
+     * 公司名称
+     */
     @Nullable
     @Schema(
             description = "公司名称"

@@ -1,12 +1,12 @@
 package top.yangwulang.platform.entity.sys.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotEmpty;
 import java.lang.Boolean;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import javax.validation.constraints.NotEmpty;
 import org.babyfish.jimmer.Input;
 import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.PropId;
@@ -18,6 +18,10 @@ import top.yangwulang.platform.entity.sys.DictType;
 import top.yangwulang.platform.entity.sys.DictTypeDraft;
 import top.yangwulang.platform.entity.sys.DictTypeFetcher;
 
+/**
+ *  字典类型表
+ *  @author yangwulang
+ */
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/DictType.dto"
 )
@@ -47,7 +51,7 @@ public class DictSaveInput implements Input<DictType> {
     @NotEmpty(
             message = "字典名称不能为空"
     )
-    @NotNull
+    @Nullable
     private String dictName;
 
     @Schema(
@@ -64,7 +68,7 @@ public class DictSaveInput implements Input<DictType> {
 
     public DictSaveInput(@NotNull DictType base) {
         this.dictType = base.dictType();
-        this.dictName = base.dictName();
+        this.dictName = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(DictTypeDraft.Producer.SLOT_DICT_NAME)) ? base.dictName() : null;
         this.isSys = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(DictTypeDraft.Producer.SLOT_IS_SYS)) ? base.isSys() : null;
         this.remarks = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(DictTypeDraft.Producer.SLOT_REMARKS)) ? base.remarks() : null;
     }
@@ -73,6 +77,11 @@ public class DictSaveInput implements Input<DictType> {
         return new DictSaveInput(base);
     }
 
+    /**
+     * 字典类型
+     *
+     * @return 字典类型
+     */
     @NotNull
     @Schema(
             description = "字典类型标签"
@@ -88,7 +97,11 @@ public class DictSaveInput implements Input<DictType> {
         this.dictType = dictType;
     }
 
-    @NotNull
+    /**
+     * 字典名称
+     * @return 字典名称
+     */
+    @Nullable
     @Schema(
             description = "字典名称"
     )
@@ -99,10 +112,15 @@ public class DictSaveInput implements Input<DictType> {
         return dictName;
     }
 
-    public void setDictName(@NotNull String dictName) {
+    public void setDictName(@Nullable String dictName) {
         this.dictName = dictName;
     }
 
+    /**
+     * 是否系统字典
+     *
+     * @return 是否系统字典
+     */
     @Nullable
     @Schema(
             description = "是否系统自带"
@@ -115,6 +133,11 @@ public class DictSaveInput implements Input<DictType> {
         this.isSys = isSys;
     }
 
+    /**
+     * 备注信息
+     *
+     * @return 备注信息
+     */
     @Nullable
     public String getRemarks() {
         return remarks;

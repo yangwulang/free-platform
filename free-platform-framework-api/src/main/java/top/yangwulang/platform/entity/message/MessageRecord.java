@@ -3,7 +3,7 @@ package top.yangwulang.platform.entity.message;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.babyfish.jimmer.sql.*;
 
-import javax.validation.constraints.Null;
+import jakarta.annotation.Nullable;
 
 import top.yangwulang.platform.entity.StatusTypeBase;
 import top.yangwulang.platform.entity.TypeBase;
@@ -42,7 +42,7 @@ public interface MessageRecord extends TypeBase, StatusTypeBase {
     String subTitle();
 
     @Schema(description = "消息icon")
-    @Null String avatar();
+    @Nullable String avatar();
 
     @Schema(description = "消息内容")
     String content();

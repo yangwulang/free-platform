@@ -18,6 +18,9 @@ import top.yangwulang.platform.entity.sys.EmployeeProps;
 import top.yangwulang.platform.entity.sys.EmployeeTable;
 import top.yangwulang.platform.entity.sys.UserProps;
 
+/**
+ * 员工
+ */
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Employee.dto"
 )
@@ -58,6 +61,9 @@ public class EmployeeListSpecification implements JSpecification<Employee, Emplo
     public EmployeeListSpecification() {
     }
 
+    /**
+     * 员工编码
+     */
     @Nullable
     @Schema(
             description = "员工编码"
@@ -70,6 +76,9 @@ public class EmployeeListSpecification implements JSpecification<Employee, Emplo
         this.empCode = empCode;
     }
 
+    /**
+     * 员工姓名
+     */
     @Nullable
     @Schema(
             description = "员工名称"
@@ -82,6 +91,9 @@ public class EmployeeListSpecification implements JSpecification<Employee, Emplo
         this.empName = empName;
     }
 
+    /**
+     * 公司主键
+     */
     @Nullable
     public String getCompanyId() {
         return companyId;

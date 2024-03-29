@@ -4,7 +4,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import org.babyfish.jimmer.sql.*;
 import top.yangwulang.platform.entity.DataTypeBase;
 
-import javax.validation.constraints.Null;
+import jakarta.annotation.Nullable;
 
 /**
  * 字典类型表
@@ -20,7 +20,7 @@ public interface DictType extends DataTypeBase {
      * @return 字典名称
      */
     @Schema(description = "字典名称")
-    @Null String dictName();
+    @Nullable String dictName();
 
     /**
      * 字典类型

@@ -19,6 +19,9 @@ import top.yangwulang.platform.entity.sys.Area;
 import top.yangwulang.platform.entity.sys.AreaDraft;
 import top.yangwulang.platform.entity.sys.AreaFetcher;
 
+/**
+ * 区域表
+ */
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Area.dto"
 )
@@ -99,6 +102,10 @@ public class AreaGetView implements View<Area> {
         return new AreaGetView(base);
     }
 
+    /**
+     * 字典类型编码
+     * @return 主键值
+     */
     @NotNull
     public String getId() {
         return id;
@@ -119,6 +126,11 @@ public class AreaGetView implements View<Area> {
         this.status = status;
     }
 
+    /**
+     * 创建者
+     *
+     * @return 创建者
+     */
     @NotNull
     public String getCreateBy() {
         return createBy;
@@ -128,6 +140,11 @@ public class AreaGetView implements View<Area> {
         this.createBy = createBy;
     }
 
+    /**
+     * 创建时间
+     *
+     * @return 创建时间
+     */
     @NotNull
     public Date getCreateDate() {
         return createDate;
@@ -137,6 +154,11 @@ public class AreaGetView implements View<Area> {
         this.createDate = createDate;
     }
 
+    /**
+     * 更新者
+     *
+     * @return 更新者
+     */
     @NotNull
     public String getUpdateBy() {
         return updateBy;
@@ -146,6 +168,11 @@ public class AreaGetView implements View<Area> {
         this.updateBy = updateBy;
     }
 
+    /**
+     * 更新时间
+     *
+     * @return 更新时间
+     */
     @NotNull
     public Date getUpdateDate() {
         return updateDate;
@@ -155,6 +182,11 @@ public class AreaGetView implements View<Area> {
         this.updateDate = updateDate;
     }
 
+    /**
+     * 备注信息
+     *
+     * @return 备注信息
+     */
     @Nullable
     public String getRemarks() {
         return remarks;
@@ -164,6 +196,9 @@ public class AreaGetView implements View<Area> {
         this.remarks = remarks;
     }
 
+    /**
+     * 名称
+     */
     @NotNull
     @Schema(
             description = "区域名称"
@@ -176,6 +211,9 @@ public class AreaGetView implements View<Area> {
         this.areaName = areaName;
     }
 
+    /**
+     * 排序
+     */
     @Nullable
     @Schema(
             description = "排序"
@@ -188,6 +226,9 @@ public class AreaGetView implements View<Area> {
         this.sort = sort;
     }
 
+    /**
+     * 区域类型
+     */
     @Nullable
     @Schema(
             description = "地区类型(1：省份、直辖市；2：地市；3：区县)"

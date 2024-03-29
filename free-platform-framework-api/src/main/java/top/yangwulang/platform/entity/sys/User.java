@@ -2,10 +2,10 @@ package top.yangwulang.platform.entity.sys;
 
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.annotation.Nullable;
 import org.babyfish.jimmer.sql.*;
 import top.yangwulang.platform.entity.BaseEntity;
 
-import javax.validation.constraints.Null;
 import java.util.List;
 
 /**
@@ -49,50 +49,50 @@ public interface User extends BaseEntity {
 
     @Schema(description = "登录编码(账号)")
     @Key
-    @Null String loginCode();
+    @Nullable String loginCode();
 
     @Schema(description = "用户名")
-    @Null String userName();
+    @Nullable String userName();
 
     @Schema(description = "密码")
-    @Null String password();
+    @Nullable String password();
 
 
     @Schema(description = "邮件")
-    @Null String email();
+    @Nullable String email();
 
     @Schema(description = "手机")
-    @Null String mobile();
+    @Nullable String mobile();
 
 
     @Schema(description = "电话")
-    @Null String phone();
+    @Nullable String phone();
 
     @Schema(description = "性别")
-    @Null String sex();
+    @Nullable String sex();
 
     @Schema(description = "头像地址")
-    @Null String avatar();
+    @Nullable String avatar();
 
     @Schema(description = "个性签名")
-    @Null String sign();
+    @Nullable String sign();
 
     @Schema(description = "微信开发id")
     @Column(name = "wx_openid")
-    @Null String wxOpenId();
+    @Nullable String wxOpenId();
 
     @Schema(description = "手机imei")
-    @Null String mobileImei();
+    @Nullable String mobileImei();
 
     @Schema(description = "用户类型")
-    @Null String userType();
+    @Nullable String userType();
 
     @Schema(description = "用户类型引用编号")
-    @Null String refCode();
+    @Nullable String refCode();
 
 
     @Schema(description = "用户类型引用名称")
-    @Null String refName();
+    @Nullable String refName();
 
     @Schema(description = "管理员类型")
     String mgrType();

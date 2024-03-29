@@ -17,6 +17,11 @@ import top.yangwulang.platform.entity.sys.Config;
 import top.yangwulang.platform.entity.sys.ConfigDraft;
 import top.yangwulang.platform.entity.sys.ConfigFetcher;
 
+/**
+ *  参数配置表
+ *
+ *  @author yangwulang
+ */
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Config.dto"
 )
@@ -78,6 +83,10 @@ public class ConfigSaveInput implements Input<Config> {
         return new ConfigSaveInput(base);
     }
 
+    /**
+     * 字典类型编码
+     * @return 主键值
+     */
     @Nullable
     @Schema(
             description = "配置id"
@@ -90,6 +99,11 @@ public class ConfigSaveInput implements Input<Config> {
         this.id = id;
     }
 
+    /**
+     * 名称
+     *
+     * @return 配置名称
+     */
     @NotNull
     @Schema(
             description = "配置名称"
@@ -102,6 +116,11 @@ public class ConfigSaveInput implements Input<Config> {
         this.configName = configName;
     }
 
+    /**
+     * 参数键
+     *
+     * @return 键
+     */
     @NotNull
     @Schema(
             description = "参数键"
@@ -114,6 +133,11 @@ public class ConfigSaveInput implements Input<Config> {
         this.configKey = configKey;
     }
 
+    /**
+     * 参数值
+     *
+     * @return 值
+     */
     @Nullable
     @Schema(
             description = "参数值"
@@ -126,6 +150,11 @@ public class ConfigSaveInput implements Input<Config> {
         this.configValue = configValue;
     }
 
+    /**
+     * 备注信息
+     *
+     * @return 备注信息
+     */
     @Nullable
     public String getRemarks() {
         return remarks;

@@ -2,9 +2,10 @@ package top.yangwulang.platform.entity;
 
 import org.babyfish.jimmer.sql.LogicalDeleted;
 import org.babyfish.jimmer.sql.MappedSuperclass;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
+
 import java.util.Date;
 
 /**
@@ -52,6 +53,6 @@ public interface DataTypeBase extends TypeBase, StatusTypeBase {
      *
      * @return 备注信息
      */
-    @Null
+    @Nullable
     String remarks();
 }

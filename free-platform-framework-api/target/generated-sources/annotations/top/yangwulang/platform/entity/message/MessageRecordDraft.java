@@ -107,7 +107,7 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.93",
+                "0.8.114",
                 MessageRecord.class,
                 Arrays.asList(
                     TypeBaseDraft.Producer.TYPE,

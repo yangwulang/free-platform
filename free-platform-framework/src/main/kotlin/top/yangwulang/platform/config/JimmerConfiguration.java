@@ -1,8 +1,11 @@
 package top.yangwulang.platform.config;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.json.JsonWriteFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.jsontype.impl.LaissezFaireSubTypeValidator;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.babyfish.jimmer.jackson.ImmutableModule;
 import org.babyfish.jimmer.meta.ImmutableProp;
 import org.babyfish.jimmer.meta.ImmutableType;
@@ -32,12 +35,8 @@ public class JimmerConfiguration {
      * jimmer转化mapper对象
      */
     public static final ObjectMapper JIMMER_OBJECT_MAPPER = new ObjectMapper()
-            .registerModule(new ImmutableModule())
-            .activateDefaultTyping(
-                    LaissezFaireSubTypeValidator.instance,
-                    ObjectMapper.DefaultTyping.JAVA_LANG_OBJECT,
-                    JsonTypeInfo.As.WRAPPER_ARRAY
-            );
+            .registerModule(new JavaTimeModule())
+            .registerModule(new ImmutableModule());
 
 
 

@@ -40,40 +40,22 @@ public class ConfigListView implements View<Config> {
             ConfigListView::new
     );
 
-    @NotNull
     private String id;
 
-    @NotNull
     private String createBy;
 
-    @NotNull
     private Date createDate;
 
-    @NotNull
     private String updateBy;
 
-    @NotNull
     private Date updateDate;
 
-    @Nullable
     private String remarks;
 
-    @Schema(
-            description = "配置名称"
-    )
-    @NotNull
     private String configName;
 
-    @Schema(
-            description = "参数键"
-    )
-    @NotNull
     private String configKey;
 
-    @Schema(
-            description = "参数值"
-    )
-    @Nullable
     private String configValue;
 
     public ConfigListView() {
@@ -91,16 +73,15 @@ public class ConfigListView implements View<Config> {
         this.configValue = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(ConfigDraft.Producer.SLOT_CONFIG_VALUE)) ? base.configValue() : null;
     }
 
-    public static ConfigListView of(@NotNull Config base) {
-        return new ConfigListView(base);
-    }
-
     /**
      * 字典类型编码
      * @return 主键值
      */
     @NotNull
     public String getId() {
+        if (id == null) {
+            throw new IllegalStateException("The property \"id\" is not specified");
+        }
         return id;
     }
 
@@ -115,6 +96,9 @@ public class ConfigListView implements View<Config> {
      */
     @NotNull
     public String getCreateBy() {
+        if (createBy == null) {
+            throw new IllegalStateException("The property \"createBy\" is not specified");
+        }
         return createBy;
     }
 
@@ -129,6 +113,9 @@ public class ConfigListView implements View<Config> {
      */
     @NotNull
     public Date getCreateDate() {
+        if (createDate == null) {
+            throw new IllegalStateException("The property \"createDate\" is not specified");
+        }
         return createDate;
     }
 
@@ -143,6 +130,9 @@ public class ConfigListView implements View<Config> {
      */
     @NotNull
     public String getUpdateBy() {
+        if (updateBy == null) {
+            throw new IllegalStateException("The property \"updateBy\" is not specified");
+        }
         return updateBy;
     }
 
@@ -157,6 +147,9 @@ public class ConfigListView implements View<Config> {
      */
     @NotNull
     public Date getUpdateDate() {
+        if (updateDate == null) {
+            throw new IllegalStateException("The property \"updateDate\" is not specified");
+        }
         return updateDate;
     }
 
@@ -188,6 +181,9 @@ public class ConfigListView implements View<Config> {
             description = "配置名称"
     )
     public String getConfigName() {
+        if (configName == null) {
+            throw new IllegalStateException("The property \"configName\" is not specified");
+        }
         return configName;
     }
 
@@ -205,6 +201,9 @@ public class ConfigListView implements View<Config> {
             description = "参数键"
     )
     public String getConfigKey() {
+        if (configKey == null) {
+            throw new IllegalStateException("The property \"configKey\" is not specified");
+        }
         return configKey;
     }
 

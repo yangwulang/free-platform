@@ -32,12 +32,15 @@ public interface DataTypeBaseNoStatusDraft extends DataTypeBaseNoStatus, TypeBas
     @OldChain
     DataTypeBaseNoStatusDraft setRemarks(String remarks);
 
+    @GeneratedBy(
+            type = DataTypeBaseNoStatus.class
+    )
     class Producer {
         static final Producer INSTANCE = new Producer();
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.114",
+                "0.8.130",
                 DataTypeBaseNoStatus.class,
                 Collections.singleton(TypeBaseDraft.Producer.TYPE),
                 null

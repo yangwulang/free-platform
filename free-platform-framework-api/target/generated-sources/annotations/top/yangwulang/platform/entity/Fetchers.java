@@ -1,5 +1,6 @@
 package top.yangwulang.platform.entity;
 
+import org.babyfish.jimmer.internal.GeneratedBy;
 import top.yangwulang.platform.entity.message.MessageRecordFetcher;
 import top.yangwulang.platform.entity.message.MessageRecordUserFetcher;
 import top.yangwulang.platform.entity.sys.AreaFetcher;
@@ -16,6 +17,7 @@ import top.yangwulang.platform.entity.sys.PostFetcher;
 import top.yangwulang.platform.entity.sys.RoleFetcher;
 import top.yangwulang.platform.entity.sys.UserFetcher;
 
+@GeneratedBy
 public interface Fetchers {
     MessageRecordFetcher MESSAGE_RECORD_FETCHER = MessageRecordFetcher.$;
 

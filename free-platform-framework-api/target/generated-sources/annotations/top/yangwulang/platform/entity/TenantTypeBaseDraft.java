@@ -17,12 +17,15 @@ public interface TenantTypeBaseDraft extends TenantTypeBase, Draft {
     @OldChain
     TenantTypeBaseDraft setTenant(String tenant);
 
+    @GeneratedBy(
+            type = TenantTypeBase.class
+    )
     class Producer {
         static final Producer INSTANCE = new Producer();
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.114",
+                "0.8.130",
                 TenantTypeBase.class,
                 Collections.emptyList(),
                 null

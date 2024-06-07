@@ -2,7 +2,6 @@ package top.yangwulang.platform.entity.sys.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.lang.Boolean;
-import java.lang.Integer;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
@@ -37,11 +36,13 @@ import top.yangwulang.platform.entity.sys.UserFetcher;
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Role.dto"
 )
+@Schema(
+        description = "角色"
+)
 public class RoleGetView implements View<Role> {
     public static final ViewMetadata<Role, RoleGetView> METADATA = 
         new ViewMetadata<Role, RoleGetView>(
             RoleFetcher.$
-                .status()
                 .createBy()
                 .createDate()
                 .updateBy()
@@ -74,87 +75,36 @@ public class RoleGetView implements View<Role> {
         DtoPropAccessor.objectListSetter(TargetOf_users::toEntity)
     );
 
-    @NotNull
     private String id;
 
-    @Schema(
-            description = "状态"
-    )
-    private int status;
-
-    @NotNull
     private String createBy;
 
-    @NotNull
     private Date createDate;
 
-    @NotNull
     private String updateBy;
 
-    @NotNull
     private Date updateDate;
 
-    @Nullable
     private String remarks;
 
-    @Schema(
-            description = "角色编码"
-    )
-    @NotNull
     private String roleCode;
 
-    @Schema(
-            description = "角色名称"
-    )
-    @NotNull
     private String roleName;
 
-    @Schema(
-            description = "角色类型"
-    )
-    @Nullable
     private String roleType;
 
-    @Schema(
-            description = "角色排序"
-    )
-    @Nullable
     private BigDecimal roleSort;
 
-    @Schema(
-            description = "系统内置 1是 0否"
-    )
-    @Nullable
     private Boolean isSys;
 
-    @Schema(
-            description = "用户类型"
-    )
-    @Nullable
     private String userType;
 
-    @Schema(
-            description = "数据范围设置"
-    )
-    @Nullable
     private String dataScope;
 
-    @Schema(
-            description = "适应业务范围"
-    )
-    @Nullable
     private String bizScope;
 
-    @Schema(
-            description = "角色拥有的菜单"
-    )
-    @NotNull
     private List<TargetOf_menus> menus;
 
-    @Schema(
-            description = "角色拥有的用户"
-    )
-    @NotNull
     private List<TargetOf_users> users;
 
     public RoleGetView() {
@@ -162,7 +112,6 @@ public class RoleGetView implements View<Role> {
 
     public RoleGetView(@NotNull Role base) {
         this.id = base.id();
-        this.status = base.status();
         this.createBy = base.createBy();
         this.createDate = base.createDate();
         this.updateBy = base.updateBy();
@@ -180,32 +129,20 @@ public class RoleGetView implements View<Role> {
         this.users = USERS_ACCESSOR.get(base);
     }
 
-    public static RoleGetView of(@NotNull Role base) {
-        return new RoleGetView(base);
-    }
-
     /**
      * 字典类型编码
      * @return 主键值
      */
     @NotNull
     public String getId() {
+        if (id == null) {
+            throw new IllegalStateException("The property \"id\" is not specified");
+        }
         return id;
     }
 
     public void setId(@NotNull String id) {
         this.id = id;
-    }
-
-    @Schema(
-            description = "状态"
-    )
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
     }
 
     /**
@@ -215,6 +152,9 @@ public class RoleGetView implements View<Role> {
      */
     @NotNull
     public String getCreateBy() {
+        if (createBy == null) {
+            throw new IllegalStateException("The property \"createBy\" is not specified");
+        }
         return createBy;
     }
 
@@ -229,6 +169,9 @@ public class RoleGetView implements View<Role> {
      */
     @NotNull
     public Date getCreateDate() {
+        if (createDate == null) {
+            throw new IllegalStateException("The property \"createDate\" is not specified");
+        }
         return createDate;
     }
 
@@ -243,6 +186,9 @@ public class RoleGetView implements View<Role> {
      */
     @NotNull
     public String getUpdateBy() {
+        if (updateBy == null) {
+            throw new IllegalStateException("The property \"updateBy\" is not specified");
+        }
         return updateBy;
     }
 
@@ -257,6 +203,9 @@ public class RoleGetView implements View<Role> {
      */
     @NotNull
     public Date getUpdateDate() {
+        if (updateDate == null) {
+            throw new IllegalStateException("The property \"updateDate\" is not specified");
+        }
         return updateDate;
     }
 
@@ -286,6 +235,9 @@ public class RoleGetView implements View<Role> {
             description = "角色编码"
     )
     public String getRoleCode() {
+        if (roleCode == null) {
+            throw new IllegalStateException("The property \"roleCode\" is not specified");
+        }
         return roleCode;
     }
 
@@ -301,6 +253,9 @@ public class RoleGetView implements View<Role> {
             description = "角色名称"
     )
     public String getRoleName() {
+        if (roleName == null) {
+            throw new IllegalStateException("The property \"roleName\" is not specified");
+        }
         return roleName;
     }
 
@@ -403,6 +358,9 @@ public class RoleGetView implements View<Role> {
             description = "角色拥有的菜单"
     )
     public List<TargetOf_menus> getMenus() {
+        if (menus == null) {
+            throw new IllegalStateException("The property \"menus\" is not specified");
+        }
         return menus;
     }
 
@@ -415,6 +373,9 @@ public class RoleGetView implements View<Role> {
             description = "角色拥有的用户"
     )
     public List<TargetOf_users> getUsers() {
+        if (users == null) {
+            throw new IllegalStateException("The property \"users\" is not specified");
+        }
         return users;
     }
 
@@ -426,7 +387,6 @@ public class RoleGetView implements View<Role> {
     public Role toEntity() {
         return RoleDraft.$.produce(__draft -> {
             __draft.setId(id);
-            __draft.setStatus(status);
             __draft.setCreateBy(createBy);
             __draft.setCreateDate(createDate);
             __draft.setUpdateBy(updateBy);
@@ -448,7 +408,6 @@ public class RoleGetView implements View<Role> {
     @Override
     public int hashCode() {
         int hash = Objects.hashCode(id);
-        hash = hash * 31 + Integer.hashCode(status);
         hash = hash * 31 + Objects.hashCode(createBy);
         hash = hash * 31 + Objects.hashCode(createDate);
         hash = hash * 31 + Objects.hashCode(updateBy);
@@ -474,9 +433,6 @@ public class RoleGetView implements View<Role> {
         }
         RoleGetView other = (RoleGetView) o;
         if (!Objects.equals(id, other.id)) {
-            return false;
-        }
-        if (status != other.status) {
             return false;
         }
         if (!Objects.equals(createBy, other.createBy)) {
@@ -532,7 +488,6 @@ public class RoleGetView implements View<Role> {
         StringBuilder builder = new StringBuilder();
         builder.append("RoleGetView").append('(');
         builder.append("id=").append(id);
-        builder.append(", status=").append(status);
         builder.append(", createBy=").append(createBy);
         builder.append(", createDate=").append(createDate);
         builder.append(", updateBy=").append(updateBy);
@@ -557,11 +512,14 @@ public class RoleGetView implements View<Role> {
      *
      *  @author yangwulang
      */
+    @GeneratedBy
+    @Schema(
+            description = "菜单实体"
+    )
     public static class TargetOf_menus implements View<Menu> {
         public static final ViewMetadata<Menu, TargetOf_menus> METADATA = 
             new ViewMetadata<Menu, TargetOf_menus>(
                 MenuFetcher.$
-                    .status()
                     .createBy()
                     .createDate()
                     .updateBy()
@@ -582,99 +540,40 @@ public class RoleGetView implements View<Role> {
                 TargetOf_menus::new
         );
 
-        @NotNull
         private String id;
 
-        @Schema(
-                description = "状态"
-        )
-        private int status;
-
-        @NotNull
         private String createBy;
 
-        @NotNull
         private Date createDate;
 
-        @NotNull
         private String updateBy;
 
-        @NotNull
         private Date updateDate;
 
-        @Nullable
         private String remarks;
 
-        @Schema(
-                description = "菜单名称"
-        )
-        @NotNull
         private String menuName;
 
-        @Schema(
-                description = "菜单类型（1菜单 2权限 3开发）"
-        )
-        @NotNull
         private String menuType;
 
-        @Schema(
-                description = "链接"
-        )
-        @Nullable
         private String menuHref;
 
-        @Schema(
-                description = "组件地址"
-        )
-        @Nullable
         private String menuComponent;
 
-        @Schema(
-                description = "目标"
-        )
-        @Nullable
         private String menuTarget;
 
-        @Schema(
-                description = "图标"
-        )
-        @Nullable
         private String menuIcon;
 
-        @Schema(
-                description = "颜色"
-        )
-        @Nullable
         private String menuColor;
 
-        @Schema(
-                description = "菜单标题"
-        )
-        @Nullable
         private String menuTitle;
 
-        @Schema(
-                description = "权限标识"
-        )
-        @Nullable
         private String permission;
 
-        @Schema(
-                description = "菜单权重"
-        )
-        @Nullable
         private BigDecimal weight;
 
-        @Schema(
-                description = "是否显示"
-        )
-        @Nullable
         private Boolean isShow;
 
-        @Schema(
-                description = "归属系统（default:主导航菜单、mobileApp:APP菜单）"
-        )
-        @Nullable
         private String sysCode;
 
         public TargetOf_menus() {
@@ -682,7 +581,6 @@ public class RoleGetView implements View<Role> {
 
         public TargetOf_menus(@NotNull Menu base) {
             this.id = base.id();
-            this.status = base.status();
             this.createBy = base.createBy();
             this.createDate = base.createDate();
             this.updateBy = base.updateBy();
@@ -702,32 +600,20 @@ public class RoleGetView implements View<Role> {
             this.sysCode = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_SYS_CODE)) ? base.sysCode() : null;
         }
 
-        public static TargetOf_menus of(@NotNull Menu base) {
-            return new TargetOf_menus(base);
-        }
-
         /**
          * 字典类型编码
          * @return 主键值
          */
         @NotNull
         public String getId() {
+            if (id == null) {
+                throw new IllegalStateException("The property \"id\" is not specified");
+            }
             return id;
         }
 
         public void setId(@NotNull String id) {
             this.id = id;
-        }
-
-        @Schema(
-                description = "状态"
-        )
-        public int getStatus() {
-            return status;
-        }
-
-        public void setStatus(int status) {
-            this.status = status;
         }
 
         /**
@@ -737,6 +623,9 @@ public class RoleGetView implements View<Role> {
          */
         @NotNull
         public String getCreateBy() {
+            if (createBy == null) {
+                throw new IllegalStateException("The property \"createBy\" is not specified");
+            }
             return createBy;
         }
 
@@ -751,6 +640,9 @@ public class RoleGetView implements View<Role> {
          */
         @NotNull
         public Date getCreateDate() {
+            if (createDate == null) {
+                throw new IllegalStateException("The property \"createDate\" is not specified");
+            }
             return createDate;
         }
 
@@ -765,6 +657,9 @@ public class RoleGetView implements View<Role> {
          */
         @NotNull
         public String getUpdateBy() {
+            if (updateBy == null) {
+                throw new IllegalStateException("The property \"updateBy\" is not specified");
+            }
             return updateBy;
         }
 
@@ -779,6 +674,9 @@ public class RoleGetView implements View<Role> {
          */
         @NotNull
         public Date getUpdateDate() {
+            if (updateDate == null) {
+                throw new IllegalStateException("The property \"updateDate\" is not specified");
+            }
             return updateDate;
         }
 
@@ -808,6 +706,9 @@ public class RoleGetView implements View<Role> {
                 description = "菜单名称"
         )
         public String getMenuName() {
+            if (menuName == null) {
+                throw new IllegalStateException("The property \"menuName\" is not specified");
+            }
             return menuName;
         }
 
@@ -823,6 +724,9 @@ public class RoleGetView implements View<Role> {
                 description = "菜单类型（1菜单 2权限 3开发）"
         )
         public String getMenuType() {
+            if (menuType == null) {
+                throw new IllegalStateException("The property \"menuType\" is not specified");
+            }
             return menuType;
         }
 
@@ -984,7 +888,6 @@ public class RoleGetView implements View<Role> {
         public Menu toEntity() {
             return MenuDraft.$.produce(__draft -> {
                 __draft.setId(id);
-                __draft.setStatus(status);
                 __draft.setCreateBy(createBy);
                 __draft.setCreateDate(createDate);
                 __draft.setUpdateBy(updateBy);
@@ -1008,7 +911,6 @@ public class RoleGetView implements View<Role> {
         @Override
         public int hashCode() {
             int hash = Objects.hashCode(id);
-            hash = hash * 31 + Integer.hashCode(status);
             hash = hash * 31 + Objects.hashCode(createBy);
             hash = hash * 31 + Objects.hashCode(createDate);
             hash = hash * 31 + Objects.hashCode(updateBy);
@@ -1036,9 +938,6 @@ public class RoleGetView implements View<Role> {
             }
             TargetOf_menus other = (TargetOf_menus) o;
             if (!Objects.equals(id, other.id)) {
-                return false;
-            }
-            if (status != other.status) {
                 return false;
             }
             if (!Objects.equals(createBy, other.createBy)) {
@@ -1100,7 +999,6 @@ public class RoleGetView implements View<Role> {
             StringBuilder builder = new StringBuilder();
             builder.append("RoleGetView.TargetOf_menus").append('(');
             builder.append("id=").append(id);
-            builder.append(", status=").append(status);
             builder.append(", createBy=").append(createBy);
             builder.append(", createDate=").append(createDate);
             builder.append(", updateBy=").append(updateBy);
@@ -1126,6 +1024,10 @@ public class RoleGetView implements View<Role> {
     /**
      *  @author yangwulang
      */
+    @GeneratedBy
+    @Schema(
+            description = "用户实体"
+    )
     public static class TargetOf_users implements View<User> {
         public static final ViewMetadata<User, TargetOf_users> METADATA = 
             new ViewMetadata<User, TargetOf_users>(
@@ -1139,46 +1041,18 @@ public class RoleGetView implements View<Role> {
                 TargetOf_users::new
         );
 
-        @Schema(
-                description = "用户编码"
-        )
-        @NotNull
         private String userCode;
 
-        @Schema(
-                description = "用户名"
-        )
-        @Nullable
         private String userName;
 
-        @Schema(
-                description = "用户类型"
-        )
-        @Nullable
         private String userType;
 
-        @Schema(
-                description = "头像地址"
-        )
-        @Nullable
         private String avatar;
 
-        @Schema(
-                description = "登录编码(账号)"
-        )
-        @Nullable
         private String loginCode;
 
-        @Schema(
-                description = "邮件"
-        )
-        @Nullable
         private String email;
 
-        @Schema(
-                description = "性别"
-        )
-        @Nullable
         private String sex;
 
         public TargetOf_users() {
@@ -1194,15 +1068,14 @@ public class RoleGetView implements View<Role> {
             this.sex = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(UserDraft.Producer.SLOT_SEX)) ? base.sex() : null;
         }
 
-        public static TargetOf_users of(@NotNull User base) {
-            return new TargetOf_users(base);
-        }
-
         @NotNull
         @Schema(
                 description = "用户编码"
         )
         public String getUserCode() {
+            if (userCode == null) {
+                throw new IllegalStateException("The property \"userCode\" is not specified");
+            }
             return userCode;
         }
 

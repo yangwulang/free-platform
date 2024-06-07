@@ -24,23 +24,14 @@ import top.yangwulang.platform.entity.sys.RoleTable;
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Role.dto"
 )
+@Schema(
+        description = "角色"
+)
 public class RoleListSpecification implements JSpecification<Role, RoleTable> {
-    @Schema(
-            description = "角色名称"
-    )
-    @Nullable
     private String roleName;
 
-    @Schema(
-            description = "角色类型"
-    )
-    @Nullable
     private String roleType;
 
-    @Schema(
-            description = "用户类型"
-    )
-    @Nullable
     private String userType;
 
     public RoleListSpecification() {

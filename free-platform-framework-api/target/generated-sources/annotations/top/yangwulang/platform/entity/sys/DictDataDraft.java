@@ -1,6 +1,8 @@
 package top.yangwulang.platform.entity.sys;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.lang.Boolean;
 import java.lang.CloneNotSupportedException;
@@ -35,6 +37,7 @@ import org.babyfish.jimmer.runtime.NonSharedList;
 import org.babyfish.jimmer.runtime.Visibility;
 import org.babyfish.jimmer.sql.ManyToOne;
 import org.babyfish.jimmer.sql.OneToMany;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.DataTypeBaseDraft;
 
@@ -134,6 +137,9 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
     @OldChain
     DictDataDraft setCorpName(String corpName);
 
+    @GeneratedBy(
+            type = DictData.class
+    )
     class Producer {
         static final Producer INSTANCE = new Producer();
 
@@ -179,7 +185,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.114",
+                "0.8.130",
                 DictData.class,
                 Collections.singleton(DataTypeBaseDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (DictData)base)
@@ -217,6 +223,10 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             return (DictData)Internal.produce(TYPE, base, block);
         }
 
+        @GeneratedBy(
+                type = DictData.class
+        )
+        @JsonPropertyOrder({"dummyPropForJacksonError__", "id", "status", "createBy", "createDate", "updateBy", "updateDate", "remarks", "parent", "children", "dictType", "parentId", "dictTypeId", "dictLabel", "dictValue", "isSys", "description", "cssStyle", "cssClass", "corpCode", "corpName"})
         public abstract interface Implementor extends DictData, ImmutableSpi {
             @Override
             default Object __get(PropId prop) {
@@ -315,102 +325,142 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
                 }
             }
 
-            @JsonIgnore
+            @NotNull
             default String getId() {
                 return id();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "状态"
+            )
             default int getStatus() {
                 return status();
             }
 
-            @JsonIgnore
+            @NotNull
             default String getCreateBy() {
                 return createBy();
             }
 
-            @JsonIgnore
+            @NotNull
             default Date getCreateDate() {
                 return createDate();
             }
 
-            @JsonIgnore
+            @NotNull
             default String getUpdateBy() {
                 return updateBy();
             }
 
-            @JsonIgnore
+            @NotNull
             default Date getUpdateDate() {
                 return updateDate();
             }
 
-            @JsonIgnore
+            @Nullable
             default String getRemarks() {
                 return remarks();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "父级"
+            )
+            @jakarta.annotation.Nullable
             default DictData getParent() {
                 return parent();
             }
 
-            @JsonIgnore
+            @NotNull
+            @Schema(
+                    description = "子集"
+            )
             default List<DictData> getChildren() {
                 return children();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "字典类型"
+            )
+            @jakarta.annotation.Nullable
             default DictType getDictType() {
                 return dictType();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "父级id"
+            )
+            @jakarta.annotation.Nullable
             default String getParentId() {
                 return parentId();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "字典类型id"
+            )
+            @jakarta.annotation.Nullable
             default String getDictTypeId() {
                 return dictTypeId();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "字典标签"
+            )
+            @jakarta.annotation.Nullable
             default String getDictLabel() {
                 return dictLabel();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "字典键值"
+            )
+            @jakarta.annotation.Nullable
             default String getDictValue() {
                 return dictValue();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "系统内置（1是 0否）"
+            )
             default Boolean getIsSys() {
                 return isSys();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "字典描述"
+            )
+            @jakarta.annotation.Nullable
             default String getDescription() {
                 return description();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "css样式（如：color:red)"
+            )
+            @jakarta.annotation.Nullable
             default String getCssStyle() {
                 return cssStyle();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "css类名（如：red）"
+            )
+            @jakarta.annotation.Nullable
             default String getCssClass() {
                 return cssClass();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "租户代码"
+            )
+            @jakarta.annotation.Nullable
             default String getCorpCode() {
                 return corpCode();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "租户名称"
+            )
+            @jakarta.annotation.Nullable
             default String getCorpName() {
                 return corpName();
             }
@@ -425,6 +475,9 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
         }
 
+        @GeneratedBy(
+                type = DictData.class
+        )
         private static class Impl implements Implementor, Cloneable, Serializable {
             private Visibility __visibility;
 
@@ -495,6 +548,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String id() {
                 if (__idValue == null) {
                     throw new UnloadedException(DictData.class, "id");
@@ -503,6 +557,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public int status() {
                 if (!__statusLoaded) {
                     throw new UnloadedException(DictData.class, "status");
@@ -511,6 +566,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String createBy() {
                 if (__createByValue == null) {
                     throw new UnloadedException(DictData.class, "createBy");
@@ -519,6 +575,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public Date createDate() {
                 if (__createDateValue == null) {
                     throw new UnloadedException(DictData.class, "createDate");
@@ -527,6 +584,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String updateBy() {
                 if (__updateByValue == null) {
                     throw new UnloadedException(DictData.class, "updateBy");
@@ -535,6 +593,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public Date updateDate() {
                 if (__updateDateValue == null) {
                     throw new UnloadedException(DictData.class, "updateDate");
@@ -543,6 +602,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String remarks() {
                 if (!__remarksLoaded) {
@@ -552,6 +612,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public DictData parent() {
                 if (!__parentLoaded) {
@@ -561,6 +622,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public List<DictData> children() {
                 if (__childrenValue == null) {
                     throw new UnloadedException(DictData.class, "children");
@@ -569,6 +631,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public DictType dictType() {
                 if (!__dictTypeLoaded) {
@@ -578,6 +641,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String parentId() {
                 DictData __target = parent();
@@ -585,6 +649,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String dictTypeId() {
                 DictType __target = dictType();
@@ -592,6 +657,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String dictLabel() {
                 if (!__dictLabelLoaded) {
@@ -601,6 +667,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String dictValue() {
                 if (!__dictValueLoaded) {
@@ -610,6 +677,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public Boolean isSys() {
                 if (!__isSysLoaded) {
@@ -619,6 +687,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String description() {
                 if (!__descriptionLoaded) {
@@ -628,6 +697,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String cssStyle() {
                 if (!__cssStyleLoaded) {
@@ -637,6 +707,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String cssClass() {
                 if (!__cssClassLoaded) {
@@ -646,6 +717,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String corpCode() {
                 if (!__corpCodeLoaded) {
@@ -655,6 +727,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String corpName() {
                 if (!__corpNameLoaded) {
@@ -1403,6 +1476,9 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
         }
 
+        @GeneratedBy(
+                type = DictData.class
+        )
         private static class DraftImpl implements Implementor, DraftSpi, DictDataDraft {
             private DraftContext __ctx;
 
@@ -1468,6 +1544,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String id() {
                 return (__modified!= null ? __modified : __base).id();
             }
@@ -1485,6 +1562,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public int status() {
                 return (__modified!= null ? __modified : __base).status();
             }
@@ -1498,6 +1576,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String createBy() {
                 return (__modified!= null ? __modified : __base).createBy();
             }
@@ -1515,6 +1594,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public Date createDate() {
                 return (__modified!= null ? __modified : __base).createDate();
             }
@@ -1532,6 +1612,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String updateBy() {
                 return (__modified!= null ? __modified : __base).updateBy();
             }
@@ -1549,6 +1630,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public Date updateDate() {
                 return (__modified!= null ? __modified : __base).updateDate();
             }
@@ -1566,6 +1648,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String remarks() {
                 return (__modified!= null ? __modified : __base).remarks();
@@ -1580,6 +1663,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public DictDataDraft parent() {
                 return __ctx.toDraftObject((__modified!= null ? __modified : __base).parent());
@@ -1614,6 +1698,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public List<DictData> children() {
                 return __ctx.toDraftList((__modified!= null ? __modified : __base).children(), DictData.class, true);
             }
@@ -1652,6 +1737,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public DictTypeDraft dictType() {
                 return __ctx.toDraftObject((__modified!= null ? __modified : __base).dictType());
@@ -1686,6 +1772,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String parentId() {
                 DictData __target = parent();
@@ -1703,6 +1790,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String dictTypeId() {
                 DictType __target = dictType();
@@ -1720,6 +1808,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String dictLabel() {
                 return (__modified!= null ? __modified : __base).dictLabel();
@@ -1734,6 +1823,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String dictValue() {
                 return (__modified!= null ? __modified : __base).dictValue();
@@ -1748,6 +1838,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public Boolean isSys() {
                 return (__modified!= null ? __modified : __base).isSys();
@@ -1762,6 +1853,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String description() {
                 return (__modified!= null ? __modified : __base).description();
@@ -1776,6 +1868,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String cssStyle() {
                 return (__modified!= null ? __modified : __base).cssStyle();
@@ -1790,6 +1883,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String cssClass() {
                 return (__modified!= null ? __modified : __base).cssClass();
@@ -1804,6 +1898,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String corpCode() {
                 return (__modified!= null ? __modified : __base).corpCode();
@@ -1818,6 +1913,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String corpName() {
                 return (__modified!= null ? __modified : __base).corpName();
@@ -2206,7 +2302,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
                 }
             }
 
-            private Impl __modified() {
+            Impl __modified() {
                 Impl __tmpModified = __modified;
                 if (__tmpModified == null) {
                     __tmpModified = __base.clone();
@@ -2217,243 +2313,200 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
         }
     }
 
-    class MapStruct {
-        private String id;
+    @GeneratedBy(
+            type = DictData.class
+    )
+    class Builder {
+        private final Producer.DraftImpl __draft;
 
-        private Integer status;
-
-        private String createBy;
-
-        private Date createDate;
-
-        private String updateBy;
-
-        private Date updateDate;
-
-        private boolean __remarksLoaded;
-
-        private String remarks;
-
-        private boolean __parentLoaded;
-
-        private DictData parent;
-
-        private List<DictData> children;
-
-        private boolean __dictTypeLoaded;
-
-        private DictType dictType;
-
-        private boolean __dictLabelLoaded;
-
-        private String dictLabel;
-
-        private boolean __dictValueLoaded;
-
-        private String dictValue;
-
-        private boolean __isSysLoaded;
-
-        private Boolean isSys;
-
-        private boolean __descriptionLoaded;
-
-        private String description;
-
-        private boolean __cssStyleLoaded;
-
-        private String cssStyle;
-
-        private boolean __cssClassLoaded;
-
-        private String cssClass;
-
-        private boolean __corpCodeLoaded;
-
-        private String corpCode;
-
-        private boolean __corpNameLoaded;
-
-        private String corpName;
-
-        public MapStruct id(String id) {
-            this.id = id;
-            return this;
+        public Builder() {
+            __draft = new Producer.DraftImpl(null, null);
+            __draft.__show(PropId.byIndex(Producer.SLOT_PARENT), false);
+            __draft.__show(PropId.byIndex(Producer.SLOT_DICT_TYPE), false);
+            __draft.__show(PropId.byIndex(Producer.SLOT_PARENT_ID), false);
+            __draft.__show(PropId.byIndex(Producer.SLOT_DICT_TYPE_ID), false);
         }
 
-        public MapStruct status(Integer status) {
-            this.status = status;
-            return this;
-        }
-
-        public MapStruct createBy(String createBy) {
-            this.createBy = createBy;
-            return this;
-        }
-
-        public MapStruct createDate(Date createDate) {
-            this.createDate = createDate;
-            return this;
-        }
-
-        public MapStruct updateBy(String updateBy) {
-            this.updateBy = updateBy;
-            return this;
-        }
-
-        public MapStruct updateDate(Date updateDate) {
-            this.updateDate = updateDate;
-            return this;
-        }
-
-        public MapStruct remarks(String remarks) {
-            this.__remarksLoaded = true;
-            this.remarks = remarks;
-            return this;
-        }
-
-        public MapStruct parent(DictData parent) {
-            this.__parentLoaded = true;
-            this.parent = parent;
-            return this;
-        }
-
-        public MapStruct children(List<DictData> children) {
-            this.children = children != null ? children : Collections.emptyList();
-            return this;
-        }
-
-        public MapStruct dictType(DictType dictType) {
-            this.__dictTypeLoaded = true;
-            this.dictType = dictType;
-            return this;
-        }
-
-        public MapStruct parentId(String parentId) {
-            this.__parentLoaded = true;
-            if (parentId == null) {
-                this.parent = null;
-            } else {
-                this.parent = ImmutableObjects.makeIdOnly(DictData.class, parentId);
+        @NotNull
+        public Builder id(String id) {
+            if (id != null) {
+                __draft.setId(id);
             }
             return this;
         }
 
-        public MapStruct dictTypeId(String dictTypeId) {
-            this.__dictTypeLoaded = true;
-            if (dictTypeId == null) {
-                this.dictType = null;
-            } else {
-                this.dictType = ImmutableObjects.makeIdOnly(DictType.class, dictTypeId);
+        @Schema(
+                description = "状态"
+        )
+        public Builder status(Integer status) {
+            if (status != null) {
+                __draft.setStatus(status);
             }
             return this;
         }
 
-        public MapStruct dictLabel(String dictLabel) {
-            this.__dictLabelLoaded = true;
-            this.dictLabel = dictLabel;
+        @NotNull
+        public Builder createBy(String createBy) {
+            if (createBy != null) {
+                __draft.setCreateBy(createBy);
+            }
             return this;
         }
 
-        public MapStruct dictValue(String dictValue) {
-            this.__dictValueLoaded = true;
-            this.dictValue = dictValue;
+        @NotNull
+        public Builder createDate(Date createDate) {
+            if (createDate != null) {
+                __draft.setCreateDate(createDate);
+            }
             return this;
         }
 
-        public MapStruct isSys(Boolean isSys) {
-            this.__isSysLoaded = true;
-            this.isSys = isSys;
+        @NotNull
+        public Builder updateBy(String updateBy) {
+            if (updateBy != null) {
+                __draft.setUpdateBy(updateBy);
+            }
             return this;
         }
 
-        public MapStruct description(String description) {
-            this.__descriptionLoaded = true;
-            this.description = description;
+        @NotNull
+        public Builder updateDate(Date updateDate) {
+            if (updateDate != null) {
+                __draft.setUpdateDate(updateDate);
+            }
             return this;
         }
 
-        public MapStruct cssStyle(String cssStyle) {
-            this.__cssStyleLoaded = true;
-            this.cssStyle = cssStyle;
+        @Nullable
+        public Builder remarks(String remarks) {
+            __draft.setRemarks(remarks);
             return this;
         }
 
-        public MapStruct cssClass(String cssClass) {
-            this.__cssClassLoaded = true;
-            this.cssClass = cssClass;
+        @Schema(
+                description = "父级"
+        )
+        @jakarta.annotation.Nullable
+        public Builder parent(DictData parent) {
+            __draft.setParent(parent);
+            __draft.__show(PropId.byIndex(Producer.SLOT_PARENT), true);
             return this;
         }
 
-        public MapStruct corpCode(String corpCode) {
-            this.__corpCodeLoaded = true;
-            this.corpCode = corpCode;
+        @NotNull
+        @Schema(
+                description = "子集"
+        )
+        public Builder children(List<DictData> children) {
+            if (children != null) {
+                __draft.setChildren(children);
+            }
             return this;
         }
 
-        public MapStruct corpName(String corpName) {
-            this.__corpNameLoaded = true;
-            this.corpName = corpName;
+        @Schema(
+                description = "字典类型"
+        )
+        @jakarta.annotation.Nullable
+        public Builder dictType(DictType dictType) {
+            __draft.setDictType(dictType);
+            __draft.__show(PropId.byIndex(Producer.SLOT_DICT_TYPE), true);
+            return this;
+        }
+
+        @Schema(
+                description = "父级id"
+        )
+        @jakarta.annotation.Nullable
+        public Builder parentId(String parentId) {
+            __draft.setParentId(parentId);
+            __draft.__show(PropId.byIndex(Producer.SLOT_PARENT_ID), true);
+            return this;
+        }
+
+        @Schema(
+                description = "字典类型id"
+        )
+        @jakarta.annotation.Nullable
+        public Builder dictTypeId(String dictTypeId) {
+            __draft.setDictTypeId(dictTypeId);
+            __draft.__show(PropId.byIndex(Producer.SLOT_DICT_TYPE_ID), true);
+            return this;
+        }
+
+        @Schema(
+                description = "字典标签"
+        )
+        @jakarta.annotation.Nullable
+        public Builder dictLabel(String dictLabel) {
+            __draft.setDictLabel(dictLabel);
+            return this;
+        }
+
+        @Schema(
+                description = "字典键值"
+        )
+        @jakarta.annotation.Nullable
+        public Builder dictValue(String dictValue) {
+            __draft.setDictValue(dictValue);
+            return this;
+        }
+
+        @Schema(
+                description = "系统内置（1是 0否）"
+        )
+        public Builder isSys(Boolean isSys) {
+            __draft.setIsSys(isSys);
+            return this;
+        }
+
+        @Schema(
+                description = "字典描述"
+        )
+        @jakarta.annotation.Nullable
+        public Builder description(String description) {
+            __draft.setDescription(description);
+            return this;
+        }
+
+        @Schema(
+                description = "css样式（如：color:red)"
+        )
+        @jakarta.annotation.Nullable
+        public Builder cssStyle(String cssStyle) {
+            __draft.setCssStyle(cssStyle);
+            return this;
+        }
+
+        @Schema(
+                description = "css类名（如：red）"
+        )
+        @jakarta.annotation.Nullable
+        public Builder cssClass(String cssClass) {
+            __draft.setCssClass(cssClass);
+            return this;
+        }
+
+        @Schema(
+                description = "租户代码"
+        )
+        @jakarta.annotation.Nullable
+        public Builder corpCode(String corpCode) {
+            __draft.setCorpCode(corpCode);
+            return this;
+        }
+
+        @Schema(
+                description = "租户名称"
+        )
+        @jakarta.annotation.Nullable
+        public Builder corpName(String corpName) {
+            __draft.setCorpName(corpName);
             return this;
         }
 
         public DictData build() {
-            return DictDataDraft.$.produce(__draft -> {
-                if (id != null) {
-                    __draft.setId(id);
-                }
-                if (status != null) {
-                    __draft.setStatus(status);
-                }
-                if (createBy != null) {
-                    __draft.setCreateBy(createBy);
-                }
-                if (createDate != null) {
-                    __draft.setCreateDate(createDate);
-                }
-                if (updateBy != null) {
-                    __draft.setUpdateBy(updateBy);
-                }
-                if (updateDate != null) {
-                    __draft.setUpdateDate(updateDate);
-                }
-                if (__remarksLoaded) {
-                    __draft.setRemarks(remarks);
-                }
-                if (__parentLoaded) {
-                    __draft.setParent(parent);
-                }
-                if (children != null) {
-                    __draft.setChildren(children);
-                }
-                if (__dictTypeLoaded) {
-                    __draft.setDictType(dictType);
-                }
-                if (__dictLabelLoaded) {
-                    __draft.setDictLabel(dictLabel);
-                }
-                if (__dictValueLoaded) {
-                    __draft.setDictValue(dictValue);
-                }
-                if (__isSysLoaded) {
-                    __draft.setIsSys(isSys);
-                }
-                if (__descriptionLoaded) {
-                    __draft.setDescription(description);
-                }
-                if (__cssStyleLoaded) {
-                    __draft.setCssStyle(cssStyle);
-                }
-                if (__cssClassLoaded) {
-                    __draft.setCssClass(cssClass);
-                }
-                if (__corpCodeLoaded) {
-                    __draft.setCorpCode(corpCode);
-                }
-                if (__corpNameLoaded) {
-                    __draft.setCorpName(corpName);
-                }
-            });
+            return (DictData)__draft.__modified();
         }
     }
 }

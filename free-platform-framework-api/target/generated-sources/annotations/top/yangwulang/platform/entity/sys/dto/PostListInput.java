@@ -25,6 +25,9 @@ import top.yangwulang.platform.entity.sys.PostFetcher;
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Post.dto"
 )
+@Schema(
+        description = "岗位"
+)
 public class PostListInput implements Input<Post> {
     public static final ViewMetadata<Post, PostListInput> METADATA = 
         new ViewMetadata<Post, PostListInput>(
@@ -45,22 +48,10 @@ public class PostListInput implements Input<Post> {
         new int[] { PostDraft.Producer.SLOT_POST_NAME }
     );
 
-    @Schema(
-            description = "岗位编码"
-    )
-    @Nullable
     private String postCode;
 
-    @Schema(
-            description = "岗位名称"
-    )
-    @Nullable
     private String postName;
 
-    @Schema(
-            description = "岗位类型（高管、中层、低层）"
-    )
-    @Nullable
     private String postType;
 
     public PostListInput() {
@@ -70,10 +61,6 @@ public class PostListInput implements Input<Post> {
         this.postCode = POST_CODE_ACCESSOR.get(base);
         this.postName = POST_NAME_ACCESSOR.get(base);
         this.postType = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(PostDraft.Producer.SLOT_POST_TYPE)) ? base.postType() : null;
-    }
-
-    public static PostListInput of(@NotNull Post base) {
-        return new PostListInput(base);
     }
 
     /**

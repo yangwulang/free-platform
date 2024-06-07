@@ -52,7 +52,7 @@ unsafe input UserSaveInput {
 LoginUserInfoView {
     #allScalars
     -password
-    -status
+    // -status
     -pwdSecurityLevel
     permission: List<String>
     roles {

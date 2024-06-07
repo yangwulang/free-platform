@@ -23,29 +23,16 @@ import top.yangwulang.platform.entity.sys.AreaTable;
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Area.dto"
 )
+@Schema(
+        description = "区域实体"
+)
 public class AreaListSpecification implements JSpecification<Area, AreaTable> {
-    @Schema(
-            description = "父级id"
-    )
-    @Nullable
     private String parentId;
 
-    @Schema(
-            description = "区域名称"
-    )
-    @Nullable
     private String areaName;
 
-    @Schema(
-            description = "排序"
-    )
-    @Nullable
     private Long sort;
 
-    @Schema(
-            description = "地区类型(1：省份、直辖市；2：地市；3：区县)"
-    )
-    @Nullable
     private String areaType;
 
     public AreaListSpecification() {

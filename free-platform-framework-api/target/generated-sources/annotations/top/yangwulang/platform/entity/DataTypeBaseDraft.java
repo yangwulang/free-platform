@@ -35,12 +35,15 @@ public interface DataTypeBaseDraft extends DataTypeBase, TypeBaseDraft, StatusTy
     @OldChain
     DataTypeBaseDraft setRemarks(String remarks);
 
+    @GeneratedBy(
+            type = DataTypeBase.class
+    )
     class Producer {
         static final Producer INSTANCE = new Producer();
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.114",
+                "0.8.130",
                 DataTypeBase.class,
                 Arrays.asList(
                     TypeBaseDraft.Producer.TYPE,

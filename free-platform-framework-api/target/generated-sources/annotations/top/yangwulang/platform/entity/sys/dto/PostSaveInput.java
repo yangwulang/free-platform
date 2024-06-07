@@ -1,5 +1,7 @@
 package top.yangwulang.platform.entity.sys.dto;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.lang.Object;
 import java.lang.Override;
@@ -7,6 +9,7 @@ import java.lang.String;
 import java.util.Objects;
 import org.babyfish.jimmer.Input;
 import org.babyfish.jimmer.impl.util.DtoPropAccessor;
+import org.babyfish.jimmer.internal.FixedInputField;
 import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
@@ -25,6 +28,12 @@ import top.yangwulang.platform.entity.sys.PostFetcher;
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Post.dto"
 )
+@JsonDeserialize(
+        builder = PostSaveInput.Builder.class
+)
+@Schema(
+        description = "岗位"
+)
 public class PostSaveInput implements Input<Post> {
     public static final ViewMetadata<Post, PostSaveInput> METADATA = 
         new ViewMetadata<Post, PostSaveInput>(
@@ -40,25 +49,14 @@ public class PostSaveInput implements Input<Post> {
         new int[] { PostDraft.Producer.SLOT_ID }
     );
 
-    @Schema(
-            description = "岗位编码"
-    )
-    @NotNull
+    @FixedInputField
     private String postCode;
 
-    @Schema(
-            description = "岗位名称"
-    )
-    @NotNull
+    @FixedInputField
     private String postName;
 
-    @Schema(
-            description = "岗位类型（高管、中层、低层）"
-    )
-    @Nullable
     private String postType;
 
-    @Nullable
     private String id;
 
     public PostSaveInput() {
@@ -71,10 +69,6 @@ public class PostSaveInput implements Input<Post> {
         this.id = ID_ACCESSOR.get(base);
     }
 
-    public static PostSaveInput of(@NotNull Post base) {
-        return new PostSaveInput(base);
-    }
-
     /**
      * 岗位编码
      *
@@ -85,6 +79,9 @@ public class PostSaveInput implements Input<Post> {
             description = "岗位编码"
     )
     public String getPostCode() {
+        if (postCode == null) {
+            throw new IllegalStateException("The property \"postCode\" is not specified");
+        }
         return postCode;
     }
 
@@ -102,6 +99,9 @@ public class PostSaveInput implements Input<Post> {
             description = "岗位名称"
     )
     public String getPostName() {
+        if (postName == null) {
+            throw new IllegalStateException("The property \"postName\" is not specified");
+        }
         return postName;
     }
 
@@ -189,5 +189,53 @@ public class PostSaveInput implements Input<Post> {
         builder.append(", id=").append(id);
         builder.append(')');
         return builder.toString();
+    }
+
+    @JsonPOJOBuilder(
+            withPrefix = ""
+    )
+    public static class Builder {
+        private String postCode;
+
+        private String postName;
+
+        private String postType;
+
+        private String id;
+
+        public Builder postCode(String postCode) {
+            this.postCode = Objects.requireNonNull(postCode, "The property \"postCode\" cannot be null");
+            return this;
+        }
+
+        public Builder postName(String postName) {
+            this.postName = Objects.requireNonNull(postName, "The property \"postName\" cannot be null");
+            return this;
+        }
+
+        public Builder postType(String postType) {
+            this.postType = postType;
+            return this;
+        }
+
+        public Builder id(String id) {
+            this.id = id;
+            return this;
+        }
+
+        public PostSaveInput build() {
+            PostSaveInput _input = new PostSaveInput();
+            if (postCode == null) {
+                throw Input.unknownNonNullProperty(PostSaveInput.class, "postCode");
+            }
+            _input.setPostCode(postCode);
+            if (postName == null) {
+                throw Input.unknownNonNullProperty(PostSaveInput.class, "postName");
+            }
+            _input.setPostName(postName);
+            _input.setPostType(postType);
+            _input.setId(id);
+            return _input;
+        }
     }
 }

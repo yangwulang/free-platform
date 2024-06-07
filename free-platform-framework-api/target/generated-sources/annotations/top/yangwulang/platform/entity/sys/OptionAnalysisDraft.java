@@ -1,6 +1,8 @@
 package top.yangwulang.platform.entity.sys;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.lang.CloneNotSupportedException;
 import java.lang.Cloneable;
@@ -28,6 +30,7 @@ import org.babyfish.jimmer.runtime.ImmutableSpi;
 import org.babyfish.jimmer.runtime.Internal;
 import org.babyfish.jimmer.runtime.Visibility;
 import org.babyfish.jimmer.sql.ManyToOne;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.TypeBaseDraft;
 
@@ -75,6 +78,9 @@ public interface OptionAnalysisDraft extends OptionAnalysis, TypeBaseDraft {
     @OldChain
     OptionAnalysisDraft setMeta(String meta);
 
+    @GeneratedBy(
+            type = OptionAnalysis.class
+    )
     class Producer {
         static final Producer INSTANCE = new Producer();
 
@@ -94,7 +100,7 @@ public interface OptionAnalysisDraft extends OptionAnalysis, TypeBaseDraft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.114",
+                "0.8.130",
                 OptionAnalysis.class,
                 Collections.singleton(TypeBaseDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (OptionAnalysis)base)
@@ -120,6 +126,10 @@ public interface OptionAnalysisDraft extends OptionAnalysis, TypeBaseDraft {
             return (OptionAnalysis)Internal.produce(TYPE, base, block);
         }
 
+        @GeneratedBy(
+                type = OptionAnalysis.class
+        )
+        @JsonPropertyOrder({"dummyPropForJacksonError__", "id", "eventName", "eventCode", "optionUser", "ipAddress", "createDate", "meta"})
         public abstract interface Implementor extends OptionAnalysis, ImmutableSpi {
             @Override
             default Object __get(PropId prop) {
@@ -166,37 +176,51 @@ public interface OptionAnalysisDraft extends OptionAnalysis, TypeBaseDraft {
                 }
             }
 
-            @JsonIgnore
+            @NotNull
             default String getId() {
                 return id();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "事件名称"
+            )
             default String getEventName() {
                 return eventName();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "事件编码"
+            )
             default String getEventCode() {
                 return eventCode();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "操作人，如果没有就是游客"
+            )
+            @jakarta.annotation.Nullable
             default User getOptionUser() {
                 return optionUser();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "ip地址"
+            )
             default String getIpAddress() {
                 return ipAddress();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "创建时间"
+            )
             default Date getCreateDate() {
                 return createDate();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "元数据存取某些相关分析数据json"
+            )
+            @jakarta.annotation.Nullable
             default String getMeta() {
                 return meta();
             }
@@ -211,6 +235,9 @@ public interface OptionAnalysisDraft extends OptionAnalysis, TypeBaseDraft {
             }
         }
 
+        @GeneratedBy(
+                type = OptionAnalysis.class
+        )
         private static class Impl implements Implementor, Cloneable, Serializable {
             private Visibility __visibility;
 
@@ -233,6 +260,7 @@ public interface OptionAnalysisDraft extends OptionAnalysis, TypeBaseDraft {
             boolean __metaLoaded = false;
 
             @Override
+            @JsonIgnore
             public String id() {
                 if (__idValue == null) {
                     throw new UnloadedException(OptionAnalysis.class, "id");
@@ -241,6 +269,7 @@ public interface OptionAnalysisDraft extends OptionAnalysis, TypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String eventName() {
                 if (__eventNameValue == null) {
                     throw new UnloadedException(OptionAnalysis.class, "eventName");
@@ -249,6 +278,7 @@ public interface OptionAnalysisDraft extends OptionAnalysis, TypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String eventCode() {
                 if (__eventCodeValue == null) {
                     throw new UnloadedException(OptionAnalysis.class, "eventCode");
@@ -257,6 +287,7 @@ public interface OptionAnalysisDraft extends OptionAnalysis, TypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public User optionUser() {
                 if (!__optionUserLoaded) {
@@ -266,6 +297,7 @@ public interface OptionAnalysisDraft extends OptionAnalysis, TypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String ipAddress() {
                 if (__ipAddressValue == null) {
                     throw new UnloadedException(OptionAnalysis.class, "ipAddress");
@@ -274,6 +306,7 @@ public interface OptionAnalysisDraft extends OptionAnalysis, TypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public Date createDate() {
                 if (__createDateValue == null) {
                     throw new UnloadedException(OptionAnalysis.class, "createDate");
@@ -282,6 +315,7 @@ public interface OptionAnalysisDraft extends OptionAnalysis, TypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String meta() {
                 if (!__metaLoaded) {
@@ -624,6 +658,9 @@ public interface OptionAnalysisDraft extends OptionAnalysis, TypeBaseDraft {
             }
         }
 
+        @GeneratedBy(
+                type = OptionAnalysis.class
+        )
         private static class DraftImpl implements Implementor, DraftSpi, OptionAnalysisDraft {
             private DraftContext __ctx;
 
@@ -689,6 +726,7 @@ public interface OptionAnalysisDraft extends OptionAnalysis, TypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String id() {
                 return (__modified!= null ? __modified : __base).id();
             }
@@ -706,6 +744,7 @@ public interface OptionAnalysisDraft extends OptionAnalysis, TypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String eventName() {
                 return (__modified!= null ? __modified : __base).eventName();
             }
@@ -723,6 +762,7 @@ public interface OptionAnalysisDraft extends OptionAnalysis, TypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String eventCode() {
                 return (__modified!= null ? __modified : __base).eventCode();
             }
@@ -740,6 +780,7 @@ public interface OptionAnalysisDraft extends OptionAnalysis, TypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public UserDraft optionUser() {
                 return __ctx.toDraftObject((__modified!= null ? __modified : __base).optionUser());
@@ -795,6 +836,7 @@ public interface OptionAnalysisDraft extends OptionAnalysis, TypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String ipAddress() {
                 return (__modified!= null ? __modified : __base).ipAddress();
             }
@@ -812,6 +854,7 @@ public interface OptionAnalysisDraft extends OptionAnalysis, TypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public Date createDate() {
                 return (__modified!= null ? __modified : __base).createDate();
             }
@@ -829,6 +872,7 @@ public interface OptionAnalysisDraft extends OptionAnalysis, TypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String meta() {
                 return (__modified!= null ? __modified : __base).meta();
@@ -1041,7 +1085,7 @@ public interface OptionAnalysisDraft extends OptionAnalysis, TypeBaseDraft {
                 }
             }
 
-            private Impl __modified() {
+            Impl __modified() {
                 Impl __tmpModified = __modified;
                 if (__tmpModified == null) {
                     __tmpModified = __base.clone();
@@ -1052,86 +1096,84 @@ public interface OptionAnalysisDraft extends OptionAnalysis, TypeBaseDraft {
         }
     }
 
-    class MapStruct {
-        private String id;
+    @GeneratedBy(
+            type = OptionAnalysis.class
+    )
+    class Builder {
+        private final Producer.DraftImpl __draft;
 
-        private String eventName;
+        public Builder() {
+            __draft = new Producer.DraftImpl(null, null);
+        }
 
-        private String eventCode;
-
-        private boolean __optionUserLoaded;
-
-        private User optionUser;
-
-        private String ipAddress;
-
-        private Date createDate;
-
-        private boolean __metaLoaded;
-
-        private String meta;
-
-        public MapStruct id(String id) {
-            this.id = id;
+        @NotNull
+        public Builder id(String id) {
+            if (id != null) {
+                __draft.setId(id);
+            }
             return this;
         }
 
-        public MapStruct eventName(String eventName) {
-            this.eventName = eventName;
+        @Schema(
+                description = "事件名称"
+        )
+        public Builder eventName(String eventName) {
+            if (eventName != null) {
+                __draft.setEventName(eventName);
+            }
             return this;
         }
 
-        public MapStruct eventCode(String eventCode) {
-            this.eventCode = eventCode;
+        @Schema(
+                description = "事件编码"
+        )
+        public Builder eventCode(String eventCode) {
+            if (eventCode != null) {
+                __draft.setEventCode(eventCode);
+            }
             return this;
         }
 
-        public MapStruct optionUser(User optionUser) {
-            this.__optionUserLoaded = true;
-            this.optionUser = optionUser;
+        @Schema(
+                description = "操作人，如果没有就是游客"
+        )
+        @jakarta.annotation.Nullable
+        public Builder optionUser(User optionUser) {
+            __draft.setOptionUser(optionUser);
             return this;
         }
 
-        public MapStruct ipAddress(String ipAddress) {
-            this.ipAddress = ipAddress;
+        @Schema(
+                description = "ip地址"
+        )
+        public Builder ipAddress(String ipAddress) {
+            if (ipAddress != null) {
+                __draft.setIpAddress(ipAddress);
+            }
             return this;
         }
 
-        public MapStruct createDate(Date createDate) {
-            this.createDate = createDate;
+        @Schema(
+                description = "创建时间"
+        )
+        public Builder createDate(Date createDate) {
+            if (createDate != null) {
+                __draft.setCreateDate(createDate);
+            }
             return this;
         }
 
-        public MapStruct meta(String meta) {
-            this.__metaLoaded = true;
-            this.meta = meta;
+        @Schema(
+                description = "元数据存取某些相关分析数据json"
+        )
+        @jakarta.annotation.Nullable
+        public Builder meta(String meta) {
+            __draft.setMeta(meta);
             return this;
         }
 
         public OptionAnalysis build() {
-            return OptionAnalysisDraft.$.produce(__draft -> {
-                if (id != null) {
-                    __draft.setId(id);
-                }
-                if (eventName != null) {
-                    __draft.setEventName(eventName);
-                }
-                if (eventCode != null) {
-                    __draft.setEventCode(eventCode);
-                }
-                if (__optionUserLoaded) {
-                    __draft.setOptionUser(optionUser);
-                }
-                if (ipAddress != null) {
-                    __draft.setIpAddress(ipAddress);
-                }
-                if (createDate != null) {
-                    __draft.setCreateDate(createDate);
-                }
-                if (__metaLoaded) {
-                    __draft.setMeta(meta);
-                }
-            });
+            return (OptionAnalysis)__draft.__modified();
         }
     }
 }

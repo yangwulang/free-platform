@@ -1,7 +1,6 @@
 package top.yangwulang.platform.entity.sys.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import java.lang.Integer;
 import java.lang.Long;
 import java.lang.Object;
 import java.lang.Override;
@@ -25,11 +24,13 @@ import top.yangwulang.platform.entity.sys.AreaFetcher;
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Area.dto"
 )
+@Schema(
+        description = "区域实体"
+)
 public class AreaGetView implements View<Area> {
     public static final ViewMetadata<Area, AreaGetView> METADATA = 
         new ViewMetadata<Area, AreaGetView>(
             AreaFetcher.$
-                .status()
                 .createBy()
                 .createDate()
                 .updateBy()
@@ -41,45 +42,22 @@ public class AreaGetView implements View<Area> {
             AreaGetView::new
     );
 
-    @NotNull
     private String id;
 
-    @Schema(
-            description = "状态"
-    )
-    private int status;
-
-    @NotNull
     private String createBy;
 
-    @NotNull
     private Date createDate;
 
-    @NotNull
     private String updateBy;
 
-    @NotNull
     private Date updateDate;
 
-    @Nullable
     private String remarks;
 
-    @Schema(
-            description = "区域名称"
-    )
-    @NotNull
     private String areaName;
 
-    @Schema(
-            description = "排序"
-    )
-    @Nullable
     private Long sort;
 
-    @Schema(
-            description = "地区类型(1：省份、直辖市；2：地市；3：区县)"
-    )
-    @Nullable
     private String areaType;
 
     public AreaGetView() {
@@ -87,7 +65,6 @@ public class AreaGetView implements View<Area> {
 
     public AreaGetView(@NotNull Area base) {
         this.id = base.id();
-        this.status = base.status();
         this.createBy = base.createBy();
         this.createDate = base.createDate();
         this.updateBy = base.updateBy();
@@ -98,32 +75,20 @@ public class AreaGetView implements View<Area> {
         this.areaType = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(AreaDraft.Producer.SLOT_AREA_TYPE)) ? base.areaType() : null;
     }
 
-    public static AreaGetView of(@NotNull Area base) {
-        return new AreaGetView(base);
-    }
-
     /**
      * 字典类型编码
      * @return 主键值
      */
     @NotNull
     public String getId() {
+        if (id == null) {
+            throw new IllegalStateException("The property \"id\" is not specified");
+        }
         return id;
     }
 
     public void setId(@NotNull String id) {
         this.id = id;
-    }
-
-    @Schema(
-            description = "状态"
-    )
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
     }
 
     /**
@@ -133,6 +98,9 @@ public class AreaGetView implements View<Area> {
      */
     @NotNull
     public String getCreateBy() {
+        if (createBy == null) {
+            throw new IllegalStateException("The property \"createBy\" is not specified");
+        }
         return createBy;
     }
 
@@ -147,6 +115,9 @@ public class AreaGetView implements View<Area> {
      */
     @NotNull
     public Date getCreateDate() {
+        if (createDate == null) {
+            throw new IllegalStateException("The property \"createDate\" is not specified");
+        }
         return createDate;
     }
 
@@ -161,6 +132,9 @@ public class AreaGetView implements View<Area> {
      */
     @NotNull
     public String getUpdateBy() {
+        if (updateBy == null) {
+            throw new IllegalStateException("The property \"updateBy\" is not specified");
+        }
         return updateBy;
     }
 
@@ -175,6 +149,9 @@ public class AreaGetView implements View<Area> {
      */
     @NotNull
     public Date getUpdateDate() {
+        if (updateDate == null) {
+            throw new IllegalStateException("The property \"updateDate\" is not specified");
+        }
         return updateDate;
     }
 
@@ -204,6 +181,9 @@ public class AreaGetView implements View<Area> {
             description = "区域名称"
     )
     public String getAreaName() {
+        if (areaName == null) {
+            throw new IllegalStateException("The property \"areaName\" is not specified");
+        }
         return areaName;
     }
 
@@ -245,7 +225,6 @@ public class AreaGetView implements View<Area> {
     public Area toEntity() {
         return AreaDraft.$.produce(__draft -> {
             __draft.setId(id);
-            __draft.setStatus(status);
             __draft.setCreateBy(createBy);
             __draft.setCreateDate(createDate);
             __draft.setUpdateBy(updateBy);
@@ -260,7 +239,6 @@ public class AreaGetView implements View<Area> {
     @Override
     public int hashCode() {
         int hash = Objects.hashCode(id);
-        hash = hash * 31 + Integer.hashCode(status);
         hash = hash * 31 + Objects.hashCode(createBy);
         hash = hash * 31 + Objects.hashCode(createDate);
         hash = hash * 31 + Objects.hashCode(updateBy);
@@ -279,9 +257,6 @@ public class AreaGetView implements View<Area> {
         }
         AreaGetView other = (AreaGetView) o;
         if (!Objects.equals(id, other.id)) {
-            return false;
-        }
-        if (status != other.status) {
             return false;
         }
         if (!Objects.equals(createBy, other.createBy)) {
@@ -316,7 +291,6 @@ public class AreaGetView implements View<Area> {
         StringBuilder builder = new StringBuilder();
         builder.append("AreaGetView").append('(');
         builder.append("id=").append(id);
-        builder.append(", status=").append(status);
         builder.append(", createBy=").append(createBy);
         builder.append(", createDate=").append(createDate);
         builder.append(", updateBy=").append(updateBy);

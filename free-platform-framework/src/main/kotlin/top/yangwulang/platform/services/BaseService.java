@@ -148,7 +148,7 @@ public interface BaseService<E, ID, P extends JRepository<E, ID>> {
      * <p>Note: The 'merge' of 'Jimmer' and the 'merge' of 'JPA' are completely different concepts!</p>
      */
     default <S extends E> SimpleSaveResult<S> merge(@NotNull S entity) {
-        return saveCommand(entity).setMergeMode().execute();
+        return saveCommand(entity).setAssociatedModeAll(AssociatedSaveMode.MERGE).execute();
     }
 
     /**
@@ -159,7 +159,7 @@ public interface BaseService<E, ID, P extends JRepository<E, ID>> {
      * <p>Note: The 'merge' of 'Jimmer' and the 'merge' of 'JPA' are completely different concepts!</p>
      */
     default SimpleSaveResult<E> merge(@NotNull Input<E> input) {
-        return saveCommand(input.toEntity()).setMergeMode().execute();
+        return saveCommand(input.toEntity()).setAssociatedModeAll(AssociatedSaveMode.MERGE).execute();
     }
 
     /**
@@ -170,7 +170,7 @@ public interface BaseService<E, ID, P extends JRepository<E, ID>> {
      * <p>Note: The 'merge' of 'Jimmer' and the 'merge' of 'JPA' are completely different concepts!</p>
      */
     default <S extends E> SimpleSaveResult<S> merge(@NotNull S entity, SaveMode mode) {
-        return saveCommand(entity).setMergeMode().setMode(mode).execute();
+        return saveCommand(entity).setAssociatedModeAll(AssociatedSaveMode.MERGE).setMode(mode).execute();
     }
 
     /**
@@ -181,7 +181,7 @@ public interface BaseService<E, ID, P extends JRepository<E, ID>> {
      * <p>Note: The 'merge' of 'Jimmer' and the 'merge' of 'JPA' are completely different concepts!</p>
      */
     default SimpleSaveResult<E> merge(@NotNull Input<E> input, SaveMode mode) {
-        return saveCommand(input.toEntity()).setMergeMode().setMode(mode).execute();
+        return saveCommand(input.toEntity()).setAssociatedModeAll(AssociatedSaveMode.MERGE).setMode(mode).execute();
     }
 
     @NotNull

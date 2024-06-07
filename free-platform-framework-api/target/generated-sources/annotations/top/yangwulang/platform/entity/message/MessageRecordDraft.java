@@ -1,6 +1,9 @@
 package top.yangwulang.platform.entity.message;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.annotation.Nullable;
 import java.io.Serializable;
 import java.lang.CloneNotSupportedException;
 import java.lang.Cloneable;
@@ -13,7 +16,6 @@ import java.lang.SuppressWarnings;
 import java.lang.System;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import org.babyfish.jimmer.CircularReferenceException;
@@ -35,7 +37,7 @@ import org.babyfish.jimmer.runtime.Visibility;
 import org.babyfish.jimmer.sql.ManyToManyView;
 import org.babyfish.jimmer.sql.OneToMany;
 import org.babyfish.jimmer.sql.collection.ManyToManyViewList;
-import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.NotNull;
 import top.yangwulang.platform.entity.StatusTypeBaseDraft;
 import top.yangwulang.platform.entity.TypeBaseDraft;
 import top.yangwulang.platform.entity.sys.User;
@@ -82,6 +84,9 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
     MessageRecordDraft addIntoMessageRecordUsers(MessageRecordUser base,
             DraftConsumer<MessageRecordUserDraft> block);
 
+    @GeneratedBy(
+            type = MessageRecord.class
+    )
     class Producer {
         static final Producer INSTANCE = new Producer();
 
@@ -107,7 +112,7 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.114",
+                "0.8.130",
                 MessageRecord.class,
                 Arrays.asList(
                     TypeBaseDraft.Producer.TYPE,
@@ -138,6 +143,10 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
             return (MessageRecord)Internal.produce(TYPE, base, block);
         }
 
+        @GeneratedBy(
+                type = MessageRecord.class
+        )
+        @JsonPropertyOrder({"dummyPropForJacksonError__", "id", "status", "type", "title", "subTitle", "avatar", "content", "messageType", "targetUsers", "messageRecordUsers"})
         public abstract interface Implementor extends MessageRecord, ImmutableSpi {
             PropId DEEPER_PROP_ID_TARGET_USERS = Producer.TYPE.getProp("targetUsers").getManyToManyViewBaseDeeperProp().getId();
 
@@ -198,42 +207,57 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
                 }
             }
 
-            @JsonIgnore
+            @NotNull
             default String getId() {
                 return id();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "状态"
+            )
             default int getStatus() {
                 return status();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "类型"
+            )
             default String getType() {
                 return type();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "消息标题"
+            )
             default String getTitle() {
                 return title();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "消息子标题"
+            )
             default String getSubTitle() {
                 return subTitle();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "消息icon"
+            )
+            @Nullable
             default String getAvatar() {
                 return avatar();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "消息内容"
+            )
             default String getContent() {
                 return content();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "消息类型"
+            )
             default Integer getMessageType() {
                 return messageType();
             }
@@ -245,12 +269,13 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
                         );
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "接收的用户"
+            )
             default List<User> getTargetUsers() {
                 return targetUsers();
             }
 
-            @JsonIgnore
             default List<MessageRecordUser> getMessageRecordUsers() {
                 return messageRecordUsers();
             }
@@ -265,6 +290,9 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
             }
         }
 
+        @GeneratedBy(
+                type = MessageRecord.class
+        )
         private static class Impl implements Implementor, Cloneable, Serializable {
             private Visibility __visibility;
 
@@ -298,6 +326,7 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
             }
 
             @Override
+            @JsonIgnore
             public String id() {
                 if (__idValue == null) {
                     throw new UnloadedException(MessageRecord.class, "id");
@@ -306,6 +335,7 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
             }
 
             @Override
+            @JsonIgnore
             public int status() {
                 if (!__statusLoaded) {
                     throw new UnloadedException(MessageRecord.class, "status");
@@ -314,6 +344,7 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
             }
 
             @Override
+            @JsonIgnore
             public String type() {
                 if (__typeValue == null) {
                     throw new UnloadedException(MessageRecord.class, "type");
@@ -322,6 +353,7 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
             }
 
             @Override
+            @JsonIgnore
             public String title() {
                 if (__titleValue == null) {
                     throw new UnloadedException(MessageRecord.class, "title");
@@ -330,6 +362,7 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
             }
 
             @Override
+            @JsonIgnore
             public String subTitle() {
                 if (__subTitleValue == null) {
                     throw new UnloadedException(MessageRecord.class, "subTitle");
@@ -338,7 +371,8 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
             }
 
             @Override
-            @Nullable
+            @JsonIgnore
+            @org.jetbrains.annotations.Nullable
             public String avatar() {
                 if (!__avatarLoaded) {
                     throw new UnloadedException(MessageRecord.class, "avatar");
@@ -347,6 +381,7 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
             }
 
             @Override
+            @JsonIgnore
             public String content() {
                 if (__contentValue == null) {
                     throw new UnloadedException(MessageRecord.class, "content");
@@ -355,7 +390,8 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
             }
 
             @Override
-            @Nullable
+            @JsonIgnore
+            @org.jetbrains.annotations.Nullable
             public Integer messageType() {
                 if (!__messageTypeLoaded) {
                     throw new UnloadedException(MessageRecord.class, "messageType");
@@ -364,6 +400,7 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
             }
 
             @Override
+            @JsonIgnore
             public List<MessageRecordUser> messageRecordUsers() {
                 if (__messageRecordUsersValue == null) {
                     throw new UnloadedException(MessageRecord.class, "messageRecordUsers");
@@ -791,6 +828,9 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
             }
         }
 
+        @GeneratedBy(
+                type = MessageRecord.class
+        )
         private static class DraftImpl implements Implementor, DraftSpi, MessageRecordDraft {
             private DraftContext __ctx;
 
@@ -856,6 +896,7 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
             }
 
             @Override
+            @JsonIgnore
             public String id() {
                 return (__modified!= null ? __modified : __base).id();
             }
@@ -873,6 +914,7 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
             }
 
             @Override
+            @JsonIgnore
             public int status() {
                 return (__modified!= null ? __modified : __base).status();
             }
@@ -886,6 +928,7 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
             }
 
             @Override
+            @JsonIgnore
             public String type() {
                 return (__modified!= null ? __modified : __base).type();
             }
@@ -903,6 +946,7 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
             }
 
             @Override
+            @JsonIgnore
             public String title() {
                 return (__modified!= null ? __modified : __base).title();
             }
@@ -920,6 +964,7 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
             }
 
             @Override
+            @JsonIgnore
             public String subTitle() {
                 return (__modified!= null ? __modified : __base).subTitle();
             }
@@ -937,7 +982,8 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
             }
 
             @Override
-            @Nullable
+            @JsonIgnore
+            @org.jetbrains.annotations.Nullable
             public String avatar() {
                 return (__modified!= null ? __modified : __base).avatar();
             }
@@ -951,6 +997,7 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
             }
 
             @Override
+            @JsonIgnore
             public String content() {
                 return (__modified!= null ? __modified : __base).content();
             }
@@ -968,7 +1015,8 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
             }
 
             @Override
-            @Nullable
+            @JsonIgnore
+            @org.jetbrains.annotations.Nullable
             public Integer messageType() {
                 return (__modified!= null ? __modified : __base).messageType();
             }
@@ -982,6 +1030,7 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
             }
 
             @Override
+            @JsonIgnore
             public List<MessageRecordUser> messageRecordUsers() {
                 return __ctx.toDraftList((__modified!= null ? __modified : __base).messageRecordUsers(), MessageRecordUser.class, true);
             }
@@ -1260,7 +1309,7 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
                 }
             }
 
-            private Impl __modified() {
+            Impl __modified() {
                 Impl __tmpModified = __modified;
                 if (__tmpModified == null) {
                     __tmpModified = __base.clone();
@@ -1271,108 +1320,103 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
         }
     }
 
-    class MapStruct {
-        private String id;
+    @GeneratedBy(
+            type = MessageRecord.class
+    )
+    class Builder {
+        private final Producer.DraftImpl __draft;
 
-        private Integer status;
+        public Builder() {
+            __draft = new Producer.DraftImpl(null, null);
+            __draft.__show(PropId.byIndex(Producer.SLOT_TARGET_USERS), false);
+            __draft.__show(PropId.byIndex(Producer.SLOT_MESSAGE_RECORD_USERS), false);
+        }
 
-        private String type;
-
-        private String title;
-
-        private String subTitle;
-
-        private boolean __avatarLoaded;
-
-        private String avatar;
-
-        private String content;
-
-        private boolean __messageTypeLoaded;
-
-        private Integer messageType;
-
-        private List<User> targetUsers;
-
-        private List<MessageRecordUser> messageRecordUsers;
-
-        public MapStruct id(String id) {
-            this.id = id;
+        @NotNull
+        public Builder id(String id) {
+            if (id != null) {
+                __draft.setId(id);
+            }
             return this;
         }
 
-        public MapStruct status(Integer status) {
-            this.status = status;
+        @Schema(
+                description = "状态"
+        )
+        public Builder status(Integer status) {
+            if (status != null) {
+                __draft.setStatus(status);
+            }
             return this;
         }
 
-        public MapStruct type(String type) {
-            this.type = type;
+        @Schema(
+                description = "类型"
+        )
+        public Builder type(String type) {
+            if (type != null) {
+                __draft.setType(type);
+            }
             return this;
         }
 
-        public MapStruct title(String title) {
-            this.title = title;
+        @Schema(
+                description = "消息标题"
+        )
+        public Builder title(String title) {
+            if (title != null) {
+                __draft.setTitle(title);
+            }
             return this;
         }
 
-        public MapStruct subTitle(String subTitle) {
-            this.subTitle = subTitle;
+        @Schema(
+                description = "消息子标题"
+        )
+        public Builder subTitle(String subTitle) {
+            if (subTitle != null) {
+                __draft.setSubTitle(subTitle);
+            }
             return this;
         }
 
-        public MapStruct avatar(String avatar) {
-            this.__avatarLoaded = true;
-            this.avatar = avatar;
+        @Schema(
+                description = "消息icon"
+        )
+        @Nullable
+        public Builder avatar(String avatar) {
+            __draft.setAvatar(avatar);
             return this;
         }
 
-        public MapStruct content(String content) {
-            this.content = content;
+        @Schema(
+                description = "消息内容"
+        )
+        public Builder content(String content) {
+            if (content != null) {
+                __draft.setContent(content);
+            }
             return this;
         }
 
-        public MapStruct messageType(Integer messageType) {
-            this.__messageTypeLoaded = true;
-            this.messageType = messageType;
+        @Schema(
+                description = "消息类型"
+        )
+        public Builder messageType(Integer messageType) {
+            __draft.setMessageType(messageType);
             return this;
         }
 
-        public MapStruct messageRecordUsers(List<MessageRecordUser> messageRecordUsers) {
-            this.messageRecordUsers = messageRecordUsers != null ? messageRecordUsers : Collections.emptyList();
+        public Builder messageRecordUsers(List<MessageRecordUser> messageRecordUsers) {
+            if (messageRecordUsers != null) {
+                __draft.setMessageRecordUsers(messageRecordUsers);
+                __draft.__show(PropId.byIndex(Producer.SLOT_MESSAGE_RECORD_USERS), true);
+            }
             return this;
         }
 
         public MessageRecord build() {
-            return MessageRecordDraft.$.produce(__draft -> {
-                if (id != null) {
-                    __draft.setId(id);
-                }
-                if (status != null) {
-                    __draft.setStatus(status);
-                }
-                if (type != null) {
-                    __draft.setType(type);
-                }
-                if (title != null) {
-                    __draft.setTitle(title);
-                }
-                if (subTitle != null) {
-                    __draft.setSubTitle(subTitle);
-                }
-                if (__avatarLoaded) {
-                    __draft.setAvatar(avatar);
-                }
-                if (content != null) {
-                    __draft.setContent(content);
-                }
-                if (__messageTypeLoaded) {
-                    __draft.setMessageType(messageType);
-                }
-                if (messageRecordUsers != null) {
-                    __draft.setMessageRecordUsers(messageRecordUsers);
-                }
-            });
+            return (MessageRecord)__draft.__modified();
         }
     }
 }

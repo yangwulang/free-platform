@@ -1,5 +1,7 @@
 package top.yangwulang.platform.entity.sys.dto;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.lang.Boolean;
 import java.lang.Object;
@@ -8,6 +10,7 @@ import java.lang.String;
 import java.math.BigDecimal;
 import java.util.Objects;
 import org.babyfish.jimmer.Input;
+import org.babyfish.jimmer.internal.FixedInputField;
 import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
@@ -25,6 +28,12 @@ import top.yangwulang.platform.entity.sys.MenuFetcher;
  */
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Menu.dto"
+)
+@JsonDeserialize(
+        builder = MenuSaveInput.Builder.class
+)
+@Schema(
+        description = "菜单实体"
 )
 public class MenuSaveInput implements Input<Menu> {
     public static final ViewMetadata<Menu, MenuSaveInput> METADATA = 
@@ -46,82 +55,35 @@ public class MenuSaveInput implements Input<Menu> {
             MenuSaveInput::new
     );
 
-    @NotNull
+    @FixedInputField
     private String id;
 
-    @Nullable
     private String parentId;
 
-    @Schema(
-            description = "菜单名称"
-    )
-    @NotNull
+    @FixedInputField
     private String menuName;
 
-    @Schema(
-            description = "菜单类型（1菜单 2权限 3开发）"
-    )
-    @NotNull
+    @FixedInputField
     private String menuType;
 
-    @Schema(
-            description = "链接"
-    )
-    @Nullable
     private String menuHref;
 
-    @Schema(
-            description = "组件地址"
-    )
-    @Nullable
     private String menuComponent;
 
-    @Schema(
-            description = "目标"
-    )
-    @Nullable
     private String menuTarget;
 
-    @Schema(
-            description = "图标"
-    )
-    @Nullable
     private String menuIcon;
 
-    @Schema(
-            description = "颜色"
-    )
-    @Nullable
     private String menuColor;
 
-    @Schema(
-            description = "菜单标题"
-    )
-    @Nullable
     private String menuTitle;
 
-    @Schema(
-            description = "权限标识"
-    )
-    @Nullable
     private String permission;
 
-    @Schema(
-            description = "菜单权重"
-    )
-    @Nullable
     private BigDecimal weight;
 
-    @Schema(
-            description = "是否显示"
-    )
-    @Nullable
     private Boolean isShow;
 
-    @Schema(
-            description = "归属系统（default:主导航菜单、mobileApp:APP菜单）"
-    )
-    @Nullable
     private String sysCode;
 
     public MenuSaveInput() {
@@ -144,16 +106,15 @@ public class MenuSaveInput implements Input<Menu> {
         this.sysCode = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_SYS_CODE)) ? base.sysCode() : null;
     }
 
-    public static MenuSaveInput of(@NotNull Menu base) {
-        return new MenuSaveInput(base);
-    }
-
     /**
      * 字典类型编码
      * @return 主键值
      */
     @NotNull
     public String getId() {
+        if (id == null) {
+            throw new IllegalStateException("The property \"id\" is not specified");
+        }
         return id;
     }
 
@@ -178,6 +139,9 @@ public class MenuSaveInput implements Input<Menu> {
             description = "菜单名称"
     )
     public String getMenuName() {
+        if (menuName == null) {
+            throw new IllegalStateException("The property \"menuName\" is not specified");
+        }
         return menuName;
     }
 
@@ -193,6 +157,9 @@ public class MenuSaveInput implements Input<Menu> {
             description = "菜单类型（1菜单 2权限 3开发）"
     )
     public String getMenuType() {
+        if (menuType == null) {
+            throw new IllegalStateException("The property \"menuType\" is not specified");
+        }
         return menuType;
     }
 
@@ -460,5 +427,136 @@ public class MenuSaveInput implements Input<Menu> {
         builder.append(", sysCode=").append(sysCode);
         builder.append(')');
         return builder.toString();
+    }
+
+    @JsonPOJOBuilder(
+            withPrefix = ""
+    )
+    public static class Builder {
+        private String id;
+
+        private String parentId;
+
+        private String menuName;
+
+        private String menuType;
+
+        private String menuHref;
+
+        private String menuComponent;
+
+        private String menuTarget;
+
+        private String menuIcon;
+
+        private String menuColor;
+
+        private String menuTitle;
+
+        private String permission;
+
+        private BigDecimal weight;
+
+        private Boolean isShow;
+
+        private String sysCode;
+
+        public Builder id(String id) {
+            this.id = Objects.requireNonNull(id, "The property \"id\" cannot be null");
+            return this;
+        }
+
+        public Builder parentId(String parentId) {
+            this.parentId = parentId;
+            return this;
+        }
+
+        public Builder menuName(String menuName) {
+            this.menuName = Objects.requireNonNull(menuName, "The property \"menuName\" cannot be null");
+            return this;
+        }
+
+        public Builder menuType(String menuType) {
+            this.menuType = Objects.requireNonNull(menuType, "The property \"menuType\" cannot be null");
+            return this;
+        }
+
+        public Builder menuHref(String menuHref) {
+            this.menuHref = menuHref;
+            return this;
+        }
+
+        public Builder menuComponent(String menuComponent) {
+            this.menuComponent = menuComponent;
+            return this;
+        }
+
+        public Builder menuTarget(String menuTarget) {
+            this.menuTarget = menuTarget;
+            return this;
+        }
+
+        public Builder menuIcon(String menuIcon) {
+            this.menuIcon = menuIcon;
+            return this;
+        }
+
+        public Builder menuColor(String menuColor) {
+            this.menuColor = menuColor;
+            return this;
+        }
+
+        public Builder menuTitle(String menuTitle) {
+            this.menuTitle = menuTitle;
+            return this;
+        }
+
+        public Builder permission(String permission) {
+            this.permission = permission;
+            return this;
+        }
+
+        public Builder weight(BigDecimal weight) {
+            this.weight = weight;
+            return this;
+        }
+
+        public Builder isShow(Boolean isShow) {
+            this.isShow = isShow;
+            return this;
+        }
+
+        public Builder sysCode(String sysCode) {
+            this.sysCode = sysCode;
+            return this;
+        }
+
+        public MenuSaveInput build() {
+            MenuSaveInput _input = new MenuSaveInput();
+            if (id == null) {
+                throw Input.unknownNonNullProperty(MenuSaveInput.class, "id");
+            }
+            _input.setId(id);
+            _input.setParentId(parentId);
+            if (menuName == null) {
+                throw Input.unknownNonNullProperty(MenuSaveInput.class, "menuName");
+            }
+            _input.setMenuName(menuName);
+            if (menuType == null) {
+                throw Input.unknownNonNullProperty(MenuSaveInput.class, "menuType");
+            }
+            _input.setMenuType(menuType);
+            _input.setMenuHref(menuHref);
+            _input.setMenuComponent(menuComponent);
+            _input.setMenuTarget(menuTarget);
+            _input.setMenuIcon(menuIcon);
+            _input.setMenuColor(menuColor);
+            _input.setMenuTitle(menuTitle);
+            _input.setPermission(permission);
+            _input.setWeight(weight);
+            _input.setIsShow(isShow);
+            _input.setSysCode(sysCode);
+            return _input;
+        }
     }
 }

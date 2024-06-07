@@ -22,6 +22,9 @@ import top.yangwulang.platform.entity.sys.CompanyFetcher;
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Company.dto"
 )
+@Schema(
+        description = "公司实体"
+)
 public class CompanyListInput implements Input<Company> {
     public static final ViewMetadata<Company, CompanyListInput> METADATA = 
         new ViewMetadata<Company, CompanyListInput>(
@@ -35,10 +38,6 @@ public class CompanyListInput implements Input<Company> {
         new int[] { CompanyDraft.Producer.SLOT_COMPANY_NAME }
     );
 
-    @Schema(
-            description = "公司名称"
-    )
-    @Nullable
     private String companyName;
 
     public CompanyListInput() {
@@ -46,10 +45,6 @@ public class CompanyListInput implements Input<Company> {
 
     public CompanyListInput(@NotNull Company base) {
         this.companyName = COMPANY_NAME_ACCESSOR.get(base);
-    }
-
-    public static CompanyListInput of(@NotNull Company base) {
-        return new CompanyListInput(base);
     }
 
     /**

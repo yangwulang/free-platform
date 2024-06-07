@@ -66,6 +66,9 @@ public class FileEntityTable extends AbstractTypedTable<FileEntity> implements F
         return new FileEntityTable(this, reason);
     }
 
+    @GeneratedBy(
+            type = FileEntity.class
+    )
     public static class Remote extends AbstractTypedTable<FileEntity> {
         public Remote(AbstractTypedTable.DelayedOperation delayedOperation) {
             super(FileEntity.class, delayedOperation);

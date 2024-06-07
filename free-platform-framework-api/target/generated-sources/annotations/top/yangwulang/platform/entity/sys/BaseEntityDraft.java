@@ -33,12 +33,15 @@ public interface BaseEntityDraft extends BaseEntity, Draft {
     @OldChain
     BaseEntityDraft setRemarks(String remarks);
 
+    @GeneratedBy(
+            type = BaseEntity.class
+    )
     class Producer {
         static final Producer INSTANCE = new Producer();
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.114",
+                "0.8.130",
                 BaseEntity.class,
                 Collections.emptyList(),
                 null

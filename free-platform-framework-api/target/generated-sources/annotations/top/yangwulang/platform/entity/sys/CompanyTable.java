@@ -107,6 +107,9 @@ public class CompanyTable extends AbstractTypedTable<Company> implements Company
         return new CompanyTable(this, reason);
     }
 
+    @GeneratedBy(
+            type = Company.class
+    )
     public static class Remote extends AbstractTypedTable<Company> {
         public Remote(AbstractTypedTable.DelayedOperation delayedOperation) {
             super(Company.class, delayedOperation);

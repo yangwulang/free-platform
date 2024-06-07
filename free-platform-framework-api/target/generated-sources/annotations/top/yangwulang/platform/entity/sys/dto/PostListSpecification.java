@@ -24,23 +24,14 @@ import top.yangwulang.platform.entity.sys.PostTable;
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Post.dto"
 )
+@Schema(
+        description = "岗位"
+)
 public class PostListSpecification implements JSpecification<Post, PostTable> {
-    @Schema(
-            description = "岗位编码"
-    )
-    @Nullable
     private String postCode;
 
-    @Schema(
-            description = "岗位名称"
-    )
-    @Nullable
     private String postName;
 
-    @Schema(
-            description = "岗位类型（高管、中层、低层）"
-    )
-    @Nullable
     private String postType;
 
     public PostListSpecification() {

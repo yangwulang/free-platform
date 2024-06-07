@@ -1,6 +1,8 @@
 package top.yangwulang.platform.entity.sys;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.lang.Boolean;
 import java.lang.CloneNotSupportedException;
@@ -37,6 +39,7 @@ import org.babyfish.jimmer.runtime.Visibility;
 import org.babyfish.jimmer.sql.ManyToMany;
 import org.babyfish.jimmer.sql.ManyToOne;
 import org.babyfish.jimmer.sql.OneToMany;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.DataTypeBaseDraft;
 
@@ -142,6 +145,9 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
     @OldChain
     MenuDraft addIntoRoles(Role base, DraftConsumer<RoleDraft> block);
 
+    @GeneratedBy(
+            type = Menu.class
+    )
     class Producer {
         static final Producer INSTANCE = new Producer();
 
@@ -193,7 +199,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.114",
+                "0.8.130",
                 Menu.class,
                 Collections.singleton(DataTypeBaseDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (Menu)base)
@@ -234,6 +240,10 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             return (Menu)Internal.produce(TYPE, base, block);
         }
 
+        @GeneratedBy(
+                type = Menu.class
+        )
+        @JsonPropertyOrder({"dummyPropForJacksonError__", "id", "status", "createBy", "createDate", "updateBy", "updateDate", "remarks", "parent", "parentId", "children", "menuName", "menuType", "menuHref", "menuComponent", "menuTarget", "menuIcon", "menuColor", "menuTitle", "permission", "weight", "isShow", "sysCode", "roles"})
         public abstract interface Implementor extends Menu, ImmutableSpi {
             @Override
             default Object __get(PropId prop) {
@@ -344,117 +354,157 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                 }
             }
 
-            @JsonIgnore
+            @NotNull
             default String getId() {
                 return id();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "状态"
+            )
             default int getStatus() {
                 return status();
             }
 
-            @JsonIgnore
+            @NotNull
             default String getCreateBy() {
                 return createBy();
             }
 
-            @JsonIgnore
+            @NotNull
             default Date getCreateDate() {
                 return createDate();
             }
 
-            @JsonIgnore
+            @NotNull
             default String getUpdateBy() {
                 return updateBy();
             }
 
-            @JsonIgnore
+            @NotNull
             default Date getUpdateDate() {
                 return updateDate();
             }
 
-            @JsonIgnore
+            @Nullable
             default String getRemarks() {
                 return remarks();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "父级菜单"
+            )
+            @jakarta.annotation.Nullable
             default Menu getParent() {
                 return parent();
             }
 
-            @JsonIgnore
+            @jakarta.annotation.Nullable
             default String getParentId() {
                 return parentId();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "子级菜单"
+            )
             default List<Menu> getChildren() {
                 return children();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "菜单名称"
+            )
             default String getMenuName() {
                 return menuName();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "菜单类型（1菜单 2权限 3开发）"
+            )
             default String getMenuType() {
                 return menuType();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "链接"
+            )
+            @jakarta.annotation.Nullable
             default String getMenuHref() {
                 return menuHref();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "组件地址"
+            )
+            @jakarta.annotation.Nullable
             default String getMenuComponent() {
                 return menuComponent();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "目标"
+            )
+            @jakarta.annotation.Nullable
             default String getMenuTarget() {
                 return menuTarget();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "图标"
+            )
+            @jakarta.annotation.Nullable
             default String getMenuIcon() {
                 return menuIcon();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "颜色"
+            )
+            @jakarta.annotation.Nullable
             default String getMenuColor() {
                 return menuColor();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "菜单标题"
+            )
+            @jakarta.annotation.Nullable
             default String getMenuTitle() {
                 return menuTitle();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "权限标识"
+            )
+            @jakarta.annotation.Nullable
             default String getPermission() {
                 return permission();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "菜单权重"
+            )
+            @jakarta.annotation.Nullable
             default BigDecimal getWeight() {
                 return weight();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "是否显示"
+            )
+            @jakarta.annotation.Nullable
             default Boolean getIsShow() {
                 return isShow();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "归属系统（default:主导航菜单、mobileApp:APP菜单）"
+            )
+            @jakarta.annotation.Nullable
             default String getSysCode() {
                 return sysCode();
             }
 
-            @JsonIgnore
             default List<Role> getRoles() {
                 return roles();
             }
@@ -469,6 +519,9 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
         }
 
+        @GeneratedBy(
+                type = Menu.class
+        )
         private static class Impl implements Implementor, Cloneable, Serializable {
             private Visibility __visibility;
 
@@ -548,6 +601,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String id() {
                 if (__idValue == null) {
                     throw new UnloadedException(Menu.class, "id");
@@ -556,6 +610,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public int status() {
                 if (!__statusLoaded) {
                     throw new UnloadedException(Menu.class, "status");
@@ -564,6 +619,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String createBy() {
                 if (__createByValue == null) {
                     throw new UnloadedException(Menu.class, "createBy");
@@ -572,6 +628,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public Date createDate() {
                 if (__createDateValue == null) {
                     throw new UnloadedException(Menu.class, "createDate");
@@ -580,6 +637,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String updateBy() {
                 if (__updateByValue == null) {
                     throw new UnloadedException(Menu.class, "updateBy");
@@ -588,6 +646,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public Date updateDate() {
                 if (__updateDateValue == null) {
                     throw new UnloadedException(Menu.class, "updateDate");
@@ -596,6 +655,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String remarks() {
                 if (!__remarksLoaded) {
@@ -605,6 +665,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public Menu parent() {
                 if (!__parentLoaded) {
@@ -614,6 +675,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String parentId() {
                 Menu __target = parent();
@@ -621,6 +683,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public List<Menu> children() {
                 if (__childrenValue == null) {
                     throw new UnloadedException(Menu.class, "children");
@@ -629,6 +692,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String menuName() {
                 if (__menuNameValue == null) {
                     throw new UnloadedException(Menu.class, "menuName");
@@ -637,6 +701,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String menuType() {
                 if (__menuTypeValue == null) {
                     throw new UnloadedException(Menu.class, "menuType");
@@ -645,6 +710,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String menuHref() {
                 if (!__menuHrefLoaded) {
@@ -654,6 +720,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String menuComponent() {
                 if (!__menuComponentLoaded) {
@@ -663,6 +730,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String menuTarget() {
                 if (!__menuTargetLoaded) {
@@ -672,6 +740,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String menuIcon() {
                 if (!__menuIconLoaded) {
@@ -681,6 +750,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String menuColor() {
                 if (!__menuColorLoaded) {
@@ -690,6 +760,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String menuTitle() {
                 if (!__menuTitleLoaded) {
@@ -699,6 +770,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String permission() {
                 if (!__permissionLoaded) {
@@ -708,6 +780,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public BigDecimal weight() {
                 if (!__weightLoaded) {
@@ -717,6 +790,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public Boolean isShow() {
                 if (!__isShowLoaded) {
@@ -726,6 +800,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String sysCode() {
                 if (!__sysCodeLoaded) {
@@ -735,6 +810,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public List<Role> roles() {
                 if (__rolesValue == null) {
                     throw new UnloadedException(Menu.class, "roles");
@@ -1602,6 +1678,9 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
         }
 
+        @GeneratedBy(
+                type = Menu.class
+        )
         private static class DraftImpl implements Implementor, DraftSpi, MenuDraft {
             private DraftContext __ctx;
 
@@ -1667,6 +1746,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String id() {
                 return (__modified!= null ? __modified : __base).id();
             }
@@ -1684,6 +1764,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public int status() {
                 return (__modified!= null ? __modified : __base).status();
             }
@@ -1697,6 +1778,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String createBy() {
                 return (__modified!= null ? __modified : __base).createBy();
             }
@@ -1714,6 +1796,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public Date createDate() {
                 return (__modified!= null ? __modified : __base).createDate();
             }
@@ -1731,6 +1814,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String updateBy() {
                 return (__modified!= null ? __modified : __base).updateBy();
             }
@@ -1748,6 +1832,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public Date updateDate() {
                 return (__modified!= null ? __modified : __base).updateDate();
             }
@@ -1765,6 +1850,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String remarks() {
                 return (__modified!= null ? __modified : __base).remarks();
@@ -1779,6 +1865,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public MenuDraft parent() {
                 return __ctx.toDraftObject((__modified!= null ? __modified : __base).parent());
@@ -1813,6 +1900,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String parentId() {
                 Menu __target = parent();
@@ -1830,6 +1918,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public List<Menu> children() {
                 return __ctx.toDraftList((__modified!= null ? __modified : __base).children(), Menu.class, true);
             }
@@ -1867,6 +1956,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String menuName() {
                 return (__modified!= null ? __modified : __base).menuName();
             }
@@ -1884,6 +1974,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String menuType() {
                 return (__modified!= null ? __modified : __base).menuType();
             }
@@ -1901,6 +1992,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String menuHref() {
                 return (__modified!= null ? __modified : __base).menuHref();
@@ -1915,6 +2007,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String menuComponent() {
                 return (__modified!= null ? __modified : __base).menuComponent();
@@ -1929,6 +2022,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String menuTarget() {
                 return (__modified!= null ? __modified : __base).menuTarget();
@@ -1943,6 +2037,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String menuIcon() {
                 return (__modified!= null ? __modified : __base).menuIcon();
@@ -1957,6 +2052,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String menuColor() {
                 return (__modified!= null ? __modified : __base).menuColor();
@@ -1971,6 +2067,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String menuTitle() {
                 return (__modified!= null ? __modified : __base).menuTitle();
@@ -1985,6 +2082,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String permission() {
                 return (__modified!= null ? __modified : __base).permission();
@@ -1999,6 +2097,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public BigDecimal weight() {
                 return (__modified!= null ? __modified : __base).weight();
@@ -2013,6 +2112,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public Boolean isShow() {
                 return (__modified!= null ? __modified : __base).isShow();
@@ -2027,6 +2127,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String sysCode() {
                 return (__modified!= null ? __modified : __base).sysCode();
@@ -2041,6 +2142,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public List<Role> roles() {
                 return __ctx.toDraftList((__modified!= null ? __modified : __base).roles(), Role.class, true);
             }
@@ -2488,7 +2590,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                 }
             }
 
-            private Impl __modified() {
+            Impl __modified() {
                 Impl __tmpModified = __modified;
                 if (__tmpModified == null) {
                     __tmpModified = __base.clone();
@@ -2499,276 +2601,220 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
         }
     }
 
-    class MapStruct {
-        private String id;
+    @GeneratedBy(
+            type = Menu.class
+    )
+    class Builder {
+        private final Producer.DraftImpl __draft;
 
-        private Integer status;
-
-        private String createBy;
-
-        private Date createDate;
-
-        private String updateBy;
-
-        private Date updateDate;
-
-        private boolean __remarksLoaded;
-
-        private String remarks;
-
-        private boolean __parentLoaded;
-
-        private Menu parent;
-
-        private List<Menu> children;
-
-        private String menuName;
-
-        private String menuType;
-
-        private boolean __menuHrefLoaded;
-
-        private String menuHref;
-
-        private boolean __menuComponentLoaded;
-
-        private String menuComponent;
-
-        private boolean __menuTargetLoaded;
-
-        private String menuTarget;
-
-        private boolean __menuIconLoaded;
-
-        private String menuIcon;
-
-        private boolean __menuColorLoaded;
-
-        private String menuColor;
-
-        private boolean __menuTitleLoaded;
-
-        private String menuTitle;
-
-        private boolean __permissionLoaded;
-
-        private String permission;
-
-        private boolean __weightLoaded;
-
-        private BigDecimal weight;
-
-        private boolean __isShowLoaded;
-
-        private Boolean isShow;
-
-        private boolean __sysCodeLoaded;
-
-        private String sysCode;
-
-        private List<Role> roles;
-
-        public MapStruct id(String id) {
-            this.id = id;
-            return this;
+        public Builder() {
+            __draft = new Producer.DraftImpl(null, null);
+            __draft.__show(PropId.byIndex(Producer.SLOT_PARENT), false);
+            __draft.__show(PropId.byIndex(Producer.SLOT_PARENT_ID), false);
         }
 
-        public MapStruct status(Integer status) {
-            this.status = status;
-            return this;
-        }
-
-        public MapStruct createBy(String createBy) {
-            this.createBy = createBy;
-            return this;
-        }
-
-        public MapStruct createDate(Date createDate) {
-            this.createDate = createDate;
-            return this;
-        }
-
-        public MapStruct updateBy(String updateBy) {
-            this.updateBy = updateBy;
-            return this;
-        }
-
-        public MapStruct updateDate(Date updateDate) {
-            this.updateDate = updateDate;
-            return this;
-        }
-
-        public MapStruct remarks(String remarks) {
-            this.__remarksLoaded = true;
-            this.remarks = remarks;
-            return this;
-        }
-
-        public MapStruct parent(Menu parent) {
-            this.__parentLoaded = true;
-            this.parent = parent;
-            return this;
-        }
-
-        public MapStruct parentId(String parentId) {
-            this.__parentLoaded = true;
-            if (parentId == null) {
-                this.parent = null;
-            } else {
-                this.parent = ImmutableObjects.makeIdOnly(Menu.class, parentId);
+        @NotNull
+        public Builder id(String id) {
+            if (id != null) {
+                __draft.setId(id);
             }
             return this;
         }
 
-        public MapStruct children(List<Menu> children) {
-            this.children = children != null ? children : Collections.emptyList();
+        @Schema(
+                description = "状态"
+        )
+        public Builder status(Integer status) {
+            if (status != null) {
+                __draft.setStatus(status);
+            }
             return this;
         }
 
-        public MapStruct menuName(String menuName) {
-            this.menuName = menuName;
+        @NotNull
+        public Builder createBy(String createBy) {
+            if (createBy != null) {
+                __draft.setCreateBy(createBy);
+            }
             return this;
         }
 
-        public MapStruct menuType(String menuType) {
-            this.menuType = menuType;
+        @NotNull
+        public Builder createDate(Date createDate) {
+            if (createDate != null) {
+                __draft.setCreateDate(createDate);
+            }
             return this;
         }
 
-        public MapStruct menuHref(String menuHref) {
-            this.__menuHrefLoaded = true;
-            this.menuHref = menuHref;
+        @NotNull
+        public Builder updateBy(String updateBy) {
+            if (updateBy != null) {
+                __draft.setUpdateBy(updateBy);
+            }
             return this;
         }
 
-        public MapStruct menuComponent(String menuComponent) {
-            this.__menuComponentLoaded = true;
-            this.menuComponent = menuComponent;
+        @NotNull
+        public Builder updateDate(Date updateDate) {
+            if (updateDate != null) {
+                __draft.setUpdateDate(updateDate);
+            }
             return this;
         }
 
-        public MapStruct menuTarget(String menuTarget) {
-            this.__menuTargetLoaded = true;
-            this.menuTarget = menuTarget;
+        @Nullable
+        public Builder remarks(String remarks) {
+            __draft.setRemarks(remarks);
             return this;
         }
 
-        public MapStruct menuIcon(String menuIcon) {
-            this.__menuIconLoaded = true;
-            this.menuIcon = menuIcon;
+        @Schema(
+                description = "父级菜单"
+        )
+        @jakarta.annotation.Nullable
+        public Builder parent(Menu parent) {
+            __draft.setParent(parent);
+            __draft.__show(PropId.byIndex(Producer.SLOT_PARENT), true);
             return this;
         }
 
-        public MapStruct menuColor(String menuColor) {
-            this.__menuColorLoaded = true;
-            this.menuColor = menuColor;
+        @jakarta.annotation.Nullable
+        public Builder parentId(String parentId) {
+            __draft.setParentId(parentId);
+            __draft.__show(PropId.byIndex(Producer.SLOT_PARENT_ID), true);
             return this;
         }
 
-        public MapStruct menuTitle(String menuTitle) {
-            this.__menuTitleLoaded = true;
-            this.menuTitle = menuTitle;
+        @Schema(
+                description = "子级菜单"
+        )
+        public Builder children(List<Menu> children) {
+            if (children != null) {
+                __draft.setChildren(children);
+            }
             return this;
         }
 
-        public MapStruct permission(String permission) {
-            this.__permissionLoaded = true;
-            this.permission = permission;
+        @Schema(
+                description = "菜单名称"
+        )
+        public Builder menuName(String menuName) {
+            if (menuName != null) {
+                __draft.setMenuName(menuName);
+            }
             return this;
         }
 
-        public MapStruct weight(BigDecimal weight) {
-            this.__weightLoaded = true;
-            this.weight = weight;
+        @Schema(
+                description = "菜单类型（1菜单 2权限 3开发）"
+        )
+        public Builder menuType(String menuType) {
+            if (menuType != null) {
+                __draft.setMenuType(menuType);
+            }
             return this;
         }
 
-        public MapStruct isShow(Boolean isShow) {
-            this.__isShowLoaded = true;
-            this.isShow = isShow;
+        @Schema(
+                description = "链接"
+        )
+        @jakarta.annotation.Nullable
+        public Builder menuHref(String menuHref) {
+            __draft.setMenuHref(menuHref);
             return this;
         }
 
-        public MapStruct sysCode(String sysCode) {
-            this.__sysCodeLoaded = true;
-            this.sysCode = sysCode;
+        @Schema(
+                description = "组件地址"
+        )
+        @jakarta.annotation.Nullable
+        public Builder menuComponent(String menuComponent) {
+            __draft.setMenuComponent(menuComponent);
             return this;
         }
 
-        public MapStruct roles(List<Role> roles) {
-            this.roles = roles != null ? roles : Collections.emptyList();
+        @Schema(
+                description = "目标"
+        )
+        @jakarta.annotation.Nullable
+        public Builder menuTarget(String menuTarget) {
+            __draft.setMenuTarget(menuTarget);
+            return this;
+        }
+
+        @Schema(
+                description = "图标"
+        )
+        @jakarta.annotation.Nullable
+        public Builder menuIcon(String menuIcon) {
+            __draft.setMenuIcon(menuIcon);
+            return this;
+        }
+
+        @Schema(
+                description = "颜色"
+        )
+        @jakarta.annotation.Nullable
+        public Builder menuColor(String menuColor) {
+            __draft.setMenuColor(menuColor);
+            return this;
+        }
+
+        @Schema(
+                description = "菜单标题"
+        )
+        @jakarta.annotation.Nullable
+        public Builder menuTitle(String menuTitle) {
+            __draft.setMenuTitle(menuTitle);
+            return this;
+        }
+
+        @Schema(
+                description = "权限标识"
+        )
+        @jakarta.annotation.Nullable
+        public Builder permission(String permission) {
+            __draft.setPermission(permission);
+            return this;
+        }
+
+        @Schema(
+                description = "菜单权重"
+        )
+        @jakarta.annotation.Nullable
+        public Builder weight(BigDecimal weight) {
+            __draft.setWeight(weight);
+            return this;
+        }
+
+        @Schema(
+                description = "是否显示"
+        )
+        @jakarta.annotation.Nullable
+        public Builder isShow(Boolean isShow) {
+            __draft.setIsShow(isShow);
+            return this;
+        }
+
+        @Schema(
+                description = "归属系统（default:主导航菜单、mobileApp:APP菜单）"
+        )
+        @jakarta.annotation.Nullable
+        public Builder sysCode(String sysCode) {
+            __draft.setSysCode(sysCode);
+            return this;
+        }
+
+        public Builder roles(List<Role> roles) {
+            if (roles != null) {
+                __draft.setRoles(roles);
+            }
             return this;
         }
 
         public Menu build() {
-            return MenuDraft.$.produce(__draft -> {
-                if (id != null) {
-                    __draft.setId(id);
-                }
-                if (status != null) {
-                    __draft.setStatus(status);
-                }
-                if (createBy != null) {
-                    __draft.setCreateBy(createBy);
-                }
-                if (createDate != null) {
-                    __draft.setCreateDate(createDate);
-                }
-                if (updateBy != null) {
-                    __draft.setUpdateBy(updateBy);
-                }
-                if (updateDate != null) {
-                    __draft.setUpdateDate(updateDate);
-                }
-                if (__remarksLoaded) {
-                    __draft.setRemarks(remarks);
-                }
-                if (__parentLoaded) {
-                    __draft.setParent(parent);
-                }
-                if (children != null) {
-                    __draft.setChildren(children);
-                }
-                if (menuName != null) {
-                    __draft.setMenuName(menuName);
-                }
-                if (menuType != null) {
-                    __draft.setMenuType(menuType);
-                }
-                if (__menuHrefLoaded) {
-                    __draft.setMenuHref(menuHref);
-                }
-                if (__menuComponentLoaded) {
-                    __draft.setMenuComponent(menuComponent);
-                }
-                if (__menuTargetLoaded) {
-                    __draft.setMenuTarget(menuTarget);
-                }
-                if (__menuIconLoaded) {
-                    __draft.setMenuIcon(menuIcon);
-                }
-                if (__menuColorLoaded) {
-                    __draft.setMenuColor(menuColor);
-                }
-                if (__menuTitleLoaded) {
-                    __draft.setMenuTitle(menuTitle);
-                }
-                if (__permissionLoaded) {
-                    __draft.setPermission(permission);
-                }
-                if (__weightLoaded) {
-                    __draft.setWeight(weight);
-                }
-                if (__isShowLoaded) {
-                    __draft.setIsShow(isShow);
-                }
-                if (__sysCodeLoaded) {
-                    __draft.setSysCode(sysCode);
-                }
-                if (roles != null) {
-                    __draft.setRoles(roles);
-                }
-            });
+            return (Menu)__draft.__modified();
         }
     }
 }

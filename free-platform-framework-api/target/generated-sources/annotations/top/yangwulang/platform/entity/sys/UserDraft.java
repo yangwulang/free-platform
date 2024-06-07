@@ -1,6 +1,8 @@
 package top.yangwulang.platform.entity.sys;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.lang.CloneNotSupportedException;
 import java.lang.Cloneable;
@@ -33,6 +35,7 @@ import org.babyfish.jimmer.runtime.Internal;
 import org.babyfish.jimmer.runtime.NonSharedList;
 import org.babyfish.jimmer.runtime.Visibility;
 import org.babyfish.jimmer.sql.ManyToMany;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.BaseEntityDraft;
 
@@ -125,6 +128,9 @@ public interface UserDraft extends User, BaseEntityDraft {
     @OldChain
     UserDraft addIntoRoles(Role base, DraftConsumer<RoleDraft> block);
 
+    @GeneratedBy(
+            type = User.class
+    )
     class Producer {
         static final Producer INSTANCE = new Producer();
 
@@ -180,7 +186,7 @@ public interface UserDraft extends User, BaseEntityDraft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.114",
+                "0.8.130",
                 User.class,
                 Collections.singleton(BaseEntityDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (User)base)
@@ -223,6 +229,10 @@ public interface UserDraft extends User, BaseEntityDraft {
             return (User)Internal.produce(TYPE, base, block);
         }
 
+        @GeneratedBy(
+                type = User.class
+        )
+        @JsonPropertyOrder({"dummyPropForJacksonError__", "status", "createBy", "createDate", "updateBy", "updateDate", "remarks", "userCode", "loginCode", "userName", "password", "email", "mobile", "phone", "sex", "avatar", "sign", "wxOpenId", "mobileImei", "userType", "refCode", "refName", "mgrType", "pwdSecurityLevel", "userWeight", "roles"})
         public abstract interface Implementor extends User, ImmutableSpi {
             @Override
             default Object __get(PropId prop) {
@@ -341,127 +351,188 @@ public interface UserDraft extends User, BaseEntityDraft {
                 }
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "用户编码"
+            )
             default String getUserCode() {
                 return userCode();
             }
 
-            @JsonIgnore
+            @NotNull
+            @Schema(
+                    description = "状态"
+            )
             default int getStatus() {
                 return status();
             }
 
-            @JsonIgnore
+            @NotNull
+            @Schema(
+                    description = "创建人"
+            )
             default String getCreateBy() {
                 return createBy();
             }
 
-            @JsonIgnore
+            @NotNull
+            @Schema(
+                    description = "创建时间"
+            )
             default Date getCreateDate() {
                 return createDate();
             }
 
-            @JsonIgnore
+            @NotNull
+            @Schema(
+                    description = "修改者"
+            )
             default String getUpdateBy() {
                 return updateBy();
             }
 
-            @JsonIgnore
+            @NotNull
+            @Schema(
+                    description = "修改时间"
+            )
             default Date getUpdateDate() {
                 return updateDate();
             }
 
-            @JsonIgnore
+            @Nullable
+            @Schema(
+                    description = "备注"
+            )
             default String getRemarks() {
                 return remarks();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "登录编码(账号)"
+            )
+            @jakarta.annotation.Nullable
             default String getLoginCode() {
                 return loginCode();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "用户名"
+            )
+            @jakarta.annotation.Nullable
             default String getUserName() {
                 return userName();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "密码"
+            )
+            @jakarta.annotation.Nullable
             default String getPassword() {
                 return password();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "邮件"
+            )
+            @jakarta.annotation.Nullable
             default String getEmail() {
                 return email();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "手机"
+            )
+            @jakarta.annotation.Nullable
             default String getMobile() {
                 return mobile();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "电话"
+            )
+            @jakarta.annotation.Nullable
             default String getPhone() {
                 return phone();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "性别"
+            )
+            @jakarta.annotation.Nullable
             default String getSex() {
                 return sex();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "头像地址"
+            )
+            @jakarta.annotation.Nullable
             default String getAvatar() {
                 return avatar();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "个性签名"
+            )
+            @jakarta.annotation.Nullable
             default String getSign() {
                 return sign();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "微信开发id"
+            )
+            @jakarta.annotation.Nullable
             default String getWxOpenId() {
                 return wxOpenId();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "手机imei"
+            )
+            @jakarta.annotation.Nullable
             default String getMobileImei() {
                 return mobileImei();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "用户类型"
+            )
+            @jakarta.annotation.Nullable
             default String getUserType() {
                 return userType();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "用户类型引用编号"
+            )
+            @jakarta.annotation.Nullable
             default String getRefCode() {
                 return refCode();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "用户类型引用名称"
+            )
+            @jakarta.annotation.Nullable
             default String getRefName() {
                 return refName();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "管理员类型"
+            )
             default String getMgrType() {
                 return mgrType();
             }
 
-            @JsonIgnore
             default Integer getPwdSecurityLevel() {
                 return pwdSecurityLevel();
             }
 
-            @JsonIgnore
             default Integer getUserWeight() {
                 return userWeight();
             }
 
-            @JsonIgnore
             default List<Role> getRoles() {
                 return roles();
             }
@@ -476,6 +547,9 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
         }
 
+        @GeneratedBy(
+                type = User.class
+        )
         private static class Impl implements Implementor, Cloneable, Serializable {
             private Visibility __visibility;
 
@@ -566,6 +640,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             NonSharedList<Role> __rolesValue;
 
             @Override
+            @JsonIgnore
             public String userCode() {
                 if (__userCodeValue == null) {
                     throw new UnloadedException(User.class, "userCode");
@@ -574,6 +649,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
 
             @Override
+            @JsonIgnore
             public int status() {
                 if (!__statusLoaded) {
                     throw new UnloadedException(User.class, "status");
@@ -582,6 +658,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
 
             @Override
+            @JsonIgnore
             public String createBy() {
                 if (__createByValue == null) {
                     throw new UnloadedException(User.class, "createBy");
@@ -590,6 +667,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
 
             @Override
+            @JsonIgnore
             public Date createDate() {
                 if (__createDateValue == null) {
                     throw new UnloadedException(User.class, "createDate");
@@ -598,6 +676,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
 
             @Override
+            @JsonIgnore
             public String updateBy() {
                 if (__updateByValue == null) {
                     throw new UnloadedException(User.class, "updateBy");
@@ -606,6 +685,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
 
             @Override
+            @JsonIgnore
             public Date updateDate() {
                 if (__updateDateValue == null) {
                     throw new UnloadedException(User.class, "updateDate");
@@ -614,6 +694,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String remarks() {
                 if (!__remarksLoaded) {
@@ -623,6 +704,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String loginCode() {
                 if (!__loginCodeLoaded) {
@@ -632,6 +714,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String userName() {
                 if (!__userNameLoaded) {
@@ -641,6 +724,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String password() {
                 if (!__passwordLoaded) {
@@ -650,6 +734,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String email() {
                 if (!__emailLoaded) {
@@ -659,6 +744,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String mobile() {
                 if (!__mobileLoaded) {
@@ -668,6 +754,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String phone() {
                 if (!__phoneLoaded) {
@@ -677,6 +764,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String sex() {
                 if (!__sexLoaded) {
@@ -686,6 +774,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String avatar() {
                 if (!__avatarLoaded) {
@@ -695,6 +784,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String sign() {
                 if (!__signLoaded) {
@@ -704,6 +794,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String wxOpenId() {
                 if (!__wxOpenIdLoaded) {
@@ -713,6 +804,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String mobileImei() {
                 if (!__mobileImeiLoaded) {
@@ -722,6 +814,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String userType() {
                 if (!__userTypeLoaded) {
@@ -731,6 +824,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String refCode() {
                 if (!__refCodeLoaded) {
@@ -740,6 +834,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String refName() {
                 if (!__refNameLoaded) {
@@ -749,6 +844,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
 
             @Override
+            @JsonIgnore
             public String mgrType() {
                 if (__mgrTypeValue == null) {
                     throw new UnloadedException(User.class, "mgrType");
@@ -757,6 +853,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public Integer pwdSecurityLevel() {
                 if (!__pwdSecurityLevelLoaded) {
@@ -766,6 +863,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public Integer userWeight() {
                 if (!__userWeightLoaded) {
@@ -775,6 +873,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
 
             @Override
+            @JsonIgnore
             public List<Role> roles() {
                 if (__rolesValue == null) {
                     throw new UnloadedException(User.class, "roles");
@@ -1728,6 +1827,9 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
         }
 
+        @GeneratedBy(
+                type = User.class
+        )
         private static class DraftImpl implements Implementor, DraftSpi, UserDraft {
             private DraftContext __ctx;
 
@@ -1793,6 +1895,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
 
             @Override
+            @JsonIgnore
             public String userCode() {
                 return (__modified!= null ? __modified : __base).userCode();
             }
@@ -1810,6 +1913,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
 
             @Override
+            @JsonIgnore
             public int status() {
                 return (__modified!= null ? __modified : __base).status();
             }
@@ -1823,6 +1927,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
 
             @Override
+            @JsonIgnore
             public String createBy() {
                 return (__modified!= null ? __modified : __base).createBy();
             }
@@ -1840,6 +1945,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
 
             @Override
+            @JsonIgnore
             public Date createDate() {
                 return (__modified!= null ? __modified : __base).createDate();
             }
@@ -1857,6 +1963,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
 
             @Override
+            @JsonIgnore
             public String updateBy() {
                 return (__modified!= null ? __modified : __base).updateBy();
             }
@@ -1874,6 +1981,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
 
             @Override
+            @JsonIgnore
             public Date updateDate() {
                 return (__modified!= null ? __modified : __base).updateDate();
             }
@@ -1891,6 +1999,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String remarks() {
                 return (__modified!= null ? __modified : __base).remarks();
@@ -1905,6 +2014,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String loginCode() {
                 return (__modified!= null ? __modified : __base).loginCode();
@@ -1919,6 +2029,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String userName() {
                 return (__modified!= null ? __modified : __base).userName();
@@ -1933,6 +2044,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String password() {
                 return (__modified!= null ? __modified : __base).password();
@@ -1947,6 +2059,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String email() {
                 return (__modified!= null ? __modified : __base).email();
@@ -1961,6 +2074,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String mobile() {
                 return (__modified!= null ? __modified : __base).mobile();
@@ -1975,6 +2089,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String phone() {
                 return (__modified!= null ? __modified : __base).phone();
@@ -1989,6 +2104,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String sex() {
                 return (__modified!= null ? __modified : __base).sex();
@@ -2003,6 +2119,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String avatar() {
                 return (__modified!= null ? __modified : __base).avatar();
@@ -2017,6 +2134,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String sign() {
                 return (__modified!= null ? __modified : __base).sign();
@@ -2031,6 +2149,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String wxOpenId() {
                 return (__modified!= null ? __modified : __base).wxOpenId();
@@ -2045,6 +2164,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String mobileImei() {
                 return (__modified!= null ? __modified : __base).mobileImei();
@@ -2059,6 +2179,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String userType() {
                 return (__modified!= null ? __modified : __base).userType();
@@ -2073,6 +2194,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String refCode() {
                 return (__modified!= null ? __modified : __base).refCode();
@@ -2087,6 +2209,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String refName() {
                 return (__modified!= null ? __modified : __base).refName();
@@ -2101,6 +2224,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
 
             @Override
+            @JsonIgnore
             public String mgrType() {
                 return (__modified!= null ? __modified : __base).mgrType();
             }
@@ -2118,6 +2242,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public Integer pwdSecurityLevel() {
                 return (__modified!= null ? __modified : __base).pwdSecurityLevel();
@@ -2132,6 +2257,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public Integer userWeight() {
                 return (__modified!= null ? __modified : __base).userWeight();
@@ -2146,6 +2272,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
 
             @Override
+            @JsonIgnore
             public List<Role> roles() {
                 return __ctx.toDraftList((__modified!= null ? __modified : __base).roles(), Role.class, true);
             }
@@ -2601,7 +2728,7 @@ public interface UserDraft extends User, BaseEntityDraft {
                 }
             }
 
-            private Impl __modified() {
+            Impl __modified() {
                 Impl __tmpModified = __modified;
                 if (__tmpModified == null) {
                     __tmpModified = __base.clone();
@@ -2612,311 +2739,245 @@ public interface UserDraft extends User, BaseEntityDraft {
         }
     }
 
-    class MapStruct {
-        private String userCode;
+    @GeneratedBy(
+            type = User.class
+    )
+    class Builder {
+        private final Producer.DraftImpl __draft;
 
-        private Integer status;
+        public Builder() {
+            __draft = new Producer.DraftImpl(null, null);
+        }
 
-        private String createBy;
-
-        private Date createDate;
-
-        private String updateBy;
-
-        private Date updateDate;
-
-        private boolean __remarksLoaded;
-
-        private String remarks;
-
-        private boolean __loginCodeLoaded;
-
-        private String loginCode;
-
-        private boolean __userNameLoaded;
-
-        private String userName;
-
-        private boolean __passwordLoaded;
-
-        private String password;
-
-        private boolean __emailLoaded;
-
-        private String email;
-
-        private boolean __mobileLoaded;
-
-        private String mobile;
-
-        private boolean __phoneLoaded;
-
-        private String phone;
-
-        private boolean __sexLoaded;
-
-        private String sex;
-
-        private boolean __avatarLoaded;
-
-        private String avatar;
-
-        private boolean __signLoaded;
-
-        private String sign;
-
-        private boolean __wxOpenIdLoaded;
-
-        private String wxOpenId;
-
-        private boolean __mobileImeiLoaded;
-
-        private String mobileImei;
-
-        private boolean __userTypeLoaded;
-
-        private String userType;
-
-        private boolean __refCodeLoaded;
-
-        private String refCode;
-
-        private boolean __refNameLoaded;
-
-        private String refName;
-
-        private String mgrType;
-
-        private boolean __pwdSecurityLevelLoaded;
-
-        private Integer pwdSecurityLevel;
-
-        private boolean __userWeightLoaded;
-
-        private Integer userWeight;
-
-        private List<Role> roles;
-
-        public MapStruct userCode(String userCode) {
-            this.userCode = userCode;
+        @Schema(
+                description = "用户编码"
+        )
+        public Builder userCode(String userCode) {
+            if (userCode != null) {
+                __draft.setUserCode(userCode);
+            }
             return this;
         }
 
-        public MapStruct status(Integer status) {
-            this.status = status;
+        @NotNull
+        @Schema(
+                description = "状态"
+        )
+        public Builder status(Integer status) {
+            if (status != null) {
+                __draft.setStatus(status);
+            }
             return this;
         }
 
-        public MapStruct createBy(String createBy) {
-            this.createBy = createBy;
+        @NotNull
+        @Schema(
+                description = "创建人"
+        )
+        public Builder createBy(String createBy) {
+            if (createBy != null) {
+                __draft.setCreateBy(createBy);
+            }
             return this;
         }
 
-        public MapStruct createDate(Date createDate) {
-            this.createDate = createDate;
+        @NotNull
+        @Schema(
+                description = "创建时间"
+        )
+        public Builder createDate(Date createDate) {
+            if (createDate != null) {
+                __draft.setCreateDate(createDate);
+            }
             return this;
         }
 
-        public MapStruct updateBy(String updateBy) {
-            this.updateBy = updateBy;
+        @NotNull
+        @Schema(
+                description = "修改者"
+        )
+        public Builder updateBy(String updateBy) {
+            if (updateBy != null) {
+                __draft.setUpdateBy(updateBy);
+            }
             return this;
         }
 
-        public MapStruct updateDate(Date updateDate) {
-            this.updateDate = updateDate;
+        @NotNull
+        @Schema(
+                description = "修改时间"
+        )
+        public Builder updateDate(Date updateDate) {
+            if (updateDate != null) {
+                __draft.setUpdateDate(updateDate);
+            }
             return this;
         }
 
-        public MapStruct remarks(String remarks) {
-            this.__remarksLoaded = true;
-            this.remarks = remarks;
+        @Nullable
+        @Schema(
+                description = "备注"
+        )
+        public Builder remarks(String remarks) {
+            __draft.setRemarks(remarks);
             return this;
         }
 
-        public MapStruct loginCode(String loginCode) {
-            this.__loginCodeLoaded = true;
-            this.loginCode = loginCode;
+        @Schema(
+                description = "登录编码(账号)"
+        )
+        @jakarta.annotation.Nullable
+        public Builder loginCode(String loginCode) {
+            __draft.setLoginCode(loginCode);
             return this;
         }
 
-        public MapStruct userName(String userName) {
-            this.__userNameLoaded = true;
-            this.userName = userName;
+        @Schema(
+                description = "用户名"
+        )
+        @jakarta.annotation.Nullable
+        public Builder userName(String userName) {
+            __draft.setUserName(userName);
             return this;
         }
 
-        public MapStruct password(String password) {
-            this.__passwordLoaded = true;
-            this.password = password;
+        @Schema(
+                description = "密码"
+        )
+        @jakarta.annotation.Nullable
+        public Builder password(String password) {
+            __draft.setPassword(password);
             return this;
         }
 
-        public MapStruct email(String email) {
-            this.__emailLoaded = true;
-            this.email = email;
+        @Schema(
+                description = "邮件"
+        )
+        @jakarta.annotation.Nullable
+        public Builder email(String email) {
+            __draft.setEmail(email);
             return this;
         }
 
-        public MapStruct mobile(String mobile) {
-            this.__mobileLoaded = true;
-            this.mobile = mobile;
+        @Schema(
+                description = "手机"
+        )
+        @jakarta.annotation.Nullable
+        public Builder mobile(String mobile) {
+            __draft.setMobile(mobile);
             return this;
         }
 
-        public MapStruct phone(String phone) {
-            this.__phoneLoaded = true;
-            this.phone = phone;
+        @Schema(
+                description = "电话"
+        )
+        @jakarta.annotation.Nullable
+        public Builder phone(String phone) {
+            __draft.setPhone(phone);
             return this;
         }
 
-        public MapStruct sex(String sex) {
-            this.__sexLoaded = true;
-            this.sex = sex;
+        @Schema(
+                description = "性别"
+        )
+        @jakarta.annotation.Nullable
+        public Builder sex(String sex) {
+            __draft.setSex(sex);
             return this;
         }
 
-        public MapStruct avatar(String avatar) {
-            this.__avatarLoaded = true;
-            this.avatar = avatar;
+        @Schema(
+                description = "头像地址"
+        )
+        @jakarta.annotation.Nullable
+        public Builder avatar(String avatar) {
+            __draft.setAvatar(avatar);
             return this;
         }
 
-        public MapStruct sign(String sign) {
-            this.__signLoaded = true;
-            this.sign = sign;
+        @Schema(
+                description = "个性签名"
+        )
+        @jakarta.annotation.Nullable
+        public Builder sign(String sign) {
+            __draft.setSign(sign);
             return this;
         }
 
-        public MapStruct wxOpenId(String wxOpenId) {
-            this.__wxOpenIdLoaded = true;
-            this.wxOpenId = wxOpenId;
+        @Schema(
+                description = "微信开发id"
+        )
+        @jakarta.annotation.Nullable
+        public Builder wxOpenId(String wxOpenId) {
+            __draft.setWxOpenId(wxOpenId);
             return this;
         }
 
-        public MapStruct mobileImei(String mobileImei) {
-            this.__mobileImeiLoaded = true;
-            this.mobileImei = mobileImei;
+        @Schema(
+                description = "手机imei"
+        )
+        @jakarta.annotation.Nullable
+        public Builder mobileImei(String mobileImei) {
+            __draft.setMobileImei(mobileImei);
             return this;
         }
 
-        public MapStruct userType(String userType) {
-            this.__userTypeLoaded = true;
-            this.userType = userType;
+        @Schema(
+                description = "用户类型"
+        )
+        @jakarta.annotation.Nullable
+        public Builder userType(String userType) {
+            __draft.setUserType(userType);
             return this;
         }
 
-        public MapStruct refCode(String refCode) {
-            this.__refCodeLoaded = true;
-            this.refCode = refCode;
+        @Schema(
+                description = "用户类型引用编号"
+        )
+        @jakarta.annotation.Nullable
+        public Builder refCode(String refCode) {
+            __draft.setRefCode(refCode);
             return this;
         }
 
-        public MapStruct refName(String refName) {
-            this.__refNameLoaded = true;
-            this.refName = refName;
+        @Schema(
+                description = "用户类型引用名称"
+        )
+        @jakarta.annotation.Nullable
+        public Builder refName(String refName) {
+            __draft.setRefName(refName);
             return this;
         }
 
-        public MapStruct mgrType(String mgrType) {
-            this.mgrType = mgrType;
+        @Schema(
+                description = "管理员类型"
+        )
+        public Builder mgrType(String mgrType) {
+            if (mgrType != null) {
+                __draft.setMgrType(mgrType);
+            }
             return this;
         }
 
-        public MapStruct pwdSecurityLevel(Integer pwdSecurityLevel) {
-            this.__pwdSecurityLevelLoaded = true;
-            this.pwdSecurityLevel = pwdSecurityLevel;
+        public Builder pwdSecurityLevel(Integer pwdSecurityLevel) {
+            __draft.setPwdSecurityLevel(pwdSecurityLevel);
             return this;
         }
 
-        public MapStruct userWeight(Integer userWeight) {
-            this.__userWeightLoaded = true;
-            this.userWeight = userWeight;
+        public Builder userWeight(Integer userWeight) {
+            __draft.setUserWeight(userWeight);
             return this;
         }
 
-        public MapStruct roles(List<Role> roles) {
-            this.roles = roles != null ? roles : Collections.emptyList();
+        public Builder roles(List<Role> roles) {
+            if (roles != null) {
+                __draft.setRoles(roles);
+            }
             return this;
         }
 
         public User build() {
-            return UserDraft.$.produce(__draft -> {
-                if (userCode != null) {
-                    __draft.setUserCode(userCode);
-                }
-                if (status != null) {
-                    __draft.setStatus(status);
-                }
-                if (createBy != null) {
-                    __draft.setCreateBy(createBy);
-                }
-                if (createDate != null) {
-                    __draft.setCreateDate(createDate);
-                }
-                if (updateBy != null) {
-                    __draft.setUpdateBy(updateBy);
-                }
-                if (updateDate != null) {
-                    __draft.setUpdateDate(updateDate);
-                }
-                if (__remarksLoaded) {
-                    __draft.setRemarks(remarks);
-                }
-                if (__loginCodeLoaded) {
-                    __draft.setLoginCode(loginCode);
-                }
-                if (__userNameLoaded) {
-                    __draft.setUserName(userName);
-                }
-                if (__passwordLoaded) {
-                    __draft.setPassword(password);
-                }
-                if (__emailLoaded) {
-                    __draft.setEmail(email);
-                }
-                if (__mobileLoaded) {
-                    __draft.setMobile(mobile);
-                }
-                if (__phoneLoaded) {
-                    __draft.setPhone(phone);
-                }
-                if (__sexLoaded) {
-                    __draft.setSex(sex);
-                }
-                if (__avatarLoaded) {
-                    __draft.setAvatar(avatar);
-                }
-                if (__signLoaded) {
-                    __draft.setSign(sign);
-                }
-                if (__wxOpenIdLoaded) {
-                    __draft.setWxOpenId(wxOpenId);
-                }
-                if (__mobileImeiLoaded) {
-                    __draft.setMobileImei(mobileImei);
-                }
-                if (__userTypeLoaded) {
-                    __draft.setUserType(userType);
-                }
-                if (__refCodeLoaded) {
-                    __draft.setRefCode(refCode);
-                }
-                if (__refNameLoaded) {
-                    __draft.setRefName(refName);
-                }
-                if (mgrType != null) {
-                    __draft.setMgrType(mgrType);
-                }
-                if (__pwdSecurityLevelLoaded) {
-                    __draft.setPwdSecurityLevel(pwdSecurityLevel);
-                }
-                if (__userWeightLoaded) {
-                    __draft.setUserWeight(userWeight);
-                }
-                if (roles != null) {
-                    __draft.setRoles(roles);
-                }
-            });
+            return (User)__draft.__modified();
         }
     }
 }

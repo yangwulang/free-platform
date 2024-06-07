@@ -10,7 +10,7 @@ DictDataGetView {
     #allScalars
     parentId
     dictTypeId
-    -status
+    // -status
     -corpCode
     -corpName
 }

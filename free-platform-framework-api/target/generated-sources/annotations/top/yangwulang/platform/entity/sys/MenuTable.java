@@ -176,6 +176,9 @@ public class MenuTable extends AbstractTypedTable<Menu> implements MenuProps {
         return new MenuTable(this, reason);
     }
 
+    @GeneratedBy(
+            type = Menu.class
+    )
     public static class Remote extends AbstractTypedTable<Menu> {
         public Remote(AbstractTypedTable.DelayedOperation delayedOperation) {
             super(Menu.class, delayedOperation);

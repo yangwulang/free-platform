@@ -170,6 +170,9 @@ public class UserTable extends AbstractTypedTable<User> implements UserProps {
         return new UserTable(this, reason);
     }
 
+    @GeneratedBy(
+            type = User.class
+    )
     public static class Remote extends AbstractTypedTable<User> {
         public Remote(AbstractTypedTable.DelayedOperation delayedOperation) {
             super(User.class, delayedOperation);

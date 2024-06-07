@@ -68,6 +68,9 @@ public class PostTable extends AbstractTypedTable<Post> implements PostProps {
         return new PostTable(this, reason);
     }
 
+    @GeneratedBy(
+            type = Post.class
+    )
     public static class Remote extends AbstractTypedTable<Post> {
         public Remote(AbstractTypedTable.DelayedOperation delayedOperation) {
             super(Post.class, delayedOperation);

@@ -24,38 +24,20 @@ import top.yangwulang.platform.entity.sys.UserProps;
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Employee.dto"
 )
+@Schema(
+        description = "员工"
+)
 public class EmployeeListSpecification implements JSpecification<Employee, EmployeeTable> {
-    @Schema(
-            description = "员工编码"
-    )
-    @Nullable
     private String empCode;
 
-    @Schema(
-            description = "员工名称"
-    )
-    @Nullable
     private String empName;
 
-    @Nullable
     private String companyId;
 
-    @Schema(
-            description = "用户"
-    )
-    @Nullable
     private String userName;
 
-    @Schema(
-            description = "用户"
-    )
-    @Nullable
     private String email;
 
-    @Schema(
-            description = "用户"
-    )
-    @Nullable
     private Integer status;
 
     public EmployeeListSpecification() {

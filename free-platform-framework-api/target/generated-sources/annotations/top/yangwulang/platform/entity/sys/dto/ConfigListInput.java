@@ -46,25 +46,12 @@ public class ConfigListInput implements Input<Config> {
         new int[] { ConfigDraft.Producer.SLOT_CONFIG_NAME }
     );
 
-    @Schema(
-            description = "参数键"
-    )
-    @Nullable
     private String configKey;
 
-    @Schema(
-            description = "配置名称"
-    )
-    @Nullable
     private String configName;
 
-    @Schema(
-            description = "参数值"
-    )
-    @Nullable
     private String configValue;
 
-    @Nullable
     private String remarks;
 
     public ConfigListInput() {
@@ -75,10 +62,6 @@ public class ConfigListInput implements Input<Config> {
         this.configName = CONFIG_NAME_ACCESSOR.get(base);
         this.configValue = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(ConfigDraft.Producer.SLOT_CONFIG_VALUE)) ? base.configValue() : null;
         this.remarks = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(ConfigDraft.Producer.SLOT_REMARKS)) ? base.remarks() : null;
-    }
-
-    public static ConfigListInput of(@NotNull Config base) {
-        return new ConfigListInput(base);
     }
 
     /**

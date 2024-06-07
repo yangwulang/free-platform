@@ -1,6 +1,8 @@
 package top.yangwulang.platform.entity.sys;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.lang.CloneNotSupportedException;
 import java.lang.Cloneable;
@@ -95,6 +97,9 @@ public interface EmployeeDraft extends Employee, Draft {
     @OldChain
     EmployeeDraft addIntoPosts(Post base, DraftConsumer<PostDraft> block);
 
+    @GeneratedBy(
+            type = Employee.class
+    )
     class Producer {
         static final Producer INSTANCE = new Producer();
 
@@ -112,7 +117,7 @@ public interface EmployeeDraft extends Employee, Draft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.114",
+                "0.8.130",
                 Employee.class,
                 Collections.emptyList(),
                 (ctx, base) -> new DraftImpl(ctx, (Employee)base)
@@ -136,6 +141,10 @@ public interface EmployeeDraft extends Employee, Draft {
             return (Employee)Internal.produce(TYPE, base, block);
         }
 
+        @GeneratedBy(
+                type = Employee.class
+        )
+        @JsonPropertyOrder({"dummyPropForJacksonError__", "empCode", "user", "company", "companyId", "empName", "posts"})
         public abstract interface Implementor extends Employee, ImmutableSpi {
             @Override
             default Object __get(PropId prop) {
@@ -178,32 +187,42 @@ public interface EmployeeDraft extends Employee, Draft {
                 }
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "员工编码"
+            )
             default String getEmpCode() {
                 return empCode();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "用户"
+            )
+            @jakarta.annotation.Nullable
             default User getUser() {
                 return user();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "公司"
+            )
+            @jakarta.annotation.Nullable
             default Company getCompany() {
                 return company();
             }
 
-            @JsonIgnore
+            @jakarta.annotation.Nullable
             default String getCompanyId() {
                 return companyId();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "员工名称"
+            )
+            @jakarta.annotation.Nullable
             default String getEmpName() {
                 return empName();
             }
 
-            @JsonIgnore
             default List<Post> getPosts() {
                 return posts();
             }
@@ -218,6 +237,9 @@ public interface EmployeeDraft extends Employee, Draft {
             }
         }
 
+        @GeneratedBy(
+                type = Employee.class
+        )
         private static class Impl implements Implementor, Cloneable, Serializable {
             private Visibility __visibility;
 
@@ -243,6 +265,7 @@ public interface EmployeeDraft extends Employee, Draft {
             }
 
             @Override
+            @JsonIgnore
             public String empCode() {
                 if (__empCodeValue == null) {
                     throw new UnloadedException(Employee.class, "empCode");
@@ -251,6 +274,7 @@ public interface EmployeeDraft extends Employee, Draft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public User user() {
                 if (!__userLoaded) {
@@ -260,6 +284,7 @@ public interface EmployeeDraft extends Employee, Draft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public Company company() {
                 if (!__companyLoaded) {
@@ -269,6 +294,7 @@ public interface EmployeeDraft extends Employee, Draft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String companyId() {
                 Company __target = company();
@@ -276,6 +302,7 @@ public interface EmployeeDraft extends Employee, Draft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String empName() {
                 if (!__empNameLoaded) {
@@ -285,6 +312,7 @@ public interface EmployeeDraft extends Employee, Draft {
             }
 
             @Override
+            @JsonIgnore
             public List<Post> posts() {
                 if (__postsValue == null) {
                     throw new UnloadedException(Employee.class, "posts");
@@ -574,6 +602,9 @@ public interface EmployeeDraft extends Employee, Draft {
             }
         }
 
+        @GeneratedBy(
+                type = Employee.class
+        )
         private static class DraftImpl implements Implementor, DraftSpi, EmployeeDraft {
             private DraftContext __ctx;
 
@@ -639,6 +670,7 @@ public interface EmployeeDraft extends Employee, Draft {
             }
 
             @Override
+            @JsonIgnore
             public String empCode() {
                 return (__modified!= null ? __modified : __base).empCode();
             }
@@ -656,6 +688,7 @@ public interface EmployeeDraft extends Employee, Draft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public UserDraft user() {
                 return __ctx.toDraftObject((__modified!= null ? __modified : __base).user());
@@ -711,6 +744,7 @@ public interface EmployeeDraft extends Employee, Draft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public CompanyDraft company() {
                 return __ctx.toDraftObject((__modified!= null ? __modified : __base).company());
@@ -745,6 +779,7 @@ public interface EmployeeDraft extends Employee, Draft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String companyId() {
                 Company __target = company();
@@ -762,6 +797,7 @@ public interface EmployeeDraft extends Employee, Draft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String empName() {
                 return (__modified!= null ? __modified : __base).empName();
@@ -776,6 +812,7 @@ public interface EmployeeDraft extends Employee, Draft {
             }
 
             @Override
+            @JsonIgnore
             public List<Post> posts() {
                 return __ctx.toDraftList((__modified!= null ? __modified : __base).posts(), Post.class, true);
             }
@@ -1015,7 +1052,7 @@ public interface EmployeeDraft extends Employee, Draft {
                 }
             }
 
-            private Impl __modified() {
+            Impl __modified() {
                 Impl __tmpModified = __modified;
                 if (__tmpModified == null) {
                     __tmpModified = __base.clone();
@@ -1026,79 +1063,72 @@ public interface EmployeeDraft extends Employee, Draft {
         }
     }
 
-    class MapStruct {
-        private String empCode;
+    @GeneratedBy(
+            type = Employee.class
+    )
+    class Builder {
+        private final Producer.DraftImpl __draft;
 
-        private boolean __userLoaded;
-
-        private User user;
-
-        private boolean __companyLoaded;
-
-        private Company company;
-
-        private boolean __empNameLoaded;
-
-        private String empName;
-
-        private List<Post> posts;
-
-        public MapStruct empCode(String empCode) {
-            this.empCode = empCode;
-            return this;
+        public Builder() {
+            __draft = new Producer.DraftImpl(null, null);
+            __draft.__show(PropId.byIndex(Producer.SLOT_COMPANY), false);
+            __draft.__show(PropId.byIndex(Producer.SLOT_COMPANY_ID), false);
         }
 
-        public MapStruct user(User user) {
-            this.__userLoaded = true;
-            this.user = user;
-            return this;
-        }
-
-        public MapStruct company(Company company) {
-            this.__companyLoaded = true;
-            this.company = company;
-            return this;
-        }
-
-        public MapStruct companyId(String companyId) {
-            this.__companyLoaded = true;
-            if (companyId == null) {
-                this.company = null;
-            } else {
-                this.company = ImmutableObjects.makeIdOnly(Company.class, companyId);
+        @Schema(
+                description = "员工编码"
+        )
+        public Builder empCode(String empCode) {
+            if (empCode != null) {
+                __draft.setEmpCode(empCode);
             }
             return this;
         }
 
-        public MapStruct empName(String empName) {
-            this.__empNameLoaded = true;
-            this.empName = empName;
+        @Schema(
+                description = "用户"
+        )
+        @jakarta.annotation.Nullable
+        public Builder user(User user) {
+            __draft.setUser(user);
             return this;
         }
 
-        public MapStruct posts(List<Post> posts) {
-            this.posts = posts != null ? posts : Collections.emptyList();
+        @Schema(
+                description = "公司"
+        )
+        @jakarta.annotation.Nullable
+        public Builder company(Company company) {
+            __draft.setCompany(company);
+            __draft.__show(PropId.byIndex(Producer.SLOT_COMPANY), true);
+            return this;
+        }
+
+        @jakarta.annotation.Nullable
+        public Builder companyId(String companyId) {
+            __draft.setCompanyId(companyId);
+            __draft.__show(PropId.byIndex(Producer.SLOT_COMPANY_ID), true);
+            return this;
+        }
+
+        @Schema(
+                description = "员工名称"
+        )
+        @jakarta.annotation.Nullable
+        public Builder empName(String empName) {
+            __draft.setEmpName(empName);
+            return this;
+        }
+
+        public Builder posts(List<Post> posts) {
+            if (posts != null) {
+                __draft.setPosts(posts);
+            }
             return this;
         }
 
         public Employee build() {
-            return EmployeeDraft.$.produce(__draft -> {
-                if (empCode != null) {
-                    __draft.setEmpCode(empCode);
-                }
-                if (__userLoaded) {
-                    __draft.setUser(user);
-                }
-                if (__companyLoaded) {
-                    __draft.setCompany(company);
-                }
-                if (__empNameLoaded) {
-                    __draft.setEmpName(empName);
-                }
-                if (posts != null) {
-                    __draft.setPosts(posts);
-                }
-            });
+            return (Employee)__draft.__modified();
         }
     }
 }

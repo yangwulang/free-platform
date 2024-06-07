@@ -1,6 +1,9 @@
 package top.yangwulang.platform.entity.sys;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.annotation.Nullable;
 import java.io.Serializable;
 import java.lang.CloneNotSupportedException;
 import java.lang.Cloneable;
@@ -30,7 +33,7 @@ import org.babyfish.jimmer.runtime.Internal;
 import org.babyfish.jimmer.runtime.NonSharedList;
 import org.babyfish.jimmer.runtime.Visibility;
 import org.babyfish.jimmer.sql.ManyToMany;
-import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.NotNull;
 import top.yangwulang.platform.entity.TypeBaseDraft;
 
 @GeneratedBy(
@@ -62,6 +65,9 @@ public interface PostDraft extends Post, TypeBaseDraft {
     @OldChain
     PostDraft addIntoEmployees(Employee base, DraftConsumer<EmployeeDraft> block);
 
+    @GeneratedBy(
+            type = Post.class
+    )
     class Producer {
         static final Producer INSTANCE = new Producer();
 
@@ -77,7 +83,7 @@ public interface PostDraft extends Post, TypeBaseDraft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.114",
+                "0.8.130",
                 Post.class,
                 Collections.singleton(TypeBaseDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (Post)base)
@@ -100,6 +106,10 @@ public interface PostDraft extends Post, TypeBaseDraft {
             return (Post)Internal.produce(TYPE, base, block);
         }
 
+        @GeneratedBy(
+                type = Post.class
+        )
+        @JsonPropertyOrder({"dummyPropForJacksonError__", "id", "postCode", "postName", "postType", "employees"})
         public abstract interface Implementor extends Post, ImmutableSpi {
             @Override
             default Object __get(PropId prop) {
@@ -138,27 +148,33 @@ public interface PostDraft extends Post, TypeBaseDraft {
                 }
             }
 
-            @JsonIgnore
+            @NotNull
             default String getId() {
                 return id();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "岗位编码"
+            )
             default String getPostCode() {
                 return postCode();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "岗位名称"
+            )
             default String getPostName() {
                 return postName();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "岗位类型（高管、中层、低层）"
+            )
+            @Nullable
             default String getPostType() {
                 return postType();
             }
 
-            @JsonIgnore
             default List<Employee> getEmployees() {
                 return employees();
             }
@@ -173,6 +189,9 @@ public interface PostDraft extends Post, TypeBaseDraft {
             }
         }
 
+        @GeneratedBy(
+                type = Post.class
+        )
         private static class Impl implements Implementor, Cloneable, Serializable {
             private Visibility __visibility;
 
@@ -189,6 +208,7 @@ public interface PostDraft extends Post, TypeBaseDraft {
             NonSharedList<Employee> __employeesValue;
 
             @Override
+            @JsonIgnore
             public String id() {
                 if (__idValue == null) {
                     throw new UnloadedException(Post.class, "id");
@@ -197,6 +217,7 @@ public interface PostDraft extends Post, TypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String postCode() {
                 if (__postCodeValue == null) {
                     throw new UnloadedException(Post.class, "postCode");
@@ -205,6 +226,7 @@ public interface PostDraft extends Post, TypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String postName() {
                 if (__postNameValue == null) {
                     throw new UnloadedException(Post.class, "postName");
@@ -213,7 +235,8 @@ public interface PostDraft extends Post, TypeBaseDraft {
             }
 
             @Override
-            @Nullable
+            @JsonIgnore
+            @org.jetbrains.annotations.Nullable
             public String postType() {
                 if (!__postTypeLoaded) {
                     throw new UnloadedException(Post.class, "postType");
@@ -222,6 +245,7 @@ public interface PostDraft extends Post, TypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public List<Employee> employees() {
                 if (__employeesValue == null) {
                     throw new UnloadedException(Post.class, "employees");
@@ -495,6 +519,9 @@ public interface PostDraft extends Post, TypeBaseDraft {
             }
         }
 
+        @GeneratedBy(
+                type = Post.class
+        )
         private static class DraftImpl implements Implementor, DraftSpi, PostDraft {
             private DraftContext __ctx;
 
@@ -560,6 +587,7 @@ public interface PostDraft extends Post, TypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String id() {
                 return (__modified!= null ? __modified : __base).id();
             }
@@ -577,6 +605,7 @@ public interface PostDraft extends Post, TypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String postCode() {
                 return (__modified!= null ? __modified : __base).postCode();
             }
@@ -594,6 +623,7 @@ public interface PostDraft extends Post, TypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String postName() {
                 return (__modified!= null ? __modified : __base).postName();
             }
@@ -611,7 +641,8 @@ public interface PostDraft extends Post, TypeBaseDraft {
             }
 
             @Override
-            @Nullable
+            @JsonIgnore
+            @org.jetbrains.annotations.Nullable
             public String postType() {
                 return (__modified!= null ? __modified : __base).postType();
             }
@@ -625,6 +656,7 @@ public interface PostDraft extends Post, TypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public List<Employee> employees() {
                 return __ctx.toDraftList((__modified!= null ? __modified : __base).employees(), Employee.class, true);
             }
@@ -836,7 +868,7 @@ public interface PostDraft extends Post, TypeBaseDraft {
                 }
             }
 
-            private Impl __modified() {
+            Impl __modified() {
                 Impl __tmpModified = __modified;
                 if (__tmpModified == null) {
                     __tmpModified = __base.clone();
@@ -847,63 +879,62 @@ public interface PostDraft extends Post, TypeBaseDraft {
         }
     }
 
-    class MapStruct {
-        private String id;
+    @GeneratedBy(
+            type = Post.class
+    )
+    class Builder {
+        private final Producer.DraftImpl __draft;
 
-        private String postCode;
+        public Builder() {
+            __draft = new Producer.DraftImpl(null, null);
+        }
 
-        private String postName;
-
-        private boolean __postTypeLoaded;
-
-        private String postType;
-
-        private List<Employee> employees;
-
-        public MapStruct id(String id) {
-            this.id = id;
+        @NotNull
+        public Builder id(String id) {
+            if (id != null) {
+                __draft.setId(id);
+            }
             return this;
         }
 
-        public MapStruct postCode(String postCode) {
-            this.postCode = postCode;
+        @Schema(
+                description = "岗位编码"
+        )
+        public Builder postCode(String postCode) {
+            if (postCode != null) {
+                __draft.setPostCode(postCode);
+            }
             return this;
         }
 
-        public MapStruct postName(String postName) {
-            this.postName = postName;
+        @Schema(
+                description = "岗位名称"
+        )
+        public Builder postName(String postName) {
+            if (postName != null) {
+                __draft.setPostName(postName);
+            }
             return this;
         }
 
-        public MapStruct postType(String postType) {
-            this.__postTypeLoaded = true;
-            this.postType = postType;
+        @Schema(
+                description = "岗位类型（高管、中层、低层）"
+        )
+        @Nullable
+        public Builder postType(String postType) {
+            __draft.setPostType(postType);
             return this;
         }
 
-        public MapStruct employees(List<Employee> employees) {
-            this.employees = employees != null ? employees : Collections.emptyList();
+        public Builder employees(List<Employee> employees) {
+            if (employees != null) {
+                __draft.setEmployees(employees);
+            }
             return this;
         }
 
         public Post build() {
-            return PostDraft.$.produce(__draft -> {
-                if (id != null) {
-                    __draft.setId(id);
-                }
-                if (postCode != null) {
-                    __draft.setPostCode(postCode);
-                }
-                if (postName != null) {
-                    __draft.setPostName(postName);
-                }
-                if (__postTypeLoaded) {
-                    __draft.setPostType(postType);
-                }
-                if (employees != null) {
-                    __draft.setEmployees(employees);
-                }
-            });
+            return (Post)__draft.__modified();
         }
     }
 }

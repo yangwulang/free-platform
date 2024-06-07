@@ -23,6 +23,9 @@ import top.yangwulang.platform.entity.sys.CompanyFetcher;
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Company.dto"
 )
+@Schema(
+        description = "公司实体"
+)
 public class CompanyGetView implements View<Company> {
     public static final ViewMetadata<Company, CompanyGetView> METADATA = 
         new ViewMetadata<Company, CompanyGetView>(
@@ -36,37 +39,18 @@ public class CompanyGetView implements View<Company> {
             CompanyGetView::new
     );
 
-    @NotNull
     private String id;
 
-    @Schema(
-            description = "公司编码"
-    )
-    @NotNull
     private String companyCode;
 
-    @Schema(
-            description = "公司名称"
-    )
-    @NotNull
     private String companyName;
 
-    @Schema(
-            description = "公司全名"
-    )
-    @Nullable
     private String companyFullName;
 
-    @Nullable
     private String corpCode;
 
-    @Nullable
     private String corpName;
 
-    @Schema(
-            description = "父级id"
-    )
-    @Nullable
     private String parentId;
 
     public CompanyGetView() {
@@ -82,16 +66,15 @@ public class CompanyGetView implements View<Company> {
         this.parentId = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(CompanyDraft.Producer.SLOT_PARENT_ID)) ? base.parentId() : null;
     }
 
-    public static CompanyGetView of(@NotNull Company base) {
-        return new CompanyGetView(base);
-    }
-
     /**
      * 字典类型编码
      * @return 主键值
      */
     @NotNull
     public String getId() {
+        if (id == null) {
+            throw new IllegalStateException("The property \"id\" is not specified");
+        }
         return id;
     }
 
@@ -107,6 +90,9 @@ public class CompanyGetView implements View<Company> {
             description = "公司编码"
     )
     public String getCompanyCode() {
+        if (companyCode == null) {
+            throw new IllegalStateException("The property \"companyCode\" is not specified");
+        }
         return companyCode;
     }
 
@@ -122,6 +108,9 @@ public class CompanyGetView implements View<Company> {
             description = "公司名称"
     )
     public String getCompanyName() {
+        if (companyName == null) {
+            throw new IllegalStateException("The property \"companyName\" is not specified");
+        }
         return companyName;
     }
 

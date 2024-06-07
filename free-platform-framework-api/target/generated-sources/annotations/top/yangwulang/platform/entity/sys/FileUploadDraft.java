@@ -1,6 +1,8 @@
 package top.yangwulang.platform.entity.sys;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.lang.CloneNotSupportedException;
 import java.lang.Cloneable;
@@ -30,6 +32,7 @@ import org.babyfish.jimmer.runtime.ImmutableSpi;
 import org.babyfish.jimmer.runtime.Internal;
 import org.babyfish.jimmer.runtime.Visibility;
 import org.babyfish.jimmer.sql.ManyToOne;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.DataTypeBaseDraft;
 
@@ -89,6 +92,9 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
     @OldChain
     FileUploadDraft setBizType(String bizType);
 
+    @GeneratedBy(
+            type = FileUpload.class
+    )
     class Producer {
         static final Producer INSTANCE = new Producer();
 
@@ -120,7 +126,7 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.114",
+                "0.8.130",
                 FileUpload.class,
                 Collections.singleton(DataTypeBaseDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (FileUpload)base)
@@ -151,6 +157,10 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
             return (FileUpload)Internal.produce(TYPE, base, block);
         }
 
+        @GeneratedBy(
+                type = FileUpload.class
+        )
+        @JsonPropertyOrder({"dummyPropForJacksonError__", "id", "status", "createBy", "createDate", "updateBy", "updateDate", "remarks", "fileEntity", "fileEntityId", "fileName", "fileType", "bizKey", "bizType"})
         public abstract interface Implementor extends FileUpload, ImmutableSpi {
             @Override
             default Object __get(PropId prop) {
@@ -221,67 +231,67 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
                 }
             }
 
-            @JsonIgnore
+            @NotNull
             default String getId() {
                 return id();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "状态"
+            )
             default int getStatus() {
                 return status();
             }
 
-            @JsonIgnore
+            @NotNull
             default String getCreateBy() {
                 return createBy();
             }
 
-            @JsonIgnore
+            @NotNull
             default Date getCreateDate() {
                 return createDate();
             }
 
-            @JsonIgnore
+            @NotNull
             default String getUpdateBy() {
                 return updateBy();
             }
 
-            @JsonIgnore
+            @NotNull
             default Date getUpdateDate() {
                 return updateDate();
             }
 
-            @JsonIgnore
+            @Nullable
             default String getRemarks() {
                 return remarks();
             }
 
-            @JsonIgnore
+            @jakarta.annotation.Nullable
             default FileEntity getFileEntity() {
                 return fileEntity();
             }
 
-            @JsonIgnore
+            @jakarta.annotation.Nullable
             default String getFileEntityId() {
                 return fileEntityId();
             }
 
-            @JsonIgnore
             default String getFileName() {
                 return fileName();
             }
 
-            @JsonIgnore
             default String getFileType() {
                 return fileType();
             }
 
-            @JsonIgnore
+            @jakarta.annotation.Nullable
             default String getBizKey() {
                 return bizKey();
             }
 
-            @JsonIgnore
+            @jakarta.annotation.Nullable
             default String getBizType() {
                 return bizType();
             }
@@ -296,6 +306,9 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
             }
         }
 
+        @GeneratedBy(
+                type = FileUpload.class
+        )
         private static class Impl implements Implementor, Cloneable, Serializable {
             private Visibility __visibility;
 
@@ -339,6 +352,7 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String id() {
                 if (__idValue == null) {
                     throw new UnloadedException(FileUpload.class, "id");
@@ -347,6 +361,7 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public int status() {
                 if (!__statusLoaded) {
                     throw new UnloadedException(FileUpload.class, "status");
@@ -355,6 +370,7 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String createBy() {
                 if (__createByValue == null) {
                     throw new UnloadedException(FileUpload.class, "createBy");
@@ -363,6 +379,7 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public Date createDate() {
                 if (__createDateValue == null) {
                     throw new UnloadedException(FileUpload.class, "createDate");
@@ -371,6 +388,7 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String updateBy() {
                 if (__updateByValue == null) {
                     throw new UnloadedException(FileUpload.class, "updateBy");
@@ -379,6 +397,7 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public Date updateDate() {
                 if (__updateDateValue == null) {
                     throw new UnloadedException(FileUpload.class, "updateDate");
@@ -387,6 +406,7 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String remarks() {
                 if (!__remarksLoaded) {
@@ -396,6 +416,7 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public FileEntity fileEntity() {
                 if (!__fileEntityLoaded) {
@@ -405,6 +426,7 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String fileEntityId() {
                 FileEntity __target = fileEntity();
@@ -412,6 +434,7 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String fileName() {
                 if (__fileNameValue == null) {
                     throw new UnloadedException(FileUpload.class, "fileName");
@@ -420,6 +443,7 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String fileType() {
                 if (__fileTypeValue == null) {
                     throw new UnloadedException(FileUpload.class, "fileType");
@@ -428,6 +452,7 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String bizKey() {
                 if (!__bizKeyLoaded) {
@@ -437,6 +462,7 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String bizType() {
                 if (!__bizTypeLoaded) {
@@ -965,6 +991,9 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
             }
         }
 
+        @GeneratedBy(
+                type = FileUpload.class
+        )
         private static class DraftImpl implements Implementor, DraftSpi, FileUploadDraft {
             private DraftContext __ctx;
 
@@ -1030,6 +1059,7 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String id() {
                 return (__modified!= null ? __modified : __base).id();
             }
@@ -1047,6 +1077,7 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public int status() {
                 return (__modified!= null ? __modified : __base).status();
             }
@@ -1060,6 +1091,7 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String createBy() {
                 return (__modified!= null ? __modified : __base).createBy();
             }
@@ -1077,6 +1109,7 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public Date createDate() {
                 return (__modified!= null ? __modified : __base).createDate();
             }
@@ -1094,6 +1127,7 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String updateBy() {
                 return (__modified!= null ? __modified : __base).updateBy();
             }
@@ -1111,6 +1145,7 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public Date updateDate() {
                 return (__modified!= null ? __modified : __base).updateDate();
             }
@@ -1128,6 +1163,7 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String remarks() {
                 return (__modified!= null ? __modified : __base).remarks();
@@ -1142,6 +1178,7 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public FileEntityDraft fileEntity() {
                 return __ctx.toDraftObject((__modified!= null ? __modified : __base).fileEntity());
@@ -1177,6 +1214,7 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String fileEntityId() {
                 FileEntity __target = fileEntity();
@@ -1194,6 +1232,7 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String fileName() {
                 return (__modified!= null ? __modified : __base).fileName();
             }
@@ -1211,6 +1250,7 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String fileType() {
                 return (__modified!= null ? __modified : __base).fileType();
             }
@@ -1228,6 +1268,7 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String bizKey() {
                 return (__modified!= null ? __modified : __base).bizKey();
@@ -1242,6 +1283,7 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String bizType() {
                 return (__modified!= null ? __modified : __base).bizType();
@@ -1530,7 +1572,7 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
                 }
             }
 
-            private Impl __modified() {
+            Impl __modified() {
                 Impl __tmpModified = __modified;
                 if (__tmpModified == null) {
                     __tmpModified = __base.clone();
@@ -1541,152 +1583,116 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
         }
     }
 
-    class MapStruct {
-        private String id;
+    @GeneratedBy(
+            type = FileUpload.class
+    )
+    class Builder {
+        private final Producer.DraftImpl __draft;
 
-        private Integer status;
-
-        private String createBy;
-
-        private Date createDate;
-
-        private String updateBy;
-
-        private Date updateDate;
-
-        private boolean __remarksLoaded;
-
-        private String remarks;
-
-        private boolean __fileEntityLoaded;
-
-        private FileEntity fileEntity;
-
-        private String fileName;
-
-        private String fileType;
-
-        private boolean __bizKeyLoaded;
-
-        private String bizKey;
-
-        private boolean __bizTypeLoaded;
-
-        private String bizType;
-
-        public MapStruct id(String id) {
-            this.id = id;
-            return this;
+        public Builder() {
+            __draft = new Producer.DraftImpl(null, null);
+            __draft.__show(PropId.byIndex(Producer.SLOT_FILE_ENTITY), false);
+            __draft.__show(PropId.byIndex(Producer.SLOT_FILE_ENTITY_ID), false);
         }
 
-        public MapStruct status(Integer status) {
-            this.status = status;
-            return this;
-        }
-
-        public MapStruct createBy(String createBy) {
-            this.createBy = createBy;
-            return this;
-        }
-
-        public MapStruct createDate(Date createDate) {
-            this.createDate = createDate;
-            return this;
-        }
-
-        public MapStruct updateBy(String updateBy) {
-            this.updateBy = updateBy;
-            return this;
-        }
-
-        public MapStruct updateDate(Date updateDate) {
-            this.updateDate = updateDate;
-            return this;
-        }
-
-        public MapStruct remarks(String remarks) {
-            this.__remarksLoaded = true;
-            this.remarks = remarks;
-            return this;
-        }
-
-        public MapStruct fileEntity(FileEntity fileEntity) {
-            this.__fileEntityLoaded = true;
-            this.fileEntity = fileEntity;
-            return this;
-        }
-
-        public MapStruct fileEntityId(String fileEntityId) {
-            this.__fileEntityLoaded = true;
-            if (fileEntityId == null) {
-                this.fileEntity = null;
-            } else {
-                this.fileEntity = ImmutableObjects.makeIdOnly(FileEntity.class, fileEntityId);
+        @NotNull
+        public Builder id(String id) {
+            if (id != null) {
+                __draft.setId(id);
             }
             return this;
         }
 
-        public MapStruct fileName(String fileName) {
-            this.fileName = fileName;
+        @Schema(
+                description = "状态"
+        )
+        public Builder status(Integer status) {
+            if (status != null) {
+                __draft.setStatus(status);
+            }
             return this;
         }
 
-        public MapStruct fileType(String fileType) {
-            this.fileType = fileType;
+        @NotNull
+        public Builder createBy(String createBy) {
+            if (createBy != null) {
+                __draft.setCreateBy(createBy);
+            }
             return this;
         }
 
-        public MapStruct bizKey(String bizKey) {
-            this.__bizKeyLoaded = true;
-            this.bizKey = bizKey;
+        @NotNull
+        public Builder createDate(Date createDate) {
+            if (createDate != null) {
+                __draft.setCreateDate(createDate);
+            }
             return this;
         }
 
-        public MapStruct bizType(String bizType) {
-            this.__bizTypeLoaded = true;
-            this.bizType = bizType;
+        @NotNull
+        public Builder updateBy(String updateBy) {
+            if (updateBy != null) {
+                __draft.setUpdateBy(updateBy);
+            }
+            return this;
+        }
+
+        @NotNull
+        public Builder updateDate(Date updateDate) {
+            if (updateDate != null) {
+                __draft.setUpdateDate(updateDate);
+            }
+            return this;
+        }
+
+        @Nullable
+        public Builder remarks(String remarks) {
+            __draft.setRemarks(remarks);
+            return this;
+        }
+
+        @jakarta.annotation.Nullable
+        public Builder fileEntity(FileEntity fileEntity) {
+            __draft.setFileEntity(fileEntity);
+            __draft.__show(PropId.byIndex(Producer.SLOT_FILE_ENTITY), true);
+            return this;
+        }
+
+        @jakarta.annotation.Nullable
+        public Builder fileEntityId(String fileEntityId) {
+            __draft.setFileEntityId(fileEntityId);
+            __draft.__show(PropId.byIndex(Producer.SLOT_FILE_ENTITY_ID), true);
+            return this;
+        }
+
+        public Builder fileName(String fileName) {
+            if (fileName != null) {
+                __draft.setFileName(fileName);
+            }
+            return this;
+        }
+
+        public Builder fileType(String fileType) {
+            if (fileType != null) {
+                __draft.setFileType(fileType);
+            }
+            return this;
+        }
+
+        @jakarta.annotation.Nullable
+        public Builder bizKey(String bizKey) {
+            __draft.setBizKey(bizKey);
+            return this;
+        }
+
+        @jakarta.annotation.Nullable
+        public Builder bizType(String bizType) {
+            __draft.setBizType(bizType);
             return this;
         }
 
         public FileUpload build() {
-            return FileUploadDraft.$.produce(__draft -> {
-                if (id != null) {
-                    __draft.setId(id);
-                }
-                if (status != null) {
-                    __draft.setStatus(status);
-                }
-                if (createBy != null) {
-                    __draft.setCreateBy(createBy);
-                }
-                if (createDate != null) {
-                    __draft.setCreateDate(createDate);
-                }
-                if (updateBy != null) {
-                    __draft.setUpdateBy(updateBy);
-                }
-                if (updateDate != null) {
-                    __draft.setUpdateDate(updateDate);
-                }
-                if (__remarksLoaded) {
-                    __draft.setRemarks(remarks);
-                }
-                if (__fileEntityLoaded) {
-                    __draft.setFileEntity(fileEntity);
-                }
-                if (fileName != null) {
-                    __draft.setFileName(fileName);
-                }
-                if (fileType != null) {
-                    __draft.setFileType(fileType);
-                }
-                if (__bizKeyLoaded) {
-                    __draft.setBizKey(bizKey);
-                }
-                if (__bizTypeLoaded) {
-                    __draft.setBizType(bizType);
-                }
-            });
+            return (FileUpload)__draft.__modified();
         }
     }
 }

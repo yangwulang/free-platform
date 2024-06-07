@@ -1,5 +1,6 @@
 package top.yangwulang.platform.entity;
 
+import org.babyfish.jimmer.internal.GeneratedBy;
 import top.yangwulang.platform.entity.message.MessageRecordTableEx;
 import top.yangwulang.platform.entity.message.MessageRecordUserTableEx;
 import top.yangwulang.platform.entity.sys.AreaTableEx;
@@ -16,6 +17,7 @@ import top.yangwulang.platform.entity.sys.PostTableEx;
 import top.yangwulang.platform.entity.sys.RoleTableEx;
 import top.yangwulang.platform.entity.sys.UserTableEx;
 
+@GeneratedBy
 public interface TableExes {
     MessageRecordTableEx MESSAGE_RECORD_TABLE_EX = MessageRecordTableEx.$;
 

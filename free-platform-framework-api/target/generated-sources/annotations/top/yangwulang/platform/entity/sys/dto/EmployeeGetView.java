@@ -27,6 +27,9 @@ import top.yangwulang.platform.entity.sys.UserFetcher;
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Employee.dto"
 )
+@Schema(
+        description = "员工"
+)
 public class EmployeeGetView implements View<Employee> {
     public static final ViewMetadata<Employee, EmployeeGetView> METADATA = 
         new ViewMetadata<Employee, EmployeeGetView>(
@@ -118,16 +121,8 @@ public class EmployeeGetView implements View<Employee> {
         }
     );
 
-    @Schema(
-            description = "员工编码"
-    )
-    @NotNull
     private String empCode;
 
-    @Schema(
-            description = "员工名称"
-    )
-    @Nullable
     private String empName;
 
     @NotEmpty(
@@ -137,37 +132,31 @@ public class EmployeeGetView implements View<Employee> {
             description = "登陆编码，用户登陆的账号",
             requiredMode = Schema.RequiredMode.REQUIRED
     )
-    @Nullable
     private String loginCode;
 
     @Schema(
             description = "用户名"
     )
-    @Nullable
     private String userName;
 
     @Schema(
             description = "手机"
     )
-    @Nullable
     private String mobile;
 
     @Schema(
             description = "邮件"
     )
-    @Nullable
     private String email;
 
     @Schema(
             description = "性别"
     )
-    @Nullable
     private String sex;
 
     @Schema(
             description = "个性签名"
     )
-    @Nullable
     private String sign;
 
     @NotEmpty(
@@ -177,21 +166,18 @@ public class EmployeeGetView implements View<Employee> {
             description = "用户类型",
             requiredMode = Schema.RequiredMode.REQUIRED
     )
-    @Nullable
     private String userType;
 
     @Schema(
             description = "用户权重",
             requiredMode = Schema.RequiredMode.REQUIRED
     )
-    @Nullable
     private Integer userWeight;
 
     @Schema(
             description = "管理员类型",
             requiredMode = Schema.RequiredMode.REQUIRED
     )
-    @Nullable
     private String mgrType;
 
     public EmployeeGetView() {
@@ -211,10 +197,6 @@ public class EmployeeGetView implements View<Employee> {
         this.mgrType = MGR_TYPE_ACCESSOR.get(base);
     }
 
-    public static EmployeeGetView of(@NotNull Employee base) {
-        return new EmployeeGetView(base);
-    }
-
     /**
      * 员工编码
      */
@@ -223,6 +205,9 @@ public class EmployeeGetView implements View<Employee> {
             description = "员工编码"
     )
     public String getEmpCode() {
+        if (empCode == null) {
+            throw new IllegalStateException("The property \"empCode\" is not specified");
+        }
         return empCode;
     }
 

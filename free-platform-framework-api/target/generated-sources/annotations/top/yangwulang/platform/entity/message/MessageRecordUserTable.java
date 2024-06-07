@@ -101,6 +101,9 @@ public class MessageRecordUserTable extends AbstractTypedTable<MessageRecordUser
         return new MessageRecordUserTable(this, reason);
     }
 
+    @GeneratedBy(
+            type = MessageRecordUser.class
+    )
     public static class Remote extends AbstractTypedTable<MessageRecordUser> {
         public Remote(AbstractTypedTable.DelayedOperation delayedOperation) {
             super(MessageRecordUser.class, delayedOperation);

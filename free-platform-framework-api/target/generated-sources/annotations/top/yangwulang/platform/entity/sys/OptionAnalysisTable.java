@@ -97,6 +97,9 @@ public class OptionAnalysisTable extends AbstractTypedTable<OptionAnalysis> impl
         return new OptionAnalysisTable(this, reason);
     }
 
+    @GeneratedBy(
+            type = OptionAnalysis.class
+    )
     public static class Remote extends AbstractTypedTable<OptionAnalysis> {
         public Remote(AbstractTypedTable.DelayedOperation delayedOperation) {
             super(OptionAnalysis.class, delayedOperation);

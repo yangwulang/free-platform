@@ -87,6 +87,9 @@ public class ConfigTable extends AbstractTypedTable<Config> implements ConfigPro
         return new ConfigTable(this, reason);
     }
 
+    @GeneratedBy(
+            type = Config.class
+    )
     public static class Remote extends AbstractTypedTable<Config> {
         public Remote(AbstractTypedTable.DelayedOperation delayedOperation) {
             super(Config.class, delayedOperation);

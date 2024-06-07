@@ -2,7 +2,6 @@ package top.yangwulang.platform.entity.sys.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.lang.Boolean;
-import java.lang.Integer;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
@@ -28,11 +27,13 @@ import top.yangwulang.platform.entity.sys.RoleFetcher;
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Role.dto"
 )
+@Schema(
+        description = "角色"
+)
 public class RoleListView implements View<Role> {
     public static final ViewMetadata<Role, RoleListView> METADATA = 
         new ViewMetadata<Role, RoleListView>(
             RoleFetcher.$
-                .status()
                 .createBy()
                 .createDate()
                 .updateBy()
@@ -49,75 +50,32 @@ public class RoleListView implements View<Role> {
             RoleListView::new
     );
 
-    @NotNull
     private String id;
 
-    @Schema(
-            description = "状态"
-    )
-    private int status;
-
-    @NotNull
     private String createBy;
 
-    @NotNull
     private Date createDate;
 
-    @NotNull
     private String updateBy;
 
-    @NotNull
     private Date updateDate;
 
-    @Nullable
     private String remarks;
 
-    @Schema(
-            description = "角色编码"
-    )
-    @NotNull
     private String roleCode;
 
-    @Schema(
-            description = "角色名称"
-    )
-    @NotNull
     private String roleName;
 
-    @Schema(
-            description = "角色类型"
-    )
-    @Nullable
     private String roleType;
 
-    @Schema(
-            description = "角色排序"
-    )
-    @Nullable
     private BigDecimal roleSort;
 
-    @Schema(
-            description = "系统内置 1是 0否"
-    )
-    @Nullable
     private Boolean isSys;
 
-    @Schema(
-            description = "用户类型"
-    )
-    @Nullable
     private String userType;
 
-    @Schema(
-            description = "数据范围设置"
-    )
-    @Nullable
     private String dataScope;
 
-    @Schema(
-            description = "适应业务范围"
-    )
-    @Nullable
     private String bizScope;
 
     public RoleListView() {
@@ -125,7 +83,6 @@ public class RoleListView implements View<Role> {
 
     public RoleListView(@NotNull Role base) {
         this.id = base.id();
-        this.status = base.status();
         this.createBy = base.createBy();
         this.createDate = base.createDate();
         this.updateBy = base.updateBy();
@@ -141,32 +98,20 @@ public class RoleListView implements View<Role> {
         this.bizScope = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(RoleDraft.Producer.SLOT_BIZ_SCOPE)) ? base.bizScope() : null;
     }
 
-    public static RoleListView of(@NotNull Role base) {
-        return new RoleListView(base);
-    }
-
     /**
      * 字典类型编码
      * @return 主键值
      */
     @NotNull
     public String getId() {
+        if (id == null) {
+            throw new IllegalStateException("The property \"id\" is not specified");
+        }
         return id;
     }
 
     public void setId(@NotNull String id) {
         this.id = id;
-    }
-
-    @Schema(
-            description = "状态"
-    )
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
     }
 
     /**
@@ -176,6 +121,9 @@ public class RoleListView implements View<Role> {
      */
     @NotNull
     public String getCreateBy() {
+        if (createBy == null) {
+            throw new IllegalStateException("The property \"createBy\" is not specified");
+        }
         return createBy;
     }
 
@@ -190,6 +138,9 @@ public class RoleListView implements View<Role> {
      */
     @NotNull
     public Date getCreateDate() {
+        if (createDate == null) {
+            throw new IllegalStateException("The property \"createDate\" is not specified");
+        }
         return createDate;
     }
 
@@ -204,6 +155,9 @@ public class RoleListView implements View<Role> {
      */
     @NotNull
     public String getUpdateBy() {
+        if (updateBy == null) {
+            throw new IllegalStateException("The property \"updateBy\" is not specified");
+        }
         return updateBy;
     }
 
@@ -218,6 +172,9 @@ public class RoleListView implements View<Role> {
      */
     @NotNull
     public Date getUpdateDate() {
+        if (updateDate == null) {
+            throw new IllegalStateException("The property \"updateDate\" is not specified");
+        }
         return updateDate;
     }
 
@@ -247,6 +204,9 @@ public class RoleListView implements View<Role> {
             description = "角色编码"
     )
     public String getRoleCode() {
+        if (roleCode == null) {
+            throw new IllegalStateException("The property \"roleCode\" is not specified");
+        }
         return roleCode;
     }
 
@@ -262,6 +222,9 @@ public class RoleListView implements View<Role> {
             description = "角色名称"
     )
     public String getRoleName() {
+        if (roleName == null) {
+            throw new IllegalStateException("The property \"roleName\" is not specified");
+        }
         return roleName;
     }
 
@@ -363,7 +326,6 @@ public class RoleListView implements View<Role> {
     public Role toEntity() {
         return RoleDraft.$.produce(__draft -> {
             __draft.setId(id);
-            __draft.setStatus(status);
             __draft.setCreateBy(createBy);
             __draft.setCreateDate(createDate);
             __draft.setUpdateBy(updateBy);
@@ -383,7 +345,6 @@ public class RoleListView implements View<Role> {
     @Override
     public int hashCode() {
         int hash = Objects.hashCode(id);
-        hash = hash * 31 + Integer.hashCode(status);
         hash = hash * 31 + Objects.hashCode(createBy);
         hash = hash * 31 + Objects.hashCode(createDate);
         hash = hash * 31 + Objects.hashCode(updateBy);
@@ -407,9 +368,6 @@ public class RoleListView implements View<Role> {
         }
         RoleListView other = (RoleListView) o;
         if (!Objects.equals(id, other.id)) {
-            return false;
-        }
-        if (status != other.status) {
             return false;
         }
         if (!Objects.equals(createBy, other.createBy)) {
@@ -459,7 +417,6 @@ public class RoleListView implements View<Role> {
         StringBuilder builder = new StringBuilder();
         builder.append("RoleListView").append('(');
         builder.append("id=").append(id);
-        builder.append(", status=").append(status);
         builder.append(", createBy=").append(createBy);
         builder.append(", createDate=").append(createDate);
         builder.append(", updateBy=").append(updateBy);

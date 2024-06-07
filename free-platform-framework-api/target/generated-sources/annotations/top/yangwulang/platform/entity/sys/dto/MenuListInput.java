@@ -25,6 +25,9 @@ import top.yangwulang.platform.entity.sys.MenuFetcher;
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Menu.dto"
 )
+@Schema(
+        description = "菜单实体"
+)
 public class MenuListInput implements Input<Menu> {
     public static final ViewMetadata<Menu, MenuListInput> METADATA = 
         new ViewMetadata<Menu, MenuListInput>(
@@ -45,19 +48,10 @@ public class MenuListInput implements Input<Menu> {
         new int[] { MenuDraft.Producer.SLOT_MENU_TYPE }
     );
 
-    @Schema(
-            description = "菜单名称"
-    )
-    @Nullable
     private String menuName;
 
-    @Schema(
-            description = "菜单类型（1菜单 2权限 3开发）"
-    )
-    @Nullable
     private String menuType;
 
-    @Nullable
     private String parentId;
 
     public MenuListInput() {
@@ -67,10 +61,6 @@ public class MenuListInput implements Input<Menu> {
         this.menuName = MENU_NAME_ACCESSOR.get(base);
         this.menuType = MENU_TYPE_ACCESSOR.get(base);
         this.parentId = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_PARENT_ID)) ? base.parentId() : null;
-    }
-
-    public static MenuListInput of(@NotNull Menu base) {
-        return new MenuListInput(base);
     }
 
     /**

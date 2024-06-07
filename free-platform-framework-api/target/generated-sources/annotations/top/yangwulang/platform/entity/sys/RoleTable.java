@@ -142,6 +142,9 @@ public class RoleTable extends AbstractTypedTable<Role> implements RoleProps {
         return new RoleTable(this, reason);
     }
 
+    @GeneratedBy(
+            type = Role.class
+    )
     public static class Remote extends AbstractTypedTable<Role> {
         public Remote(AbstractTypedTable.DelayedOperation delayedOperation) {
             super(Role.class, delayedOperation);

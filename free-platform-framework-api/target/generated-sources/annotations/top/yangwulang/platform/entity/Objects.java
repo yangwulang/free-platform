@@ -1,6 +1,7 @@
 package top.yangwulang.platform.entity;
 
 import org.babyfish.jimmer.DraftConsumer;
+import org.babyfish.jimmer.internal.GeneratedBy;
 import top.yangwulang.platform.entity.message.MessageRecord;
 import top.yangwulang.platform.entity.message.MessageRecordDraft;
 import top.yangwulang.platform.entity.message.MessageRecordUser;
@@ -32,6 +33,7 @@ import top.yangwulang.platform.entity.sys.RoleDraft;
 import top.yangwulang.platform.entity.sys.User;
 import top.yangwulang.platform.entity.sys.UserDraft;
 
+@GeneratedBy
 public interface Objects {
     static MessageRecord createMessageRecord(DraftConsumer<MessageRecordDraft> block) {
         return MessageRecordDraft.$.produce(block);

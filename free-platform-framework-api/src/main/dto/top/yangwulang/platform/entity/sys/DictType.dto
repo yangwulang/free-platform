@@ -22,7 +22,7 @@ unsafe input DictSaveInput {
 
 DictTypeGetView {
     #allScalars
-    -status
+    // -status
     -createBy
     -createDate
     -updateBy

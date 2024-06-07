@@ -125,6 +125,9 @@ public class AreaTable extends AbstractTypedTable<Area> implements AreaProps {
         return new AreaTable(this, reason);
     }
 
+    @GeneratedBy(
+            type = Area.class
+    )
     public static class Remote extends AbstractTypedTable<Area> {
         public Remote(AbstractTypedTable.DelayedOperation delayedOperation) {
             super(Area.class, delayedOperation);

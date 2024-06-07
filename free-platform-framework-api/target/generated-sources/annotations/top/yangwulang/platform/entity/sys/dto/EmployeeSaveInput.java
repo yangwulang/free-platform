@@ -1,5 +1,7 @@
 package top.yangwulang.platform.entity.sys.dto;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotEmpty;
 import java.lang.Integer;
@@ -9,6 +11,7 @@ import java.lang.String;
 import java.util.Objects;
 import org.babyfish.jimmer.Input;
 import org.babyfish.jimmer.impl.util.DtoPropAccessor;
+import org.babyfish.jimmer.internal.FixedInputField;
 import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
@@ -26,6 +29,12 @@ import top.yangwulang.platform.entity.sys.UserFetcher;
  */
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Employee.dto"
+)
+@JsonDeserialize(
+        builder = EmployeeSaveInput.Builder.class
+)
+@Schema(
+        description = "员工"
 )
 public class EmployeeSaveInput implements Input<Employee> {
     public static final ViewMetadata<Employee, EmployeeSaveInput> METADATA = 
@@ -123,16 +132,8 @@ public class EmployeeSaveInput implements Input<Employee> {
         }
     );
 
-    @Schema(
-            description = "员工名称"
-    )
-    @Nullable
     private String empName;
 
-    @Schema(
-            description = "员工编码"
-    )
-    @Nullable
     private String empCode;
 
     @NotEmpty(
@@ -142,37 +143,31 @@ public class EmployeeSaveInput implements Input<Employee> {
             description = "登陆编码，用户登陆的账号",
             requiredMode = Schema.RequiredMode.REQUIRED
     )
-    @Nullable
     private String loginCode;
 
     @Schema(
             description = "用户名"
     )
-    @Nullable
     private String userName;
 
     @Schema(
             description = "手机"
     )
-    @Nullable
     private String mobile;
 
     @Schema(
             description = "邮件"
     )
-    @Nullable
     private String email;
 
     @Schema(
             description = "性别"
     )
-    @Nullable
     private String sex;
 
     @Schema(
             description = "个性签名"
     )
-    @Nullable
     private String sign;
 
     @NotEmpty(
@@ -182,21 +177,19 @@ public class EmployeeSaveInput implements Input<Employee> {
             description = "用户类型",
             requiredMode = Schema.RequiredMode.REQUIRED
     )
-    @Nullable
     private String userType;
 
     @Schema(
             description = "用户权重",
             requiredMode = Schema.RequiredMode.REQUIRED
     )
-    @Nullable
     private Integer userWeight;
 
+    @FixedInputField
     @Schema(
             description = "管理员类型",
             requiredMode = Schema.RequiredMode.REQUIRED
     )
-    @Nullable
     private String mgrType;
 
     public EmployeeSaveInput() {
@@ -214,10 +207,6 @@ public class EmployeeSaveInput implements Input<Employee> {
         this.userType = USER_TYPE_ACCESSOR.get(base);
         this.userWeight = USER_WEIGHT_ACCESSOR.get(base);
         this.mgrType = MGR_TYPE_ACCESSOR.get(base);
-    }
-
-    public static EmployeeSaveInput of(@NotNull Employee base) {
-        return new EmployeeSaveInput(base);
     }
 
     /**
@@ -460,5 +449,109 @@ public class EmployeeSaveInput implements Input<Employee> {
         builder.append(", mgrType=").append(mgrType);
         builder.append(')');
         return builder.toString();
+    }
+
+    @JsonPOJOBuilder(
+            withPrefix = ""
+    )
+    public static class Builder {
+        private String empName;
+
+        private String empCode;
+
+        private String loginCode;
+
+        private String userName;
+
+        private String mobile;
+
+        private String email;
+
+        private String sex;
+
+        private String sign;
+
+        private String userType;
+
+        private Integer userWeight;
+
+        private String mgrType;
+
+        private boolean _isMgrTypeLoaded;
+
+        public Builder empName(String empName) {
+            this.empName = empName;
+            return this;
+        }
+
+        public Builder empCode(String empCode) {
+            this.empCode = empCode;
+            return this;
+        }
+
+        public Builder loginCode(String loginCode) {
+            this.loginCode = loginCode;
+            return this;
+        }
+
+        public Builder userName(String userName) {
+            this.userName = userName;
+            return this;
+        }
+
+        public Builder mobile(String mobile) {
+            this.mobile = mobile;
+            return this;
+        }
+
+        public Builder email(String email) {
+            this.email = email;
+            return this;
+        }
+
+        public Builder sex(String sex) {
+            this.sex = sex;
+            return this;
+        }
+
+        public Builder sign(String sign) {
+            this.sign = sign;
+            return this;
+        }
+
+        public Builder userType(String userType) {
+            this.userType = userType;
+            return this;
+        }
+
+        public Builder userWeight(Integer userWeight) {
+            this.userWeight = userWeight;
+            return this;
+        }
+
+        public Builder mgrType(String mgrType) {
+            this.mgrType = mgrType;
+            this._isMgrTypeLoaded = true;
+            return this;
+        }
+
+        public EmployeeSaveInput build() {
+            EmployeeSaveInput _input = new EmployeeSaveInput();
+            _input.setEmpName(empName);
+            _input.setEmpCode(empCode);
+            _input.setLoginCode(loginCode);
+            _input.setUserName(userName);
+            _input.setMobile(mobile);
+            _input.setEmail(email);
+            _input.setSex(sex);
+            _input.setSign(sign);
+            _input.setUserType(userType);
+            _input.setUserWeight(userWeight);
+            if (!_isMgrTypeLoaded) {
+                throw Input.unknownNullableProperty(EmployeeSaveInput.class, "mgrType");
+            }
+            _input.setMgrType(mgrType);
+            return _input;
+        }
     }
 }

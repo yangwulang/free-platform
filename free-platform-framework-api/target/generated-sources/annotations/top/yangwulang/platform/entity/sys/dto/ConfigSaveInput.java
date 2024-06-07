@@ -1,5 +1,7 @@
 package top.yangwulang.platform.entity.sys.dto;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.lang.Object;
 import java.lang.Override;
@@ -7,6 +9,7 @@ import java.lang.String;
 import java.util.Objects;
 import org.babyfish.jimmer.Input;
 import org.babyfish.jimmer.impl.util.DtoPropAccessor;
+import org.babyfish.jimmer.internal.FixedInputField;
 import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
@@ -24,6 +27,9 @@ import top.yangwulang.platform.entity.sys.ConfigFetcher;
  */
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Config.dto"
+)
+@JsonDeserialize(
+        builder = ConfigSaveInput.Builder.class
 )
 public class ConfigSaveInput implements Input<Config> {
     public static final ViewMetadata<Config, ConfigSaveInput> METADATA = 
@@ -44,28 +50,16 @@ public class ConfigSaveInput implements Input<Config> {
     @Schema(
             description = "配置id"
     )
-    @Nullable
     private String id;
 
-    @Schema(
-            description = "配置名称"
-    )
-    @NotNull
+    @FixedInputField
     private String configName;
 
-    @Schema(
-            description = "参数键"
-    )
-    @NotNull
+    @FixedInputField
     private String configKey;
 
-    @Schema(
-            description = "参数值"
-    )
-    @Nullable
     private String configValue;
 
-    @Nullable
     private String remarks;
 
     public ConfigSaveInput() {
@@ -77,10 +71,6 @@ public class ConfigSaveInput implements Input<Config> {
         this.configKey = base.configKey();
         this.configValue = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(ConfigDraft.Producer.SLOT_CONFIG_VALUE)) ? base.configValue() : null;
         this.remarks = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(ConfigDraft.Producer.SLOT_REMARKS)) ? base.remarks() : null;
-    }
-
-    public static ConfigSaveInput of(@NotNull Config base) {
-        return new ConfigSaveInput(base);
     }
 
     /**
@@ -109,6 +99,9 @@ public class ConfigSaveInput implements Input<Config> {
             description = "配置名称"
     )
     public String getConfigName() {
+        if (configName == null) {
+            throw new IllegalStateException("The property \"configName\" is not specified");
+        }
         return configName;
     }
 
@@ -126,6 +119,9 @@ public class ConfigSaveInput implements Input<Config> {
             description = "参数键"
     )
     public String getConfigKey() {
+        if (configKey == null) {
+            throw new IllegalStateException("The property \"configKey\" is not specified");
+        }
         return configKey;
     }
 
@@ -220,5 +216,61 @@ public class ConfigSaveInput implements Input<Config> {
         builder.append(", remarks=").append(remarks);
         builder.append(')');
         return builder.toString();
+    }
+
+    @JsonPOJOBuilder(
+            withPrefix = ""
+    )
+    public static class Builder {
+        private String id;
+
+        private String configName;
+
+        private String configKey;
+
+        private String configValue;
+
+        private String remarks;
+
+        public Builder id(String id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder configName(String configName) {
+            this.configName = Objects.requireNonNull(configName, "The property \"configName\" cannot be null");
+            return this;
+        }
+
+        public Builder configKey(String configKey) {
+            this.configKey = Objects.requireNonNull(configKey, "The property \"configKey\" cannot be null");
+            return this;
+        }
+
+        public Builder configValue(String configValue) {
+            this.configValue = configValue;
+            return this;
+        }
+
+        public Builder remarks(String remarks) {
+            this.remarks = remarks;
+            return this;
+        }
+
+        public ConfigSaveInput build() {
+            ConfigSaveInput _input = new ConfigSaveInput();
+            _input.setId(id);
+            if (configName == null) {
+                throw Input.unknownNonNullProperty(ConfigSaveInput.class, "configName");
+            }
+            _input.setConfigName(configName);
+            if (configKey == null) {
+                throw Input.unknownNonNullProperty(ConfigSaveInput.class, "configKey");
+            }
+            _input.setConfigKey(configKey);
+            _input.setConfigValue(configValue);
+            _input.setRemarks(remarks);
+            return _input;
+        }
     }
 }

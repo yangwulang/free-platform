@@ -1,6 +1,8 @@
 package top.yangwulang.platform.entity.sys;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.lang.CloneNotSupportedException;
 import java.lang.Cloneable;
@@ -27,6 +29,7 @@ import org.babyfish.jimmer.runtime.DraftSpi;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
 import org.babyfish.jimmer.runtime.Internal;
 import org.babyfish.jimmer.runtime.Visibility;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.DataTypeBaseNoStatusDraft;
 
@@ -63,6 +66,9 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
     @OldChain
     ConfigDraft setConfigValue(String configValue);
 
+    @GeneratedBy(
+            type = Config.class
+    )
     class Producer {
         static final Producer INSTANCE = new Producer();
 
@@ -86,7 +92,7 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.114",
+                "0.8.130",
                 Config.class,
                 Collections.singleton(DataTypeBaseNoStatusDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (Config)base)
@@ -113,6 +119,10 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
             return (Config)Internal.produce(TYPE, base, block);
         }
 
+        @GeneratedBy(
+                type = Config.class
+        )
+        @JsonPropertyOrder({"dummyPropForJacksonError__", "id", "createBy", "createDate", "updateBy", "updateDate", "remarks", "configName", "configKey", "configValue"})
         public abstract interface Implementor extends Config, ImmutableSpi {
             @Override
             default Object __get(PropId prop) {
@@ -167,47 +177,54 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
                 }
             }
 
-            @JsonIgnore
+            @NotNull
             default String getId() {
                 return id();
             }
 
-            @JsonIgnore
+            @NotNull
             default String getCreateBy() {
                 return createBy();
             }
 
-            @JsonIgnore
+            @NotNull
             default Date getCreateDate() {
                 return createDate();
             }
 
-            @JsonIgnore
+            @NotNull
             default String getUpdateBy() {
                 return updateBy();
             }
 
-            @JsonIgnore
+            @NotNull
             default Date getUpdateDate() {
                 return updateDate();
             }
 
-            @JsonIgnore
+            @Nullable
             default String getRemarks() {
                 return remarks();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "配置名称"
+            )
             default String getConfigName() {
                 return configName();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "参数键"
+            )
             default String getConfigKey() {
                 return configKey();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "参数值"
+            )
+            @jakarta.annotation.Nullable
             default String getConfigValue() {
                 return configValue();
             }
@@ -222,6 +239,9 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
             }
         }
 
+        @GeneratedBy(
+                type = Config.class
+        )
         private static class Impl implements Implementor, Cloneable, Serializable {
             private Visibility __visibility;
 
@@ -248,6 +268,7 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
             boolean __configValueLoaded = false;
 
             @Override
+            @JsonIgnore
             public String id() {
                 if (__idValue == null) {
                     throw new UnloadedException(Config.class, "id");
@@ -256,6 +277,7 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
             }
 
             @Override
+            @JsonIgnore
             public String createBy() {
                 if (__createByValue == null) {
                     throw new UnloadedException(Config.class, "createBy");
@@ -264,6 +286,7 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
             }
 
             @Override
+            @JsonIgnore
             public Date createDate() {
                 if (__createDateValue == null) {
                     throw new UnloadedException(Config.class, "createDate");
@@ -272,6 +295,7 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
             }
 
             @Override
+            @JsonIgnore
             public String updateBy() {
                 if (__updateByValue == null) {
                     throw new UnloadedException(Config.class, "updateBy");
@@ -280,6 +304,7 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
             }
 
             @Override
+            @JsonIgnore
             public Date updateDate() {
                 if (__updateDateValue == null) {
                     throw new UnloadedException(Config.class, "updateDate");
@@ -288,6 +313,7 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String remarks() {
                 if (!__remarksLoaded) {
@@ -297,6 +323,7 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
             }
 
             @Override
+            @JsonIgnore
             public String configName() {
                 if (__configNameValue == null) {
                     throw new UnloadedException(Config.class, "configName");
@@ -305,6 +332,7 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
             }
 
             @Override
+            @JsonIgnore
             public String configKey() {
                 if (__configKeyValue == null) {
                     throw new UnloadedException(Config.class, "configKey");
@@ -313,6 +341,7 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String configValue() {
                 if (!__configValueLoaded) {
@@ -723,6 +752,9 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
             }
         }
 
+        @GeneratedBy(
+                type = Config.class
+        )
         private static class DraftImpl implements Implementor, DraftSpi, ConfigDraft {
             private DraftContext __ctx;
 
@@ -788,6 +820,7 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
             }
 
             @Override
+            @JsonIgnore
             public String id() {
                 return (__modified!= null ? __modified : __base).id();
             }
@@ -805,6 +838,7 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
             }
 
             @Override
+            @JsonIgnore
             public String createBy() {
                 return (__modified!= null ? __modified : __base).createBy();
             }
@@ -822,6 +856,7 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
             }
 
             @Override
+            @JsonIgnore
             public Date createDate() {
                 return (__modified!= null ? __modified : __base).createDate();
             }
@@ -839,6 +874,7 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
             }
 
             @Override
+            @JsonIgnore
             public String updateBy() {
                 return (__modified!= null ? __modified : __base).updateBy();
             }
@@ -856,6 +892,7 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
             }
 
             @Override
+            @JsonIgnore
             public Date updateDate() {
                 return (__modified!= null ? __modified : __base).updateDate();
             }
@@ -873,6 +910,7 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String remarks() {
                 return (__modified!= null ? __modified : __base).remarks();
@@ -887,6 +925,7 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
             }
 
             @Override
+            @JsonIgnore
             public String configName() {
                 return (__modified!= null ? __modified : __base).configName();
             }
@@ -904,6 +943,7 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
             }
 
             @Override
+            @JsonIgnore
             public String configKey() {
                 return (__modified!= null ? __modified : __base).configKey();
             }
@@ -921,6 +961,7 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String configValue() {
                 return (__modified!= null ? __modified : __base).configValue();
@@ -1144,7 +1185,7 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
                 }
             }
 
-            private Impl __modified() {
+            Impl __modified() {
                 Impl __tmpModified = __modified;
                 if (__tmpModified == null) {
                     __tmpModified = __base.clone();
@@ -1155,106 +1196,93 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
         }
     }
 
-    class MapStruct {
-        private String id;
+    @GeneratedBy(
+            type = Config.class
+    )
+    class Builder {
+        private final Producer.DraftImpl __draft;
 
-        private String createBy;
+        public Builder() {
+            __draft = new Producer.DraftImpl(null, null);
+        }
 
-        private Date createDate;
-
-        private String updateBy;
-
-        private Date updateDate;
-
-        private boolean __remarksLoaded;
-
-        private String remarks;
-
-        private String configName;
-
-        private String configKey;
-
-        private boolean __configValueLoaded;
-
-        private String configValue;
-
-        public MapStruct id(String id) {
-            this.id = id;
+        @NotNull
+        public Builder id(String id) {
+            if (id != null) {
+                __draft.setId(id);
+            }
             return this;
         }
 
-        public MapStruct createBy(String createBy) {
-            this.createBy = createBy;
+        @NotNull
+        public Builder createBy(String createBy) {
+            if (createBy != null) {
+                __draft.setCreateBy(createBy);
+            }
             return this;
         }
 
-        public MapStruct createDate(Date createDate) {
-            this.createDate = createDate;
+        @NotNull
+        public Builder createDate(Date createDate) {
+            if (createDate != null) {
+                __draft.setCreateDate(createDate);
+            }
             return this;
         }
 
-        public MapStruct updateBy(String updateBy) {
-            this.updateBy = updateBy;
+        @NotNull
+        public Builder updateBy(String updateBy) {
+            if (updateBy != null) {
+                __draft.setUpdateBy(updateBy);
+            }
             return this;
         }
 
-        public MapStruct updateDate(Date updateDate) {
-            this.updateDate = updateDate;
+        @NotNull
+        public Builder updateDate(Date updateDate) {
+            if (updateDate != null) {
+                __draft.setUpdateDate(updateDate);
+            }
             return this;
         }
 
-        public MapStruct remarks(String remarks) {
-            this.__remarksLoaded = true;
-            this.remarks = remarks;
+        @Nullable
+        public Builder remarks(String remarks) {
+            __draft.setRemarks(remarks);
             return this;
         }
 
-        public MapStruct configName(String configName) {
-            this.configName = configName;
+        @Schema(
+                description = "配置名称"
+        )
+        public Builder configName(String configName) {
+            if (configName != null) {
+                __draft.setConfigName(configName);
+            }
             return this;
         }
 
-        public MapStruct configKey(String configKey) {
-            this.configKey = configKey;
+        @Schema(
+                description = "参数键"
+        )
+        public Builder configKey(String configKey) {
+            if (configKey != null) {
+                __draft.setConfigKey(configKey);
+            }
             return this;
         }
 
-        public MapStruct configValue(String configValue) {
-            this.__configValueLoaded = true;
-            this.configValue = configValue;
+        @Schema(
+                description = "参数值"
+        )
+        @jakarta.annotation.Nullable
+        public Builder configValue(String configValue) {
+            __draft.setConfigValue(configValue);
             return this;
         }
 
         public Config build() {
-            return ConfigDraft.$.produce(__draft -> {
-                if (id != null) {
-                    __draft.setId(id);
-                }
-                if (createBy != null) {
-                    __draft.setCreateBy(createBy);
-                }
-                if (createDate != null) {
-                    __draft.setCreateDate(createDate);
-                }
-                if (updateBy != null) {
-                    __draft.setUpdateBy(updateBy);
-                }
-                if (updateDate != null) {
-                    __draft.setUpdateDate(updateDate);
-                }
-                if (__remarksLoaded) {
-                    __draft.setRemarks(remarks);
-                }
-                if (configName != null) {
-                    __draft.setConfigName(configName);
-                }
-                if (configKey != null) {
-                    __draft.setConfigKey(configKey);
-                }
-                if (__configValueLoaded) {
-                    __draft.setConfigValue(configValue);
-                }
-            });
+            return (Config)__draft.__modified();
         }
     }
 }

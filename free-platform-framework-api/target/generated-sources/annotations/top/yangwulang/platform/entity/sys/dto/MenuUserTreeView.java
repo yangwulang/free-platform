@@ -2,7 +2,6 @@ package top.yangwulang.platform.entity.sys.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.lang.Boolean;
-import java.lang.Integer;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
@@ -31,11 +30,13 @@ import top.yangwulang.platform.entity.sys.MenuFetcher;
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Menu.dto"
 )
+@Schema(
+        description = "菜单实体"
+)
 public class MenuUserTreeView implements View<Menu> {
     public static final ViewMetadata<Menu, MenuUserTreeView> METADATA = 
         new ViewMetadata<Menu, MenuUserTreeView>(
             MenuFetcher.$
-                .status()
                 .createBy()
                 .createDate()
                 .updateBy()
@@ -65,108 +66,44 @@ public class MenuUserTreeView implements View<Menu> {
         DtoPropAccessor.objectListSetter(MenuUserTreeView::toEntity)
     );
 
-    @NotNull
     private String id;
 
-    @Schema(
-            description = "状态"
-    )
-    private int status;
-
-    @NotNull
     private String createBy;
 
-    @NotNull
     private Date createDate;
 
-    @NotNull
     private String updateBy;
 
-    @NotNull
     private Date updateDate;
 
-    @Nullable
     private String remarks;
 
-    @Schema(
-            description = "菜单名称"
-    )
-    @NotNull
     private String menuName;
 
-    @Schema(
-            description = "菜单类型（1菜单 2权限 3开发）"
-    )
-    @NotNull
     private String menuType;
 
-    @Schema(
-            description = "链接"
-    )
-    @Nullable
     private String menuHref;
 
-    @Schema(
-            description = "组件地址"
-    )
-    @Nullable
     private String menuComponent;
 
-    @Schema(
-            description = "目标"
-    )
-    @Nullable
     private String menuTarget;
 
-    @Schema(
-            description = "图标"
-    )
-    @Nullable
     private String menuIcon;
 
-    @Schema(
-            description = "颜色"
-    )
-    @Nullable
     private String menuColor;
 
-    @Schema(
-            description = "菜单标题"
-    )
-    @Nullable
     private String menuTitle;
 
-    @Schema(
-            description = "权限标识"
-    )
-    @Nullable
     private String permission;
 
-    @Schema(
-            description = "菜单权重"
-    )
-    @Nullable
     private BigDecimal weight;
 
-    @Schema(
-            description = "是否显示"
-    )
-    @Nullable
     private Boolean isShow;
 
-    @Schema(
-            description = "归属系统（default:主导航菜单、mobileApp:APP菜单）"
-    )
-    @Nullable
     private String sysCode;
 
-    @Schema(
-            description = "子级菜单"
-    )
-    @Nullable
     private List<MenuUserTreeView> children;
 
-    @Nullable
     private String parentId;
 
     public MenuUserTreeView() {
@@ -174,7 +111,6 @@ public class MenuUserTreeView implements View<Menu> {
 
     public MenuUserTreeView(@NotNull Menu base) {
         this.id = base.id();
-        this.status = base.status();
         this.createBy = base.createBy();
         this.createDate = base.createDate();
         this.updateBy = base.updateBy();
@@ -196,32 +132,20 @@ public class MenuUserTreeView implements View<Menu> {
         this.parentId = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_PARENT_ID)) ? base.parentId() : null;
     }
 
-    public static MenuUserTreeView of(@NotNull Menu base) {
-        return new MenuUserTreeView(base);
-    }
-
     /**
      * 字典类型编码
      * @return 主键值
      */
     @NotNull
     public String getId() {
+        if (id == null) {
+            throw new IllegalStateException("The property \"id\" is not specified");
+        }
         return id;
     }
 
     public void setId(@NotNull String id) {
         this.id = id;
-    }
-
-    @Schema(
-            description = "状态"
-    )
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
     }
 
     /**
@@ -231,6 +155,9 @@ public class MenuUserTreeView implements View<Menu> {
      */
     @NotNull
     public String getCreateBy() {
+        if (createBy == null) {
+            throw new IllegalStateException("The property \"createBy\" is not specified");
+        }
         return createBy;
     }
 
@@ -245,6 +172,9 @@ public class MenuUserTreeView implements View<Menu> {
      */
     @NotNull
     public Date getCreateDate() {
+        if (createDate == null) {
+            throw new IllegalStateException("The property \"createDate\" is not specified");
+        }
         return createDate;
     }
 
@@ -259,6 +189,9 @@ public class MenuUserTreeView implements View<Menu> {
      */
     @NotNull
     public String getUpdateBy() {
+        if (updateBy == null) {
+            throw new IllegalStateException("The property \"updateBy\" is not specified");
+        }
         return updateBy;
     }
 
@@ -273,6 +206,9 @@ public class MenuUserTreeView implements View<Menu> {
      */
     @NotNull
     public Date getUpdateDate() {
+        if (updateDate == null) {
+            throw new IllegalStateException("The property \"updateDate\" is not specified");
+        }
         return updateDate;
     }
 
@@ -302,6 +238,9 @@ public class MenuUserTreeView implements View<Menu> {
             description = "菜单名称"
     )
     public String getMenuName() {
+        if (menuName == null) {
+            throw new IllegalStateException("The property \"menuName\" is not specified");
+        }
         return menuName;
     }
 
@@ -317,6 +256,9 @@ public class MenuUserTreeView implements View<Menu> {
             description = "菜单类型（1菜单 2权限 3开发）"
     )
     public String getMenuType() {
+        if (menuType == null) {
+            throw new IllegalStateException("The property \"menuType\" is not specified");
+        }
         return menuType;
     }
 
@@ -499,7 +441,6 @@ public class MenuUserTreeView implements View<Menu> {
     public Menu toEntity() {
         return MenuDraft.$.produce(__draft -> {
             __draft.setId(id);
-            __draft.setStatus(status);
             __draft.setCreateBy(createBy);
             __draft.setCreateDate(createDate);
             __draft.setUpdateBy(updateBy);
@@ -525,7 +466,6 @@ public class MenuUserTreeView implements View<Menu> {
     @Override
     public int hashCode() {
         int hash = Objects.hashCode(id);
-        hash = hash * 31 + Integer.hashCode(status);
         hash = hash * 31 + Objects.hashCode(createBy);
         hash = hash * 31 + Objects.hashCode(createDate);
         hash = hash * 31 + Objects.hashCode(updateBy);
@@ -555,9 +495,6 @@ public class MenuUserTreeView implements View<Menu> {
         }
         MenuUserTreeView other = (MenuUserTreeView) o;
         if (!Objects.equals(id, other.id)) {
-            return false;
-        }
-        if (status != other.status) {
             return false;
         }
         if (!Objects.equals(createBy, other.createBy)) {
@@ -625,7 +562,6 @@ public class MenuUserTreeView implements View<Menu> {
         StringBuilder builder = new StringBuilder();
         builder.append("MenuUserTreeView").append('(');
         builder.append("id=").append(id);
-        builder.append(", status=").append(status);
         builder.append(", createBy=").append(createBy);
         builder.append(", createDate=").append(createDate);
         builder.append(", updateBy=").append(updateBy);

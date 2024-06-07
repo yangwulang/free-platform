@@ -24,6 +24,9 @@ import top.yangwulang.platform.entity.sys.PostFetcher;
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Post.dto"
 )
+@Schema(
+        description = "岗位"
+)
 public class PostGetView implements View<Post> {
     public static final ViewMetadata<Post, PostGetView> METADATA = 
         new ViewMetadata<Post, PostGetView>(
@@ -34,25 +37,12 @@ public class PostGetView implements View<Post> {
             PostGetView::new
     );
 
-    @NotNull
     private String id;
 
-    @Schema(
-            description = "岗位编码"
-    )
-    @NotNull
     private String postCode;
 
-    @Schema(
-            description = "岗位名称"
-    )
-    @NotNull
     private String postName;
 
-    @Schema(
-            description = "岗位类型（高管、中层、低层）"
-    )
-    @Nullable
     private String postType;
 
     public PostGetView() {
@@ -65,16 +55,15 @@ public class PostGetView implements View<Post> {
         this.postType = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(PostDraft.Producer.SLOT_POST_TYPE)) ? base.postType() : null;
     }
 
-    public static PostGetView of(@NotNull Post base) {
-        return new PostGetView(base);
-    }
-
     /**
      * 字典类型编码
      * @return 主键值
      */
     @NotNull
     public String getId() {
+        if (id == null) {
+            throw new IllegalStateException("The property \"id\" is not specified");
+        }
         return id;
     }
 
@@ -92,6 +81,9 @@ public class PostGetView implements View<Post> {
             description = "岗位编码"
     )
     public String getPostCode() {
+        if (postCode == null) {
+            throw new IllegalStateException("The property \"postCode\" is not specified");
+        }
         return postCode;
     }
 
@@ -109,6 +101,9 @@ public class PostGetView implements View<Post> {
             description = "岗位名称"
     )
     public String getPostName() {
+        if (postName == null) {
+            throw new IllegalStateException("The property \"postName\" is not specified");
+        }
         return postName;
     }
 

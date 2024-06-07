@@ -1,5 +1,7 @@
 package top.yangwulang.platform.entity.sys.dto;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.lang.Long;
 import java.lang.Object;
@@ -7,6 +9,7 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
 import org.babyfish.jimmer.Input;
+import org.babyfish.jimmer.internal.FixedInputField;
 import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
@@ -23,6 +26,12 @@ import top.yangwulang.platform.entity.sys.AreaFetcher;
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Area.dto"
 )
+@JsonDeserialize(
+        builder = AreaSaveInput.Builder.class
+)
+@Schema(
+        description = "区域实体"
+)
 public class AreaSaveInput implements Input<Area> {
     public static final ViewMetadata<Area, AreaSaveInput> METADATA = 
         new ViewMetadata<Area, AreaSaveInput>(
@@ -34,31 +43,16 @@ public class AreaSaveInput implements Input<Area> {
             AreaSaveInput::new
     );
 
-    @NotNull
+    @FixedInputField
     private String id;
 
-    @Schema(
-            description = "父级id"
-    )
-    @Nullable
     private String parentId;
 
-    @Schema(
-            description = "区域名称"
-    )
-    @NotNull
+    @FixedInputField
     private String areaName;
 
-    @Schema(
-            description = "排序"
-    )
-    @Nullable
     private Long sort;
 
-    @Schema(
-            description = "地区类型(1：省份、直辖市；2：地市；3：区县)"
-    )
-    @Nullable
     private String areaType;
 
     public AreaSaveInput() {
@@ -72,16 +66,15 @@ public class AreaSaveInput implements Input<Area> {
         this.areaType = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(AreaDraft.Producer.SLOT_AREA_TYPE)) ? base.areaType() : null;
     }
 
-    public static AreaSaveInput of(@NotNull Area base) {
-        return new AreaSaveInput(base);
-    }
-
     /**
      * 字典类型编码
      * @return 主键值
      */
     @NotNull
     public String getId() {
+        if (id == null) {
+            throw new IllegalStateException("The property \"id\" is not specified");
+        }
         return id;
     }
 
@@ -112,6 +105,9 @@ public class AreaSaveInput implements Input<Area> {
             description = "区域名称"
     )
     public String getAreaName() {
+        if (areaName == null) {
+            throw new IllegalStateException("The property \"areaName\" is not specified");
+        }
         return areaName;
     }
 
@@ -205,5 +201,61 @@ public class AreaSaveInput implements Input<Area> {
         builder.append(", areaType=").append(areaType);
         builder.append(')');
         return builder.toString();
+    }
+
+    @JsonPOJOBuilder(
+            withPrefix = ""
+    )
+    public static class Builder {
+        private String id;
+
+        private String parentId;
+
+        private String areaName;
+
+        private Long sort;
+
+        private String areaType;
+
+        public Builder id(String id) {
+            this.id = Objects.requireNonNull(id, "The property \"id\" cannot be null");
+            return this;
+        }
+
+        public Builder parentId(String parentId) {
+            this.parentId = parentId;
+            return this;
+        }
+
+        public Builder areaName(String areaName) {
+            this.areaName = Objects.requireNonNull(areaName, "The property \"areaName\" cannot be null");
+            return this;
+        }
+
+        public Builder sort(Long sort) {
+            this.sort = sort;
+            return this;
+        }
+
+        public Builder areaType(String areaType) {
+            this.areaType = areaType;
+            return this;
+        }
+
+        public AreaSaveInput build() {
+            AreaSaveInput _input = new AreaSaveInput();
+            if (id == null) {
+                throw Input.unknownNonNullProperty(AreaSaveInput.class, "id");
+            }
+            _input.setId(id);
+            _input.setParentId(parentId);
+            if (areaName == null) {
+                throw Input.unknownNonNullProperty(AreaSaveInput.class, "areaName");
+            }
+            _input.setAreaName(areaName);
+            _input.setSort(sort);
+            _input.setAreaType(areaType);
+            return _input;
+        }
     }
 }

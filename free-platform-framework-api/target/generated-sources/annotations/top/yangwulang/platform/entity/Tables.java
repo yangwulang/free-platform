@@ -1,5 +1,6 @@
 package top.yangwulang.platform.entity;
 
+import org.babyfish.jimmer.internal.GeneratedBy;
 import top.yangwulang.platform.entity.message.MessageRecordTable;
 import top.yangwulang.platform.entity.message.MessageRecordUserTable;
 import top.yangwulang.platform.entity.sys.AreaTable;
@@ -16,6 +17,7 @@ import top.yangwulang.platform.entity.sys.PostTable;
 import top.yangwulang.platform.entity.sys.RoleTable;
 import top.yangwulang.platform.entity.sys.UserTable;
 
+@GeneratedBy
 public interface Tables {
     MessageRecordTable MESSAGE_RECORD_TABLE = MessageRecordTable.$;
 

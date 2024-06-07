@@ -1,6 +1,8 @@
 package top.yangwulang.platform.entity.sys;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.lang.Boolean;
 import java.lang.CloneNotSupportedException;
@@ -35,6 +37,7 @@ import org.babyfish.jimmer.runtime.Internal;
 import org.babyfish.jimmer.runtime.NonSharedList;
 import org.babyfish.jimmer.runtime.Visibility;
 import org.babyfish.jimmer.sql.ManyToMany;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.DataTypeBaseDraft;
 
@@ -117,6 +120,9 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
     @OldChain
     RoleDraft addIntoUsers(User base, DraftConsumer<UserDraft> block);
 
+    @GeneratedBy(
+            type = Role.class
+    )
     class Producer {
         static final Producer INSTANCE = new Producer();
 
@@ -160,7 +166,7 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.114",
+                "0.8.130",
                 Role.class,
                 Collections.singleton(DataTypeBaseDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (Role)base)
@@ -197,6 +203,10 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
             return (Role)Internal.produce(TYPE, base, block);
         }
 
+        @GeneratedBy(
+                type = Role.class
+        )
+        @JsonPropertyOrder({"dummyPropForJacksonError__", "id", "status", "createBy", "createDate", "updateBy", "updateDate", "remarks", "roleCode", "roleName", "roleType", "roleSort", "isSys", "userType", "dataScope", "bizScope", "corpCode", "corpName", "menus", "users"})
         public abstract interface Implementor extends Role, ImmutableSpi {
             @Override
             default Object __get(PropId prop) {
@@ -291,97 +301,124 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
                 }
             }
 
-            @JsonIgnore
+            @NotNull
             default String getId() {
                 return id();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "状态"
+            )
             default int getStatus() {
                 return status();
             }
 
-            @JsonIgnore
+            @NotNull
             default String getCreateBy() {
                 return createBy();
             }
 
-            @JsonIgnore
+            @NotNull
             default Date getCreateDate() {
                 return createDate();
             }
 
-            @JsonIgnore
+            @NotNull
             default String getUpdateBy() {
                 return updateBy();
             }
 
-            @JsonIgnore
+            @NotNull
             default Date getUpdateDate() {
                 return updateDate();
             }
 
-            @JsonIgnore
+            @Nullable
             default String getRemarks() {
                 return remarks();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "角色编码"
+            )
             default String getRoleCode() {
                 return roleCode();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "角色名称"
+            )
             default String getRoleName() {
                 return roleName();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "角色类型"
+            )
+            @jakarta.annotation.Nullable
             default String getRoleType() {
                 return roleType();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "角色排序"
+            )
+            @jakarta.annotation.Nullable
             default BigDecimal getRoleSort() {
                 return roleSort();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "系统内置 1是 0否"
+            )
             default Boolean getIsSys() {
                 return isSys();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "用户类型"
+            )
+            @jakarta.annotation.Nullable
             default String getUserType() {
                 return userType();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "数据范围设置"
+            )
+            @jakarta.annotation.Nullable
             default String getDataScope() {
                 return dataScope();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "适应业务范围"
+            )
+            @jakarta.annotation.Nullable
             default String getBizScope() {
                 return bizScope();
             }
 
-            @JsonIgnore
+            @jakarta.annotation.Nullable
             default String getCorpCode() {
                 return corpCode();
             }
 
-            @JsonIgnore
+            @jakarta.annotation.Nullable
             default String getCorpName() {
                 return corpName();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "角色拥有的菜单"
+            )
             default List<Menu> getMenus() {
                 return menus();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "角色拥有的用户"
+            )
             default List<User> getUsers() {
                 return users();
             }
@@ -396,6 +433,9 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
             }
         }
 
+        @GeneratedBy(
+                type = Role.class
+        )
         private static class Impl implements Implementor, Cloneable, Serializable {
             private Visibility __visibility;
 
@@ -458,6 +498,7 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
             NonSharedList<User> __usersValue;
 
             @Override
+            @JsonIgnore
             public String id() {
                 if (__idValue == null) {
                     throw new UnloadedException(Role.class, "id");
@@ -466,6 +507,7 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public int status() {
                 if (!__statusLoaded) {
                     throw new UnloadedException(Role.class, "status");
@@ -474,6 +516,7 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String createBy() {
                 if (__createByValue == null) {
                     throw new UnloadedException(Role.class, "createBy");
@@ -482,6 +525,7 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public Date createDate() {
                 if (__createDateValue == null) {
                     throw new UnloadedException(Role.class, "createDate");
@@ -490,6 +534,7 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String updateBy() {
                 if (__updateByValue == null) {
                     throw new UnloadedException(Role.class, "updateBy");
@@ -498,6 +543,7 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public Date updateDate() {
                 if (__updateDateValue == null) {
                     throw new UnloadedException(Role.class, "updateDate");
@@ -506,6 +552,7 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String remarks() {
                 if (!__remarksLoaded) {
@@ -515,6 +562,7 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String roleCode() {
                 if (__roleCodeValue == null) {
                     throw new UnloadedException(Role.class, "roleCode");
@@ -523,6 +571,7 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String roleName() {
                 if (__roleNameValue == null) {
                     throw new UnloadedException(Role.class, "roleName");
@@ -531,6 +580,7 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String roleType() {
                 if (!__roleTypeLoaded) {
@@ -540,6 +590,7 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public BigDecimal roleSort() {
                 if (!__roleSortLoaded) {
@@ -549,6 +600,7 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public Boolean isSys() {
                 if (!__isSysLoaded) {
@@ -558,6 +610,7 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String userType() {
                 if (!__userTypeLoaded) {
@@ -567,6 +620,7 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String dataScope() {
                 if (!__dataScopeLoaded) {
@@ -576,6 +630,7 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String bizScope() {
                 if (!__bizScopeLoaded) {
@@ -585,6 +640,7 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String corpCode() {
                 if (!__corpCodeLoaded) {
@@ -594,6 +650,7 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String corpName() {
                 if (!__corpNameLoaded) {
@@ -603,6 +660,7 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public List<Menu> menus() {
                 if (__menusValue == null) {
                     throw new UnloadedException(Role.class, "menus");
@@ -611,6 +669,7 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public List<User> users() {
                 if (__usersValue == null) {
                     throw new UnloadedException(Role.class, "users");
@@ -1360,6 +1419,9 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
             }
         }
 
+        @GeneratedBy(
+                type = Role.class
+        )
         private static class DraftImpl implements Implementor, DraftSpi, RoleDraft {
             private DraftContext __ctx;
 
@@ -1425,6 +1487,7 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String id() {
                 return (__modified!= null ? __modified : __base).id();
             }
@@ -1442,6 +1505,7 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public int status() {
                 return (__modified!= null ? __modified : __base).status();
             }
@@ -1455,6 +1519,7 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String createBy() {
                 return (__modified!= null ? __modified : __base).createBy();
             }
@@ -1472,6 +1537,7 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public Date createDate() {
                 return (__modified!= null ? __modified : __base).createDate();
             }
@@ -1489,6 +1555,7 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String updateBy() {
                 return (__modified!= null ? __modified : __base).updateBy();
             }
@@ -1506,6 +1573,7 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public Date updateDate() {
                 return (__modified!= null ? __modified : __base).updateDate();
             }
@@ -1523,6 +1591,7 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String remarks() {
                 return (__modified!= null ? __modified : __base).remarks();
@@ -1537,6 +1606,7 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String roleCode() {
                 return (__modified!= null ? __modified : __base).roleCode();
             }
@@ -1554,6 +1624,7 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String roleName() {
                 return (__modified!= null ? __modified : __base).roleName();
             }
@@ -1571,6 +1642,7 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String roleType() {
                 return (__modified!= null ? __modified : __base).roleType();
@@ -1585,6 +1657,7 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public BigDecimal roleSort() {
                 return (__modified!= null ? __modified : __base).roleSort();
@@ -1599,6 +1672,7 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public Boolean isSys() {
                 return (__modified!= null ? __modified : __base).isSys();
@@ -1613,6 +1687,7 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String userType() {
                 return (__modified!= null ? __modified : __base).userType();
@@ -1627,6 +1702,7 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String dataScope() {
                 return (__modified!= null ? __modified : __base).dataScope();
@@ -1641,6 +1717,7 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String bizScope() {
                 return (__modified!= null ? __modified : __base).bizScope();
@@ -1655,6 +1732,7 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String corpCode() {
                 return (__modified!= null ? __modified : __base).corpCode();
@@ -1669,6 +1747,7 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String corpName() {
                 return (__modified!= null ? __modified : __base).corpName();
@@ -1683,6 +1762,7 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public List<Menu> menus() {
                 return __ctx.toDraftList((__modified!= null ? __modified : __base).menus(), Menu.class, true);
             }
@@ -1720,6 +1800,7 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public List<User> users() {
                 return __ctx.toDraftList((__modified!= null ? __modified : __base).users(), User.class, true);
             }
@@ -2111,7 +2192,7 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
                 }
             }
 
-            private Impl __modified() {
+            Impl __modified() {
                 Impl __tmpModified = __modified;
                 if (__tmpModified == null) {
                     __tmpModified = __base.clone();
@@ -2122,227 +2203,179 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
         }
     }
 
-    class MapStruct {
-        private String id;
+    @GeneratedBy(
+            type = Role.class
+    )
+    class Builder {
+        private final Producer.DraftImpl __draft;
 
-        private Integer status;
+        public Builder() {
+            __draft = new Producer.DraftImpl(null, null);
+        }
 
-        private String createBy;
-
-        private Date createDate;
-
-        private String updateBy;
-
-        private Date updateDate;
-
-        private boolean __remarksLoaded;
-
-        private String remarks;
-
-        private String roleCode;
-
-        private String roleName;
-
-        private boolean __roleTypeLoaded;
-
-        private String roleType;
-
-        private boolean __roleSortLoaded;
-
-        private BigDecimal roleSort;
-
-        private boolean __isSysLoaded;
-
-        private Boolean isSys;
-
-        private boolean __userTypeLoaded;
-
-        private String userType;
-
-        private boolean __dataScopeLoaded;
-
-        private String dataScope;
-
-        private boolean __bizScopeLoaded;
-
-        private String bizScope;
-
-        private boolean __corpCodeLoaded;
-
-        private String corpCode;
-
-        private boolean __corpNameLoaded;
-
-        private String corpName;
-
-        private List<Menu> menus;
-
-        private List<User> users;
-
-        public MapStruct id(String id) {
-            this.id = id;
+        @NotNull
+        public Builder id(String id) {
+            if (id != null) {
+                __draft.setId(id);
+            }
             return this;
         }
 
-        public MapStruct status(Integer status) {
-            this.status = status;
+        @Schema(
+                description = "状态"
+        )
+        public Builder status(Integer status) {
+            if (status != null) {
+                __draft.setStatus(status);
+            }
             return this;
         }
 
-        public MapStruct createBy(String createBy) {
-            this.createBy = createBy;
+        @NotNull
+        public Builder createBy(String createBy) {
+            if (createBy != null) {
+                __draft.setCreateBy(createBy);
+            }
             return this;
         }
 
-        public MapStruct createDate(Date createDate) {
-            this.createDate = createDate;
+        @NotNull
+        public Builder createDate(Date createDate) {
+            if (createDate != null) {
+                __draft.setCreateDate(createDate);
+            }
             return this;
         }
 
-        public MapStruct updateBy(String updateBy) {
-            this.updateBy = updateBy;
+        @NotNull
+        public Builder updateBy(String updateBy) {
+            if (updateBy != null) {
+                __draft.setUpdateBy(updateBy);
+            }
             return this;
         }
 
-        public MapStruct updateDate(Date updateDate) {
-            this.updateDate = updateDate;
+        @NotNull
+        public Builder updateDate(Date updateDate) {
+            if (updateDate != null) {
+                __draft.setUpdateDate(updateDate);
+            }
             return this;
         }
 
-        public MapStruct remarks(String remarks) {
-            this.__remarksLoaded = true;
-            this.remarks = remarks;
+        @Nullable
+        public Builder remarks(String remarks) {
+            __draft.setRemarks(remarks);
             return this;
         }
 
-        public MapStruct roleCode(String roleCode) {
-            this.roleCode = roleCode;
+        @Schema(
+                description = "角色编码"
+        )
+        public Builder roleCode(String roleCode) {
+            if (roleCode != null) {
+                __draft.setRoleCode(roleCode);
+            }
             return this;
         }
 
-        public MapStruct roleName(String roleName) {
-            this.roleName = roleName;
+        @Schema(
+                description = "角色名称"
+        )
+        public Builder roleName(String roleName) {
+            if (roleName != null) {
+                __draft.setRoleName(roleName);
+            }
             return this;
         }
 
-        public MapStruct roleType(String roleType) {
-            this.__roleTypeLoaded = true;
-            this.roleType = roleType;
+        @Schema(
+                description = "角色类型"
+        )
+        @jakarta.annotation.Nullable
+        public Builder roleType(String roleType) {
+            __draft.setRoleType(roleType);
             return this;
         }
 
-        public MapStruct roleSort(BigDecimal roleSort) {
-            this.__roleSortLoaded = true;
-            this.roleSort = roleSort;
+        @Schema(
+                description = "角色排序"
+        )
+        @jakarta.annotation.Nullable
+        public Builder roleSort(BigDecimal roleSort) {
+            __draft.setRoleSort(roleSort);
             return this;
         }
 
-        public MapStruct isSys(Boolean isSys) {
-            this.__isSysLoaded = true;
-            this.isSys = isSys;
+        @Schema(
+                description = "系统内置 1是 0否"
+        )
+        public Builder isSys(Boolean isSys) {
+            __draft.setIsSys(isSys);
             return this;
         }
 
-        public MapStruct userType(String userType) {
-            this.__userTypeLoaded = true;
-            this.userType = userType;
+        @Schema(
+                description = "用户类型"
+        )
+        @jakarta.annotation.Nullable
+        public Builder userType(String userType) {
+            __draft.setUserType(userType);
             return this;
         }
 
-        public MapStruct dataScope(String dataScope) {
-            this.__dataScopeLoaded = true;
-            this.dataScope = dataScope;
+        @Schema(
+                description = "数据范围设置"
+        )
+        @jakarta.annotation.Nullable
+        public Builder dataScope(String dataScope) {
+            __draft.setDataScope(dataScope);
             return this;
         }
 
-        public MapStruct bizScope(String bizScope) {
-            this.__bizScopeLoaded = true;
-            this.bizScope = bizScope;
+        @Schema(
+                description = "适应业务范围"
+        )
+        @jakarta.annotation.Nullable
+        public Builder bizScope(String bizScope) {
+            __draft.setBizScope(bizScope);
             return this;
         }
 
-        public MapStruct corpCode(String corpCode) {
-            this.__corpCodeLoaded = true;
-            this.corpCode = corpCode;
+        @jakarta.annotation.Nullable
+        public Builder corpCode(String corpCode) {
+            __draft.setCorpCode(corpCode);
             return this;
         }
 
-        public MapStruct corpName(String corpName) {
-            this.__corpNameLoaded = true;
-            this.corpName = corpName;
+        @jakarta.annotation.Nullable
+        public Builder corpName(String corpName) {
+            __draft.setCorpName(corpName);
             return this;
         }
 
-        public MapStruct menus(List<Menu> menus) {
-            this.menus = menus != null ? menus : Collections.emptyList();
+        @Schema(
+                description = "角色拥有的菜单"
+        )
+        public Builder menus(List<Menu> menus) {
+            if (menus != null) {
+                __draft.setMenus(menus);
+            }
             return this;
         }
 
-        public MapStruct users(List<User> users) {
-            this.users = users != null ? users : Collections.emptyList();
+        @Schema(
+                description = "角色拥有的用户"
+        )
+        public Builder users(List<User> users) {
+            if (users != null) {
+                __draft.setUsers(users);
+            }
             return this;
         }
 
         public Role build() {
-            return RoleDraft.$.produce(__draft -> {
-                if (id != null) {
-                    __draft.setId(id);
-                }
-                if (status != null) {
-                    __draft.setStatus(status);
-                }
-                if (createBy != null) {
-                    __draft.setCreateBy(createBy);
-                }
-                if (createDate != null) {
-                    __draft.setCreateDate(createDate);
-                }
-                if (updateBy != null) {
-                    __draft.setUpdateBy(updateBy);
-                }
-                if (updateDate != null) {
-                    __draft.setUpdateDate(updateDate);
-                }
-                if (__remarksLoaded) {
-                    __draft.setRemarks(remarks);
-                }
-                if (roleCode != null) {
-                    __draft.setRoleCode(roleCode);
-                }
-                if (roleName != null) {
-                    __draft.setRoleName(roleName);
-                }
-                if (__roleTypeLoaded) {
-                    __draft.setRoleType(roleType);
-                }
-                if (__roleSortLoaded) {
-                    __draft.setRoleSort(roleSort);
-                }
-                if (__isSysLoaded) {
-                    __draft.setIsSys(isSys);
-                }
-                if (__userTypeLoaded) {
-                    __draft.setUserType(userType);
-                }
-                if (__dataScopeLoaded) {
-                    __draft.setDataScope(dataScope);
-                }
-                if (__bizScopeLoaded) {
-                    __draft.setBizScope(bizScope);
-                }
-                if (__corpCodeLoaded) {
-                    __draft.setCorpCode(corpCode);
-                }
-                if (__corpNameLoaded) {
-                    __draft.setCorpName(corpName);
-                }
-                if (menus != null) {
-                    __draft.setMenus(menus);
-                }
-                if (users != null) {
-                    __draft.setUsers(users);
-                }
-            });
+            return (Role)__draft.__modified();
         }
     }
 }

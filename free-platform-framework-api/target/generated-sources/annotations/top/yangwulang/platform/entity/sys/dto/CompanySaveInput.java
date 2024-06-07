@@ -1,5 +1,7 @@
 package top.yangwulang.platform.entity.sys.dto;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.lang.Object;
 import java.lang.Override;
@@ -7,6 +9,7 @@ import java.lang.String;
 import java.util.Objects;
 import org.babyfish.jimmer.Input;
 import org.babyfish.jimmer.impl.util.DtoPropAccessor;
+import org.babyfish.jimmer.internal.FixedInputField;
 import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
@@ -23,6 +26,12 @@ import top.yangwulang.platform.entity.sys.CompanyFetcher;
  */
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Company.dto"
+)
+@JsonDeserialize(
+        builder = CompanySaveInput.Builder.class
+)
+@Schema(
+        description = "公司实体"
 )
 public class CompanySaveInput implements Input<Company> {
     public static final ViewMetadata<Company, CompanySaveInput> METADATA = 
@@ -42,37 +51,20 @@ public class CompanySaveInput implements Input<Company> {
         new int[] { CompanyDraft.Producer.SLOT_ID }
     );
 
-    @Schema(
-            description = "公司编码"
-    )
-    @NotNull
+    @FixedInputField
     private String companyCode;
 
-    @Schema(
-            description = "公司名称"
-    )
-    @NotNull
+    @FixedInputField
     private String companyName;
 
-    @Schema(
-            description = "公司全名"
-    )
-    @Nullable
     private String companyFullName;
 
-    @Nullable
     private String corpCode;
 
-    @Nullable
     private String corpName;
 
-    @Schema(
-            description = "父级id"
-    )
-    @Nullable
     private String parentId;
 
-    @Nullable
     private String id;
 
     public CompanySaveInput() {
@@ -88,10 +80,6 @@ public class CompanySaveInput implements Input<Company> {
         this.id = ID_ACCESSOR.get(base);
     }
 
-    public static CompanySaveInput of(@NotNull Company base) {
-        return new CompanySaveInput(base);
-    }
-
     /**
      * 公司编码
      */
@@ -100,6 +88,9 @@ public class CompanySaveInput implements Input<Company> {
             description = "公司编码"
     )
     public String getCompanyCode() {
+        if (companyCode == null) {
+            throw new IllegalStateException("The property \"companyCode\" is not specified");
+        }
         return companyCode;
     }
 
@@ -115,6 +106,9 @@ public class CompanySaveInput implements Input<Company> {
             description = "公司名称"
     )
     public String getCompanyName() {
+        if (companyName == null) {
+            throw new IllegalStateException("The property \"companyName\" is not specified");
+        }
         return companyName;
     }
 
@@ -251,5 +245,77 @@ public class CompanySaveInput implements Input<Company> {
         builder.append(", id=").append(id);
         builder.append(')');
         return builder.toString();
+    }
+
+    @JsonPOJOBuilder(
+            withPrefix = ""
+    )
+    public static class Builder {
+        private String companyCode;
+
+        private String companyName;
+
+        private String companyFullName;
+
+        private String corpCode;
+
+        private String corpName;
+
+        private String parentId;
+
+        private String id;
+
+        public Builder companyCode(String companyCode) {
+            this.companyCode = Objects.requireNonNull(companyCode, "The property \"companyCode\" cannot be null");
+            return this;
+        }
+
+        public Builder companyName(String companyName) {
+            this.companyName = Objects.requireNonNull(companyName, "The property \"companyName\" cannot be null");
+            return this;
+        }
+
+        public Builder companyFullName(String companyFullName) {
+            this.companyFullName = companyFullName;
+            return this;
+        }
+
+        public Builder corpCode(String corpCode) {
+            this.corpCode = corpCode;
+            return this;
+        }
+
+        public Builder corpName(String corpName) {
+            this.corpName = corpName;
+            return this;
+        }
+
+        public Builder parentId(String parentId) {
+            this.parentId = parentId;
+            return this;
+        }
+
+        public Builder id(String id) {
+            this.id = id;
+            return this;
+        }
+
+        public CompanySaveInput build() {
+            CompanySaveInput _input = new CompanySaveInput();
+            if (companyCode == null) {
+                throw Input.unknownNonNullProperty(CompanySaveInput.class, "companyCode");
+            }
+            _input.setCompanyCode(companyCode);
+            if (companyName == null) {
+                throw Input.unknownNonNullProperty(CompanySaveInput.class, "companyName");
+            }
+            _input.setCompanyName(companyName);
+            _input.setCompanyFullName(companyFullName);
+            _input.setCorpCode(corpCode);
+            _input.setCorpName(corpName);
+            _input.setParentId(parentId);
+            _input.setId(id);
+            return _input;
+        }
     }
 }

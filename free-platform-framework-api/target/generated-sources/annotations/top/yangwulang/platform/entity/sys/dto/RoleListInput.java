@@ -25,6 +25,9 @@ import top.yangwulang.platform.entity.sys.RoleFetcher;
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Role.dto"
 )
+@Schema(
+        description = "角色"
+)
 public class RoleListInput implements Input<Role> {
     public static final ViewMetadata<Role, RoleListInput> METADATA = 
         new ViewMetadata<Role, RoleListInput>(
@@ -40,22 +43,10 @@ public class RoleListInput implements Input<Role> {
         new int[] { RoleDraft.Producer.SLOT_ROLE_NAME }
     );
 
-    @Schema(
-            description = "角色名称"
-    )
-    @Nullable
     private String roleName;
 
-    @Schema(
-            description = "角色类型"
-    )
-    @Nullable
     private String roleType;
 
-    @Schema(
-            description = "用户类型"
-    )
-    @Nullable
     private String userType;
 
     public RoleListInput() {
@@ -65,10 +56,6 @@ public class RoleListInput implements Input<Role> {
         this.roleName = ROLE_NAME_ACCESSOR.get(base);
         this.roleType = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(RoleDraft.Producer.SLOT_ROLE_TYPE)) ? base.roleType() : null;
         this.userType = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(RoleDraft.Producer.SLOT_USER_TYPE)) ? base.userType() : null;
-    }
-
-    public static RoleListInput of(@NotNull Role base) {
-        return new RoleListInput(base);
     }
 
     /**

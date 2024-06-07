@@ -1,6 +1,8 @@
 package top.yangwulang.platform.entity.sys;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.lang.CloneNotSupportedException;
 import java.lang.Cloneable;
@@ -31,6 +33,7 @@ import org.babyfish.jimmer.runtime.NonSharedList;
 import org.babyfish.jimmer.runtime.Visibility;
 import org.babyfish.jimmer.sql.ManyToOne;
 import org.babyfish.jimmer.sql.OneToMany;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.TypeBaseDraft;
 
@@ -97,6 +100,9 @@ public interface CompanyDraft extends Company, TypeBaseDraft {
     @OldChain
     CompanyDraft setCorpName(String corpName);
 
+    @GeneratedBy(
+            type = Company.class
+    )
     class Producer {
         static final Producer INSTANCE = new Producer();
 
@@ -122,7 +128,7 @@ public interface CompanyDraft extends Company, TypeBaseDraft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.114",
+                "0.8.130",
                 Company.class,
                 Collections.singleton(TypeBaseDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (Company)base)
@@ -150,6 +156,10 @@ public interface CompanyDraft extends Company, TypeBaseDraft {
             return (Company)Internal.produce(TYPE, base, block);
         }
 
+        @GeneratedBy(
+                type = Company.class
+        )
+        @JsonPropertyOrder({"dummyPropForJacksonError__", "id", "parent", "parentId", "children", "employees", "companyCode", "companyName", "companyFullName", "corpCode", "corpName"})
         public abstract interface Implementor extends Company, ImmutableSpi {
             @Override
             default Object __get(PropId prop) {
@@ -208,52 +218,66 @@ public interface CompanyDraft extends Company, TypeBaseDraft {
                 }
             }
 
-            @JsonIgnore
+            @NotNull
             default String getId() {
                 return id();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "父级公司"
+            )
+            @jakarta.annotation.Nullable
             default Company getParent() {
                 return parent();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "父级id"
+            )
+            @jakarta.annotation.Nullable
             default String getParentId() {
                 return parentId();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "子级公司"
+            )
             default List<Company> getChildren() {
                 return children();
             }
 
-            @JsonIgnore
             default List<Employee> getEmployees() {
                 return employees();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "公司编码"
+            )
             default String getCompanyCode() {
                 return companyCode();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "公司名称"
+            )
             default String getCompanyName() {
                 return companyName();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "公司全名"
+            )
+            @jakarta.annotation.Nullable
             default String getCompanyFullName() {
                 return companyFullName();
             }
 
-            @JsonIgnore
+            @jakarta.annotation.Nullable
             default String getCorpCode() {
                 return corpCode();
             }
 
-            @JsonIgnore
+            @jakarta.annotation.Nullable
             default String getCorpName() {
                 return corpName();
             }
@@ -268,6 +292,9 @@ public interface CompanyDraft extends Company, TypeBaseDraft {
             }
         }
 
+        @GeneratedBy(
+                type = Company.class
+        )
         private static class Impl implements Implementor, Cloneable, Serializable {
             private Visibility __visibility;
 
@@ -303,6 +330,7 @@ public interface CompanyDraft extends Company, TypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String id() {
                 if (__idValue == null) {
                     throw new UnloadedException(Company.class, "id");
@@ -311,6 +339,7 @@ public interface CompanyDraft extends Company, TypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public Company parent() {
                 if (!__parentLoaded) {
@@ -320,6 +349,7 @@ public interface CompanyDraft extends Company, TypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String parentId() {
                 Company __target = parent();
@@ -327,6 +357,7 @@ public interface CompanyDraft extends Company, TypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public List<Company> children() {
                 if (__childrenValue == null) {
                     throw new UnloadedException(Company.class, "children");
@@ -335,6 +366,7 @@ public interface CompanyDraft extends Company, TypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public List<Employee> employees() {
                 if (__employeesValue == null) {
                     throw new UnloadedException(Company.class, "employees");
@@ -343,6 +375,7 @@ public interface CompanyDraft extends Company, TypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String companyCode() {
                 if (__companyCodeValue == null) {
                     throw new UnloadedException(Company.class, "companyCode");
@@ -351,6 +384,7 @@ public interface CompanyDraft extends Company, TypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String companyName() {
                 if (__companyNameValue == null) {
                     throw new UnloadedException(Company.class, "companyName");
@@ -359,6 +393,7 @@ public interface CompanyDraft extends Company, TypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String companyFullName() {
                 if (!__companyFullNameLoaded) {
@@ -368,6 +403,7 @@ public interface CompanyDraft extends Company, TypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String corpCode() {
                 if (!__corpCodeLoaded) {
@@ -377,6 +413,7 @@ public interface CompanyDraft extends Company, TypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String corpName() {
                 if (!__corpNameLoaded) {
@@ -803,6 +840,9 @@ public interface CompanyDraft extends Company, TypeBaseDraft {
             }
         }
 
+        @GeneratedBy(
+                type = Company.class
+        )
         private static class DraftImpl implements Implementor, DraftSpi, CompanyDraft {
             private DraftContext __ctx;
 
@@ -868,6 +908,7 @@ public interface CompanyDraft extends Company, TypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String id() {
                 return (__modified!= null ? __modified : __base).id();
             }
@@ -885,6 +926,7 @@ public interface CompanyDraft extends Company, TypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public CompanyDraft parent() {
                 return __ctx.toDraftObject((__modified!= null ? __modified : __base).parent());
@@ -919,6 +961,7 @@ public interface CompanyDraft extends Company, TypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String parentId() {
                 Company __target = parent();
@@ -936,6 +979,7 @@ public interface CompanyDraft extends Company, TypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public List<Company> children() {
                 return __ctx.toDraftList((__modified!= null ? __modified : __base).children(), Company.class, true);
             }
@@ -973,6 +1017,7 @@ public interface CompanyDraft extends Company, TypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public List<Employee> employees() {
                 return __ctx.toDraftList((__modified!= null ? __modified : __base).employees(), Employee.class, true);
             }
@@ -1011,6 +1056,7 @@ public interface CompanyDraft extends Company, TypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String companyCode() {
                 return (__modified!= null ? __modified : __base).companyCode();
             }
@@ -1028,6 +1074,7 @@ public interface CompanyDraft extends Company, TypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String companyName() {
                 return (__modified!= null ? __modified : __base).companyName();
             }
@@ -1045,6 +1092,7 @@ public interface CompanyDraft extends Company, TypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String companyFullName() {
                 return (__modified!= null ? __modified : __base).companyFullName();
@@ -1059,6 +1107,7 @@ public interface CompanyDraft extends Company, TypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String corpCode() {
                 return (__modified!= null ? __modified : __base).corpCode();
@@ -1073,6 +1122,7 @@ public interface CompanyDraft extends Company, TypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String corpName() {
                 return (__modified!= null ? __modified : __base).corpName();
@@ -1337,7 +1387,7 @@ public interface CompanyDraft extends Company, TypeBaseDraft {
                 }
             }
 
-            private Impl __modified() {
+            Impl __modified() {
                 Impl __tmpModified = __modified;
                 if (__tmpModified == null) {
                     __tmpModified = __base.clone();
@@ -1348,122 +1398,106 @@ public interface CompanyDraft extends Company, TypeBaseDraft {
         }
     }
 
-    class MapStruct {
-        private String id;
+    @GeneratedBy(
+            type = Company.class
+    )
+    class Builder {
+        private final Producer.DraftImpl __draft;
 
-        private boolean __parentLoaded;
-
-        private Company parent;
-
-        private List<Company> children;
-
-        private List<Employee> employees;
-
-        private String companyCode;
-
-        private String companyName;
-
-        private boolean __companyFullNameLoaded;
-
-        private String companyFullName;
-
-        private boolean __corpCodeLoaded;
-
-        private String corpCode;
-
-        private boolean __corpNameLoaded;
-
-        private String corpName;
-
-        public MapStruct id(String id) {
-            this.id = id;
-            return this;
+        public Builder() {
+            __draft = new Producer.DraftImpl(null, null);
+            __draft.__show(PropId.byIndex(Producer.SLOT_PARENT), false);
+            __draft.__show(PropId.byIndex(Producer.SLOT_PARENT_ID), false);
         }
 
-        public MapStruct parent(Company parent) {
-            this.__parentLoaded = true;
-            this.parent = parent;
-            return this;
-        }
-
-        public MapStruct parentId(String parentId) {
-            this.__parentLoaded = true;
-            if (parentId == null) {
-                this.parent = null;
-            } else {
-                this.parent = ImmutableObjects.makeIdOnly(Company.class, parentId);
+        @NotNull
+        public Builder id(String id) {
+            if (id != null) {
+                __draft.setId(id);
             }
             return this;
         }
 
-        public MapStruct children(List<Company> children) {
-            this.children = children != null ? children : Collections.emptyList();
+        @Schema(
+                description = "父级公司"
+        )
+        @jakarta.annotation.Nullable
+        public Builder parent(Company parent) {
+            __draft.setParent(parent);
+            __draft.__show(PropId.byIndex(Producer.SLOT_PARENT), true);
             return this;
         }
 
-        public MapStruct employees(List<Employee> employees) {
-            this.employees = employees != null ? employees : Collections.emptyList();
+        @Schema(
+                description = "父级id"
+        )
+        @jakarta.annotation.Nullable
+        public Builder parentId(String parentId) {
+            __draft.setParentId(parentId);
+            __draft.__show(PropId.byIndex(Producer.SLOT_PARENT_ID), true);
             return this;
         }
 
-        public MapStruct companyCode(String companyCode) {
-            this.companyCode = companyCode;
+        @Schema(
+                description = "子级公司"
+        )
+        public Builder children(List<Company> children) {
+            if (children != null) {
+                __draft.setChildren(children);
+            }
             return this;
         }
 
-        public MapStruct companyName(String companyName) {
-            this.companyName = companyName;
+        public Builder employees(List<Employee> employees) {
+            if (employees != null) {
+                __draft.setEmployees(employees);
+            }
             return this;
         }
 
-        public MapStruct companyFullName(String companyFullName) {
-            this.__companyFullNameLoaded = true;
-            this.companyFullName = companyFullName;
+        @Schema(
+                description = "公司编码"
+        )
+        public Builder companyCode(String companyCode) {
+            if (companyCode != null) {
+                __draft.setCompanyCode(companyCode);
+            }
             return this;
         }
 
-        public MapStruct corpCode(String corpCode) {
-            this.__corpCodeLoaded = true;
-            this.corpCode = corpCode;
+        @Schema(
+                description = "公司名称"
+        )
+        public Builder companyName(String companyName) {
+            if (companyName != null) {
+                __draft.setCompanyName(companyName);
+            }
             return this;
         }
 
-        public MapStruct corpName(String corpName) {
-            this.__corpNameLoaded = true;
-            this.corpName = corpName;
+        @Schema(
+                description = "公司全名"
+        )
+        @jakarta.annotation.Nullable
+        public Builder companyFullName(String companyFullName) {
+            __draft.setCompanyFullName(companyFullName);
+            return this;
+        }
+
+        @jakarta.annotation.Nullable
+        public Builder corpCode(String corpCode) {
+            __draft.setCorpCode(corpCode);
+            return this;
+        }
+
+        @jakarta.annotation.Nullable
+        public Builder corpName(String corpName) {
+            __draft.setCorpName(corpName);
             return this;
         }
 
         public Company build() {
-            return CompanyDraft.$.produce(__draft -> {
-                if (id != null) {
-                    __draft.setId(id);
-                }
-                if (__parentLoaded) {
-                    __draft.setParent(parent);
-                }
-                if (children != null) {
-                    __draft.setChildren(children);
-                }
-                if (employees != null) {
-                    __draft.setEmployees(employees);
-                }
-                if (companyCode != null) {
-                    __draft.setCompanyCode(companyCode);
-                }
-                if (companyName != null) {
-                    __draft.setCompanyName(companyName);
-                }
-                if (__companyFullNameLoaded) {
-                    __draft.setCompanyFullName(companyFullName);
-                }
-                if (__corpCodeLoaded) {
-                    __draft.setCorpCode(corpCode);
-                }
-                if (__corpNameLoaded) {
-                    __draft.setCorpName(corpName);
-                }
-            });
+            return (Company)__draft.__modified();
         }
     }
 }

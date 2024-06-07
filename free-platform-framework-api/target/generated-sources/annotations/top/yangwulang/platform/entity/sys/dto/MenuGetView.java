@@ -27,6 +27,9 @@ import top.yangwulang.platform.entity.sys.MenuFetcher;
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Menu.dto"
 )
+@Schema(
+        description = "菜单实体"
+)
 public class MenuGetView implements View<Menu> {
     public static final ViewMetadata<Menu, MenuGetView> METADATA = 
         new ViewMetadata<Menu, MenuGetView>(
@@ -73,88 +76,34 @@ public class MenuGetView implements View<Menu> {
     @Schema(
             description = "登录编码"
     )
-    @Nullable
     private String id;
 
-    @Schema(
-            description = "菜单名称"
-    )
-    @Nullable
     private String menuName;
 
-    @Schema(
-            description = "菜单类型（1菜单 2权限 3开发）"
-    )
-    @Nullable
     private String menuType;
 
-    @Schema(
-            description = "链接"
-    )
-    @Nullable
     private String menuHref;
 
-    @Schema(
-            description = "组件地址"
-    )
-    @Nullable
     private String menuComponent;
 
-    @Schema(
-            description = "目标"
-    )
-    @Nullable
     private String menuTarget;
 
-    @Schema(
-            description = "图标"
-    )
-    @Nullable
     private String menuIcon;
 
-    @Schema(
-            description = "颜色"
-    )
-    @Nullable
     private String menuColor;
 
-    @Schema(
-            description = "菜单标题"
-    )
-    @Nullable
     private String menuTitle;
 
-    @Schema(
-            description = "权限标识"
-    )
-    @Nullable
     private String permission;
 
-    @Schema(
-            description = "菜单权重"
-    )
-    @Nullable
     private BigDecimal weight;
 
-    @Schema(
-            description = "是否显示"
-    )
-    @Nullable
     private Boolean isShow;
 
-    @Schema(
-            description = "归属系统（default:主导航菜单、mobileApp:APP菜单）"
-    )
-    @Nullable
     private String sysCode;
 
-    @Nullable
     private String parentId;
 
-    @Schema(
-            description = "父级菜单"
-    )
-    @Nullable
     private TargetOf_parent parent;
 
     public MenuGetView() {
@@ -176,10 +125,6 @@ public class MenuGetView implements View<Menu> {
         this.sysCode = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_SYS_CODE)) ? base.sysCode() : null;
         this.parentId = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_PARENT_ID)) ? base.parentId() : null;
         this.parent = PARENT_ACCESSOR.get(base);
-    }
-
-    public static MenuGetView of(@NotNull Menu base) {
-        return new MenuGetView(base);
     }
 
     /**
@@ -525,6 +470,10 @@ public class MenuGetView implements View<Menu> {
      *
      *  @author yangwulang
      */
+    @GeneratedBy
+    @Schema(
+            description = "菜单实体"
+    )
     public static class TargetOf_parent implements View<Menu> {
         public static final ViewMetadata<Menu, TargetOf_parent> METADATA = 
             new ViewMetadata<Menu, TargetOf_parent>(
@@ -538,10 +487,6 @@ public class MenuGetView implements View<Menu> {
             new int[] { MenuDraft.Producer.SLOT_MENU_NAME }
         );
 
-        @Schema(
-                description = "菜单名称"
-        )
-        @Nullable
         private String menuName;
 
         public TargetOf_parent() {
@@ -549,10 +494,6 @@ public class MenuGetView implements View<Menu> {
 
         public TargetOf_parent(@NotNull Menu base) {
             this.menuName = MENU_NAME_ACCESSOR.get(base);
-        }
-
-        public static TargetOf_parent of(@NotNull Menu base) {
-            return new TargetOf_parent(base);
         }
 
         /**

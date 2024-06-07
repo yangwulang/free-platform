@@ -94,6 +94,9 @@ public class DictTypeTable extends AbstractTypedTable<DictType> implements DictT
         return new DictTypeTable(this, reason);
     }
 
+    @GeneratedBy(
+            type = DictType.class
+    )
     public static class Remote extends AbstractTypedTable<DictType> {
         public Remote(AbstractTypedTable.DelayedOperation delayedOperation) {
             super(DictType.class, delayedOperation);

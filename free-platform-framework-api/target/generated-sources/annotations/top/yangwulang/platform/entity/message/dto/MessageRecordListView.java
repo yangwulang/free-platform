@@ -20,11 +20,13 @@ import top.yangwulang.platform.entity.message.MessageRecordFetcher;
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/message/MessageRecord.dto"
 )
+@Schema(
+        description = "消息记录"
+)
 public class MessageRecordListView implements View<MessageRecord> {
     public static final ViewMetadata<MessageRecord, MessageRecordListView> METADATA = 
         new ViewMetadata<MessageRecord, MessageRecordListView>(
             MessageRecordFetcher.$
-                .status()
                 .type()
                 .title()
                 .subTitle()
@@ -34,48 +36,18 @@ public class MessageRecordListView implements View<MessageRecord> {
             MessageRecordListView::new
     );
 
-    @NotNull
     private String id;
 
-    @Schema(
-            description = "状态"
-    )
-    private int status;
-
-    @Schema(
-            description = "类型"
-    )
-    @NotNull
     private String type;
 
-    @Schema(
-            description = "消息标题"
-    )
-    @NotNull
     private String title;
 
-    @Schema(
-            description = "消息子标题"
-    )
-    @NotNull
     private String subTitle;
 
-    @Schema(
-            description = "消息icon"
-    )
-    @Nullable
     private String avatar;
 
-    @Schema(
-            description = "消息内容"
-    )
-    @NotNull
     private String content;
 
-    @Schema(
-            description = "消息类型"
-    )
-    @Nullable
     private Integer messageType;
 
     public MessageRecordListView() {
@@ -83,7 +55,6 @@ public class MessageRecordListView implements View<MessageRecord> {
 
     public MessageRecordListView(@NotNull MessageRecord base) {
         this.id = base.id();
-        this.status = base.status();
         this.type = base.type();
         this.title = base.title();
         this.subTitle = base.subTitle();
@@ -92,16 +63,15 @@ public class MessageRecordListView implements View<MessageRecord> {
         this.messageType = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MessageRecordDraft.Producer.SLOT_MESSAGE_TYPE)) ? base.messageType() : null;
     }
 
-    public static MessageRecordListView of(@NotNull MessageRecord base) {
-        return new MessageRecordListView(base);
-    }
-
     /**
      * 字典类型编码
      * @return 主键值
      */
     @NotNull
     public String getId() {
+        if (id == null) {
+            throw new IllegalStateException("The property \"id\" is not specified");
+        }
         return id;
     }
 
@@ -109,22 +79,14 @@ public class MessageRecordListView implements View<MessageRecord> {
         this.id = id;
     }
 
-    @Schema(
-            description = "状态"
-    )
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
     @NotNull
     @Schema(
             description = "类型"
     )
     public String getType() {
+        if (type == null) {
+            throw new IllegalStateException("The property \"type\" is not specified");
+        }
         return type;
     }
 
@@ -137,6 +99,9 @@ public class MessageRecordListView implements View<MessageRecord> {
             description = "消息标题"
     )
     public String getTitle() {
+        if (title == null) {
+            throw new IllegalStateException("The property \"title\" is not specified");
+        }
         return title;
     }
 
@@ -149,6 +114,9 @@ public class MessageRecordListView implements View<MessageRecord> {
             description = "消息子标题"
     )
     public String getSubTitle() {
+        if (subTitle == null) {
+            throw new IllegalStateException("The property \"subTitle\" is not specified");
+        }
         return subTitle;
     }
 
@@ -173,6 +141,9 @@ public class MessageRecordListView implements View<MessageRecord> {
             description = "消息内容"
     )
     public String getContent() {
+        if (content == null) {
+            throw new IllegalStateException("The property \"content\" is not specified");
+        }
         return content;
     }
 
@@ -196,7 +167,6 @@ public class MessageRecordListView implements View<MessageRecord> {
     public MessageRecord toEntity() {
         return MessageRecordDraft.$.produce(__draft -> {
             __draft.setId(id);
-            __draft.setStatus(status);
             __draft.setType(type);
             __draft.setTitle(title);
             __draft.setSubTitle(subTitle);
@@ -209,7 +179,6 @@ public class MessageRecordListView implements View<MessageRecord> {
     @Override
     public int hashCode() {
         int hash = Objects.hashCode(id);
-        hash = hash * 31 + Integer.hashCode(status);
         hash = hash * 31 + Objects.hashCode(type);
         hash = hash * 31 + Objects.hashCode(title);
         hash = hash * 31 + Objects.hashCode(subTitle);
@@ -226,9 +195,6 @@ public class MessageRecordListView implements View<MessageRecord> {
         }
         MessageRecordListView other = (MessageRecordListView) o;
         if (!Objects.equals(id, other.id)) {
-            return false;
-        }
-        if (status != other.status) {
             return false;
         }
         if (!Objects.equals(type, other.type)) {
@@ -257,7 +223,6 @@ public class MessageRecordListView implements View<MessageRecord> {
         StringBuilder builder = new StringBuilder();
         builder.append("MessageRecordListView").append('(');
         builder.append("id=").append(id);
-        builder.append(", status=").append(status);
         builder.append(", type=").append(type);
         builder.append(", title=").append(title);
         builder.append(", subTitle=").append(subTitle);

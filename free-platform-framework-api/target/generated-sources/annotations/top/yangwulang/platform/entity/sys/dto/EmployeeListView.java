@@ -26,6 +26,9 @@ import top.yangwulang.platform.entity.sys.UserFetcher;
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Employee.dto"
 )
+@Schema(
+        description = "员工"
+)
 public class EmployeeListView implements View<Employee> {
     public static final ViewMetadata<Employee, EmployeeListView> METADATA = 
         new ViewMetadata<Employee, EmployeeListView>(
@@ -90,52 +93,38 @@ public class EmployeeListView implements View<Employee> {
         }
     );
 
-    @Schema(
-            description = "员工编码"
-    )
-    @NotNull
     private String empCode;
 
-    @Schema(
-            description = "员工名称"
-    )
-    @Nullable
     private String empName;
 
     @Schema(
             description = "登录编码"
     )
-    @Nullable
     private String loginCode;
 
     @Schema(
             description = "用户名"
     )
-    @Nullable
     private String userName;
 
     @Schema(
             description = "邮箱"
     )
-    @Nullable
     private String email;
 
     @Schema(
             description = "手机号"
     )
-    @Nullable
     private String mobile;
 
     @Schema(
             description = "头像"
     )
-    @Nullable
     private String avatar;
 
     @Schema(
             description = "状态"
     )
-    @Nullable
     private Integer status;
 
     public EmployeeListView() {
@@ -152,10 +141,6 @@ public class EmployeeListView implements View<Employee> {
         this.status = STATUS_ACCESSOR.get(base);
     }
 
-    public static EmployeeListView of(@NotNull Employee base) {
-        return new EmployeeListView(base);
-    }
-
     /**
      * 员工编码
      */
@@ -164,6 +149,9 @@ public class EmployeeListView implements View<Employee> {
             description = "员工编码"
     )
     public String getEmpCode() {
+        if (empCode == null) {
+            throw new IllegalStateException("The property \"empCode\" is not specified");
+        }
         return empCode;
     }
 

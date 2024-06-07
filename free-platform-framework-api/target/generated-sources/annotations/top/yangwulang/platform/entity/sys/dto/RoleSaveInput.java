@@ -1,5 +1,7 @@
 package top.yangwulang.platform.entity.sys.dto;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.lang.Boolean;
 import java.lang.Object;
@@ -8,6 +10,7 @@ import java.lang.String;
 import java.math.BigDecimal;
 import java.util.Objects;
 import org.babyfish.jimmer.Input;
+import org.babyfish.jimmer.internal.FixedInputField;
 import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
@@ -26,6 +29,12 @@ import top.yangwulang.platform.entity.sys.RoleFetcher;
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Role.dto"
 )
+@JsonDeserialize(
+        builder = RoleSaveInput.Builder.class
+)
+@Schema(
+        description = "角色"
+)
 public class RoleSaveInput implements Input<Role> {
     public static final ViewMetadata<Role, RoleSaveInput> METADATA = 
         new ViewMetadata<Role, RoleSaveInput>(
@@ -41,52 +50,22 @@ public class RoleSaveInput implements Input<Role> {
             RoleSaveInput::new
     );
 
-    @Schema(
-            description = "角色编码"
-    )
-    @NotNull
+    @FixedInputField
     private String roleCode;
 
-    @Schema(
-            description = "角色名称"
-    )
-    @NotNull
+    @FixedInputField
     private String roleName;
 
-    @Schema(
-            description = "角色类型"
-    )
-    @Nullable
     private String roleType;
 
-    @Schema(
-            description = "角色排序"
-    )
-    @Nullable
     private BigDecimal roleSort;
 
-    @Schema(
-            description = "系统内置 1是 0否"
-    )
-    @Nullable
     private Boolean isSys;
 
-    @Schema(
-            description = "用户类型"
-    )
-    @Nullable
     private String userType;
 
-    @Schema(
-            description = "数据范围设置"
-    )
-    @Nullable
     private String dataScope;
 
-    @Schema(
-            description = "适应业务范围"
-    )
-    @Nullable
     private String bizScope;
 
     public RoleSaveInput() {
@@ -103,10 +82,6 @@ public class RoleSaveInput implements Input<Role> {
         this.bizScope = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(RoleDraft.Producer.SLOT_BIZ_SCOPE)) ? base.bizScope() : null;
     }
 
-    public static RoleSaveInput of(@NotNull Role base) {
-        return new RoleSaveInput(base);
-    }
-
     /**
      * 角色编码
      */
@@ -115,6 +90,9 @@ public class RoleSaveInput implements Input<Role> {
             description = "角色编码"
     )
     public String getRoleCode() {
+        if (roleCode == null) {
+            throw new IllegalStateException("The property \"roleCode\" is not specified");
+        }
         return roleCode;
     }
 
@@ -130,6 +108,9 @@ public class RoleSaveInput implements Input<Role> {
             description = "角色名称"
     )
     public String getRoleName() {
+        if (roleName == null) {
+            throw new IllegalStateException("The property \"roleName\" is not specified");
+        }
         return roleName;
     }
 
@@ -301,5 +282,85 @@ public class RoleSaveInput implements Input<Role> {
         builder.append(", bizScope=").append(bizScope);
         builder.append(')');
         return builder.toString();
+    }
+
+    @JsonPOJOBuilder(
+            withPrefix = ""
+    )
+    public static class Builder {
+        private String roleCode;
+
+        private String roleName;
+
+        private String roleType;
+
+        private BigDecimal roleSort;
+
+        private Boolean isSys;
+
+        private String userType;
+
+        private String dataScope;
+
+        private String bizScope;
+
+        public Builder roleCode(String roleCode) {
+            this.roleCode = Objects.requireNonNull(roleCode, "The property \"roleCode\" cannot be null");
+            return this;
+        }
+
+        public Builder roleName(String roleName) {
+            this.roleName = Objects.requireNonNull(roleName, "The property \"roleName\" cannot be null");
+            return this;
+        }
+
+        public Builder roleType(String roleType) {
+            this.roleType = roleType;
+            return this;
+        }
+
+        public Builder roleSort(BigDecimal roleSort) {
+            this.roleSort = roleSort;
+            return this;
+        }
+
+        public Builder isSys(Boolean isSys) {
+            this.isSys = isSys;
+            return this;
+        }
+
+        public Builder userType(String userType) {
+            this.userType = userType;
+            return this;
+        }
+
+        public Builder dataScope(String dataScope) {
+            this.dataScope = dataScope;
+            return this;
+        }
+
+        public Builder bizScope(String bizScope) {
+            this.bizScope = bizScope;
+            return this;
+        }
+
+        public RoleSaveInput build() {
+            RoleSaveInput _input = new RoleSaveInput();
+            if (roleCode == null) {
+                throw Input.unknownNonNullProperty(RoleSaveInput.class, "roleCode");
+            }
+            _input.setRoleCode(roleCode);
+            if (roleName == null) {
+                throw Input.unknownNonNullProperty(RoleSaveInput.class, "roleName");
+            }
+            _input.setRoleName(roleName);
+            _input.setRoleType(roleType);
+            _input.setRoleSort(roleSort);
+            _input.setIsSys(isSys);
+            _input.setUserType(userType);
+            _input.setDataScope(dataScope);
+            _input.setBizScope(bizScope);
+            return _input;
+        }
     }
 }

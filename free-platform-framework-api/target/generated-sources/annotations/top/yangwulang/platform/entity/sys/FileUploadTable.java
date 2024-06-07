@@ -122,6 +122,9 @@ public class FileUploadTable extends AbstractTypedTable<FileUpload> implements F
         return new FileUploadTable(this, reason);
     }
 
+    @GeneratedBy(
+            type = FileUpload.class
+    )
     public static class Remote extends AbstractTypedTable<FileUpload> {
         public Remote(AbstractTypedTable.DelayedOperation delayedOperation) {
             super(FileUpload.class, delayedOperation);

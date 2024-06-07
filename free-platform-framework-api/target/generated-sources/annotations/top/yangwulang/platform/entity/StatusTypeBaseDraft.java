@@ -15,12 +15,15 @@ public interface StatusTypeBaseDraft extends StatusTypeBase, Draft {
     @OldChain
     StatusTypeBaseDraft setStatus(int status);
 
+    @GeneratedBy(
+            type = StatusTypeBase.class
+    )
     class Producer {
         static final Producer INSTANCE = new Producer();
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.114",
+                "0.8.130",
                 StatusTypeBase.class,
                 Collections.emptyList(),
                 null

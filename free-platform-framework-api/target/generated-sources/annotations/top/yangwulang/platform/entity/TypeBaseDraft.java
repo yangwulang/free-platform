@@ -16,12 +16,15 @@ public interface TypeBaseDraft extends TypeBase, Draft {
     @OldChain
     TypeBaseDraft setId(String id);
 
+    @GeneratedBy(
+            type = TypeBase.class
+    )
     class Producer {
         static final Producer INSTANCE = new Producer();
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.114",
+                "0.8.130",
                 TypeBase.class,
                 Collections.emptyList(),
                 null

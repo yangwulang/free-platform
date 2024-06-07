@@ -1,6 +1,8 @@
 package top.yangwulang.platform.entity.sys;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.lang.CloneNotSupportedException;
 import java.lang.Cloneable;
@@ -35,6 +37,7 @@ import org.babyfish.jimmer.runtime.NonSharedList;
 import org.babyfish.jimmer.runtime.Visibility;
 import org.babyfish.jimmer.sql.ManyToOne;
 import org.babyfish.jimmer.sql.OneToMany;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.DataTypeBaseDraft;
 
@@ -102,6 +105,9 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
     @OldChain
     AreaDraft setAreaType(String areaType);
 
+    @GeneratedBy(
+            type = Area.class
+    )
     class Producer {
         static final Producer INSTANCE = new Producer();
 
@@ -133,7 +139,7 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.114",
+                "0.8.130",
                 Area.class,
                 Collections.singleton(DataTypeBaseDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (Area)base)
@@ -164,6 +170,10 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
             return (Area)Internal.produce(TYPE, base, block);
         }
 
+        @GeneratedBy(
+                type = Area.class
+        )
+        @JsonPropertyOrder({"dummyPropForJacksonError__", "id", "status", "createBy", "createDate", "updateBy", "updateDate", "remarks", "parent", "parentId", "children", "areaName", "sort", "areaType"})
         public abstract interface Implementor extends Area, ImmutableSpi {
             @Override
             default Object __get(PropId prop) {
@@ -234,67 +244,85 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
                 }
             }
 
-            @JsonIgnore
+            @NotNull
             default String getId() {
                 return id();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "状态"
+            )
             default int getStatus() {
                 return status();
             }
 
-            @JsonIgnore
+            @NotNull
             default String getCreateBy() {
                 return createBy();
             }
 
-            @JsonIgnore
+            @NotNull
             default Date getCreateDate() {
                 return createDate();
             }
 
-            @JsonIgnore
+            @NotNull
             default String getUpdateBy() {
                 return updateBy();
             }
 
-            @JsonIgnore
+            @NotNull
             default Date getUpdateDate() {
                 return updateDate();
             }
 
-            @JsonIgnore
+            @Nullable
             default String getRemarks() {
                 return remarks();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "父级区域"
+            )
+            @jakarta.annotation.Nullable
             default Area getParent() {
                 return parent();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "父级id"
+            )
+            @jakarta.annotation.Nullable
             default String getParentId() {
                 return parentId();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "子级区域"
+            )
             default List<Area> getChildren() {
                 return children();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "区域名称"
+            )
             default String getAreaName() {
                 return areaName();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "排序"
+            )
+            @jakarta.annotation.Nullable
             default Long getSort() {
                 return sort();
             }
 
-            @JsonIgnore
+            @Schema(
+                    description = "地区类型(1：省份、直辖市；2：地市；3：区县)"
+            )
+            @jakarta.annotation.Nullable
             default String getAreaType() {
                 return areaType();
             }
@@ -309,6 +337,9 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
             }
         }
 
+        @GeneratedBy(
+                type = Area.class
+        )
         private static class Impl implements Implementor, Cloneable, Serializable {
             private Visibility __visibility;
 
@@ -352,6 +383,7 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String id() {
                 if (__idValue == null) {
                     throw new UnloadedException(Area.class, "id");
@@ -360,6 +392,7 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public int status() {
                 if (!__statusLoaded) {
                     throw new UnloadedException(Area.class, "status");
@@ -368,6 +401,7 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String createBy() {
                 if (__createByValue == null) {
                     throw new UnloadedException(Area.class, "createBy");
@@ -376,6 +410,7 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public Date createDate() {
                 if (__createDateValue == null) {
                     throw new UnloadedException(Area.class, "createDate");
@@ -384,6 +419,7 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String updateBy() {
                 if (__updateByValue == null) {
                     throw new UnloadedException(Area.class, "updateBy");
@@ -392,6 +428,7 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public Date updateDate() {
                 if (__updateDateValue == null) {
                     throw new UnloadedException(Area.class, "updateDate");
@@ -400,6 +437,7 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String remarks() {
                 if (!__remarksLoaded) {
@@ -409,6 +447,7 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public Area parent() {
                 if (!__parentLoaded) {
@@ -418,6 +457,7 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String parentId() {
                 Area __target = parent();
@@ -425,6 +465,7 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public List<Area> children() {
                 if (__childrenValue == null) {
                     throw new UnloadedException(Area.class, "children");
@@ -433,6 +474,7 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String areaName() {
                 if (__areaNameValue == null) {
                     throw new UnloadedException(Area.class, "areaName");
@@ -441,6 +483,7 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public Long sort() {
                 if (!__sortLoaded) {
@@ -450,6 +493,7 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String areaType() {
                 if (!__areaTypeLoaded) {
@@ -978,6 +1022,9 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
             }
         }
 
+        @GeneratedBy(
+                type = Area.class
+        )
         private static class DraftImpl implements Implementor, DraftSpi, AreaDraft {
             private DraftContext __ctx;
 
@@ -1043,6 +1090,7 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String id() {
                 return (__modified!= null ? __modified : __base).id();
             }
@@ -1060,6 +1108,7 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public int status() {
                 return (__modified!= null ? __modified : __base).status();
             }
@@ -1073,6 +1122,7 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String createBy() {
                 return (__modified!= null ? __modified : __base).createBy();
             }
@@ -1090,6 +1140,7 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public Date createDate() {
                 return (__modified!= null ? __modified : __base).createDate();
             }
@@ -1107,6 +1158,7 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String updateBy() {
                 return (__modified!= null ? __modified : __base).updateBy();
             }
@@ -1124,6 +1176,7 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public Date updateDate() {
                 return (__modified!= null ? __modified : __base).updateDate();
             }
@@ -1141,6 +1194,7 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String remarks() {
                 return (__modified!= null ? __modified : __base).remarks();
@@ -1155,6 +1209,7 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public AreaDraft parent() {
                 return __ctx.toDraftObject((__modified!= null ? __modified : __base).parent());
@@ -1189,6 +1244,7 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String parentId() {
                 Area __target = parent();
@@ -1206,6 +1262,7 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public List<Area> children() {
                 return __ctx.toDraftList((__modified!= null ? __modified : __base).children(), Area.class, true);
             }
@@ -1243,6 +1300,7 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String areaName() {
                 return (__modified!= null ? __modified : __base).areaName();
             }
@@ -1260,6 +1318,7 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public Long sort() {
                 return (__modified!= null ? __modified : __base).sort();
@@ -1274,6 +1333,7 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public String areaType() {
                 return (__modified!= null ? __modified : __base).areaType();
@@ -1570,7 +1630,7 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
                 }
             }
 
-            private Impl __modified() {
+            Impl __modified() {
                 Impl __tmpModified = __modified;
                 if (__tmpModified == null) {
                     __tmpModified = __base.clone();
@@ -1581,152 +1641,134 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
         }
     }
 
-    class MapStruct {
-        private String id;
+    @GeneratedBy(
+            type = Area.class
+    )
+    class Builder {
+        private final Producer.DraftImpl __draft;
 
-        private Integer status;
-
-        private String createBy;
-
-        private Date createDate;
-
-        private String updateBy;
-
-        private Date updateDate;
-
-        private boolean __remarksLoaded;
-
-        private String remarks;
-
-        private boolean __parentLoaded;
-
-        private Area parent;
-
-        private List<Area> children;
-
-        private String areaName;
-
-        private boolean __sortLoaded;
-
-        private Long sort;
-
-        private boolean __areaTypeLoaded;
-
-        private String areaType;
-
-        public MapStruct id(String id) {
-            this.id = id;
-            return this;
+        public Builder() {
+            __draft = new Producer.DraftImpl(null, null);
+            __draft.__show(PropId.byIndex(Producer.SLOT_PARENT), false);
+            __draft.__show(PropId.byIndex(Producer.SLOT_PARENT_ID), false);
         }
 
-        public MapStruct status(Integer status) {
-            this.status = status;
-            return this;
-        }
-
-        public MapStruct createBy(String createBy) {
-            this.createBy = createBy;
-            return this;
-        }
-
-        public MapStruct createDate(Date createDate) {
-            this.createDate = createDate;
-            return this;
-        }
-
-        public MapStruct updateBy(String updateBy) {
-            this.updateBy = updateBy;
-            return this;
-        }
-
-        public MapStruct updateDate(Date updateDate) {
-            this.updateDate = updateDate;
-            return this;
-        }
-
-        public MapStruct remarks(String remarks) {
-            this.__remarksLoaded = true;
-            this.remarks = remarks;
-            return this;
-        }
-
-        public MapStruct parent(Area parent) {
-            this.__parentLoaded = true;
-            this.parent = parent;
-            return this;
-        }
-
-        public MapStruct parentId(String parentId) {
-            this.__parentLoaded = true;
-            if (parentId == null) {
-                this.parent = null;
-            } else {
-                this.parent = ImmutableObjects.makeIdOnly(Area.class, parentId);
+        @NotNull
+        public Builder id(String id) {
+            if (id != null) {
+                __draft.setId(id);
             }
             return this;
         }
 
-        public MapStruct children(List<Area> children) {
-            this.children = children != null ? children : Collections.emptyList();
+        @Schema(
+                description = "状态"
+        )
+        public Builder status(Integer status) {
+            if (status != null) {
+                __draft.setStatus(status);
+            }
             return this;
         }
 
-        public MapStruct areaName(String areaName) {
-            this.areaName = areaName;
+        @NotNull
+        public Builder createBy(String createBy) {
+            if (createBy != null) {
+                __draft.setCreateBy(createBy);
+            }
             return this;
         }
 
-        public MapStruct sort(Long sort) {
-            this.__sortLoaded = true;
-            this.sort = sort;
+        @NotNull
+        public Builder createDate(Date createDate) {
+            if (createDate != null) {
+                __draft.setCreateDate(createDate);
+            }
             return this;
         }
 
-        public MapStruct areaType(String areaType) {
-            this.__areaTypeLoaded = true;
-            this.areaType = areaType;
+        @NotNull
+        public Builder updateBy(String updateBy) {
+            if (updateBy != null) {
+                __draft.setUpdateBy(updateBy);
+            }
+            return this;
+        }
+
+        @NotNull
+        public Builder updateDate(Date updateDate) {
+            if (updateDate != null) {
+                __draft.setUpdateDate(updateDate);
+            }
+            return this;
+        }
+
+        @Nullable
+        public Builder remarks(String remarks) {
+            __draft.setRemarks(remarks);
+            return this;
+        }
+
+        @Schema(
+                description = "父级区域"
+        )
+        @jakarta.annotation.Nullable
+        public Builder parent(Area parent) {
+            __draft.setParent(parent);
+            __draft.__show(PropId.byIndex(Producer.SLOT_PARENT), true);
+            return this;
+        }
+
+        @Schema(
+                description = "父级id"
+        )
+        @jakarta.annotation.Nullable
+        public Builder parentId(String parentId) {
+            __draft.setParentId(parentId);
+            __draft.__show(PropId.byIndex(Producer.SLOT_PARENT_ID), true);
+            return this;
+        }
+
+        @Schema(
+                description = "子级区域"
+        )
+        public Builder children(List<Area> children) {
+            if (children != null) {
+                __draft.setChildren(children);
+            }
+            return this;
+        }
+
+        @Schema(
+                description = "区域名称"
+        )
+        public Builder areaName(String areaName) {
+            if (areaName != null) {
+                __draft.setAreaName(areaName);
+            }
+            return this;
+        }
+
+        @Schema(
+                description = "排序"
+        )
+        @jakarta.annotation.Nullable
+        public Builder sort(Long sort) {
+            __draft.setSort(sort);
+            return this;
+        }
+
+        @Schema(
+                description = "地区类型(1：省份、直辖市；2：地市；3：区县)"
+        )
+        @jakarta.annotation.Nullable
+        public Builder areaType(String areaType) {
+            __draft.setAreaType(areaType);
             return this;
         }
 
         public Area build() {
-            return AreaDraft.$.produce(__draft -> {
-                if (id != null) {
-                    __draft.setId(id);
-                }
-                if (status != null) {
-                    __draft.setStatus(status);
-                }
-                if (createBy != null) {
-                    __draft.setCreateBy(createBy);
-                }
-                if (createDate != null) {
-                    __draft.setCreateDate(createDate);
-                }
-                if (updateBy != null) {
-                    __draft.setUpdateBy(updateBy);
-                }
-                if (updateDate != null) {
-                    __draft.setUpdateDate(updateDate);
-                }
-                if (__remarksLoaded) {
-                    __draft.setRemarks(remarks);
-                }
-                if (__parentLoaded) {
-                    __draft.setParent(parent);
-                }
-                if (children != null) {
-                    __draft.setChildren(children);
-                }
-                if (areaName != null) {
-                    __draft.setAreaName(areaName);
-                }
-                if (__sortLoaded) {
-                    __draft.setSort(sort);
-                }
-                if (__areaTypeLoaded) {
-                    __draft.setAreaType(areaType);
-                }
-            });
+            return (Area)__draft.__modified();
         }
     }
 }

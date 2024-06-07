@@ -1,6 +1,8 @@
 package top.yangwulang.platform.entity.sys;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.annotation.Nullable;
 import java.io.Serializable;
 import java.lang.CloneNotSupportedException;
 import java.lang.Cloneable;
@@ -26,7 +28,7 @@ import org.babyfish.jimmer.runtime.DraftSpi;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
 import org.babyfish.jimmer.runtime.Internal;
 import org.babyfish.jimmer.runtime.Visibility;
-import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.NotNull;
 import top.yangwulang.platform.entity.TypeBaseDraft;
 
 @GeneratedBy(
@@ -50,6 +52,9 @@ public interface FileEntityDraft extends FileEntity, TypeBaseDraft {
     @OldChain
     FileEntityDraft setFileMeta(String fileMeta);
 
+    @GeneratedBy(
+            type = FileEntity.class
+    )
     class Producer {
         static final Producer INSTANCE = new Producer();
 
@@ -65,7 +70,7 @@ public interface FileEntityDraft extends FileEntity, TypeBaseDraft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.114",
+                "0.8.130",
                 FileEntity.class,
                 Collections.singleton(TypeBaseDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (FileEntity)base)
@@ -88,6 +93,10 @@ public interface FileEntityDraft extends FileEntity, TypeBaseDraft {
             return (FileEntity)Internal.produce(TYPE, base, block);
         }
 
+        @GeneratedBy(
+                type = FileEntity.class
+        )
+        @JsonPropertyOrder({"dummyPropForJacksonError__", "id", "fileMd5", "filePath", "fileContentType", "fileMeta"})
         public abstract interface Implementor extends FileEntity, ImmutableSpi {
             @Override
             default Object __get(PropId prop) {
@@ -126,27 +135,24 @@ public interface FileEntityDraft extends FileEntity, TypeBaseDraft {
                 }
             }
 
-            @JsonIgnore
+            @NotNull
             default String getId() {
                 return id();
             }
 
-            @JsonIgnore
             default String getFileMd5() {
                 return fileMd5();
             }
 
-            @JsonIgnore
             default String getFilePath() {
                 return filePath();
             }
 
-            @JsonIgnore
             default String getFileContentType() {
                 return fileContentType();
             }
 
-            @JsonIgnore
+            @Nullable
             default String getFileMeta() {
                 return fileMeta();
             }
@@ -161,6 +167,9 @@ public interface FileEntityDraft extends FileEntity, TypeBaseDraft {
             }
         }
 
+        @GeneratedBy(
+                type = FileEntity.class
+        )
         private static class Impl implements Implementor, Cloneable, Serializable {
             private Visibility __visibility;
 
@@ -177,6 +186,7 @@ public interface FileEntityDraft extends FileEntity, TypeBaseDraft {
             boolean __fileMetaLoaded = false;
 
             @Override
+            @JsonIgnore
             public String id() {
                 if (__idValue == null) {
                     throw new UnloadedException(FileEntity.class, "id");
@@ -185,6 +195,7 @@ public interface FileEntityDraft extends FileEntity, TypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String fileMd5() {
                 if (__fileMd5Value == null) {
                     throw new UnloadedException(FileEntity.class, "fileMd5");
@@ -193,6 +204,7 @@ public interface FileEntityDraft extends FileEntity, TypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String filePath() {
                 if (__filePathValue == null) {
                     throw new UnloadedException(FileEntity.class, "filePath");
@@ -201,6 +213,7 @@ public interface FileEntityDraft extends FileEntity, TypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String fileContentType() {
                 if (__fileContentTypeValue == null) {
                     throw new UnloadedException(FileEntity.class, "fileContentType");
@@ -209,7 +222,8 @@ public interface FileEntityDraft extends FileEntity, TypeBaseDraft {
             }
 
             @Override
-            @Nullable
+            @JsonIgnore
+            @org.jetbrains.annotations.Nullable
             public String fileMeta() {
                 if (!__fileMetaLoaded) {
                     throw new UnloadedException(FileEntity.class, "fileMeta");
@@ -483,6 +497,9 @@ public interface FileEntityDraft extends FileEntity, TypeBaseDraft {
             }
         }
 
+        @GeneratedBy(
+                type = FileEntity.class
+        )
         private static class DraftImpl implements Implementor, DraftSpi, FileEntityDraft {
             private DraftContext __ctx;
 
@@ -548,6 +565,7 @@ public interface FileEntityDraft extends FileEntity, TypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String id() {
                 return (__modified!= null ? __modified : __base).id();
             }
@@ -565,6 +583,7 @@ public interface FileEntityDraft extends FileEntity, TypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String fileMd5() {
                 return (__modified!= null ? __modified : __base).fileMd5();
             }
@@ -582,6 +601,7 @@ public interface FileEntityDraft extends FileEntity, TypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String filePath() {
                 return (__modified!= null ? __modified : __base).filePath();
             }
@@ -599,6 +619,7 @@ public interface FileEntityDraft extends FileEntity, TypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
             public String fileContentType() {
                 return (__modified!= null ? __modified : __base).fileContentType();
             }
@@ -616,7 +637,8 @@ public interface FileEntityDraft extends FileEntity, TypeBaseDraft {
             }
 
             @Override
-            @Nullable
+            @JsonIgnore
+            @org.jetbrains.annotations.Nullable
             public String fileMeta() {
                 return (__modified!= null ? __modified : __base).fileMeta();
             }
@@ -791,7 +813,7 @@ public interface FileEntityDraft extends FileEntity, TypeBaseDraft {
                 }
             }
 
-            private Impl __modified() {
+            Impl __modified() {
                 Impl __tmpModified = __modified;
                 if (__tmpModified == null) {
                     __tmpModified = __base.clone();
@@ -802,63 +824,53 @@ public interface FileEntityDraft extends FileEntity, TypeBaseDraft {
         }
     }
 
-    class MapStruct {
-        private String id;
+    @GeneratedBy(
+            type = FileEntity.class
+    )
+    class Builder {
+        private final Producer.DraftImpl __draft;
 
-        private String fileMd5;
+        public Builder() {
+            __draft = new Producer.DraftImpl(null, null);
+        }
 
-        private String filePath;
-
-        private String fileContentType;
-
-        private boolean __fileMetaLoaded;
-
-        private String fileMeta;
-
-        public MapStruct id(String id) {
-            this.id = id;
+        @NotNull
+        public Builder id(String id) {
+            if (id != null) {
+                __draft.setId(id);
+            }
             return this;
         }
 
-        public MapStruct fileMd5(String fileMd5) {
-            this.fileMd5 = fileMd5;
+        public Builder fileMd5(String fileMd5) {
+            if (fileMd5 != null) {
+                __draft.setFileMd5(fileMd5);
+            }
             return this;
         }
 
-        public MapStruct filePath(String filePath) {
-            this.filePath = filePath;
+        public Builder filePath(String filePath) {
+            if (filePath != null) {
+                __draft.setFilePath(filePath);
+            }
             return this;
         }
 
-        public MapStruct fileContentType(String fileContentType) {
-            this.fileContentType = fileContentType;
+        public Builder fileContentType(String fileContentType) {
+            if (fileContentType != null) {
+                __draft.setFileContentType(fileContentType);
+            }
             return this;
         }
 
-        public MapStruct fileMeta(String fileMeta) {
-            this.__fileMetaLoaded = true;
-            this.fileMeta = fileMeta;
+        @Nullable
+        public Builder fileMeta(String fileMeta) {
+            __draft.setFileMeta(fileMeta);
             return this;
         }
 
         public FileEntity build() {
-            return FileEntityDraft.$.produce(__draft -> {
-                if (id != null) {
-                    __draft.setId(id);
-                }
-                if (fileMd5 != null) {
-                    __draft.setFileMd5(fileMd5);
-                }
-                if (filePath != null) {
-                    __draft.setFilePath(filePath);
-                }
-                if (fileContentType != null) {
-                    __draft.setFileContentType(fileContentType);
-                }
-                if (__fileMetaLoaded) {
-                    __draft.setFileMeta(fileMeta);
-                }
-            });
+            return (FileEntity)__draft.__modified();
         }
     }
 }

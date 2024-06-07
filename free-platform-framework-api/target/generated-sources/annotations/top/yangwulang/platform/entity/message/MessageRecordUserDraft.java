@@ -1,6 +1,7 @@
 package top.yangwulang.platform.entity.message;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import java.io.Serializable;
 import java.lang.CloneNotSupportedException;
 import java.lang.Cloneable;
@@ -28,6 +29,7 @@ import org.babyfish.jimmer.runtime.ImmutableSpi;
 import org.babyfish.jimmer.runtime.Internal;
 import org.babyfish.jimmer.runtime.Visibility;
 import org.babyfish.jimmer.sql.ManyToOne;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.TypeBaseDraft;
 import top.yangwulang.platform.entity.sys.User;
@@ -85,6 +87,9 @@ public interface MessageRecordUserDraft extends MessageRecordUser, TypeBaseDraft
     @OldChain
     MessageRecordUserDraft setIsRead(Integer isRead);
 
+    @GeneratedBy(
+            type = MessageRecordUser.class
+    )
     class Producer {
         static final Producer INSTANCE = new Producer();
 
@@ -98,7 +103,7 @@ public interface MessageRecordUserDraft extends MessageRecordUser, TypeBaseDraft
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.114",
+                "0.8.130",
                 MessageRecordUser.class,
                 Collections.singleton(TypeBaseDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (MessageRecordUser)base)
@@ -121,6 +126,10 @@ public interface MessageRecordUserDraft extends MessageRecordUser, TypeBaseDraft
             return (MessageRecordUser)Internal.produce(TYPE, base, block);
         }
 
+        @GeneratedBy(
+                type = MessageRecordUser.class
+        )
+        @JsonPropertyOrder({"dummyPropForJacksonError__", "id", "record", "user", "isRead"})
         public abstract interface Implementor extends MessageRecordUser, ImmutableSpi {
             @Override
             default Object __get(PropId prop) {
@@ -155,22 +164,21 @@ public interface MessageRecordUserDraft extends MessageRecordUser, TypeBaseDraft
                 }
             }
 
-            @JsonIgnore
+            @NotNull
             default String getId() {
                 return id();
             }
 
-            @JsonIgnore
+            @jakarta.annotation.Nullable
             default MessageRecord getRecord() {
                 return record();
             }
 
-            @JsonIgnore
+            @jakarta.annotation.Nullable
             default User getUser() {
                 return user();
             }
 
-            @JsonIgnore
             default Integer getIsRead() {
                 return isRead();
             }
@@ -185,6 +193,9 @@ public interface MessageRecordUserDraft extends MessageRecordUser, TypeBaseDraft
             }
         }
 
+        @GeneratedBy(
+                type = MessageRecordUser.class
+        )
         private static class Impl implements Implementor, Cloneable, Serializable {
             private Visibility __visibility;
 
@@ -203,6 +214,7 @@ public interface MessageRecordUserDraft extends MessageRecordUser, TypeBaseDraft
             boolean __isReadLoaded = false;
 
             @Override
+            @JsonIgnore
             public String id() {
                 if (__idValue == null) {
                     throw new UnloadedException(MessageRecordUser.class, "id");
@@ -211,6 +223,7 @@ public interface MessageRecordUserDraft extends MessageRecordUser, TypeBaseDraft
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public MessageRecord record() {
                 if (!__recordLoaded) {
@@ -220,6 +233,7 @@ public interface MessageRecordUserDraft extends MessageRecordUser, TypeBaseDraft
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public User user() {
                 if (!__userLoaded) {
@@ -229,6 +243,7 @@ public interface MessageRecordUserDraft extends MessageRecordUser, TypeBaseDraft
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public Integer isRead() {
                 if (!__isReadLoaded) {
@@ -469,6 +484,9 @@ public interface MessageRecordUserDraft extends MessageRecordUser, TypeBaseDraft
             }
         }
 
+        @GeneratedBy(
+                type = MessageRecordUser.class
+        )
         private static class DraftImpl implements Implementor, DraftSpi, MessageRecordUserDraft {
             private DraftContext __ctx;
 
@@ -534,6 +552,7 @@ public interface MessageRecordUserDraft extends MessageRecordUser, TypeBaseDraft
             }
 
             @Override
+            @JsonIgnore
             public String id() {
                 return (__modified!= null ? __modified : __base).id();
             }
@@ -551,6 +570,7 @@ public interface MessageRecordUserDraft extends MessageRecordUser, TypeBaseDraft
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public MessageRecordDraft record() {
                 return __ctx.toDraftObject((__modified!= null ? __modified : __base).record());
@@ -607,6 +627,7 @@ public interface MessageRecordUserDraft extends MessageRecordUser, TypeBaseDraft
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public UserDraft user() {
                 return __ctx.toDraftObject((__modified!= null ? __modified : __base).user());
@@ -662,6 +683,7 @@ public interface MessageRecordUserDraft extends MessageRecordUser, TypeBaseDraft
             }
 
             @Override
+            @JsonIgnore
             @Nullable
             public Integer isRead() {
                 return (__modified!= null ? __modified : __base).isRead();
@@ -846,7 +868,7 @@ public interface MessageRecordUserDraft extends MessageRecordUser, TypeBaseDraft
                 }
             }
 
-            private Impl __modified() {
+            Impl __modified() {
                 Impl __tmpModified = __modified;
                 if (__tmpModified == null) {
                     __tmpModified = __base.clone();
@@ -857,59 +879,43 @@ public interface MessageRecordUserDraft extends MessageRecordUser, TypeBaseDraft
         }
     }
 
-    class MapStruct {
-        private String id;
+    @GeneratedBy(
+            type = MessageRecordUser.class
+    )
+    class Builder {
+        private final Producer.DraftImpl __draft;
 
-        private boolean __recordLoaded;
+        public Builder() {
+            __draft = new Producer.DraftImpl(null, null);
+        }
 
-        private MessageRecord record;
-
-        private boolean __userLoaded;
-
-        private User user;
-
-        private boolean __isReadLoaded;
-
-        private Integer isRead;
-
-        public MapStruct id(String id) {
-            this.id = id;
+        @NotNull
+        public Builder id(String id) {
+            if (id != null) {
+                __draft.setId(id);
+            }
             return this;
         }
 
-        public MapStruct record(MessageRecord record) {
-            this.__recordLoaded = true;
-            this.record = record;
+        @jakarta.annotation.Nullable
+        public Builder record(MessageRecord record) {
+            __draft.setRecord(record);
             return this;
         }
 
-        public MapStruct user(User user) {
-            this.__userLoaded = true;
-            this.user = user;
+        @jakarta.annotation.Nullable
+        public Builder user(User user) {
+            __draft.setUser(user);
             return this;
         }
 
-        public MapStruct isRead(Integer isRead) {
-            this.__isReadLoaded = true;
-            this.isRead = isRead;
+        public Builder isRead(Integer isRead) {
+            __draft.setIsRead(isRead);
             return this;
         }
 
         public MessageRecordUser build() {
-            return MessageRecordUserDraft.$.produce(__draft -> {
-                if (id != null) {
-                    __draft.setId(id);
-                }
-                if (__recordLoaded) {
-                    __draft.setRecord(record);
-                }
-                if (__userLoaded) {
-                    __draft.setUser(user);
-                }
-                if (__isReadLoaded) {
-                    __draft.setIsRead(isRead);
-                }
-            });
+            return (MessageRecordUser)__draft.__modified();
         }
     }
 }

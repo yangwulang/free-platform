@@ -16,11 +16,6 @@ import top.yangwulang.platform.entity.sys.Post;
 import top.yangwulang.platform.entity.sys.PostDraft;
 import top.yangwulang.platform.entity.sys.PostFetcher;
 
-/**
- *  岗位表
- *
- *  @author yangwulang
- */
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Post.dto"
 )
@@ -55,10 +50,6 @@ public class PostGetView implements View<Post> {
         this.postType = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(PostDraft.Producer.SLOT_POST_TYPE)) ? base.postType() : null;
     }
 
-    /**
-     * 字典类型编码
-     * @return 主键值
-     */
     @NotNull
     public String getId() {
         if (id == null) {
@@ -71,11 +62,6 @@ public class PostGetView implements View<Post> {
         this.id = id;
     }
 
-    /**
-     * 岗位编码
-     *
-     * @return 岗位编码
-     */
     @NotNull
     @Schema(
             description = "岗位编码"
@@ -91,11 +77,6 @@ public class PostGetView implements View<Post> {
         this.postCode = postCode;
     }
 
-    /**
-     * 岗位名称
-     *
-     * @return 岗位名称
-     */
     @NotNull
     @Schema(
             description = "岗位名称"
@@ -111,11 +92,6 @@ public class PostGetView implements View<Post> {
         this.postName = postName;
     }
 
-    /**
-     * 岗位类型（高管、中层、低层）
-     *
-     * @return 高管、中层、低层 此处是字典
-     */
     @Nullable
     @Schema(
             description = "岗位类型（高管、中层、低层）"

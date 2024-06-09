@@ -19,11 +19,6 @@ import top.yangwulang.platform.entity.sys.Menu;
 import top.yangwulang.platform.entity.sys.MenuDraft;
 import top.yangwulang.platform.entity.sys.MenuFetcher;
 
-/**
- *  菜单表
- *
- *  @author yangwulang
- */
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Menu.dto"
 )
@@ -127,10 +122,6 @@ public class MenuGetView implements View<Menu> {
         this.parent = PARENT_ACCESSOR.get(base);
     }
 
-    /**
-     * 字典类型编码
-     * @return 主键值
-     */
     @Nullable
     @Schema(
             description = "登录编码"
@@ -143,9 +134,6 @@ public class MenuGetView implements View<Menu> {
         this.id = id;
     }
 
-    /**
-     * 菜单名称
-     */
     @Nullable
     @Schema(
             description = "菜单名称"
@@ -158,9 +146,6 @@ public class MenuGetView implements View<Menu> {
         this.menuName = menuName;
     }
 
-    /**
-     * 菜单类型（1菜单 2权限 3开发）
-     */
     @Nullable
     @Schema(
             description = "菜单类型（1菜单 2权限 3开发）"
@@ -173,9 +158,6 @@ public class MenuGetView implements View<Menu> {
         this.menuType = menuType;
     }
 
-    /**
-     * 链接
-     */
     @Nullable
     @Schema(
             description = "链接"
@@ -188,9 +170,6 @@ public class MenuGetView implements View<Menu> {
         this.menuHref = menuHref;
     }
 
-    /**
-     * 组件地址
-     */
     @Nullable
     @Schema(
             description = "组件地址"
@@ -203,9 +182,6 @@ public class MenuGetView implements View<Menu> {
         this.menuComponent = menuComponent;
     }
 
-    /**
-     * 目标
-     */
     @Nullable
     @Schema(
             description = "目标"
@@ -218,9 +194,6 @@ public class MenuGetView implements View<Menu> {
         this.menuTarget = menuTarget;
     }
 
-    /**
-     * 图标
-     */
     @Nullable
     @Schema(
             description = "图标"
@@ -233,9 +206,6 @@ public class MenuGetView implements View<Menu> {
         this.menuIcon = menuIcon;
     }
 
-    /**
-     * 颜色
-     */
     @Nullable
     @Schema(
             description = "颜色"
@@ -248,9 +218,6 @@ public class MenuGetView implements View<Menu> {
         this.menuColor = menuColor;
     }
 
-    /**
-     * 菜单标题
-     */
     @Nullable
     @Schema(
             description = "菜单标题"
@@ -263,9 +230,6 @@ public class MenuGetView implements View<Menu> {
         this.menuTitle = menuTitle;
     }
 
-    /**
-     * 权限标识
-     */
     @Nullable
     @Schema(
             description = "权限标识"
@@ -278,9 +242,6 @@ public class MenuGetView implements View<Menu> {
         this.permission = permission;
     }
 
-    /**
-     * 菜单权重
-     */
     @Nullable
     @Schema(
             description = "菜单权重"
@@ -293,9 +254,6 @@ public class MenuGetView implements View<Menu> {
         this.weight = weight;
     }
 
-    /**
-     * 是否显示
-     */
     @Nullable
     @Schema(
             description = "是否显示"
@@ -308,9 +266,6 @@ public class MenuGetView implements View<Menu> {
         this.isShow = isShow;
     }
 
-    /**
-     * 归属系统（default:主导航菜单、mobileApp:APP菜单）
-     */
     @Nullable
     @Schema(
             description = "归属系统（default:主导航菜单、mobileApp:APP菜单）"
@@ -332,9 +287,6 @@ public class MenuGetView implements View<Menu> {
         this.parentId = parentId;
     }
 
-    /**
-     * 父级编号
-     */
     @Nullable
     @Schema(
             description = "父级菜单"
@@ -465,11 +417,6 @@ public class MenuGetView implements View<Menu> {
         return builder.toString();
     }
 
-    /**
-     *  菜单表
-     *
-     *  @author yangwulang
-     */
     @GeneratedBy
     @Schema(
             description = "菜单实体"
@@ -496,9 +443,6 @@ public class MenuGetView implements View<Menu> {
             this.menuName = MENU_NAME_ACCESSOR.get(base);
         }
 
-        /**
-         * 菜单名称
-         */
         @Nullable
         @Schema(
                 description = "菜单名称"

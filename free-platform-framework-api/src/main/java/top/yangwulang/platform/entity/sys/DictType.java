@@ -12,7 +12,7 @@ import jakarta.annotation.Nullable;
  */
 @Entity
 @Table(name = "sys_dict_type")
-@Schema(name = "字典类型", description = "字典类型标签")
+@Schema(description = "字典类型标签")
 public interface DictType extends DataTypeBase {
 
     /**

@@ -21,9 +21,6 @@ import top.yangwulang.platform.entity.sys.EmployeeFetcher;
 import top.yangwulang.platform.entity.sys.UserDraft;
 import top.yangwulang.platform.entity.sys.UserFetcher;
 
-/**
- * 员工
- */
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Employee.dto"
 )
@@ -197,9 +194,6 @@ public class EmployeeGetView implements View<Employee> {
         this.mgrType = MGR_TYPE_ACCESSOR.get(base);
     }
 
-    /**
-     * 员工编码
-     */
     @NotNull
     @Schema(
             description = "员工编码"
@@ -215,9 +209,6 @@ public class EmployeeGetView implements View<Employee> {
         this.empCode = empCode;
     }
 
-    /**
-     * 员工姓名
-     */
     @Nullable
     @Schema(
             description = "员工名称"

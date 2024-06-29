@@ -65,6 +65,9 @@ public interface UserService extends BaseService<User, String, UserRepository> {
 
     /**
      * 获取菜单权限数据，如果为超管，则直接返回 [*]
+     * <br/>
+     * 可能会抛出以下业务异常信息
+     * <li color="red">如果传入的userId在系统中不存在时：{@link top.yangwulang.platform.exception.SystemError#USER_NOT_FOUND}</li>
      *
      * @param id 用户id
      * @return 菜单权限

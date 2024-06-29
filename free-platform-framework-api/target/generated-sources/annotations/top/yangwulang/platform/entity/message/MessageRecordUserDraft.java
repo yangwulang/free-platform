@@ -103,7 +103,7 @@ public interface MessageRecordUserDraft extends MessageRecordUser, TypeBaseDraft
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.130",
+                "0.8.134",
                 MessageRecordUser.class,
                 Collections.singleton(TypeBaseDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (MessageRecordUser)base)

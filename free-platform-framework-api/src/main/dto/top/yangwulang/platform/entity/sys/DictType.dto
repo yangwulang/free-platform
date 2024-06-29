@@ -22,7 +22,18 @@ unsafe input DictSaveInput {
 
 DictTypeGetView {
     #allScalars
-    // -status
+    -createBy
+    -createDate
+    -updateBy
+    -updateDate
+}
+// 字典数据形状视图
+DictTypeDataGetView {
+    #allScalars
+    data {
+        dictLabel
+        dictValue
+    }
     -createBy
     -createDate
     -updateBy

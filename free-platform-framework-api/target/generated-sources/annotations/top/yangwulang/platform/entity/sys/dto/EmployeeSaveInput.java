@@ -24,6 +24,9 @@ import top.yangwulang.platform.entity.sys.EmployeeFetcher;
 import top.yangwulang.platform.entity.sys.UserDraft;
 import top.yangwulang.platform.entity.sys.UserFetcher;
 
+/**
+ * 员工
+ */
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Employee.dto"
 )
@@ -206,6 +209,9 @@ public class EmployeeSaveInput implements Input<Employee> {
         this.mgrType = MGR_TYPE_ACCESSOR.get(base);
     }
 
+    /**
+     * 员工姓名
+     */
     @Nullable
     @Schema(
             description = "员工名称"
@@ -218,6 +224,9 @@ public class EmployeeSaveInput implements Input<Employee> {
         this.empName = empName;
     }
 
+    /**
+     * 员工编码
+     */
     @Nullable
     @Schema(
             description = "员工编码"

@@ -24,10 +24,7 @@ import top.yangwulang.platform.utils.ConfigUtils;
 import top.yangwulang.platform.utils.UserUtils;
 
 import java.rmi.server.ServerCloneException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
@@ -114,6 +111,16 @@ public class UserServiceImpl
 
     @Override
     public List<String> getPermissionString(String id) {
+        User user = this.findNullable(id);
+        if (user == null) {
+            // 用户没找到抛出异常
+            throw new ServiceException(SystemError.USER_NOT_FOUND);
+        } else if ("system".equals(user.loginCode()))  {
+            // TODO: 此处应该新增一个判断条件区分超管，释放所有权限，现在暂时这么写
+            // 如果为超管，释放所有权限
+            return List.of("*");
+        }
+        // 否则查询当前查询的用户所属的菜单权限进行拼接
         return this.repository().sql()
                 .createQuery(Tables.MENU_TABLE)
                 .where(Predicate.and(
@@ -126,6 +133,7 @@ public class UserServiceImpl
                 .execute()
                 .stream()
                 .map(Menu::permission)
+                .filter(Objects::nonNull)
                 .flatMap((Function<String, Stream<String>>) s -> {
                     if (s.contains(",")) {
                         return Arrays.stream(s.split(","));

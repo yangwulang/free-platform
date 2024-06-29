@@ -4,9 +4,11 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Date;
+import java.util.function.Function;
 import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.ImmutableType;
 import org.babyfish.jimmer.meta.TypedProp;
+import org.babyfish.jimmer.sql.ast.Predicate;
 import org.babyfish.jimmer.sql.ast.PropExpression;
 import org.babyfish.jimmer.sql.ast.table.PropsFor;
 import top.yangwulang.platform.entity.DataTypeBaseProps;
@@ -46,9 +48,14 @@ public interface DictTypeProps extends DataTypeBaseProps {
     TypedProp.Scalar<DictType, Boolean> IS_SYS = 
         TypedProp.scalar(ImmutableType.get(DictType.class).getProp("isSys"));
 
+    TypedProp.ReferenceList<DictType, DictData> DATA = 
+        TypedProp.referenceList(ImmutableType.get(DictType.class).getProp("data"));
+
     PropExpression.Str dictName();
 
     PropExpression.Str dictType();
 
     PropExpression.Cmp<Boolean> isSys();
+
+    Predicate data(Function<DictDataTableEx, Predicate> block);
 }

@@ -6,7 +6,9 @@ import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Date;
+import java.util.function.Function;
 import org.babyfish.jimmer.internal.GeneratedBy;
+import org.babyfish.jimmer.sql.ast.Predicate;
 import org.babyfish.jimmer.sql.ast.PropExpression;
 import org.babyfish.jimmer.sql.ast.impl.table.TableImplementor;
 import org.babyfish.jimmer.sql.ast.table.TableEx;
@@ -82,6 +84,11 @@ public class DictTypeTable extends AbstractTypedTable<DictType> implements DictT
     @Override
     public PropExpression.Cmp<Boolean> isSys() {
         return __get(DictTypeProps.IS_SYS.unwrap());
+    }
+
+    @Override
+    public Predicate data(Function<DictDataTableEx, Predicate> block) {
+        return exists(DictTypeProps.DATA.unwrap(), block);
     }
 
     @Override

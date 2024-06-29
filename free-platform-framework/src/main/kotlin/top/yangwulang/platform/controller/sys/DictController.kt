@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.tags.Tag
 import io.swagger.v3.oas.annotations.tags.Tags
 import jakarta.servlet.http.HttpServletRequest
 import org.babyfish.jimmer.spring.repository.support.SpringPageFactory
+import org.babyfish.jimmer.sql.JoinType
 import org.babyfish.jimmer.sql.ast.Predicate
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
@@ -36,6 +37,13 @@ class DictController {
     @Operation(summary = "获取字典类型数据")
     fun getType(@PathVariable("id") id: String): DictTypeGetView? {
         return dictTypeService.repository().sql().findById(DictTypeGetView::class.java, id)
+    }
+
+    @GetMapping("/dictType/findType/{type}")
+    @Operation(summary = "获取字典类型数据包括字典的类型和字典数据值")
+    fun findType(@PathVariable("type") type: String): Result<DictTypeDataGetView> {
+        return  Result<DictTypeDataGetView>()
+            .success(dictTypeService.findByType(type, DictTypeDataGetView::class.java))
     }
 
     @SaCheckPermission(value = ["sys:dictType:view"])
@@ -85,7 +93,7 @@ class DictController {
         return dictDataService.repository().sql().createQuery(table)
             .where(
                 Predicate.and(
-                    table.parentId().isNull,
+                    table.parent(JoinType.LEFT).isNull(),
                     table.dictType().id().eq(dictDataInput.dictTypeId)
                 )
             )

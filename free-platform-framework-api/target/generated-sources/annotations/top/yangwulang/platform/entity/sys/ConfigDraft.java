@@ -92,7 +92,7 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.130",
+                "0.8.134",
                 Config.class,
                 Collections.singleton(DataTypeBaseNoStatusDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (Config)base)

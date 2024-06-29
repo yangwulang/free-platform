@@ -17,6 +17,9 @@ import top.yangwulang.platform.entity.sys.Area;
 import top.yangwulang.platform.entity.sys.AreaProps;
 import top.yangwulang.platform.entity.sys.AreaTable;
 
+/**
+ * 区域表
+ */
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Area.dto"
 )
@@ -35,6 +38,9 @@ public class AreaListSpecification implements JSpecification<Area, AreaTable> {
     public AreaListSpecification() {
     }
 
+    /**
+     * 父级编号
+     */
     @Nullable
     @Schema(
             description = "父级id"
@@ -47,6 +53,9 @@ public class AreaListSpecification implements JSpecification<Area, AreaTable> {
         this.parentId = parentId;
     }
 
+    /**
+     * 名称
+     */
     @Nullable
     @Schema(
             description = "区域名称"
@@ -59,6 +68,9 @@ public class AreaListSpecification implements JSpecification<Area, AreaTable> {
         this.areaName = areaName;
     }
 
+    /**
+     * 排序
+     */
     @Nullable
     @Schema(
             description = "排序"
@@ -71,6 +83,9 @@ public class AreaListSpecification implements JSpecification<Area, AreaTable> {
         this.sort = sort;
     }
 
+    /**
+     * 区域类型
+     */
     @Nullable
     @Schema(
             description = "地区类型(1：省份、直辖市；2：地市；3：区县)"

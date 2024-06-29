@@ -14,8 +14,10 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.lang.System;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 import org.babyfish.jimmer.CircularReferenceException;
 import org.babyfish.jimmer.DraftConsumer;
@@ -31,7 +33,9 @@ import org.babyfish.jimmer.runtime.DraftContext;
 import org.babyfish.jimmer.runtime.DraftSpi;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
 import org.babyfish.jimmer.runtime.Internal;
+import org.babyfish.jimmer.runtime.NonSharedList;
 import org.babyfish.jimmer.runtime.Visibility;
+import org.babyfish.jimmer.sql.OneToMany;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.DataTypeBaseDraft;
@@ -72,6 +76,17 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
     @OldChain
     DictTypeDraft setIsSys(Boolean isSys);
 
+    List<DictDataDraft> data(boolean autoCreate);
+
+    @OldChain
+    DictTypeDraft setData(List<DictData> data);
+
+    @OldChain
+    DictTypeDraft addIntoData(DraftConsumer<DictDataDraft> block);
+
+    @OldChain
+    DictTypeDraft addIntoData(DictData base, DraftConsumer<DictDataDraft> block);
+
     @GeneratedBy(
             type = DictType.class
     )
@@ -98,9 +113,11 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
 
         public static final int SLOT_IS_SYS = 9;
 
+        public static final int SLOT_DATA = 10;
+
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.130",
+                "0.8.134",
                 DictType.class,
                 Collections.singleton(DataTypeBaseDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (DictType)base)
@@ -115,6 +132,7 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
             .add(SLOT_DICT_NAME, "dictName", ImmutablePropCategory.SCALAR, String.class, true)
             .key(SLOT_DICT_TYPE, "dictType", String.class, false)
             .add(SLOT_IS_SYS, "isSys", ImmutablePropCategory.SCALAR, Boolean.class, true)
+            .add(SLOT_DATA, "data", OneToMany.class, DictData.class, false)
             .build();
 
         private Producer() {
@@ -131,7 +149,7 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
         @GeneratedBy(
                 type = DictType.class
         )
-        @JsonPropertyOrder({"dummyPropForJacksonError__", "id", "status", "createBy", "createDate", "updateBy", "updateDate", "remarks", "dictName", "dictType", "isSys"})
+        @JsonPropertyOrder({"dummyPropForJacksonError__", "id", "status", "createBy", "createDate", "updateBy", "updateDate", "remarks", "dictName", "dictType", "isSys", "data"})
         public abstract interface Implementor extends DictType, ImmutableSpi {
             @Override
             default Object __get(PropId prop) {
@@ -159,6 +177,8 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
                     		return dictType();
                     case SLOT_IS_SYS:
                     		return isSys();
+                    case SLOT_DATA:
+                    		return data();
                     default: throw new IllegalArgumentException("Illegal property name for \"top.yangwulang.platform.entity.sys.DictType\": \"" + prop + "\"");
                 }
             }
@@ -186,6 +206,8 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
                     		return dictType();
                     case "isSys":
                     		return isSys();
+                    case "data":
+                    		return data();
                     default: throw new IllegalArgumentException("Illegal property name for \"top.yangwulang.platform.entity.sys.DictType\": \"" + prop + "\"");
                 }
             }
@@ -249,6 +271,13 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
                 return isSys();
             }
 
+            @Schema(
+                    description = "字典数据"
+            )
+            default List<DictData> getData() {
+                return data();
+            }
+
             @Override
             default ImmutableType __type() {
                 return TYPE;
@@ -292,6 +321,8 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
             Boolean __isSysValue;
 
             boolean __isSysLoaded = false;
+
+            NonSharedList<DictData> __dataValue;
 
             @Override
             @JsonIgnore
@@ -387,6 +418,15 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
             }
 
             @Override
+            @JsonIgnore
+            public List<DictData> data() {
+                if (__dataValue == null) {
+                    throw new UnloadedException(DictType.class, "data");
+                }
+                return __dataValue;
+            }
+
+            @Override
             public Impl clone() {
                 try {
                     return (Impl)super.clone();
@@ -421,6 +461,8 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
                     		return __dictTypeValue != null;
                     case SLOT_IS_SYS:
                     		return __isSysLoaded;
+                    case SLOT_DATA:
+                    		return __dataValue != null;
                     default: throw new IllegalArgumentException("Illegal property name for \"top.yangwulang.platform.entity.sys.DictType\": \"" + prop + "\"");
                 }
             }
@@ -448,6 +490,8 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
                     		return __dictTypeValue != null;
                     case "isSys":
                     		return __isSysLoaded;
+                    case "data":
+                    		return __dataValue != null;
                     default: throw new IllegalArgumentException("Illegal property name for \"top.yangwulang.platform.entity.sys.DictType\": \"" + prop + "\"");
                 }
             }
@@ -481,6 +525,8 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
                     		return __visibility.visible(SLOT_DICT_TYPE);
                     case SLOT_IS_SYS:
                     		return __visibility.visible(SLOT_IS_SYS);
+                    case SLOT_DATA:
+                    		return __visibility.visible(SLOT_DATA);
                     default: return true;
                 }
             }
@@ -511,6 +557,8 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
                     		return __visibility.visible(SLOT_DICT_TYPE);
                     case "isSys":
                     		return __visibility.visible(SLOT_IS_SYS);
+                    case "data":
+                    		return __visibility.visible(SLOT_DATA);
                     default: return true;
                 }
             }
@@ -550,6 +598,9 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
                 if (__isSysLoaded && __isSysValue != null) {
                     hash = 31 * hash + __isSysValue.hashCode();
                 }
+                if (__dataValue != null) {
+                    hash = 31 * hash + __dataValue.hashCode();
+                }
                 return hash;
             }
 
@@ -584,6 +635,9 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
                 }
                 if (__isSysLoaded) {
                     hash = 31 * hash + System.identityHashCode(__isSysValue);
+                }
+                if (__dataValue != null) {
+                    hash = 31 * hash + System.identityHashCode(__dataValue);
                 }
                 return hash;
             }
@@ -700,6 +754,16 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
                 if (__isSysLoaded && !Objects.equals(__isSysValue, __other.isSys())) {
                     return false;
                 }
+                if (__isVisible(PropId.byIndex(SLOT_DATA)) != __other.__isVisible(PropId.byIndex(SLOT_DATA))) {
+                    return false;
+                }
+                boolean __dataLoaded = __dataValue != null;
+                if (__dataLoaded != __other.__isLoaded(PropId.byIndex(SLOT_DATA))) {
+                    return false;
+                }
+                if (__dataLoaded && !Objects.equals(__dataValue, __other.data())) {
+                    return false;
+                }
                 return true;
             }
 
@@ -806,6 +870,16 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
                     return false;
                 }
                 if (__isSysLoaded && __isSysValue != __other.isSys()) {
+                    return false;
+                }
+                if (__isVisible(PropId.byIndex(SLOT_DATA)) != __other.__isVisible(PropId.byIndex(SLOT_DATA))) {
+                    return false;
+                }
+                boolean __dataLoaded = __dataValue != null;
+                if (__dataLoaded != __other.__isLoaded(PropId.byIndex(SLOT_DATA))) {
+                    return false;
+                }
+                if (__dataLoaded && __dataValue != __other.data()) {
                     return false;
                 }
                 return true;
@@ -1056,6 +1130,44 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
                 return this;
             }
 
+            @Override
+            @JsonIgnore
+            public List<DictData> data() {
+                return __ctx.toDraftList((__modified!= null ? __modified : __base).data(), DictData.class, true);
+            }
+
+            @Override
+            public List<DictDataDraft> data(boolean autoCreate) {
+                if (autoCreate && (!__isLoaded(PropId.byIndex(SLOT_DATA)))) {
+                    setData(new ArrayList<>());
+                }
+                return __ctx.toDraftList((__modified!= null ? __modified : __base).data(), DictData.class, true);
+            }
+
+            @Override
+            public DictTypeDraft setData(List<DictData> data) {
+                if (data == null) {
+                    throw new IllegalArgumentException(
+                        "'data' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
+                    );
+                }
+                Impl __tmpModified = __modified();
+                __tmpModified.__dataValue = NonSharedList.of(__tmpModified.__dataValue, data);
+                return this;
+            }
+
+            @Override
+            public DictTypeDraft addIntoData(DraftConsumer<DictDataDraft> block) {
+                addIntoData(null, block);
+                return this;
+            }
+
+            @Override
+            public DictTypeDraft addIntoData(DictData base, DraftConsumer<DictDataDraft> block) {
+                data(true).add((DictDataDraft)DictDataDraft.$.produce(base, block));
+                return this;
+            }
+
             @SuppressWarnings("unchecked")
             @Override
             public void __set(PropId prop, Object value) {
@@ -1086,6 +1198,8 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
                     		setDictType((String)value);break;
                     case SLOT_IS_SYS:
                     		setIsSys((Boolean)value);break;
+                    case SLOT_DATA:
+                    		setData((List<DictData>)value);break;
                     default: throw new IllegalArgumentException("Illegal property id for \"top.yangwulang.platform.entity.sys.DictType\": \"" + prop + "\"");
                 }
             }
@@ -1116,6 +1230,8 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
                     		setDictType((String)value);break;
                     case "isSys":
                     		setIsSys((Boolean)value);break;
+                    case "data":
+                    		setData((List<DictData>)value);break;
                     default: throw new IllegalArgumentException("Illegal property name for \"top.yangwulang.platform.entity.sys.DictType\": \"" + prop + "\"");
                 }
             }
@@ -1127,7 +1243,7 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
                     if (visible) {
                         return;
                     }
-                    __modified().__visibility = __visibility = Visibility.of(10);
+                    __modified().__visibility = __visibility = Visibility.of(11);
                 }
                 int __propIndex = prop.asIndex();
                 switch (__propIndex) {
@@ -1154,6 +1270,8 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
                     		__visibility.show(SLOT_DICT_TYPE, visible);break;
                     case SLOT_IS_SYS:
                     		__visibility.show(SLOT_IS_SYS, visible);break;
+                    case SLOT_DATA:
+                    		__visibility.show(SLOT_DATA, visible);break;
                     default: throw new IllegalArgumentException(
                                 "Illegal property id for \"top.yangwulang.platform.entity.sys.DictType\": \"" + 
                                 prop + 
@@ -1169,7 +1287,7 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
                     if (visible) {
                         return;
                     }
-                    __modified().__visibility = __visibility = Visibility.of(10);
+                    __modified().__visibility = __visibility = Visibility.of(11);
                 }
                 switch (prop) {
                     case "id":
@@ -1192,6 +1310,8 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
                     		__visibility.show(SLOT_DICT_TYPE, visible);break;
                     case "isSys":
                     		__visibility.show(SLOT_IS_SYS, visible);break;
+                    case "data":
+                    		__visibility.show(SLOT_DATA, visible);break;
                     default: throw new IllegalArgumentException(
                                 "Illegal property name for \"top.yangwulang.platform.entity.sys.DictType\": \"" + 
                                 prop + 
@@ -1227,6 +1347,8 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
                     		__modified().__dictTypeValue = null;break;
                     case SLOT_IS_SYS:
                     		__modified().__isSysLoaded = false;break;
+                    case SLOT_DATA:
+                    		__modified().__dataValue = null;break;
                     default: throw new IllegalArgumentException("Illegal property id for \"top.yangwulang.platform.entity.sys.DictType\": \"" + prop + "\", it does not exist or its loaded state is not controllable");
                 }
             }
@@ -1254,6 +1376,8 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
                     		__modified().__dictTypeValue = null;break;
                     case "isSys":
                     		__modified().__isSysLoaded = false;break;
+                    case "data":
+                    		__modified().__dataValue = null;break;
                     default: throw new IllegalArgumentException("Illegal property name for \"top.yangwulang.platform.entity.sys.DictType\": \"" + prop + "\", it does not exist or its loaded state is not controllable");
                 }
             }
@@ -1272,6 +1396,19 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
                 try {
                     Implementor base = __base;
                     Impl __tmpModified = __modified;
+                    if (__tmpModified == null) {
+                        if (base.__isLoaded(PropId.byIndex(SLOT_DATA))) {
+                            List<DictData> oldValue = base.data();
+                            List<DictData> newValue = __ctx.resolveList(oldValue);
+                            if (oldValue != newValue) {
+                                setData(newValue);
+                            }
+                        }
+                        __tmpModified = __modified;
+                    }
+                    else {
+                        __tmpModified.__dataValue = NonSharedList.of(__tmpModified.__dataValue, __ctx.resolveList(__tmpModified.__dataValue));
+                    }
                     if (__base != null && __tmpModified == null) {
                         return base;
                     }
@@ -1383,6 +1520,16 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
         )
         public Builder isSys(Boolean isSys) {
             __draft.setIsSys(isSys);
+            return this;
+        }
+
+        @Schema(
+                description = "字典数据"
+        )
+        public Builder data(List<DictData> data) {
+            if (data != null) {
+                __draft.setData(data);
+            }
             return this;
         }
 

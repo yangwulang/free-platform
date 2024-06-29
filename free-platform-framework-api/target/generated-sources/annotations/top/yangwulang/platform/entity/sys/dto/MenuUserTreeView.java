@@ -22,6 +22,11 @@ import top.yangwulang.platform.entity.sys.Menu;
 import top.yangwulang.platform.entity.sys.MenuDraft;
 import top.yangwulang.platform.entity.sys.MenuFetcher;
 
+/**
+ *  菜单表
+ *
+ *  @author yangwulang
+ */
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Menu.dto"
 )
@@ -127,6 +132,10 @@ public class MenuUserTreeView implements View<Menu> {
         this.parentId = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_PARENT_ID)) ? base.parentId() : null;
     }
 
+    /**
+     * 字典类型编码
+     * @return 主键值
+     */
     @NotNull
     public String getId() {
         if (id == null) {
@@ -139,6 +148,11 @@ public class MenuUserTreeView implements View<Menu> {
         this.id = id;
     }
 
+    /**
+     * 创建者
+     *
+     * @return 创建者
+     */
     @NotNull
     public String getCreateBy() {
         if (createBy == null) {
@@ -151,6 +165,11 @@ public class MenuUserTreeView implements View<Menu> {
         this.createBy = createBy;
     }
 
+    /**
+     * 创建时间
+     *
+     * @return 创建时间
+     */
     @NotNull
     public Date getCreateDate() {
         if (createDate == null) {
@@ -163,6 +182,11 @@ public class MenuUserTreeView implements View<Menu> {
         this.createDate = createDate;
     }
 
+    /**
+     * 更新者
+     *
+     * @return 更新者
+     */
     @NotNull
     public String getUpdateBy() {
         if (updateBy == null) {
@@ -175,6 +199,11 @@ public class MenuUserTreeView implements View<Menu> {
         this.updateBy = updateBy;
     }
 
+    /**
+     * 更新时间
+     *
+     * @return 更新时间
+     */
     @NotNull
     public Date getUpdateDate() {
         if (updateDate == null) {
@@ -187,6 +216,11 @@ public class MenuUserTreeView implements View<Menu> {
         this.updateDate = updateDate;
     }
 
+    /**
+     * 备注信息
+     *
+     * @return 备注信息
+     */
     @Nullable
     public String getRemarks() {
         return remarks;
@@ -196,6 +230,9 @@ public class MenuUserTreeView implements View<Menu> {
         this.remarks = remarks;
     }
 
+    /**
+     * 菜单名称
+     */
     @NotNull
     @Schema(
             description = "菜单名称"
@@ -211,6 +248,9 @@ public class MenuUserTreeView implements View<Menu> {
         this.menuName = menuName;
     }
 
+    /**
+     * 菜单类型（1菜单 2权限 3开发）
+     */
     @NotNull
     @Schema(
             description = "菜单类型（1菜单 2权限 3开发）"
@@ -226,6 +266,9 @@ public class MenuUserTreeView implements View<Menu> {
         this.menuType = menuType;
     }
 
+    /**
+     * 链接
+     */
     @Nullable
     @Schema(
             description = "链接"
@@ -238,6 +281,9 @@ public class MenuUserTreeView implements View<Menu> {
         this.menuHref = menuHref;
     }
 
+    /**
+     * 组件地址
+     */
     @Nullable
     @Schema(
             description = "组件地址"
@@ -250,6 +296,9 @@ public class MenuUserTreeView implements View<Menu> {
         this.menuComponent = menuComponent;
     }
 
+    /**
+     * 目标
+     */
     @Nullable
     @Schema(
             description = "目标"
@@ -262,6 +311,9 @@ public class MenuUserTreeView implements View<Menu> {
         this.menuTarget = menuTarget;
     }
 
+    /**
+     * 图标
+     */
     @Nullable
     @Schema(
             description = "图标"
@@ -274,6 +326,9 @@ public class MenuUserTreeView implements View<Menu> {
         this.menuIcon = menuIcon;
     }
 
+    /**
+     * 颜色
+     */
     @Nullable
     @Schema(
             description = "颜色"
@@ -286,6 +341,9 @@ public class MenuUserTreeView implements View<Menu> {
         this.menuColor = menuColor;
     }
 
+    /**
+     * 菜单标题
+     */
     @Nullable
     @Schema(
             description = "菜单标题"
@@ -298,6 +356,9 @@ public class MenuUserTreeView implements View<Menu> {
         this.menuTitle = menuTitle;
     }
 
+    /**
+     * 权限标识
+     */
     @Nullable
     @Schema(
             description = "权限标识"
@@ -310,6 +371,9 @@ public class MenuUserTreeView implements View<Menu> {
         this.permission = permission;
     }
 
+    /**
+     * 菜单权重
+     */
     @Nullable
     @Schema(
             description = "菜单权重"
@@ -322,6 +386,9 @@ public class MenuUserTreeView implements View<Menu> {
         this.weight = weight;
     }
 
+    /**
+     * 是否显示
+     */
     @Nullable
     @Schema(
             description = "是否显示"
@@ -334,6 +401,9 @@ public class MenuUserTreeView implements View<Menu> {
         this.isShow = isShow;
     }
 
+    /**
+     * 归属系统（default:主导航菜单、mobileApp:APP菜单）
+     */
     @Nullable
     @Schema(
             description = "归属系统（default:主导航菜单、mobileApp:APP菜单）"

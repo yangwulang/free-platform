@@ -33,6 +33,7 @@ public class CustomerOpenApi {
             if (chain.hasNext()) {
                 Type annotatedTypeRaw = annotatedType.getType();
                 if (annotatedTypeRaw instanceof Class<?> type && type.isInterface()) {
+                    // 此处检测到controller返回的是接口的话，将接口进行翻译
                     io.swagger.v3.oas.annotations.media.Schema annotation = type.getAnnotation(io.swagger.v3.oas.annotations.media.Schema.class);
                     if (annotation == null) {
                         return chain.next().resolve(annotatedType, modelConverterContext, chain);

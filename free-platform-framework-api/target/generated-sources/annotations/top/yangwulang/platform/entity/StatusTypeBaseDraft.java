@@ -23,7 +23,7 @@ public interface StatusTypeBaseDraft extends StatusTypeBase, Draft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.130",
+                "0.8.134",
                 StatusTypeBase.class,
                 Collections.emptyList(),
                 null

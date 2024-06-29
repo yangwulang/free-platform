@@ -3,6 +3,7 @@ package top.yangwulang.platform.entity.sys;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.babyfish.jimmer.sql.*;
 import top.yangwulang.platform.entity.DataTypeBase;
+import java.util.List;
 
 import jakarta.annotation.Nullable;
 
@@ -39,6 +40,10 @@ public interface DictType extends DataTypeBase {
     @Schema(description = "是否系统自带")
     @Column(name = "is_sys")
     Boolean isSys();
+
+    @OneToMany(mappedBy = "dictType")
+    @Schema(description = "字典数据")
+    List<DictData> data();
 
 }
 

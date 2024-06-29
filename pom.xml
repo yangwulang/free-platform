@@ -33,7 +33,7 @@
         <commons-io.version>2.11.0</commons-io.version>
         <commons-fileupload.version>1.4</commons-fileupload.version>
         <jsoup.version>1.15.3</jsoup.version>
-        <jimmer.version>0.8.130</jimmer.version>
+        <jimmer.version>0.8.134</jimmer.version>
         <knife4j.version>4.1.0</knife4j.version>
         <minio.version>7.1.4</minio.version>
         <elasticsearch.version>7.14.1</elasticsearch.version>

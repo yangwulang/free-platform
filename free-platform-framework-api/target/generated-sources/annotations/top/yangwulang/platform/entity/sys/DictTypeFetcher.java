@@ -1,6 +1,7 @@
 package top.yangwulang.platform.entity.sys;
 
 import java.lang.Override;
+import java.util.function.Consumer;
 import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.lang.NewChain;
 import org.babyfish.jimmer.meta.ImmutableProp;
@@ -8,6 +9,7 @@ import org.babyfish.jimmer.sql.ast.table.Table;
 import org.babyfish.jimmer.sql.fetcher.Fetcher;
 import org.babyfish.jimmer.sql.fetcher.FieldConfig;
 import org.babyfish.jimmer.sql.fetcher.IdOnlyFetchType;
+import org.babyfish.jimmer.sql.fetcher.ListFieldConfig;
 import org.babyfish.jimmer.sql.fetcher.impl.FetcherImpl;
 import org.babyfish.jimmer.sql.fetcher.spi.AbstractTypedFetcher;
 
@@ -125,6 +127,27 @@ public class DictTypeFetcher extends AbstractTypedFetcher<DictType, DictTypeFetc
     @NewChain
     public DictTypeFetcher isSys(boolean enabled) {
         return enabled ? add("isSys") : remove("isSys");
+    }
+
+    @NewChain
+    public DictTypeFetcher data() {
+        return add("data");
+    }
+
+    @NewChain
+    public DictTypeFetcher data(boolean enabled) {
+        return enabled ? add("data") : remove("data");
+    }
+
+    @NewChain
+    public DictTypeFetcher data(Fetcher<DictData> childFetcher) {
+        return add("data", childFetcher);
+    }
+
+    @NewChain
+    public DictTypeFetcher data(Fetcher<DictData> childFetcher,
+            Consumer<ListFieldConfig<DictData, DictDataTable>> fieldConfig) {
+        return add("data", childFetcher, fieldConfig);
     }
 
     @Override

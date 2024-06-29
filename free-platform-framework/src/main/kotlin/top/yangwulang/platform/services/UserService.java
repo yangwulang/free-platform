@@ -8,6 +8,7 @@ import top.yangwulang.platform.entity.sys.User;
 import top.yangwulang.platform.repository.sys.UserRepository;
 
 import jakarta.validation.constraints.NotEmpty;
+
 import java.util.List;
 
 /**
@@ -62,5 +63,11 @@ public interface UserService extends BaseService<User, String, UserRepository> {
      */
     void adminResetPassword(@NotEmpty(message = "用户id不能为空") String id);
 
+    /**
+     * 获取菜单权限数据，如果为超管，则直接返回 [*]
+     *
+     * @param id 用户id
+     * @return 菜单权限
+     */
     List<String> getPermissionString(@NotEmpty(message = "用户id不能为空") String id);
 }

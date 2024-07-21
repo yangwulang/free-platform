@@ -2,6 +2,7 @@ package top.yangwulang.platform.config.fileupload
 
 import io.minio.MinioClient
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
+import org.dromara.x.file.storage.spring.EnableFileStorage
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.context.properties.EnableConfigurationProperties
@@ -14,6 +15,7 @@ import top.yangwulang.platform.services.impl.MinioFileUploadServiceImpl
 import top.yangwulang.platform.utils.PropertiesUtils
 
 @Configuration
+@EnableFileStorage
 @EnableConfigurationProperties(FileUploadProperties::class)
 open class FileUploadConfiguration {
 

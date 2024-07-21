@@ -2,6 +2,7 @@ package top.yangwulang.platform.services;
 
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.multipart.MultipartFile;
+import top.yangwulang.platform.entity.sys.Credentials;
 import top.yangwulang.platform.entity.sys.FileUpload;
 import top.yangwulang.platform.repository.sys.FileUploadRepository;
 
@@ -50,4 +51,6 @@ public interface OssFileUploadService {
     default String getObjectUrl(String objectName) {
         return this.getObjectUrl(DEFAULT_BUCKET_NAME, objectName);
     }
+
+    Credentials credentials();
 }

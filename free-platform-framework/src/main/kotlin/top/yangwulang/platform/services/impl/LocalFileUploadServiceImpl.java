@@ -7,6 +7,8 @@ import org.apache.commons.io.IOUtils;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
 import top.yangwulang.platform.config.fileupload.FileUploadProperties;
+import top.yangwulang.platform.entity.sys.Credentials;
+import top.yangwulang.platform.exception.ServiceException;
 import top.yangwulang.platform.services.OssFileUploadService;
 import top.yangwulang.platform.utils.FileUtils;
 
@@ -96,5 +98,10 @@ public class LocalFileUploadServiceImpl implements OssFileUploadService {
         log.info("地址 {}", properties.getUrl());
 
         return null;
+    }
+
+    @Override
+    public Credentials credentials() {
+        throw new ServiceException("文件上传模式不正确，如果需要使用sts方式请使用oss模式上传文件");
     }
 }

@@ -2,6 +2,7 @@ package top.yangwulang.platform.services.impl;
 
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.multipart.MultipartFile;
+import top.yangwulang.platform.entity.sys.Credentials;
 import top.yangwulang.platform.entity.sys.FileUpload;
 import top.yangwulang.platform.repository.sys.FileUploadRepository;
 import top.yangwulang.platform.services.OssFileUploadService;
@@ -59,5 +60,16 @@ public class MinioFileUploadServiceImpl
     @Override
     public String getObjectUrl(String bucketName, String objectName) {
         return option.getObjectUrl(bucketName, objectName);
+    }
+
+    @Override
+    public Credentials credentials() {
+        io.minio.credentials.Credentials minioCred = option.genCredentials();
+        return new Credentials(
+                minioCred.accessKey(),
+                minioCred.secretKey(),
+                minioCred.sessionToken(),
+                null
+        );
     }
 }

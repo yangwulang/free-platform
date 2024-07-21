@@ -35,7 +35,7 @@
         <jsoup.version>1.15.3</jsoup.version>
         <jimmer.version>0.8.134</jimmer.version>
         <knife4j.version>4.1.0</knife4j.version>
-        <minio.version>7.1.4</minio.version>
+        <minio.version>8.5.2</minio.version>
         <elasticsearch.version>7.14.1</elasticsearch.version>
         <protobuf.version>4.0.0-rc-2</protobuf.version>
         <retrofit.version>2.9.0</retrofit.version>
@@ -43,6 +43,7 @@
         <lombok.version>1.18.30</lombok.version>
         <mail.version>1.6.7</mail.version>
         <beetl.version>3.1.8.RELEASE</beetl.version>
+        <x-file-storage.version>2.2.0</x-file-storage.version>
     </properties>
 
     <repositories>
@@ -84,6 +85,11 @@
                 <groupId>commons-fileupload</groupId>
                 <artifactId>commons-fileupload</artifactId>
                 <version>${commons-fileupload.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.dromara.x-file-storage</groupId>
+                <artifactId>x-file-storage-spring</artifactId>
+                <version>${x-file-storage.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jsoup</groupId>

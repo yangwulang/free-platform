@@ -2,12 +2,14 @@ package top.yangwulang.platform.services.impl;
 
 import cn.hutool.crypto.digest.MD5;
 import jakarta.servlet.http.HttpServletResponse;
+import org.babyfish.jimmer.spring.repository.parser.PropPredicate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import top.yangwulang.platform.config.fileupload.FileUploadProperties;
 import top.yangwulang.platform.entity.Objects;
+import top.yangwulang.platform.entity.sys.Credentials;
 import top.yangwulang.platform.entity.sys.FileEntity;
 import top.yangwulang.platform.entity.sys.FileUpload;
 import top.yangwulang.platform.exception.FileUploadError;
@@ -100,6 +102,11 @@ public class FileUploadServiceImpl
     public String getObjectUrl(String bucketName, String objectName) {
         uploadValid();
         return ossFileUploadService.getObjectUrl(bucketName, objectName);
+    }
+
+    @Override
+    public Credentials credentials() {
+        return ossFileUploadService.credentials();
     }
 
 

@@ -1,6 +1,18 @@
 file:
   enable: true
-  mode: LOCAL
-#  url: http://120.48.57.68:9000
+  mode: OSS
+  url: http://127.0.0.1:9000
   accessKey: zSyivC57Bb3gEOo1
   secretKey: fhBGjV3JhRGiFdl25JScH4puzMnz5zKE
+
+dromara:
+  x-file-storage:
+    default-platform: minio-1
+    minio:
+      - platform: minio-1
+        enable-storage: true  # 启用存储
+        access-key: zSyivC57Bb3gEOo1
+        secret-key: fhBGjV3JhRGiFdl25JScH4puzMnz5zKE
+        end-point: http://127.0.0.1:9000
+        bucket-name: default
+        base-path: default/ # 基础路径

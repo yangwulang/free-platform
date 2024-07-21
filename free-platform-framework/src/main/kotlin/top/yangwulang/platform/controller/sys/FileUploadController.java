@@ -1,23 +1,30 @@
 package top.yangwulang.platform.controller.sys;
 
 
+import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.io.FileUtil;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.tags.Tags;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.dromara.x.file.storage.core.FileInfo;
+import org.dromara.x.file.storage.core.FileStorageService;
+import org.dromara.x.file.storage.core.constant.Constant;
+import org.dromara.x.file.storage.core.platform.FileStorage;
+import org.dromara.x.file.storage.core.presigned.GeneratePresignedUrlPretreatment;
+import org.dromara.x.file.storage.core.presigned.GeneratePresignedUrlResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import top.yangwulang.platform.entity.sys.FileEntity;
-import top.yangwulang.platform.entity.sys.FileEntityFetcher;
-import top.yangwulang.platform.entity.sys.FileUpload;
-import top.yangwulang.platform.entity.sys.FileUploadFetcher;
+import top.yangwulang.platform.entity.sys.*;
 import top.yangwulang.platform.exception.FileUploadError;
 import top.yangwulang.platform.exception.ServiceException;
 import top.yangwulang.platform.services.FileUploadService;
 
+import java.util.Date;
 import java.util.function.Supplier;
 
 /**
@@ -35,6 +42,10 @@ public class FileUploadController {
 
     @Autowired
     private FileUploadService fileUploadService;
+
+    @Autowired
+    private FileStorageService fileStorageService;
+
 
     @PostMapping("/uploadFile")
     @ResponseBody()
@@ -80,5 +91,12 @@ public class FileUploadController {
             }
         }
         fileUploadService.downloadFile(bucket, pathBuilder.toString(), split[split.length - 1], response);
+    }
+
+    @GetMapping("/genUrl")
+    @Operation(summary = "获取链接")
+    @ResponseBody
+    public Credentials genUrl() {
+        return fileUploadService.credentials();
     }
 }

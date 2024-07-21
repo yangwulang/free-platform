@@ -1,28 +1,52 @@
 package top.yangwulang.platform.services.impl;
 
 import io.minio.*;
-import io.minio.errors.InvalidExpiresRangeException;
+import io.minio.credentials.AssumeRoleProvider;
+import io.minio.credentials.Credentials;
 import io.minio.messages.Bucket;
 import io.minio.messages.DeleteError;
+import io.minio.messages.DeleteObject;
 import io.minio.messages.Item;
 import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.SneakyThrows;
 import org.springframework.util.ObjectUtils;
-import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
+import top.yangwulang.platform.exception.ServiceException;
 
 import java.io.InputStream;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import top.yangwulang.platform.utils.PropertiesUtils;
 
 public class MinioClientOption {
 
     protected final MinioClient minIOClient;
 
     private static final int DEFAULT_EXPIRY_TIME = 7 * 24 * 3600;
+
+    public static final String POLICY_GET_AND_PUT = """
+            {
+                "Version": "2012-10-17",
+                "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "s3:GetBucketLocation",
+                                "s3:GetObject",
+                                "s3:PutObject"
+                            ],
+                            "Resource": [
+                                "arn:aws:s3:::test/*"
+                            ]
+                        }
+                    ]
+            }
+            """;
 
     public MinioClientOption(MinioClient minIOClient) {
         this.minIOClient = minIOClient;
@@ -151,8 +175,8 @@ public class MinioClientOption {
         if (bucketExists(bucketName)) {
             UploadObjectArgs args = UploadObjectArgs.builder().bucket(bucketName).object(objectName).filename(fileName).build();
             minIOClient.uploadObject(args);
-            ObjectStat statObject = statObject(bucketName, objectName);
-            return statObject != null && statObject.length() > 0;
+            StatObjectResponse statObject = statObject(bucketName, objectName);
+            return statObject != null && statObject.size() > 0;
         }
         return false;
     }
@@ -186,19 +210,18 @@ public class MinioClientOption {
     @SneakyThrows
     public boolean putObject(String bucketName, String objectName, InputStream stream, String contentType) {
         if (bucketExists(bucketName)) {
-            PutObjectOptions putObjectOptions = new PutObjectOptions(stream.available(), -1);
-            // 开启公共类功能设置setContentType
-            if (!ObjectUtils.isEmpty(contentType)) {
-                putObjectOptions.setContentType(contentType);
-            }
-            PutObjectArgs args = PutObjectArgs.builder()
+            PutObjectArgs.Builder argsBuilder = PutObjectArgs.builder()
                     .bucket(bucketName)
                     .object(objectName)
-                    .stream(stream, putObjectOptions.objectSize(), putObjectOptions.partSize())
-                    .build();
+                    .stream(stream, stream.available(), -1);
+            // 开启公共类功能设置setContentType
+            if (!ObjectUtils.isEmpty(contentType)) {
+                argsBuilder.contentType(contentType);
+            }
+            PutObjectArgs args = argsBuilder.build();
             minIOClient.putObject(args);
-            ObjectStat statObject = statObject(bucketName, objectName);
-            return statObject != null && statObject.length() > 0;
+            StatObjectResponse statObject = statObject(bucketName, objectName);
+            return statObject != null && statObject.size() > 0;
         }
         return false;
     }
@@ -213,8 +236,8 @@ public class MinioClientOption {
     @SneakyThrows
     public InputStream getObject(String bucketName, String objectName) {
         if (bucketExists(bucketName)) {
-            ObjectStat statObject = statObject(bucketName, objectName);
-            if (statObject != null && statObject.length() > 0) {
+            StatObjectResponse statObject = statObject(bucketName, objectName);
+            if (statObject != null && statObject.size() > 0) {
                 GetObjectArgs args = GetObjectArgs.builder().bucket(bucketName).object(objectName).build();
                 return minIOClient.getObject(args);
             }
@@ -234,8 +257,8 @@ public class MinioClientOption {
     @SneakyThrows
     public InputStream getObject(String bucketName, String objectName, long offset, Long length) {
         if (bucketExists(bucketName)) {
-            ObjectStat statObject = statObject(bucketName, objectName);
-            if (statObject != null && statObject.length() > 0) {
+            StatObjectResponse statObject = statObject(bucketName, objectName);
+            if (statObject != null && statObject.size() > 0) {
                 GetObjectArgs args = GetObjectArgs.builder().bucket(bucketName).object(objectName).offset(offset).length(length).build();
                 return minIOClient.getObject(args);
             }
@@ -254,8 +277,8 @@ public class MinioClientOption {
     @SneakyThrows
     public boolean getObject(String bucketName, String objectName, String fileName) {
         if (bucketExists(bucketName)) {
-            ObjectStat statObject = statObject(bucketName, objectName);
-            if (statObject != null && statObject.length() > 0) {
+            StatObjectResponse statObject = statObject(bucketName, objectName);
+            if (statObject != null && statObject.size() > 0) {
                 DownloadObjectArgs args = DownloadObjectArgs.builder().bucket(bucketName).object(objectName).filename(fileName).build();
                 minIOClient.downloadObject(args);
                 return true;
@@ -291,7 +314,12 @@ public class MinioClientOption {
     public List<String> removeObject(String bucketName, List<String> objectNames) {
         List<String> deleteErrorNames = new ArrayList<>();
         if (bucketExists(bucketName)) {
-            Iterable<Result<DeleteError>> results = minIOClient.removeObjects(bucketName, objectNames);
+            Iterable<Result<DeleteError>> results = minIOClient.removeObjects(
+                    RemoveObjectsArgs.builder()
+                            .bucket(bucketName)
+                            .objects(objectNames.stream().map(DeleteObject::new).collect(Collectors.toList()))
+                            .build()
+            );
             for (Result<DeleteError> result : results) {
                 DeleteError error = result.get();
                 deleteErrorNames.add(error.objectName());
@@ -314,10 +342,15 @@ public class MinioClientOption {
         String url = "";
         if (bucketExists(bucketName)) {
             if (expires < 1 || expires > DEFAULT_EXPIRY_TIME) {
-                throw new InvalidExpiresRangeException(expires,
-                        "expires must be in range of 1 to " + DEFAULT_EXPIRY_TIME);
+                throw new ServiceException("expires must be in range of 1 to " + DEFAULT_EXPIRY_TIME);
             }
-            url = minIOClient.presignedGetObject(bucketName, objectName, expires);
+            url = minIOClient.getPresignedObjectUrl(
+                    GetPresignedObjectUrlArgs.builder()
+                            .bucket(bucketName)
+                            .object(objectName)
+                            .expiry(expires)
+                            .build()
+            );
         }
         return url;
     }
@@ -336,10 +369,9 @@ public class MinioClientOption {
         String url = "";
         if (bucketExists(bucketName)) {
             if (expires < 1 || expires > DEFAULT_EXPIRY_TIME) {
-                throw new InvalidExpiresRangeException(expires,
-                        "expires must be in range of 1 to " + DEFAULT_EXPIRY_TIME);
+                throw new ServiceException("expires must be in range of 1 to " + DEFAULT_EXPIRY_TIME);
             }
-            url = minIOClient.presignedPutObject(bucketName, objectName, expires);
+            url = "minIOClient.presignedPutObject(bucketName, objectName, expires)";
         }
         return url;
     }
@@ -352,9 +384,14 @@ public class MinioClientOption {
      * @return
      */
     @SneakyThrows
-    public ObjectStat statObject(String bucketName, String objectName) {
+    public StatObjectResponse statObject(String bucketName, String objectName) {
         if (bucketExists(bucketName)) {
-            return minIOClient.statObject(bucketName, objectName);
+            return minIOClient.statObject(
+                    StatObjectArgs.builder()
+                            .bucket(bucketName)
+                            .object(objectName)
+                            .build()
+            );
         }
         return null;
     }
@@ -370,18 +407,23 @@ public class MinioClientOption {
     public String getObjectUrl(String bucketName, String objectName) {
         String url = "";
         if (bucketExists(bucketName)) {
-            url = minIOClient.getObjectUrl(bucketName, objectName);
+//            url = minIOClient.getObjectUrl(bucketName, objectName);
         }
         return url;
     }
 
     public boolean downloadFile(String bucketName, String filePath, String originalName, HttpServletResponse response) {
         try {
-            InputStream file = minIOClient.getObject(bucketName, filePath);
+            InputStream file = minIOClient.getObject(
+                    GetObjectArgs.builder()
+                            .bucket(bucketName)
+                            .object(filePath)
+                            .build()
+            );
             if (!ObjectUtils.isEmpty(originalName)) {
                 response.setHeader(
                         "Content-Disposition", "attachment;filename=" +
-                        URLEncoder.encode(originalName, StandardCharsets.UTF_8)
+                                URLEncoder.encode(originalName, StandardCharsets.UTF_8)
                 );
             } else {
                 String filename = new String(filePath.getBytes("ISO8859-1"), StandardCharsets.UTF_8);
@@ -401,5 +443,17 @@ public class MinioClientOption {
             e.printStackTrace();
             return false;
         }
+    }
+
+    @SneakyThrows
+    public Credentials genCredentials() {
+        AssumeRoleProvider provider = new AssumeRoleProvider(
+                PropertiesUtils.getInstance().getProperty("file.url"),
+                "templatoryAssumeRoleUser",
+                "templatoryAssumeRoleUser",
+                3600, POLICY_GET_AND_PUT,
+                null, null, "templatoryAssumeRole", null, null
+        );
+        return provider.fetch();
     }
 }

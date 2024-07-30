@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.lang.CloneNotSupportedException;
 import java.lang.Cloneable;
 import java.lang.IllegalArgumentException;
+import java.lang.IllegalStateException;
 import java.lang.Integer;
 import java.lang.Object;
 import java.lang.Override;
@@ -112,7 +113,7 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.134",
+                "0.8.149",
                 MessageRecord.class,
                 Arrays.asList(
                     TypeBaseDraft.Producer.TYPE,
@@ -840,6 +841,8 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
 
             private boolean __resolving;
 
+            private MessageRecord __resolved;
+
             DraftImpl(DraftContext ctx, MessageRecord base) {
                 __ctx = ctx;
                 if (base != null) {
@@ -892,7 +895,7 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
 
             @Override
             public String toString() {
-                return ImmutableObjects.toString((__modified!= null ? __modified : __base));
+                return ImmutableObjects.toString(this);
             }
 
             @Override
@@ -903,6 +906,9 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
 
             @Override
             public MessageRecordDraft setId(String id) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (id == null) {
                     throw new IllegalArgumentException(
                         "'id' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -921,6 +927,9 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
 
             @Override
             public MessageRecordDraft setStatus(int status) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__statusValue = status;
                 __tmpModified.__statusLoaded = true;
@@ -935,6 +944,9 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
 
             @Override
             public MessageRecordDraft setType(String type) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (type == null) {
                     throw new IllegalArgumentException(
                         "'type' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -953,6 +965,9 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
 
             @Override
             public MessageRecordDraft setTitle(String title) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (title == null) {
                     throw new IllegalArgumentException(
                         "'title' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -971,6 +986,9 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
 
             @Override
             public MessageRecordDraft setSubTitle(String subTitle) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (subTitle == null) {
                     throw new IllegalArgumentException(
                         "'subTitle' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -990,6 +1008,9 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
 
             @Override
             public MessageRecordDraft setAvatar(String avatar) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__avatarValue = avatar;
                 __tmpModified.__avatarLoaded = true;
@@ -1004,6 +1025,9 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
 
             @Override
             public MessageRecordDraft setContent(String content) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (content == null) {
                     throw new IllegalArgumentException(
                         "'content' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -1023,6 +1047,9 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
 
             @Override
             public MessageRecordDraft setMessageType(Integer messageType) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__messageTypeValue = messageType;
                 __tmpModified.__messageTypeLoaded = true;
@@ -1046,6 +1073,9 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
             @Override
             public MessageRecordDraft setMessageRecordUsers(
                     List<MessageRecordUser> messageRecordUsers) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (messageRecordUsers == null) {
                     throw new IllegalArgumentException(
                         "'messageRecordUsers' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -1136,6 +1166,9 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
 
             @Override
             public void __show(PropId prop, boolean visible) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Visibility __visibility = (__modified!= null ? __modified : __base).__visibility;
                 if (__visibility == null) {
                     if (visible) {
@@ -1178,6 +1211,9 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
 
             @Override
             public void __show(String prop, boolean visible) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Visibility __visibility = (__modified!= null ? __modified : __base).__visibility;
                 if (__visibility == null) {
                     if (visible) {
@@ -1216,6 +1252,9 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
 
             @Override
             public void __unload(PropId prop) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 int __propIndex = prop.asIndex();
                 switch (__propIndex) {
                     case -1:
@@ -1247,6 +1286,9 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
 
             @Override
             public void __unload(String prop) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 switch (prop) {
                     case "id":
                     		__modified().__idValue = null;break;
@@ -1279,6 +1321,9 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
 
             @Override
             public Object __resolve() {
+                if (__resolved != null) {
+                    return __resolved;
+                }
                 if (__resolving) {
                     throw new CircularReferenceException();
                 }
@@ -1300,13 +1345,20 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
                         __tmpModified.__messageRecordUsersValue = NonSharedList.of(__tmpModified.__messageRecordUsersValue, __ctx.resolveList(__tmpModified.__messageRecordUsersValue));
                     }
                     if (__base != null && __tmpModified == null) {
+                        this.__resolved = base;
                         return base;
                     }
+                    this.__resolved = __tmpModified;
                     return __tmpModified;
                 }
                 finally {
                     __resolving = false;
                 }
+            }
+
+            @Override
+            public boolean __isResolved() {
+                return __resolved != null;
             }
 
             Impl __modified() {

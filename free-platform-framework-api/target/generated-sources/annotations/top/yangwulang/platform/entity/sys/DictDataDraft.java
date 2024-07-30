@@ -8,6 +8,7 @@ import java.lang.Boolean;
 import java.lang.CloneNotSupportedException;
 import java.lang.Cloneable;
 import java.lang.IllegalArgumentException;
+import java.lang.IllegalStateException;
 import java.lang.Integer;
 import java.lang.Object;
 import java.lang.Override;
@@ -185,7 +186,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.134",
+                "0.8.149",
                 DictData.class,
                 Collections.singleton(DataTypeBaseDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (DictData)base)
@@ -1488,6 +1489,8 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
 
             private boolean __resolving;
 
+            private DictData __resolved;
+
             DraftImpl(DraftContext ctx, DictData base) {
                 __ctx = ctx;
                 if (base != null) {
@@ -1540,7 +1543,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
 
             @Override
             public String toString() {
-                return ImmutableObjects.toString((__modified!= null ? __modified : __base));
+                return ImmutableObjects.toString(this);
             }
 
             @Override
@@ -1551,6 +1554,9 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
 
             @Override
             public DictDataDraft setId(String id) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (id == null) {
                     throw new IllegalArgumentException(
                         "'id' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -1569,6 +1575,9 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
 
             @Override
             public DictDataDraft setStatus(int status) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__statusValue = status;
                 __tmpModified.__statusLoaded = true;
@@ -1583,6 +1592,9 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
 
             @Override
             public DictDataDraft setCreateBy(String createBy) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (createBy == null) {
                     throw new IllegalArgumentException(
                         "'createBy' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -1601,6 +1613,9 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
 
             @Override
             public DictDataDraft setCreateDate(Date createDate) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (createDate == null) {
                     throw new IllegalArgumentException(
                         "'createDate' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -1619,6 +1634,9 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
 
             @Override
             public DictDataDraft setUpdateBy(String updateBy) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (updateBy == null) {
                     throw new IllegalArgumentException(
                         "'updateBy' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -1637,6 +1655,9 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
 
             @Override
             public DictDataDraft setUpdateDate(Date updateDate) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (updateDate == null) {
                     throw new IllegalArgumentException(
                         "'updateDate' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -1656,6 +1677,9 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
 
             @Override
             public DictDataDraft setRemarks(String remarks) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__remarksValue = remarks;
                 __tmpModified.__remarksLoaded = true;
@@ -1679,6 +1703,9 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
 
             @Override
             public DictDataDraft setParent(DictData parent) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__parentValue = parent;
                 __tmpModified.__parentLoaded = true;
@@ -1713,6 +1740,9 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
 
             @Override
             public DictDataDraft setChildren(List<DictData> children) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (children == null) {
                     throw new IllegalArgumentException(
                         "'children' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -1753,6 +1783,9 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
 
             @Override
             public DictDataDraft setDictType(DictType dictType) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__dictTypeValue = dictType;
                 __tmpModified.__dictTypeLoaded = true;
@@ -1781,6 +1814,9 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
 
             @Override
             public DictDataDraft setParentId(String parentId) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (parentId != null) {
                     setParent(ImmutableObjects.makeIdOnly(DictData.class, parentId));
                 } else {
@@ -1799,6 +1835,9 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
 
             @Override
             public DictDataDraft setDictTypeId(String dictTypeId) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (dictTypeId != null) {
                     setDictType(ImmutableObjects.makeIdOnly(DictType.class, dictTypeId));
                 } else {
@@ -1816,6 +1855,9 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
 
             @Override
             public DictDataDraft setDictLabel(String dictLabel) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__dictLabelValue = dictLabel;
                 __tmpModified.__dictLabelLoaded = true;
@@ -1831,6 +1873,9 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
 
             @Override
             public DictDataDraft setDictValue(String dictValue) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__dictValueValue = dictValue;
                 __tmpModified.__dictValueLoaded = true;
@@ -1846,6 +1891,9 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
 
             @Override
             public DictDataDraft setIsSys(Boolean isSys) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__isSysValue = isSys;
                 __tmpModified.__isSysLoaded = true;
@@ -1861,6 +1909,9 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
 
             @Override
             public DictDataDraft setDescription(String description) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__descriptionValue = description;
                 __tmpModified.__descriptionLoaded = true;
@@ -1876,6 +1927,9 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
 
             @Override
             public DictDataDraft setCssStyle(String cssStyle) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__cssStyleValue = cssStyle;
                 __tmpModified.__cssStyleLoaded = true;
@@ -1891,6 +1945,9 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
 
             @Override
             public DictDataDraft setCssClass(String cssClass) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__cssClassValue = cssClass;
                 __tmpModified.__cssClassLoaded = true;
@@ -1906,6 +1963,9 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
 
             @Override
             public DictDataDraft setCorpCode(String corpCode) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__corpCodeValue = corpCode;
                 __tmpModified.__corpCodeLoaded = true;
@@ -1921,6 +1981,9 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
 
             @Override
             public DictDataDraft setCorpName(String corpName) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__corpNameValue = corpName;
                 __tmpModified.__corpNameLoaded = true;
@@ -2033,6 +2096,9 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
 
             @Override
             public void __show(PropId prop, boolean visible) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Visibility __visibility = (__modified!= null ? __modified : __base).__visibility;
                 if (__visibility == null) {
                     if (visible) {
@@ -2095,6 +2161,9 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
 
             @Override
             public void __show(String prop, boolean visible) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Visibility __visibility = (__modified!= null ? __modified : __base).__visibility;
                 if (__visibility == null) {
                     if (visible) {
@@ -2153,6 +2222,9 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
 
             @Override
             public void __unload(PropId prop) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 int __propIndex = prop.asIndex();
                 switch (__propIndex) {
                     case -1:
@@ -2204,6 +2276,9 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
 
             @Override
             public void __unload(String prop) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 switch (prop) {
                     case "id":
                     		__modified().__idValue = null;break;
@@ -2256,6 +2331,9 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
 
             @Override
             public Object __resolve() {
+                if (__resolved != null) {
+                    return __resolved;
+                }
                 if (__resolving) {
                     throw new CircularReferenceException();
                 }
@@ -2293,13 +2371,20 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
                         __tmpModified.__dictTypeValue = __ctx.resolveObject(__tmpModified.__dictTypeValue);
                     }
                     if (__base != null && __tmpModified == null) {
+                        this.__resolved = base;
                         return base;
                     }
+                    this.__resolved = __tmpModified;
                     return __tmpModified;
                 }
                 finally {
                     __resolving = false;
                 }
+            }
+
+            @Override
+            public boolean __isResolved() {
+                return __resolved != null;
             }
 
             Impl __modified() {

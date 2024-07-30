@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.lang.CloneNotSupportedException;
 import java.lang.Cloneable;
+import java.lang.IllegalStateException;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
@@ -100,7 +101,7 @@ public interface OptionAnalysisDraft extends OptionAnalysis, TypeBaseDraft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.134",
+                "0.8.149",
                 OptionAnalysis.class,
                 Collections.singleton(TypeBaseDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (OptionAnalysis)base)
@@ -670,6 +671,8 @@ public interface OptionAnalysisDraft extends OptionAnalysis, TypeBaseDraft {
 
             private boolean __resolving;
 
+            private OptionAnalysis __resolved;
+
             DraftImpl(DraftContext ctx, OptionAnalysis base) {
                 __ctx = ctx;
                 if (base != null) {
@@ -722,7 +725,7 @@ public interface OptionAnalysisDraft extends OptionAnalysis, TypeBaseDraft {
 
             @Override
             public String toString() {
-                return ImmutableObjects.toString((__modified!= null ? __modified : __base));
+                return ImmutableObjects.toString(this);
             }
 
             @Override
@@ -733,6 +736,9 @@ public interface OptionAnalysisDraft extends OptionAnalysis, TypeBaseDraft {
 
             @Override
             public OptionAnalysisDraft setId(String id) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (id == null) {
                     throw new IllegalArgumentException(
                         "'id' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -751,6 +757,9 @@ public interface OptionAnalysisDraft extends OptionAnalysis, TypeBaseDraft {
 
             @Override
             public OptionAnalysisDraft setEventName(String eventName) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (eventName == null) {
                     throw new IllegalArgumentException(
                         "'eventName' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -769,6 +778,9 @@ public interface OptionAnalysisDraft extends OptionAnalysis, TypeBaseDraft {
 
             @Override
             public OptionAnalysisDraft setEventCode(String eventCode) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (eventCode == null) {
                     throw new IllegalArgumentException(
                         "'eventCode' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -796,6 +808,9 @@ public interface OptionAnalysisDraft extends OptionAnalysis, TypeBaseDraft {
 
             @Override
             public OptionAnalysisDraft setOptionUser(User optionUser) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__optionUserValue = optionUser;
                 __tmpModified.__optionUserLoaded = true;
@@ -843,6 +858,9 @@ public interface OptionAnalysisDraft extends OptionAnalysis, TypeBaseDraft {
 
             @Override
             public OptionAnalysisDraft setIpAddress(String ipAddress) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (ipAddress == null) {
                     throw new IllegalArgumentException(
                         "'ipAddress' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -861,6 +879,9 @@ public interface OptionAnalysisDraft extends OptionAnalysis, TypeBaseDraft {
 
             @Override
             public OptionAnalysisDraft setCreateDate(Date createDate) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (createDate == null) {
                     throw new IllegalArgumentException(
                         "'createDate' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -880,6 +901,9 @@ public interface OptionAnalysisDraft extends OptionAnalysis, TypeBaseDraft {
 
             @Override
             public OptionAnalysisDraft setMeta(String meta) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__metaValue = meta;
                 __tmpModified.__metaLoaded = true;
@@ -936,6 +960,9 @@ public interface OptionAnalysisDraft extends OptionAnalysis, TypeBaseDraft {
 
             @Override
             public void __show(PropId prop, boolean visible) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Visibility __visibility = (__modified!= null ? __modified : __base).__visibility;
                 if (__visibility == null) {
                     if (visible) {
@@ -972,6 +999,9 @@ public interface OptionAnalysisDraft extends OptionAnalysis, TypeBaseDraft {
 
             @Override
             public void __show(String prop, boolean visible) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Visibility __visibility = (__modified!= null ? __modified : __base).__visibility;
                 if (__visibility == null) {
                     if (visible) {
@@ -1004,6 +1034,9 @@ public interface OptionAnalysisDraft extends OptionAnalysis, TypeBaseDraft {
 
             @Override
             public void __unload(PropId prop) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 int __propIndex = prop.asIndex();
                 switch (__propIndex) {
                     case -1:
@@ -1029,6 +1062,9 @@ public interface OptionAnalysisDraft extends OptionAnalysis, TypeBaseDraft {
 
             @Override
             public void __unload(String prop) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 switch (prop) {
                     case "id":
                     		__modified().__idValue = null;break;
@@ -1055,6 +1091,9 @@ public interface OptionAnalysisDraft extends OptionAnalysis, TypeBaseDraft {
 
             @Override
             public Object __resolve() {
+                if (__resolved != null) {
+                    return __resolved;
+                }
                 if (__resolving) {
                     throw new CircularReferenceException();
                 }
@@ -1076,13 +1115,20 @@ public interface OptionAnalysisDraft extends OptionAnalysis, TypeBaseDraft {
                         __tmpModified.__optionUserValue = __ctx.resolveObject(__tmpModified.__optionUserValue);
                     }
                     if (__base != null && __tmpModified == null) {
+                        this.__resolved = base;
                         return base;
                     }
+                    this.__resolved = __tmpModified;
                     return __tmpModified;
                 }
                 finally {
                     __resolving = false;
                 }
+            }
+
+            @Override
+            public boolean __isResolved() {
+                return __resolved != null;
             }
 
             Impl __modified() {

@@ -1,55 +1,51 @@
-package top.yangwulang.platform.jimmer.interceptor;
+package top.yangwulang.platform.jimmer.interceptor
 
-import cn.dev33.satoken.stp.StpUtil;
-import com.alicp.jetcache.Cache;
-import org.babyfish.jimmer.ImmutableObjects;
-import org.babyfish.jimmer.sql.DraftInterceptor;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
-import top.yangwulang.platform.entity.BaseEntityDraft;
-import top.yangwulang.platform.entity.BaseEntityProps;
-import top.yangwulang.platform.entity.BaseEntity;
-import top.yangwulang.platform.entity.sys.User;
-import top.yangwulang.platform.utils.UserUtils;
-
-import java.time.LocalDateTime;
-import java.util.Date;
+import cn.dev33.satoken.stp.StpUtil
+import org.babyfish.jimmer.ImmutableObjects
+import org.babyfish.jimmer.sql.DraftInterceptor
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+import org.springframework.stereotype.Component
+import top.yangwulang.platform.entity.BaseEntity
+import top.yangwulang.platform.entity.BaseEntityDraft
+import top.yangwulang.platform.entity.BaseEntityProps
+import top.yangwulang.platform.entity.sys.User
+import top.yangwulang.platform.utils.UserUtils
+import java.util.*
 
 @Component
-public class BaseEntityInterceptor implements DraftInterceptor<BaseEntity, BaseEntityDraft> {
-    private final Logger logger = LoggerFactory.getLogger(BaseEntityInterceptor.class);
+class BaseEntityInterceptor : DraftInterceptor<BaseEntity, BaseEntityDraft> {
+    private val logger: Logger = LoggerFactory.getLogger(BaseEntityInterceptor::class.java)
 
-    @Override
-    public void beforeSave(@NotNull BaseEntityDraft draft, @Nullable BaseEntity baseEntity) {
-        try (Cache<String, Object> cache = UserUtils.loginUserCache()) {
-            String loginId = (String) StpUtil.getTokenInfo().getLoginId();
-            User user = (User) cache.get(loginId);
+    override fun beforeSave(draft: BaseEntityDraft, original: BaseEntity?) {
+        try {
+            UserUtils.loginUserCache().use { cache ->
+                val loginId = StpUtil.getTokenInfo().getLoginId() as String
+                val user = cache[loginId] as User
+                if (!ImmutableObjects.isLoaded(draft, BaseEntityProps.UPDATE_DATE)) {
+                    draft.setUpdateDate(Date())
+                    draft.setUpdateBy(user.userCode())
+                }
+                if (original == null) {
+                    draft.setCreateDate(Date())
+                    draft.setStatus(0)
+                    draft.setCreateBy(user.userCode())
+                    draft.setUpdateBy(user.userCode())
+                } else {
+                    draft.setUpdateDate(Date())
+                    draft.setUpdateBy(user.userCode())
+                }
+            }
+        } catch (e: Exception) {
+            logger.error("全局拦截createBy异常", e)
             if (!ImmutableObjects.isLoaded(draft, BaseEntityProps.UPDATE_DATE)) {
-                draft.setUpdateDate(new Date());
-                draft.setUpdateBy(user.userCode());
+                draft.setUpdateDate(Date())
             }
-            if (baseEntity == null) {
-                draft.setCreateDate(new Date());
-                draft.setStatus(0);
-                draft.setCreateBy(user.userCode());
-                draft.setUpdateBy(user.userCode());
-            } else {
-                draft.setUpdateDate(new Date());
-                draft.setUpdateBy(user.userCode());
-            }
-        } catch (Exception e) {
-            logger.error("全局拦截createBy异常", e);
-            if (!ImmutableObjects.isLoaded(draft, BaseEntityProps.UPDATE_DATE)) {
-                draft.setUpdateDate(new Date());
-            }
-            if (baseEntity == null) {
-                draft.setCreateDate(new Date());
-                draft.setStatus(0);
-                draft.setCreateBy("system");
-                draft.setUpdateBy("system");
+            if (original == null) {
+                draft.setCreateDate(Date())
+                draft.setStatus(0)
+                draft.setCreateBy("system")
+                draft.setUpdateBy("system")
             }
         }
     }

@@ -8,6 +8,7 @@ import java.lang.Boolean;
 import java.lang.CloneNotSupportedException;
 import java.lang.Cloneable;
 import java.lang.IllegalArgumentException;
+import java.lang.IllegalStateException;
 import java.lang.Integer;
 import java.lang.Object;
 import java.lang.Override;
@@ -199,7 +200,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.134",
+                "0.8.149",
                 Menu.class,
                 Collections.singleton(DataTypeBaseDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (Menu)base)
@@ -1690,6 +1691,8 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
 
             private boolean __resolving;
 
+            private Menu __resolved;
+
             DraftImpl(DraftContext ctx, Menu base) {
                 __ctx = ctx;
                 if (base != null) {
@@ -1742,7 +1745,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
 
             @Override
             public String toString() {
-                return ImmutableObjects.toString((__modified!= null ? __modified : __base));
+                return ImmutableObjects.toString(this);
             }
 
             @Override
@@ -1753,6 +1756,9 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
 
             @Override
             public MenuDraft setId(String id) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (id == null) {
                     throw new IllegalArgumentException(
                         "'id' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -1771,6 +1777,9 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
 
             @Override
             public MenuDraft setStatus(int status) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__statusValue = status;
                 __tmpModified.__statusLoaded = true;
@@ -1785,6 +1794,9 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
 
             @Override
             public MenuDraft setCreateBy(String createBy) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (createBy == null) {
                     throw new IllegalArgumentException(
                         "'createBy' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -1803,6 +1815,9 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
 
             @Override
             public MenuDraft setCreateDate(Date createDate) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (createDate == null) {
                     throw new IllegalArgumentException(
                         "'createDate' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -1821,6 +1836,9 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
 
             @Override
             public MenuDraft setUpdateBy(String updateBy) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (updateBy == null) {
                     throw new IllegalArgumentException(
                         "'updateBy' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -1839,6 +1857,9 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
 
             @Override
             public MenuDraft setUpdateDate(Date updateDate) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (updateDate == null) {
                     throw new IllegalArgumentException(
                         "'updateDate' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -1858,6 +1879,9 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
 
             @Override
             public MenuDraft setRemarks(String remarks) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__remarksValue = remarks;
                 __tmpModified.__remarksLoaded = true;
@@ -1881,6 +1905,9 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
 
             @Override
             public MenuDraft setParent(Menu parent) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__parentValue = parent;
                 __tmpModified.__parentLoaded = true;
@@ -1909,6 +1936,9 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
 
             @Override
             public MenuDraft setParentId(String parentId) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (parentId != null) {
                     setParent(ImmutableObjects.makeIdOnly(Menu.class, parentId));
                 } else {
@@ -1933,6 +1963,9 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
 
             @Override
             public MenuDraft setChildren(List<Menu> children) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (children == null) {
                     throw new IllegalArgumentException(
                         "'children' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -1963,6 +1996,9 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
 
             @Override
             public MenuDraft setMenuName(String menuName) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (menuName == null) {
                     throw new IllegalArgumentException(
                         "'menuName' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -1981,6 +2017,9 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
 
             @Override
             public MenuDraft setMenuType(String menuType) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (menuType == null) {
                     throw new IllegalArgumentException(
                         "'menuType' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -2000,6 +2039,9 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
 
             @Override
             public MenuDraft setMenuHref(String menuHref) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__menuHrefValue = menuHref;
                 __tmpModified.__menuHrefLoaded = true;
@@ -2015,6 +2057,9 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
 
             @Override
             public MenuDraft setMenuComponent(String menuComponent) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__menuComponentValue = menuComponent;
                 __tmpModified.__menuComponentLoaded = true;
@@ -2030,6 +2075,9 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
 
             @Override
             public MenuDraft setMenuTarget(String menuTarget) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__menuTargetValue = menuTarget;
                 __tmpModified.__menuTargetLoaded = true;
@@ -2045,6 +2093,9 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
 
             @Override
             public MenuDraft setMenuIcon(String menuIcon) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__menuIconValue = menuIcon;
                 __tmpModified.__menuIconLoaded = true;
@@ -2060,6 +2111,9 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
 
             @Override
             public MenuDraft setMenuColor(String menuColor) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__menuColorValue = menuColor;
                 __tmpModified.__menuColorLoaded = true;
@@ -2075,6 +2129,9 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
 
             @Override
             public MenuDraft setMenuTitle(String menuTitle) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__menuTitleValue = menuTitle;
                 __tmpModified.__menuTitleLoaded = true;
@@ -2090,6 +2147,9 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
 
             @Override
             public MenuDraft setPermission(String permission) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__permissionValue = permission;
                 __tmpModified.__permissionLoaded = true;
@@ -2105,6 +2165,9 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
 
             @Override
             public MenuDraft setWeight(BigDecimal weight) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__weightValue = weight;
                 __tmpModified.__weightLoaded = true;
@@ -2120,6 +2183,9 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
 
             @Override
             public MenuDraft setIsShow(Boolean isShow) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__isShowValue = isShow;
                 __tmpModified.__isShowLoaded = true;
@@ -2135,6 +2201,9 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
 
             @Override
             public MenuDraft setSysCode(String sysCode) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__sysCodeValue = sysCode;
                 __tmpModified.__sysCodeLoaded = true;
@@ -2157,6 +2226,9 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
 
             @Override
             public MenuDraft setRoles(List<Role> roles) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (roles == null) {
                     throw new IllegalArgumentException(
                         "'roles' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -2297,6 +2369,9 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
 
             @Override
             public void __show(PropId prop, boolean visible) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Visibility __visibility = (__modified!= null ? __modified : __base).__visibility;
                 if (__visibility == null) {
                     if (visible) {
@@ -2365,6 +2440,9 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
 
             @Override
             public void __show(String prop, boolean visible) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Visibility __visibility = (__modified!= null ? __modified : __base).__visibility;
                 if (__visibility == null) {
                     if (visible) {
@@ -2429,6 +2507,9 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
 
             @Override
             public void __unload(PropId prop) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 int __propIndex = prop.asIndex();
                 switch (__propIndex) {
                     case -1:
@@ -2486,6 +2567,9 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
 
             @Override
             public void __unload(String prop) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 switch (prop) {
                     case "id":
                     		__modified().__idValue = null;break;
@@ -2544,6 +2628,9 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
 
             @Override
             public Object __resolve() {
+                if (__resolved != null) {
+                    return __resolved;
+                }
                 if (__resolving) {
                     throw new CircularReferenceException();
                 }
@@ -2581,13 +2668,20 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                         __tmpModified.__rolesValue = NonSharedList.of(__tmpModified.__rolesValue, __ctx.resolveList(__tmpModified.__rolesValue));
                     }
                     if (__base != null && __tmpModified == null) {
+                        this.__resolved = base;
                         return base;
                     }
+                    this.__resolved = __tmpModified;
                     return __tmpModified;
                 }
                 finally {
                     __resolving = false;
                 }
+            }
+
+            @Override
+            public boolean __isResolved() {
+                return __resolved != null;
             }
 
             Impl __modified() {

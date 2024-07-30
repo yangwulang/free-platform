@@ -18,7 +18,7 @@ import org.babyfish.jimmer.impl.util.DtoPropAccessor;
 import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
-import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
+import org.babyfish.jimmer.sql.fetcher.DtoMetadata;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.sys.DictData;
@@ -35,8 +35,8 @@ import top.yangwulang.platform.entity.sys.DictDataProps;
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/DictData.dto"
 )
 public class DictDataListView implements View<DictData> {
-    public static final ViewMetadata<DictData, DictDataListView> METADATA =
-            new ViewMetadata<DictData, DictDataListView>(
+    public static final DtoMetadata<DictData, DictDataListView> METADATA =
+            new DtoMetadata<DictData, DictDataListView>(
                     DictDataFetcher.$
                             .status()
                             .createBy()

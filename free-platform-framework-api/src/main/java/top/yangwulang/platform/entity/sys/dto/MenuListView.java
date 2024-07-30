@@ -18,7 +18,7 @@ import org.babyfish.jimmer.impl.util.DtoPropAccessor;
 import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
-import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
+import org.babyfish.jimmer.sql.fetcher.DtoMetadata;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.sys.Menu;
@@ -34,8 +34,8 @@ import top.yangwulang.platform.entity.sys.MenuFetcher;
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Menu.dto"
 )
 public class MenuListView implements View<Menu> {
-    public static final ViewMetadata<Menu, MenuListView> METADATA =
-            new ViewMetadata<Menu, MenuListView>(
+    public static final DtoMetadata<Menu, MenuListView> METADATA =
+            new DtoMetadata<Menu, MenuListView>(
                     MenuFetcher.$
                             .status()
                             .createBy()

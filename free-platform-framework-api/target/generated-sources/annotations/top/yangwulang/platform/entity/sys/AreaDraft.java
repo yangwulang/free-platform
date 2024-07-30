@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.lang.CloneNotSupportedException;
 import java.lang.Cloneable;
 import java.lang.IllegalArgumentException;
+import java.lang.IllegalStateException;
 import java.lang.Integer;
 import java.lang.Long;
 import java.lang.Object;
@@ -139,7 +140,7 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.134",
+                "0.8.149",
                 Area.class,
                 Collections.singleton(DataTypeBaseDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (Area)base)
@@ -1034,6 +1035,8 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
 
             private boolean __resolving;
 
+            private Area __resolved;
+
             DraftImpl(DraftContext ctx, Area base) {
                 __ctx = ctx;
                 if (base != null) {
@@ -1086,7 +1089,7 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
 
             @Override
             public String toString() {
-                return ImmutableObjects.toString((__modified!= null ? __modified : __base));
+                return ImmutableObjects.toString(this);
             }
 
             @Override
@@ -1097,6 +1100,9 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
 
             @Override
             public AreaDraft setId(String id) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (id == null) {
                     throw new IllegalArgumentException(
                         "'id' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -1115,6 +1121,9 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
 
             @Override
             public AreaDraft setStatus(int status) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__statusValue = status;
                 __tmpModified.__statusLoaded = true;
@@ -1129,6 +1138,9 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
 
             @Override
             public AreaDraft setCreateBy(String createBy) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (createBy == null) {
                     throw new IllegalArgumentException(
                         "'createBy' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -1147,6 +1159,9 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
 
             @Override
             public AreaDraft setCreateDate(Date createDate) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (createDate == null) {
                     throw new IllegalArgumentException(
                         "'createDate' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -1165,6 +1180,9 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
 
             @Override
             public AreaDraft setUpdateBy(String updateBy) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (updateBy == null) {
                     throw new IllegalArgumentException(
                         "'updateBy' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -1183,6 +1201,9 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
 
             @Override
             public AreaDraft setUpdateDate(Date updateDate) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (updateDate == null) {
                     throw new IllegalArgumentException(
                         "'updateDate' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -1202,6 +1223,9 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
 
             @Override
             public AreaDraft setRemarks(String remarks) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__remarksValue = remarks;
                 __tmpModified.__remarksLoaded = true;
@@ -1225,6 +1249,9 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
 
             @Override
             public AreaDraft setParent(Area parent) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__parentValue = parent;
                 __tmpModified.__parentLoaded = true;
@@ -1253,6 +1280,9 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
 
             @Override
             public AreaDraft setParentId(String parentId) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (parentId != null) {
                     setParent(ImmutableObjects.makeIdOnly(Area.class, parentId));
                 } else {
@@ -1277,6 +1307,9 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
 
             @Override
             public AreaDraft setChildren(List<Area> children) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (children == null) {
                     throw new IllegalArgumentException(
                         "'children' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -1307,6 +1340,9 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
 
             @Override
             public AreaDraft setAreaName(String areaName) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (areaName == null) {
                     throw new IllegalArgumentException(
                         "'areaName' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -1326,6 +1362,9 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
 
             @Override
             public AreaDraft setSort(Long sort) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__sortValue = sort;
                 __tmpModified.__sortLoaded = true;
@@ -1341,6 +1380,9 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
 
             @Override
             public AreaDraft setAreaType(String areaType) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__areaTypeValue = areaType;
                 __tmpModified.__areaTypeLoaded = true;
@@ -1425,6 +1467,9 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
 
             @Override
             public void __show(PropId prop, boolean visible) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Visibility __visibility = (__modified!= null ? __modified : __base).__visibility;
                 if (__visibility == null) {
                     if (visible) {
@@ -1473,6 +1518,9 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
 
             @Override
             public void __show(String prop, boolean visible) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Visibility __visibility = (__modified!= null ? __modified : __base).__visibility;
                 if (__visibility == null) {
                     if (visible) {
@@ -1517,6 +1565,9 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
 
             @Override
             public void __unload(PropId prop) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 int __propIndex = prop.asIndex();
                 switch (__propIndex) {
                     case -1:
@@ -1554,6 +1605,9 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
 
             @Override
             public void __unload(String prop) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 switch (prop) {
                     case "id":
                     		__modified().__idValue = null;break;
@@ -1592,6 +1646,9 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
 
             @Override
             public Object __resolve() {
+                if (__resolved != null) {
+                    return __resolved;
+                }
                 if (__resolving) {
                     throw new CircularReferenceException();
                 }
@@ -1621,13 +1678,20 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
                         __tmpModified.__childrenValue = NonSharedList.of(__tmpModified.__childrenValue, __ctx.resolveList(__tmpModified.__childrenValue));
                     }
                     if (__base != null && __tmpModified == null) {
+                        this.__resolved = base;
                         return base;
                     }
+                    this.__resolved = __tmpModified;
                     return __tmpModified;
                 }
                 finally {
                     __resolving = false;
                 }
+            }
+
+            @Override
+            public boolean __isResolved() {
+                return __resolved != null;
             }
 
             Impl __modified() {

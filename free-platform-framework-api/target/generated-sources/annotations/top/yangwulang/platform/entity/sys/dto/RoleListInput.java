@@ -10,7 +10,7 @@ import org.babyfish.jimmer.impl.util.DtoPropAccessor;
 import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
-import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
+import org.babyfish.jimmer.sql.fetcher.DtoMetadata;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.sys.Role;
@@ -18,9 +18,8 @@ import top.yangwulang.platform.entity.sys.RoleDraft;
 import top.yangwulang.platform.entity.sys.RoleFetcher;
 
 /**
- *  角色表
+ * 角色表
  *
- *  @author yangwulang
  */
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Role.dto"
@@ -29,8 +28,8 @@ import top.yangwulang.platform.entity.sys.RoleFetcher;
         description = "角色"
 )
 public class RoleListInput implements Input<Role> {
-    public static final ViewMetadata<Role, RoleListInput> METADATA = 
-        new ViewMetadata<Role, RoleListInput>(
+    public static final DtoMetadata<Role, RoleListInput> METADATA = 
+        new DtoMetadata<Role, RoleListInput>(
             RoleFetcher.$
                 .roleName()
                 .roleType()

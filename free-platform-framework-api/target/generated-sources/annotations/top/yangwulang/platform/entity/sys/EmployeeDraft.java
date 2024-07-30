@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.lang.CloneNotSupportedException;
 import java.lang.Cloneable;
+import java.lang.IllegalStateException;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
@@ -117,7 +118,7 @@ public interface EmployeeDraft extends Employee, Draft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.134",
+                "0.8.149",
                 Employee.class,
                 Collections.emptyList(),
                 (ctx, base) -> new DraftImpl(ctx, (Employee)base)
@@ -614,6 +615,8 @@ public interface EmployeeDraft extends Employee, Draft {
 
             private boolean __resolving;
 
+            private Employee __resolved;
+
             DraftImpl(DraftContext ctx, Employee base) {
                 __ctx = ctx;
                 if (base != null) {
@@ -666,7 +669,7 @@ public interface EmployeeDraft extends Employee, Draft {
 
             @Override
             public String toString() {
-                return ImmutableObjects.toString((__modified!= null ? __modified : __base));
+                return ImmutableObjects.toString(this);
             }
 
             @Override
@@ -677,6 +680,9 @@ public interface EmployeeDraft extends Employee, Draft {
 
             @Override
             public EmployeeDraft setEmpCode(String empCode) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (empCode == null) {
                     throw new IllegalArgumentException(
                         "'empCode' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -704,6 +710,9 @@ public interface EmployeeDraft extends Employee, Draft {
 
             @Override
             public EmployeeDraft setUser(User user) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__userValue = user;
                 __tmpModified.__userLoaded = true;
@@ -760,6 +769,9 @@ public interface EmployeeDraft extends Employee, Draft {
 
             @Override
             public EmployeeDraft setCompany(Company company) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__companyValue = company;
                 __tmpModified.__companyLoaded = true;
@@ -788,6 +800,9 @@ public interface EmployeeDraft extends Employee, Draft {
 
             @Override
             public EmployeeDraft setCompanyId(String companyId) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (companyId != null) {
                     setCompany(ImmutableObjects.makeIdOnly(Company.class, companyId));
                 } else {
@@ -805,6 +820,9 @@ public interface EmployeeDraft extends Employee, Draft {
 
             @Override
             public EmployeeDraft setEmpName(String empName) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__empNameValue = empName;
                 __tmpModified.__empNameLoaded = true;
@@ -827,6 +845,9 @@ public interface EmployeeDraft extends Employee, Draft {
 
             @Override
             public EmployeeDraft setPosts(List<Post> posts) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (posts == null) {
                     throw new IllegalArgumentException(
                         "'posts' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -895,6 +916,9 @@ public interface EmployeeDraft extends Employee, Draft {
 
             @Override
             public void __show(PropId prop, boolean visible) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Visibility __visibility = (__modified!= null ? __modified : __base).__visibility;
                 if (__visibility == null) {
                     if (visible) {
@@ -929,6 +953,9 @@ public interface EmployeeDraft extends Employee, Draft {
 
             @Override
             public void __show(String prop, boolean visible) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Visibility __visibility = (__modified!= null ? __modified : __base).__visibility;
                 if (__visibility == null) {
                     if (visible) {
@@ -959,6 +986,9 @@ public interface EmployeeDraft extends Employee, Draft {
 
             @Override
             public void __unload(PropId prop) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 int __propIndex = prop.asIndex();
                 switch (__propIndex) {
                     case -1:
@@ -982,6 +1012,9 @@ public interface EmployeeDraft extends Employee, Draft {
 
             @Override
             public void __unload(String prop) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 switch (prop) {
                     case "empCode":
                     		__modified().__empCodeValue = null;break;
@@ -1006,6 +1039,9 @@ public interface EmployeeDraft extends Employee, Draft {
 
             @Override
             public Object __resolve() {
+                if (__resolved != null) {
+                    return __resolved;
+                }
                 if (__resolving) {
                     throw new CircularReferenceException();
                 }
@@ -1043,13 +1079,20 @@ public interface EmployeeDraft extends Employee, Draft {
                         __tmpModified.__postsValue = NonSharedList.of(__tmpModified.__postsValue, __ctx.resolveList(__tmpModified.__postsValue));
                     }
                     if (__base != null && __tmpModified == null) {
+                        this.__resolved = base;
                         return base;
                     }
+                    this.__resolved = __tmpModified;
                     return __tmpModified;
                 }
                 finally {
                     __resolving = false;
                 }
+            }
+
+            @Override
+            public boolean __isResolved() {
+                return __resolved != null;
             }
 
             Impl __modified() {

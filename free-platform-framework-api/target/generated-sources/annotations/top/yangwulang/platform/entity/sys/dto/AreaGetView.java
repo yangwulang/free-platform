@@ -11,7 +11,7 @@ import org.babyfish.jimmer.View;
 import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
-import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
+import org.babyfish.jimmer.sql.fetcher.DtoMetadata;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.sys.Area;
@@ -28,8 +28,8 @@ import top.yangwulang.platform.entity.sys.AreaFetcher;
         description = "区域实体"
 )
 public class AreaGetView implements View<Area> {
-    public static final ViewMetadata<Area, AreaGetView> METADATA = 
-        new ViewMetadata<Area, AreaGetView>(
+    public static final DtoMetadata<Area, AreaGetView> METADATA = 
+        new DtoMetadata<Area, AreaGetView>(
             AreaFetcher.$
                 .createBy()
                 .createDate()

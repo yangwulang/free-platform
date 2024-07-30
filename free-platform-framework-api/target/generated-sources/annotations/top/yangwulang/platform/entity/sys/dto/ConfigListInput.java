@@ -10,7 +10,7 @@ import org.babyfish.jimmer.impl.util.DtoPropAccessor;
 import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
-import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
+import org.babyfish.jimmer.sql.fetcher.DtoMetadata;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.sys.Config;
@@ -18,16 +18,15 @@ import top.yangwulang.platform.entity.sys.ConfigDraft;
 import top.yangwulang.platform.entity.sys.ConfigFetcher;
 
 /**
- *  参数配置表
+ * 参数配置表
  *
- *  @author yangwulang
  */
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Config.dto"
 )
 public class ConfigListInput implements Input<Config> {
-    public static final ViewMetadata<Config, ConfigListInput> METADATA = 
-        new ViewMetadata<Config, ConfigListInput>(
+    public static final DtoMetadata<Config, ConfigListInput> METADATA = 
+        new DtoMetadata<Config, ConfigListInput>(
             ConfigFetcher.$
                 .configKey()
                 .configName()

@@ -2,10 +2,6 @@ package top.yangwulang.platform.controller.sys
 
 import cn.hutool.core.lang.tree.Tree
 import io.swagger.v3.oas.annotations.Operation
-import io.swagger.v3.oas.annotations.media.Content
-import io.swagger.v3.oas.annotations.media.Schema
-import io.swagger.v3.oas.annotations.responses.ApiResponse
-import io.swagger.v3.oas.annotations.responses.ApiResponses
 import io.swagger.v3.oas.annotations.tags.Tag
 import io.swagger.v3.oas.annotations.tags.Tags
 import org.apache.commons.lang3.StringUtils
@@ -14,14 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 import top.yangwulang.platform.entity.Result
 import top.yangwulang.platform.entity.Tables
-import top.yangwulang.platform.entity.TreeNodeString
 import top.yangwulang.platform.entity.sys.Menu
-import top.yangwulang.platform.entity.sys.MenuTable
-import top.yangwulang.platform.entity.sys.dto.MenuGetView
-import top.yangwulang.platform.entity.sys.dto.MenuListInput
-import top.yangwulang.platform.entity.sys.dto.MenuListView
-import top.yangwulang.platform.entity.sys.dto.MenuSaveInput
-import top.yangwulang.platform.entity.sys.dto.MenuUserTreeView
+import top.yangwulang.platform.entity.sys.dto.*
 import top.yangwulang.platform.entity.sys.vo.RoleMenuVo
 import top.yangwulang.platform.services.MenuService
 

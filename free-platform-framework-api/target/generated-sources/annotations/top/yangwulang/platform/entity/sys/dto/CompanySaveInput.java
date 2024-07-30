@@ -13,7 +13,7 @@ import org.babyfish.jimmer.internal.FixedInputField;
 import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
-import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
+import org.babyfish.jimmer.sql.fetcher.DtoMetadata;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.sys.Company;
@@ -21,8 +21,7 @@ import top.yangwulang.platform.entity.sys.CompanyDraft;
 import top.yangwulang.platform.entity.sys.CompanyFetcher;
 
 /**
- *  公司
- *  @author yangwulang
+ * 公司
  */
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Company.dto"
@@ -34,8 +33,8 @@ import top.yangwulang.platform.entity.sys.CompanyFetcher;
         description = "公司实体"
 )
 public class CompanySaveInput implements Input<Company> {
-    public static final ViewMetadata<Company, CompanySaveInput> METADATA = 
-        new ViewMetadata<Company, CompanySaveInput>(
+    public static final DtoMetadata<Company, CompanySaveInput> METADATA = 
+        new DtoMetadata<Company, CompanySaveInput>(
             CompanyFetcher.$
                 .companyCode()
                 .companyName()

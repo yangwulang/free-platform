@@ -12,7 +12,7 @@ import org.babyfish.jimmer.impl.util.DtoPropAccessor;
 import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
-import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
+import org.babyfish.jimmer.sql.fetcher.DtoMetadata;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.sys.Menu;
@@ -20,9 +20,8 @@ import top.yangwulang.platform.entity.sys.MenuDraft;
 import top.yangwulang.platform.entity.sys.MenuFetcher;
 
 /**
- *  菜单表
+ * 菜单表
  *
- *  @author yangwulang
  */
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Menu.dto"
@@ -31,8 +30,8 @@ import top.yangwulang.platform.entity.sys.MenuFetcher;
         description = "菜单实体"
 )
 public class MenuGetView implements View<Menu> {
-    public static final ViewMetadata<Menu, MenuGetView> METADATA = 
-        new ViewMetadata<Menu, MenuGetView>(
+    public static final DtoMetadata<Menu, MenuGetView> METADATA = 
+        new DtoMetadata<Menu, MenuGetView>(
             MenuFetcher.$
                 .menuName()
                 .menuType()
@@ -466,17 +465,16 @@ public class MenuGetView implements View<Menu> {
     }
 
     /**
-     *  菜单表
+     * 菜单表
      *
-     *  @author yangwulang
      */
     @GeneratedBy
     @Schema(
             description = "菜单实体"
     )
     public static class TargetOf_parent implements View<Menu> {
-        public static final ViewMetadata<Menu, TargetOf_parent> METADATA = 
-            new ViewMetadata<Menu, TargetOf_parent>(
+        public static final DtoMetadata<Menu, TargetOf_parent> METADATA = 
+            new DtoMetadata<Menu, TargetOf_parent>(
                 MenuFetcher.$
                     .menuName(),
                 TargetOf_parent::new

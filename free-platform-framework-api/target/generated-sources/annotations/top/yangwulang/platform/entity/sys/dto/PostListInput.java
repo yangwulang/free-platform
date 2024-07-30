@@ -10,7 +10,7 @@ import org.babyfish.jimmer.impl.util.DtoPropAccessor;
 import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
-import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
+import org.babyfish.jimmer.sql.fetcher.DtoMetadata;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.sys.Post;
@@ -18,9 +18,8 @@ import top.yangwulang.platform.entity.sys.PostDraft;
 import top.yangwulang.platform.entity.sys.PostFetcher;
 
 /**
- *  岗位表
+ * 岗位表
  *
- *  @author yangwulang
  */
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Post.dto"
@@ -29,8 +28,8 @@ import top.yangwulang.platform.entity.sys.PostFetcher;
         description = "岗位"
 )
 public class PostListInput implements Input<Post> {
-    public static final ViewMetadata<Post, PostListInput> METADATA = 
-        new ViewMetadata<Post, PostListInput>(
+    public static final DtoMetadata<Post, PostListInput> METADATA = 
+        new DtoMetadata<Post, PostListInput>(
             PostFetcher.$
                 .postCode()
                 .postName()

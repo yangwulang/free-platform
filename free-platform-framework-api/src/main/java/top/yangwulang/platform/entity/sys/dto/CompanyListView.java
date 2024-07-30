@@ -15,8 +15,7 @@ import org.babyfish.jimmer.impl.util.DtoPropAccessor;
 import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
-import org.babyfish.jimmer.sql.fetcher.RecursionStrategy;
-import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
+import org.babyfish.jimmer.sql.fetcher.DtoMetadata;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.sys.*;
@@ -30,8 +29,8 @@ import top.yangwulang.platform.entity.sys.*;
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Company.dto"
 )
 public class CompanyListView implements View<Company> {
-    public static final ViewMetadata<Company, CompanyListView> METADATA =
-            new ViewMetadata<Company, CompanyListView>(
+    public static final DtoMetadata<Company, CompanyListView> METADATA =
+            new DtoMetadata<Company, CompanyListView>(
                     CompanyFetcher.$
                             .companyCode()
                             .companyName()

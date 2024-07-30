@@ -15,7 +15,7 @@ import org.babyfish.jimmer.internal.FixedInputField;
 import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
-import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
+import org.babyfish.jimmer.sql.fetcher.DtoMetadata;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.sys.Employee;
@@ -37,8 +37,8 @@ import top.yangwulang.platform.entity.sys.UserFetcher;
         description = "员工"
 )
 public class EmployeeSaveInput implements Input<Employee> {
-    public static final ViewMetadata<Employee, EmployeeSaveInput> METADATA = 
-        new ViewMetadata<Employee, EmployeeSaveInput>(
+    public static final DtoMetadata<Employee, EmployeeSaveInput> METADATA = 
+        new DtoMetadata<Employee, EmployeeSaveInput>(
             EmployeeFetcher.$
                 .empName()
                 .user(UserFetcher.$

@@ -17,9 +17,8 @@ import top.yangwulang.platform.entity.sys.RoleProps;
 import top.yangwulang.platform.entity.sys.RoleTable;
 
 /**
- *  角色表
+ * 角色表
  *
- *  @author yangwulang
  */
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Role.dto"

@@ -15,7 +15,7 @@ import org.babyfish.jimmer.impl.util.DtoPropAccessor;
 import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
-import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
+import org.babyfish.jimmer.sql.fetcher.DtoMetadata;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.sys.Menu;
@@ -29,9 +29,8 @@ import top.yangwulang.platform.entity.sys.UserDraft;
 import top.yangwulang.platform.entity.sys.UserFetcher;
 
 /**
- *  角色表
+ * 角色表
  *
- *  @author yangwulang
  */
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Role.dto"
@@ -40,8 +39,8 @@ import top.yangwulang.platform.entity.sys.UserFetcher;
         description = "角色"
 )
 public class RoleGetView implements View<Role> {
-    public static final ViewMetadata<Role, RoleGetView> METADATA = 
-        new ViewMetadata<Role, RoleGetView>(
+    public static final DtoMetadata<Role, RoleGetView> METADATA = 
+        new DtoMetadata<Role, RoleGetView>(
             RoleFetcher.$
                 .createBy()
                 .createDate()
@@ -508,17 +507,16 @@ public class RoleGetView implements View<Role> {
     }
 
     /**
-     *  菜单表
+     * 菜单表
      *
-     *  @author yangwulang
      */
     @GeneratedBy
     @Schema(
             description = "菜单实体"
     )
     public static class TargetOf_menus implements View<Menu> {
-        public static final ViewMetadata<Menu, TargetOf_menus> METADATA = 
-            new ViewMetadata<Menu, TargetOf_menus>(
+        public static final DtoMetadata<Menu, TargetOf_menus> METADATA = 
+            new DtoMetadata<Menu, TargetOf_menus>(
                 MenuFetcher.$
                     .createBy()
                     .createDate()
@@ -1029,8 +1027,8 @@ public class RoleGetView implements View<Role> {
             description = "用户实体"
     )
     public static class TargetOf_users implements View<User> {
-        public static final ViewMetadata<User, TargetOf_users> METADATA = 
-            new ViewMetadata<User, TargetOf_users>(
+        public static final DtoMetadata<User, TargetOf_users> METADATA = 
+            new DtoMetadata<User, TargetOf_users>(
                 UserFetcher.$
                     .userName()
                     .userType()

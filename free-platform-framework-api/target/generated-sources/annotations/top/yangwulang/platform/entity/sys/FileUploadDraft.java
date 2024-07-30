@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.lang.CloneNotSupportedException;
 import java.lang.Cloneable;
 import java.lang.IllegalArgumentException;
+import java.lang.IllegalStateException;
 import java.lang.Integer;
 import java.lang.Object;
 import java.lang.Override;
@@ -126,7 +127,7 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.134",
+                "0.8.149",
                 FileUpload.class,
                 Collections.singleton(DataTypeBaseDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (FileUpload)base)
@@ -1003,6 +1004,8 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
 
             private boolean __resolving;
 
+            private FileUpload __resolved;
+
             DraftImpl(DraftContext ctx, FileUpload base) {
                 __ctx = ctx;
                 if (base != null) {
@@ -1055,7 +1058,7 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
 
             @Override
             public String toString() {
-                return ImmutableObjects.toString((__modified!= null ? __modified : __base));
+                return ImmutableObjects.toString(this);
             }
 
             @Override
@@ -1066,6 +1069,9 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
 
             @Override
             public FileUploadDraft setId(String id) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (id == null) {
                     throw new IllegalArgumentException(
                         "'id' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -1084,6 +1090,9 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
 
             @Override
             public FileUploadDraft setStatus(int status) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__statusValue = status;
                 __tmpModified.__statusLoaded = true;
@@ -1098,6 +1107,9 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
 
             @Override
             public FileUploadDraft setCreateBy(String createBy) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (createBy == null) {
                     throw new IllegalArgumentException(
                         "'createBy' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -1116,6 +1128,9 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
 
             @Override
             public FileUploadDraft setCreateDate(Date createDate) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (createDate == null) {
                     throw new IllegalArgumentException(
                         "'createDate' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -1134,6 +1149,9 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
 
             @Override
             public FileUploadDraft setUpdateBy(String updateBy) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (updateBy == null) {
                     throw new IllegalArgumentException(
                         "'updateBy' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -1152,6 +1170,9 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
 
             @Override
             public FileUploadDraft setUpdateDate(Date updateDate) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (updateDate == null) {
                     throw new IllegalArgumentException(
                         "'updateDate' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -1171,6 +1192,9 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
 
             @Override
             public FileUploadDraft setRemarks(String remarks) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__remarksValue = remarks;
                 __tmpModified.__remarksLoaded = true;
@@ -1194,6 +1218,9 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
 
             @Override
             public FileUploadDraft setFileEntity(FileEntity fileEntity) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__fileEntityValue = fileEntity;
                 __tmpModified.__fileEntityLoaded = true;
@@ -1223,6 +1250,9 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
 
             @Override
             public FileUploadDraft setFileEntityId(String fileEntityId) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (fileEntityId != null) {
                     setFileEntity(ImmutableObjects.makeIdOnly(FileEntity.class, fileEntityId));
                 } else {
@@ -1239,6 +1269,9 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
 
             @Override
             public FileUploadDraft setFileName(String fileName) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (fileName == null) {
                     throw new IllegalArgumentException(
                         "'fileName' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -1257,6 +1290,9 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
 
             @Override
             public FileUploadDraft setFileType(String fileType) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (fileType == null) {
                     throw new IllegalArgumentException(
                         "'fileType' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -1276,6 +1312,9 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
 
             @Override
             public FileUploadDraft setBizKey(String bizKey) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__bizKeyValue = bizKey;
                 __tmpModified.__bizKeyLoaded = true;
@@ -1291,6 +1330,9 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
 
             @Override
             public FileUploadDraft setBizType(String bizType) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__bizTypeValue = bizType;
                 __tmpModified.__bizTypeLoaded = true;
@@ -1375,6 +1417,9 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
 
             @Override
             public void __show(PropId prop, boolean visible) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Visibility __visibility = (__modified!= null ? __modified : __base).__visibility;
                 if (__visibility == null) {
                     if (visible) {
@@ -1423,6 +1468,9 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
 
             @Override
             public void __show(String prop, boolean visible) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Visibility __visibility = (__modified!= null ? __modified : __base).__visibility;
                 if (__visibility == null) {
                     if (visible) {
@@ -1467,6 +1515,9 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
 
             @Override
             public void __unload(PropId prop) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 int __propIndex = prop.asIndex();
                 switch (__propIndex) {
                     case -1:
@@ -1504,6 +1555,9 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
 
             @Override
             public void __unload(String prop) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 switch (prop) {
                     case "id":
                     		__modified().__idValue = null;break;
@@ -1542,6 +1596,9 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
 
             @Override
             public Object __resolve() {
+                if (__resolved != null) {
+                    return __resolved;
+                }
                 if (__resolving) {
                     throw new CircularReferenceException();
                 }
@@ -1563,13 +1620,20 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
                         __tmpModified.__fileEntityValue = __ctx.resolveObject(__tmpModified.__fileEntityValue);
                     }
                     if (__base != null && __tmpModified == null) {
+                        this.__resolved = base;
                         return base;
                     }
+                    this.__resolved = __tmpModified;
                     return __tmpModified;
                 }
                 finally {
                     __resolving = false;
                 }
+            }
+
+            @Override
+            public boolean __isResolved() {
+                return __resolved != null;
             }
 
             Impl __modified() {

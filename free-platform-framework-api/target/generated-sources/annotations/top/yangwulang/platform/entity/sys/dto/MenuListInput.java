@@ -10,7 +10,7 @@ import org.babyfish.jimmer.impl.util.DtoPropAccessor;
 import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
-import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
+import org.babyfish.jimmer.sql.fetcher.DtoMetadata;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.sys.Menu;
@@ -18,9 +18,8 @@ import top.yangwulang.platform.entity.sys.MenuDraft;
 import top.yangwulang.platform.entity.sys.MenuFetcher;
 
 /**
- *  菜单表
+ * 菜单表
  *
- *  @author yangwulang
  */
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Menu.dto"
@@ -29,8 +28,8 @@ import top.yangwulang.platform.entity.sys.MenuFetcher;
         description = "菜单实体"
 )
 public class MenuListInput implements Input<Menu> {
-    public static final ViewMetadata<Menu, MenuListInput> METADATA = 
-        new ViewMetadata<Menu, MenuListInput>(
+    public static final DtoMetadata<Menu, MenuListInput> METADATA = 
+        new DtoMetadata<Menu, MenuListInput>(
             MenuFetcher.$
                 .menuName()
                 .menuType()

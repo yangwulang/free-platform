@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.lang.CloneNotSupportedException;
 import java.lang.Cloneable;
 import java.lang.IllegalArgumentException;
+import java.lang.IllegalStateException;
 import java.lang.Integer;
 import java.lang.Object;
 import java.lang.Override;
@@ -186,7 +187,7 @@ public interface UserDraft extends User, BaseEntityDraft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.134",
+                "0.8.149",
                 User.class,
                 Collections.singleton(BaseEntityDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (User)base)
@@ -1839,6 +1840,8 @@ public interface UserDraft extends User, BaseEntityDraft {
 
             private boolean __resolving;
 
+            private User __resolved;
+
             DraftImpl(DraftContext ctx, User base) {
                 __ctx = ctx;
                 if (base != null) {
@@ -1891,7 +1894,7 @@ public interface UserDraft extends User, BaseEntityDraft {
 
             @Override
             public String toString() {
-                return ImmutableObjects.toString((__modified!= null ? __modified : __base));
+                return ImmutableObjects.toString(this);
             }
 
             @Override
@@ -1902,6 +1905,9 @@ public interface UserDraft extends User, BaseEntityDraft {
 
             @Override
             public UserDraft setUserCode(String userCode) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (userCode == null) {
                     throw new IllegalArgumentException(
                         "'userCode' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -1920,6 +1926,9 @@ public interface UserDraft extends User, BaseEntityDraft {
 
             @Override
             public UserDraft setStatus(int status) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__statusValue = status;
                 __tmpModified.__statusLoaded = true;
@@ -1934,6 +1943,9 @@ public interface UserDraft extends User, BaseEntityDraft {
 
             @Override
             public UserDraft setCreateBy(String createBy) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (createBy == null) {
                     throw new IllegalArgumentException(
                         "'createBy' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -1952,6 +1964,9 @@ public interface UserDraft extends User, BaseEntityDraft {
 
             @Override
             public UserDraft setCreateDate(Date createDate) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (createDate == null) {
                     throw new IllegalArgumentException(
                         "'createDate' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -1970,6 +1985,9 @@ public interface UserDraft extends User, BaseEntityDraft {
 
             @Override
             public UserDraft setUpdateBy(String updateBy) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (updateBy == null) {
                     throw new IllegalArgumentException(
                         "'updateBy' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -1988,6 +2006,9 @@ public interface UserDraft extends User, BaseEntityDraft {
 
             @Override
             public UserDraft setUpdateDate(Date updateDate) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (updateDate == null) {
                     throw new IllegalArgumentException(
                         "'updateDate' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -2007,6 +2028,9 @@ public interface UserDraft extends User, BaseEntityDraft {
 
             @Override
             public UserDraft setRemarks(String remarks) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__remarksValue = remarks;
                 __tmpModified.__remarksLoaded = true;
@@ -2022,6 +2046,9 @@ public interface UserDraft extends User, BaseEntityDraft {
 
             @Override
             public UserDraft setLoginCode(String loginCode) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__loginCodeValue = loginCode;
                 __tmpModified.__loginCodeLoaded = true;
@@ -2037,6 +2064,9 @@ public interface UserDraft extends User, BaseEntityDraft {
 
             @Override
             public UserDraft setUserName(String userName) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__userNameValue = userName;
                 __tmpModified.__userNameLoaded = true;
@@ -2052,6 +2082,9 @@ public interface UserDraft extends User, BaseEntityDraft {
 
             @Override
             public UserDraft setPassword(String password) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__passwordValue = password;
                 __tmpModified.__passwordLoaded = true;
@@ -2067,6 +2100,9 @@ public interface UserDraft extends User, BaseEntityDraft {
 
             @Override
             public UserDraft setEmail(String email) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__emailValue = email;
                 __tmpModified.__emailLoaded = true;
@@ -2082,6 +2118,9 @@ public interface UserDraft extends User, BaseEntityDraft {
 
             @Override
             public UserDraft setMobile(String mobile) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__mobileValue = mobile;
                 __tmpModified.__mobileLoaded = true;
@@ -2097,6 +2136,9 @@ public interface UserDraft extends User, BaseEntityDraft {
 
             @Override
             public UserDraft setPhone(String phone) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__phoneValue = phone;
                 __tmpModified.__phoneLoaded = true;
@@ -2112,6 +2154,9 @@ public interface UserDraft extends User, BaseEntityDraft {
 
             @Override
             public UserDraft setSex(String sex) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__sexValue = sex;
                 __tmpModified.__sexLoaded = true;
@@ -2127,6 +2172,9 @@ public interface UserDraft extends User, BaseEntityDraft {
 
             @Override
             public UserDraft setAvatar(String avatar) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__avatarValue = avatar;
                 __tmpModified.__avatarLoaded = true;
@@ -2142,6 +2190,9 @@ public interface UserDraft extends User, BaseEntityDraft {
 
             @Override
             public UserDraft setSign(String sign) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__signValue = sign;
                 __tmpModified.__signLoaded = true;
@@ -2157,6 +2208,9 @@ public interface UserDraft extends User, BaseEntityDraft {
 
             @Override
             public UserDraft setWxOpenId(String wxOpenId) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__wxOpenIdValue = wxOpenId;
                 __tmpModified.__wxOpenIdLoaded = true;
@@ -2172,6 +2226,9 @@ public interface UserDraft extends User, BaseEntityDraft {
 
             @Override
             public UserDraft setMobileImei(String mobileImei) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__mobileImeiValue = mobileImei;
                 __tmpModified.__mobileImeiLoaded = true;
@@ -2187,6 +2244,9 @@ public interface UserDraft extends User, BaseEntityDraft {
 
             @Override
             public UserDraft setUserType(String userType) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__userTypeValue = userType;
                 __tmpModified.__userTypeLoaded = true;
@@ -2202,6 +2262,9 @@ public interface UserDraft extends User, BaseEntityDraft {
 
             @Override
             public UserDraft setRefCode(String refCode) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__refCodeValue = refCode;
                 __tmpModified.__refCodeLoaded = true;
@@ -2217,6 +2280,9 @@ public interface UserDraft extends User, BaseEntityDraft {
 
             @Override
             public UserDraft setRefName(String refName) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__refNameValue = refName;
                 __tmpModified.__refNameLoaded = true;
@@ -2231,6 +2297,9 @@ public interface UserDraft extends User, BaseEntityDraft {
 
             @Override
             public UserDraft setMgrType(String mgrType) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (mgrType == null) {
                     throw new IllegalArgumentException(
                         "'mgrType' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -2250,6 +2319,9 @@ public interface UserDraft extends User, BaseEntityDraft {
 
             @Override
             public UserDraft setPwdSecurityLevel(Integer pwdSecurityLevel) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__pwdSecurityLevelValue = pwdSecurityLevel;
                 __tmpModified.__pwdSecurityLevelLoaded = true;
@@ -2265,6 +2337,9 @@ public interface UserDraft extends User, BaseEntityDraft {
 
             @Override
             public UserDraft setUserWeight(Integer userWeight) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__userWeightValue = userWeight;
                 __tmpModified.__userWeightLoaded = true;
@@ -2287,6 +2362,9 @@ public interface UserDraft extends User, BaseEntityDraft {
 
             @Override
             public UserDraft setRoles(List<Role> roles) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (roles == null) {
                     throw new IllegalArgumentException(
                         "'roles' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -2435,6 +2513,9 @@ public interface UserDraft extends User, BaseEntityDraft {
 
             @Override
             public void __show(PropId prop, boolean visible) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Visibility __visibility = (__modified!= null ? __modified : __base).__visibility;
                 if (__visibility == null) {
                     if (visible) {
@@ -2507,6 +2588,9 @@ public interface UserDraft extends User, BaseEntityDraft {
 
             @Override
             public void __show(String prop, boolean visible) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Visibility __visibility = (__modified!= null ? __modified : __base).__visibility;
                 if (__visibility == null) {
                     if (visible) {
@@ -2575,6 +2659,9 @@ public interface UserDraft extends User, BaseEntityDraft {
 
             @Override
             public void __unload(PropId prop) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 int __propIndex = prop.asIndex();
                 switch (__propIndex) {
                     case -1:
@@ -2636,6 +2723,9 @@ public interface UserDraft extends User, BaseEntityDraft {
 
             @Override
             public void __unload(String prop) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 switch (prop) {
                     case "status":
                     		__modified().__statusLoaded = false;break;
@@ -2698,6 +2788,9 @@ public interface UserDraft extends User, BaseEntityDraft {
 
             @Override
             public Object __resolve() {
+                if (__resolved != null) {
+                    return __resolved;
+                }
                 if (__resolving) {
                     throw new CircularReferenceException();
                 }
@@ -2719,13 +2812,20 @@ public interface UserDraft extends User, BaseEntityDraft {
                         __tmpModified.__rolesValue = NonSharedList.of(__tmpModified.__rolesValue, __ctx.resolveList(__tmpModified.__rolesValue));
                     }
                     if (__base != null && __tmpModified == null) {
+                        this.__resolved = base;
                         return base;
                     }
+                    this.__resolved = __tmpModified;
                     return __tmpModified;
                 }
                 finally {
                     __resolving = false;
                 }
+            }
+
+            @Override
+            public boolean __isResolved() {
+                return __resolved != null;
             }
 
             Impl __modified() {

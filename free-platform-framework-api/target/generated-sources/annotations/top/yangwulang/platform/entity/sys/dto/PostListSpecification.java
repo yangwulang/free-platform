@@ -17,9 +17,8 @@ import top.yangwulang.platform.entity.sys.PostProps;
 import top.yangwulang.platform.entity.sys.PostTable;
 
 /**
- *  岗位表
+ * 岗位表
  *
- *  @author yangwulang
  */
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Post.dto"

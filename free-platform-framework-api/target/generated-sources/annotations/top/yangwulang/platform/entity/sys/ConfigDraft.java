@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.lang.CloneNotSupportedException;
 import java.lang.Cloneable;
+import java.lang.IllegalStateException;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
@@ -92,7 +93,7 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.134",
+                "0.8.149",
                 Config.class,
                 Collections.singleton(DataTypeBaseNoStatusDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (Config)base)
@@ -764,6 +765,8 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
 
             private boolean __resolving;
 
+            private Config __resolved;
+
             DraftImpl(DraftContext ctx, Config base) {
                 __ctx = ctx;
                 if (base != null) {
@@ -816,7 +819,7 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
 
             @Override
             public String toString() {
-                return ImmutableObjects.toString((__modified!= null ? __modified : __base));
+                return ImmutableObjects.toString(this);
             }
 
             @Override
@@ -827,6 +830,9 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
 
             @Override
             public ConfigDraft setId(String id) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (id == null) {
                     throw new IllegalArgumentException(
                         "'id' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -845,6 +851,9 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
 
             @Override
             public ConfigDraft setCreateBy(String createBy) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (createBy == null) {
                     throw new IllegalArgumentException(
                         "'createBy' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -863,6 +872,9 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
 
             @Override
             public ConfigDraft setCreateDate(Date createDate) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (createDate == null) {
                     throw new IllegalArgumentException(
                         "'createDate' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -881,6 +893,9 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
 
             @Override
             public ConfigDraft setUpdateBy(String updateBy) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (updateBy == null) {
                     throw new IllegalArgumentException(
                         "'updateBy' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -899,6 +914,9 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
 
             @Override
             public ConfigDraft setUpdateDate(Date updateDate) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (updateDate == null) {
                     throw new IllegalArgumentException(
                         "'updateDate' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -918,6 +936,9 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
 
             @Override
             public ConfigDraft setRemarks(String remarks) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__remarksValue = remarks;
                 __tmpModified.__remarksLoaded = true;
@@ -932,6 +953,9 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
 
             @Override
             public ConfigDraft setConfigName(String configName) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (configName == null) {
                     throw new IllegalArgumentException(
                         "'configName' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -950,6 +974,9 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
 
             @Override
             public ConfigDraft setConfigKey(String configKey) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 if (configKey == null) {
                     throw new IllegalArgumentException(
                         "'configKey' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
@@ -969,6 +996,9 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
 
             @Override
             public ConfigDraft setConfigValue(String configValue) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Impl __tmpModified = __modified();
                 __tmpModified.__configValueValue = configValue;
                 __tmpModified.__configValueLoaded = true;
@@ -1033,6 +1063,9 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
 
             @Override
             public void __show(PropId prop, boolean visible) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Visibility __visibility = (__modified!= null ? __modified : __base).__visibility;
                 if (__visibility == null) {
                     if (visible) {
@@ -1073,6 +1106,9 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
 
             @Override
             public void __show(String prop, boolean visible) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 Visibility __visibility = (__modified!= null ? __modified : __base).__visibility;
                 if (__visibility == null) {
                     if (visible) {
@@ -1109,6 +1145,9 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
 
             @Override
             public void __unload(PropId prop) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 int __propIndex = prop.asIndex();
                 switch (__propIndex) {
                     case -1:
@@ -1138,6 +1177,9 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
 
             @Override
             public void __unload(String prop) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
                 switch (prop) {
                     case "id":
                     		__modified().__idValue = null;break;
@@ -1168,6 +1210,9 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
 
             @Override
             public Object __resolve() {
+                if (__resolved != null) {
+                    return __resolved;
+                }
                 if (__resolving) {
                     throw new CircularReferenceException();
                 }
@@ -1176,13 +1221,20 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
                     Implementor base = __base;
                     Impl __tmpModified = __modified;
                     if (__base != null && __tmpModified == null) {
+                        this.__resolved = base;
                         return base;
                     }
+                    this.__resolved = __tmpModified;
                     return __tmpModified;
                 }
                 finally {
                     __resolving = false;
                 }
+            }
+
+            @Override
+            public boolean __isResolved() {
+                return __resolved != null;
             }
 
             Impl __modified() {

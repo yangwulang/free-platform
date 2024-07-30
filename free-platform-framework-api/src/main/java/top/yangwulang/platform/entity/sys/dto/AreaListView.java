@@ -17,7 +17,7 @@ import org.babyfish.jimmer.impl.util.DtoPropAccessor;
 import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
-import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
+import org.babyfish.jimmer.sql.fetcher.DtoMetadata;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.sys.Area;
@@ -31,8 +31,8 @@ import top.yangwulang.platform.entity.sys.AreaFetcher;
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Area.dto"
 )
 public class AreaListView implements View<Area> {
-    public static final ViewMetadata<Area, AreaListView> METADATA =
-            new ViewMetadata<Area, AreaListView>(
+    public static final DtoMetadata<Area, AreaListView> METADATA =
+            new DtoMetadata<Area, AreaListView>(
                     AreaFetcher.$
                             .status()
                             .createBy()

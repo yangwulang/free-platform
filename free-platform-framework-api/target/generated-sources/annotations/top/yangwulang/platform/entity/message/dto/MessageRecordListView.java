@@ -10,7 +10,7 @@ import org.babyfish.jimmer.View;
 import org.babyfish.jimmer.internal.GeneratedBy;
 import org.babyfish.jimmer.meta.PropId;
 import org.babyfish.jimmer.runtime.ImmutableSpi;
-import org.babyfish.jimmer.sql.fetcher.ViewMetadata;
+import org.babyfish.jimmer.sql.fetcher.DtoMetadata;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.message.MessageRecord;
@@ -24,8 +24,8 @@ import top.yangwulang.platform.entity.message.MessageRecordFetcher;
         description = "消息记录"
 )
 public class MessageRecordListView implements View<MessageRecord> {
-    public static final ViewMetadata<MessageRecord, MessageRecordListView> METADATA = 
-        new ViewMetadata<MessageRecord, MessageRecordListView>(
+    public static final DtoMetadata<MessageRecord, MessageRecordListView> METADATA = 
+        new DtoMetadata<MessageRecord, MessageRecordListView>(
             MessageRecordFetcher.$
                 .type()
                 .title()

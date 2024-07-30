@@ -21,7 +21,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <kotlin.code.style>official</kotlin.code.style>
         <kotlin.compiler.jvmTarget>1.8</kotlin.compiler.jvmTarget>
-        <kotlin.version>1.7.22</kotlin.version>
+        <kotlin.version>1.9.25</kotlin.version>
         <spring-boot.version>3.0.1</spring-boot.version>
         <mapstruct.version>1.5.3.Final</mapstruct.version>
         <hutool.version>5.8.23</hutool.version>
@@ -33,7 +33,7 @@
         <commons-io.version>2.11.0</commons-io.version>
         <commons-fileupload.version>1.4</commons-fileupload.version>
         <jsoup.version>1.15.3</jsoup.version>
-        <jimmer.version>0.8.134</jimmer.version>
+        <jimmer.version>0.8.149</jimmer.version>
         <knife4j.version>4.1.0</knife4j.version>
         <minio.version>8.5.2</minio.version>
         <elasticsearch.version>7.14.1</elasticsearch.version>

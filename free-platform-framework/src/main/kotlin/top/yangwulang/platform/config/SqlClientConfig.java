@@ -19,6 +19,7 @@ public class SqlClientConfig implements Customizer, Initializer {
     public void customize(JSqlClient.Builder builder) {
         builder.setIdGenerator(new SnowflakeKey())
                 .setTriggerType(TriggerType.TRANSACTION_ONLY)
+                .setDefaultSerializedTypeObjectMapper(JimmerConfiguration.JIMMER_OBJECT_MAPPER)
                 .setExecutor(Executor.log());
     }
 

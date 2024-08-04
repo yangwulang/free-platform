@@ -37,7 +37,7 @@ public class JimmerConfiguration {
             .registerModule(new ImmutableModule());
 
 
-    @Bean
+    /*@Bean
     public CacheFactory cacheFactory(
             RedisConnectionFactory connectionFactory
     ) {
@@ -65,7 +65,7 @@ public class JimmerConfiguration {
                 return creator.createForProp(prop, true);
             }
         };
-    }
+    }*/
 
 
 }

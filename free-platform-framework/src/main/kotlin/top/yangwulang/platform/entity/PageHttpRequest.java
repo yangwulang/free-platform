@@ -41,13 +41,18 @@ public class PageHttpRequest {
         this.pageNum = pageNum == null ? 1 : pageNum;
         this.pageSize = pageSize == null ? 20 : pageSize;
     }
+
     public static PageHttpRequest of(HttpServletRequest httpServletRequest) {
         return new PageHttpRequest(httpServletRequest);
     }
 
+    public static PageHttpRequest of(Integer pageNum, Integer pageSize) {
+        return new PageHttpRequest(pageNum, pageSize);
+    }
+
     public Pageable toPage(Sort sort) {
         int page = this.pageNum <= 0 ? 0 : this.pageNum - 1;
-        return sort == null ? PageRequest.of(page, this.pageSize) : PageRequest.of(page, this.pageSize, sort);
+        return sort == null ? PageRequest.of(page, pageSize) : PageRequest.of(page, pageSize, sort);
     }
 
     public Pageable toPage() {

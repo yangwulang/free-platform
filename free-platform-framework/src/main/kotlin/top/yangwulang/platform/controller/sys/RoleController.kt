@@ -3,7 +3,6 @@ package top.yangwulang.platform.controller.sys
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import io.swagger.v3.oas.annotations.tags.Tags
-import jakarta.servlet.http.HttpServletRequest
 import org.babyfish.jimmer.spring.repository.support.SpringPageFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
@@ -13,9 +12,6 @@ import top.yangwulang.platform.entity.Result
 import top.yangwulang.platform.entity.TableExes
 import top.yangwulang.platform.entity.Tables
 import top.yangwulang.platform.entity.sys.Role
-import top.yangwulang.platform.entity.sys.RoleTable
-import top.yangwulang.platform.entity.sys.UserTable
-import top.yangwulang.platform.entity.sys.UserTableEx
 import top.yangwulang.platform.entity.sys.dto.*
 import top.yangwulang.platform.entity.sys.input.role.AllocationUserQo
 import top.yangwulang.platform.entity.sys.input.role.BindUserRoleBatchQo
@@ -45,9 +41,13 @@ class RoleController {
 
     @PostMapping
     @Operation(summary = "获取角色列表")
-    fun listData(request: HttpServletRequest?, @RequestBody specification: RoleListSpecification): Page<RoleListView> {
+    fun listData(
+        @RequestParam pageNum: Int,
+        @RequestParam pageSize: Int,
+        @RequestBody specification: RoleListSpecification
+    ): Page<RoleListView> {
         val repository = roleService.repository()
-        val page = PageHttpRequest.of(request).toPage()
+        val page = PageHttpRequest.of(pageNum, pageSize).toPage()
         return repository.sql()
             .createQuery(Tables.ROLE_TABLE)
             .where(specification)
@@ -58,14 +58,15 @@ class RoleController {
     @PostMapping("/allocationUser")
     @Operation(summary = "获取角色授权的用户")
     fun listUserData(
-        request: HttpServletRequest?,
+        @RequestParam pageNum: Int,
+        @RequestParam pageSize: Int,
         @RequestBody allocationUserQo: AllocationUserQo
     ): Page<UserListView> {
         if (allocationUserQo.roleId.isEmpty()) {
             throw ServiceException("角色id不能为空")
         }
         val table = Tables.USER_TABLE
-        val page = PageHttpRequest.of(request).toPage()
+        val page = PageHttpRequest.of(pageNum, pageSize).toPage()
         return userService.repository().sql()
             .createQuery(table)
             .where(TableExes.USER_TABLE_EX.roles().id().eq(allocationUserQo.roleId))

@@ -45,15 +45,12 @@ public class MenuListView implements View<Menu> {
                             .remarks()
                             .menuName()
                             .menuType()
-                            .menuHref()
+                            .menuPath()
                             .menuComponent()
                             .menuTarget()
-                            .menuIcon()
-                            .menuColor()
-                            .menuTitle()
                             .permission()
+                            .meta()
                             .weight()
-                            .isShow()
                             .sysCode()
                             .recursiveChildren(it -> it.recursive(args ->
                                     !args.getEntity().menuType().equals(Menu.MENU_TYPE_PERMISSION)
@@ -104,12 +101,6 @@ public class MenuListView implements View<Menu> {
     private String menuType;
 
     @Schema(
-            description = "链接"
-    )
-    @Nullable
-    private String menuHref;
-
-    @Schema(
             description = "组件地址"
     )
     @Nullable
@@ -120,24 +111,6 @@ public class MenuListView implements View<Menu> {
     )
     @Nullable
     private String menuTarget;
-
-    @Schema(
-            description = "图标"
-    )
-    @Nullable
-    private String menuIcon;
-
-    @Schema(
-            description = "颜色"
-    )
-    @Nullable
-    private String menuColor;
-
-    @Schema(
-            description = "菜单标题"
-    )
-    @Nullable
-    private String menuTitle;
 
     @Schema(
             description = "权限标识"
@@ -151,11 +124,6 @@ public class MenuListView implements View<Menu> {
     @Nullable
     private BigDecimal weight;
 
-    @Schema(
-            description = "是否显示"
-    )
-    @Nullable
-    private Boolean isShow;
 
     @Schema(
             description = "归属系统（default:主导航菜单、mobileApp:APP菜单）"
@@ -182,15 +150,10 @@ public class MenuListView implements View<Menu> {
         this.remarks = ((ImmutableSpi) base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_REMARKS)) ? base.remarks() : null;
         this.menuName = base.menuName();
         this.menuType = base.menuType();
-        this.menuHref = ((ImmutableSpi) base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_MENU_HREF)) ? base.menuHref() : null;
         this.menuComponent = ((ImmutableSpi) base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_MENU_COMPONENT)) ? base.menuComponent() : null;
         this.menuTarget = ((ImmutableSpi) base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_MENU_TARGET)) ? base.menuTarget() : null;
-        this.menuIcon = ((ImmutableSpi) base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_MENU_ICON)) ? base.menuIcon() : null;
-        this.menuColor = ((ImmutableSpi) base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_MENU_COLOR)) ? base.menuColor() : null;
-        this.menuTitle = ((ImmutableSpi) base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_MENU_TITLE)) ? base.menuTitle() : null;
         this.permission = ((ImmutableSpi) base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_PERMISSION)) ? base.permission() : null;
         this.weight = ((ImmutableSpi) base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_WEIGHT)) ? base.weight() : null;
-        this.isShow = ((ImmutableSpi) base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_IS_SHOW)) ? base.isShow() : null;
         this.sysCode = ((ImmutableSpi) base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_SYS_CODE)) ? base.sysCode() : null;
         this.children = CHILDREN_ACCESSOR.get(base);
     }
@@ -325,21 +288,6 @@ public class MenuListView implements View<Menu> {
     }
 
     /**
-     * 链接
-     */
-    @Nullable
-    @Schema(
-            description = "链接"
-    )
-    public String getMenuHref() {
-        return menuHref;
-    }
-
-    public void setMenuHref(@Nullable String menuHref) {
-        this.menuHref = menuHref;
-    }
-
-    /**
      * 组件地址
      */
     @Nullable
@@ -367,51 +315,6 @@ public class MenuListView implements View<Menu> {
 
     public void setMenuTarget(@Nullable String menuTarget) {
         this.menuTarget = menuTarget;
-    }
-
-    /**
-     * 图标
-     */
-    @Nullable
-    @Schema(
-            description = "图标"
-    )
-    public String getMenuIcon() {
-        return menuIcon;
-    }
-
-    public void setMenuIcon(@Nullable String menuIcon) {
-        this.menuIcon = menuIcon;
-    }
-
-    /**
-     * 颜色
-     */
-    @Nullable
-    @Schema(
-            description = "颜色"
-    )
-    public String getMenuColor() {
-        return menuColor;
-    }
-
-    public void setMenuColor(@Nullable String menuColor) {
-        this.menuColor = menuColor;
-    }
-
-    /**
-     * 菜单标题
-     */
-    @Nullable
-    @Schema(
-            description = "菜单标题"
-    )
-    public String getMenuTitle() {
-        return menuTitle;
-    }
-
-    public void setMenuTitle(@Nullable String menuTitle) {
-        this.menuTitle = menuTitle;
     }
 
     /**
@@ -444,20 +347,6 @@ public class MenuListView implements View<Menu> {
         this.weight = weight;
     }
 
-    /**
-     * 是否显示
-     */
-    @Nullable
-    @Schema(
-            description = "是否显示"
-    )
-    public Boolean getIsShow() {
-        return isShow;
-    }
-
-    public void setIsShow(@Nullable Boolean isShow) {
-        this.isShow = isShow;
-    }
 
     /**
      * 归属系统（default:主导航菜单、mobileApp:APP菜单）
@@ -498,15 +387,10 @@ public class MenuListView implements View<Menu> {
             __draft.setRemarks(remarks);
             __draft.setMenuName(menuName);
             __draft.setMenuType(menuType);
-            __draft.setMenuHref(menuHref);
             __draft.setMenuComponent(menuComponent);
             __draft.setMenuTarget(menuTarget);
-            __draft.setMenuIcon(menuIcon);
-            __draft.setMenuColor(menuColor);
-            __draft.setMenuTitle(menuTitle);
             __draft.setPermission(permission);
             __draft.setWeight(weight);
-            __draft.setIsShow(isShow);
             __draft.setSysCode(sysCode);
             CHILDREN_ACCESSOR.set(__draft, children != null ? children : Collections.emptyList());
         });
@@ -523,15 +407,10 @@ public class MenuListView implements View<Menu> {
         hash = hash * 31 + Objects.hashCode(remarks);
         hash = hash * 31 + Objects.hashCode(menuName);
         hash = hash * 31 + Objects.hashCode(menuType);
-        hash = hash * 31 + Objects.hashCode(menuHref);
         hash = hash * 31 + Objects.hashCode(menuComponent);
         hash = hash * 31 + Objects.hashCode(menuTarget);
-        hash = hash * 31 + Objects.hashCode(menuIcon);
-        hash = hash * 31 + Objects.hashCode(menuColor);
-        hash = hash * 31 + Objects.hashCode(menuTitle);
         hash = hash * 31 + Objects.hashCode(permission);
         hash = hash * 31 + Objects.hashCode(weight);
-        hash = hash * 31 + Objects.hashCode(isShow);
         hash = hash * 31 + Objects.hashCode(sysCode);
         hash = hash * 31 + Objects.hashCode(children);
         return hash;
@@ -570,31 +449,16 @@ public class MenuListView implements View<Menu> {
         if (!Objects.equals(menuType, other.menuType)) {
             return false;
         }
-        if (!Objects.equals(menuHref, other.menuHref)) {
-            return false;
-        }
         if (!Objects.equals(menuComponent, other.menuComponent)) {
             return false;
         }
         if (!Objects.equals(menuTarget, other.menuTarget)) {
             return false;
         }
-        if (!Objects.equals(menuIcon, other.menuIcon)) {
-            return false;
-        }
-        if (!Objects.equals(menuColor, other.menuColor)) {
-            return false;
-        }
-        if (!Objects.equals(menuTitle, other.menuTitle)) {
-            return false;
-        }
         if (!Objects.equals(permission, other.permission)) {
             return false;
         }
         if (!Objects.equals(weight, other.weight)) {
-            return false;
-        }
-        if (!Objects.equals(isShow, other.isShow)) {
             return false;
         }
         if (!Objects.equals(sysCode, other.sysCode)) {
@@ -619,15 +483,10 @@ public class MenuListView implements View<Menu> {
         builder.append(", remarks=").append(remarks);
         builder.append(", menuName=").append(menuName);
         builder.append(", menuType=").append(menuType);
-        builder.append(", menuHref=").append(menuHref);
         builder.append(", menuComponent=").append(menuComponent);
         builder.append(", menuTarget=").append(menuTarget);
-        builder.append(", menuIcon=").append(menuIcon);
-        builder.append(", menuColor=").append(menuColor);
-        builder.append(", menuTitle=").append(menuTitle);
         builder.append(", permission=").append(permission);
         builder.append(", weight=").append(weight);
-        builder.append(", isShow=").append(isShow);
         builder.append(", sysCode=").append(sysCode);
         builder.append(", children=").append(children);
         builder.append(')');

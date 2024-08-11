@@ -12,37 +12,31 @@ MenuGetView {
     id?
     menuName?
     menuType?
-    menuHref
     menuComponent
     menuTarget
-    menuIcon
-    menuColor
-    menuTitle
+    menuPath
     permission
     weight
-    isShow
     sysCode
     parentId
     parent {
         menuName?
     }
+    meta
 }
 
 unsafe input MenuSaveInput {
-    id
+    id?
     parentId
     menuName
     menuType
-    menuHref
+    menuPath
     menuComponent
     menuTarget
-    menuIcon
-    menuColor
-    menuTitle
     permission
     weight
-    isShow
     sysCode
+    meta
 }
 
 /* MenuListView {

@@ -45,11 +45,21 @@ public interface Menu extends DataTypeBase {
     @Schema(description = "子级菜单")
     List<Menu> children();
 
+    @Serialized
+    @Schema(description = "菜单元数据")
+    Meta meta();
+
     /**
      * 菜单名称
      */
     @Schema(description = "菜单名称")
     String menuName();
+
+    @Schema(description = "菜单路径")
+    String menuPath();
+
+    @Schema(description = "重定向地址")
+    @Nullable String redirect();
 
     /**
      * 菜单类型（1菜单 2权限 3开发）
@@ -57,11 +67,6 @@ public interface Menu extends DataTypeBase {
     @Schema(description = "菜单类型（1菜单 2权限 3开发）")
     String menuType();
 
-    /**
-     * 链接
-     */
-    @Schema(description = "链接")
-    @Nullable String menuHref();
 
     /**
      * 组件地址
@@ -76,24 +81,6 @@ public interface Menu extends DataTypeBase {
     @Nullable String menuTarget();
 
     /**
-     * 图标
-     */
-    @Schema(description = "图标")
-    @Nullable String menuIcon();
-
-    /**
-     * 颜色
-     */
-    @Schema(description = "颜色")
-    @Nullable String menuColor();
-
-    /**
-     * 菜单标题
-     */
-    @Schema(description = "菜单标题")
-    @Nullable String menuTitle();
-
-    /**
      * 权限标识
      */
     @Schema(description = "权限标识")
@@ -105,12 +92,6 @@ public interface Menu extends DataTypeBase {
     @Schema(description = "菜单权重")
     @Nullable BigDecimal weight();
 
-    /**
-     * 是否显示
-     */
-    @Schema(description = "是否显示")
-    @Column(name = "is_show")
-    @Nullable Boolean isShow();
 
     /**
      * 归属系统（default:主导航菜单、mobileApp:APP菜单）

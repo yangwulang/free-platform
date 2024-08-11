@@ -186,6 +186,16 @@ public class MenuFetcher extends AbstractTypedFetcher<Menu, MenuFetcher> {
     }
 
     @NewChain
+    public MenuFetcher meta() {
+        return add("meta");
+    }
+
+    @NewChain
+    public MenuFetcher meta(boolean enabled) {
+        return enabled ? add("meta") : remove("meta");
+    }
+
+    @NewChain
     public MenuFetcher menuName() {
         return add("menuName");
     }
@@ -196,6 +206,26 @@ public class MenuFetcher extends AbstractTypedFetcher<Menu, MenuFetcher> {
     }
 
     @NewChain
+    public MenuFetcher menuPath() {
+        return add("menuPath");
+    }
+
+    @NewChain
+    public MenuFetcher menuPath(boolean enabled) {
+        return enabled ? add("menuPath") : remove("menuPath");
+    }
+
+    @NewChain
+    public MenuFetcher redirect() {
+        return add("redirect");
+    }
+
+    @NewChain
+    public MenuFetcher redirect(boolean enabled) {
+        return enabled ? add("redirect") : remove("redirect");
+    }
+
+    @NewChain
     public MenuFetcher menuType() {
         return add("menuType");
     }
@@ -203,16 +233,6 @@ public class MenuFetcher extends AbstractTypedFetcher<Menu, MenuFetcher> {
     @NewChain
     public MenuFetcher menuType(boolean enabled) {
         return enabled ? add("menuType") : remove("menuType");
-    }
-
-    @NewChain
-    public MenuFetcher menuHref() {
-        return add("menuHref");
-    }
-
-    @NewChain
-    public MenuFetcher menuHref(boolean enabled) {
-        return enabled ? add("menuHref") : remove("menuHref");
     }
 
     @NewChain
@@ -236,36 +256,6 @@ public class MenuFetcher extends AbstractTypedFetcher<Menu, MenuFetcher> {
     }
 
     @NewChain
-    public MenuFetcher menuIcon() {
-        return add("menuIcon");
-    }
-
-    @NewChain
-    public MenuFetcher menuIcon(boolean enabled) {
-        return enabled ? add("menuIcon") : remove("menuIcon");
-    }
-
-    @NewChain
-    public MenuFetcher menuColor() {
-        return add("menuColor");
-    }
-
-    @NewChain
-    public MenuFetcher menuColor(boolean enabled) {
-        return enabled ? add("menuColor") : remove("menuColor");
-    }
-
-    @NewChain
-    public MenuFetcher menuTitle() {
-        return add("menuTitle");
-    }
-
-    @NewChain
-    public MenuFetcher menuTitle(boolean enabled) {
-        return enabled ? add("menuTitle") : remove("menuTitle");
-    }
-
-    @NewChain
     public MenuFetcher permission() {
         return add("permission");
     }
@@ -283,16 +273,6 @@ public class MenuFetcher extends AbstractTypedFetcher<Menu, MenuFetcher> {
     @NewChain
     public MenuFetcher weight(boolean enabled) {
         return enabled ? add("weight") : remove("weight");
-    }
-
-    @NewChain
-    public MenuFetcher isShow() {
-        return add("isShow");
-    }
-
-    @NewChain
-    public MenuFetcher isShow(boolean enabled) {
-        return enabled ? add("isShow") : remove("isShow");
     }
 
     @NewChain

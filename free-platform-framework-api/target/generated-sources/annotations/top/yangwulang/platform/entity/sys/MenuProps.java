@@ -1,6 +1,5 @@
 package top.yangwulang.platform.entity.sys;
 
-import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.math.BigDecimal;
@@ -50,14 +49,20 @@ public interface MenuProps extends DataTypeBaseProps {
     TypedProp.ReferenceList<Menu, Menu> CHILDREN = 
         TypedProp.referenceList(ImmutableType.get(Menu.class).getProp("children"));
 
+    TypedProp.Scalar<Menu, Meta> META = 
+        TypedProp.scalar(ImmutableType.get(Menu.class).getProp("meta"));
+
     TypedProp.Scalar<Menu, String> MENU_NAME = 
         TypedProp.scalar(ImmutableType.get(Menu.class).getProp("menuName"));
 
+    TypedProp.Scalar<Menu, String> MENU_PATH = 
+        TypedProp.scalar(ImmutableType.get(Menu.class).getProp("menuPath"));
+
+    TypedProp.Scalar<Menu, String> REDIRECT = 
+        TypedProp.scalar(ImmutableType.get(Menu.class).getProp("redirect"));
+
     TypedProp.Scalar<Menu, String> MENU_TYPE = 
         TypedProp.scalar(ImmutableType.get(Menu.class).getProp("menuType"));
-
-    TypedProp.Scalar<Menu, String> MENU_HREF = 
-        TypedProp.scalar(ImmutableType.get(Menu.class).getProp("menuHref"));
 
     TypedProp.Scalar<Menu, String> MENU_COMPONENT = 
         TypedProp.scalar(ImmutableType.get(Menu.class).getProp("menuComponent"));
@@ -65,23 +70,11 @@ public interface MenuProps extends DataTypeBaseProps {
     TypedProp.Scalar<Menu, String> MENU_TARGET = 
         TypedProp.scalar(ImmutableType.get(Menu.class).getProp("menuTarget"));
 
-    TypedProp.Scalar<Menu, String> MENU_ICON = 
-        TypedProp.scalar(ImmutableType.get(Menu.class).getProp("menuIcon"));
-
-    TypedProp.Scalar<Menu, String> MENU_COLOR = 
-        TypedProp.scalar(ImmutableType.get(Menu.class).getProp("menuColor"));
-
-    TypedProp.Scalar<Menu, String> MENU_TITLE = 
-        TypedProp.scalar(ImmutableType.get(Menu.class).getProp("menuTitle"));
-
     TypedProp.Scalar<Menu, String> PERMISSION = 
         TypedProp.scalar(ImmutableType.get(Menu.class).getProp("permission"));
 
     TypedProp.Scalar<Menu, BigDecimal> WEIGHT = 
         TypedProp.scalar(ImmutableType.get(Menu.class).getProp("weight"));
-
-    TypedProp.Scalar<Menu, Boolean> IS_SHOW = 
-        TypedProp.scalar(ImmutableType.get(Menu.class).getProp("isShow"));
 
     TypedProp.Scalar<Menu, String> SYS_CODE = 
         TypedProp.scalar(ImmutableType.get(Menu.class).getProp("sysCode"));
@@ -97,27 +90,23 @@ public interface MenuProps extends DataTypeBaseProps {
 
     Predicate children(Function<MenuTableEx, Predicate> block);
 
+    PropExpression<Meta> meta();
+
     PropExpression.Str menuName();
 
-    PropExpression.Str menuType();
+    PropExpression.Str menuPath();
 
-    PropExpression.Str menuHref();
+    PropExpression.Str redirect();
+
+    PropExpression.Str menuType();
 
     PropExpression.Str menuComponent();
 
     PropExpression.Str menuTarget();
 
-    PropExpression.Str menuIcon();
-
-    PropExpression.Str menuColor();
-
-    PropExpression.Str menuTitle();
-
     PropExpression.Str permission();
 
     PropExpression.Num<BigDecimal> weight();
-
-    PropExpression.Cmp<Boolean> isShow();
 
     PropExpression.Str sysCode();
 

@@ -129,7 +129,7 @@ public interface CompanyDraft extends Company, TypeBaseDraft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.149",
+                "0.8.150",
                 Company.class,
                 Collections.singleton(TypeBaseDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (Company)base)

@@ -43,14 +43,10 @@ public class MenuServiceImpl extends BaseServiceImpl<Menu, String, MenuRepositor
             TreeNode<String> menuTreeNode = new TreeNodeString<>(m.id(), m.parentId(), m.menuName(), m.weight());
             menuTreeNode.setExtra(new HashMap<>() {{
                 put("menuType", m.menuType());
-                put("menuHref", m.menuHref());
                 put("menuComponent", m.menuComponent());
                 put("menuTarget", m.menuTarget());
-                put("menuIcon", m.menuIcon());
-                put("menuColor", m.menuColor());
-                put("menuTitle", m.menuTitle());
                 put("permission", m.permission());
-                put("isShow", m.isShow());
+                put("meta", m.meta());
                 put("sysCode", m.sysCode());
             }});
             return menuTreeNode;

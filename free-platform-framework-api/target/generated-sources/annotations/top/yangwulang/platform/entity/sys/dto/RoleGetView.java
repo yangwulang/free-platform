@@ -21,6 +21,7 @@ import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.sys.Menu;
 import top.yangwulang.platform.entity.sys.MenuDraft;
 import top.yangwulang.platform.entity.sys.MenuFetcher;
+import top.yangwulang.platform.entity.sys.Meta;
 import top.yangwulang.platform.entity.sys.Role;
 import top.yangwulang.platform.entity.sys.RoleDraft;
 import top.yangwulang.platform.entity.sys.RoleFetcher;
@@ -523,17 +524,15 @@ public class RoleGetView implements View<Role> {
                     .updateBy()
                     .updateDate()
                     .remarks()
+                    .meta()
                     .menuName()
+                    .menuPath()
+                    .redirect()
                     .menuType()
-                    .menuHref()
                     .menuComponent()
                     .menuTarget()
-                    .menuIcon()
-                    .menuColor()
-                    .menuTitle()
                     .permission()
                     .weight()
-                    .isShow()
                     .sysCode(),
                 TargetOf_menus::new
         );
@@ -550,27 +549,23 @@ public class RoleGetView implements View<Role> {
 
         private String remarks;
 
+        private Meta meta;
+
         private String menuName;
 
-        private String menuType;
+        private String menuPath;
 
-        private String menuHref;
+        private String redirect;
+
+        private String menuType;
 
         private String menuComponent;
 
         private String menuTarget;
 
-        private String menuIcon;
-
-        private String menuColor;
-
-        private String menuTitle;
-
         private String permission;
 
         private BigDecimal weight;
-
-        private Boolean isShow;
 
         private String sysCode;
 
@@ -584,17 +579,15 @@ public class RoleGetView implements View<Role> {
             this.updateBy = base.updateBy();
             this.updateDate = base.updateDate();
             this.remarks = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_REMARKS)) ? base.remarks() : null;
+            this.meta = base.meta();
             this.menuName = base.menuName();
+            this.menuPath = base.menuPath();
+            this.redirect = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_REDIRECT)) ? base.redirect() : null;
             this.menuType = base.menuType();
-            this.menuHref = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_MENU_HREF)) ? base.menuHref() : null;
             this.menuComponent = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_MENU_COMPONENT)) ? base.menuComponent() : null;
             this.menuTarget = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_MENU_TARGET)) ? base.menuTarget() : null;
-            this.menuIcon = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_MENU_ICON)) ? base.menuIcon() : null;
-            this.menuColor = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_MENU_COLOR)) ? base.menuColor() : null;
-            this.menuTitle = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_MENU_TITLE)) ? base.menuTitle() : null;
             this.permission = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_PERMISSION)) ? base.permission() : null;
             this.weight = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_WEIGHT)) ? base.weight() : null;
-            this.isShow = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_IS_SHOW)) ? base.isShow() : null;
             this.sysCode = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_SYS_CODE)) ? base.sysCode() : null;
         }
 
@@ -696,6 +689,21 @@ public class RoleGetView implements View<Role> {
             this.remarks = remarks;
         }
 
+        @NotNull
+        @Schema(
+                description = "菜单元数据"
+        )
+        public Meta getMeta() {
+            if (meta == null) {
+                throw new IllegalStateException("The property \"meta\" is not specified");
+            }
+            return meta;
+        }
+
+        public void setMeta(@NotNull Meta meta) {
+            this.meta = meta;
+        }
+
         /**
          * 菜单名称
          */
@@ -714,6 +722,33 @@ public class RoleGetView implements View<Role> {
             this.menuName = menuName;
         }
 
+        @NotNull
+        @Schema(
+                description = "菜单路径"
+        )
+        public String getMenuPath() {
+            if (menuPath == null) {
+                throw new IllegalStateException("The property \"menuPath\" is not specified");
+            }
+            return menuPath;
+        }
+
+        public void setMenuPath(@NotNull String menuPath) {
+            this.menuPath = menuPath;
+        }
+
+        @Nullable
+        @Schema(
+                description = "重定向地址"
+        )
+        public String getRedirect() {
+            return redirect;
+        }
+
+        public void setRedirect(@Nullable String redirect) {
+            this.redirect = redirect;
+        }
+
         /**
          * 菜单类型（1菜单 2权限 3开发）
          */
@@ -730,21 +765,6 @@ public class RoleGetView implements View<Role> {
 
         public void setMenuType(@NotNull String menuType) {
             this.menuType = menuType;
-        }
-
-        /**
-         * 链接
-         */
-        @Nullable
-        @Schema(
-                description = "链接"
-        )
-        public String getMenuHref() {
-            return menuHref;
-        }
-
-        public void setMenuHref(@Nullable String menuHref) {
-            this.menuHref = menuHref;
         }
 
         /**
@@ -778,51 +798,6 @@ public class RoleGetView implements View<Role> {
         }
 
         /**
-         * 图标
-         */
-        @Nullable
-        @Schema(
-                description = "图标"
-        )
-        public String getMenuIcon() {
-            return menuIcon;
-        }
-
-        public void setMenuIcon(@Nullable String menuIcon) {
-            this.menuIcon = menuIcon;
-        }
-
-        /**
-         * 颜色
-         */
-        @Nullable
-        @Schema(
-                description = "颜色"
-        )
-        public String getMenuColor() {
-            return menuColor;
-        }
-
-        public void setMenuColor(@Nullable String menuColor) {
-            this.menuColor = menuColor;
-        }
-
-        /**
-         * 菜单标题
-         */
-        @Nullable
-        @Schema(
-                description = "菜单标题"
-        )
-        public String getMenuTitle() {
-            return menuTitle;
-        }
-
-        public void setMenuTitle(@Nullable String menuTitle) {
-            this.menuTitle = menuTitle;
-        }
-
-        /**
          * 权限标识
          */
         @Nullable
@@ -853,21 +828,6 @@ public class RoleGetView implements View<Role> {
         }
 
         /**
-         * 是否显示
-         */
-        @Nullable
-        @Schema(
-                description = "是否显示"
-        )
-        public Boolean getIsShow() {
-            return isShow;
-        }
-
-        public void setIsShow(@Nullable Boolean isShow) {
-            this.isShow = isShow;
-        }
-
-        /**
          * 归属系统（default:主导航菜单、mobileApp:APP菜单）
          */
         @Nullable
@@ -891,17 +851,15 @@ public class RoleGetView implements View<Role> {
                 __draft.setUpdateBy(updateBy);
                 __draft.setUpdateDate(updateDate);
                 __draft.setRemarks(remarks);
+                __draft.setMeta(meta);
                 __draft.setMenuName(menuName);
+                __draft.setMenuPath(menuPath);
+                __draft.setRedirect(redirect);
                 __draft.setMenuType(menuType);
-                __draft.setMenuHref(menuHref);
                 __draft.setMenuComponent(menuComponent);
                 __draft.setMenuTarget(menuTarget);
-                __draft.setMenuIcon(menuIcon);
-                __draft.setMenuColor(menuColor);
-                __draft.setMenuTitle(menuTitle);
                 __draft.setPermission(permission);
                 __draft.setWeight(weight);
-                __draft.setIsShow(isShow);
                 __draft.setSysCode(sysCode);
             });
         }
@@ -914,17 +872,15 @@ public class RoleGetView implements View<Role> {
             hash = hash * 31 + Objects.hashCode(updateBy);
             hash = hash * 31 + Objects.hashCode(updateDate);
             hash = hash * 31 + Objects.hashCode(remarks);
+            hash = hash * 31 + Objects.hashCode(meta);
             hash = hash * 31 + Objects.hashCode(menuName);
+            hash = hash * 31 + Objects.hashCode(menuPath);
+            hash = hash * 31 + Objects.hashCode(redirect);
             hash = hash * 31 + Objects.hashCode(menuType);
-            hash = hash * 31 + Objects.hashCode(menuHref);
             hash = hash * 31 + Objects.hashCode(menuComponent);
             hash = hash * 31 + Objects.hashCode(menuTarget);
-            hash = hash * 31 + Objects.hashCode(menuIcon);
-            hash = hash * 31 + Objects.hashCode(menuColor);
-            hash = hash * 31 + Objects.hashCode(menuTitle);
             hash = hash * 31 + Objects.hashCode(permission);
             hash = hash * 31 + Objects.hashCode(weight);
-            hash = hash * 31 + Objects.hashCode(isShow);
             hash = hash * 31 + Objects.hashCode(sysCode);
             return hash;
         }
@@ -953,13 +909,19 @@ public class RoleGetView implements View<Role> {
             if (!Objects.equals(remarks, other.remarks)) {
                 return false;
             }
+            if (!Objects.equals(meta, other.meta)) {
+                return false;
+            }
             if (!Objects.equals(menuName, other.menuName)) {
                 return false;
             }
-            if (!Objects.equals(menuType, other.menuType)) {
+            if (!Objects.equals(menuPath, other.menuPath)) {
                 return false;
             }
-            if (!Objects.equals(menuHref, other.menuHref)) {
+            if (!Objects.equals(redirect, other.redirect)) {
+                return false;
+            }
+            if (!Objects.equals(menuType, other.menuType)) {
                 return false;
             }
             if (!Objects.equals(menuComponent, other.menuComponent)) {
@@ -968,22 +930,10 @@ public class RoleGetView implements View<Role> {
             if (!Objects.equals(menuTarget, other.menuTarget)) {
                 return false;
             }
-            if (!Objects.equals(menuIcon, other.menuIcon)) {
-                return false;
-            }
-            if (!Objects.equals(menuColor, other.menuColor)) {
-                return false;
-            }
-            if (!Objects.equals(menuTitle, other.menuTitle)) {
-                return false;
-            }
             if (!Objects.equals(permission, other.permission)) {
                 return false;
             }
             if (!Objects.equals(weight, other.weight)) {
-                return false;
-            }
-            if (!Objects.equals(isShow, other.isShow)) {
                 return false;
             }
             if (!Objects.equals(sysCode, other.sysCode)) {
@@ -1002,17 +952,15 @@ public class RoleGetView implements View<Role> {
             builder.append(", updateBy=").append(updateBy);
             builder.append(", updateDate=").append(updateDate);
             builder.append(", remarks=").append(remarks);
+            builder.append(", meta=").append(meta);
             builder.append(", menuName=").append(menuName);
+            builder.append(", menuPath=").append(menuPath);
+            builder.append(", redirect=").append(redirect);
             builder.append(", menuType=").append(menuType);
-            builder.append(", menuHref=").append(menuHref);
             builder.append(", menuComponent=").append(menuComponent);
             builder.append(", menuTarget=").append(menuTarget);
-            builder.append(", menuIcon=").append(menuIcon);
-            builder.append(", menuColor=").append(menuColor);
-            builder.append(", menuTitle=").append(menuTitle);
             builder.append(", permission=").append(permission);
             builder.append(", weight=").append(weight);
-            builder.append(", isShow=").append(isShow);
             builder.append(", sysCode=").append(sysCode);
             builder.append(')');
             return builder.toString();

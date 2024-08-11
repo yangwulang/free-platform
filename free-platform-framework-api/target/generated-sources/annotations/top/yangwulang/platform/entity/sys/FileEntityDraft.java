@@ -71,7 +71,7 @@ public interface FileEntityDraft extends FileEntity, TypeBaseDraft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.149",
+                "0.8.150",
                 FileEntity.class,
                 Collections.singleton(TypeBaseDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (FileEntity)base)

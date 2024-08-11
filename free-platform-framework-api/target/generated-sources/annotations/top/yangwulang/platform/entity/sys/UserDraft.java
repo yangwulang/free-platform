@@ -187,7 +187,7 @@ public interface UserDraft extends User, BaseEntityDraft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.149",
+                "0.8.150",
                 User.class,
                 Collections.singleton(BaseEntityDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (User)base)

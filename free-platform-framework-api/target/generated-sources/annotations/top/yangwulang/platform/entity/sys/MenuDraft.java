@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
-import java.lang.Boolean;
 import java.lang.CloneNotSupportedException;
 import java.lang.Cloneable;
 import java.lang.IllegalArgumentException;
@@ -100,13 +99,19 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
     MenuDraft addIntoChildren(Menu base, DraftConsumer<MenuDraft> block);
 
     @OldChain
+    MenuDraft setMeta(Meta meta);
+
+    @OldChain
     MenuDraft setMenuName(String menuName);
 
     @OldChain
-    MenuDraft setMenuType(String menuType);
+    MenuDraft setMenuPath(String menuPath);
 
     @OldChain
-    MenuDraft setMenuHref(String menuHref);
+    MenuDraft setRedirect(String redirect);
+
+    @OldChain
+    MenuDraft setMenuType(String menuType);
 
     @OldChain
     MenuDraft setMenuComponent(String menuComponent);
@@ -115,22 +120,10 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
     MenuDraft setMenuTarget(String menuTarget);
 
     @OldChain
-    MenuDraft setMenuIcon(String menuIcon);
-
-    @OldChain
-    MenuDraft setMenuColor(String menuColor);
-
-    @OldChain
-    MenuDraft setMenuTitle(String menuTitle);
-
-    @OldChain
     MenuDraft setPermission(String permission);
 
     @OldChain
     MenuDraft setWeight(BigDecimal weight);
-
-    @OldChain
-    MenuDraft setIsShow(Boolean isShow);
 
     @OldChain
     MenuDraft setSysCode(String sysCode);
@@ -172,35 +165,31 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
 
         public static final int SLOT_CHILDREN = 9;
 
-        public static final int SLOT_MENU_NAME = 10;
+        public static final int SLOT_META = 10;
 
-        public static final int SLOT_MENU_TYPE = 11;
+        public static final int SLOT_MENU_NAME = 11;
 
-        public static final int SLOT_MENU_HREF = 12;
+        public static final int SLOT_MENU_PATH = 12;
 
-        public static final int SLOT_MENU_COMPONENT = 13;
+        public static final int SLOT_REDIRECT = 13;
 
-        public static final int SLOT_MENU_TARGET = 14;
+        public static final int SLOT_MENU_TYPE = 14;
 
-        public static final int SLOT_MENU_ICON = 15;
+        public static final int SLOT_MENU_COMPONENT = 15;
 
-        public static final int SLOT_MENU_COLOR = 16;
+        public static final int SLOT_MENU_TARGET = 16;
 
-        public static final int SLOT_MENU_TITLE = 17;
+        public static final int SLOT_PERMISSION = 17;
 
-        public static final int SLOT_PERMISSION = 18;
+        public static final int SLOT_WEIGHT = 18;
 
-        public static final int SLOT_WEIGHT = 19;
+        public static final int SLOT_SYS_CODE = 19;
 
-        public static final int SLOT_IS_SHOW = 20;
-
-        public static final int SLOT_SYS_CODE = 21;
-
-        public static final int SLOT_ROLES = 22;
+        public static final int SLOT_ROLES = 20;
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.149",
+                "0.8.150",
                 Menu.class,
                 Collections.singleton(DataTypeBaseDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (Menu)base)
@@ -215,17 +204,15 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             .keyReference(SLOT_PARENT, "parent", ManyToOne.class, Menu.class, true)
             .add(SLOT_PARENT_ID, "parentId", ImmutablePropCategory.SCALAR, String.class, true)
             .add(SLOT_CHILDREN, "children", OneToMany.class, Menu.class, false)
+            .add(SLOT_META, "meta", ImmutablePropCategory.SCALAR, Meta.class, false)
             .add(SLOT_MENU_NAME, "menuName", ImmutablePropCategory.SCALAR, String.class, false)
+            .add(SLOT_MENU_PATH, "menuPath", ImmutablePropCategory.SCALAR, String.class, false)
+            .add(SLOT_REDIRECT, "redirect", ImmutablePropCategory.SCALAR, String.class, true)
             .add(SLOT_MENU_TYPE, "menuType", ImmutablePropCategory.SCALAR, String.class, false)
-            .add(SLOT_MENU_HREF, "menuHref", ImmutablePropCategory.SCALAR, String.class, true)
             .add(SLOT_MENU_COMPONENT, "menuComponent", ImmutablePropCategory.SCALAR, String.class, true)
             .add(SLOT_MENU_TARGET, "menuTarget", ImmutablePropCategory.SCALAR, String.class, true)
-            .add(SLOT_MENU_ICON, "menuIcon", ImmutablePropCategory.SCALAR, String.class, true)
-            .add(SLOT_MENU_COLOR, "menuColor", ImmutablePropCategory.SCALAR, String.class, true)
-            .add(SLOT_MENU_TITLE, "menuTitle", ImmutablePropCategory.SCALAR, String.class, true)
             .add(SLOT_PERMISSION, "permission", ImmutablePropCategory.SCALAR, String.class, true)
             .add(SLOT_WEIGHT, "weight", ImmutablePropCategory.SCALAR, BigDecimal.class, true)
-            .add(SLOT_IS_SHOW, "isShow", ImmutablePropCategory.SCALAR, Boolean.class, true)
             .add(SLOT_SYS_CODE, "sysCode", ImmutablePropCategory.SCALAR, String.class, true)
             .add(SLOT_ROLES, "roles", ManyToMany.class, Role.class, false)
             .build();
@@ -244,7 +231,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
         @GeneratedBy(
                 type = Menu.class
         )
-        @JsonPropertyOrder({"dummyPropForJacksonError__", "id", "status", "createBy", "createDate", "updateBy", "updateDate", "remarks", "parent", "parentId", "children", "menuName", "menuType", "menuHref", "menuComponent", "menuTarget", "menuIcon", "menuColor", "menuTitle", "permission", "weight", "isShow", "sysCode", "roles"})
+        @JsonPropertyOrder({"dummyPropForJacksonError__", "id", "status", "createBy", "createDate", "updateBy", "updateDate", "remarks", "parent", "parentId", "children", "meta", "menuName", "menuPath", "redirect", "menuType", "menuComponent", "menuTarget", "permission", "weight", "sysCode", "roles"})
         public abstract interface Implementor extends Menu, ImmutableSpi {
             @Override
             default Object __get(PropId prop) {
@@ -272,28 +259,24 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                     		return parentId();
                     case SLOT_CHILDREN:
                     		return children();
+                    case SLOT_META:
+                    		return meta();
                     case SLOT_MENU_NAME:
                     		return menuName();
+                    case SLOT_MENU_PATH:
+                    		return menuPath();
+                    case SLOT_REDIRECT:
+                    		return redirect();
                     case SLOT_MENU_TYPE:
                     		return menuType();
-                    case SLOT_MENU_HREF:
-                    		return menuHref();
                     case SLOT_MENU_COMPONENT:
                     		return menuComponent();
                     case SLOT_MENU_TARGET:
                     		return menuTarget();
-                    case SLOT_MENU_ICON:
-                    		return menuIcon();
-                    case SLOT_MENU_COLOR:
-                    		return menuColor();
-                    case SLOT_MENU_TITLE:
-                    		return menuTitle();
                     case SLOT_PERMISSION:
                     		return permission();
                     case SLOT_WEIGHT:
                     		return weight();
-                    case SLOT_IS_SHOW:
-                    		return isShow();
                     case SLOT_SYS_CODE:
                     		return sysCode();
                     case SLOT_ROLES:
@@ -325,28 +308,24 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                     		return parentId();
                     case "children":
                     		return children();
+                    case "meta":
+                    		return meta();
                     case "menuName":
                     		return menuName();
+                    case "menuPath":
+                    		return menuPath();
+                    case "redirect":
+                    		return redirect();
                     case "menuType":
                     		return menuType();
-                    case "menuHref":
-                    		return menuHref();
                     case "menuComponent":
                     		return menuComponent();
                     case "menuTarget":
                     		return menuTarget();
-                    case "menuIcon":
-                    		return menuIcon();
-                    case "menuColor":
-                    		return menuColor();
-                    case "menuTitle":
-                    		return menuTitle();
                     case "permission":
                     		return permission();
                     case "weight":
                     		return weight();
-                    case "isShow":
-                    		return isShow();
                     case "sysCode":
                     		return sysCode();
                     case "roles":
@@ -413,6 +392,13 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Schema(
+                    description = "菜单元数据"
+            )
+            default Meta getMeta() {
+                return meta();
+            }
+
+            @Schema(
                     description = "菜单名称"
             )
             default String getMenuName() {
@@ -420,18 +406,25 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Schema(
+                    description = "菜单路径"
+            )
+            default String getMenuPath() {
+                return menuPath();
+            }
+
+            @Schema(
+                    description = "重定向地址"
+            )
+            @jakarta.annotation.Nullable
+            default String getRedirect() {
+                return redirect();
+            }
+
+            @Schema(
                     description = "菜单类型（1菜单 2权限 3开发）"
             )
             default String getMenuType() {
                 return menuType();
-            }
-
-            @Schema(
-                    description = "链接"
-            )
-            @jakarta.annotation.Nullable
-            default String getMenuHref() {
-                return menuHref();
             }
 
             @Schema(
@@ -451,30 +444,6 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Schema(
-                    description = "图标"
-            )
-            @jakarta.annotation.Nullable
-            default String getMenuIcon() {
-                return menuIcon();
-            }
-
-            @Schema(
-                    description = "颜色"
-            )
-            @jakarta.annotation.Nullable
-            default String getMenuColor() {
-                return menuColor();
-            }
-
-            @Schema(
-                    description = "菜单标题"
-            )
-            @jakarta.annotation.Nullable
-            default String getMenuTitle() {
-                return menuTitle();
-            }
-
-            @Schema(
                     description = "权限标识"
             )
             @jakarta.annotation.Nullable
@@ -488,14 +457,6 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             @jakarta.annotation.Nullable
             default BigDecimal getWeight() {
                 return weight();
-            }
-
-            @Schema(
-                    description = "是否显示"
-            )
-            @jakarta.annotation.Nullable
-            default Boolean getIsShow() {
-                return isShow();
             }
 
             @Schema(
@@ -550,13 +511,17 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
 
             NonSharedList<Menu> __childrenValue;
 
+            Meta __metaValue;
+
             String __menuNameValue;
 
+            String __menuPathValue;
+
+            String __redirectValue;
+
+            boolean __redirectLoaded = false;
+
             String __menuTypeValue;
-
-            String __menuHrefValue;
-
-            boolean __menuHrefLoaded = false;
 
             String __menuComponentValue;
 
@@ -566,18 +531,6 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
 
             boolean __menuTargetLoaded = false;
 
-            String __menuIconValue;
-
-            boolean __menuIconLoaded = false;
-
-            String __menuColorValue;
-
-            boolean __menuColorLoaded = false;
-
-            String __menuTitleValue;
-
-            boolean __menuTitleLoaded = false;
-
             String __permissionValue;
 
             boolean __permissionLoaded = false;
@@ -586,10 +539,6 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
 
             boolean __weightLoaded = false;
 
-            Boolean __isShowValue;
-
-            boolean __isShowLoaded = false;
-
             String __sysCodeValue;
 
             boolean __sysCodeLoaded = false;
@@ -597,7 +546,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             NonSharedList<Role> __rolesValue;
 
             Impl() {
-                __visibility = Visibility.of(23);
+                __visibility = Visibility.of(21);
                 __visibility.show(SLOT_PARENT_ID, false);
             }
 
@@ -694,6 +643,15 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
 
             @Override
             @JsonIgnore
+            public Meta meta() {
+                if (__metaValue == null) {
+                    throw new UnloadedException(Menu.class, "meta");
+                }
+                return __metaValue;
+            }
+
+            @Override
+            @JsonIgnore
             public String menuName() {
                 if (__menuNameValue == null) {
                     throw new UnloadedException(Menu.class, "menuName");
@@ -703,21 +661,30 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
 
             @Override
             @JsonIgnore
-            public String menuType() {
-                if (__menuTypeValue == null) {
-                    throw new UnloadedException(Menu.class, "menuType");
+            public String menuPath() {
+                if (__menuPathValue == null) {
+                    throw new UnloadedException(Menu.class, "menuPath");
                 }
-                return __menuTypeValue;
+                return __menuPathValue;
             }
 
             @Override
             @JsonIgnore
             @Nullable
-            public String menuHref() {
-                if (!__menuHrefLoaded) {
-                    throw new UnloadedException(Menu.class, "menuHref");
+            public String redirect() {
+                if (!__redirectLoaded) {
+                    throw new UnloadedException(Menu.class, "redirect");
                 }
-                return __menuHrefValue;
+                return __redirectValue;
+            }
+
+            @Override
+            @JsonIgnore
+            public String menuType() {
+                if (__menuTypeValue == null) {
+                    throw new UnloadedException(Menu.class, "menuType");
+                }
+                return __menuTypeValue;
             }
 
             @Override
@@ -743,36 +710,6 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             @Override
             @JsonIgnore
             @Nullable
-            public String menuIcon() {
-                if (!__menuIconLoaded) {
-                    throw new UnloadedException(Menu.class, "menuIcon");
-                }
-                return __menuIconValue;
-            }
-
-            @Override
-            @JsonIgnore
-            @Nullable
-            public String menuColor() {
-                if (!__menuColorLoaded) {
-                    throw new UnloadedException(Menu.class, "menuColor");
-                }
-                return __menuColorValue;
-            }
-
-            @Override
-            @JsonIgnore
-            @Nullable
-            public String menuTitle() {
-                if (!__menuTitleLoaded) {
-                    throw new UnloadedException(Menu.class, "menuTitle");
-                }
-                return __menuTitleValue;
-            }
-
-            @Override
-            @JsonIgnore
-            @Nullable
             public String permission() {
                 if (!__permissionLoaded) {
                     throw new UnloadedException(Menu.class, "permission");
@@ -788,16 +725,6 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                     throw new UnloadedException(Menu.class, "weight");
                 }
                 return __weightValue;
-            }
-
-            @Override
-            @JsonIgnore
-            @Nullable
-            public Boolean isShow() {
-                if (!__isShowLoaded) {
-                    throw new UnloadedException(Menu.class, "isShow");
-                }
-                return __isShowValue;
             }
 
             @Override
@@ -855,28 +782,24 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                             	((ImmutableSpi)parent()).__isLoaded(PropId.byIndex(Producer.SLOT_ID)));
                     case SLOT_CHILDREN:
                     		return __childrenValue != null;
+                    case SLOT_META:
+                    		return __metaValue != null;
                     case SLOT_MENU_NAME:
                     		return __menuNameValue != null;
+                    case SLOT_MENU_PATH:
+                    		return __menuPathValue != null;
+                    case SLOT_REDIRECT:
+                    		return __redirectLoaded;
                     case SLOT_MENU_TYPE:
                     		return __menuTypeValue != null;
-                    case SLOT_MENU_HREF:
-                    		return __menuHrefLoaded;
                     case SLOT_MENU_COMPONENT:
                     		return __menuComponentLoaded;
                     case SLOT_MENU_TARGET:
                     		return __menuTargetLoaded;
-                    case SLOT_MENU_ICON:
-                    		return __menuIconLoaded;
-                    case SLOT_MENU_COLOR:
-                    		return __menuColorLoaded;
-                    case SLOT_MENU_TITLE:
-                    		return __menuTitleLoaded;
                     case SLOT_PERMISSION:
                     		return __permissionLoaded;
                     case SLOT_WEIGHT:
                     		return __weightLoaded;
-                    case SLOT_IS_SHOW:
-                    		return __isShowLoaded;
                     case SLOT_SYS_CODE:
                     		return __sysCodeLoaded;
                     case SLOT_ROLES:
@@ -909,28 +832,24 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                             	((ImmutableSpi)parent()).__isLoaded(PropId.byIndex(Producer.SLOT_ID)));
                     case "children":
                     		return __childrenValue != null;
+                    case "meta":
+                    		return __metaValue != null;
                     case "menuName":
                     		return __menuNameValue != null;
+                    case "menuPath":
+                    		return __menuPathValue != null;
+                    case "redirect":
+                    		return __redirectLoaded;
                     case "menuType":
                     		return __menuTypeValue != null;
-                    case "menuHref":
-                    		return __menuHrefLoaded;
                     case "menuComponent":
                     		return __menuComponentLoaded;
                     case "menuTarget":
                     		return __menuTargetLoaded;
-                    case "menuIcon":
-                    		return __menuIconLoaded;
-                    case "menuColor":
-                    		return __menuColorLoaded;
-                    case "menuTitle":
-                    		return __menuTitleLoaded;
                     case "permission":
                     		return __permissionLoaded;
                     case "weight":
                     		return __weightLoaded;
-                    case "isShow":
-                    		return __isShowLoaded;
                     case "sysCode":
                     		return __sysCodeLoaded;
                     case "roles":
@@ -968,28 +887,24 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                     		return __visibility.visible(SLOT_PARENT_ID);
                     case SLOT_CHILDREN:
                     		return __visibility.visible(SLOT_CHILDREN);
+                    case SLOT_META:
+                    		return __visibility.visible(SLOT_META);
                     case SLOT_MENU_NAME:
                     		return __visibility.visible(SLOT_MENU_NAME);
+                    case SLOT_MENU_PATH:
+                    		return __visibility.visible(SLOT_MENU_PATH);
+                    case SLOT_REDIRECT:
+                    		return __visibility.visible(SLOT_REDIRECT);
                     case SLOT_MENU_TYPE:
                     		return __visibility.visible(SLOT_MENU_TYPE);
-                    case SLOT_MENU_HREF:
-                    		return __visibility.visible(SLOT_MENU_HREF);
                     case SLOT_MENU_COMPONENT:
                     		return __visibility.visible(SLOT_MENU_COMPONENT);
                     case SLOT_MENU_TARGET:
                     		return __visibility.visible(SLOT_MENU_TARGET);
-                    case SLOT_MENU_ICON:
-                    		return __visibility.visible(SLOT_MENU_ICON);
-                    case SLOT_MENU_COLOR:
-                    		return __visibility.visible(SLOT_MENU_COLOR);
-                    case SLOT_MENU_TITLE:
-                    		return __visibility.visible(SLOT_MENU_TITLE);
                     case SLOT_PERMISSION:
                     		return __visibility.visible(SLOT_PERMISSION);
                     case SLOT_WEIGHT:
                     		return __visibility.visible(SLOT_WEIGHT);
-                    case SLOT_IS_SHOW:
-                    		return __visibility.visible(SLOT_IS_SHOW);
                     case SLOT_SYS_CODE:
                     		return __visibility.visible(SLOT_SYS_CODE);
                     case SLOT_ROLES:
@@ -1024,28 +939,24 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                     		return __visibility.visible(SLOT_PARENT_ID);
                     case "children":
                     		return __visibility.visible(SLOT_CHILDREN);
+                    case "meta":
+                    		return __visibility.visible(SLOT_META);
                     case "menuName":
                     		return __visibility.visible(SLOT_MENU_NAME);
+                    case "menuPath":
+                    		return __visibility.visible(SLOT_MENU_PATH);
+                    case "redirect":
+                    		return __visibility.visible(SLOT_REDIRECT);
                     case "menuType":
                     		return __visibility.visible(SLOT_MENU_TYPE);
-                    case "menuHref":
-                    		return __visibility.visible(SLOT_MENU_HREF);
                     case "menuComponent":
                     		return __visibility.visible(SLOT_MENU_COMPONENT);
                     case "menuTarget":
                     		return __visibility.visible(SLOT_MENU_TARGET);
-                    case "menuIcon":
-                    		return __visibility.visible(SLOT_MENU_ICON);
-                    case "menuColor":
-                    		return __visibility.visible(SLOT_MENU_COLOR);
-                    case "menuTitle":
-                    		return __visibility.visible(SLOT_MENU_TITLE);
                     case "permission":
                     		return __visibility.visible(SLOT_PERMISSION);
                     case "weight":
                     		return __visibility.visible(SLOT_WEIGHT);
-                    case "isShow":
-                    		return __visibility.visible(SLOT_IS_SHOW);
                     case "sysCode":
                     		return __visibility.visible(SLOT_SYS_CODE);
                     case "roles":
@@ -1086,14 +997,20 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                 if (__childrenValue != null) {
                     hash = 31 * hash + __childrenValue.hashCode();
                 }
+                if (__metaValue != null) {
+                    hash = 31 * hash + __metaValue.hashCode();
+                }
                 if (__menuNameValue != null) {
                     hash = 31 * hash + __menuNameValue.hashCode();
                 }
+                if (__menuPathValue != null) {
+                    hash = 31 * hash + __menuPathValue.hashCode();
+                }
+                if (__redirectLoaded && __redirectValue != null) {
+                    hash = 31 * hash + __redirectValue.hashCode();
+                }
                 if (__menuTypeValue != null) {
                     hash = 31 * hash + __menuTypeValue.hashCode();
-                }
-                if (__menuHrefLoaded && __menuHrefValue != null) {
-                    hash = 31 * hash + __menuHrefValue.hashCode();
                 }
                 if (__menuComponentLoaded && __menuComponentValue != null) {
                     hash = 31 * hash + __menuComponentValue.hashCode();
@@ -1101,23 +1018,11 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                 if (__menuTargetLoaded && __menuTargetValue != null) {
                     hash = 31 * hash + __menuTargetValue.hashCode();
                 }
-                if (__menuIconLoaded && __menuIconValue != null) {
-                    hash = 31 * hash + __menuIconValue.hashCode();
-                }
-                if (__menuColorLoaded && __menuColorValue != null) {
-                    hash = 31 * hash + __menuColorValue.hashCode();
-                }
-                if (__menuTitleLoaded && __menuTitleValue != null) {
-                    hash = 31 * hash + __menuTitleValue.hashCode();
-                }
                 if (__permissionLoaded && __permissionValue != null) {
                     hash = 31 * hash + __permissionValue.hashCode();
                 }
                 if (__weightLoaded && __weightValue != null) {
                     hash = 31 * hash + __weightValue.hashCode();
-                }
-                if (__isShowLoaded && __isShowValue != null) {
-                    hash = 31 * hash + __isShowValue.hashCode();
                 }
                 if (__sysCodeLoaded && __sysCodeValue != null) {
                     hash = 31 * hash + __sysCodeValue.hashCode();
@@ -1157,14 +1062,20 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                 if (__childrenValue != null) {
                     hash = 31 * hash + System.identityHashCode(__childrenValue);
                 }
+                if (__metaValue != null) {
+                    hash = 31 * hash + System.identityHashCode(__metaValue);
+                }
                 if (__menuNameValue != null) {
                     hash = 31 * hash + System.identityHashCode(__menuNameValue);
                 }
+                if (__menuPathValue != null) {
+                    hash = 31 * hash + System.identityHashCode(__menuPathValue);
+                }
+                if (__redirectLoaded) {
+                    hash = 31 * hash + System.identityHashCode(__redirectValue);
+                }
                 if (__menuTypeValue != null) {
                     hash = 31 * hash + System.identityHashCode(__menuTypeValue);
-                }
-                if (__menuHrefLoaded) {
-                    hash = 31 * hash + System.identityHashCode(__menuHrefValue);
                 }
                 if (__menuComponentLoaded) {
                     hash = 31 * hash + System.identityHashCode(__menuComponentValue);
@@ -1172,23 +1083,11 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                 if (__menuTargetLoaded) {
                     hash = 31 * hash + System.identityHashCode(__menuTargetValue);
                 }
-                if (__menuIconLoaded) {
-                    hash = 31 * hash + System.identityHashCode(__menuIconValue);
-                }
-                if (__menuColorLoaded) {
-                    hash = 31 * hash + System.identityHashCode(__menuColorValue);
-                }
-                if (__menuTitleLoaded) {
-                    hash = 31 * hash + System.identityHashCode(__menuTitleValue);
-                }
                 if (__permissionLoaded) {
                     hash = 31 * hash + System.identityHashCode(__permissionValue);
                 }
                 if (__weightLoaded) {
                     hash = 31 * hash + System.identityHashCode(__weightValue);
-                }
-                if (__isShowLoaded) {
-                    hash = 31 * hash + System.identityHashCode(__isShowValue);
                 }
                 if (__sysCodeLoaded) {
                     hash = 31 * hash + System.identityHashCode(__sysCodeValue);
@@ -1304,6 +1203,16 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                 if (__childrenLoaded && !Objects.equals(__childrenValue, __other.children())) {
                     return false;
                 }
+                if (__isVisible(PropId.byIndex(SLOT_META)) != __other.__isVisible(PropId.byIndex(SLOT_META))) {
+                    return false;
+                }
+                boolean __metaLoaded = __metaValue != null;
+                if (__metaLoaded != __other.__isLoaded(PropId.byIndex(SLOT_META))) {
+                    return false;
+                }
+                if (__metaLoaded && !Objects.equals(__metaValue, __other.meta())) {
+                    return false;
+                }
                 if (__isVisible(PropId.byIndex(SLOT_MENU_NAME)) != __other.__isVisible(PropId.byIndex(SLOT_MENU_NAME))) {
                     return false;
                 }
@@ -1314,6 +1223,26 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                 if (__menuNameLoaded && !Objects.equals(__menuNameValue, __other.menuName())) {
                     return false;
                 }
+                if (__isVisible(PropId.byIndex(SLOT_MENU_PATH)) != __other.__isVisible(PropId.byIndex(SLOT_MENU_PATH))) {
+                    return false;
+                }
+                boolean __menuPathLoaded = __menuPathValue != null;
+                if (__menuPathLoaded != __other.__isLoaded(PropId.byIndex(SLOT_MENU_PATH))) {
+                    return false;
+                }
+                if (__menuPathLoaded && !Objects.equals(__menuPathValue, __other.menuPath())) {
+                    return false;
+                }
+                if (__isVisible(PropId.byIndex(SLOT_REDIRECT)) != __other.__isVisible(PropId.byIndex(SLOT_REDIRECT))) {
+                    return false;
+                }
+                boolean __redirectLoaded = this.__redirectLoaded;
+                if (__redirectLoaded != __other.__isLoaded(PropId.byIndex(SLOT_REDIRECT))) {
+                    return false;
+                }
+                if (__redirectLoaded && !Objects.equals(__redirectValue, __other.redirect())) {
+                    return false;
+                }
                 if (__isVisible(PropId.byIndex(SLOT_MENU_TYPE)) != __other.__isVisible(PropId.byIndex(SLOT_MENU_TYPE))) {
                     return false;
                 }
@@ -1322,16 +1251,6 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                     return false;
                 }
                 if (__menuTypeLoaded && !Objects.equals(__menuTypeValue, __other.menuType())) {
-                    return false;
-                }
-                if (__isVisible(PropId.byIndex(SLOT_MENU_HREF)) != __other.__isVisible(PropId.byIndex(SLOT_MENU_HREF))) {
-                    return false;
-                }
-                boolean __menuHrefLoaded = this.__menuHrefLoaded;
-                if (__menuHrefLoaded != __other.__isLoaded(PropId.byIndex(SLOT_MENU_HREF))) {
-                    return false;
-                }
-                if (__menuHrefLoaded && !Objects.equals(__menuHrefValue, __other.menuHref())) {
                     return false;
                 }
                 if (__isVisible(PropId.byIndex(SLOT_MENU_COMPONENT)) != __other.__isVisible(PropId.byIndex(SLOT_MENU_COMPONENT))) {
@@ -1354,36 +1273,6 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                 if (__menuTargetLoaded && !Objects.equals(__menuTargetValue, __other.menuTarget())) {
                     return false;
                 }
-                if (__isVisible(PropId.byIndex(SLOT_MENU_ICON)) != __other.__isVisible(PropId.byIndex(SLOT_MENU_ICON))) {
-                    return false;
-                }
-                boolean __menuIconLoaded = this.__menuIconLoaded;
-                if (__menuIconLoaded != __other.__isLoaded(PropId.byIndex(SLOT_MENU_ICON))) {
-                    return false;
-                }
-                if (__menuIconLoaded && !Objects.equals(__menuIconValue, __other.menuIcon())) {
-                    return false;
-                }
-                if (__isVisible(PropId.byIndex(SLOT_MENU_COLOR)) != __other.__isVisible(PropId.byIndex(SLOT_MENU_COLOR))) {
-                    return false;
-                }
-                boolean __menuColorLoaded = this.__menuColorLoaded;
-                if (__menuColorLoaded != __other.__isLoaded(PropId.byIndex(SLOT_MENU_COLOR))) {
-                    return false;
-                }
-                if (__menuColorLoaded && !Objects.equals(__menuColorValue, __other.menuColor())) {
-                    return false;
-                }
-                if (__isVisible(PropId.byIndex(SLOT_MENU_TITLE)) != __other.__isVisible(PropId.byIndex(SLOT_MENU_TITLE))) {
-                    return false;
-                }
-                boolean __menuTitleLoaded = this.__menuTitleLoaded;
-                if (__menuTitleLoaded != __other.__isLoaded(PropId.byIndex(SLOT_MENU_TITLE))) {
-                    return false;
-                }
-                if (__menuTitleLoaded && !Objects.equals(__menuTitleValue, __other.menuTitle())) {
-                    return false;
-                }
                 if (__isVisible(PropId.byIndex(SLOT_PERMISSION)) != __other.__isVisible(PropId.byIndex(SLOT_PERMISSION))) {
                     return false;
                 }
@@ -1402,16 +1291,6 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                     return false;
                 }
                 if (__weightLoaded && !Objects.equals(__weightValue, __other.weight())) {
-                    return false;
-                }
-                if (__isVisible(PropId.byIndex(SLOT_IS_SHOW)) != __other.__isVisible(PropId.byIndex(SLOT_IS_SHOW))) {
-                    return false;
-                }
-                boolean __isShowLoaded = this.__isShowLoaded;
-                if (__isShowLoaded != __other.__isLoaded(PropId.byIndex(SLOT_IS_SHOW))) {
-                    return false;
-                }
-                if (__isShowLoaded && !Objects.equals(__isShowValue, __other.isShow())) {
                     return false;
                 }
                 if (__isVisible(PropId.byIndex(SLOT_SYS_CODE)) != __other.__isVisible(PropId.byIndex(SLOT_SYS_CODE))) {
@@ -1535,6 +1414,16 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                 if (__childrenLoaded && __childrenValue != __other.children()) {
                     return false;
                 }
+                if (__isVisible(PropId.byIndex(SLOT_META)) != __other.__isVisible(PropId.byIndex(SLOT_META))) {
+                    return false;
+                }
+                boolean __metaLoaded = __metaValue != null;
+                if (__metaLoaded != __other.__isLoaded(PropId.byIndex(SLOT_META))) {
+                    return false;
+                }
+                if (__metaLoaded && __metaValue != __other.meta()) {
+                    return false;
+                }
                 if (__isVisible(PropId.byIndex(SLOT_MENU_NAME)) != __other.__isVisible(PropId.byIndex(SLOT_MENU_NAME))) {
                     return false;
                 }
@@ -1545,6 +1434,26 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                 if (__menuNameLoaded && __menuNameValue != __other.menuName()) {
                     return false;
                 }
+                if (__isVisible(PropId.byIndex(SLOT_MENU_PATH)) != __other.__isVisible(PropId.byIndex(SLOT_MENU_PATH))) {
+                    return false;
+                }
+                boolean __menuPathLoaded = __menuPathValue != null;
+                if (__menuPathLoaded != __other.__isLoaded(PropId.byIndex(SLOT_MENU_PATH))) {
+                    return false;
+                }
+                if (__menuPathLoaded && __menuPathValue != __other.menuPath()) {
+                    return false;
+                }
+                if (__isVisible(PropId.byIndex(SLOT_REDIRECT)) != __other.__isVisible(PropId.byIndex(SLOT_REDIRECT))) {
+                    return false;
+                }
+                boolean __redirectLoaded = this.__redirectLoaded;
+                if (__redirectLoaded != __other.__isLoaded(PropId.byIndex(SLOT_REDIRECT))) {
+                    return false;
+                }
+                if (__redirectLoaded && __redirectValue != __other.redirect()) {
+                    return false;
+                }
                 if (__isVisible(PropId.byIndex(SLOT_MENU_TYPE)) != __other.__isVisible(PropId.byIndex(SLOT_MENU_TYPE))) {
                     return false;
                 }
@@ -1553,16 +1462,6 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                     return false;
                 }
                 if (__menuTypeLoaded && __menuTypeValue != __other.menuType()) {
-                    return false;
-                }
-                if (__isVisible(PropId.byIndex(SLOT_MENU_HREF)) != __other.__isVisible(PropId.byIndex(SLOT_MENU_HREF))) {
-                    return false;
-                }
-                boolean __menuHrefLoaded = this.__menuHrefLoaded;
-                if (__menuHrefLoaded != __other.__isLoaded(PropId.byIndex(SLOT_MENU_HREF))) {
-                    return false;
-                }
-                if (__menuHrefLoaded && __menuHrefValue != __other.menuHref()) {
                     return false;
                 }
                 if (__isVisible(PropId.byIndex(SLOT_MENU_COMPONENT)) != __other.__isVisible(PropId.byIndex(SLOT_MENU_COMPONENT))) {
@@ -1585,36 +1484,6 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                 if (__menuTargetLoaded && __menuTargetValue != __other.menuTarget()) {
                     return false;
                 }
-                if (__isVisible(PropId.byIndex(SLOT_MENU_ICON)) != __other.__isVisible(PropId.byIndex(SLOT_MENU_ICON))) {
-                    return false;
-                }
-                boolean __menuIconLoaded = this.__menuIconLoaded;
-                if (__menuIconLoaded != __other.__isLoaded(PropId.byIndex(SLOT_MENU_ICON))) {
-                    return false;
-                }
-                if (__menuIconLoaded && __menuIconValue != __other.menuIcon()) {
-                    return false;
-                }
-                if (__isVisible(PropId.byIndex(SLOT_MENU_COLOR)) != __other.__isVisible(PropId.byIndex(SLOT_MENU_COLOR))) {
-                    return false;
-                }
-                boolean __menuColorLoaded = this.__menuColorLoaded;
-                if (__menuColorLoaded != __other.__isLoaded(PropId.byIndex(SLOT_MENU_COLOR))) {
-                    return false;
-                }
-                if (__menuColorLoaded && __menuColorValue != __other.menuColor()) {
-                    return false;
-                }
-                if (__isVisible(PropId.byIndex(SLOT_MENU_TITLE)) != __other.__isVisible(PropId.byIndex(SLOT_MENU_TITLE))) {
-                    return false;
-                }
-                boolean __menuTitleLoaded = this.__menuTitleLoaded;
-                if (__menuTitleLoaded != __other.__isLoaded(PropId.byIndex(SLOT_MENU_TITLE))) {
-                    return false;
-                }
-                if (__menuTitleLoaded && __menuTitleValue != __other.menuTitle()) {
-                    return false;
-                }
                 if (__isVisible(PropId.byIndex(SLOT_PERMISSION)) != __other.__isVisible(PropId.byIndex(SLOT_PERMISSION))) {
                     return false;
                 }
@@ -1633,16 +1502,6 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                     return false;
                 }
                 if (__weightLoaded && __weightValue != __other.weight()) {
-                    return false;
-                }
-                if (__isVisible(PropId.byIndex(SLOT_IS_SHOW)) != __other.__isVisible(PropId.byIndex(SLOT_IS_SHOW))) {
-                    return false;
-                }
-                boolean __isShowLoaded = this.__isShowLoaded;
-                if (__isShowLoaded != __other.__isLoaded(PropId.byIndex(SLOT_IS_SHOW))) {
-                    return false;
-                }
-                if (__isShowLoaded && __isShowValue != __other.isShow()) {
                     return false;
                 }
                 if (__isVisible(PropId.byIndex(SLOT_SYS_CODE)) != __other.__isVisible(PropId.byIndex(SLOT_SYS_CODE))) {
@@ -1990,6 +1849,27 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
 
             @Override
             @JsonIgnore
+            public Meta meta() {
+                return (__modified!= null ? __modified : __base).meta();
+            }
+
+            @Override
+            public MenuDraft setMeta(Meta meta) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
+                if (meta == null) {
+                    throw new IllegalArgumentException(
+                        "'meta' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
+                    );
+                }
+                Impl __tmpModified = __modified();
+                __tmpModified.__metaValue = meta;
+                return this;
+            }
+
+            @Override
+            @JsonIgnore
             public String menuName() {
                 return (__modified!= null ? __modified : __base).menuName();
             }
@@ -2011,6 +1891,45 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
 
             @Override
             @JsonIgnore
+            public String menuPath() {
+                return (__modified!= null ? __modified : __base).menuPath();
+            }
+
+            @Override
+            public MenuDraft setMenuPath(String menuPath) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
+                if (menuPath == null) {
+                    throw new IllegalArgumentException(
+                        "'menuPath' cannot be null, please specify non-null value or use nullable annotation to decorate this property"
+                    );
+                }
+                Impl __tmpModified = __modified();
+                __tmpModified.__menuPathValue = menuPath;
+                return this;
+            }
+
+            @Override
+            @JsonIgnore
+            @Nullable
+            public String redirect() {
+                return (__modified!= null ? __modified : __base).redirect();
+            }
+
+            @Override
+            public MenuDraft setRedirect(String redirect) {
+                if (__resolved != null) {
+                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
+                }
+                Impl __tmpModified = __modified();
+                __tmpModified.__redirectValue = redirect;
+                __tmpModified.__redirectLoaded = true;
+                return this;
+            }
+
+            @Override
+            @JsonIgnore
             public String menuType() {
                 return (__modified!= null ? __modified : __base).menuType();
             }
@@ -2027,24 +1946,6 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                 }
                 Impl __tmpModified = __modified();
                 __tmpModified.__menuTypeValue = menuType;
-                return this;
-            }
-
-            @Override
-            @JsonIgnore
-            @Nullable
-            public String menuHref() {
-                return (__modified!= null ? __modified : __base).menuHref();
-            }
-
-            @Override
-            public MenuDraft setMenuHref(String menuHref) {
-                if (__resolved != null) {
-                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
-                }
-                Impl __tmpModified = __modified();
-                __tmpModified.__menuHrefValue = menuHref;
-                __tmpModified.__menuHrefLoaded = true;
                 return this;
             }
 
@@ -2087,60 +1988,6 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             @Override
             @JsonIgnore
             @Nullable
-            public String menuIcon() {
-                return (__modified!= null ? __modified : __base).menuIcon();
-            }
-
-            @Override
-            public MenuDraft setMenuIcon(String menuIcon) {
-                if (__resolved != null) {
-                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
-                }
-                Impl __tmpModified = __modified();
-                __tmpModified.__menuIconValue = menuIcon;
-                __tmpModified.__menuIconLoaded = true;
-                return this;
-            }
-
-            @Override
-            @JsonIgnore
-            @Nullable
-            public String menuColor() {
-                return (__modified!= null ? __modified : __base).menuColor();
-            }
-
-            @Override
-            public MenuDraft setMenuColor(String menuColor) {
-                if (__resolved != null) {
-                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
-                }
-                Impl __tmpModified = __modified();
-                __tmpModified.__menuColorValue = menuColor;
-                __tmpModified.__menuColorLoaded = true;
-                return this;
-            }
-
-            @Override
-            @JsonIgnore
-            @Nullable
-            public String menuTitle() {
-                return (__modified!= null ? __modified : __base).menuTitle();
-            }
-
-            @Override
-            public MenuDraft setMenuTitle(String menuTitle) {
-                if (__resolved != null) {
-                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
-                }
-                Impl __tmpModified = __modified();
-                __tmpModified.__menuTitleValue = menuTitle;
-                __tmpModified.__menuTitleLoaded = true;
-                return this;
-            }
-
-            @Override
-            @JsonIgnore
-            @Nullable
             public String permission() {
                 return (__modified!= null ? __modified : __base).permission();
             }
@@ -2171,24 +2018,6 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                 Impl __tmpModified = __modified();
                 __tmpModified.__weightValue = weight;
                 __tmpModified.__weightLoaded = true;
-                return this;
-            }
-
-            @Override
-            @JsonIgnore
-            @Nullable
-            public Boolean isShow() {
-                return (__modified!= null ? __modified : __base).isShow();
-            }
-
-            @Override
-            public MenuDraft setIsShow(Boolean isShow) {
-                if (__resolved != null) {
-                    throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
-                }
-                Impl __tmpModified = __modified();
-                __tmpModified.__isShowValue = isShow;
-                __tmpModified.__isShowLoaded = true;
                 return this;
             }
 
@@ -2281,28 +2110,24 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                     		setParentId((String)value);break;
                     case SLOT_CHILDREN:
                     		setChildren((List<Menu>)value);break;
+                    case SLOT_META:
+                    		setMeta((Meta)value);break;
                     case SLOT_MENU_NAME:
                     		setMenuName((String)value);break;
+                    case SLOT_MENU_PATH:
+                    		setMenuPath((String)value);break;
+                    case SLOT_REDIRECT:
+                    		setRedirect((String)value);break;
                     case SLOT_MENU_TYPE:
                     		setMenuType((String)value);break;
-                    case SLOT_MENU_HREF:
-                    		setMenuHref((String)value);break;
                     case SLOT_MENU_COMPONENT:
                     		setMenuComponent((String)value);break;
                     case SLOT_MENU_TARGET:
                     		setMenuTarget((String)value);break;
-                    case SLOT_MENU_ICON:
-                    		setMenuIcon((String)value);break;
-                    case SLOT_MENU_COLOR:
-                    		setMenuColor((String)value);break;
-                    case SLOT_MENU_TITLE:
-                    		setMenuTitle((String)value);break;
                     case SLOT_PERMISSION:
                     		setPermission((String)value);break;
                     case SLOT_WEIGHT:
                     		setWeight((BigDecimal)value);break;
-                    case SLOT_IS_SHOW:
-                    		setIsShow((Boolean)value);break;
                     case SLOT_SYS_CODE:
                     		setSysCode((String)value);break;
                     case SLOT_ROLES:
@@ -2337,28 +2162,24 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                     		setParentId((String)value);break;
                     case "children":
                     		setChildren((List<Menu>)value);break;
+                    case "meta":
+                    		setMeta((Meta)value);break;
                     case "menuName":
                     		setMenuName((String)value);break;
+                    case "menuPath":
+                    		setMenuPath((String)value);break;
+                    case "redirect":
+                    		setRedirect((String)value);break;
                     case "menuType":
                     		setMenuType((String)value);break;
-                    case "menuHref":
-                    		setMenuHref((String)value);break;
                     case "menuComponent":
                     		setMenuComponent((String)value);break;
                     case "menuTarget":
                     		setMenuTarget((String)value);break;
-                    case "menuIcon":
-                    		setMenuIcon((String)value);break;
-                    case "menuColor":
-                    		setMenuColor((String)value);break;
-                    case "menuTitle":
-                    		setMenuTitle((String)value);break;
                     case "permission":
                     		setPermission((String)value);break;
                     case "weight":
                     		setWeight((BigDecimal)value);break;
-                    case "isShow":
-                    		setIsShow((Boolean)value);break;
                     case "sysCode":
                     		setSysCode((String)value);break;
                     case "roles":
@@ -2377,7 +2198,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                     if (visible) {
                         return;
                     }
-                    __modified().__visibility = __visibility = Visibility.of(23);
+                    __modified().__visibility = __visibility = Visibility.of(21);
                 }
                 int __propIndex = prop.asIndex();
                 switch (__propIndex) {
@@ -2404,28 +2225,24 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                     		__visibility.show(SLOT_PARENT_ID, visible);break;
                     case SLOT_CHILDREN:
                     		__visibility.show(SLOT_CHILDREN, visible);break;
+                    case SLOT_META:
+                    		__visibility.show(SLOT_META, visible);break;
                     case SLOT_MENU_NAME:
                     		__visibility.show(SLOT_MENU_NAME, visible);break;
+                    case SLOT_MENU_PATH:
+                    		__visibility.show(SLOT_MENU_PATH, visible);break;
+                    case SLOT_REDIRECT:
+                    		__visibility.show(SLOT_REDIRECT, visible);break;
                     case SLOT_MENU_TYPE:
                     		__visibility.show(SLOT_MENU_TYPE, visible);break;
-                    case SLOT_MENU_HREF:
-                    		__visibility.show(SLOT_MENU_HREF, visible);break;
                     case SLOT_MENU_COMPONENT:
                     		__visibility.show(SLOT_MENU_COMPONENT, visible);break;
                     case SLOT_MENU_TARGET:
                     		__visibility.show(SLOT_MENU_TARGET, visible);break;
-                    case SLOT_MENU_ICON:
-                    		__visibility.show(SLOT_MENU_ICON, visible);break;
-                    case SLOT_MENU_COLOR:
-                    		__visibility.show(SLOT_MENU_COLOR, visible);break;
-                    case SLOT_MENU_TITLE:
-                    		__visibility.show(SLOT_MENU_TITLE, visible);break;
                     case SLOT_PERMISSION:
                     		__visibility.show(SLOT_PERMISSION, visible);break;
                     case SLOT_WEIGHT:
                     		__visibility.show(SLOT_WEIGHT, visible);break;
-                    case SLOT_IS_SHOW:
-                    		__visibility.show(SLOT_IS_SHOW, visible);break;
                     case SLOT_SYS_CODE:
                     		__visibility.show(SLOT_SYS_CODE, visible);break;
                     case SLOT_ROLES:
@@ -2448,7 +2265,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                     if (visible) {
                         return;
                     }
-                    __modified().__visibility = __visibility = Visibility.of(23);
+                    __modified().__visibility = __visibility = Visibility.of(21);
                 }
                 switch (prop) {
                     case "id":
@@ -2471,28 +2288,24 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                     		__visibility.show(SLOT_PARENT_ID, visible);break;
                     case "children":
                     		__visibility.show(SLOT_CHILDREN, visible);break;
+                    case "meta":
+                    		__visibility.show(SLOT_META, visible);break;
                     case "menuName":
                     		__visibility.show(SLOT_MENU_NAME, visible);break;
+                    case "menuPath":
+                    		__visibility.show(SLOT_MENU_PATH, visible);break;
+                    case "redirect":
+                    		__visibility.show(SLOT_REDIRECT, visible);break;
                     case "menuType":
                     		__visibility.show(SLOT_MENU_TYPE, visible);break;
-                    case "menuHref":
-                    		__visibility.show(SLOT_MENU_HREF, visible);break;
                     case "menuComponent":
                     		__visibility.show(SLOT_MENU_COMPONENT, visible);break;
                     case "menuTarget":
                     		__visibility.show(SLOT_MENU_TARGET, visible);break;
-                    case "menuIcon":
-                    		__visibility.show(SLOT_MENU_ICON, visible);break;
-                    case "menuColor":
-                    		__visibility.show(SLOT_MENU_COLOR, visible);break;
-                    case "menuTitle":
-                    		__visibility.show(SLOT_MENU_TITLE, visible);break;
                     case "permission":
                     		__visibility.show(SLOT_PERMISSION, visible);break;
                     case "weight":
                     		__visibility.show(SLOT_WEIGHT, visible);break;
-                    case "isShow":
-                    		__visibility.show(SLOT_IS_SHOW, visible);break;
                     case "sysCode":
                     		__visibility.show(SLOT_SYS_CODE, visible);break;
                     case "roles":
@@ -2535,28 +2348,24 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                     		__unload(PropId.byIndex(SLOT_PARENT));break;
                     case SLOT_CHILDREN:
                     		__modified().__childrenValue = null;break;
+                    case SLOT_META:
+                    		__modified().__metaValue = null;break;
                     case SLOT_MENU_NAME:
                     		__modified().__menuNameValue = null;break;
+                    case SLOT_MENU_PATH:
+                    		__modified().__menuPathValue = null;break;
+                    case SLOT_REDIRECT:
+                    		__modified().__redirectLoaded = false;break;
                     case SLOT_MENU_TYPE:
                     		__modified().__menuTypeValue = null;break;
-                    case SLOT_MENU_HREF:
-                    		__modified().__menuHrefLoaded = false;break;
                     case SLOT_MENU_COMPONENT:
                     		__modified().__menuComponentLoaded = false;break;
                     case SLOT_MENU_TARGET:
                     		__modified().__menuTargetLoaded = false;break;
-                    case SLOT_MENU_ICON:
-                    		__modified().__menuIconLoaded = false;break;
-                    case SLOT_MENU_COLOR:
-                    		__modified().__menuColorLoaded = false;break;
-                    case SLOT_MENU_TITLE:
-                    		__modified().__menuTitleLoaded = false;break;
                     case SLOT_PERMISSION:
                     		__modified().__permissionLoaded = false;break;
                     case SLOT_WEIGHT:
                     		__modified().__weightLoaded = false;break;
-                    case SLOT_IS_SHOW:
-                    		__modified().__isShowLoaded = false;break;
                     case SLOT_SYS_CODE:
                     		__modified().__sysCodeLoaded = false;break;
                     case SLOT_ROLES:
@@ -2591,28 +2400,24 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                     		__unload(PropId.byIndex(SLOT_PARENT));break;
                     case "children":
                     		__modified().__childrenValue = null;break;
+                    case "meta":
+                    		__modified().__metaValue = null;break;
                     case "menuName":
                     		__modified().__menuNameValue = null;break;
+                    case "menuPath":
+                    		__modified().__menuPathValue = null;break;
+                    case "redirect":
+                    		__modified().__redirectLoaded = false;break;
                     case "menuType":
                     		__modified().__menuTypeValue = null;break;
-                    case "menuHref":
-                    		__modified().__menuHrefLoaded = false;break;
                     case "menuComponent":
                     		__modified().__menuComponentLoaded = false;break;
                     case "menuTarget":
                     		__modified().__menuTargetLoaded = false;break;
-                    case "menuIcon":
-                    		__modified().__menuIconLoaded = false;break;
-                    case "menuColor":
-                    		__modified().__menuColorLoaded = false;break;
-                    case "menuTitle":
-                    		__modified().__menuTitleLoaded = false;break;
                     case "permission":
                     		__modified().__permissionLoaded = false;break;
                     case "weight":
                     		__modified().__weightLoaded = false;break;
-                    case "isShow":
-                    		__modified().__isShowLoaded = false;break;
                     case "sysCode":
                     		__modified().__sysCodeLoaded = false;break;
                     case "roles":
@@ -2791,6 +2596,16 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
         }
 
         @Schema(
+                description = "菜单元数据"
+        )
+        public Builder meta(Meta meta) {
+            if (meta != null) {
+                __draft.setMeta(meta);
+            }
+            return this;
+        }
+
+        @Schema(
                 description = "菜单名称"
         )
         public Builder menuName(String menuName) {
@@ -2801,21 +2616,31 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
         }
 
         @Schema(
+                description = "菜单路径"
+        )
+        public Builder menuPath(String menuPath) {
+            if (menuPath != null) {
+                __draft.setMenuPath(menuPath);
+            }
+            return this;
+        }
+
+        @Schema(
+                description = "重定向地址"
+        )
+        @jakarta.annotation.Nullable
+        public Builder redirect(String redirect) {
+            __draft.setRedirect(redirect);
+            return this;
+        }
+
+        @Schema(
                 description = "菜单类型（1菜单 2权限 3开发）"
         )
         public Builder menuType(String menuType) {
             if (menuType != null) {
                 __draft.setMenuType(menuType);
             }
-            return this;
-        }
-
-        @Schema(
-                description = "链接"
-        )
-        @jakarta.annotation.Nullable
-        public Builder menuHref(String menuHref) {
-            __draft.setMenuHref(menuHref);
             return this;
         }
 
@@ -2838,33 +2663,6 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
         }
 
         @Schema(
-                description = "图标"
-        )
-        @jakarta.annotation.Nullable
-        public Builder menuIcon(String menuIcon) {
-            __draft.setMenuIcon(menuIcon);
-            return this;
-        }
-
-        @Schema(
-                description = "颜色"
-        )
-        @jakarta.annotation.Nullable
-        public Builder menuColor(String menuColor) {
-            __draft.setMenuColor(menuColor);
-            return this;
-        }
-
-        @Schema(
-                description = "菜单标题"
-        )
-        @jakarta.annotation.Nullable
-        public Builder menuTitle(String menuTitle) {
-            __draft.setMenuTitle(menuTitle);
-            return this;
-        }
-
-        @Schema(
                 description = "权限标识"
         )
         @jakarta.annotation.Nullable
@@ -2879,15 +2677,6 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
         @jakarta.annotation.Nullable
         public Builder weight(BigDecimal weight) {
             __draft.setWeight(weight);
-            return this;
-        }
-
-        @Schema(
-                description = "是否显示"
-        )
-        @jakarta.annotation.Nullable
-        public Builder isShow(Boolean isShow) {
-            __draft.setIsShow(isShow);
             return this;
         }
 

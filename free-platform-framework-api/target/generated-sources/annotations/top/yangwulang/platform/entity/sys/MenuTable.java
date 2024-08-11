@@ -1,6 +1,5 @@
 package top.yangwulang.platform.entity.sys;
 
-import java.lang.Boolean;
 import java.lang.Deprecated;
 import java.lang.Integer;
 import java.lang.Override;
@@ -102,18 +101,28 @@ public class MenuTable extends AbstractTypedTable<Menu> implements MenuProps {
     }
 
     @Override
+    public PropExpression<Meta> meta() {
+        return __get(MenuProps.META.unwrap());
+    }
+
+    @Override
     public PropExpression.Str menuName() {
         return __get(MenuProps.MENU_NAME.unwrap());
     }
 
     @Override
-    public PropExpression.Str menuType() {
-        return __get(MenuProps.MENU_TYPE.unwrap());
+    public PropExpression.Str menuPath() {
+        return __get(MenuProps.MENU_PATH.unwrap());
     }
 
     @Override
-    public PropExpression.Str menuHref() {
-        return __get(MenuProps.MENU_HREF.unwrap());
+    public PropExpression.Str redirect() {
+        return __get(MenuProps.REDIRECT.unwrap());
+    }
+
+    @Override
+    public PropExpression.Str menuType() {
+        return __get(MenuProps.MENU_TYPE.unwrap());
     }
 
     @Override
@@ -127,21 +136,6 @@ public class MenuTable extends AbstractTypedTable<Menu> implements MenuProps {
     }
 
     @Override
-    public PropExpression.Str menuIcon() {
-        return __get(MenuProps.MENU_ICON.unwrap());
-    }
-
-    @Override
-    public PropExpression.Str menuColor() {
-        return __get(MenuProps.MENU_COLOR.unwrap());
-    }
-
-    @Override
-    public PropExpression.Str menuTitle() {
-        return __get(MenuProps.MENU_TITLE.unwrap());
-    }
-
-    @Override
     public PropExpression.Str permission() {
         return __get(MenuProps.PERMISSION.unwrap());
     }
@@ -149,11 +143,6 @@ public class MenuTable extends AbstractTypedTable<Menu> implements MenuProps {
     @Override
     public PropExpression.Num<BigDecimal> weight() {
         return __get(MenuProps.WEIGHT.unwrap());
-    }
-
-    @Override
-    public PropExpression.Cmp<Boolean> isShow() {
-        return __get(MenuProps.IS_SHOW.unwrap());
     }
 
     @Override

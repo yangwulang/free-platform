@@ -1,18 +1,6 @@
 package top.yangwulang.platform.entity.sys.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-
-import java.lang.Boolean;
-import java.lang.Integer;
-import java.lang.Object;
-import java.lang.Override;
-import java.lang.String;
-import java.math.BigDecimal;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
-
 import org.babyfish.jimmer.View;
 import org.babyfish.jimmer.impl.util.DtoPropAccessor;
 import org.babyfish.jimmer.internal.GeneratedBy;
@@ -24,167 +12,127 @@ import org.jetbrains.annotations.Nullable;
 import top.yangwulang.platform.entity.sys.Menu;
 import top.yangwulang.platform.entity.sys.MenuDraft;
 import top.yangwulang.platform.entity.sys.MenuFetcher;
+import top.yangwulang.platform.entity.sys.Meta;
+
+import java.math.BigDecimal;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * 菜单表
  *
- * @author yangwulang
  */
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Menu.dto"
 )
+@Schema(
+        description = "菜单实体"
+)
 public class MenuListView implements View<Menu> {
-    public static final DtoMetadata<Menu, MenuListView> METADATA =
-            new DtoMetadata<Menu, MenuListView>(
-                    MenuFetcher.$
-                            .status()
-                            .createBy()
-                            .createDate()
-                            .updateBy()
-                            .updateDate()
-                            .remarks()
-                            .menuName()
-                            .menuType()
-                            .menuPath()
-                            .menuComponent()
-                            .menuTarget()
-                            .permission()
-                            .meta()
-                            .weight()
-                            .sysCode()
-                            .recursiveChildren(it -> it.recursive(args ->
-                                    !args.getEntity().menuType().equals(Menu.MENU_TYPE_PERMISSION)
-                            )),
-                    MenuListView::new
-            );
-
-    private static final DtoPropAccessor CHILDREN_ACCESSOR = new DtoPropAccessor(
-            false,
-            new int[]{MenuDraft.Producer.SLOT_CHILDREN},
-            DtoPropAccessor.<Menu, MenuListView>objectListGetter(MenuListView::new),
-            DtoPropAccessor.objectListSetter(MenuListView::toEntity)
+    public static final DtoMetadata<Menu, MenuListView> METADATA = 
+        new DtoMetadata<Menu, MenuListView>(
+            MenuFetcher.$
+                .createBy()
+                .createDate()
+                .updateBy()
+                .updateDate()
+                .remarks()
+                .menuName()
+                .menuPath()
+                .redirect()
+                .menuType()
+                .menuComponent()
+                .menuTarget()
+                .permission()
+                .weight()
+                .sysCode()
+                .recursiveChildren(it -> it.recursive(args ->
+                        !args.getEntity().menuType().equals(Menu.MENU_TYPE_PERMISSION)
+                ))
+                .meta(),
+            MenuListView::new
     );
 
-    @NotNull
+    private static final DtoPropAccessor CHILDREN_ACCESSOR = new DtoPropAccessor(
+        false,
+        new int[] { MenuDraft.Producer.SLOT_CHILDREN },
+        DtoPropAccessor.<Menu, MenuListView>objectListGetter(MenuListView::new),
+        DtoPropAccessor.objectListSetter(MenuListView::toEntity)
+    );
+
     private String id;
 
-    @Schema(
-            description = "状态"
-    )
-    private int status;
-
-    @NotNull
     private String createBy;
 
-    @NotNull
     private Date createDate;
 
-    @NotNull
     private String updateBy;
 
-    @NotNull
     private Date updateDate;
 
-    @Nullable
     private String remarks;
 
-    @Schema(
-            description = "菜单名称"
-    )
-    @NotNull
     private String menuName;
 
-    @Schema(
-            description = "菜单类型（1菜单 2权限 3开发）"
-    )
-    @NotNull
+    private String menuPath;
+
+    private String redirect;
+
     private String menuType;
 
-    @Schema(
-            description = "组件地址"
-    )
-    @Nullable
     private String menuComponent;
 
-    @Schema(
-            description = "目标"
-    )
-    @Nullable
     private String menuTarget;
 
-    @Schema(
-            description = "权限标识"
-    )
-    @Nullable
     private String permission;
 
-    @Schema(
-            description = "菜单权重"
-    )
-    @Nullable
     private BigDecimal weight;
 
-
-    @Schema(
-            description = "归属系统（default:主导航菜单、mobileApp:APP菜单）"
-    )
-    @Nullable
     private String sysCode;
 
-    @Schema(
-            description = "子级菜单"
-    )
-    @Nullable
     private List<MenuListView> children;
+
+    private Meta meta;
 
     public MenuListView() {
     }
 
     public MenuListView(@NotNull Menu base) {
         this.id = base.id();
-        this.status = base.status();
         this.createBy = base.createBy();
         this.createDate = base.createDate();
         this.updateBy = base.updateBy();
         this.updateDate = base.updateDate();
-        this.remarks = ((ImmutableSpi) base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_REMARKS)) ? base.remarks() : null;
+        this.remarks = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_REMARKS)) ? base.remarks() : null;
         this.menuName = base.menuName();
+        this.menuPath = base.menuPath();
+        this.redirect = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_REDIRECT)) ? base.redirect() : null;
         this.menuType = base.menuType();
-        this.menuComponent = ((ImmutableSpi) base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_MENU_COMPONENT)) ? base.menuComponent() : null;
-        this.menuTarget = ((ImmutableSpi) base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_MENU_TARGET)) ? base.menuTarget() : null;
-        this.permission = ((ImmutableSpi) base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_PERMISSION)) ? base.permission() : null;
-        this.weight = ((ImmutableSpi) base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_WEIGHT)) ? base.weight() : null;
-        this.sysCode = ((ImmutableSpi) base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_SYS_CODE)) ? base.sysCode() : null;
+        this.menuComponent = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_MENU_COMPONENT)) ? base.menuComponent() : null;
+        this.menuTarget = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_MENU_TARGET)) ? base.menuTarget() : null;
+        this.permission = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_PERMISSION)) ? base.permission() : null;
+        this.weight = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_WEIGHT)) ? base.weight() : null;
+        this.sysCode = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_SYS_CODE)) ? base.sysCode() : null;
         this.children = CHILDREN_ACCESSOR.get(base);
-    }
-
-    public static MenuListView of(@NotNull Menu base) {
-        return new MenuListView(base);
+        this.meta = base.meta();
     }
 
     /**
      * 字典类型编码
-     *
      * @return 主键值
      */
     @NotNull
     public String getId() {
+        if (id == null) {
+            throw new IllegalStateException("The property \"id\" is not specified");
+        }
         return id;
     }
 
     public void setId(@NotNull String id) {
         this.id = id;
-    }
-
-    @Schema(
-            description = "状态"
-    )
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
     }
 
     /**
@@ -194,6 +142,9 @@ public class MenuListView implements View<Menu> {
      */
     @NotNull
     public String getCreateBy() {
+        if (createBy == null) {
+            throw new IllegalStateException("The property \"createBy\" is not specified");
+        }
         return createBy;
     }
 
@@ -208,6 +159,9 @@ public class MenuListView implements View<Menu> {
      */
     @NotNull
     public Date getCreateDate() {
+        if (createDate == null) {
+            throw new IllegalStateException("The property \"createDate\" is not specified");
+        }
         return createDate;
     }
 
@@ -222,6 +176,9 @@ public class MenuListView implements View<Menu> {
      */
     @NotNull
     public String getUpdateBy() {
+        if (updateBy == null) {
+            throw new IllegalStateException("The property \"updateBy\" is not specified");
+        }
         return updateBy;
     }
 
@@ -236,6 +193,9 @@ public class MenuListView implements View<Menu> {
      */
     @NotNull
     public Date getUpdateDate() {
+        if (updateDate == null) {
+            throw new IllegalStateException("The property \"updateDate\" is not specified");
+        }
         return updateDate;
     }
 
@@ -265,11 +225,41 @@ public class MenuListView implements View<Menu> {
             description = "菜单名称"
     )
     public String getMenuName() {
+        if (menuName == null) {
+            throw new IllegalStateException("The property \"menuName\" is not specified");
+        }
         return menuName;
     }
 
     public void setMenuName(@NotNull String menuName) {
         this.menuName = menuName;
+    }
+
+    @NotNull
+    @Schema(
+            description = "菜单路径"
+    )
+    public String getMenuPath() {
+        if (menuPath == null) {
+            throw new IllegalStateException("The property \"menuPath\" is not specified");
+        }
+        return menuPath;
+    }
+
+    public void setMenuPath(@NotNull String menuPath) {
+        this.menuPath = menuPath;
+    }
+
+    @Nullable
+    @Schema(
+            description = "重定向地址"
+    )
+    public String getRedirect() {
+        return redirect;
+    }
+
+    public void setRedirect(@Nullable String redirect) {
+        this.redirect = redirect;
     }
 
     /**
@@ -280,6 +270,9 @@ public class MenuListView implements View<Menu> {
             description = "菜单类型（1菜单 2权限 3开发）"
     )
     public String getMenuType() {
+        if (menuType == null) {
+            throw new IllegalStateException("The property \"menuType\" is not specified");
+        }
         return menuType;
     }
 
@@ -347,7 +340,6 @@ public class MenuListView implements View<Menu> {
         this.weight = weight;
     }
 
-
     /**
      * 归属系统（default:主导航菜单、mobileApp:APP菜单）
      */
@@ -375,17 +367,33 @@ public class MenuListView implements View<Menu> {
         this.children = children;
     }
 
+    @NotNull
+    @Schema(
+            description = "菜单元数据"
+    )
+    public Meta getMeta() {
+        if (meta == null) {
+            throw new IllegalStateException("The property \"meta\" is not specified");
+        }
+        return meta;
+    }
+
+    public void setMeta(@NotNull Meta meta) {
+        this.meta = meta;
+    }
+
     @Override
     public Menu toEntity() {
         return MenuDraft.$.produce(__draft -> {
             __draft.setId(id);
-            __draft.setStatus(status);
             __draft.setCreateBy(createBy);
             __draft.setCreateDate(createDate);
             __draft.setUpdateBy(updateBy);
             __draft.setUpdateDate(updateDate);
             __draft.setRemarks(remarks);
             __draft.setMenuName(menuName);
+            __draft.setMenuPath(menuPath);
+            __draft.setRedirect(redirect);
             __draft.setMenuType(menuType);
             __draft.setMenuComponent(menuComponent);
             __draft.setMenuTarget(menuTarget);
@@ -393,19 +401,21 @@ public class MenuListView implements View<Menu> {
             __draft.setWeight(weight);
             __draft.setSysCode(sysCode);
             CHILDREN_ACCESSOR.set(__draft, children != null ? children : Collections.emptyList());
+            __draft.setMeta(meta);
         });
     }
 
     @Override
     public int hashCode() {
         int hash = Objects.hashCode(id);
-        hash = hash * 31 + Integer.hashCode(status);
         hash = hash * 31 + Objects.hashCode(createBy);
         hash = hash * 31 + Objects.hashCode(createDate);
         hash = hash * 31 + Objects.hashCode(updateBy);
         hash = hash * 31 + Objects.hashCode(updateDate);
         hash = hash * 31 + Objects.hashCode(remarks);
         hash = hash * 31 + Objects.hashCode(menuName);
+        hash = hash * 31 + Objects.hashCode(menuPath);
+        hash = hash * 31 + Objects.hashCode(redirect);
         hash = hash * 31 + Objects.hashCode(menuType);
         hash = hash * 31 + Objects.hashCode(menuComponent);
         hash = hash * 31 + Objects.hashCode(menuTarget);
@@ -413,6 +423,7 @@ public class MenuListView implements View<Menu> {
         hash = hash * 31 + Objects.hashCode(weight);
         hash = hash * 31 + Objects.hashCode(sysCode);
         hash = hash * 31 + Objects.hashCode(children);
+        hash = hash * 31 + Objects.hashCode(meta);
         return hash;
     }
 
@@ -423,9 +434,6 @@ public class MenuListView implements View<Menu> {
         }
         MenuListView other = (MenuListView) o;
         if (!Objects.equals(id, other.id)) {
-            return false;
-        }
-        if (status != other.status) {
             return false;
         }
         if (!Objects.equals(createBy, other.createBy)) {
@@ -444,6 +452,12 @@ public class MenuListView implements View<Menu> {
             return false;
         }
         if (!Objects.equals(menuName, other.menuName)) {
+            return false;
+        }
+        if (!Objects.equals(menuPath, other.menuPath)) {
+            return false;
+        }
+        if (!Objects.equals(redirect, other.redirect)) {
             return false;
         }
         if (!Objects.equals(menuType, other.menuType)) {
@@ -467,6 +481,9 @@ public class MenuListView implements View<Menu> {
         if (!Objects.equals(children, other.children)) {
             return false;
         }
+        if (!Objects.equals(meta, other.meta)) {
+            return false;
+        }
         return true;
     }
 
@@ -475,13 +492,14 @@ public class MenuListView implements View<Menu> {
         StringBuilder builder = new StringBuilder();
         builder.append("MenuListView").append('(');
         builder.append("id=").append(id);
-        builder.append(", status=").append(status);
         builder.append(", createBy=").append(createBy);
         builder.append(", createDate=").append(createDate);
         builder.append(", updateBy=").append(updateBy);
         builder.append(", updateDate=").append(updateDate);
         builder.append(", remarks=").append(remarks);
         builder.append(", menuName=").append(menuName);
+        builder.append(", menuPath=").append(menuPath);
+        builder.append(", redirect=").append(redirect);
         builder.append(", menuType=").append(menuType);
         builder.append(", menuComponent=").append(menuComponent);
         builder.append(", menuTarget=").append(menuTarget);
@@ -489,6 +507,7 @@ public class MenuListView implements View<Menu> {
         builder.append(", weight=").append(weight);
         builder.append(", sysCode=").append(sysCode);
         builder.append(", children=").append(children);
+        builder.append(", meta=").append(meta);
         builder.append(')');
         return builder.toString();
     }

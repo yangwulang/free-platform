@@ -87,8 +87,8 @@ public class MessageRecordUserTable extends AbstractTypedTable<MessageRecordUser
     }
 
     @Override
-    public PropExpression.Num<Integer> isRead() {
-        return __get(MessageRecordUserProps.IS_READ.unwrap());
+    public PropExpression.Num<Integer> readStatus() {
+        return __get(MessageRecordUserProps.READ_STATUS.unwrap());
     }
 
     @Override

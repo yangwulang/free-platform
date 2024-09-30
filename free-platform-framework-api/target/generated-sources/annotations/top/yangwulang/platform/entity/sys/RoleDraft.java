@@ -167,7 +167,7 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.150",
+                "0.8.184",
                 Role.class,
                 Collections.singleton(DataTypeBaseDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (Role)base)
@@ -204,13 +204,16 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
             return (Role)Internal.produce(TYPE, base, block);
         }
 
+        /**
+         * Class, not interface, for free-marker
+         */
         @GeneratedBy(
                 type = Role.class
         )
         @JsonPropertyOrder({"dummyPropForJacksonError__", "id", "status", "createBy", "createDate", "updateBy", "updateDate", "remarks", "roleCode", "roleName", "roleType", "roleSort", "isSys", "userType", "dataScope", "bizScope", "corpCode", "corpName", "menus", "users"})
-        public abstract interface Implementor extends Role, ImmutableSpi {
+        public abstract static class Implementor implements Role, ImmutableSpi {
             @Override
-            default Object __get(PropId prop) {
+            public final Object __get(PropId prop) {
                 int __propIndex = prop.asIndex();
                 switch (__propIndex) {
                     case -1:
@@ -258,7 +261,7 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
             }
 
             @Override
-            default Object __get(String prop) {
+            public final Object __get(String prop) {
                 switch (prop) {
                     case "id":
                     		return id();
@@ -303,53 +306,53 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
             }
 
             @NotNull
-            default String getId() {
+            public final String getId() {
                 return id();
             }
 
             @Schema(
                     description = "状态"
             )
-            default int getStatus() {
+            public final int getStatus() {
                 return status();
             }
 
             @NotNull
-            default String getCreateBy() {
+            public final String getCreateBy() {
                 return createBy();
             }
 
             @NotNull
-            default Date getCreateDate() {
+            public final Date getCreateDate() {
                 return createDate();
             }
 
             @NotNull
-            default String getUpdateBy() {
+            public final String getUpdateBy() {
                 return updateBy();
             }
 
             @NotNull
-            default Date getUpdateDate() {
+            public final Date getUpdateDate() {
                 return updateDate();
             }
 
             @Nullable
-            default String getRemarks() {
+            public final String getRemarks() {
                 return remarks();
             }
 
             @Schema(
                     description = "角色编码"
             )
-            default String getRoleCode() {
+            public final String getRoleCode() {
                 return roleCode();
             }
 
             @Schema(
                     description = "角色名称"
             )
-            default String getRoleName() {
+            public final String getRoleName() {
                 return roleName();
             }
 
@@ -357,7 +360,7 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
                     description = "角色类型"
             )
             @jakarta.annotation.Nullable
-            default String getRoleType() {
+            public final String getRoleType() {
                 return roleType();
             }
 
@@ -365,14 +368,14 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
                     description = "角色排序"
             )
             @jakarta.annotation.Nullable
-            default BigDecimal getRoleSort() {
+            public final BigDecimal getRoleSort() {
                 return roleSort();
             }
 
             @Schema(
                     description = "系统内置 1是 0否"
             )
-            default Boolean getIsSys() {
+            public final Boolean getIsSys() {
                 return isSys();
             }
 
@@ -380,7 +383,7 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
                     description = "用户类型"
             )
             @jakarta.annotation.Nullable
-            default String getUserType() {
+            public final String getUserType() {
                 return userType();
             }
 
@@ -388,7 +391,7 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
                     description = "数据范围设置"
             )
             @jakarta.annotation.Nullable
-            default String getDataScope() {
+            public final String getDataScope() {
                 return dataScope();
             }
 
@@ -396,40 +399,40 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
                     description = "适应业务范围"
             )
             @jakarta.annotation.Nullable
-            default String getBizScope() {
+            public final String getBizScope() {
                 return bizScope();
             }
 
             @jakarta.annotation.Nullable
-            default String getCorpCode() {
+            public final String getCorpCode() {
                 return corpCode();
             }
 
             @jakarta.annotation.Nullable
-            default String getCorpName() {
+            public final String getCorpName() {
                 return corpName();
             }
 
             @Schema(
                     description = "角色拥有的菜单"
             )
-            default List<Menu> getMenus() {
+            public final List<Menu> getMenus() {
                 return menus();
             }
 
             @Schema(
                     description = "角色拥有的用户"
             )
-            default List<User> getUsers() {
+            public final List<User> getUsers() {
                 return users();
             }
 
             @Override
-            default ImmutableType __type() {
+            public final ImmutableType __type() {
                 return TYPE;
             }
 
-            default int getDummyPropForJacksonError__() {
+            public final int getDummyPropForJacksonError__() {
                 throw new ImmutableModuleRequiredException();
             }
         }
@@ -437,7 +440,7 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
         @GeneratedBy(
                 type = Role.class
         )
-        private static class Impl implements Implementor, Cloneable, Serializable {
+        private static class Impl extends Implementor implements Cloneable, Serializable {
             private Visibility __visibility;
 
             String __idValue;
@@ -1423,7 +1426,7 @@ public interface RoleDraft extends Role, DataTypeBaseDraft {
         @GeneratedBy(
                 type = Role.class
         )
-        private static class DraftImpl implements Implementor, DraftSpi, RoleDraft {
+        private static class DraftImpl extends Implementor implements DraftSpi, RoleDraft {
             private DraftContext __ctx;
 
             private Impl __base;

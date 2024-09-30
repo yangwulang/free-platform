@@ -189,7 +189,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.150",
+                "0.8.184",
                 Menu.class,
                 Collections.singleton(DataTypeBaseDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (Menu)base)
@@ -228,13 +228,16 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             return (Menu)Internal.produce(TYPE, base, block);
         }
 
+        /**
+         * Class, not interface, for free-marker
+         */
         @GeneratedBy(
                 type = Menu.class
         )
         @JsonPropertyOrder({"dummyPropForJacksonError__", "id", "status", "createBy", "createDate", "updateBy", "updateDate", "remarks", "parent", "parentId", "children", "meta", "menuName", "menuPath", "redirect", "menuType", "menuComponent", "menuTarget", "permission", "weight", "sysCode", "roles"})
-        public abstract interface Implementor extends Menu, ImmutableSpi {
+        public abstract static class Implementor implements Menu, ImmutableSpi {
             @Override
-            default Object __get(PropId prop) {
+            public final Object __get(PropId prop) {
                 int __propIndex = prop.asIndex();
                 switch (__propIndex) {
                     case -1:
@@ -286,7 +289,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @Override
-            default Object __get(String prop) {
+            public final Object __get(String prop) {
                 switch (prop) {
                     case "id":
                     		return id();
@@ -335,39 +338,39 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
             }
 
             @NotNull
-            default String getId() {
+            public final String getId() {
                 return id();
             }
 
             @Schema(
                     description = "状态"
             )
-            default int getStatus() {
+            public final int getStatus() {
                 return status();
             }
 
             @NotNull
-            default String getCreateBy() {
+            public final String getCreateBy() {
                 return createBy();
             }
 
             @NotNull
-            default Date getCreateDate() {
+            public final Date getCreateDate() {
                 return createDate();
             }
 
             @NotNull
-            default String getUpdateBy() {
+            public final String getUpdateBy() {
                 return updateBy();
             }
 
             @NotNull
-            default Date getUpdateDate() {
+            public final Date getUpdateDate() {
                 return updateDate();
             }
 
             @Nullable
-            default String getRemarks() {
+            public final String getRemarks() {
                 return remarks();
             }
 
@@ -375,40 +378,40 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                     description = "父级菜单"
             )
             @jakarta.annotation.Nullable
-            default Menu getParent() {
+            public final Menu getParent() {
                 return parent();
             }
 
             @jakarta.annotation.Nullable
-            default String getParentId() {
+            public final String getParentId() {
                 return parentId();
             }
 
             @Schema(
                     description = "子级菜单"
             )
-            default List<Menu> getChildren() {
+            public final List<Menu> getChildren() {
                 return children();
             }
 
             @Schema(
                     description = "菜单元数据"
             )
-            default Meta getMeta() {
+            public final Meta getMeta() {
                 return meta();
             }
 
             @Schema(
                     description = "菜单名称"
             )
-            default String getMenuName() {
+            public final String getMenuName() {
                 return menuName();
             }
 
             @Schema(
                     description = "菜单路径"
             )
-            default String getMenuPath() {
+            public final String getMenuPath() {
                 return menuPath();
             }
 
@@ -416,14 +419,14 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                     description = "重定向地址"
             )
             @jakarta.annotation.Nullable
-            default String getRedirect() {
+            public final String getRedirect() {
                 return redirect();
             }
 
             @Schema(
                     description = "菜单类型（1菜单 2权限 3开发）"
             )
-            default String getMenuType() {
+            public final String getMenuType() {
                 return menuType();
             }
 
@@ -431,7 +434,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                     description = "组件地址"
             )
             @jakarta.annotation.Nullable
-            default String getMenuComponent() {
+            public final String getMenuComponent() {
                 return menuComponent();
             }
 
@@ -439,7 +442,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                     description = "目标"
             )
             @jakarta.annotation.Nullable
-            default String getMenuTarget() {
+            public final String getMenuTarget() {
                 return menuTarget();
             }
 
@@ -447,7 +450,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                     description = "权限标识"
             )
             @jakarta.annotation.Nullable
-            default String getPermission() {
+            public final String getPermission() {
                 return permission();
             }
 
@@ -455,7 +458,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                     description = "菜单权重"
             )
             @jakarta.annotation.Nullable
-            default BigDecimal getWeight() {
+            public final BigDecimal getWeight() {
                 return weight();
             }
 
@@ -463,20 +466,20 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
                     description = "归属系统（default:主导航菜单、mobileApp:APP菜单）"
             )
             @jakarta.annotation.Nullable
-            default String getSysCode() {
+            public final String getSysCode() {
                 return sysCode();
             }
 
-            default List<Role> getRoles() {
+            public final List<Role> getRoles() {
                 return roles();
             }
 
             @Override
-            default ImmutableType __type() {
+            public final ImmutableType __type() {
                 return TYPE;
             }
 
-            default int getDummyPropForJacksonError__() {
+            public final int getDummyPropForJacksonError__() {
                 throw new ImmutableModuleRequiredException();
             }
         }
@@ -484,7 +487,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
         @GeneratedBy(
                 type = Menu.class
         )
-        private static class Impl implements Implementor, Cloneable, Serializable {
+        private static class Impl extends Implementor implements Cloneable, Serializable {
             private Visibility __visibility;
 
             String __idValue;
@@ -1541,7 +1544,7 @@ public interface MenuDraft extends Menu, DataTypeBaseDraft {
         @GeneratedBy(
                 type = Menu.class
         )
-        private static class DraftImpl implements Implementor, DraftSpi, MenuDraft {
+        private static class DraftImpl extends Implementor implements DraftSpi, MenuDraft {
             private DraftContext __ctx;
 
             private Impl __base;

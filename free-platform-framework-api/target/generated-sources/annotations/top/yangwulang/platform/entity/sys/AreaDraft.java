@@ -140,7 +140,7 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.150",
+                "0.8.184",
                 Area.class,
                 Collections.singleton(DataTypeBaseDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (Area)base)
@@ -171,13 +171,16 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
             return (Area)Internal.produce(TYPE, base, block);
         }
 
+        /**
+         * Class, not interface, for free-marker
+         */
         @GeneratedBy(
                 type = Area.class
         )
         @JsonPropertyOrder({"dummyPropForJacksonError__", "id", "status", "createBy", "createDate", "updateBy", "updateDate", "remarks", "parent", "parentId", "children", "areaName", "sort", "areaType"})
-        public abstract interface Implementor extends Area, ImmutableSpi {
+        public abstract static class Implementor implements Area, ImmutableSpi {
             @Override
-            default Object __get(PropId prop) {
+            public final Object __get(PropId prop) {
                 int __propIndex = prop.asIndex();
                 switch (__propIndex) {
                     case -1:
@@ -213,7 +216,7 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
             }
 
             @Override
-            default Object __get(String prop) {
+            public final Object __get(String prop) {
                 switch (prop) {
                     case "id":
                     		return id();
@@ -246,39 +249,39 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
             }
 
             @NotNull
-            default String getId() {
+            public final String getId() {
                 return id();
             }
 
             @Schema(
                     description = "状态"
             )
-            default int getStatus() {
+            public final int getStatus() {
                 return status();
             }
 
             @NotNull
-            default String getCreateBy() {
+            public final String getCreateBy() {
                 return createBy();
             }
 
             @NotNull
-            default Date getCreateDate() {
+            public final Date getCreateDate() {
                 return createDate();
             }
 
             @NotNull
-            default String getUpdateBy() {
+            public final String getUpdateBy() {
                 return updateBy();
             }
 
             @NotNull
-            default Date getUpdateDate() {
+            public final Date getUpdateDate() {
                 return updateDate();
             }
 
             @Nullable
-            default String getRemarks() {
+            public final String getRemarks() {
                 return remarks();
             }
 
@@ -286,7 +289,7 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
                     description = "父级区域"
             )
             @jakarta.annotation.Nullable
-            default Area getParent() {
+            public final Area getParent() {
                 return parent();
             }
 
@@ -294,21 +297,21 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
                     description = "父级id"
             )
             @jakarta.annotation.Nullable
-            default String getParentId() {
+            public final String getParentId() {
                 return parentId();
             }
 
             @Schema(
                     description = "子级区域"
             )
-            default List<Area> getChildren() {
+            public final List<Area> getChildren() {
                 return children();
             }
 
             @Schema(
                     description = "区域名称"
             )
-            default String getAreaName() {
+            public final String getAreaName() {
                 return areaName();
             }
 
@@ -316,7 +319,7 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
                     description = "排序"
             )
             @jakarta.annotation.Nullable
-            default Long getSort() {
+            public final Long getSort() {
                 return sort();
             }
 
@@ -324,16 +327,16 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
                     description = "地区类型(1：省份、直辖市；2：地市；3：区县)"
             )
             @jakarta.annotation.Nullable
-            default String getAreaType() {
+            public final String getAreaType() {
                 return areaType();
             }
 
             @Override
-            default ImmutableType __type() {
+            public final ImmutableType __type() {
                 return TYPE;
             }
 
-            default int getDummyPropForJacksonError__() {
+            public final int getDummyPropForJacksonError__() {
                 throw new ImmutableModuleRequiredException();
             }
         }
@@ -341,7 +344,7 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
         @GeneratedBy(
                 type = Area.class
         )
-        private static class Impl implements Implementor, Cloneable, Serializable {
+        private static class Impl extends Implementor implements Cloneable, Serializable {
             private Visibility __visibility;
 
             String __idValue;
@@ -1026,7 +1029,7 @@ public interface AreaDraft extends Area, DataTypeBaseDraft {
         @GeneratedBy(
                 type = Area.class
         )
-        private static class DraftImpl implements Implementor, DraftSpi, AreaDraft {
+        private static class DraftImpl extends Implementor implements DraftSpi, AreaDraft {
             private DraftContext __ctx;
 
             private Impl __base;

@@ -127,7 +127,7 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.150",
+                "0.8.184",
                 FileUpload.class,
                 Collections.singleton(DataTypeBaseDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (FileUpload)base)
@@ -158,13 +158,16 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
             return (FileUpload)Internal.produce(TYPE, base, block);
         }
 
+        /**
+         * Class, not interface, for free-marker
+         */
         @GeneratedBy(
                 type = FileUpload.class
         )
         @JsonPropertyOrder({"dummyPropForJacksonError__", "id", "status", "createBy", "createDate", "updateBy", "updateDate", "remarks", "fileEntity", "fileEntityId", "fileName", "fileType", "bizKey", "bizType"})
-        public abstract interface Implementor extends FileUpload, ImmutableSpi {
+        public abstract static class Implementor implements FileUpload, ImmutableSpi {
             @Override
-            default Object __get(PropId prop) {
+            public final Object __get(PropId prop) {
                 int __propIndex = prop.asIndex();
                 switch (__propIndex) {
                     case -1:
@@ -200,7 +203,7 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
             }
 
             @Override
-            default Object __get(String prop) {
+            public final Object __get(String prop) {
                 switch (prop) {
                     case "id":
                     		return id();
@@ -233,76 +236,76 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
             }
 
             @NotNull
-            default String getId() {
+            public final String getId() {
                 return id();
             }
 
             @Schema(
                     description = "状态"
             )
-            default int getStatus() {
+            public final int getStatus() {
                 return status();
             }
 
             @NotNull
-            default String getCreateBy() {
+            public final String getCreateBy() {
                 return createBy();
             }
 
             @NotNull
-            default Date getCreateDate() {
+            public final Date getCreateDate() {
                 return createDate();
             }
 
             @NotNull
-            default String getUpdateBy() {
+            public final String getUpdateBy() {
                 return updateBy();
             }
 
             @NotNull
-            default Date getUpdateDate() {
+            public final Date getUpdateDate() {
                 return updateDate();
             }
 
             @Nullable
-            default String getRemarks() {
+            public final String getRemarks() {
                 return remarks();
             }
 
             @jakarta.annotation.Nullable
-            default FileEntity getFileEntity() {
+            public final FileEntity getFileEntity() {
                 return fileEntity();
             }
 
             @jakarta.annotation.Nullable
-            default String getFileEntityId() {
+            public final String getFileEntityId() {
                 return fileEntityId();
             }
 
-            default String getFileName() {
+            public final String getFileName() {
                 return fileName();
             }
 
-            default String getFileType() {
+            public final String getFileType() {
                 return fileType();
             }
 
             @jakarta.annotation.Nullable
-            default String getBizKey() {
+            public final String getBizKey() {
                 return bizKey();
             }
 
             @jakarta.annotation.Nullable
-            default String getBizType() {
+            public final String getBizType() {
                 return bizType();
             }
 
             @Override
-            default ImmutableType __type() {
+            public final ImmutableType __type() {
                 return TYPE;
             }
 
-            default int getDummyPropForJacksonError__() {
+            public final int getDummyPropForJacksonError__() {
                 throw new ImmutableModuleRequiredException();
             }
         }
@@ -310,7 +313,7 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
         @GeneratedBy(
                 type = FileUpload.class
         )
-        private static class Impl implements Implementor, Cloneable, Serializable {
+        private static class Impl extends Implementor implements Cloneable, Serializable {
             private Visibility __visibility;
 
             String __idValue;
@@ -995,7 +998,7 @@ public interface FileUploadDraft extends FileUpload, DataTypeBaseDraft {
         @GeneratedBy(
                 type = FileUpload.class
         )
-        private static class DraftImpl implements Implementor, DraftSpi, FileUploadDraft {
+        private static class DraftImpl extends Implementor implements DraftSpi, FileUploadDraft {
             private DraftContext __ctx;
 
             private Impl __base;

@@ -113,7 +113,7 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.150",
+                "0.8.184",
                 MessageRecord.class,
                 Arrays.asList(
                     TypeBaseDraft.Producer.TYPE,
@@ -144,15 +144,18 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
             return (MessageRecord)Internal.produce(TYPE, base, block);
         }
 
+        /**
+         * Class, not interface, for free-marker
+         */
         @GeneratedBy(
                 type = MessageRecord.class
         )
         @JsonPropertyOrder({"dummyPropForJacksonError__", "id", "status", "type", "title", "subTitle", "avatar", "content", "messageType", "targetUsers", "messageRecordUsers"})
-        public abstract interface Implementor extends MessageRecord, ImmutableSpi {
-            PropId DEEPER_PROP_ID_TARGET_USERS = Producer.TYPE.getProp("targetUsers").getManyToManyViewBaseDeeperProp().getId();
+        public abstract static class Implementor implements MessageRecord, ImmutableSpi {
+            public static final PropId DEEPER_PROP_ID_TARGET_USERS = Producer.TYPE.getProp("targetUsers").getManyToManyViewBaseDeeperProp().getId();
 
             @Override
-            default Object __get(PropId prop) {
+            public final Object __get(PropId prop) {
                 int __propIndex = prop.asIndex();
                 switch (__propIndex) {
                     case -1:
@@ -182,7 +185,7 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
             }
 
             @Override
-            default Object __get(String prop) {
+            public final Object __get(String prop) {
                 switch (prop) {
                     case "id":
                     		return id();
@@ -209,35 +212,35 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
             }
 
             @NotNull
-            default String getId() {
+            public final String getId() {
                 return id();
             }
 
             @Schema(
                     description = "状态"
             )
-            default int getStatus() {
+            public final int getStatus() {
                 return status();
             }
 
             @Schema(
                     description = "类型"
             )
-            default String getType() {
+            public final String getType() {
                 return type();
             }
 
             @Schema(
                     description = "消息标题"
             )
-            default String getTitle() {
+            public final String getTitle() {
                 return title();
             }
 
             @Schema(
                     description = "消息子标题"
             )
-            default String getSubTitle() {
+            public final String getSubTitle() {
                 return subTitle();
             }
 
@@ -245,26 +248,26 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
                     description = "消息icon"
             )
             @Nullable
-            default String getAvatar() {
+            public final String getAvatar() {
                 return avatar();
             }
 
             @Schema(
                     description = "消息内容"
             )
-            default String getContent() {
+            public final String getContent() {
                 return content();
             }
 
             @Schema(
                     description = "消息类型"
             )
-            default Integer getMessageType() {
+            public final Integer getMessageType() {
                 return messageType();
             }
 
             @Override
-            default List<User> targetUsers() {
+            public final List<User> targetUsers() {
                 return new ManyToManyViewList<>(
                             DEEPER_PROP_ID_TARGET_USERS, messageRecordUsers()
                         );
@@ -273,20 +276,20 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
             @Schema(
                     description = "接收的用户"
             )
-            default List<User> getTargetUsers() {
+            public final List<User> getTargetUsers() {
                 return targetUsers();
             }
 
-            default List<MessageRecordUser> getMessageRecordUsers() {
+            public final List<MessageRecordUser> getMessageRecordUsers() {
                 return messageRecordUsers();
             }
 
             @Override
-            default ImmutableType __type() {
+            public final ImmutableType __type() {
                 return TYPE;
             }
 
-            default int getDummyPropForJacksonError__() {
+            public final int getDummyPropForJacksonError__() {
                 throw new ImmutableModuleRequiredException();
             }
         }
@@ -294,7 +297,7 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
         @GeneratedBy(
                 type = MessageRecord.class
         )
-        private static class Impl implements Implementor, Cloneable, Serializable {
+        private static class Impl extends Implementor implements Cloneable, Serializable {
             private Visibility __visibility;
 
             String __idValue;
@@ -832,7 +835,7 @@ public interface MessageRecordDraft extends MessageRecord, TypeBaseDraft, Status
         @GeneratedBy(
                 type = MessageRecord.class
         )
-        private static class DraftImpl implements Implementor, DraftSpi, MessageRecordDraft {
+        private static class DraftImpl extends Implementor implements DraftSpi, MessageRecordDraft {
             private DraftContext __ctx;
 
             private Impl __base;

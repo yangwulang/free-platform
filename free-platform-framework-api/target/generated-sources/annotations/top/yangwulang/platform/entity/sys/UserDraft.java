@@ -187,7 +187,7 @@ public interface UserDraft extends User, BaseEntityDraft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.150",
+                "0.8.184",
                 User.class,
                 Collections.singleton(BaseEntityDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (User)base)
@@ -230,13 +230,16 @@ public interface UserDraft extends User, BaseEntityDraft {
             return (User)Internal.produce(TYPE, base, block);
         }
 
+        /**
+         * Class, not interface, for free-marker
+         */
         @GeneratedBy(
                 type = User.class
         )
         @JsonPropertyOrder({"dummyPropForJacksonError__", "status", "createBy", "createDate", "updateBy", "updateDate", "remarks", "userCode", "loginCode", "userName", "password", "email", "mobile", "phone", "sex", "avatar", "sign", "wxOpenId", "mobileImei", "userType", "refCode", "refName", "mgrType", "pwdSecurityLevel", "userWeight", "roles"})
-        public abstract interface Implementor extends User, ImmutableSpi {
+        public abstract static class Implementor implements User, ImmutableSpi {
             @Override
-            default Object __get(PropId prop) {
+            public final Object __get(PropId prop) {
                 int __propIndex = prop.asIndex();
                 switch (__propIndex) {
                     case -1:
@@ -296,7 +299,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             }
 
             @Override
-            default Object __get(String prop) {
+            public final Object __get(String prop) {
                 switch (prop) {
                     case "status":
                     		return (Integer)status();
@@ -355,7 +358,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             @Schema(
                     description = "用户编码"
             )
-            default String getUserCode() {
+            public final String getUserCode() {
                 return userCode();
             }
 
@@ -363,7 +366,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             @Schema(
                     description = "状态"
             )
-            default int getStatus() {
+            public final int getStatus() {
                 return status();
             }
 
@@ -371,7 +374,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             @Schema(
                     description = "创建人"
             )
-            default String getCreateBy() {
+            public final String getCreateBy() {
                 return createBy();
             }
 
@@ -379,7 +382,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             @Schema(
                     description = "创建时间"
             )
-            default Date getCreateDate() {
+            public final Date getCreateDate() {
                 return createDate();
             }
 
@@ -387,7 +390,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             @Schema(
                     description = "修改者"
             )
-            default String getUpdateBy() {
+            public final String getUpdateBy() {
                 return updateBy();
             }
 
@@ -395,7 +398,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             @Schema(
                     description = "修改时间"
             )
-            default Date getUpdateDate() {
+            public final Date getUpdateDate() {
                 return updateDate();
             }
 
@@ -403,7 +406,7 @@ public interface UserDraft extends User, BaseEntityDraft {
             @Schema(
                     description = "备注"
             )
-            default String getRemarks() {
+            public final String getRemarks() {
                 return remarks();
             }
 
@@ -411,7 +414,7 @@ public interface UserDraft extends User, BaseEntityDraft {
                     description = "登录编码(账号)"
             )
             @jakarta.annotation.Nullable
-            default String getLoginCode() {
+            public final String getLoginCode() {
                 return loginCode();
             }
 
@@ -419,7 +422,7 @@ public interface UserDraft extends User, BaseEntityDraft {
                     description = "用户名"
             )
             @jakarta.annotation.Nullable
-            default String getUserName() {
+            public final String getUserName() {
                 return userName();
             }
 
@@ -427,7 +430,7 @@ public interface UserDraft extends User, BaseEntityDraft {
                     description = "密码"
             )
             @jakarta.annotation.Nullable
-            default String getPassword() {
+            public final String getPassword() {
                 return password();
             }
 
@@ -435,7 +438,7 @@ public interface UserDraft extends User, BaseEntityDraft {
                     description = "邮件"
             )
             @jakarta.annotation.Nullable
-            default String getEmail() {
+            public final String getEmail() {
                 return email();
             }
 
@@ -443,7 +446,7 @@ public interface UserDraft extends User, BaseEntityDraft {
                     description = "手机"
             )
             @jakarta.annotation.Nullable
-            default String getMobile() {
+            public final String getMobile() {
                 return mobile();
             }
 
@@ -451,7 +454,7 @@ public interface UserDraft extends User, BaseEntityDraft {
                     description = "电话"
             )
             @jakarta.annotation.Nullable
-            default String getPhone() {
+            public final String getPhone() {
                 return phone();
             }
 
@@ -459,7 +462,7 @@ public interface UserDraft extends User, BaseEntityDraft {
                     description = "性别"
             )
             @jakarta.annotation.Nullable
-            default String getSex() {
+            public final String getSex() {
                 return sex();
             }
 
@@ -467,7 +470,7 @@ public interface UserDraft extends User, BaseEntityDraft {
                     description = "头像地址"
             )
             @jakarta.annotation.Nullable
-            default String getAvatar() {
+            public final String getAvatar() {
                 return avatar();
             }
 
@@ -475,7 +478,7 @@ public interface UserDraft extends User, BaseEntityDraft {
                     description = "个性签名"
             )
             @jakarta.annotation.Nullable
-            default String getSign() {
+            public final String getSign() {
                 return sign();
             }
 
@@ -483,7 +486,7 @@ public interface UserDraft extends User, BaseEntityDraft {
                     description = "微信开发id"
             )
             @jakarta.annotation.Nullable
-            default String getWxOpenId() {
+            public final String getWxOpenId() {
                 return wxOpenId();
             }
 
@@ -491,7 +494,7 @@ public interface UserDraft extends User, BaseEntityDraft {
                     description = "手机imei"
             )
             @jakarta.annotation.Nullable
-            default String getMobileImei() {
+            public final String getMobileImei() {
                 return mobileImei();
             }
 
@@ -499,7 +502,7 @@ public interface UserDraft extends User, BaseEntityDraft {
                     description = "用户类型"
             )
             @jakarta.annotation.Nullable
-            default String getUserType() {
+            public final String getUserType() {
                 return userType();
             }
 
@@ -507,7 +510,7 @@ public interface UserDraft extends User, BaseEntityDraft {
                     description = "用户类型引用编号"
             )
             @jakarta.annotation.Nullable
-            default String getRefCode() {
+            public final String getRefCode() {
                 return refCode();
             }
 
@@ -515,35 +518,35 @@ public interface UserDraft extends User, BaseEntityDraft {
                     description = "用户类型引用名称"
             )
             @jakarta.annotation.Nullable
-            default String getRefName() {
+            public final String getRefName() {
                 return refName();
             }
 
             @Schema(
                     description = "管理员类型"
             )
-            default String getMgrType() {
+            public final String getMgrType() {
                 return mgrType();
             }
 
-            default Integer getPwdSecurityLevel() {
+            public final Integer getPwdSecurityLevel() {
                 return pwdSecurityLevel();
             }
 
-            default Integer getUserWeight() {
+            public final Integer getUserWeight() {
                 return userWeight();
             }
 
-            default List<Role> getRoles() {
+            public final List<Role> getRoles() {
                 return roles();
             }
 
             @Override
-            default ImmutableType __type() {
+            public final ImmutableType __type() {
                 return TYPE;
             }
 
-            default int getDummyPropForJacksonError__() {
+            public final int getDummyPropForJacksonError__() {
                 throw new ImmutableModuleRequiredException();
             }
         }
@@ -551,7 +554,7 @@ public interface UserDraft extends User, BaseEntityDraft {
         @GeneratedBy(
                 type = User.class
         )
-        private static class Impl implements Implementor, Cloneable, Serializable {
+        private static class Impl extends Implementor implements Cloneable, Serializable {
             private Visibility __visibility;
 
             String __userCodeValue;
@@ -1831,7 +1834,7 @@ public interface UserDraft extends User, BaseEntityDraft {
         @GeneratedBy(
                 type = User.class
         )
-        private static class DraftImpl implements Implementor, DraftSpi, UserDraft {
+        private static class DraftImpl extends Implementor implements DraftSpi, UserDraft {
             private DraftContext __ctx;
 
             private Impl __base;

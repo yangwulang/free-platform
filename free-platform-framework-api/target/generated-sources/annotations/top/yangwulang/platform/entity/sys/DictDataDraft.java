@@ -186,7 +186,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.150",
+                "0.8.184",
                 DictData.class,
                 Collections.singleton(DataTypeBaseDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (DictData)base)
@@ -224,13 +224,16 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             return (DictData)Internal.produce(TYPE, base, block);
         }
 
+        /**
+         * Class, not interface, for free-marker
+         */
         @GeneratedBy(
                 type = DictData.class
         )
         @JsonPropertyOrder({"dummyPropForJacksonError__", "id", "status", "createBy", "createDate", "updateBy", "updateDate", "remarks", "parent", "children", "dictType", "parentId", "dictTypeId", "dictLabel", "dictValue", "isSys", "description", "cssStyle", "cssClass", "corpCode", "corpName"})
-        public abstract interface Implementor extends DictData, ImmutableSpi {
+        public abstract static class Implementor implements DictData, ImmutableSpi {
             @Override
-            default Object __get(PropId prop) {
+            public final Object __get(PropId prop) {
                 int __propIndex = prop.asIndex();
                 switch (__propIndex) {
                     case -1:
@@ -280,7 +283,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @Override
-            default Object __get(String prop) {
+            public final Object __get(String prop) {
                 switch (prop) {
                     case "id":
                     		return id();
@@ -327,39 +330,39 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             }
 
             @NotNull
-            default String getId() {
+            public final String getId() {
                 return id();
             }
 
             @Schema(
                     description = "状态"
             )
-            default int getStatus() {
+            public final int getStatus() {
                 return status();
             }
 
             @NotNull
-            default String getCreateBy() {
+            public final String getCreateBy() {
                 return createBy();
             }
 
             @NotNull
-            default Date getCreateDate() {
+            public final Date getCreateDate() {
                 return createDate();
             }
 
             @NotNull
-            default String getUpdateBy() {
+            public final String getUpdateBy() {
                 return updateBy();
             }
 
             @NotNull
-            default Date getUpdateDate() {
+            public final Date getUpdateDate() {
                 return updateDate();
             }
 
             @Nullable
-            default String getRemarks() {
+            public final String getRemarks() {
                 return remarks();
             }
 
@@ -367,7 +370,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
                     description = "父级"
             )
             @jakarta.annotation.Nullable
-            default DictData getParent() {
+            public final DictData getParent() {
                 return parent();
             }
 
@@ -375,7 +378,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
             @Schema(
                     description = "子集"
             )
-            default List<DictData> getChildren() {
+            public final List<DictData> getChildren() {
                 return children();
             }
 
@@ -383,7 +386,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
                     description = "字典类型"
             )
             @jakarta.annotation.Nullable
-            default DictType getDictType() {
+            public final DictType getDictType() {
                 return dictType();
             }
 
@@ -391,7 +394,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
                     description = "父级id"
             )
             @jakarta.annotation.Nullable
-            default String getParentId() {
+            public final String getParentId() {
                 return parentId();
             }
 
@@ -399,7 +402,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
                     description = "字典类型id"
             )
             @jakarta.annotation.Nullable
-            default String getDictTypeId() {
+            public final String getDictTypeId() {
                 return dictTypeId();
             }
 
@@ -407,7 +410,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
                     description = "字典标签"
             )
             @jakarta.annotation.Nullable
-            default String getDictLabel() {
+            public final String getDictLabel() {
                 return dictLabel();
             }
 
@@ -415,14 +418,14 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
                     description = "字典键值"
             )
             @jakarta.annotation.Nullable
-            default String getDictValue() {
+            public final String getDictValue() {
                 return dictValue();
             }
 
             @Schema(
                     description = "系统内置（1是 0否）"
             )
-            default Boolean getIsSys() {
+            public final Boolean getIsSys() {
                 return isSys();
             }
 
@@ -430,7 +433,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
                     description = "字典描述"
             )
             @jakarta.annotation.Nullable
-            default String getDescription() {
+            public final String getDescription() {
                 return description();
             }
 
@@ -438,7 +441,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
                     description = "css样式（如：color:red)"
             )
             @jakarta.annotation.Nullable
-            default String getCssStyle() {
+            public final String getCssStyle() {
                 return cssStyle();
             }
 
@@ -446,7 +449,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
                     description = "css类名（如：red）"
             )
             @jakarta.annotation.Nullable
-            default String getCssClass() {
+            public final String getCssClass() {
                 return cssClass();
             }
 
@@ -454,7 +457,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
                     description = "租户代码"
             )
             @jakarta.annotation.Nullable
-            default String getCorpCode() {
+            public final String getCorpCode() {
                 return corpCode();
             }
 
@@ -462,16 +465,16 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
                     description = "租户名称"
             )
             @jakarta.annotation.Nullable
-            default String getCorpName() {
+            public final String getCorpName() {
                 return corpName();
             }
 
             @Override
-            default ImmutableType __type() {
+            public final ImmutableType __type() {
                 return TYPE;
             }
 
-            default int getDummyPropForJacksonError__() {
+            public final int getDummyPropForJacksonError__() {
                 throw new ImmutableModuleRequiredException();
             }
         }
@@ -479,7 +482,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
         @GeneratedBy(
                 type = DictData.class
         )
-        private static class Impl implements Implementor, Cloneable, Serializable {
+        private static class Impl extends Implementor implements Cloneable, Serializable {
             private Visibility __visibility;
 
             String __idValue;
@@ -1480,7 +1483,7 @@ public interface DictDataDraft extends DictData, DataTypeBaseDraft {
         @GeneratedBy(
                 type = DictData.class
         )
-        private static class DraftImpl implements Implementor, DraftSpi, DictDataDraft {
+        private static class DraftImpl extends Implementor implements DraftSpi, DictDataDraft {
             private DraftContext __ctx;
 
             private Impl __base;

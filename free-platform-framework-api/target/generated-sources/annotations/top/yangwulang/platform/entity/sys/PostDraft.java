@@ -84,7 +84,7 @@ public interface PostDraft extends Post, TypeBaseDraft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.150",
+                "0.8.184",
                 Post.class,
                 Collections.singleton(TypeBaseDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (Post)base)
@@ -107,13 +107,16 @@ public interface PostDraft extends Post, TypeBaseDraft {
             return (Post)Internal.produce(TYPE, base, block);
         }
 
+        /**
+         * Class, not interface, for free-marker
+         */
         @GeneratedBy(
                 type = Post.class
         )
         @JsonPropertyOrder({"dummyPropForJacksonError__", "id", "postCode", "postName", "postType", "employees"})
-        public abstract interface Implementor extends Post, ImmutableSpi {
+        public abstract static class Implementor implements Post, ImmutableSpi {
             @Override
-            default Object __get(PropId prop) {
+            public final Object __get(PropId prop) {
                 int __propIndex = prop.asIndex();
                 switch (__propIndex) {
                     case -1:
@@ -133,7 +136,7 @@ public interface PostDraft extends Post, TypeBaseDraft {
             }
 
             @Override
-            default Object __get(String prop) {
+            public final Object __get(String prop) {
                 switch (prop) {
                     case "id":
                     		return id();
@@ -150,21 +153,21 @@ public interface PostDraft extends Post, TypeBaseDraft {
             }
 
             @NotNull
-            default String getId() {
+            public final String getId() {
                 return id();
             }
 
             @Schema(
                     description = "岗位编码"
             )
-            default String getPostCode() {
+            public final String getPostCode() {
                 return postCode();
             }
 
             @Schema(
                     description = "岗位名称"
             )
-            default String getPostName() {
+            public final String getPostName() {
                 return postName();
             }
 
@@ -172,20 +175,20 @@ public interface PostDraft extends Post, TypeBaseDraft {
                     description = "岗位类型（高管、中层、低层）"
             )
             @Nullable
-            default String getPostType() {
+            public final String getPostType() {
                 return postType();
             }
 
-            default List<Employee> getEmployees() {
+            public final List<Employee> getEmployees() {
                 return employees();
             }
 
             @Override
-            default ImmutableType __type() {
+            public final ImmutableType __type() {
                 return TYPE;
             }
 
-            default int getDummyPropForJacksonError__() {
+            public final int getDummyPropForJacksonError__() {
                 throw new ImmutableModuleRequiredException();
             }
         }
@@ -193,7 +196,7 @@ public interface PostDraft extends Post, TypeBaseDraft {
         @GeneratedBy(
                 type = Post.class
         )
-        private static class Impl implements Implementor, Cloneable, Serializable {
+        private static class Impl extends Implementor implements Cloneable, Serializable {
             private Visibility __visibility;
 
             String __idValue;
@@ -523,7 +526,7 @@ public interface PostDraft extends Post, TypeBaseDraft {
         @GeneratedBy(
                 type = Post.class
         )
-        private static class DraftImpl implements Implementor, DraftSpi, PostDraft {
+        private static class DraftImpl extends Implementor implements DraftSpi, PostDraft {
             private DraftContext __ctx;
 
             private Impl __base;

@@ -118,7 +118,7 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.150",
+                "0.8.184",
                 DictType.class,
                 Collections.singleton(DataTypeBaseDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (DictType)base)
@@ -147,13 +147,16 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
             return (DictType)Internal.produce(TYPE, base, block);
         }
 
+        /**
+         * Class, not interface, for free-marker
+         */
         @GeneratedBy(
                 type = DictType.class
         )
         @JsonPropertyOrder({"dummyPropForJacksonError__", "id", "status", "createBy", "createDate", "updateBy", "updateDate", "remarks", "dictName", "dictType", "isSys", "data"})
-        public abstract interface Implementor extends DictType, ImmutableSpi {
+        public abstract static class Implementor implements DictType, ImmutableSpi {
             @Override
-            default Object __get(PropId prop) {
+            public final Object __get(PropId prop) {
                 int __propIndex = prop.asIndex();
                 switch (__propIndex) {
                     case -1:
@@ -185,7 +188,7 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
             }
 
             @Override
-            default Object __get(String prop) {
+            public final Object __get(String prop) {
                 switch (prop) {
                     case "id":
                     		return id();
@@ -214,39 +217,39 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
             }
 
             @NotNull
-            default String getId() {
+            public final String getId() {
                 return id();
             }
 
             @Schema(
                     description = "状态"
             )
-            default int getStatus() {
+            public final int getStatus() {
                 return status();
             }
 
             @NotNull
-            default String getCreateBy() {
+            public final String getCreateBy() {
                 return createBy();
             }
 
             @NotNull
-            default Date getCreateDate() {
+            public final Date getCreateDate() {
                 return createDate();
             }
 
             @NotNull
-            default String getUpdateBy() {
+            public final String getUpdateBy() {
                 return updateBy();
             }
 
             @NotNull
-            default Date getUpdateDate() {
+            public final Date getUpdateDate() {
                 return updateDate();
             }
 
             @Nullable
-            default String getRemarks() {
+            public final String getRemarks() {
                 return remarks();
             }
 
@@ -254,37 +257,37 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
                     description = "字典名称"
             )
             @jakarta.annotation.Nullable
-            default String getDictName() {
+            public final String getDictName() {
                 return dictName();
             }
 
             @Schema(
                     description = "字典类型标签"
             )
-            default String getDictType() {
+            public final String getDictType() {
                 return dictType();
             }
 
             @Schema(
                     description = "是否系统自带"
             )
-            default Boolean getIsSys() {
+            public final Boolean getIsSys() {
                 return isSys();
             }
 
             @Schema(
                     description = "字典数据"
             )
-            default List<DictData> getData() {
+            public final List<DictData> getData() {
                 return data();
             }
 
             @Override
-            default ImmutableType __type() {
+            public final ImmutableType __type() {
                 return TYPE;
             }
 
-            default int getDummyPropForJacksonError__() {
+            public final int getDummyPropForJacksonError__() {
                 throw new ImmutableModuleRequiredException();
             }
         }
@@ -292,7 +295,7 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
         @GeneratedBy(
                 type = DictType.class
         )
-        private static class Impl implements Implementor, Cloneable, Serializable {
+        private static class Impl extends Implementor implements Cloneable, Serializable {
             private Visibility __visibility;
 
             String __idValue;
@@ -900,7 +903,7 @@ public interface DictTypeDraft extends DictType, DataTypeBaseDraft {
         @GeneratedBy(
                 type = DictType.class
         )
-        private static class DraftImpl implements Implementor, DraftSpi, DictTypeDraft {
+        private static class DraftImpl extends Implementor implements DraftSpi, DictTypeDraft {
             private DraftContext __ctx;
 
             private Impl __base;

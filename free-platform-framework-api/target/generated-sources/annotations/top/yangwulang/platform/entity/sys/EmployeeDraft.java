@@ -118,7 +118,7 @@ public interface EmployeeDraft extends Employee, Draft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.150",
+                "0.8.184",
                 Employee.class,
                 Collections.emptyList(),
                 (ctx, base) -> new DraftImpl(ctx, (Employee)base)
@@ -142,13 +142,16 @@ public interface EmployeeDraft extends Employee, Draft {
             return (Employee)Internal.produce(TYPE, base, block);
         }
 
+        /**
+         * Class, not interface, for free-marker
+         */
         @GeneratedBy(
                 type = Employee.class
         )
         @JsonPropertyOrder({"dummyPropForJacksonError__", "empCode", "user", "company", "companyId", "empName", "posts"})
-        public abstract interface Implementor extends Employee, ImmutableSpi {
+        public abstract static class Implementor implements Employee, ImmutableSpi {
             @Override
-            default Object __get(PropId prop) {
+            public final Object __get(PropId prop) {
                 int __propIndex = prop.asIndex();
                 switch (__propIndex) {
                     case -1:
@@ -170,7 +173,7 @@ public interface EmployeeDraft extends Employee, Draft {
             }
 
             @Override
-            default Object __get(String prop) {
+            public final Object __get(String prop) {
                 switch (prop) {
                     case "empCode":
                     		return empCode();
@@ -191,7 +194,7 @@ public interface EmployeeDraft extends Employee, Draft {
             @Schema(
                     description = "员工编码"
             )
-            default String getEmpCode() {
+            public final String getEmpCode() {
                 return empCode();
             }
 
@@ -199,7 +202,7 @@ public interface EmployeeDraft extends Employee, Draft {
                     description = "用户"
             )
             @jakarta.annotation.Nullable
-            default User getUser() {
+            public final User getUser() {
                 return user();
             }
 
@@ -207,12 +210,12 @@ public interface EmployeeDraft extends Employee, Draft {
                     description = "公司"
             )
             @jakarta.annotation.Nullable
-            default Company getCompany() {
+            public final Company getCompany() {
                 return company();
             }
 
             @jakarta.annotation.Nullable
-            default String getCompanyId() {
+            public final String getCompanyId() {
                 return companyId();
             }
 
@@ -220,20 +223,20 @@ public interface EmployeeDraft extends Employee, Draft {
                     description = "员工名称"
             )
             @jakarta.annotation.Nullable
-            default String getEmpName() {
+            public final String getEmpName() {
                 return empName();
             }
 
-            default List<Post> getPosts() {
+            public final List<Post> getPosts() {
                 return posts();
             }
 
             @Override
-            default ImmutableType __type() {
+            public final ImmutableType __type() {
                 return TYPE;
             }
 
-            default int getDummyPropForJacksonError__() {
+            public final int getDummyPropForJacksonError__() {
                 throw new ImmutableModuleRequiredException();
             }
         }
@@ -241,7 +244,7 @@ public interface EmployeeDraft extends Employee, Draft {
         @GeneratedBy(
                 type = Employee.class
         )
-        private static class Impl implements Implementor, Cloneable, Serializable {
+        private static class Impl extends Implementor implements Cloneable, Serializable {
             private Visibility __visibility;
 
             String __empCodeValue;
@@ -606,7 +609,7 @@ public interface EmployeeDraft extends Employee, Draft {
         @GeneratedBy(
                 type = Employee.class
         )
-        private static class DraftImpl implements Implementor, DraftSpi, EmployeeDraft {
+        private static class DraftImpl extends Implementor implements DraftSpi, EmployeeDraft {
             private DraftContext __ctx;
 
             private Impl __base;

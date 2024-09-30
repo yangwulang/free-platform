@@ -93,13 +93,13 @@ public class MessageRecordUserFetcher extends AbstractTypedFetcher<MessageRecord
     }
 
     @NewChain
-    public MessageRecordUserFetcher isRead() {
-        return add("isRead");
+    public MessageRecordUserFetcher readStatus() {
+        return add("readStatus");
     }
 
     @NewChain
-    public MessageRecordUserFetcher isRead(boolean enabled) {
-        return enabled ? add("isRead") : remove("isRead");
+    public MessageRecordUserFetcher readStatus(boolean enabled) {
+        return enabled ? add("readStatus") : remove("readStatus");
     }
 
     @Override

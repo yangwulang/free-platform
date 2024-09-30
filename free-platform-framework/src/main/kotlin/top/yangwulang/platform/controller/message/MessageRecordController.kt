@@ -40,7 +40,7 @@ class MessageRecordController {
             .where(
                 Predicate.and(
                     table.asTableEx().targetUsers().userCode().eq(user.userCode()),
-                    table.asTableEx().messageRecordUsers().isRead().eq(MessageRecord.IS_READ_UN_READ)
+                    table.asTableEx().messageRecordUsers().readStatus().eq(MessageRecord.IS_READ_UN_READ)
                 )
             )
             .select(table.fetch(MessageRecordListView::class.java))

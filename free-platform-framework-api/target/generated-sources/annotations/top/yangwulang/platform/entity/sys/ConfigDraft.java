@@ -93,7 +93,7 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.150",
+                "0.8.184",
                 Config.class,
                 Collections.singleton(DataTypeBaseNoStatusDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (Config)base)
@@ -120,13 +120,16 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
             return (Config)Internal.produce(TYPE, base, block);
         }
 
+        /**
+         * Class, not interface, for free-marker
+         */
         @GeneratedBy(
                 type = Config.class
         )
         @JsonPropertyOrder({"dummyPropForJacksonError__", "id", "createBy", "createDate", "updateBy", "updateDate", "remarks", "configName", "configKey", "configValue"})
-        public abstract interface Implementor extends Config, ImmutableSpi {
+        public abstract static class Implementor implements Config, ImmutableSpi {
             @Override
-            default Object __get(PropId prop) {
+            public final Object __get(PropId prop) {
                 int __propIndex = prop.asIndex();
                 switch (__propIndex) {
                     case -1:
@@ -154,7 +157,7 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
             }
 
             @Override
-            default Object __get(String prop) {
+            public final Object __get(String prop) {
                 switch (prop) {
                     case "id":
                     		return id();
@@ -179,46 +182,46 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
             }
 
             @NotNull
-            default String getId() {
+            public final String getId() {
                 return id();
             }
 
             @NotNull
-            default String getCreateBy() {
+            public final String getCreateBy() {
                 return createBy();
             }
 
             @NotNull
-            default Date getCreateDate() {
+            public final Date getCreateDate() {
                 return createDate();
             }
 
             @NotNull
-            default String getUpdateBy() {
+            public final String getUpdateBy() {
                 return updateBy();
             }
 
             @NotNull
-            default Date getUpdateDate() {
+            public final Date getUpdateDate() {
                 return updateDate();
             }
 
             @Nullable
-            default String getRemarks() {
+            public final String getRemarks() {
                 return remarks();
             }
 
             @Schema(
                     description = "配置名称"
             )
-            default String getConfigName() {
+            public final String getConfigName() {
                 return configName();
             }
 
             @Schema(
                     description = "参数键"
             )
-            default String getConfigKey() {
+            public final String getConfigKey() {
                 return configKey();
             }
 
@@ -226,16 +229,16 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
                     description = "参数值"
             )
             @jakarta.annotation.Nullable
-            default String getConfigValue() {
+            public final String getConfigValue() {
                 return configValue();
             }
 
             @Override
-            default ImmutableType __type() {
+            public final ImmutableType __type() {
                 return TYPE;
             }
 
-            default int getDummyPropForJacksonError__() {
+            public final int getDummyPropForJacksonError__() {
                 throw new ImmutableModuleRequiredException();
             }
         }
@@ -243,7 +246,7 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
         @GeneratedBy(
                 type = Config.class
         )
-        private static class Impl implements Implementor, Cloneable, Serializable {
+        private static class Impl extends Implementor implements Cloneable, Serializable {
             private Visibility __visibility;
 
             String __idValue;
@@ -756,7 +759,7 @@ public interface ConfigDraft extends Config, DataTypeBaseNoStatusDraft {
         @GeneratedBy(
                 type = Config.class
         )
-        private static class DraftImpl implements Implementor, DraftSpi, ConfigDraft {
+        private static class DraftImpl extends Implementor implements DraftSpi, ConfigDraft {
             private DraftContext __ctx;
 
             private Impl __base;

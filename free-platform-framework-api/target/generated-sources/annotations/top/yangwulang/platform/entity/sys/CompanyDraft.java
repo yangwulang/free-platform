@@ -129,7 +129,7 @@ public interface CompanyDraft extends Company, TypeBaseDraft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.150",
+                "0.8.184",
                 Company.class,
                 Collections.singleton(TypeBaseDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (Company)base)
@@ -157,13 +157,16 @@ public interface CompanyDraft extends Company, TypeBaseDraft {
             return (Company)Internal.produce(TYPE, base, block);
         }
 
+        /**
+         * Class, not interface, for free-marker
+         */
         @GeneratedBy(
                 type = Company.class
         )
         @JsonPropertyOrder({"dummyPropForJacksonError__", "id", "parent", "parentId", "children", "employees", "companyCode", "companyName", "companyFullName", "corpCode", "corpName"})
-        public abstract interface Implementor extends Company, ImmutableSpi {
+        public abstract static class Implementor implements Company, ImmutableSpi {
             @Override
-            default Object __get(PropId prop) {
+            public final Object __get(PropId prop) {
                 int __propIndex = prop.asIndex();
                 switch (__propIndex) {
                     case -1:
@@ -193,7 +196,7 @@ public interface CompanyDraft extends Company, TypeBaseDraft {
             }
 
             @Override
-            default Object __get(String prop) {
+            public final Object __get(String prop) {
                 switch (prop) {
                     case "id":
                     		return id();
@@ -220,7 +223,7 @@ public interface CompanyDraft extends Company, TypeBaseDraft {
             }
 
             @NotNull
-            default String getId() {
+            public final String getId() {
                 return id();
             }
 
@@ -228,7 +231,7 @@ public interface CompanyDraft extends Company, TypeBaseDraft {
                     description = "父级公司"
             )
             @jakarta.annotation.Nullable
-            default Company getParent() {
+            public final Company getParent() {
                 return parent();
             }
 
@@ -236,32 +239,32 @@ public interface CompanyDraft extends Company, TypeBaseDraft {
                     description = "父级id"
             )
             @jakarta.annotation.Nullable
-            default String getParentId() {
+            public final String getParentId() {
                 return parentId();
             }
 
             @Schema(
                     description = "子级公司"
             )
-            default List<Company> getChildren() {
+            public final List<Company> getChildren() {
                 return children();
             }
 
-            default List<Employee> getEmployees() {
+            public final List<Employee> getEmployees() {
                 return employees();
             }
 
             @Schema(
                     description = "公司编码"
             )
-            default String getCompanyCode() {
+            public final String getCompanyCode() {
                 return companyCode();
             }
 
             @Schema(
                     description = "公司名称"
             )
-            default String getCompanyName() {
+            public final String getCompanyName() {
                 return companyName();
             }
 
@@ -269,26 +272,26 @@ public interface CompanyDraft extends Company, TypeBaseDraft {
                     description = "公司全名"
             )
             @jakarta.annotation.Nullable
-            default String getCompanyFullName() {
+            public final String getCompanyFullName() {
                 return companyFullName();
             }
 
             @jakarta.annotation.Nullable
-            default String getCorpCode() {
+            public final String getCorpCode() {
                 return corpCode();
             }
 
             @jakarta.annotation.Nullable
-            default String getCorpName() {
+            public final String getCorpName() {
                 return corpName();
             }
 
             @Override
-            default ImmutableType __type() {
+            public final ImmutableType __type() {
                 return TYPE;
             }
 
-            default int getDummyPropForJacksonError__() {
+            public final int getDummyPropForJacksonError__() {
                 throw new ImmutableModuleRequiredException();
             }
         }
@@ -296,7 +299,7 @@ public interface CompanyDraft extends Company, TypeBaseDraft {
         @GeneratedBy(
                 type = Company.class
         )
-        private static class Impl implements Implementor, Cloneable, Serializable {
+        private static class Impl extends Implementor implements Cloneable, Serializable {
             private Visibility __visibility;
 
             String __idValue;
@@ -844,7 +847,7 @@ public interface CompanyDraft extends Company, TypeBaseDraft {
         @GeneratedBy(
                 type = Company.class
         )
-        private static class DraftImpl implements Implementor, DraftSpi, CompanyDraft {
+        private static class DraftImpl extends Implementor implements DraftSpi, CompanyDraft {
             private DraftContext __ctx;
 
             private Impl __base;

@@ -40,5 +40,5 @@ public interface MessageRecordUser extends TypeBase {
      * @return 是否已读
      */
     @Column(name = "is_read")
-    Integer isRead();
+    Integer readStatus();
 }

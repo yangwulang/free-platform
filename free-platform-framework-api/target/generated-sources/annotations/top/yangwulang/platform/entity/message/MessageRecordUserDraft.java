@@ -86,7 +86,7 @@ public interface MessageRecordUserDraft extends MessageRecordUser, TypeBaseDraft
     MessageRecordUserDraft applyUser(User base, DraftConsumer<UserDraft> block);
 
     @OldChain
-    MessageRecordUserDraft setIsRead(Integer isRead);
+    MessageRecordUserDraft setReadStatus(Integer readStatus);
 
     @GeneratedBy(
             type = MessageRecordUser.class
@@ -100,11 +100,11 @@ public interface MessageRecordUserDraft extends MessageRecordUser, TypeBaseDraft
 
         public static final int SLOT_USER = 2;
 
-        public static final int SLOT_IS_READ = 3;
+        public static final int SLOT_READ_STATUS = 3;
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.150",
+                "0.8.184",
                 MessageRecordUser.class,
                 Collections.singleton(TypeBaseDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (MessageRecordUser)base)
@@ -112,7 +112,7 @@ public interface MessageRecordUserDraft extends MessageRecordUser, TypeBaseDraft
             .redefine("id", SLOT_ID)
             .add(SLOT_RECORD, "record", ManyToOne.class, MessageRecord.class, true)
             .add(SLOT_USER, "user", ManyToOne.class, User.class, true)
-            .add(SLOT_IS_READ, "isRead", ImmutablePropCategory.SCALAR, Integer.class, true)
+            .add(SLOT_READ_STATUS, "readStatus", ImmutablePropCategory.SCALAR, Integer.class, true)
             .build();
 
         private Producer() {
@@ -127,13 +127,16 @@ public interface MessageRecordUserDraft extends MessageRecordUser, TypeBaseDraft
             return (MessageRecordUser)Internal.produce(TYPE, base, block);
         }
 
+        /**
+         * Class, not interface, for free-marker
+         */
         @GeneratedBy(
                 type = MessageRecordUser.class
         )
-        @JsonPropertyOrder({"dummyPropForJacksonError__", "id", "record", "user", "isRead"})
-        public abstract interface Implementor extends MessageRecordUser, ImmutableSpi {
+        @JsonPropertyOrder({"dummyPropForJacksonError__", "id", "record", "user", "readStatus"})
+        public abstract static class Implementor implements MessageRecordUser, ImmutableSpi {
             @Override
-            default Object __get(PropId prop) {
+            public final Object __get(PropId prop) {
                 int __propIndex = prop.asIndex();
                 switch (__propIndex) {
                     case -1:
@@ -144,14 +147,14 @@ public interface MessageRecordUserDraft extends MessageRecordUser, TypeBaseDraft
                     		return record();
                     case SLOT_USER:
                     		return user();
-                    case SLOT_IS_READ:
-                    		return isRead();
+                    case SLOT_READ_STATUS:
+                    		return readStatus();
                     default: throw new IllegalArgumentException("Illegal property name for \"top.yangwulang.platform.entity.message.MessageRecordUser\": \"" + prop + "\"");
                 }
             }
 
             @Override
-            default Object __get(String prop) {
+            public final Object __get(String prop) {
                 switch (prop) {
                     case "id":
                     		return id();
@@ -159,37 +162,37 @@ public interface MessageRecordUserDraft extends MessageRecordUser, TypeBaseDraft
                     		return record();
                     case "user":
                     		return user();
-                    case "isRead":
-                    		return isRead();
+                    case "readStatus":
+                    		return readStatus();
                     default: throw new IllegalArgumentException("Illegal property name for \"top.yangwulang.platform.entity.message.MessageRecordUser\": \"" + prop + "\"");
                 }
             }
 
             @NotNull
-            default String getId() {
+            public final String getId() {
                 return id();
             }
 
             @jakarta.annotation.Nullable
-            default MessageRecord getRecord() {
+            public final MessageRecord getRecord() {
                 return record();
             }
 
             @jakarta.annotation.Nullable
-            default User getUser() {
+            public final User getUser() {
                 return user();
             }
 
-            default Integer getIsRead() {
-                return isRead();
+            public final Integer getReadStatus() {
+                return readStatus();
             }
 
             @Override
-            default ImmutableType __type() {
+            public final ImmutableType __type() {
                 return TYPE;
             }
 
-            default int getDummyPropForJacksonError__() {
+            public final int getDummyPropForJacksonError__() {
                 throw new ImmutableModuleRequiredException();
             }
         }
@@ -197,7 +200,7 @@ public interface MessageRecordUserDraft extends MessageRecordUser, TypeBaseDraft
         @GeneratedBy(
                 type = MessageRecordUser.class
         )
-        private static class Impl implements Implementor, Cloneable, Serializable {
+        private static class Impl extends Implementor implements Cloneable, Serializable {
             private Visibility __visibility;
 
             String __idValue;
@@ -210,9 +213,9 @@ public interface MessageRecordUserDraft extends MessageRecordUser, TypeBaseDraft
 
             boolean __userLoaded = false;
 
-            Integer __isReadValue;
+            Integer __readStatusValue;
 
-            boolean __isReadLoaded = false;
+            boolean __readStatusLoaded = false;
 
             @Override
             @JsonIgnore
@@ -246,11 +249,11 @@ public interface MessageRecordUserDraft extends MessageRecordUser, TypeBaseDraft
             @Override
             @JsonIgnore
             @Nullable
-            public Integer isRead() {
-                if (!__isReadLoaded) {
-                    throw new UnloadedException(MessageRecordUser.class, "isRead");
+            public Integer readStatus() {
+                if (!__readStatusLoaded) {
+                    throw new UnloadedException(MessageRecordUser.class, "readStatus");
                 }
-                return __isReadValue;
+                return __readStatusValue;
             }
 
             @Override
@@ -274,8 +277,8 @@ public interface MessageRecordUserDraft extends MessageRecordUser, TypeBaseDraft
                     		return __recordLoaded;
                     case SLOT_USER:
                     		return __userLoaded;
-                    case SLOT_IS_READ:
-                    		return __isReadLoaded;
+                    case SLOT_READ_STATUS:
+                    		return __readStatusLoaded;
                     default: throw new IllegalArgumentException("Illegal property name for \"top.yangwulang.platform.entity.message.MessageRecordUser\": \"" + prop + "\"");
                 }
             }
@@ -289,8 +292,8 @@ public interface MessageRecordUserDraft extends MessageRecordUser, TypeBaseDraft
                     		return __recordLoaded;
                     case "user":
                     		return __userLoaded;
-                    case "isRead":
-                    		return __isReadLoaded;
+                    case "readStatus":
+                    		return __readStatusLoaded;
                     default: throw new IllegalArgumentException("Illegal property name for \"top.yangwulang.platform.entity.message.MessageRecordUser\": \"" + prop + "\"");
                 }
             }
@@ -310,8 +313,8 @@ public interface MessageRecordUserDraft extends MessageRecordUser, TypeBaseDraft
                     		return __visibility.visible(SLOT_RECORD);
                     case SLOT_USER:
                     		return __visibility.visible(SLOT_USER);
-                    case SLOT_IS_READ:
-                    		return __visibility.visible(SLOT_IS_READ);
+                    case SLOT_READ_STATUS:
+                    		return __visibility.visible(SLOT_READ_STATUS);
                     default: return true;
                 }
             }
@@ -328,8 +331,8 @@ public interface MessageRecordUserDraft extends MessageRecordUser, TypeBaseDraft
                     		return __visibility.visible(SLOT_RECORD);
                     case "user":
                     		return __visibility.visible(SLOT_USER);
-                    case "isRead":
-                    		return __visibility.visible(SLOT_IS_READ);
+                    case "readStatus":
+                    		return __visibility.visible(SLOT_READ_STATUS);
                     default: return true;
                 }
             }
@@ -348,8 +351,8 @@ public interface MessageRecordUserDraft extends MessageRecordUser, TypeBaseDraft
                 if (__userLoaded && __userValue != null) {
                     hash = 31 * hash + __userValue.hashCode();
                 }
-                if (__isReadLoaded && __isReadValue != null) {
-                    hash = 31 * hash + __isReadValue.hashCode();
+                if (__readStatusLoaded && __readStatusValue != null) {
+                    hash = 31 * hash + __readStatusValue.hashCode();
                 }
                 return hash;
             }
@@ -365,8 +368,8 @@ public interface MessageRecordUserDraft extends MessageRecordUser, TypeBaseDraft
                 if (__userLoaded) {
                     hash = 31 * hash + System.identityHashCode(__userValue);
                 }
-                if (__isReadLoaded) {
-                    hash = 31 * hash + System.identityHashCode(__isReadValue);
+                if (__readStatusLoaded) {
+                    hash = 31 * hash + System.identityHashCode(__readStatusValue);
                 }
                 return hash;
             }
@@ -413,14 +416,14 @@ public interface MessageRecordUserDraft extends MessageRecordUser, TypeBaseDraft
                 if (__userLoaded && !Objects.equals(__userValue, __other.user())) {
                     return false;
                 }
-                if (__isVisible(PropId.byIndex(SLOT_IS_READ)) != __other.__isVisible(PropId.byIndex(SLOT_IS_READ))) {
+                if (__isVisible(PropId.byIndex(SLOT_READ_STATUS)) != __other.__isVisible(PropId.byIndex(SLOT_READ_STATUS))) {
                     return false;
                 }
-                boolean __isReadLoaded = this.__isReadLoaded;
-                if (__isReadLoaded != __other.__isLoaded(PropId.byIndex(SLOT_IS_READ))) {
+                boolean __readStatusLoaded = this.__readStatusLoaded;
+                if (__readStatusLoaded != __other.__isLoaded(PropId.byIndex(SLOT_READ_STATUS))) {
                     return false;
                 }
-                if (__isReadLoaded && !Objects.equals(__isReadValue, __other.isRead())) {
+                if (__readStatusLoaded && !Objects.equals(__readStatusValue, __other.readStatus())) {
                     return false;
                 }
                 return true;
@@ -461,14 +464,14 @@ public interface MessageRecordUserDraft extends MessageRecordUser, TypeBaseDraft
                 if (__userLoaded && __userValue != __other.user()) {
                     return false;
                 }
-                if (__isVisible(PropId.byIndex(SLOT_IS_READ)) != __other.__isVisible(PropId.byIndex(SLOT_IS_READ))) {
+                if (__isVisible(PropId.byIndex(SLOT_READ_STATUS)) != __other.__isVisible(PropId.byIndex(SLOT_READ_STATUS))) {
                     return false;
                 }
-                boolean __isReadLoaded = this.__isReadLoaded;
-                if (__isReadLoaded != __other.__isLoaded(PropId.byIndex(SLOT_IS_READ))) {
+                boolean __readStatusLoaded = this.__readStatusLoaded;
+                if (__readStatusLoaded != __other.__isLoaded(PropId.byIndex(SLOT_READ_STATUS))) {
                     return false;
                 }
-                if (__isReadLoaded && __isReadValue != __other.isRead()) {
+                if (__readStatusLoaded && __readStatusValue != __other.readStatus()) {
                     return false;
                 }
                 return true;
@@ -488,7 +491,7 @@ public interface MessageRecordUserDraft extends MessageRecordUser, TypeBaseDraft
         @GeneratedBy(
                 type = MessageRecordUser.class
         )
-        private static class DraftImpl implements Implementor, DraftSpi, MessageRecordUserDraft {
+        private static class DraftImpl extends Implementor implements DraftSpi, MessageRecordUserDraft {
             private DraftContext __ctx;
 
             private Impl __base;
@@ -697,18 +700,18 @@ public interface MessageRecordUserDraft extends MessageRecordUser, TypeBaseDraft
             @Override
             @JsonIgnore
             @Nullable
-            public Integer isRead() {
-                return (__modified!= null ? __modified : __base).isRead();
+            public Integer readStatus() {
+                return (__modified!= null ? __modified : __base).readStatus();
             }
 
             @Override
-            public MessageRecordUserDraft setIsRead(Integer isRead) {
+            public MessageRecordUserDraft setReadStatus(Integer readStatus) {
                 if (__resolved != null) {
                     throw new IllegalStateException("The current draft has been resolved so it cannot be modified");
                 }
                 Impl __tmpModified = __modified();
-                __tmpModified.__isReadValue = isRead;
-                __tmpModified.__isReadLoaded = true;
+                __tmpModified.__readStatusValue = readStatus;
+                __tmpModified.__readStatusLoaded = true;
                 return this;
             }
 
@@ -726,8 +729,8 @@ public interface MessageRecordUserDraft extends MessageRecordUser, TypeBaseDraft
                     		setRecord((MessageRecord)value);break;
                     case SLOT_USER:
                     		setUser((User)value);break;
-                    case SLOT_IS_READ:
-                    		setIsRead((Integer)value);break;
+                    case SLOT_READ_STATUS:
+                    		setReadStatus((Integer)value);break;
                     default: throw new IllegalArgumentException("Illegal property id for \"top.yangwulang.platform.entity.message.MessageRecordUser\": \"" + prop + "\"");
                 }
             }
@@ -742,8 +745,8 @@ public interface MessageRecordUserDraft extends MessageRecordUser, TypeBaseDraft
                     		setRecord((MessageRecord)value);break;
                     case "user":
                     		setUser((User)value);break;
-                    case "isRead":
-                    		setIsRead((Integer)value);break;
+                    case "readStatus":
+                    		setReadStatus((Integer)value);break;
                     default: throw new IllegalArgumentException("Illegal property name for \"top.yangwulang.platform.entity.message.MessageRecordUser\": \"" + prop + "\"");
                 }
             }
@@ -771,8 +774,8 @@ public interface MessageRecordUserDraft extends MessageRecordUser, TypeBaseDraft
                     		__visibility.show(SLOT_RECORD, visible);break;
                     case SLOT_USER:
                     		__visibility.show(SLOT_USER, visible);break;
-                    case SLOT_IS_READ:
-                    		__visibility.show(SLOT_IS_READ, visible);break;
+                    case SLOT_READ_STATUS:
+                    		__visibility.show(SLOT_READ_STATUS, visible);break;
                     default: throw new IllegalArgumentException(
                                 "Illegal property id for \"top.yangwulang.platform.entity.message.MessageRecordUser\": \"" + 
                                 prop + 
@@ -800,8 +803,8 @@ public interface MessageRecordUserDraft extends MessageRecordUser, TypeBaseDraft
                     		__visibility.show(SLOT_RECORD, visible);break;
                     case "user":
                     		__visibility.show(SLOT_USER, visible);break;
-                    case "isRead":
-                    		__visibility.show(SLOT_IS_READ, visible);break;
+                    case "readStatus":
+                    		__visibility.show(SLOT_READ_STATUS, visible);break;
                     default: throw new IllegalArgumentException(
                                 "Illegal property name for \"top.yangwulang.platform.entity.message.MessageRecordUser\": \"" + 
                                 prop + 
@@ -826,8 +829,8 @@ public interface MessageRecordUserDraft extends MessageRecordUser, TypeBaseDraft
                     		__modified().__recordLoaded = false;break;
                     case SLOT_USER:
                     		__modified().__userLoaded = false;break;
-                    case SLOT_IS_READ:
-                    		__modified().__isReadLoaded = false;break;
+                    case SLOT_READ_STATUS:
+                    		__modified().__readStatusLoaded = false;break;
                     default: throw new IllegalArgumentException("Illegal property id for \"top.yangwulang.platform.entity.message.MessageRecordUser\": \"" + prop + "\", it does not exist or its loaded state is not controllable");
                 }
             }
@@ -844,8 +847,8 @@ public interface MessageRecordUserDraft extends MessageRecordUser, TypeBaseDraft
                     		__modified().__recordLoaded = false;break;
                     case "user":
                     		__modified().__userLoaded = false;break;
-                    case "isRead":
-                    		__modified().__isReadLoaded = false;break;
+                    case "readStatus":
+                    		__modified().__readStatusLoaded = false;break;
                     default: throw new IllegalArgumentException("Illegal property name for \"top.yangwulang.platform.entity.message.MessageRecordUser\": \"" + prop + "\", it does not exist or its loaded state is not controllable");
                 }
             }
@@ -946,8 +949,8 @@ public interface MessageRecordUserDraft extends MessageRecordUser, TypeBaseDraft
             return this;
         }
 
-        public Builder isRead(Integer isRead) {
-            __draft.setIsRead(isRead);
+        public Builder readStatus(Integer readStatus) {
+            __draft.setReadStatus(readStatus);
             return this;
         }
 

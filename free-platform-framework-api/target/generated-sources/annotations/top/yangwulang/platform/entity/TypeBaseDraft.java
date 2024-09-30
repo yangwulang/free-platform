@@ -24,7 +24,7 @@ public interface TypeBaseDraft extends TypeBase, Draft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.150",
+                "0.8.184",
                 TypeBase.class,
                 Collections.emptyList(),
                 null

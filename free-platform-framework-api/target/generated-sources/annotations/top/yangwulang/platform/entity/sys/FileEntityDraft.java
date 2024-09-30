@@ -71,7 +71,7 @@ public interface FileEntityDraft extends FileEntity, TypeBaseDraft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.150",
+                "0.8.184",
                 FileEntity.class,
                 Collections.singleton(TypeBaseDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (FileEntity)base)
@@ -94,13 +94,16 @@ public interface FileEntityDraft extends FileEntity, TypeBaseDraft {
             return (FileEntity)Internal.produce(TYPE, base, block);
         }
 
+        /**
+         * Class, not interface, for free-marker
+         */
         @GeneratedBy(
                 type = FileEntity.class
         )
         @JsonPropertyOrder({"dummyPropForJacksonError__", "id", "fileMd5", "filePath", "fileContentType", "fileMeta"})
-        public abstract interface Implementor extends FileEntity, ImmutableSpi {
+        public abstract static class Implementor implements FileEntity, ImmutableSpi {
             @Override
-            default Object __get(PropId prop) {
+            public final Object __get(PropId prop) {
                 int __propIndex = prop.asIndex();
                 switch (__propIndex) {
                     case -1:
@@ -120,7 +123,7 @@ public interface FileEntityDraft extends FileEntity, TypeBaseDraft {
             }
 
             @Override
-            default Object __get(String prop) {
+            public final Object __get(String prop) {
                 switch (prop) {
                     case "id":
                     		return id();
@@ -137,33 +140,33 @@ public interface FileEntityDraft extends FileEntity, TypeBaseDraft {
             }
 
             @NotNull
-            default String getId() {
+            public final String getId() {
                 return id();
             }
 
-            default String getFileMd5() {
+            public final String getFileMd5() {
                 return fileMd5();
             }
 
-            default String getFilePath() {
+            public final String getFilePath() {
                 return filePath();
             }
 
-            default String getFileContentType() {
+            public final String getFileContentType() {
                 return fileContentType();
             }
 
             @Nullable
-            default String getFileMeta() {
+            public final String getFileMeta() {
                 return fileMeta();
             }
 
             @Override
-            default ImmutableType __type() {
+            public final ImmutableType __type() {
                 return TYPE;
             }
 
-            default int getDummyPropForJacksonError__() {
+            public final int getDummyPropForJacksonError__() {
                 throw new ImmutableModuleRequiredException();
             }
         }
@@ -171,7 +174,7 @@ public interface FileEntityDraft extends FileEntity, TypeBaseDraft {
         @GeneratedBy(
                 type = FileEntity.class
         )
-        private static class Impl implements Implementor, Cloneable, Serializable {
+        private static class Impl extends Implementor implements Cloneable, Serializable {
             private Visibility __visibility;
 
             String __idValue;
@@ -501,7 +504,7 @@ public interface FileEntityDraft extends FileEntity, TypeBaseDraft {
         @GeneratedBy(
                 type = FileEntity.class
         )
-        private static class DraftImpl implements Implementor, DraftSpi, FileEntityDraft {
+        private static class DraftImpl extends Implementor implements DraftSpi, FileEntityDraft {
             private DraftContext __ctx;
 
             private Impl __base;

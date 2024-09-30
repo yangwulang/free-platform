@@ -101,7 +101,7 @@ public interface OptionAnalysisDraft extends OptionAnalysis, TypeBaseDraft {
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.150",
+                "0.8.184",
                 OptionAnalysis.class,
                 Collections.singleton(TypeBaseDraft.Producer.TYPE),
                 (ctx, base) -> new DraftImpl(ctx, (OptionAnalysis)base)
@@ -127,13 +127,16 @@ public interface OptionAnalysisDraft extends OptionAnalysis, TypeBaseDraft {
             return (OptionAnalysis)Internal.produce(TYPE, base, block);
         }
 
+        /**
+         * Class, not interface, for free-marker
+         */
         @GeneratedBy(
                 type = OptionAnalysis.class
         )
         @JsonPropertyOrder({"dummyPropForJacksonError__", "id", "eventName", "eventCode", "optionUser", "ipAddress", "createDate", "meta"})
-        public abstract interface Implementor extends OptionAnalysis, ImmutableSpi {
+        public abstract static class Implementor implements OptionAnalysis, ImmutableSpi {
             @Override
-            default Object __get(PropId prop) {
+            public final Object __get(PropId prop) {
                 int __propIndex = prop.asIndex();
                 switch (__propIndex) {
                     case -1:
@@ -157,7 +160,7 @@ public interface OptionAnalysisDraft extends OptionAnalysis, TypeBaseDraft {
             }
 
             @Override
-            default Object __get(String prop) {
+            public final Object __get(String prop) {
                 switch (prop) {
                     case "id":
                     		return id();
@@ -178,21 +181,21 @@ public interface OptionAnalysisDraft extends OptionAnalysis, TypeBaseDraft {
             }
 
             @NotNull
-            default String getId() {
+            public final String getId() {
                 return id();
             }
 
             @Schema(
                     description = "事件名称"
             )
-            default String getEventName() {
+            public final String getEventName() {
                 return eventName();
             }
 
             @Schema(
                     description = "事件编码"
             )
-            default String getEventCode() {
+            public final String getEventCode() {
                 return eventCode();
             }
 
@@ -200,21 +203,21 @@ public interface OptionAnalysisDraft extends OptionAnalysis, TypeBaseDraft {
                     description = "操作人，如果没有就是游客"
             )
             @jakarta.annotation.Nullable
-            default User getOptionUser() {
+            public final User getOptionUser() {
                 return optionUser();
             }
 
             @Schema(
                     description = "ip地址"
             )
-            default String getIpAddress() {
+            public final String getIpAddress() {
                 return ipAddress();
             }
 
             @Schema(
                     description = "创建时间"
             )
-            default Date getCreateDate() {
+            public final Date getCreateDate() {
                 return createDate();
             }
 
@@ -222,16 +225,16 @@ public interface OptionAnalysisDraft extends OptionAnalysis, TypeBaseDraft {
                     description = "元数据存取某些相关分析数据json"
             )
             @jakarta.annotation.Nullable
-            default String getMeta() {
+            public final String getMeta() {
                 return meta();
             }
 
             @Override
-            default ImmutableType __type() {
+            public final ImmutableType __type() {
                 return TYPE;
             }
 
-            default int getDummyPropForJacksonError__() {
+            public final int getDummyPropForJacksonError__() {
                 throw new ImmutableModuleRequiredException();
             }
         }
@@ -239,7 +242,7 @@ public interface OptionAnalysisDraft extends OptionAnalysis, TypeBaseDraft {
         @GeneratedBy(
                 type = OptionAnalysis.class
         )
-        private static class Impl implements Implementor, Cloneable, Serializable {
+        private static class Impl extends Implementor implements Cloneable, Serializable {
             private Visibility __visibility;
 
             String __idValue;
@@ -662,7 +665,7 @@ public interface OptionAnalysisDraft extends OptionAnalysis, TypeBaseDraft {
         @GeneratedBy(
                 type = OptionAnalysis.class
         )
-        private static class DraftImpl implements Implementor, DraftSpi, OptionAnalysisDraft {
+        private static class DraftImpl extends Implementor implements DraftSpi, OptionAnalysisDraft {
             private DraftContext __ctx;
 
             private Impl __base;

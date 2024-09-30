@@ -40,7 +40,7 @@ public interface DataTypeBaseNoStatusDraft extends DataTypeBaseNoStatus, TypeBas
 
         public static final ImmutableType TYPE = ImmutableType
             .newBuilder(
-                "0.8.150",
+                "0.8.184",
                 DataTypeBaseNoStatus.class,
                 Collections.singleton(TypeBaseDraft.Producer.TYPE),
                 null

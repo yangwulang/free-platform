@@ -26,8 +26,8 @@ public interface MessageRecordUserProps extends TypeBaseProps {
     TypedProp.Reference<MessageRecordUser, User> USER = 
         TypedProp.reference(ImmutableType.get(MessageRecordUser.class).getProp("user"));
 
-    TypedProp.Scalar<MessageRecordUser, Integer> IS_READ = 
-        TypedProp.scalar(ImmutableType.get(MessageRecordUser.class).getProp("isRead"));
+    TypedProp.Scalar<MessageRecordUser, Integer> READ_STATUS = 
+        TypedProp.scalar(ImmutableType.get(MessageRecordUser.class).getProp("readStatus"));
 
     MessageRecordTable record();
 
@@ -41,5 +41,5 @@ public interface MessageRecordUserProps extends TypeBaseProps {
 
     PropExpression.Str userId();
 
-    PropExpression.Num<Integer> isRead();
+    PropExpression.Num<Integer> readStatus();
 }

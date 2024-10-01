@@ -1,7 +1,7 @@
 file:
   enable: true
   mode: OSS
-  url: http://platform.yuanjunjie.top:9100/
+  url: http://123.249.74.79:9100/
   accessKey: zSyivC57Bb3gEOo1
   secretKey: fhBGjV3JhRGiFdl25JScH4puzMnz5zKE
 
@@ -13,6 +13,6 @@ dromara:
         enable-storage: true  # 启用存储
         access-key: zSyivC57Bb3gEOo1
         secret-key: fhBGjV3JhRGiFdl25JScH4puzMnz5zKE
-        end-point: http://platform.yuanjunjie,top:9100/
+        end-point: http://123.249.74.79:9100/
         bucket-name: default
         base-path: default/ # 基础路径

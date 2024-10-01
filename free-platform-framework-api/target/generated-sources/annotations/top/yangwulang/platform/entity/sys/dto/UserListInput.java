@@ -16,6 +16,9 @@ import top.yangwulang.platform.entity.sys.User;
 import top.yangwulang.platform.entity.sys.UserDraft;
 import top.yangwulang.platform.entity.sys.UserFetcher;
 
+/**
+ *  @author yangwulang
+ */
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/User.dto"
 )

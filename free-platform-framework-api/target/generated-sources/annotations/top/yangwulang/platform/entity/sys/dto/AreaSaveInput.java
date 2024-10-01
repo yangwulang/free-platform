@@ -20,6 +20,9 @@ import top.yangwulang.platform.entity.sys.Area;
 import top.yangwulang.platform.entity.sys.AreaDraft;
 import top.yangwulang.platform.entity.sys.AreaFetcher;
 
+/**
+ * 区域表
+ */
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Area.dto"
 )
@@ -63,6 +66,10 @@ public class AreaSaveInput implements Input<Area> {
         this.areaType = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(AreaDraft.Producer.SLOT_AREA_TYPE)) ? base.areaType() : null;
     }
 
+    /**
+     * 字典类型编码
+     * @return 主键值
+     */
     @NotNull
     public String getId() {
         if (id == null) {
@@ -75,6 +82,9 @@ public class AreaSaveInput implements Input<Area> {
         this.id = id;
     }
 
+    /**
+     * 父级编号
+     */
     @Nullable
     @Schema(
             description = "父级id"
@@ -87,6 +97,9 @@ public class AreaSaveInput implements Input<Area> {
         this.parentId = parentId;
     }
 
+    /**
+     * 名称
+     */
     @NotNull
     @Schema(
             description = "区域名称"
@@ -102,6 +115,9 @@ public class AreaSaveInput implements Input<Area> {
         this.areaName = areaName;
     }
 
+    /**
+     * 排序
+     */
     @Nullable
     @Schema(
             description = "排序"
@@ -114,6 +130,9 @@ public class AreaSaveInput implements Input<Area> {
         this.sort = sort;
     }
 
+    /**
+     * 区域类型
+     */
     @Nullable
     @Schema(
             description = "地区类型(1：省份、直辖市；2：地市；3：区县)"

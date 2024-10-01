@@ -114,6 +114,10 @@ public class MenuGetView implements View<Menu> {
         this.meta = base.meta();
     }
 
+    /**
+     * 字典类型编码
+     * @return 主键值
+     */
     @Nullable
     @Schema(
             description = "登录编码"

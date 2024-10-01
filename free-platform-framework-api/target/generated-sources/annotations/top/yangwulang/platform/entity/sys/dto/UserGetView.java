@@ -29,6 +29,9 @@ import top.yangwulang.platform.entity.sys.User;
 import top.yangwulang.platform.entity.sys.UserDraft;
 import top.yangwulang.platform.entity.sys.UserFetcher;
 
+/**
+ *  @author yangwulang
+ */
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/User.dto"
 )
@@ -161,6 +164,11 @@ public class UserGetView implements View<User> {
         this.userCode = userCode;
     }
 
+    /**
+     * 创建者
+     *
+     * @return 创建者
+     */
     @NotNull
     @Schema(
             description = "创建人"
@@ -176,6 +184,11 @@ public class UserGetView implements View<User> {
         this.createBy = createBy;
     }
 
+    /**
+     * 创建时间
+     *
+     * @return 创建时间
+     */
     @NotNull
     @Schema(
             description = "创建时间"
@@ -191,6 +204,11 @@ public class UserGetView implements View<User> {
         this.createDate = createDate;
     }
 
+    /**
+     * 更新者
+     *
+     * @return 更新者
+     */
     @NotNull
     @Schema(
             description = "修改者"
@@ -206,6 +224,11 @@ public class UserGetView implements View<User> {
         this.updateBy = updateBy;
     }
 
+    /**
+     * 更新时间
+     *
+     * @return 更新时间
+     */
     @NotNull
     @Schema(
             description = "修改时间"
@@ -221,6 +244,11 @@ public class UserGetView implements View<User> {
         this.updateDate = updateDate;
     }
 
+    /**
+     * 备注信息
+     *
+     * @return 备注信息
+     */
     @Nullable
     @Schema(
             description = "备注"
@@ -600,6 +628,10 @@ public class UserGetView implements View<User> {
         return builder.toString();
     }
 
+    /**
+     * 角色表
+     *
+     */
     @GeneratedBy
     @Schema(
             description = "角色"
@@ -640,6 +672,9 @@ public class UserGetView implements View<User> {
             this.menus = MENUS_ACCESSOR.get(base);
         }
 
+        /**
+         * 角色名称
+         */
         @NotNull
         @Schema(
                 description = "角色名称"
@@ -655,6 +690,9 @@ public class UserGetView implements View<User> {
             this.roleName = roleName;
         }
 
+        /**
+         * 角色分类（高管、中层、基层、其它）
+         */
         @Nullable
         @Schema(
                 description = "角色类型"
@@ -667,6 +705,9 @@ public class UserGetView implements View<User> {
             this.roleType = roleType;
         }
 
+        /**
+         * 用户类型（employee员工 member会员）
+         */
         @Nullable
         @Schema(
                 description = "用户类型"
@@ -830,6 +871,10 @@ public class UserGetView implements View<User> {
                 this.sysCode = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_SYS_CODE)) ? base.sysCode() : null;
             }
 
+            /**
+             * 字典类型编码
+             * @return 主键值
+             */
             @NotNull
             public String getId() {
                 if (id == null) {
@@ -842,6 +887,11 @@ public class UserGetView implements View<User> {
                 this.id = id;
             }
 
+            /**
+             * 创建者
+             *
+             * @return 创建者
+             */
             @NotNull
             public String getCreateBy() {
                 if (createBy == null) {
@@ -854,6 +904,11 @@ public class UserGetView implements View<User> {
                 this.createBy = createBy;
             }
 
+            /**
+             * 创建时间
+             *
+             * @return 创建时间
+             */
             @NotNull
             public Date getCreateDate() {
                 if (createDate == null) {
@@ -866,6 +921,11 @@ public class UserGetView implements View<User> {
                 this.createDate = createDate;
             }
 
+            /**
+             * 更新者
+             *
+             * @return 更新者
+             */
             @NotNull
             public String getUpdateBy() {
                 if (updateBy == null) {
@@ -878,6 +938,11 @@ public class UserGetView implements View<User> {
                 this.updateBy = updateBy;
             }
 
+            /**
+             * 更新时间
+             *
+             * @return 更新时间
+             */
             @NotNull
             public Date getUpdateDate() {
                 if (updateDate == null) {
@@ -890,6 +955,11 @@ public class UserGetView implements View<User> {
                 this.updateDate = updateDate;
             }
 
+            /**
+             * 备注信息
+             *
+             * @return 备注信息
+             */
             @Nullable
             public String getRemarks() {
                 return remarks;

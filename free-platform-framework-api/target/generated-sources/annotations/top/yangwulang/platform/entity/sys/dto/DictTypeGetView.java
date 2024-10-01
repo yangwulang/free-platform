@@ -17,6 +17,9 @@ import top.yangwulang.platform.entity.sys.DictType;
 import top.yangwulang.platform.entity.sys.DictTypeDraft;
 import top.yangwulang.platform.entity.sys.DictTypeFetcher;
 
+/**
+ * 字典类型表
+ */
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/DictType.dto"
 )
@@ -55,6 +58,10 @@ public class DictTypeGetView implements View<DictType> {
         this.isSys = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(DictTypeDraft.Producer.SLOT_IS_SYS)) ? base.isSys() : null;
     }
 
+    /**
+     * 字典类型编码
+     * @return 主键值
+     */
     @NotNull
     public String getId() {
         if (id == null) {
@@ -67,6 +74,11 @@ public class DictTypeGetView implements View<DictType> {
         this.id = id;
     }
 
+    /**
+     * 备注信息
+     *
+     * @return 备注信息
+     */
     @Nullable
     public String getRemarks() {
         return remarks;
@@ -76,6 +88,10 @@ public class DictTypeGetView implements View<DictType> {
         this.remarks = remarks;
     }
 
+    /**
+     * 字典名称
+     * @return 字典名称
+     */
     @Nullable
     @Schema(
             description = "字典名称"
@@ -88,6 +104,11 @@ public class DictTypeGetView implements View<DictType> {
         this.dictName = dictName;
     }
 
+    /**
+     * 字典类型
+     *
+     * @return 字典类型
+     */
     @NotNull
     @Schema(
             description = "字典类型标签"
@@ -103,6 +124,11 @@ public class DictTypeGetView implements View<DictType> {
         this.dictType = dictType;
     }
 
+    /**
+     * 是否系统字典
+     *
+     * @return 是否系统字典
+     */
     @Nullable
     @Schema(
             description = "是否系统自带"

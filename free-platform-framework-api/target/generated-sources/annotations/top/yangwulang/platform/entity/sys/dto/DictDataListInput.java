@@ -16,6 +16,10 @@ import top.yangwulang.platform.entity.sys.DictData;
 import top.yangwulang.platform.entity.sys.DictDataDraft;
 import top.yangwulang.platform.entity.sys.DictDataFetcher;
 
+/**
+ * 字典数据
+ *
+ */
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/DictData.dto"
 )
@@ -60,6 +64,9 @@ public class DictDataListInput implements Input<DictData> {
         this.dictTypeId = dictTypeId;
     }
 
+    /**
+     * 字典标签
+     */
     @Nullable
     @Schema(
             description = "字典标签"
@@ -72,6 +79,9 @@ public class DictDataListInput implements Input<DictData> {
         this.dictLabel = dictLabel;
     }
 
+    /**
+     * 字典键值
+     */
     @Nullable
     @Schema(
             description = "字典键值"
@@ -84,6 +94,9 @@ public class DictDataListInput implements Input<DictData> {
         this.dictValue = dictValue;
     }
 
+    /**
+     * 字典描述
+     */
     @Nullable
     @Schema(
             description = "字典描述"

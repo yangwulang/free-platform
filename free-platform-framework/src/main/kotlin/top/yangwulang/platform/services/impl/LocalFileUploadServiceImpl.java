@@ -37,24 +37,24 @@ public class LocalFileUploadServiceImpl implements OssFileUploadService {
 
     @Override
     public void makeBucket(String bucketName) {
-        log.info("地址 {}", properties.getUrl());
+        log.info("地址 {}", properties.url);
     }
 
     @Override
     public void putObject(String bucketName, String objectName, String filename) {
-        log.info("地址 {}", properties.getUrl());
+        log.info("地址 {}", properties.url);
 
     }
 
     @Override
     public void putObject(String bucketName, String objectName, InputStream stream, String contentType) {
-        log.info("地址 {}", properties.getUrl());
+        log.info("地址 {}", properties.url);
 
     }
 
     @Override
     public void putObject(String bucketName, MultipartFile multipartFile, String filename) throws Throwable {
-        File writeFile = FileUtils.touch(properties.getUrl() + "\\" + bucketName + "\\" + filename);
+        File writeFile = FileUtils.touch(properties.url + "\\" + bucketName + "\\" + filename);
         try (FileOutputStream fileOutputStream = new FileOutputStream(writeFile)) {
             IOUtils.write(multipartFile.getBytes(), fileOutputStream);
         }
@@ -62,16 +62,16 @@ public class LocalFileUploadServiceImpl implements OssFileUploadService {
 
     @Override
     public boolean removeObject(String bucketName, String filePath) {
-        log.info("地址 {}", properties.getUrl());
+        log.info("地址 {}", properties.url);
 
         return false;
     }
 
     @Override
     public boolean downloadFile(String bucketName, String filePath, String originalName, HttpServletResponse response) {
-        log.info("地址 {}", properties.getUrl());
+        log.info("地址 {}", properties.url);
         try {
-            File file = new File(properties.getUrl() + "\\" + bucketName + "\\" + filePath);
+            File file = new File(properties.url + "\\" + bucketName + "\\" + filePath);
             if (!ObjectUtils.isEmpty(originalName)) {
                 response.setHeader(
                         "Content-Disposition", "attachment;filename=" +
@@ -95,7 +95,7 @@ public class LocalFileUploadServiceImpl implements OssFileUploadService {
 
     @Override
     public String getObjectUrl(String bucketName, String objectName) {
-        log.info("地址 {}", properties.getUrl());
+        log.info("地址 {}", properties.url);
 
         return null;
     }

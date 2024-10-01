@@ -21,6 +21,9 @@ import top.yangwulang.platform.entity.sys.DictType;
 import top.yangwulang.platform.entity.sys.DictTypeDraft;
 import top.yangwulang.platform.entity.sys.DictTypeFetcher;
 
+/**
+ * 字典类型表
+ */
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/DictType.dto"
 )
@@ -66,6 +69,11 @@ public class DictSaveInput implements Input<DictType> {
         this.remarks = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(DictTypeDraft.Producer.SLOT_REMARKS)) ? base.remarks() : null;
     }
 
+    /**
+     * 字典类型
+     *
+     * @return 字典类型
+     */
     @NotNull
     @Schema(
             description = "字典类型标签"
@@ -84,6 +92,10 @@ public class DictSaveInput implements Input<DictType> {
         this.dictType = dictType;
     }
 
+    /**
+     * 字典名称
+     * @return 字典名称
+     */
     @Nullable
     @Schema(
             description = "字典名称"
@@ -99,6 +111,11 @@ public class DictSaveInput implements Input<DictType> {
         this.dictName = dictName;
     }
 
+    /**
+     * 是否系统字典
+     *
+     * @return 是否系统字典
+     */
     @Nullable
     @Schema(
             description = "是否系统自带"
@@ -111,6 +128,11 @@ public class DictSaveInput implements Input<DictType> {
         this.isSys = isSys;
     }
 
+    /**
+     * 备注信息
+     *
+     * @return 备注信息
+     */
     @Nullable
     public String getRemarks() {
         return remarks;

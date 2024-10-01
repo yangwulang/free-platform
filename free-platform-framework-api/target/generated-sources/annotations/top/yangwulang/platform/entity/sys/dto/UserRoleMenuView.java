@@ -28,6 +28,9 @@ import top.yangwulang.platform.entity.sys.User;
 import top.yangwulang.platform.entity.sys.UserDraft;
 import top.yangwulang.platform.entity.sys.UserFetcher;
 
+/**
+ *  @author yangwulang
+ */
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/User.dto"
 )
@@ -104,6 +107,10 @@ public class UserRoleMenuView implements View<User> {
         return builder.toString();
     }
 
+    /**
+     * 角色表
+     *
+     */
     @GeneratedBy
     @Schema(
             description = "角色"
@@ -276,6 +283,10 @@ public class UserRoleMenuView implements View<User> {
                 this.children = CHILDREN_ACCESSOR.get(base);
             }
 
+            /**
+             * 字典类型编码
+             * @return 主键值
+             */
             @NotNull
             public String getId() {
                 if (id == null) {
@@ -288,6 +299,11 @@ public class UserRoleMenuView implements View<User> {
                 this.id = id;
             }
 
+            /**
+             * 创建者
+             *
+             * @return 创建者
+             */
             @NotNull
             public String getCreateBy() {
                 if (createBy == null) {
@@ -300,6 +316,11 @@ public class UserRoleMenuView implements View<User> {
                 this.createBy = createBy;
             }
 
+            /**
+             * 创建时间
+             *
+             * @return 创建时间
+             */
             @NotNull
             public Date getCreateDate() {
                 if (createDate == null) {
@@ -312,6 +333,11 @@ public class UserRoleMenuView implements View<User> {
                 this.createDate = createDate;
             }
 
+            /**
+             * 更新者
+             *
+             * @return 更新者
+             */
             @NotNull
             public String getUpdateBy() {
                 if (updateBy == null) {
@@ -324,6 +350,11 @@ public class UserRoleMenuView implements View<User> {
                 this.updateBy = updateBy;
             }
 
+            /**
+             * 更新时间
+             *
+             * @return 更新时间
+             */
             @NotNull
             public Date getUpdateDate() {
                 if (updateDate == null) {
@@ -336,6 +367,11 @@ public class UserRoleMenuView implements View<User> {
                 this.updateDate = updateDate;
             }
 
+            /**
+             * 备注信息
+             *
+             * @return 备注信息
+             */
             @Nullable
             public String getRemarks() {
                 return remarks;

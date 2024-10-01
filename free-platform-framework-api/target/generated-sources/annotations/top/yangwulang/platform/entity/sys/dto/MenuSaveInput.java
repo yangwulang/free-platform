@@ -100,6 +100,10 @@ public class MenuSaveInput implements Input<Menu> {
         this.meta = base.meta();
     }
 
+    /**
+     * 字典类型编码
+     * @return 主键值
+     */
     @Nullable
     public String getId() {
         return id;

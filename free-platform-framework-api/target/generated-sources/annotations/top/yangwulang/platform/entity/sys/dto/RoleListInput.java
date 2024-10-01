@@ -17,6 +17,10 @@ import top.yangwulang.platform.entity.sys.Role;
 import top.yangwulang.platform.entity.sys.RoleDraft;
 import top.yangwulang.platform.entity.sys.RoleFetcher;
 
+/**
+ * 角色表
+ *
+ */
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Role.dto"
 )
@@ -53,6 +57,9 @@ public class RoleListInput implements Input<Role> {
         this.userType = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(RoleDraft.Producer.SLOT_USER_TYPE)) ? base.userType() : null;
     }
 
+    /**
+     * 角色名称
+     */
     @Nullable
     @Schema(
             description = "角色名称"
@@ -65,6 +72,9 @@ public class RoleListInput implements Input<Role> {
         this.roleName = roleName;
     }
 
+    /**
+     * 角色分类（高管、中层、基层、其它）
+     */
     @Nullable
     @Schema(
             description = "角色类型"
@@ -77,6 +87,9 @@ public class RoleListInput implements Input<Role> {
         this.roleType = roleType;
     }
 
+    /**
+     * 用户类型（employee员工 member会员）
+     */
     @Nullable
     @Schema(
             description = "用户类型"

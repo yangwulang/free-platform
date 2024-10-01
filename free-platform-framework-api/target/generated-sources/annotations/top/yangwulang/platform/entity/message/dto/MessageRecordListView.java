@@ -63,10 +63,6 @@ public class MessageRecordListView implements View<MessageRecord> {
         this.messageType = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MessageRecordDraft.Producer.SLOT_MESSAGE_TYPE)) ? base.messageType() : null;
     }
 
-    /**
-     * 字典类型编码
-     * @return 主键值
-     */
     @NotNull
     public String getId() {
         if (id == null) {

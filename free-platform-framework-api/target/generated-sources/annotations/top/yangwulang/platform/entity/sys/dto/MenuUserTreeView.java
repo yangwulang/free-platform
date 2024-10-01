@@ -123,10 +123,6 @@ public class MenuUserTreeView implements View<Menu> {
         this.parentId = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_PARENT_ID)) ? base.parentId() : null;
     }
 
-    /**
-     * 字典类型编码
-     * @return 主键值
-     */
     @NotNull
     public String getId() {
         if (id == null) {
@@ -139,11 +135,6 @@ public class MenuUserTreeView implements View<Menu> {
         this.id = id;
     }
 
-    /**
-     * 创建者
-     *
-     * @return 创建者
-     */
     @NotNull
     public String getCreateBy() {
         if (createBy == null) {
@@ -156,11 +147,6 @@ public class MenuUserTreeView implements View<Menu> {
         this.createBy = createBy;
     }
 
-    /**
-     * 创建时间
-     *
-     * @return 创建时间
-     */
     @NotNull
     public Date getCreateDate() {
         if (createDate == null) {
@@ -173,11 +159,6 @@ public class MenuUserTreeView implements View<Menu> {
         this.createDate = createDate;
     }
 
-    /**
-     * 更新者
-     *
-     * @return 更新者
-     */
     @NotNull
     public String getUpdateBy() {
         if (updateBy == null) {
@@ -190,11 +171,6 @@ public class MenuUserTreeView implements View<Menu> {
         this.updateBy = updateBy;
     }
 
-    /**
-     * 更新时间
-     *
-     * @return 更新时间
-     */
     @NotNull
     public Date getUpdateDate() {
         if (updateDate == null) {
@@ -207,11 +183,6 @@ public class MenuUserTreeView implements View<Menu> {
         this.updateDate = updateDate;
     }
 
-    /**
-     * 备注信息
-     *
-     * @return 备注信息
-     */
     @Nullable
     public String getRemarks() {
         return remarks;

@@ -17,9 +17,6 @@ import top.yangwulang.platform.entity.sys.DictType;
 import top.yangwulang.platform.entity.sys.DictTypeProps;
 import top.yangwulang.platform.entity.sys.DictTypeTable;
 
-/**
- * 字典类型表
- */
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/DictType.dto"
 )
@@ -38,11 +35,6 @@ public class DictTypeListSpecification implements JSpecification<DictType, DictT
     public DictTypeListSpecification() {
     }
 
-    /**
-     * 字典类型
-     *
-     * @return 字典类型
-     */
     @Nullable
     @Schema(
             description = "字典类型标签"
@@ -55,10 +47,6 @@ public class DictTypeListSpecification implements JSpecification<DictType, DictT
         this.dictType = dictType;
     }
 
-    /**
-     * 字典名称
-     * @return 字典名称
-     */
     @Nullable
     @Schema(
             description = "字典名称"
@@ -71,11 +59,6 @@ public class DictTypeListSpecification implements JSpecification<DictType, DictT
         this.dictName = dictName;
     }
 
-    /**
-     * 是否系统字典
-     *
-     * @return 是否系统字典
-     */
     @Nullable
     @Schema(
             description = "是否系统自带"
@@ -88,11 +71,6 @@ public class DictTypeListSpecification implements JSpecification<DictType, DictT
         this.isSys = isSys;
     }
 
-    /**
-     * 备注信息
-     *
-     * @return 备注信息
-     */
     @Nullable
     public String getRemarks() {
         return remarks;

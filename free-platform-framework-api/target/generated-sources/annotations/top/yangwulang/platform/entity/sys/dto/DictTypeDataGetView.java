@@ -23,9 +23,6 @@ import top.yangwulang.platform.entity.sys.DictType;
 import top.yangwulang.platform.entity.sys.DictTypeDraft;
 import top.yangwulang.platform.entity.sys.DictTypeFetcher;
 
-/**
- * 字典类型表
- */
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/DictType.dto"
 )
@@ -75,10 +72,6 @@ public class DictTypeDataGetView implements View<DictType> {
         this.data = DATA_ACCESSOR.get(base);
     }
 
-    /**
-     * 字典类型编码
-     * @return 主键值
-     */
     @NotNull
     public String getId() {
         if (id == null) {
@@ -91,11 +84,6 @@ public class DictTypeDataGetView implements View<DictType> {
         this.id = id;
     }
 
-    /**
-     * 备注信息
-     *
-     * @return 备注信息
-     */
     @Nullable
     public String getRemarks() {
         return remarks;
@@ -105,10 +93,6 @@ public class DictTypeDataGetView implements View<DictType> {
         this.remarks = remarks;
     }
 
-    /**
-     * 字典名称
-     * @return 字典名称
-     */
     @Nullable
     @Schema(
             description = "字典名称"
@@ -121,11 +105,6 @@ public class DictTypeDataGetView implements View<DictType> {
         this.dictName = dictName;
     }
 
-    /**
-     * 字典类型
-     *
-     * @return 字典类型
-     */
     @NotNull
     @Schema(
             description = "字典类型标签"
@@ -141,11 +120,6 @@ public class DictTypeDataGetView implements View<DictType> {
         this.dictType = dictType;
     }
 
-    /**
-     * 是否系统字典
-     *
-     * @return 是否系统字典
-     */
     @Nullable
     @Schema(
             description = "是否系统自带"
@@ -237,10 +211,6 @@ public class DictTypeDataGetView implements View<DictType> {
         return builder.toString();
     }
 
-    /**
-     * 字典数据
-     *
-     */
     @GeneratedBy
     public static class TargetOf_data implements View<DictData> {
         public static final DtoMetadata<DictData, TargetOf_data> METADATA = 
@@ -263,9 +233,6 @@ public class DictTypeDataGetView implements View<DictType> {
             this.dictValue = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(DictDataDraft.Producer.SLOT_DICT_VALUE)) ? base.dictValue() : null;
         }
 
-        /**
-         * 字典标签
-         */
         @Nullable
         @Schema(
                 description = "字典标签"
@@ -278,9 +245,6 @@ public class DictTypeDataGetView implements View<DictType> {
             this.dictLabel = dictLabel;
         }
 
-        /**
-         * 字典键值
-         */
         @Nullable
         @Schema(
                 description = "字典键值"

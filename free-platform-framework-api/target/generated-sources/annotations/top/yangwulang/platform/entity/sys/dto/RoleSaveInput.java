@@ -21,10 +21,6 @@ import top.yangwulang.platform.entity.sys.Role;
 import top.yangwulang.platform.entity.sys.RoleDraft;
 import top.yangwulang.platform.entity.sys.RoleFetcher;
 
-/**
- * 角色表
- *
- */
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Role.dto"
 )
@@ -81,9 +77,6 @@ public class RoleSaveInput implements Input<Role> {
         this.bizScope = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(RoleDraft.Producer.SLOT_BIZ_SCOPE)) ? base.bizScope() : null;
     }
 
-    /**
-     * 角色编码
-     */
     @NotNull
     @Schema(
             description = "角色编码"
@@ -99,9 +92,6 @@ public class RoleSaveInput implements Input<Role> {
         this.roleCode = roleCode;
     }
 
-    /**
-     * 角色名称
-     */
     @NotNull
     @Schema(
             description = "角色名称"
@@ -117,9 +107,6 @@ public class RoleSaveInput implements Input<Role> {
         this.roleName = roleName;
     }
 
-    /**
-     * 角色分类（高管、中层、基层、其它）
-     */
     @Nullable
     @Schema(
             description = "角色类型"
@@ -132,9 +119,6 @@ public class RoleSaveInput implements Input<Role> {
         this.roleType = roleType;
     }
 
-    /**
-     * 角色排序（升序）
-     */
     @Nullable
     @Schema(
             description = "角色排序"
@@ -147,9 +131,6 @@ public class RoleSaveInput implements Input<Role> {
         this.roleSort = roleSort;
     }
 
-    /**
-     * 系统内置（1是 0否）
-     */
     @Nullable
     @Schema(
             description = "系统内置 1是 0否"
@@ -162,9 +143,6 @@ public class RoleSaveInput implements Input<Role> {
         this.isSys = isSys;
     }
 
-    /**
-     * 用户类型（employee员工 member会员）
-     */
     @Nullable
     @Schema(
             description = "用户类型"
@@ -177,9 +155,6 @@ public class RoleSaveInput implements Input<Role> {
         this.userType = userType;
     }
 
-    /**
-     * 数据范围设置（0未设置  1全部数据 2自定义数据）
-     */
     @Nullable
     @Schema(
             description = "数据范围设置"
@@ -192,9 +167,6 @@ public class RoleSaveInput implements Input<Role> {
         this.dataScope = dataScope;
     }
 
-    /**
-     * 适应业务范围（不同的功能，不同的数据权限支持）
-     */
     @Nullable
     @Schema(
             description = "适应业务范围"

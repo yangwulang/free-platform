@@ -18,10 +18,6 @@ import top.yangwulang.platform.entity.sys.DictData;
 import top.yangwulang.platform.entity.sys.DictDataDraft;
 import top.yangwulang.platform.entity.sys.DictDataFetcher;
 
-/**
- * 字典数据
- *
- */
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/DictData.dto"
 )
@@ -78,10 +74,6 @@ public class DictDataSaveInput implements Input<DictData> {
         this.cssClass = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(DictDataDraft.Producer.SLOT_CSS_CLASS)) ? base.cssClass() : null;
     }
 
-    /**
-     * 字典类型编码
-     * @return 主键值
-     */
     @Nullable
     public String getId() {
         return id;
@@ -115,9 +107,6 @@ public class DictDataSaveInput implements Input<DictData> {
         this.dictTypeId = dictTypeId;
     }
 
-    /**
-     * 字典标签
-     */
     @Nullable
     @Schema(
             description = "字典标签"
@@ -130,9 +119,6 @@ public class DictDataSaveInput implements Input<DictData> {
         this.dictLabel = dictLabel;
     }
 
-    /**
-     * 字典键值
-     */
     @Nullable
     @Schema(
             description = "字典键值"
@@ -145,9 +131,6 @@ public class DictDataSaveInput implements Input<DictData> {
         this.dictValue = dictValue;
     }
 
-    /**
-     * 系统内置（1是 0否）
-     */
     @Nullable
     @Schema(
             description = "系统内置（1是 0否）"
@@ -160,9 +143,6 @@ public class DictDataSaveInput implements Input<DictData> {
         this.isSys = isSys;
     }
 
-    /**
-     * 字典描述
-     */
     @Nullable
     @Schema(
             description = "字典描述"
@@ -175,9 +155,6 @@ public class DictDataSaveInput implements Input<DictData> {
         this.description = description;
     }
 
-    /**
-     * css样式（如：color:red)
-     */
     @Nullable
     @Schema(
             description = "css样式（如：color:red)"
@@ -190,9 +167,6 @@ public class DictDataSaveInput implements Input<DictData> {
         this.cssStyle = cssStyle;
     }
 
-    /**
-     * css类名（如：red）
-     */
     @Nullable
     @Schema(
             description = "css类名（如：red）"

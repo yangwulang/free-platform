@@ -29,10 +29,6 @@ import top.yangwulang.platform.entity.sys.User;
 import top.yangwulang.platform.entity.sys.UserDraft;
 import top.yangwulang.platform.entity.sys.UserFetcher;
 
-/**
- * 角色表
- *
- */
 @GeneratedBy(
         file = "<free-platform-framework-api>/src/main/dto/top/yangwulang/platform/entity/sys/Role.dto"
 )
@@ -129,10 +125,6 @@ public class RoleGetView implements View<Role> {
         this.users = USERS_ACCESSOR.get(base);
     }
 
-    /**
-     * 字典类型编码
-     * @return 主键值
-     */
     @NotNull
     public String getId() {
         if (id == null) {
@@ -145,11 +137,6 @@ public class RoleGetView implements View<Role> {
         this.id = id;
     }
 
-    /**
-     * 创建者
-     *
-     * @return 创建者
-     */
     @NotNull
     public String getCreateBy() {
         if (createBy == null) {
@@ -162,11 +149,6 @@ public class RoleGetView implements View<Role> {
         this.createBy = createBy;
     }
 
-    /**
-     * 创建时间
-     *
-     * @return 创建时间
-     */
     @NotNull
     public Date getCreateDate() {
         if (createDate == null) {
@@ -179,11 +161,6 @@ public class RoleGetView implements View<Role> {
         this.createDate = createDate;
     }
 
-    /**
-     * 更新者
-     *
-     * @return 更新者
-     */
     @NotNull
     public String getUpdateBy() {
         if (updateBy == null) {
@@ -196,11 +173,6 @@ public class RoleGetView implements View<Role> {
         this.updateBy = updateBy;
     }
 
-    /**
-     * 更新时间
-     *
-     * @return 更新时间
-     */
     @NotNull
     public Date getUpdateDate() {
         if (updateDate == null) {
@@ -213,11 +185,6 @@ public class RoleGetView implements View<Role> {
         this.updateDate = updateDate;
     }
 
-    /**
-     * 备注信息
-     *
-     * @return 备注信息
-     */
     @Nullable
     public String getRemarks() {
         return remarks;
@@ -227,9 +194,6 @@ public class RoleGetView implements View<Role> {
         this.remarks = remarks;
     }
 
-    /**
-     * 角色编码
-     */
     @NotNull
     @Schema(
             description = "角色编码"
@@ -245,9 +209,6 @@ public class RoleGetView implements View<Role> {
         this.roleCode = roleCode;
     }
 
-    /**
-     * 角色名称
-     */
     @NotNull
     @Schema(
             description = "角色名称"
@@ -263,9 +224,6 @@ public class RoleGetView implements View<Role> {
         this.roleName = roleName;
     }
 
-    /**
-     * 角色分类（高管、中层、基层、其它）
-     */
     @Nullable
     @Schema(
             description = "角色类型"
@@ -278,9 +236,6 @@ public class RoleGetView implements View<Role> {
         this.roleType = roleType;
     }
 
-    /**
-     * 角色排序（升序）
-     */
     @Nullable
     @Schema(
             description = "角色排序"
@@ -293,9 +248,6 @@ public class RoleGetView implements View<Role> {
         this.roleSort = roleSort;
     }
 
-    /**
-     * 系统内置（1是 0否）
-     */
     @Nullable
     @Schema(
             description = "系统内置 1是 0否"
@@ -308,9 +260,6 @@ public class RoleGetView implements View<Role> {
         this.isSys = isSys;
     }
 
-    /**
-     * 用户类型（employee员工 member会员）
-     */
     @Nullable
     @Schema(
             description = "用户类型"
@@ -323,9 +272,6 @@ public class RoleGetView implements View<Role> {
         this.userType = userType;
     }
 
-    /**
-     * 数据范围设置（0未设置  1全部数据 2自定义数据）
-     */
     @Nullable
     @Schema(
             description = "数据范围设置"
@@ -338,9 +284,6 @@ public class RoleGetView implements View<Role> {
         this.dataScope = dataScope;
     }
 
-    /**
-     * 适应业务范围（不同的功能，不同的数据权限支持）
-     */
     @Nullable
     @Schema(
             description = "适应业务范围"
@@ -591,10 +534,6 @@ public class RoleGetView implements View<Role> {
             this.sysCode = ((ImmutableSpi)base).__isLoaded(PropId.byIndex(MenuDraft.Producer.SLOT_SYS_CODE)) ? base.sysCode() : null;
         }
 
-        /**
-         * 字典类型编码
-         * @return 主键值
-         */
         @NotNull
         public String getId() {
             if (id == null) {
@@ -607,11 +546,6 @@ public class RoleGetView implements View<Role> {
             this.id = id;
         }
 
-        /**
-         * 创建者
-         *
-         * @return 创建者
-         */
         @NotNull
         public String getCreateBy() {
             if (createBy == null) {
@@ -624,11 +558,6 @@ public class RoleGetView implements View<Role> {
             this.createBy = createBy;
         }
 
-        /**
-         * 创建时间
-         *
-         * @return 创建时间
-         */
         @NotNull
         public Date getCreateDate() {
             if (createDate == null) {
@@ -641,11 +570,6 @@ public class RoleGetView implements View<Role> {
             this.createDate = createDate;
         }
 
-        /**
-         * 更新者
-         *
-         * @return 更新者
-         */
         @NotNull
         public String getUpdateBy() {
             if (updateBy == null) {
@@ -658,11 +582,6 @@ public class RoleGetView implements View<Role> {
             this.updateBy = updateBy;
         }
 
-        /**
-         * 更新时间
-         *
-         * @return 更新时间
-         */
         @NotNull
         public Date getUpdateDate() {
             if (updateDate == null) {
@@ -675,11 +594,6 @@ public class RoleGetView implements View<Role> {
             this.updateDate = updateDate;
         }
 
-        /**
-         * 备注信息
-         *
-         * @return 备注信息
-         */
         @Nullable
         public String getRemarks() {
             return remarks;
@@ -967,9 +881,6 @@ public class RoleGetView implements View<Role> {
         }
     }
 
-    /**
-     *  @author yangwulang
-     */
     @GeneratedBy
     @Schema(
             description = "用户实体"

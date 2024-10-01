@@ -1,10 +1,14 @@
 package top.yangwulang.platform.config.fileupload;
 
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import top.yangwulang.platform.utils.FileUtils;
 
 @ConfigurationProperties(prefix = "file")
+@Getter
+@Setter
 public class FileUploadProperties {
     /**
      * 是否开启文件上传
@@ -39,44 +43,5 @@ public class FileUploadProperties {
         this.enable = enable;
     }
 
-    public FileUploadMode getMode() {
-        return mode;
-    }
-
-    public void setMode(FileUploadMode mode) {
-        this.mode = mode;
-    }
-
-    public String getAccessKey() {
-        return accessKey;
-    }
-
-    public void setAccessKey(String accessKey) {
-        this.accessKey = accessKey;
-    }
-
-    public String getSecretKey() {
-        return secretKey;
-    }
-
-    public void setSecretKey(String secretKey) {
-        this.secretKey = secretKey;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public String getBucketName() {
-        return bucketName;
-    }
-
-    public void setBucketName(String bucketName) {
-        this.bucketName = bucketName;
-    }
 
 }

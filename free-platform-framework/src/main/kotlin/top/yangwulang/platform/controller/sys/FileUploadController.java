@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.tags.Tags;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.babyfish.jimmer.sql.ast.Predicate;
 import org.dromara.x.file.storage.core.FileInfo;
 import org.dromara.x.file.storage.core.FileStorageService;
 import org.dromara.x.file.storage.core.constant.Constant;
@@ -19,12 +20,15 @@ import org.dromara.x.file.storage.core.presigned.GeneratePresignedUrlResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import top.yangwulang.platform.entity.Tables;
 import top.yangwulang.platform.entity.sys.*;
+import top.yangwulang.platform.entity.sys.dto.FileUploadView;
 import top.yangwulang.platform.exception.FileUploadError;
 import top.yangwulang.platform.exception.ServiceException;
 import top.yangwulang.platform.services.FileUploadService;
 
 import java.util.Date;
+import java.util.List;
 import java.util.function.Supplier;
 
 /**
@@ -47,15 +51,34 @@ public class FileUploadController {
     private FileStorageService fileStorageService;
 
 
+    @Operation(summary = "上传文件此接口为post接口，但是可以接收get请求的参数{bizType}")
     @PostMapping("/uploadFile")
     @ResponseBody()
-    public FileUpload uploadFile(MultipartFile file, @Parameter String bizType) {
+    public FileUploadView uploadFile(MultipartFile file, @Parameter String bizType) {
         try {
-            return fileUploadService.putObject(FileUploadService.DEFAULT_BUCKET_NAME, file, file.getOriginalFilename(), bizType);
+            return new FileUploadView(fileUploadService.putObject(FileUploadService.DEFAULT_BUCKET_NAME, file, file.getOriginalFilename(), bizType));
         } catch (Throwable e) {
             log.error("文件上传失败", e);
             throw new ServiceException(FileUploadError.UPLOAD_FILE_FAIL);
         }
+    }
+
+    @Operation(summary = "通过bizType和bizKey查找上传的文件")
+    @GetMapping("/findUploadFileByBizType/{bizType}/{bizKey}")
+    public List<FileUploadView> findUploadFileByBizType(
+            @PathVariable("bizType") String bizType,
+            @PathVariable("bizKey") String bizKey
+    ) {
+        return fileUploadService.repository()
+                .sql()
+                .createQuery(Tables.FILE_UPLOAD_TABLE)
+                .where(
+                        Predicate.and(
+                                Tables.FILE_UPLOAD_TABLE.bizType().eq(bizType),
+                                Tables.FILE_UPLOAD_TABLE.bizKey().eq(bizKey)
+                        )
+                ).select(Tables.FILE_UPLOAD_TABLE.fetch(FileUploadView.class))
+                .execute();
     }
 
     @GetMapping("/downloadFile/{fileUploadId}")

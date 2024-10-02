@@ -1,0 +1,6 @@
+FileUploadView {
+    #allScalars
+    fileEntity {
+        #allScalars
+    }
+}

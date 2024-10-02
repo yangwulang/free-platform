@@ -114,7 +114,7 @@ public class FileUploadServiceImpl
      * 上传校验
      */
     private void uploadValid() {
-        if (!properties.isEnable()) {
+        if (!properties.getEnable()) {
             throw new ServiceException(FileUploadError.NOT_ENABLE_UPLOAD_FILE);
         }
     }

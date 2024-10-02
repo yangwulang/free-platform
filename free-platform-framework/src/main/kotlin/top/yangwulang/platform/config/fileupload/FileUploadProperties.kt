@@ -8,7 +8,7 @@ data class FileUploadProperties constructor(
     /**
      * 是否开启文件上传
      */
-    var isEnable: Boolean = false,
+    var enable: Boolean = false,
 
     /**
      * 文件上传模型

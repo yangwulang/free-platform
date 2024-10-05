@@ -21,12 +21,12 @@ public class FileUploadUtils {
     /**
      * 保存上传的附件，绑定业务实体
      *
-     * @param fileUploadIds       文件上传的所有id
-     * @param baseEntity          绑定的实体，这个实体中一定要携带id
-     * @param bizType             业务类型
+     * @param fileUploadIds 文件上传的所有id
+     * @param baseEntity    绑定的实体，这个实体中一定要携带id
+     * @param bizType       业务类型
      */
-    public void saveUploadFile(Collection<String> fileUploadIds, TypeBase baseEntity, @NotNull String bizType) {
-        this.saveUploadFile(fileUploadIds, null, baseEntity, bizType);
+    public static void saveUploadFile(Collection<String> fileUploadIds, TypeBase baseEntity, @NotNull String bizType) {
+        saveUploadFile(fileUploadIds, null, baseEntity, bizType);
     }
 
     /**
@@ -37,10 +37,28 @@ public class FileUploadUtils {
      * @param baseEntity          绑定的实体，这个实体中一定要携带id
      * @param bizType             业务类型
      */
-    public void saveUploadFile(
+    public static void saveUploadFile(
             Collection<String> fileUploadIds,
             Collection<String> deleteFileUploadIds,
             TypeBase baseEntity,
+            @NotNull String bizType
+    ) {
+        saveUploadFile(fileUploadIds, deleteFileUploadIds, baseEntity.id(), bizType);
+    }
+
+
+    /**
+     * 保存上传的附件，绑定业务实体
+     *
+     * @param fileUploadIds       文件上传的所有id
+     * @param deleteFileUploadIds 删除了的文件上传id
+     * @param baseEntityId        绑定的实体id
+     * @param bizType             业务类型
+     */
+    public static void saveUploadFile(
+            Collection<String> fileUploadIds,
+            Collection<String> deleteFileUploadIds,
+            String baseEntityId,
             @NotNull String bizType
     ) {
         if (fileUploadIds == null) {
@@ -52,7 +70,7 @@ public class FileUploadUtils {
                         .filter(Objects::nonNull)
                         .filter(it -> bizType.equals(it.bizType()))
                         .map(it ->
-                                FileUploadDraft.$.produce(it, draft -> draft.setBizKey(baseEntity.id()))
+                                FileUploadDraft.$.produce(it, draft -> draft.setBizKey(baseEntityId))
                         )
                         .toList()
         );
